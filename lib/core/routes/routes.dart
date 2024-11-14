@@ -1,0 +1,137 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+
+import '../../features/shared/navigations/app_routes_constants.dart';
+import 'routes.gr.dart';
+
+@AutoRouterConfig()
+class AppRouter extends RootStackRouter {
+  AppRouter();
+  @override
+  List<AutoRoute> get routes => <AutoRoute>[
+        AutoRoute(
+            page: SplashRoute.page,
+            path: AppRoutesConstants.splash,
+            maintainState: false,
+            initial: true),
+        AutoRoute(
+            page: NavigationMainRoute.page,
+            path: AppRoutesConstants.mainNavigation,
+            initial: false,
+            maintainState: true,
+            children: <AutoRoute>[
+              AutoRoute(
+                  page: HomeRoute.page,
+                  path: AppRoutesConstants.home,
+                  maintainState: false),
+              AutoRoute(
+                  path: 'tab1',
+                  page: EmptyRouterRoute.page,
+                  maintainState: false,
+                  children: [
+                    AutoRoute(
+                      page: RequestsRoute.page,
+                      path: '',
+                      //  meta: <String, dynamic>{'hideBottomNav': true},
+                    ),
+                    AutoRoute(
+                      page: AnnualLeaveRequestDetailsRoute.page,
+                      path: AppRoutesConstants.annualLeaveRequestDetails,
+                      //  meta: <String, dynamic>{'hideBottomNav': true},
+                    ),
+                    AutoRoute(
+                      page: CreateRequestRoute.page,
+                      path: AppRoutesConstants.createRequest,
+                      //  meta: <String, dynamic>{'hideBottomNav': true},
+                    ),
+                    AutoRoute(
+                      page: TrainingRequestDetailsRoute.page,
+                      path: AppRoutesConstants.trainingRequestDetails,
+                    )
+                  ]),
+              AutoRoute(
+                page: InsuranceRoute.page,
+                path: AppRoutesConstants.insurance,
+                maintainState: false,
+              ),
+              AutoRoute(
+                  page: MoreRoute.page,
+                  path: AppRoutesConstants.more,
+                  maintainState: false),
+            ]),
+        AutoRoute(
+          page: AuthRoute.page,
+          path: AppRoutesConstants.authScreen,
+        ),
+        AutoRoute(
+          page: ForgetPassRoute.page,
+          path: AppRoutesConstants.forgotPassword,
+        ),
+        AutoRoute(
+          page: ForgetPassVerifyOtpRoute.page,
+          path: AppRoutesConstants.forgotPasswordVerifyOtp,
+        ),
+        AutoRoute(
+          page: ResetPassRoute.page,
+          path: AppRoutesConstants.resetPassword,
+        ),
+        AutoRoute(
+          page: PasswordChangedRoute.page,
+          path: AppRoutesConstants.passwordChanged,
+        ),
+        AutoRoute(
+          page: CreateAnnualLeaveRequestRoute.page,
+          path: AppRoutesConstants.createAnnualLeaveRequest,
+        ),
+        AutoRoute(
+          page: CreateSickLeaveRequestRoute.page,
+          path: AppRoutesConstants.createSickLeaveRequest,
+        ),
+        AutoRoute(
+          page: ThankYouRoute.page,
+          path: AppRoutesConstants.thankYou,
+        ),
+        AutoRoute(
+          page: NotificationsRoute.page,
+          path: AppRoutesConstants.notifications,
+        ),
+        AutoRoute(
+          page: NotificationDetailsRoute.page,
+          path: AppRoutesConstants.notificationDetails,
+        ),
+        AutoRoute(
+          page: CreateEmergencyLeaveRequestRoute.page,
+          path: AppRoutesConstants.createEmergencyLeaveRequest,
+        ),
+        AutoRoute(
+          page: CreateTrainingRequestRoute.page,
+          path: AppRoutesConstants.createTrainingRequest,
+        ),
+        AutoRoute(
+          page: CreateInsuranceRequestRoute.page,
+          path: AppRoutesConstants.createInsuranceRequest,
+        ),
+        AutoRoute(
+          page: CertificatesRoute.page,
+          path: AppRoutesConstants.certificates,
+        ),
+        AutoRoute(
+          page: CertificateDetailsRoute.page,
+          path: AppRoutesConstants.certificateDetails,
+        ),
+        AutoRoute(
+          page: CreateLoanRequestRoute.page,
+          path: AppRoutesConstants.createLoanRequest,
+        ),
+      ];
+}
+
+@RoutePage()
+class EmptyRouterPage extends StatelessWidget {
+  const EmptyRouterPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const AutoRouter();
+  }
+}

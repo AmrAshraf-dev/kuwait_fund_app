@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1068010075335",
+    "project_id": "kf-ess-mobile-app",
+    "storage_bucket": "kf-ess-mobile-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068010075335:android:bc56c6aa2a789b37157ae2",
+        "android_client_info": {
+          "package_name": "com.kf_ess_mobile_app.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEU5BZL71ZGmK-ecVnUtdo3Gp2lVCW9T0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
