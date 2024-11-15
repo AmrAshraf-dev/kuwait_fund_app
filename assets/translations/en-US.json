@@ -580,5 +580,18 @@
   "selectReportType": "Select Report Type",
   "export": "Export",
   "verify": "Verify",
-  "emptyError": "Oops! We need this info."
+  "emptyError": "Oops! We need this info.",
+  "notification": "Notification",
+  "documents": "Documents",
+  "loanAgreement": "Loan Agreement",
+  "loanContract": "Loan Contract",
+  "viewDocument": "View Document",
+  "signWithPACI": "Sign with PACI",
+  "approve": "Approve",
+  "CheckYourPhone": "Check your Phone",
+  "paciTitle": "Sign Via PACI Mobile ID App On Your Phone",
+  "paciBody": "You will be received a notification from PACI Mobile ID",
+  "timeoutAfter": "Timeout after",
+  "signed": "Signed",
+  "close": "Close"
 }

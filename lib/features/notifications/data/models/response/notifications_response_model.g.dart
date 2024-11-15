@@ -8,15 +8,25 @@ part of 'notifications_response_model.dart';
 
 NotificationsModel _$NotificationsModelFromJson(Map<String, dynamic> json) =>
     NotificationsModel(
-      var1: json['var1'] as String?,
-      var2: json['var2'] as String?,
+      date: json['date'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      type: $enumDecode(_$NotificationTypeEnumEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$NotificationsModelToJson(NotificationsModel instance) =>
     <String, dynamic>{
-      'var1': instance.var1,
-      'var2': instance.var2,
+      'date': instance.date,
+      'title': instance.title,
+      'description': instance.description,
+      'type': _$NotificationTypeEnumEnumMap[instance.type]!,
     };
+
+const _$NotificationTypeEnumEnumMap = {
+  NotificationTypeEnum.normal: 'normal',
+  NotificationTypeEnum.withResponse: 'withResponse',
+  NotificationTypeEnum.loan: 'loan',
+};
 
 NotificationsResponseModel _$NotificationsResponseModelFromJson(
         Map<String, dynamic> json) =>

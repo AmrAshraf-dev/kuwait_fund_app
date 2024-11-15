@@ -58,4 +58,8 @@ class AppRoutesConstants {
   static const String certificateDetails = '/certificateDetailsScreen';
 
   static const String createLoanRequest = '/createLoanRequestScreen';
+
+  static const String documents = '/documentsScreen';
+
+  static const String signPaciScreen = '/signPaciScreen';
 }
