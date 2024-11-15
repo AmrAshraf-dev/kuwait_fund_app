@@ -237,6 +237,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/sick_leave.svg
   SvgGenImage get sickLeave => const SvgGenImage('assets/svg/sick_leave.svg');
 
+  /// File path: assets/svg/submissions.svg
+  SvgGenImage get submissions =>
+      const SvgGenImage('assets/svg/submissions.svg');
+
   /// File path: assets/svg/survey.svg
   SvgGenImage get survey => const SvgGenImage('assets/svg/survey.svg');
 
@@ -289,6 +293,7 @@ class $AssetsSvgGen {
         questionMark,
         requests,
         sickLeave,
+        submissions,
         survey,
         trainingRequest,
         userCircleIcon

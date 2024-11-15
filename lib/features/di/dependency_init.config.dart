@@ -12,6 +12,16 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:kf_ess_mobile_app/core/network/network_helper.dart' as _i675;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/data_sources/remote/submissions_remote_data_source.dart'
+    as _i809;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/repositories/submissions_repository_impl.dart'
+    as _i542;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/repositories/submissions_repository.dart'
+    as _i188;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/use_cases/get_submissions_usecase.dart'
+    as _i9;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submissions_cubit.dart'
+    as _i368;
 import 'package:kf_ess_mobile_app/features/auth/data/data_sources/remote/auth_remote_data_source.dart'
     as _i826;
 import 'package:kf_ess_mobile_app/features/auth/data/repositories/auth_repository_impl.dart'
@@ -83,6 +93,16 @@ import 'package:kf_ess_mobile_app/features/more/domain/use_cases/get_more_usecas
     as _i273;
 import 'package:kf_ess_mobile_app/features/more/presentation/cubits/more_cubit.dart'
     as _i693;
+import 'package:kf_ess_mobile_app/features/my_attendance/data/data_sources/remote/my_attendance_remote_data_source.dart'
+    as _i399;
+import 'package:kf_ess_mobile_app/features/my_attendance/data/repositories/my_attendance_repository_impl.dart'
+    as _i1001;
+import 'package:kf_ess_mobile_app/features/my_attendance/domain/repositories/my_attendance_repository.dart'
+    as _i835;
+import 'package:kf_ess_mobile_app/features/my_attendance/domain/use_cases/get_my_attendance_usecase.dart'
+    as _i107;
+import 'package:kf_ess_mobile_app/features/my_attendance/presentation/cubits/my_attendance_cubit.dart'
+    as _i674;
 import 'package:kf_ess_mobile_app/features/notifications/data/data_sources/remote/notifications_remote_data_source.dart'
     as _i396;
 import 'package:kf_ess_mobile_app/features/notifications/data/repositories/notifications_repository_impl.dart'
@@ -157,6 +177,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i675.NetworkHelper>(() => _i675.NetworkHelper(gh<_i361.Dio>()));
   gh.factory<_i602.MoreRemoteDataSource>(
       () => _i602.MoreDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i399.MyAttendanceRemoteDataSource>(
+      () => _i399.MyAttendanceDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i506.InsuranceRemoteDataSource>(
       () => _i506.InsuranceDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i119.CreateRequestRemoteDataSource>(
@@ -165,8 +187,12 @@ Future<_i174.GetIt> $initGetIt(
       () => _i437.HomeDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i219.HomeRepository>(() => _i971.HomeRepositoryImp(
       homeRemoteDataSource: gh<_i437.HomeRemoteDataSource>()));
+  gh.factory<_i809.SubmissionsRemoteDataSource>(
+      () => _i809.SubmissionsDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i956.CertificatesRemoteDataSource>(
       () => _i956.CertificatesDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i188.SubmissionsRepository>(() => _i542.SubmissionsRepositoryImp(
+      submissionsRemoteDataSource: gh<_i809.SubmissionsRemoteDataSource>()));
   gh.factory<_i396.NotificationsRemoteDataSource>(
       () => _i396.NotificationsDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i508.MoreRepository>(() => _i920.MoreRepositoryImp(
@@ -197,6 +223,10 @@ Future<_i174.GetIt> $initGetIt(
       authRemoteDataSource: gh<_i826.AuthRemoteDataSource>()));
   gh.factory<_i969.ForgetPassCubit>(() => _i969.ForgetPassCubit(
       getForgetPassUseCase: gh<_i776.GetForgetPassUseCase>()));
+  gh.factory<_i835.MyAttendanceRepository>(() =>
+      _i1001.MyAttendanceRepositoryImp(
+          myAttendanceRemoteDataSource:
+              gh<_i399.MyAttendanceRemoteDataSource>()));
   gh.factory<_i1062.InsuranceRepository>(() => _i454.InsuranceRepositoryImp(
       insuranceRemoteDataSource: gh<_i506.InsuranceRemoteDataSource>()));
   gh.factory<_i218.NotificationsRepository>(() =>
@@ -213,6 +243,8 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i119.CreateRequestRemoteDataSource>()));
   gh.factory<_i232.AuthCubit>(
       () => _i232.AuthCubit(getAuthUseCase: gh<_i464.GetAuthUseCase>()));
+  gh.factory<_i9.GetSubmissionsUseCase>(() => _i9.GetSubmissionsUseCase(
+      submissionsRepository: gh<_i188.SubmissionsRepository>()));
   gh.factory<_i623.CertificatesCubit>(() => _i623.CertificatesCubit(
       getCertificatesUseCase: gh<_i254.GetCertificatesUseCase>()));
   gh.factory<_i362.GetNotificationsUseCase>(() => _i362.GetNotificationsUseCase(
@@ -225,6 +257,8 @@ Future<_i174.GetIt> $initGetIt(
       getInsuranceUseCase: gh<_i595.GetInsuranceUseCase>()));
   gh.factory<_i408.HomeCubit>(
       () => _i408.HomeCubit(getHomeUseCase: gh<_i243.GetHomeUseCase>()));
+  gh.factory<_i107.GetMyAttendanceUseCase>(() => _i107.GetMyAttendanceUseCase(
+      myAttendanceRepository: gh<_i835.MyAttendanceRepository>()));
   gh.factory<_i693.MoreCubit>(
       () => _i693.MoreCubit(getMoreUseCase: gh<_i273.GetMoreUseCase>()));
   gh.factory<_i1068.GetCreateRequestUseCase>(() =>
@@ -232,6 +266,10 @@ Future<_i174.GetIt> $initGetIt(
           createRequestRepository: gh<_i397.CreateRequestRepository>()));
   gh.factory<_i791.NotificationsCubit>(() => _i791.NotificationsCubit(
       getNotificationsUseCase: gh<_i362.GetNotificationsUseCase>()));
+  gh.factory<_i368.SubmissionsCubit>(() => _i368.SubmissionsCubit(
+      getSubmissionsUseCase: gh<_i9.GetSubmissionsUseCase>()));
+  gh.factory<_i674.MyAttendanceCubit>(() => _i674.MyAttendanceCubit(
+      getMyAttendanceUseCase: gh<_i107.GetMyAttendanceUseCase>()));
   gh.factory<_i708.CreateRequestCubit>(() => _i708.CreateRequestCubit(
       getCreateRequestUseCase: gh<_i1068.GetCreateRequestUseCase>()));
   return getIt;

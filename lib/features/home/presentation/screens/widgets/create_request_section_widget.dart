@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/create_request_card_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -29,7 +31,9 @@ class _CreateRequestSectionState extends State<CreateRequestSection> {
                 style: AppTextStyle.bold_18,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  CustomMainRouter.push(CreateRequestRoute());
+                },
                 child: AppText(
                   text: context.tr("view_all"),
                   style: AppTextStyle.medium_14,
@@ -51,22 +55,30 @@ class _CreateRequestSectionState extends State<CreateRequestSection> {
                 CreateRequestCardItem(
                   title: context.tr("annual_leave"),
                   svgIcon: annualLeave,
-                  onClick: () {},
+                  onClick: () {
+                    CustomMainRouter.push(CreateAnnualLeaveRequestRoute());
+                  },
                 ),
                 CreateRequestCardItem(
                   title: context.tr("sick_leave"),
                   svgIcon: sickLeave,
-                  onClick: () {},
+                  onClick: () {
+                    CustomMainRouter.push(CreateSickLeaveRequestRoute());
+                  },
                 ),
                 CreateRequestCardItem(
                   title: context.tr("emergency_leave"),
                   svgIcon: emergencyLeave,
-                  onClick: () {},
+                  onClick: () {
+                    CustomMainRouter.push(CreateEmergencyLeaveRequestRoute());
+                  },
                 ),
                 CreateRequestCardItem(
                   title: context.tr("training_request"),
                   svgIcon: trainingRequest,
-                  onClick: () {},
+                  onClick: () {
+                    CustomMainRouter.push(CreateTrainingRequestRoute());
+                  },
                 ),
               ],
             ),
