@@ -152,20 +152,25 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
               30.verticalSpace,
               SickLeaveAvailableDaysWidget(),
               26.verticalSpace,
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Assets.svg.calander.svg(
-                      width: 25.w, height: 25.h, color: Palette.primaryColor),
-                  13.horizontalSpace,
-                  AppText(
-                      text: context.tr(
-                        "view_my_attandance",
-                      ),
-                      textColor: Palette.blue_5490EB,
-                      style: AppTextStyle.medium_18),
-                ],
+              InkWell(
+                onTap: () {
+                  CustomMainRouter.push(MyAttendanceRoute());
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Assets.svg.calander.svg(
+                        width: 25.w, height: 25.h, color: Palette.primaryColor),
+                    13.horizontalSpace,
+                    AppText(
+                        text: context.tr(
+                          "view_my_attandance",
+                        ),
+                        textColor: Palette.blue_5490EB,
+                        style: AppTextStyle.medium_18),
+                  ],
+                ),
               ),
               120.verticalSpace,
               CustomElevatedButton(

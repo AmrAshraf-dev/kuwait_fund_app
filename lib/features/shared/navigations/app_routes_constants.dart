@@ -1,10 +1,4 @@
 class AppRoutesConstants {
-  static const String visitorPath = "visitor-";
-  static const String loggedInPath = "loggedIn-";
-  //------------------- [Visitor Routes] ------------------- //
-
-  //------------------- [LoggedIn Routes Journey ] ------------------- //
-
   static const String splash = '/splashScreen';
 
   static const String authScreen = '/authScreen';
@@ -58,4 +52,10 @@ class AppRoutesConstants {
   static const String certificateDetails = '/certificateDetailsScreen';
 
   static const String createLoanRequest = '/createLoanRequestScreen';
+
+  static const String myAttendance = '/myAttendanceScreen';
+
+  static const String supervisorNavigation = '/supervisorNavigation';
+
+  static const String submissions = 'submissionsScreen';
 }

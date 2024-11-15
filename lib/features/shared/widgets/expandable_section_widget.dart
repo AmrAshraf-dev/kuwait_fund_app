@@ -20,7 +20,6 @@ class ExpandableSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 95.h,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10.r),

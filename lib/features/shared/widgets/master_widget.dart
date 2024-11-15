@@ -98,6 +98,7 @@ class _MasterWidgetState extends State<MasterWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Palette.white_F5F4F9,
         floatingActionButton: widget.floatingActionButton,
         drawer: widget.drawer,
         appBar: widget.appBar ??
@@ -175,8 +176,11 @@ class _MasterWidgetState extends State<MasterWidget> {
                         padding: EdgeInsets.symmetric(horizontal: 14.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: widget.appBarBody != null
+                              ? MainAxisAlignment.start
+                              : MainAxisAlignment.center,
                           children: [
+                            10.verticalSpace,
                             Stack(
                               children: [
                                 Directionality(
@@ -244,6 +248,7 @@ class _MasterWidgetState extends State<MasterWidget> {
                                 ),
                               ],
                             ),
+                            20.verticalSpace,
                             if (widget.appBarBody != null) widget.appBarBody!
                           ],
                         ),

@@ -8,8 +8,8 @@ import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/annual_leave_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/create_request_section_widget.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/leave_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/recent_update_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/slider_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MasterWidget(
         waterMarkImage: waterMarkImage3,
-        appBarHeight: 240.0,
+        appBarHeight: 240.0.h,
         appBarBody: Column(
           children: [
             Row(
@@ -127,44 +127,42 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             20.verticalSpace,
-            IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AnnualLeaveChart(
-                    leaveUsed: 26,
-                    totalLeave: 30,
-                    color: Colors.blueAccent,
-                    title: context.tr('annual_leave'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AnnualLeaveChart(
+                  leaveUsed: 26,
+                  totalLeave: 30,
+                  color: Colors.blueAccent,
+                  title: context.tr('annual_leave'),
+                ),
+                SizedBox(
+                  height: 100.h,
+                  child: VerticalDivider(
+                    color: Palette.blue_3B72C5,
+                    thickness: 0.2,
                   ),
-                  SizedBox(
-                    height: 100.h,
-                    child: VerticalDivider(
-                      color: Palette.blue_3B72C5,
-                      thickness: 0.2,
-                    ),
+                ),
+                AnnualLeaveChart(
+                  leaveUsed: 12,
+                  totalLeave: 15,
+                  color: Color(0xFFEDA18C),
+                  title: context.tr('sick_leave'),
+                ),
+                SizedBox(
+                  height: 100.h,
+                  child: VerticalDivider(
+                    color: Palette.blue_3B72C5,
+                    thickness: 0.2,
                   ),
-                  AnnualLeaveChart(
-                    leaveUsed: 12,
-                    totalLeave: 15,
-                    color: Color(0xFFEDA18C),
-                    title: context.tr('sick_leave'),
-                  ),
-                  SizedBox(
-                    height: 100.h,
-                    child: VerticalDivider(
-                      color: Palette.blue_3B72C5,
-                      thickness: 0.2,
-                    ),
-                  ),
-                  AnnualLeaveChart(
-                      leaveUsed: 2,
-                      totalLeave: 4,
-                      title: context.tr('vacations_used'),
-                      color: Color(0xFFFBD823)),
-                ],
-              ),
+                ),
+                AnnualLeaveChart(
+                    leaveUsed: 2,
+                    totalLeave: 4,
+                    title: context.tr('vacations_used'),
+                    color: Color(0xFFFBD823)),
+              ],
             ),
           ],
         ),
