@@ -8,14 +8,22 @@ part of 'submissions_response_model.dart';
 
 SubmissionsModel _$SubmissionsModelFromJson(Map<String, dynamic> json) =>
     SubmissionsModel(
-      var1: json['var1'] as String?,
-      var2: json['var2'] as String?,
+      type: json['type'] as String?,
+      date: json['date'] as String?,
+      status: json['status'] as String?,
+      from: json['from'] as String?,
+      to: json['to'] as String?,
+      requesterName: json['requesterName'] as String?,
     );
 
 Map<String, dynamic> _$SubmissionsModelToJson(SubmissionsModel instance) =>
     <String, dynamic>{
-      'var1': instance.var1,
-      'var2': instance.var2,
+      'status': instance.status,
+      'date': instance.date,
+      'type': instance.type,
+      'from': instance.from,
+      'to': instance.to,
+      'requesterName': instance.requesterName,
     };
 
 SubmissionsResponseModel _$SubmissionsResponseModelFromJson(

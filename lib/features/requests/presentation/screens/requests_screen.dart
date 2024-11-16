@@ -350,7 +350,7 @@ class RequestItemWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AppText(
-                            text: request.type,
+                            text: context.tr(request.type!),
                             style: AppTextStyle.bold_16,
                             textColor: Palette.black,
                           ),

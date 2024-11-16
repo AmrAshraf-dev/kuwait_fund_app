@@ -1,19 +1,23 @@
- import "package:equatable/equatable.dart";
-
-
-
-
+import "package:equatable/equatable.dart";
 
 /// Entity that contains the data of the Submissions.
-class SubmissionsEntity extends Equatable{
+class SubmissionsEntity extends Equatable {
+  final String? status;
+  final String? date;
+  final String? type;
+  final String? from;
+  final String? to;
+  final String? requesterName;
 
- final String? var1;
-
- final  String? var2;
   /// Entity that contains the data of the Submissions.
-   SubmissionsEntity(
-    {required this.var1, required this.var2}
-   );
+  const SubmissionsEntity({
+    required this.status,
+    required this.date,
+    required this.type,
+    required this.from,
+    required this.to,
+    required this.requesterName,
+  });
 
   /*
   An entity represents a real-world object with a distinct identity. 
@@ -21,10 +25,8 @@ class SubmissionsEntity extends Equatable{
 
   @override
   List<Object?> get props => [
-  /*
+        /*
   List your entity attributes here 
   */
-  ];
-
-
+      ];
 }
