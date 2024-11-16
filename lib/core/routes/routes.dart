@@ -131,6 +131,14 @@ class AppRouter extends RootStackRouter {
           path: AppRoutesConstants.signPaciScreen,
         ),
         AutoRoute(
+          page: AdsRoute.page,
+          path: AppRoutesConstants.adsScreen,
+        ),
+        AutoRoute(
+          page: AdsDetailsRoute.page,
+          path: AppRoutesConstants.adsDetailsScreen,
+        ),
+        AutoRoute(
           page: MyAttendanceRoute.page,
           path: AppRoutesConstants.myAttendance,
         ),

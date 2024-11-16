@@ -64,7 +64,9 @@ class _MoreScreenState extends State<MoreScreen> {
             MoreItemWidget(
                 text: context.tr("advertisements"),
                 svgIcon: advertisements,
-                onTap: () {}),
+                onTap: () {
+                  CustomMainRouter.push(AdsRoute());
+                }),
             MoreItemWidget(
                 text: context.tr("survey"), svgIcon: survey, onTap: () {}),
             MoreItemWidget(
