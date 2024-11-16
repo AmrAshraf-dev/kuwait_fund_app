@@ -10,19 +10,20 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 class ResponseNotificationWidget extends StatelessWidget {
-  const ResponseNotificationWidget({super.key , required this.notification});
+  const ResponseNotificationWidget({super.key, required this.notification});
 
   final NotificationsEntity notification;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        CustomMainRouter.push(NotificationDetailsRoute(notification: notification));
+        CustomMainRouter.push(
+            NotificationDetailsRoute(notification: notification));
       },
       child: Padding(
         padding: EdgeInsetsDirectional.only(start: 14.w, end: 15.w, top: 14.h),
         child: Container(
-            height: 171.h,
+            // height: 171.h,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -48,15 +49,14 @@ class ResponseNotificationWidget extends StatelessWidget {
                         textColor: Palette.semiTextGrey,
                       ),
                       Container(
-                        height: 20.h,
-                        width: 68.w,
                         decoration: BoxDecoration(
                           color: Palette.notificationOrange,
                           borderRadius: BorderRadius.circular(6.r),
                         ),
-                        child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
                           child: AppText(
-                            text: 'Pending',
+                            text: context.tr("pending"),
                             textColor: Colors.white,
                             style: AppTextStyle.semiBold_12,
                           ),
@@ -65,7 +65,7 @@ class ResponseNotificationWidget extends StatelessWidget {
                     ],
                   ),
                   AppText(
-                    text: 'Annual Leave Request',
+                    text: context.tr("annual_leave_request"),
                     style: AppTextStyle.bold_16,
                     textColor: Palette.black,
                   ),
@@ -121,7 +121,6 @@ class ResponseNotificationWidget extends StatelessWidget {
                         width: 100.w,
                         height: 35.h,
                         textStyle: AppTextStyle.medium_14,
-                        radius: 9.r,
                       ),
                       18.horizontalSpace,
                       CustomElevatedButton(
@@ -131,7 +130,6 @@ class ResponseNotificationWidget extends StatelessWidget {
                         width: 100.w,
                         height: 35.h,
                         textStyle: AppTextStyle.medium_14,
-                        radius: 9.r,
                       ),
                     ],
                   ),

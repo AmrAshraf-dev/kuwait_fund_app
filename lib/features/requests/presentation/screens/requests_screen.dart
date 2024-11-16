@@ -30,7 +30,7 @@ class _RequestsScreenState extends State<RequestsScreen>
   final List<RequestsEntity> allRequests = List.generate(
     58,
     (int index) => RequestsEntity(
-      status: "Pending",
+      status: "pending",
       date: "12/12/2021",
       type: RequestTypeEnum.annualLeaveRequest.name,
       from: "12/12/2021",
@@ -333,7 +333,7 @@ class RequestItemWidget extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: AppText(
-                            text: request.status,
+                            text: context.tr(request.status!),
                             textColor: Colors.white,
                             style: AppTextStyle.semiBold_12,
                           ),

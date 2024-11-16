@@ -6,6 +6,7 @@ import 'package:kf_ess_mobile_app/features/notifications/domain/entities/notific
 import 'package:kf_ess_mobile_app/features/notifications/presentation/widgets/loan_notification_widget.dart';
 import 'package:kf_ess_mobile_app/features/notifications/presentation/widgets/normal_notification_widget.dart';
 import 'package:kf_ess_mobile_app/features/notifications/presentation/widgets/response_notification_widget.dart';
+
 import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
@@ -29,26 +30,12 @@ class NotificationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
+      hasScroll: false,
       screenTitle: context.tr("notification"),
-      widget: NotificationsListViewWidget(notificationsList: allNotifications),
-    );
-  }
-}
-
-class NotificationsListViewWidget extends StatelessWidget {
-  final List<NotificationsEntity> notificationsList;
-
-  const NotificationsListViewWidget(
-      {super.key, required this.notificationsList});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      child: ListView.builder(
-        itemCount: notificationsList.length,
+      widget: ListView.builder(
+        itemCount: allNotifications.length,
         itemBuilder: (context, index) {
-          return NotificationItemWidget(notification: notificationsList[index]);
+          return NotificationItemWidget(notification: allNotifications[index]);
         },
       ),
     );

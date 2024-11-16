@@ -33,7 +33,7 @@ class _SignPaciScreenState extends State<SignPaciScreen> {
               context.router.push(DocumentsRoute(isVerified: true));
             },
             child: AppText(
-              text: context.tr('Cancel'),
+              text: context.tr('cancel'),
               style: AppTextStyle.regular_18,
               textColor: Palette.blue_5490EB,
             ),
@@ -43,7 +43,6 @@ class _SignPaciScreenState extends State<SignPaciScreen> {
     );
   }
 }
-
 
 class CheckPhoneCard extends StatelessWidget {
   const CheckPhoneCard({
