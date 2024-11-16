@@ -20,6 +20,8 @@ class Palette {
   static const Color blue_ECEEF4 = Color(0xFFECEEF4);
   static const Color gray_B6B7B8 = Color(0xFFB6B7B8);
 
+
+  static const Color orange_FB5923 = Color(0xFFFB5923);
   static const Color blue_3B72C5 = Color(0xFF3B72C5);
 
   static const Color gray_C6C6C6 = Color(0xFFC6C6C6);
@@ -36,7 +38,7 @@ class Palette {
   static const Color blue_058DD2 = Color(0xFF058DD2);
   static const Color blue_5490EB = Color(0xFF5490EB);
   static const Color orange_FF7904 = Color(0xFFFF7904);
-
+  static const Color gray_F3F3F3 = Color(0xFFF3F3F3);
   static const Color blue_0672A8 = Color(0xFF0672A8);
   static const Color grey_D4CDCD = Color(0xFFD4CDCD);
   static const Color grey_F4F6F7 = Color(0xFFF4F6F7);
@@ -73,6 +75,7 @@ class Palette {
   static const Color grey_707070 = Color(0xFF707070);
   static const Color grey_D6D8DC = Color(0xFFD6D8DC);
 
+  static const Color white_F5F4F9 = Color(0xFFF5F4F9);
   static const Color disabledColor = Colors.grey;
   static const Color radioColor = Color(0x26989898);
   static const Color darkGray = Color(0xB3000000);

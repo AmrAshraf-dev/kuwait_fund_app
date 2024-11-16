@@ -17,8 +17,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
             page: NavigationMainRoute.page,
             path: AppRoutesConstants.mainNavigation,
-            initial: false,
-            maintainState: true,
             children: <AutoRoute>[
               AutoRoute(
                   page: HomeRoute.page,
@@ -131,6 +129,55 @@ class AppRouter extends RootStackRouter {
           page: SignPaciRoute.page,
           path: AppRoutesConstants.signPaciScreen,
         ),
+          page: MyAttendanceRoute.page,
+          path: AppRoutesConstants.myAttendance,
+        ),
+
+        // as supervisor
+
+        AutoRoute(
+            page: SupervisorNavigationMainRoute.page,
+            path: AppRoutesConstants.supervisorNavigation,
+            children: <AutoRoute>[
+              AutoRoute(
+                  page: HomeRoute.page,
+                  path: AppRoutesConstants.home,
+                  maintainState: false),
+              AutoRoute(
+                  path: 'tab1',
+                  page: EmptyRouterRoute.page,
+                  maintainState: false,
+                  children: [
+                    AutoRoute(
+                      page: RequestsRoute.page,
+                      path: '',
+                      //  meta: <String, dynamic>{'hideBottomNav': true},
+                    ),
+                    AutoRoute(
+                      page: AnnualLeaveRequestDetailsRoute.page,
+                      path: AppRoutesConstants.annualLeaveRequestDetails,
+                      //  meta: <String, dynamic>{'hideBottomNav': true},
+                    ),
+                    AutoRoute(
+                      page: TrainingRequestDetailsRoute.page,
+                      path: AppRoutesConstants.trainingRequestDetails,
+                    )
+                  ]),
+              AutoRoute(
+                page: SubmissionsRoute.page,
+                path: AppRoutesConstants.submissions,
+                maintainState: false,
+              ),
+              AutoRoute(
+                page: InsuranceRoute.page,
+                path: AppRoutesConstants.insurance,
+                maintainState: false,
+              ),
+              AutoRoute(
+                  page: MoreRoute.page,
+                  path: AppRoutesConstants.more,
+                  maintainState: false),
+            ]),
       ];
 }
 

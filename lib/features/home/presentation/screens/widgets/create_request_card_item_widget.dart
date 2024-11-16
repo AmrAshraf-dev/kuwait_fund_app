@@ -18,30 +18,30 @@ class CreateRequestCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.only(
-          end: 15.0.w, top: 5.0.h, bottom: 10.0.h, start: 5.w),
-      child: SizedBox(
-        width: 122.w,
-        child: Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Palette.grey_7B7B7B.withOpacity(0.3),
-                spreadRadius: 0,
-                blurRadius: 10,
-                offset: Offset(0, 2), // changes position of shadow
+    return GestureDetector(
+      onTap: onClick,
+      child: Padding(
+        padding: EdgeInsetsDirectional.only(
+            end: 15.0.w, top: 5.0.h, bottom: 10.0.h, start: 5.w),
+        child: SizedBox(
+          width: 122.w,
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Palette.grey_7B7B7B.withOpacity(0.3),
+                  spreadRadius: 0,
+                  blurRadius: 10,
+                  offset: Offset(0, 2), // changes position of shadow
+                ),
+              ],
+              color: Palette.white,
+              border: Border.all(
+                color: Palette.grey_D4CDCD,
+                width: 0.50,
               ),
-            ],
-            color: Palette.white,
-            border: Border.all(
-              color: Palette.grey_D4CDCD,
-              width: 0.50,
+              borderRadius: BorderRadius.circular(25.0.r),
             ),
-            borderRadius: BorderRadius.circular(25.0.r),
-          ),
-          child: GestureDetector(
-            onTap: onClick,
             child: Padding(
               padding: EdgeInsetsDirectional.only(start: 20.0.w),
               child: Column(

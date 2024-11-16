@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/leave_chart_widget.dart';
+import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/annual_leave_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/timeline_card_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
@@ -25,7 +25,6 @@ class AnnualLeaveRequestDetailsScreen extends StatelessWidget {
         screenTitle: context.tr("annual_leave_request"),
         appBarBody: Column(
           children: [
-            30.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
