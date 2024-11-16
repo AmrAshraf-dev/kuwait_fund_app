@@ -49,6 +49,7 @@ dependencies:
   skeletonizer: ^1.4.2
   timeline_tile_plus: ^0.0.3
   date_picker_plus: ^4.1.0
+  timer_count_down: ^2.2.2
   awesome_snackbar_content:
     git:
       url: https://github.com/AbdelrahmanMahmoudM94/awesome_snackbar_content

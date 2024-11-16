@@ -7,3 +7,10 @@ enum RequestTypeEnum {
   insuranceRequest,
   emergencyLeaveRequest,
 }
+
+
+enum NotificationTypeEnum {
+  normal,
+  withResponse,
+  loan,
+}
