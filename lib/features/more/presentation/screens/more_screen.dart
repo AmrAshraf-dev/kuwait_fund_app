@@ -52,7 +52,9 @@ class _MoreScreenState extends State<MoreScreen> {
             MoreItemWidget(
                 text: context.tr("my_attendance"),
                 svgIcon: myAttendance,
-                onTap: () {}),
+                onTap: () {
+                  CustomMainRouter.push(MyAttendanceRoute());
+                }),
             MoreItemWidget(
                 text: context.tr("certificates"),
                 svgIcon: loan,
