@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 @RoutePage()
@@ -79,6 +80,15 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
                 child: BottomNavigationBar(
                   backgroundColor: Palette.blue_002A69,
                   selectedFontSize: 12.sp,
+                  unselectedFontSize: 12.sp,
+                  unselectedLabelStyle: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  selectedLabelStyle: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                   selectedItemColor: Palette.white,
                   selectedIconTheme: const IconThemeData(color: Palette.white),
                   unselectedItemColor: Palette.gray_C6C6C6,
@@ -113,14 +123,31 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
                             bottom: 9.h,
                             top: 18.h,
                           ),
-                          child: Assets.svg.submissions.svg()),
+                          child: Badge(
+                              padding: EdgeInsets.all(3),
+                              backgroundColor: Palette.red_FF0606,
+                              label: AppText(
+                                text: '3',
+                                style: AppTextStyle.bold_12,
+                                textColor: Colors.white,
+                              ),
+                              child: Assets.svg.submissions.svg())),
                       activeIcon: Padding(
                           padding: EdgeInsets.only(
                             bottom: 9.h,
                             top: 18.h,
                           ),
-                          child:
-                              Assets.svg.submissions.svg(color: Colors.white)),
+                          child: Badge(
+                            padding: EdgeInsets.all(3),
+                            backgroundColor: Palette.red_FF0606,
+                            label: AppText(
+                              text: '3',
+                              style: AppTextStyle.bold_12,
+                              textColor: Colors.white,
+                            ),
+                            child:
+                                Assets.svg.submissions.svg(color: Colors.white),
+                          )),
                       label: context.tr('submissions'),
                     ),
                     BottomNavigationBarItem(
