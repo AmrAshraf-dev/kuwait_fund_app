@@ -122,6 +122,13 @@ class AppRouter extends RootStackRouter {
           path: AppRoutesConstants.createLoanRequest,
         ),
         AutoRoute(
+          page: DocumentsRoute.page,
+          path: AppRoutesConstants.documents,
+        ),
+        AutoRoute(
+          page: SignPaciRoute.page,
+          path: AppRoutesConstants.signPaciScreen,
+        ),
           page: MyAttendanceRoute.page,
           path: AppRoutesConstants.myAttendance,
         ),

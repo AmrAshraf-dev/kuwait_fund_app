@@ -594,5 +594,18 @@
   "selectReportType": "اختر نوع التقرير",
   "export": "تصدير",
   "verify": "تحقق",
-  "emptyError": "الحقل مطلوب"
+  "emptyError": "الحقل مطلوب",
+  "notification": "الإشعارات",
+  "documents": "المستندات",
+  "loanAgreement": "اتفاقية القرض",
+  "loanContract": "عقد القرض",
+  "viewDocument": "عرض المستند",
+  "signWithPACI": "التوقيع ب PACI",
+  "approve": "الموافقة",
+  "CheckYourPhone": "تحقق من هاتفك",
+  "paciTitle": "قم بالتسجيل عبر تطبيق PACI Mobile ID على هاتفك",
+  "paciBody": "سيتم استلام إشعار من معرف PACI Mobile",
+  "timeoutAfter": "الجلسة ستنتهي بعد",
+  "signed": "تم التوقيع",
+  "close": "اغلاق"
 }
