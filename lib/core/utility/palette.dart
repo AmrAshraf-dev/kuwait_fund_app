@@ -80,6 +80,7 @@ class Palette {
   static const Color radioColor = Color(0x26989898);
   static const Color darkGray = Color(0xB3000000);
   static const Color disabled = Color(0xFFEBEBE4);
+  static const Color green_5CAC00 = Color(0xFF5CAC00);
 
   static const Color semiDarkGrey = Color(0xFFAEE0E8);
   static const Color lightPink = Color(0xFFF5C0C2);
