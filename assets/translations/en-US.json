@@ -602,11 +602,14 @@
   "loanContract": "Loan Contract",
   "viewDocument": "View Document",
   "signWithPACI": "Sign with PACI",
-  "approve": "Approve",
   "CheckYourPhone": "Check your Phone",
   "paciTitle": "Sign Via PACI Mobile ID App On Your Phone",
   "paciBody": "You will be received a notification from PACI Mobile ID",
   "timeoutAfter": "Timeout after",
   "signed": "Signed",
-  "close": "Close"
+  "close": "Close",
+  "advertisement": "Advertisement",
+  "drink_plenty_of_water": "Drink Plenty of water",
+  "stay_hydrated": "Stay Hydrated",
+  "ads_details": "Set Clear Goals: Define specific, achievable objectives to provide direction and motivation.\nEncourage Breaks: Promote regular short breaks to boost focus and prevent burnout.\nFoster Collaboration: Create an open environment for teamwork and communication to enhance problem-solving and creativity. 4o mini"
 }

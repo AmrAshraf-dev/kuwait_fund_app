@@ -61,4 +61,8 @@ class AppRoutesConstants {
   static const String supervisorNavigation = '/supervisorNavigation';
 
   static const String submissions = 'submissionsScreen';
+
+  static const String adsScreen = '/adsScreen';
+
+  static const String adsDetailsScreen = '/adsDetailsScreen';
 }
