@@ -10,6 +10,7 @@ class Palette {
   static const Color blue_002A6A = Color(0xFF002A6A);
   static const Color red_FF0606 = Color(0xFFff0606);
   static const Color green_07BF0D = Color(0xFF07BF0D);
+  static const Color green_457403 = Color(0xFF457403);
   static const Color white_F7F7F7 = Color(0xFFF7F7F7);
   static const Color gery_AAAAAA = Color(0xFFAAAAAA);
   static const Color blue_0C4192 = Color(0xFF0C4192);
@@ -17,10 +18,14 @@ class Palette {
   static const Color grey_9C9C9C = Color(0xFF9C9C9C);
   static const Color gery_DADADA = Color(0xFFDADADA);
   static const Color blue_ECEEF4 = Color(0xFFECEEF4);
+  static const Color gray_B6B7B8 = Color(0xFFB6B7B8);
+
+
   static const Color orange_FB5923 = Color(0xFFFB5923);
   static const Color blue_3B72C5 = Color(0xFF3B72C5);
 
   static const Color gray_C6C6C6 = Color(0xFFC6C6C6);
+  static const Color gray_C8C2C2 = Color(0xFFC8C2C2);
 
   static const Color yellow_FBD823 = Color(0xFFFBD823);
 
@@ -68,6 +73,8 @@ class Palette {
   static const Color primaryBackgroundDarkTheme = Color(0xFF1777F2);
   static const Color facebookBlue = Color(0xFF1777F2);
   static const Color grey_707070 = Color(0xFF707070);
+  static const Color grey_D6D8DC = Color(0xFFD6D8DC);
+
   static const Color white_F5F4F9 = Color(0xFFF5F4F9);
   static const Color disabledColor = Colors.grey;
   static const Color radioColor = Color(0x26989898);
@@ -135,6 +142,7 @@ class Palette {
   static const Color thirdBlue = Color(0xff33338B);
   static const Color secondaryOrange = Color(0xffE28314);
   static const Color thirdOrange = Color(0xffC7781A);
+  static const Color notificationOrange = Color(0xffFF7E1C);
 
   static const List<Color> redGreenTheme = <Color>[
     Palette.greenBackgroundTheme,

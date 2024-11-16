@@ -46,6 +46,17 @@ class $AssetsPngGen {
   AssetGenImage get icLauncher =>
       const AssetGenImage('assets/png/ic_launcher.jpg');
 
+  /// File path: assets/png/loan_agreement.png
+  AssetGenImage get loanAgreement =>
+      const AssetGenImage('assets/png/loan_agreement.png');
+
+  /// File path: assets/png/paci.png
+  AssetGenImage get paci => const AssetGenImage('assets/png/paci.png');
+
+  /// File path: assets/png/paci_phone.png
+  AssetGenImage get paciPhone =>
+      const AssetGenImage('assets/png/paci_phone.png');
+
   /// File path: assets/png/slide1.png
   AssetGenImage get slide1 => const AssetGenImage('assets/png/slide1.png');
 
@@ -80,6 +91,9 @@ class $AssetsPngGen {
         appLogo,
         certificate,
         icLauncher,
+        loanAgreement,
+        paci,
+        paciPhone,
         slide1,
         slide2,
         splash,
@@ -224,6 +238,17 @@ class $AssetsSvgGen {
   SvgGenImage get notification =>
       const SvgGenImage('assets/svg/notification.svg');
 
+  /// File path: assets/svg/notification_date.svg
+  SvgGenImage get notificationDate =>
+      const SvgGenImage('assets/svg/notification_date.svg');
+
+  /// File path: assets/svg/notification_user.svg
+  SvgGenImage get notificationUser =>
+      const SvgGenImage('assets/svg/notification_user.svg');
+
+  /// File path: assets/svg/pdf.svg
+  SvgGenImage get pdf => const SvgGenImage('assets/svg/pdf.svg');
+
   /// File path: assets/svg/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/svg/profile.svg');
 
@@ -244,6 +269,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/survey.svg
   SvgGenImage get survey => const SvgGenImage('assets/svg/survey.svg');
 
+  /// File path: assets/svg/timer.svg
+  SvgGenImage get timer => const SvgGenImage('assets/svg/timer.svg');
+
   /// File path: assets/svg/training_request.svg
   SvgGenImage get trainingRequest =>
       const SvgGenImage('assets/svg/training_request.svg');
@@ -251,6 +279,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/user-circle-icon.svg
   SvgGenImage get userCircleIcon =>
       const SvgGenImage('assets/svg/user-circle-icon.svg');
+
+  /// File path: assets/svg/verified.svg
+  SvgGenImage get verified => const SvgGenImage('assets/svg/verified.svg');
 
   /// List of all assets
   List<SvgGenImage> get values => [
@@ -289,14 +320,19 @@ class $AssetsSvgGen {
         myAttendance,
         noInternet,
         notification,
+        notificationDate,
+        notificationUser,
+        pdf,
         profile,
         questionMark,
         requests,
         sickLeave,
         submissions,
         survey,
+        timer,
         trainingRequest,
-        userCircleIcon
+        userCircleIcon,
+        verified
       ];
 }
 

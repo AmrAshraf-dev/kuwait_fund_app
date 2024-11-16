@@ -1,5 +1,6 @@
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:kf_ess_mobile_app/core/enums/request_type_enum.dart';
 import '../../../../shared/entity/base_entity.dart';
 import '../../../domain/entities/notifications_entity.dart';
 
@@ -19,10 +20,13 @@ part 'notifications_response_model.g.dart';
 
 @JsonSerializable()
 class NotificationsModel extends NotificationsEntity {
-  NotificationsModel(
+  const NotificationsModel(
       {
-   required super.var1,
-    required super.var2,});
+      required super.date,
+      required super.title,
+      required super.description,
+      required super.type,
+      });
 
   factory NotificationsModel.fromJson(Map<String, dynamic> json) =>
       _$NotificationsModelFromJson(json);

@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     17.horizontalSpace,
                     InkWell(
                       onTap: () =>
-                          CustomMainRouter.push(NotificationDetailsRoute()),
+                          CustomMainRouter.push(NotificationsRoute()),
                       child: Badge(
                         padding: EdgeInsets.all(1),
                         backgroundColor: Palette.red_FF0606,
