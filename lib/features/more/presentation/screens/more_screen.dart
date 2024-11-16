@@ -79,15 +79,21 @@ class _MoreScreenState extends State<MoreScreen> {
             MoreItemWidget(
                 text: context.tr("about_kuwait_fund"),
                 svgIcon: drawerAbout,
-                onTap: () {}),
+                onTap: () {
+                  CustomMainRouter.push(AboutRoute());
+                }),
             MoreItemWidget(
                 text: context.tr("operations_and_statistics"),
                 svgIcon: drawerOperation,
-                onTap: () {}),
+                onTap: () {
+                  CustomMainRouter.push(OperationsRoute());
+                }),
             MoreItemWidget(
                 text: context.tr("contact_us"),
                 svgIcon: drawerContactUs,
-                onTap: () {}),
+                onTap: () {
+                  CustomMainRouter.push(ContactUsRoute());
+                }),
             23.verticalSpace,
             MainTitleWidget(title: context.tr("other_settings")),
             5.verticalSpace,

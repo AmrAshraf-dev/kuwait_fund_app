@@ -65,4 +65,10 @@ class AppRoutesConstants {
   static const String adsScreen = '/adsScreen';
 
   static const String adsDetailsScreen = '/adsDetailsScreen';
+
+  static const String contactUsScreen = '/contactUsScreen';
+
+  static const String aboutScreen = '/aboutScreen';
+
+  static const String operationsScreen = '/operationsScreen';
 }

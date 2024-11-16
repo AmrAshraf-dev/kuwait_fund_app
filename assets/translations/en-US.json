@@ -117,7 +117,7 @@
   "requests": "Requests",
   "insurance": "Insurance",
   "about_kuwait_fund": "About Kuwait Fund",
-  "operations_and_statistics": "Operations and Statistics",
+  "operations_and_statistics": "Operations & Statistics",
   "contact_us": "Contact Us",
   "password_changed": "Password changed",
   "ok_thank_you": "Ok, Thank you",
@@ -611,5 +611,18 @@
   "advertisement": "Advertisement",
   "drink_plenty_of_water": "Drink Plenty of water",
   "stay_hydrated": "Stay Hydrated",
-  "ads_details": "Set Clear Goals: Define specific, achievable objectives to provide direction and motivation.\nEncourage Breaks: Promote regular short breaks to boost focus and prevent burnout.\nFoster Collaboration: Create an open environment for teamwork and communication to enhance problem-solving and creativity. 4o mini"
+  "ads_details": "Set Clear Goals: Define specific, achievable objectives to provide direction and motivation.\nEncourage Breaks: Promote regular short breaks to boost focus and prevent burnout.\nFoster Collaboration: Create an open environment for teamwork and communication to enhance problem-solving and creativity. 4o mini",
+  "about_title1":"Kuwait Fund For Arab Economic Development is the first institution in the Middle East that took an active role in the international development efforts.",
+  "about_body1": "The Kuwait Fund extends Loans on concessionary term to finance development projects in the developing countries. The Fund also provides technical assistance to finance the costs of the feasibility studies of projects, as well as the training of nationals of the borrowing countries. In addition, the Fund subscribes in the capital of international and regional development institutions. Today, the Kuwait Fund forms a solid bridge of friendship and solidarity between the state of Kuwait and the developing nations.",
+  "about_title2": "Objectives",
+  "about_body2": "The object of the Fund is to assist Arab and other developing countries in developing their economies.",
+  "about_title3": "Types of Activities",
+  "about_body3": "Making loans and providing guarantees,\nMaking Grants by way of technical assistance and providing other types of technical assistance,\nContributing to capital stocks of international and regional development finance institutions and other development institutions and representing the State of Kuwait in such institutions.",
+  "contact_info": "Contact Info",
+  "map": "Map",
+  "telephone_fax": "Telephone/ Fax",
+  "you_can_send_message": "You can send a message to",
+  "operations": "Operations:",
+  "webmaster": "Webmaster:",
+  "address": "Address"
 }
