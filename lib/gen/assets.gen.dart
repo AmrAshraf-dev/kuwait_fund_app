@@ -242,6 +242,20 @@ class $AssetsSvgGen {
   SvgGenImage get notification =>
       const SvgGenImage('assets/svg/notification.svg');
 
+  /// File path: assets/svg/notification_date.svg
+  SvgGenImage get notificationDate =>
+      const SvgGenImage('assets/svg/notification_date.svg');
+
+  /// File path: assets/svg/notification_user.svg
+  SvgGenImage get notificationUser =>
+      const SvgGenImage('assets/svg/notification_user.svg');
+
+  /// File path: assets/svg/pdf.svg
+  SvgGenImage get pdf => const SvgGenImage('assets/svg/pdf.svg');
+
+  /// File path: assets/svg/person.svg
+  SvgGenImage get person => const SvgGenImage('assets/svg/person.svg');
+
   /// File path: assets/svg/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/svg/profile.svg');
 
@@ -314,6 +328,10 @@ class $AssetsSvgGen {
         myAttendance,
         noInternet,
         notification,
+        notificationDate,
+        notificationUser,
+        pdf,
+        person,
         profile,
         questionMark,
         requests,

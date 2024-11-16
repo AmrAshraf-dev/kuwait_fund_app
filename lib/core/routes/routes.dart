@@ -57,6 +57,7 @@ class AppRouter extends RootStackRouter {
                   path: AppRoutesConstants.more,
                   maintainState: false),
             ]),
+
         AutoRoute(
           page: AuthRoute.page,
           path: AppRoutesConstants.authScreen,
@@ -129,6 +130,7 @@ class AppRouter extends RootStackRouter {
           page: SignPaciRoute.page,
           path: AppRoutesConstants.signPaciScreen,
         ),
+        AutoRoute(
           page: MyAttendanceRoute.page,
           path: AppRoutesConstants.myAttendance,
         ),

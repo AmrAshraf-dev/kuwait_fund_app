@@ -62,7 +62,7 @@ class SubmissionItemWidget extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: AppText(
-                            text: submissionsEntity.status,
+                            text: context.tr(submissionsEntity.status!),
                             textColor: Colors.white,
                             style: AppTextStyle.semiBold_12,
                           ),

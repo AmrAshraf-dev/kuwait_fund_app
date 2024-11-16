@@ -32,7 +32,7 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
   final List<SubmissionsEntity> allRequests = List.generate(
     58,
     (int index) => SubmissionsEntity(
-      status: "Pending",
+      status: "pending",
       date: "12/12/2021",
       type: RequestTypeEnum.annualLeaveRequest.name,
       from: "12/12/2021",
@@ -44,7 +44,7 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
   final List<SubmissionsEntity> trainingRequests = List.generate(
     58,
     (int index) => SubmissionsEntity(
-      status: "Pending",
+      status: "pending",
       date: "12/12/2021",
       type: RequestTypeEnum.trainingRequest.name,
       from: "12/12/2021",
