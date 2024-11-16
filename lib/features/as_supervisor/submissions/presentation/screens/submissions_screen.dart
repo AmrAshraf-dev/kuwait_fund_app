@@ -1,15 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/enums/request_type_enum.dart';
 import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submissions_entity.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/screens/widgets/submission_item_widget.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/screens/widgets/submission_tabbar_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
@@ -30,25 +29,27 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
   late TabController _tabController;
 
   final TabCubit _tabCubit = getIt<TabCubit>();
-  final List<RequestsEntity> allRequests = List.generate(
+  final List<SubmissionsEntity> allRequests = List.generate(
     58,
-    (int index) => RequestsEntity(
-      status: "Pending",
+    (int index) => SubmissionsEntity(
+      status: "pending",
       date: "12/12/2021",
       type: RequestTypeEnum.annualLeaveRequest.name,
       from: "12/12/2021",
       to: "12/12/2021",
+      requesterName: "John Doe",
     ),
   );
 
-  final List<RequestsEntity> trainingRequests = List.generate(
+  final List<SubmissionsEntity> trainingRequests = List.generate(
     58,
-    (int index) => RequestsEntity(
-      status: "Pending",
+    (int index) => SubmissionsEntity(
+      status: "pending",
       date: "12/12/2021",
       type: RequestTypeEnum.trainingRequest.name,
       from: "12/12/2021",
       to: "12/12/2021",
+      requesterName: "John Doe",
     ),
   );
 
@@ -83,6 +84,7 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
                     CustomDropDownField<String>(
                       keyName: "a-z",
                       height: 42.h,
+                      width: 90.w,
                       labelText: context.tr("a-z"),
                       disableSearch: true,
                       disableFiled: false,
@@ -181,125 +183,8 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
                 ),
               ),
               20.verticalSpace,
-              BlocProvider(
-                create: (context) => _tabCubit,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 27.w),
-                  child: BlocBuilder<TabCubit, int>(
-                      builder: (context, int selectedIndex) {
-                    return TabBar(
-                      padding: EdgeInsets.zero,
-                      //  indicatorPadding: EdgeInsets.zero,
-                      labelPadding: EdgeInsetsDirectional.only(end: 10.w),
-                      indicatorColor: Colors.transparent,
-                      onTap: (value) {
-                        _tabCubit.changeTab(value);
-                      },
-                      //      padding: EdgeInsets.zero,
-                      //      indicatorWeight: double.minPositive,
-                      //     indicatorSize: TabBarIndicatorSize.tab,
-                      controller: _tabController,
-                      isScrollable: true,
-                      // indicator: BoxDecoration(
-                      //   color: Palette.yellow_FBD823,
-                      //   border: Border.all(color: Palette.gery_6C6D6F),
-                      //   borderRadius: BorderRadius.circular(10),
-                      // ),
-                      tabs: <Widget>[
-                        ConstrainedBox(
-                          constraints:
-                              BoxConstraints(minWidth: 70.w, minHeight: 37.h),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: selectedIndex == 0
-                                    ? Palette.yellow_FBD823
-                                    : Palette.white,
-                                border: Border.all(
-                                    color: selectedIndex == 0
-                                        ? Palette.yellow_FBD823
-                                        : Palette.gery_6C6D6F),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                  child: AppText(text: context.tr("all")))),
-                        ),
-                        ConstrainedBox(
-                          constraints:
-                              BoxConstraints(minWidth: 70.w, minHeight: 37.h),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: selectedIndex == 1
-                                    ? Palette.yellow_FBD823
-                                    : Palette.white,
-                                border: Border.all(
-                                    color: selectedIndex == 1
-                                        ? Palette.yellow_FBD823
-                                        : Palette.gery_6C6D6F),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                  child: AppText(text: context.tr("leave")))),
-                        ),
-                        ConstrainedBox(
-                          constraints:
-                              BoxConstraints(minWidth: 100.w, minHeight: 37.h),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: selectedIndex == 2
-                                    ? Palette.yellow_FBD823
-                                    : Palette.white,
-                                border: Border.all(
-                                    color: selectedIndex == 2
-                                        ? Palette.yellow_FBD823
-                                        : Palette.gery_6C6D6F),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                  child: AppText(
-                                      text: context.tr("certificate")))),
-                        ),
-                        ConstrainedBox(
-                          constraints:
-                              BoxConstraints(minWidth: 100.w, minHeight: 37.h),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: selectedIndex == 3
-                                    ? Palette.yellow_FBD823
-                                    : Palette.white,
-                                border: Border.all(
-                                    color: selectedIndex == 3
-                                        ? Palette.yellow_FBD823
-                                        : Palette.gery_6C6D6F),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                  child:
-                                      AppText(text: context.tr("training")))),
-                        ),
-                        ConstrainedBox(
-                          constraints:
-                              BoxConstraints(minWidth: 100.w, minHeight: 37.h),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: selectedIndex == 4
-                                    ? Palette.yellow_FBD823
-                                    : Palette.white,
-                                border: Border.all(
-                                    color: selectedIndex == 4
-                                        ? Palette.yellow_FBD823
-                                        : Palette.gery_6C6D6F),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                  child:
-                                      AppText(text: context.tr("insurance")))),
-                        ),
-                      ],
-                    );
-                  }),
-                ),
-              ),
-              10.verticalSpace,
+              SubmissionTabbarWidget(
+                  tabCubit: _tabCubit, tabController: _tabController),
               // Tab Views
               Expanded(
                 child: TabBarView(
@@ -322,7 +207,7 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
 }
 
 class RequestsListViewWidget extends StatelessWidget {
-  final List<RequestsEntity> requestsList;
+  final List<SubmissionsEntity> requestsList;
 
   const RequestsListViewWidget({super.key, required this.requestsList});
 
@@ -331,103 +216,8 @@ class RequestsListViewWidget extends StatelessWidget {
     return ListView.builder(
       itemCount: requestsList.length,
       itemBuilder: (context, index) {
-        return RequestItemWidget(request: requestsList[index]);
+        return SubmissionItemWidget(submissionsEntity: requestsList[index]);
       },
-    );
-  }
-}
-
-class RequestItemWidget extends StatelessWidget {
-  final RequestsEntity request;
-
-  const RequestItemWidget({super.key, required this.request});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (request.type == RequestTypeEnum.trainingRequest.name) {
-          CustomMainRouter.push(TrainingRequestDetailsRoute());
-          return;
-        } else if (request.type == RequestTypeEnum.annualLeaveRequest.name) {
-          CustomMainRouter.push(AnnualLeaveRequestDetailsRoute());
-        }
-      },
-      child: Padding(
-        padding: EdgeInsetsDirectional.only(start: 27.w, end: 18.w, top: 21.h),
-        child: Container(
-            height: 120.h,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Palette.grey_7B7B7B.withOpacity(0.2),
-                  blurRadius: 10.0,
-                  offset: Offset(0, 4),
-                ),
-              ],
-              color: Palette.white,
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 23.w, vertical: 18.h),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppText(
-                        text: request.date,
-                        style: AppTextStyle.semiBold_12,
-                        textColor: Palette.semiTextGrey,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Palette.orangeDark,
-                          borderRadius: BorderRadius.circular(6.r),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: AppText(
-                            text: request.status,
-                            textColor: Colors.white,
-                            style: AppTextStyle.semiBold_12,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  11.verticalSpace,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText(
-                            text: request.type,
-                            style: AppTextStyle.bold_16,
-                            textColor: Palette.black,
-                          ),
-                          5.verticalSpace,
-                          AppText(
-                            text: "${request.from} - ${request.to}",
-                            style: AppTextStyle.medium_14,
-                            textColor: Palette.black,
-                          ),
-                        ],
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Palette.gery_DADADA,
-                        size: 20.sp,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            )),
-      ),
     );
   }
 }

@@ -76,6 +76,14 @@ class _NavigationMainScreenState extends State<NavigationMainScreen> {
                 child: BottomNavigationBar(
                   backgroundColor: Palette.blue_002A69,
                   selectedFontSize: 12.sp,
+                  unselectedLabelStyle: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  selectedLabelStyle: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                   selectedItemColor: Palette.white,
                   selectedIconTheme: const IconThemeData(color: Palette.white),
                   unselectedItemColor: Palette.gray_C6C6C6,

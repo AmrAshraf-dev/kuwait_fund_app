@@ -132,6 +132,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/arrow_down.svg
   SvgGenImage get arrowDown => const SvgGenImage('assets/svg/arrow_down.svg');
 
+  /// File path: assets/svg/black_calander.svg
+  SvgGenImage get blackCalander =>
+      const SvgGenImage('assets/svg/black_calander.svg');
+
   /// File path: assets/svg/calander.svg
   SvgGenImage get calander => const SvgGenImage('assets/svg/calander.svg');
 
@@ -249,6 +253,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/pdf.svg
   SvgGenImage get pdf => const SvgGenImage('assets/svg/pdf.svg');
 
+  /// File path: assets/svg/person.svg
+  SvgGenImage get person => const SvgGenImage('assets/svg/person.svg');
+
   /// File path: assets/svg/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/svg/profile.svg');
 
@@ -289,6 +296,7 @@ class $AssetsSvgGen {
         annualLeave,
         appVersion,
         arrowDown,
+        blackCalander,
         calander,
         calendar,
         chatbot,
@@ -323,6 +331,7 @@ class $AssetsSvgGen {
         notificationDate,
         notificationUser,
         pdf,
+        person,
         profile,
         questionMark,
         requests,

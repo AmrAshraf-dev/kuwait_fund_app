@@ -15,9 +15,13 @@ part 'submissions_response_model.g.dart';
 
 @JsonSerializable()
 class SubmissionsModel extends SubmissionsEntity {
-  SubmissionsModel({
-    required super.var1,
-    required super.var2,
+  const SubmissionsModel({
+    required super.type,
+    required super.date,
+    required super.status,
+    required super.from,
+    required super.to,
+    required super.requesterName,
   });
 
   factory SubmissionsModel.fromJson(Map<String, dynamic> json) =>
