@@ -63,6 +63,9 @@ class $AssetsPngGen {
   /// File path: assets/png/slide2.png
   AssetGenImage get slide2 => const AssetGenImage('assets/png/slide2.png');
 
+  /// File path: assets/png/slide3.png
+  AssetGenImage get slide3 => const AssetGenImage('assets/png/slide3.png');
+
   /// File path: assets/png/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/png/splash.png');
 
@@ -96,6 +99,7 @@ class $AssetsPngGen {
         paciPhone,
         slide1,
         slide2,
+        slide3,
         splash,
         watermark,
         watermark2,
