@@ -8,14 +8,18 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 class ExpandableSection extends StatelessWidget {
   const ExpandableSection(
       {super.key,
-      required this.title,
+        this.title,
       required this.children,
+      this.customText,
       this.iconWidget,
-      required this.subTitle});
-  final String title;
-  final String subTitle;
+      this.headerPadding,
+      this.subTitle});
+  final String? title;
+  final String? subTitle;
+  final Widget? customText;
   final List<Widget> children;
   final Widget? iconWidget;
+  final EdgeInsetsGeometry? headerPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +41,11 @@ class ExpandableSection extends StatelessWidget {
         theme: ExpandableThemeData(
             headerAlignment: ExpandablePanelHeaderAlignment.center,
             iconSize: 30.sp,
-            iconPadding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+            iconPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             iconColor: AppTheme.inDarkMode(context,
                 light: Palette.gery_DADADA, dark: Colors.white)),
         header: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: headerPadding ?? const EdgeInsets.all(20.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,6 +55,8 @@ class ExpandableSection extends StatelessWidget {
                   children: [
                     if (iconWidget != null) iconWidget!,
                     if (iconWidget != null) 12.horizontalSpace,
+                    if (customText != null) customText!,
+                    if (customText == null && title != null)
                     Flexible(
                         child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
