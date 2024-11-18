@@ -59,6 +59,14 @@ class AppRouter extends RootStackRouter {
             ]),
 
         AutoRoute(
+          page: EditProfileRoute.page,
+          path: AppRoutesConstants.editProfile,
+        ),
+        AutoRoute(
+          page: PersonalInfoRoute.page,
+          path: AppRoutesConstants.personalInfo,
+        ),
+        AutoRoute(
           page: AuthRoute.page,
           path: AppRoutesConstants.authScreen,
         ),
@@ -218,14 +226,6 @@ class AppRouter extends RootStackRouter {
                   path: AppRoutesConstants.profile,
                 ),
               ]),
-              AutoRoute(
-                page: EditProfileRoute.page,
-                path: AppRoutesConstants.editProfile,
-              ),
-              AutoRoute(
-                page: PeraonalInfoRoute.page,
-                path: AppRoutesConstants.personalInfo,
-              ),
             ])
       ];
 }

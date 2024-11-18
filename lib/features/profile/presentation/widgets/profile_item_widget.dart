@@ -40,10 +40,12 @@ class ProfileItemWidget extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: Row(
                 children: <Widget>[
-                  SvgPicture.asset(
-                    svgIcon,
+                  SizedBox(
                     width: 25.w,
                     height: 25.h,
+                    child: SvgPicture.asset(
+                      svgIcon,
+                    ),
                   ),
                   10.horizontalSpace,
                   AppText(
