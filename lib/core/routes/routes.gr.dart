@@ -857,20 +857,20 @@ class PasswordChangedRoute extends _i43.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i31.PeraonalInfoScreen]
-class PeraonalInfoRoute extends _i43.PageRouteInfo<void> {
-  const PeraonalInfoRoute({List<_i43.PageRouteInfo>? children})
+/// [_i31.PersonalInfoScreen]
+class PersonalInfoRoute extends _i43.PageRouteInfo<void> {
+  const PersonalInfoRoute({List<_i43.PageRouteInfo>? children})
       : super(
-          PeraonalInfoRoute.name,
+          PersonalInfoRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'PeraonalInfoRoute';
+  static const String name = 'PersonalInfoRoute';
 
   static _i43.PageInfo page = _i43.PageInfo(
     name,
     builder: (data) {
-      return const _i31.PeraonalInfoScreen();
+      return const _i31.PersonalInfoScreen();
     },
   );
 }
