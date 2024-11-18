@@ -14,7 +14,7 @@ class AppRoutesConstants {
 
   static const String mainNavigation = '/mainNavigation';
 
-  static const String requests = 'requestsScreen';
+  // static const String requests = '/requestsScreen';
 
   static const String insurance = 'insuranceScreen';
 
@@ -71,4 +71,19 @@ class AppRoutesConstants {
   static const String aboutScreen = '/aboutScreen';
 
   static const String operationsScreen = '/operationsScreen';
+
+  static const String annualSubmissionDetails = 'annualSubmissionDetailsScreen';
+
+  static const String trainingSubmissionDetails =
+      'trainingSubmissionDetailsScreen';
+
+  static const String visitorsLogs = 'visitorsLogsScreen';
+
+  static const String requests = 'requestsScreen';
+
+  static const String profile = 'profileScreen';
+
+  static const String editProfile = '/editProfileScreen';
+
+  static const String personalInfo = '/personalInfoScreen';
 }

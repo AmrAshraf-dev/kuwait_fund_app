@@ -48,7 +48,7 @@ class TextLabel extends StatefulWidget {
   final String? iconPath;
   final bool? disableEditingTextFiled;
   final bool? notRequired;
-  final String? fieldName;
+  final String fieldName;
   final VoidCallback? onIconPressed;
   final double? width;
   final double? height;
@@ -123,7 +123,7 @@ class _TextLabelState extends State<TextLabel> {
               : widget.maxLength,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onTapOutside: (event) => FocusScope.of(context).unfocus(),
-          name: widget.fieldName!,
+          name: widget.fieldName,
           focusNode: widget.unFocus != null ? focusNode : null,
           readOnly: widget.disableEditingTextFiled ?? false,
           validator: widget.validator ??

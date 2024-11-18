@@ -8,7 +8,7 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 class ExpandableSection extends StatelessWidget {
   const ExpandableSection(
       {super.key,
-        this.title,
+      this.title,
       required this.children,
       this.customText,
       this.iconWidget,
@@ -57,21 +57,21 @@ class ExpandableSection extends StatelessWidget {
                     if (iconWidget != null) 12.horizontalSpace,
                     if (customText != null) customText!,
                     if (customText == null && title != null)
-                    Flexible(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppText(
-                          text: title,
-                          style: AppTextStyle.bold_14,
-                        ),
-                        5.verticalSpace,
-                        AppText(
-                          text: subTitle,
-                          style: AppTextStyle.regular_14,
-                        ),
-                      ],
-                    )),
+                      Flexible(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppText(
+                            text: title,
+                            style: AppTextStyle.bold_14,
+                          ),
+                          5.verticalSpace,
+                          AppText(
+                            text: subTitle,
+                            style: AppTextStyle.regular_14,
+                          ),
+                        ],
+                      )),
                   ],
                 ),
               ),

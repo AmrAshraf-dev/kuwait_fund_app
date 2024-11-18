@@ -9,7 +9,7 @@ import 'package:timeline_tile_plus/timeline_tile_plus.dart';
 class TimeLineCard extends StatelessWidget {
   final String name;
   final String status;
-  final String date;
+  final String? date;
   final bool isFirst;
   final bool isLast;
   final String position;
@@ -18,7 +18,7 @@ class TimeLineCard extends StatelessWidget {
     super.key,
     required this.name,
     required this.status,
-    required this.date,
+    this.date,
     required this.isFirst,
     required this.isLast,
     required this.position,
@@ -72,7 +72,7 @@ class TimeLineCard extends StatelessWidget {
                       ),
                     ),
                     child: Assets.svg.userCircleIcon.svg(
-                      color: Palette.white,
+                      color: Palette.backgroundColorDark,
                     ),
                   ),
                   11.horizontalSpace,
@@ -104,10 +104,11 @@ class TimeLineCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      AppText(
-                        text: context.tr("approved_on") + date,
-                        style: AppTextStyle.regular_14,
-                      ),
+                      if (date != null)
+                        AppText(
+                          text: context.tr("approved_on") + date!,
+                          style: AppTextStyle.regular_14,
+                        ),
                     ],
                   ),
                 ],

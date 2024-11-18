@@ -171,10 +171,10 @@ class AppRouter extends RootStackRouter {
                   maintainState: false,
                   children: [
                     AutoRoute(
-                      page: RequestsRoute.page,
-                      path: '',
-                      //  meta: <String, dynamic>{'hideBottomNav': true},
-                    ),
+                        page: RequestsRoute.page,
+                        path: AppRoutesConstants.requests
+                        //  meta: <String, dynamic>{'hideBottomNav': true},
+                        ),
                     AutoRoute(
                       page: AnnualLeaveRequestDetailsRoute.page,
                       path: AppRoutesConstants.annualLeaveRequestDetails,
@@ -185,27 +185,74 @@ class AppRouter extends RootStackRouter {
                       path: AppRoutesConstants.trainingRequestDetails,
                     )
                   ]),
-              AutoRoute(
-                page: SubmissionsRoute.page,
-                path: AppRoutesConstants.submissions,
-                maintainState: false,
-              ),
+              AutoRoute(path: 'tab2', page: EmptyRouterRoute2.page, children: [
+                AutoRoute(
+                  page: SubmissionsRoute.page,
+                  path: '',
+                  //  meta: <String, dynamic>{'hideBottomNav': true},
+                ),
+                AutoRoute(
+                  page: AnnualSubmissionsDetailsRoute.page,
+                  path: AppRoutesConstants.annualSubmissionDetails,
+                ),
+                AutoRoute(
+                  page: TrainingSubmissionsDetailsRoute.page,
+                  path: AppRoutesConstants.trainingSubmissionDetails,
+                ),
+              ]),
               AutoRoute(
                 page: InsuranceRoute.page,
                 path: AppRoutesConstants.insurance,
-                maintainState: false,
               ),
-              AutoRoute(
+              AutoRoute(path: 'tab3', page: EmptyRouterRoute3.page, children: [
+                AutoRoute(
                   page: MoreRoute.page,
                   path: AppRoutesConstants.more,
-                  maintainState: false),
-            ]),
+                ),
+                AutoRoute(
+                  page: VisitorsLogsRoute.page,
+                  path: AppRoutesConstants.visitorsLogs,
+                ),
+                AutoRoute(
+                  page: ProfileRoute.page,
+                  path: AppRoutesConstants.profile,
+                ),
+              ]),
+              AutoRoute(
+                page: EditProfileRoute.page,
+                path: AppRoutesConstants.editProfile,
+              ),
+              AutoRoute(
+                page: PeraonalInfoRoute.page,
+                path: AppRoutesConstants.personalInfo,
+              ),
+            ])
       ];
 }
 
 @RoutePage()
 class EmptyRouterPage extends StatelessWidget {
   const EmptyRouterPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const AutoRouter();
+  }
+}
+
+@RoutePage()
+class EmptyRouterPage2 extends StatelessWidget {
+  const EmptyRouterPage2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const AutoRouter();
+  }
+}
+
+@RoutePage()
+class EmptyRouterPage3 extends StatelessWidget {
+  const EmptyRouterPage3({super.key});
 
   @override
   Widget build(BuildContext context) {

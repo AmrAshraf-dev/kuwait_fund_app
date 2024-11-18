@@ -2,10 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/enums/request_type_enum.dart';
+import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submissions_entity.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/rejection_reason_bottomsheet.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
@@ -20,11 +22,11 @@ class SubmissionItemWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (submissionsEntity.type == RequestTypeEnum.trainingRequest.name) {
-          CustomMainRouter.push(TrainingRequestDetailsRoute());
+          CustomMainRouter.push(TrainingSubmissionsDetailsRoute());
           return;
         } else if (submissionsEntity.type ==
             RequestTypeEnum.annualLeaveRequest.name) {
-          CustomMainRouter.push(AnnualLeaveRequestDetailsRoute());
+          CustomMainRouter.push(AnnualSubmissionsDetailsRoute());
         }
       },
       child: Padding(
@@ -127,7 +129,13 @@ class SubmissionItemWidget extends StatelessWidget {
                                   width: 100.w,
                                   height: 35.h,
                                   backgroundColor: Palette.red_FF0606,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    ViewsToolbox.showBottomSheet(
+                                        context: context,
+                                        height: 400.h,
+                                        customWidget:
+                                            RejectionReasonBottomSheet());
+                                  },
                                   customChild: AppText(
                                     text: context.tr("reject"),
                                     style: AppTextStyle.semiBold_13,

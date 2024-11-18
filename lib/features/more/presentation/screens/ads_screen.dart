@@ -16,12 +16,10 @@ class AdsScreen extends StatefulWidget {
   const AdsScreen({super.key});
 
   @override
-  State<AdsScreen> createState() =>
-      _AdsScreenState();
+  State<AdsScreen> createState() => _AdsScreenState();
 }
 
 class _AdsScreenState extends State<AdsScreen> {
-
   List<AdsEntity> adsList = [
     AdsEntity(
       id: 1,
@@ -49,25 +47,23 @@ class _AdsScreenState extends State<AdsScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-        screenTitle: context.tr("advertisement"),
-        
-        widget: Column(
-          children: [
-            25.verticalSpace,
-            ListView.separated(
-              shrinkWrap: true,
-              itemCount: adsList.length,
-              separatorBuilder: (context, index) => 20.verticalSpace,
-              itemBuilder: (context, index) {
-                return AdsCard(item: adsList[index]);
-              },
-            ),
-          ],
-        ),
+      screenTitle: context.tr("advertisement"),
+      widget: Column(
+        children: [
+          25.verticalSpace,
+          ListView.separated(
+            shrinkWrap: true,
+            itemCount: adsList.length,
+            separatorBuilder: (context, index) => 20.verticalSpace,
+            itemBuilder: (context, index) {
+              return AdsCard(item: adsList[index]);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
-
 
 class AdsCard extends StatelessWidget {
   const AdsCard({super.key, required this.item});
@@ -75,7 +71,6 @@ class AdsCard extends StatelessWidget {
   final AdsEntity item;
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 23.w),
       child: Column(
@@ -97,8 +92,7 @@ class AdsCard extends StatelessWidget {
             child: Stack(
               children: [
                 ClipRRect(
-                    borderRadius:
-                    BorderRadius.all(Radius.circular(22.0.r)),
+                    borderRadius: BorderRadius.all(Radius.circular(22.0.r)),
                     child: Image.asset(
                       item.imageUrl,
                       fit: BoxFit.contain,
@@ -108,49 +102,55 @@ class AdsCard extends StatelessWidget {
                       ? Alignment.topLeft
                       : Alignment.topLeft,
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.all(20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Column(
                           children: [
-                            if(item.title != null)
-                            SizedBox(
-                              width: 140.w,
-                              child: AppText(
-                                text: context.tr(item.title!),
-                                style: AppTextStyle.bold_20,
-                                textColor: item.id == 1 ? Palette.white : Palette.black,
+                            if (item.title != null)
+                              SizedBox(
+                                width: 140.w,
+                                child: AppText(
+                                  text: context.tr(item.title!),
+                                  style: AppTextStyle.bold_20,
+                                  textColor: item.id == 1
+                                      ? Palette.white
+                                      : Palette.black,
+                                ),
                               ),
-                            ),
-                            if(item.subTitle != null)
-                            SizedBox(
-                              width: 140.w,
-                              child: AppText(
-                                text: context.tr(item.subTitle!),
-                                style: AppTextStyle.regular_18,
-                                textColor: item.id == 1 ? Palette.white : Palette.black,
+                            if (item.subTitle != null)
+                              SizedBox(
+                                width: 140.w,
+                                child: AppText(
+                                  text: context.tr(item.subTitle!),
+                                  style: AppTextStyle.regular_18,
+                                  textColor: item.id == 1
+                                      ? Palette.white
+                                      : Palette.black,
+                                ),
                               ),
-                            ),
                           ],
                         ),
-                        if(item.id != 3)
-                        Container(
-                          width: 30.w,
-                          height: 30.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(10.r),
-                            color: item.id == 1 ? Palette.yellow_FBD823 : Palette.blue_002A69,
-                          ),
-                          child: Center(
-                            child: Icon(
-                              Icons.arrow_forward,
-                              color: Palette.white,
+                        if (item.id != 3)
+                          Container(
+                            width: 30.w,
+                            height: 30.w,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(10.r),
+                              color: item.id == 1
+                                  ? Palette.yellow_FBD823
+                                  : Palette.blue_002A69,
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.arrow_forward,
+                                color: Palette.white,
+                              ),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),

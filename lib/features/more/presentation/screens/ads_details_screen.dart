@@ -51,13 +51,11 @@ class _AdsDetailsScreenState extends State<AdsDetailsScreen> {
                   children: [
                     ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(22.r)),
-                        child: SizedBox(
+                        child: Image.asset(
+                          widget.adItem.imageUrl,
                           width: 338.w,
                           height: 294.h,
-                          child: Image.asset(
-                            widget.adItem.imageUrl,
-                            fit: BoxFit.fill,
-                          ),
+                          fit: BoxFit.fill,
                         )),
                     Padding(
                       padding: const EdgeInsetsDirectional.all(20.0),
@@ -94,7 +92,8 @@ class _AdsDetailsScreenState extends State<AdsDetailsScreen> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 15.h),
-              child: TextWithBoldHeadlines(text: context.tr(widget.adItem.description)),
+              child: TextWithBoldHeadlines(
+                  text: context.tr(widget.adItem.description)),
             ),
           ],
         ),
@@ -103,7 +102,6 @@ class _AdsDetailsScreenState extends State<AdsDetailsScreen> {
   }
 }
 
-
 class TextWithBoldHeadlines extends StatelessWidget {
   final String text;
 
@@ -111,11 +109,10 @@ class TextWithBoldHeadlines extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Define the regex pattern to match headlines (text ending with ':')
-    final RegExp headlineRegex = RegExp(r"([A-Za-z\s]+:)\s*(.*?)(?=\n|$)");
+    final RegExp headlineRegex = RegExp(r"([^:]+):\s*(.*?)(?=\n|$)");
 
-    // Create a list to store the Widgets (Text and Divider)
-    List<Widget> widgets = [];
+    // Create a list to store the Rows
+    List<Widget> rows = [];
 
     // Find all matches in the text using the regex pattern
     Iterable<RegExpMatch> matches = headlineRegex.allMatches(text);
@@ -123,54 +120,76 @@ class TextWithBoldHeadlines extends StatelessWidget {
     int lastMatchEnd = 0;
 
     for (var match in matches) {
-      // Add body text between the previous match and the current match (if any)
+      // Add text between the previous match and the current match (if any)
       if (match.start > lastMatchEnd) {
-        widgets.add(
-            AppText(
-              text: text.substring(lastMatchEnd, match.start),
-              style: AppTextStyle.bold_16,
-              textColor: Palette.black,
-            ),
+        rows.add(
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: AppText(
+                  text: text.substring(lastMatchEnd, match.start).trim(),
+                  style: AppTextStyle.medium_16,
+                  textColor: Palette.black,
+                ),
+              ),
+            ],
+          ),
         );
       }
 
-      // Add headline text (first capturing group)
-      widgets.add(
-          AppText(
-            text: match.group(1)!,
-            style: AppTextStyle.bold_16,
-            textColor: Palette.black,
-          ),
-      );
-      // Add body text (second capturing group)
-      widgets.add(
-          AppText(
-            text: match.group(2)!,
-            style: AppTextStyle.medium_16,
-            textColor: Palette.black,
-          ),
+      // Create a Row for text before and after the colon
+      rows.add(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 1,
+              child: AppText(
+                text: match.group(1)!.trim(), // Text before the colon
+                style: AppTextStyle.bold_16,
+                textColor: Palette.black,
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: AppText(
+                text: match.group(2)!.trim(), // Text after the colon
+                style: AppTextStyle.medium_16,
+                textColor: Palette.black,
+              ),
+            ),
+          ],
+        ),
       );
 
-      widgets.add(20.verticalSpace);
+      rows.add(20.verticalSpace);
 
       lastMatchEnd = match.end;
     }
 
     // Add any remaining text after the last match
     if (lastMatchEnd < text.length) {
-      widgets.add(
-          AppText(
-            text: text.substring(lastMatchEnd),
-            style: AppTextStyle.medium_16,
-            textColor: Palette.black,
-          ),
+      rows.add(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: AppText(
+                text: text.substring(lastMatchEnd).trim(),
+                style: AppTextStyle.medium_16,
+                textColor: Palette.black,
+              ),
+            ),
+          ],
+        ),
       );
     }
 
-    // Return a Column with Text and Divider before each headline
+    // Return a Column with all Rows
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: widgets,
+      children: rows,
     );
   }
 }

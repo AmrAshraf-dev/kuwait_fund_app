@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/enums/request_type_enum.dart';
 import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
+import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submissions_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/screens/widgets/submission_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/screens/widgets/submission_tabbar_widget.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_filter_bottomsheet.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_item_widget.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_tabbar_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -167,16 +169,24 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
                         context,
                       ),
                     ),
-                    Container(
-                      height: 42.h,
-                      width: 42.h,
-                      decoration: BoxDecoration(
-                        color: Palette.yellow_FBD823,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Assets.svg.filterIcon.svg(),
+                    InkWell(
+                      onTap: () {
+                        ViewsToolbox.showBottomSheet(
+                            // height: 1.sh - 200,
+                            context: context,
+                            customWidget: SubmissionFilterBottomSheet());
+                      },
+                      child: Container(
+                        height: 42.h,
+                        width: 42.h,
+                        decoration: BoxDecoration(
+                          color: Palette.yellow_FBD823,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Assets.svg.filterIcon.svg(),
+                        ),
                       ),
                     )
                   ],

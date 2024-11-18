@@ -179,7 +179,7 @@ class _RequestsScreenState extends State<RequestsScreen>
                                 border: Border.all(
                                     color: selectedIndex == 1
                                         ? Palette.yellow_FBD823
-                                        : Palette.gery_6C6D6F),
+                                        : Palette.gery_DADADA),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
@@ -196,7 +196,7 @@ class _RequestsScreenState extends State<RequestsScreen>
                                 border: Border.all(
                                     color: selectedIndex == 2
                                         ? Palette.yellow_FBD823
-                                        : Palette.gery_6C6D6F),
+                                        : Palette.gery_DADADA),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
@@ -214,7 +214,7 @@ class _RequestsScreenState extends State<RequestsScreen>
                                 border: Border.all(
                                     color: selectedIndex == 3
                                         ? Palette.yellow_FBD823
-                                        : Palette.gery_6C6D6F),
+                                        : Palette.gery_DADADA),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
@@ -232,7 +232,7 @@ class _RequestsScreenState extends State<RequestsScreen>
                                 border: Border.all(
                                     color: selectedIndex == 4
                                         ? Palette.yellow_FBD823
-                                        : Palette.gery_6C6D6F),
+                                        : Palette.gery_DADADA),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
