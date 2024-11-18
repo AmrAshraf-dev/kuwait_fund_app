@@ -69,7 +69,7 @@ class SubmissionTabbarWidget extends StatelessWidget {
                       border: Border.all(
                           color: selectedIndex == 1
                               ? Palette.yellow_FBD823
-                              : Palette.gery_6C6D6F),
+                              : Palette.gery_DADADA),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(child: AppText(text: context.tr("leave")))),
@@ -84,7 +84,7 @@ class SubmissionTabbarWidget extends StatelessWidget {
                       border: Border.all(
                           color: selectedIndex == 2
                               ? Palette.yellow_FBD823
-                              : Palette.gery_6C6D6F),
+                              : Palette.gery_DADADA),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
@@ -100,7 +100,7 @@ class SubmissionTabbarWidget extends StatelessWidget {
                       border: Border.all(
                           color: selectedIndex == 3
                               ? Palette.yellow_FBD823
-                              : Palette.gery_6C6D6F),
+                              : Palette.gery_DADADA),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child:
@@ -116,7 +116,7 @@ class SubmissionTabbarWidget extends StatelessWidget {
                       border: Border.all(
                           color: selectedIndex == 4
                               ? Palette.yellow_FBD823
-                              : Palette.gery_6C6D6F),
+                              : Palette.gery_DADADA),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child:

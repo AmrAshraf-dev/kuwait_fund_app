@@ -5,10 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/more/presentation/widgets/loan_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/expandable_section_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 
 @RoutePage()
@@ -33,6 +32,7 @@ class _OperationsScreenState extends State<OperationsScreen>
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
+      hasScroll: false,
       screenTitle: context.tr("operations_and_statistics"),
       isBackEnabled: true,
       widget: Column(
@@ -95,7 +95,7 @@ class _OperationsScreenState extends State<OperationsScreen>
                             ),
                             child: Center(
                                 child: AppText(
-                              text: context.tr("Grands"),
+                              text: context.tr("grands"),
                               style: AppTextStyle.semiBold_13,
                               textColor: Palette.blue_002A6A,
                             ))),
@@ -117,7 +117,7 @@ class _OperationsScreenState extends State<OperationsScreen>
                             ),
                             child: Center(
                                 child: AppText(
-                              text: context.tr("Govt. Grands"),
+                              text: context.tr("govt_grands"),
                               style: AppTextStyle.semiBold_13,
                               textColor: Palette.blue_002A6A,
                             ))),
@@ -139,7 +139,7 @@ class _OperationsScreenState extends State<OperationsScreen>
                             ),
                             child: Center(
                                 child: AppText(
-                              text: context.tr("Condributions"),
+                              text: context.tr("condributions"),
                               style: AppTextStyle.semiBold_13,
                               textColor: Palette.blue_002A6A,
                             ))),
@@ -151,8 +151,7 @@ class _OperationsScreenState extends State<OperationsScreen>
             ),
           ),
           10.verticalSpace,
-          SizedBox(
-            height: 1000.h,
+          Expanded(
             child: TabBarView(
               physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
@@ -164,187 +163,6 @@ class _OperationsScreenState extends State<OperationsScreen>
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class LoansWidget extends StatelessWidget {
-  const LoansWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 27.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MainTitleWidget(title: context.tr('loans')),
-          12.verticalSpace,
-          AppText(
-            text: context.tr(
-                'The Fund’s operations expanded in the 1990s and subsequent years to include, besides Arab, African, South Asian, and Pacific Ocean nations, countries in Central Asia, Europe, Latin America, and the Caribbean Sea, increasing the value of the Fund\'s committed loans as a result.'),
-            style: AppTextStyle.medium_18,
-          ),
-          16.verticalSpace,
-          AppText(
-            text: 'Note: All Amounts are in Kuwaiti Dinar (Millions)',
-            style: AppTextStyle.medium_16,
-          ),
-          10.verticalSpace,
-          ExpandableSection(
-            headerPadding: const EdgeInsetsDirectional.only(start: 20, top: 20,bottom: 20),
-              customText: SizedBox(
-                  width: 240.w,
-                  child: MainTitleWidget(
-                      title: 'Central Asian & European Countries')),
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Palette.grey_7B7B7B.withOpacity(0.3),
-                        spreadRadius: 0,
-                        blurRadius: 10,
-                        offset: Offset(0, 2), // changes position of shadow
-                      ),
-                    ],
-                    border: Border.all(color: Palette.gery_DADADA),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w , vertical: 12.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AppText(
-                              text: 'Albania',
-                              style: AppTextStyle.semiBold_18,
-                            ),
-                            AppText(
-                              text: '8 Millions',
-                              style: AppTextStyle.regular_18,
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          color: Palette.gery_DADADA,
-                          thickness: 1,
-                        ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 2,
-                          itemBuilder: (context, index) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                AppText(
-                                  text: 'Agriculture ',
-                                  style: AppTextStyle.semiBold_16,
-                                ),
-                                AppText(
-                                  text: '3 Millions',
-                                  style: AppTextStyle.regular_16,
-                                ),
-                                AppText(
-                                  text: '39,587 KD',
-                                  style: AppTextStyle.regular_16,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                12.verticalSpace,
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Palette.grey_7B7B7B.withOpacity(0.3),
-                        spreadRadius: 0,
-                        blurRadius: 10,
-                        offset: Offset(0, 2), // changes position of shadow
-                      ),
-                    ],
-                    border: Border.all(color: Palette.gery_DADADA),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w , vertical: 12.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AppText(
-                              text: 'Albania',
-                              style: AppTextStyle.semiBold_18,
-                            ),
-                            AppText(
-                              text: '8 Millions',
-                              style: AppTextStyle.regular_18,
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          color: Palette.gery_DADADA,
-                          thickness: 1,
-                        ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 2,
-                          itemBuilder: (context, index) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                AppText(
-                                  text: 'Agriculture ',
-                                  style: AppTextStyle.semiBold_16,
-                                ),
-                                AppText(
-                                  text: '3 Millions',
-                                  style: AppTextStyle.regular_16,
-                                ),
-                                AppText(
-                                  text: '39,587 KD',
-                                  style: AppTextStyle.regular_16,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ]),
-          12.verticalSpace,
-          ExpandableSection(
-            headerPadding: const EdgeInsetsDirectional.only(start: 20, top: 20,bottom: 20),
-              customText: SizedBox(
-                  width: 240.w,
-                  child: MainTitleWidget(
-                      title: 'Central Asian & European Countries')),
-              children: []),
-          12.verticalSpace,
-          ExpandableSection(
-            headerPadding: const EdgeInsetsDirectional.only(start: 20, top: 20,bottom: 20),
-              customText: SizedBox(
-                  width: 240.w,
-                  child: MainTitleWidget(
-                      title: 'Central Asian & European Countries')),
-              children: [
-              ]),
         ],
       ),
     );

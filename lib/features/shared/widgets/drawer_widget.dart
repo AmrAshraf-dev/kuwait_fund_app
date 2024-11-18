@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
@@ -70,8 +72,7 @@ class DrawerSideMenu extends StatelessWidget {
                             ],
                           ),
                           onTap: () {
-                            // Navigator.pop(context);
-                            // Navigator.pushNamed(context, Routes.homeScreen);
+                            CustomMainRouter.push(AboutRoute());
                           },
                         ),
                         SizedBox(
@@ -93,8 +94,7 @@ class DrawerSideMenu extends StatelessWidget {
                             ],
                           ),
                           onTap: () {
-                            // Navigator.pop(context);
-                            // Navigator.pushNamed(context, Routes.homeScreen);
+                            CustomMainRouter.push(OperationsRoute());
                           },
                         ),
                         SizedBox(
@@ -116,8 +116,7 @@ class DrawerSideMenu extends StatelessWidget {
                             ],
                           ),
                           onTap: () {
-                            // Navigator.pop(context);
-                            // Navigator.pushNamed(context, Routes.homeScreen);
+                            CustomMainRouter.push(ContactUsRoute());
                           },
                         ),
                       ],

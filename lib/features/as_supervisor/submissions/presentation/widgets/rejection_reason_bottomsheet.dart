@@ -1,0 +1,88 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_area_field_widget.dart';
+
+class RejectionReasonBottomSheet extends StatelessWidget {
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+  RejectionReasonBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(35.r),
+            topRight: Radius.circular(35.r),
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 20.h),
+          child: FormBuilder(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                10.verticalSpace,
+                AppText(
+                  text: context.tr("reason_for_rejection"),
+                  style: AppTextStyle.bold_22,
+                ),
+                10.verticalSpace,
+                Container(
+                  decoration: BoxDecoration(
+                    color: Palette.white,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    child: TextAreaFieldWidget(
+                      labelAboveField: context.tr("remarks"),
+                      keyName: "reason_for_rejection",
+                      validator: FormBuilderValidators.required(),
+                    ),
+                  ),
+                ),
+                50.verticalSpace,
+                Column(
+                  children: [
+                    CustomElevatedButton(
+                      height: 60.h,
+                      text: context.tr("submit"),
+                      onPressed: () {
+                        if (_formKey.currentState!.saveAndValidate()) {
+                          print(_formKey.currentState!.value);
+                          CustomMainRouter.pop();
+                        }
+                      },
+                    ),
+                    22.verticalSpace,
+                    Center(
+                      child: CustomElevatedButton(
+                          height: 50.h,
+                          backgroundColor: Palette.transparntColor,
+                          onPressed: () {
+                            CustomMainRouter.pop();
+                          },
+                          customChild: AppText(
+                            text: context.tr("cancel"),
+                            textColor: Palette.blue_5490EB,
+                            fontSize: 18.sp,
+                          )),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+}

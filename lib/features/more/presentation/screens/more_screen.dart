@@ -9,7 +9,7 @@ import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/di/toggle_button_model.dart';
-import 'package:kf_ess_mobile_app/features/more/presentation/screens/widgets/more_item_widget.dart';
+import 'package:kf_ess_mobile_app/features/more/presentation/widgets/more_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/cubit/locale_cubit/locale_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/custom_toggle_button_cubit.dart';
@@ -48,7 +48,11 @@ class _MoreScreenState extends State<MoreScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MoreItemWidget(
-                text: context.tr("profile"), svgIcon: profile, onTap: () {}),
+                text: context.tr("profile"),
+                svgIcon: profile,
+                onTap: () {
+                  CustomMainRouter.push(ProfileRoute());
+                }),
             MoreItemWidget(
                 text: context.tr("my_attendance"),
                 svgIcon: myAttendance,
@@ -60,6 +64,12 @@ class _MoreScreenState extends State<MoreScreen> {
                 svgIcon: loan,
                 onTap: () {
                   CustomMainRouter.push(CertificatesRoute());
+                }),
+            MoreItemWidget(
+                text: context.tr("visitors_logs"),
+                svgIcon: loan,
+                onTap: () {
+                  CustomMainRouter.push(VisitorsLogsRoute());
                 }),
             MoreItemWidget(
                 text: context.tr("advertisements"),

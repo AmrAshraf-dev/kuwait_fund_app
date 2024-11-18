@@ -25,8 +25,13 @@ class _SplashScreenState extends State<SplashScreen> {
       FlutterNativeSplash.remove();
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
+      try {
+        CustomMainRouter.push(const SupervisorNavigationMainRoute());
+      } catch (e) {
+        debugPrint('Navigation Error: $e');
+      }
+
       //CustomMainRouter.push(const NavigationMainRoute());
-      CustomMainRouter.push(const SupervisorNavigationMainRoute());
     });
     super.initState();
   }

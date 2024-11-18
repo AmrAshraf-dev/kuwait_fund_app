@@ -22,6 +22,7 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
   List<String> screensTitles = <String>[
     "home",
     "requests",
+    "submissions",
     "insurance",
     "more",
   ];

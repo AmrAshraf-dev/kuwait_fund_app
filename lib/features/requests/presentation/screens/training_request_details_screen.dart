@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/timeline_card_widget.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/training_request_details_row_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/timeline_card_widget.dart';
 
 @RoutePage()
 class TrainingRequestDetailsScreen extends StatelessWidget {

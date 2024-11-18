@@ -13,6 +13,7 @@ import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/cre
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/recent_update_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/slider_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 
@@ -55,11 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 2.0,
                         ),
                       ),
-                      child: SvgPicture.asset(
-                        userCircleIcon,
-                        color: Palette.white,
-                        height: 50,
-                      ),
+                      child: Assets.svg.userCircleIcon
+                          .svg(width: 50.w, height: 50.w, color: Palette.white),
                     ),
                     12.horizontalSpace,
                     Column(
@@ -99,8 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         )),
                     17.horizontalSpace,
                     InkWell(
-                      onTap: () =>
-                          CustomMainRouter.push(NotificationsRoute()),
+                      onTap: () => CustomMainRouter.push(NotificationsRoute()),
                       child: Badge(
                         padding: EdgeInsets.all(1),
                         backgroundColor: Palette.red_FF0606,
