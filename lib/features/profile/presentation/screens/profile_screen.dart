@@ -140,7 +140,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ProfileItemWidget(
                 text: context.tr("Address"),
                 svgIcon: addressIcon,
-                onTap: () {}),
+                onTap: () {
+                  CustomMainRouter.push(AddressRoute());
+                }),
             ProfileItemWidget(
                 text: context.tr("Bank Details"),
                 svgIcon: bankIcon,
@@ -148,15 +150,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ProfileItemWidget(
                 text: context.tr("Family"),
                 svgIcon: familyIcon,
-                onTap: () {}),
+                onTap: () {
+                  CustomMainRouter.push(FamilyRoute());
+                }),
             ProfileItemWidget(
                 text: context.tr("Qualification"),
                 svgIcon: qualificationIcon,
-                onTap: () {}),
+                onTap: () {
+                  CustomMainRouter.push(QualificationsRoute());
+                }),
             ProfileItemWidget(
                 text: context.tr("Work Experience"),
                 svgIcon: workIcon,
-                onTap: () {}),
+                onTap: () {
+                  CustomMainRouter.push(WorkRoute());
+                }),
             ProfileItemWidget(
                 text: context.tr("Uploaded Documents"),
                 svgIcon: documentsIcon,

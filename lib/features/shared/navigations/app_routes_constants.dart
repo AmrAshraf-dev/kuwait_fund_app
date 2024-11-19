@@ -86,4 +86,22 @@ class AppRoutesConstants {
   static const String editProfile = '/editProfileScreen';
 
   static const String personalInfo = '/personalInfoScreen';
+
+  static const String addressScreen = '/addressScreen';
+
+  static const String editAddressScreen = '/editAddressScreen';
+
+  static const String familyScreen = '/familyScreen';
+
+  static const String editFamilyScreen = '/editFamilyScreen';
+
+  static const String addFamilyScreen = '/addFamilyScreen';
+
+  static const String qualificationScreen = '/qualificationScreen';
+
+  static const String addQualificationScreen = '/addQualificationScreen';
+
+  static const String workScreen = '/workScreen';
+
+  static const String addWorkScreen = '/addWorkScreen';
 }
