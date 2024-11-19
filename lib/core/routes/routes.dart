@@ -284,7 +284,8 @@ class AppRouter extends RootStackRouter {
                 path: AppRoutesConstants.more,
               ),
             ]),
-      ];
+      ])
+  ];
 }
 
 @RoutePage()
