@@ -126,14 +126,26 @@ class _AuthScreenState extends State<AuthScreen> {
                                                     .currentState
                                                     ?.fields['username']
                                                     ?.value ==
+                                                'supervisor' &&
+                                            _formKey
+                                                    .currentState
+                                                    ?.fields['password']
+                                                    ?.value ==
+                                                '123456') {
+                                          CustomMainRouter.push(
+                                              SupervisorNavigationMainRoute());
+                                        } else if ((_formKey
+                                                    .currentState
+                                                    ?.fields['username']
+                                                    ?.value ==
                                                 'admin' &&
                                             _formKey
                                                     .currentState
                                                     ?.fields['password']
                                                     ?.value ==
-                                                'admin') {
+                                                '123456')) {
                                           CustomMainRouter.push(
-                                              SupervisorNavigationMainRoute());
+                                              AdminNavigationMainRoute());
                                         } else {
                                           CustomMainRouter.push(
                                               NavigationMainRoute());

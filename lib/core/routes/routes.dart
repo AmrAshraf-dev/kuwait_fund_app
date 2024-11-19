@@ -262,7 +262,28 @@ class AppRouter extends RootStackRouter {
                   path: AppRoutesConstants.profile,
                 ),
               ]),
-            ])
+
+        AutoRoute(
+            page: AdminNavigationMainRoute.page,
+            path: AppRoutesConstants.adminNavigation,
+            children: <AutoRoute>[
+              AutoRoute(
+                  page: AdminHomeRoute.page,
+                  path: AppRoutesConstants.adminHome,
+                  maintainState: false),
+              AutoRoute(
+                  page: AdminDirectorMissionRoute.page,
+                  path: AppRoutesConstants.adminDirectorMission,
+                  maintainState: false),
+              AutoRoute(
+                  page: AdminDeptMissionRoute.page,
+                  path: AppRoutesConstants.adminDeptMission,
+                  maintainState: false),
+              AutoRoute(
+                page: MoreRoute.page,
+                path: AppRoutesConstants.more,
+              ),
+            ]),
       ];
 }
 
@@ -289,6 +310,16 @@ class EmptyRouterPage2 extends StatelessWidget {
 @RoutePage()
 class EmptyRouterPage3 extends StatelessWidget {
   const EmptyRouterPage3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const AutoRouter();
+  }
+}
+
+@RoutePage()
+class EmptyRouterPage4 extends StatelessWidget {
+  const EmptyRouterPage4({super.key});
 
   @override
   Widget build(BuildContext context) {

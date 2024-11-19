@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/annual_leave_chart_widget.dart';
+import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
@@ -45,7 +45,7 @@ class AnnualLeaveRequestDetailsScreen extends StatelessWidget {
             ),
             10.verticalSpace,
             IntrinsicHeight(
-              child: AnnualLeaveChart(
+              child: HalfCircleChartWidget(
                 leaveUsed: 26,
                 totalLeave: 30,
                 height: 80.h,

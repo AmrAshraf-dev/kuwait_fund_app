@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
-class AnnualLeaveChart extends StatefulWidget {
+class HalfCircleChartWidget extends StatefulWidget {
   final int leaveUsed;
   final int totalLeave;
   final Color color;
@@ -12,7 +12,7 @@ class AnnualLeaveChart extends StatefulWidget {
   final String? subTitle;
   final double? width;
   final double? height;
-  const AnnualLeaveChart({
+  const HalfCircleChartWidget({
     super.key,
     required this.leaveUsed,
     required this.totalLeave,
@@ -24,10 +24,10 @@ class AnnualLeaveChart extends StatefulWidget {
   });
 
   @override
-  _AnnualLeaveChartState createState() => _AnnualLeaveChartState();
+  _HalfCircleChartWidgetState createState() => _HalfCircleChartWidgetState();
 }
 
-class _AnnualLeaveChartState extends State<AnnualLeaveChart>
+class _HalfCircleChartWidgetState extends State<HalfCircleChartWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -108,24 +108,27 @@ class _AnnualLeaveChartState extends State<AnnualLeaveChart>
             ],
           ),
         ),
-        Column(
-          // mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            AppText(
-                text: widget.title,
-                textAlign: TextAlign.center,
-                style: AppTextStyle.bold_14,
-                textColor: Colors.white),
-            5.verticalSpace,
-            if (widget.subTitle != null)
+        SizedBox(
+          width: widget.width ?? 90.w,
+          child: Column(
+            // mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
               AppText(
-                  text: widget.subTitle!,
+                  text: widget.title,
                   textAlign: TextAlign.center,
                   style: AppTextStyle.bold_14,
                   textColor: Colors.white),
-          ],
+              5.verticalSpace,
+              if (widget.subTitle != null)
+                AppText(
+                    text: widget.subTitle!,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.bold_14,
+                    textColor: Colors.white),
+            ],
+          ),
         ),
       ],
     );
