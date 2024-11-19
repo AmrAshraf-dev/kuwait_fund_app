@@ -8,8 +8,8 @@ import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/annual_leave_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/create_request_section_widget.dart';
+import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/recent_update_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/slider_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -128,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AnnualLeaveChart(
+                HalfCircleChartWidget(
                   leaveUsed: 26,
                   totalLeave: 30,
                   color: Colors.blueAccent,
@@ -141,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     thickness: 0.2,
                   ),
                 ),
-                AnnualLeaveChart(
+                HalfCircleChartWidget(
                   leaveUsed: 12,
                   totalLeave: 15,
                   color: Color(0xFFEDA18C),
@@ -154,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     thickness: 0.2,
                   ),
                 ),
-                AnnualLeaveChart(
+                HalfCircleChartWidget(
                     leaveUsed: 2,
                     totalLeave: 4,
                     title: context.tr('vacations_used'),

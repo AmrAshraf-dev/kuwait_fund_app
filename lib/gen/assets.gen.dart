@@ -136,6 +136,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/arrow_down.svg
   SvgGenImage get arrowDown => const SvgGenImage('assets/svg/arrow_down.svg');
 
+  /// File path: assets/svg/arrow_target.svg
+  SvgGenImage get arrowTarget =>
+      const SvgGenImage('assets/svg/arrow_target.svg');
+
   /// File path: assets/svg/black_calander.svg
   SvgGenImage get blackCalander =>
       const SvgGenImage('assets/svg/black_calander.svg');
@@ -145,6 +149,10 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/calendar.svg
   SvgGenImage get calendar => const SvgGenImage('assets/svg/calendar.svg');
+
+  /// File path: assets/svg/calendar_eye.svg
+  SvgGenImage get calendarEye =>
+      const SvgGenImage('assets/svg/calendar_eye.svg');
 
   /// File path: assets/svg/chatbot.svg
   SvgGenImage get chatbot => const SvgGenImage('assets/svg/chatbot.svg');
@@ -181,6 +189,14 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/date_icon.svg
   SvgGenImage get dateIcon => const SvgGenImage('assets/svg/date_icon.svg');
+
+  /// File path: assets/svg/dept_mission.svg
+  SvgGenImage get deptMission =>
+      const SvgGenImage('assets/svg/dept_mission.svg');
+
+  /// File path: assets/svg/director_mission.svg
+  SvgGenImage get directorMission =>
+      const SvgGenImage('assets/svg/director_mission.svg');
 
   /// File path: assets/svg/drawer.svg
   SvgGenImage get drawer => const SvgGenImage('assets/svg/drawer.svg');
@@ -257,6 +273,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/pdf.svg
   SvgGenImage get pdf => const SvgGenImage('assets/svg/pdf.svg');
 
+  /// File path: assets/svg/pepole.svg
+  SvgGenImage get pepole => const SvgGenImage('assets/svg/pepole.svg');
+
   /// File path: assets/svg/person.svg
   SvgGenImage get person => const SvgGenImage('assets/svg/person.svg');
 
@@ -294,15 +313,20 @@ class $AssetsSvgGen {
   /// File path: assets/svg/verified.svg
   SvgGenImage get verified => const SvgGenImage('assets/svg/verified.svg');
 
+  /// File path: assets/svg/world.svg
+  SvgGenImage get world => const SvgGenImage('assets/svg/world.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         advertisements,
         annualLeave,
         appVersion,
         arrowDown,
+        arrowTarget,
         blackCalander,
         calander,
         calendar,
+        calendarEye,
         chatbot,
         checkMark,
         clock,
@@ -313,6 +337,8 @@ class $AssetsSvgGen {
         createTrainingRequest,
         dateOutlineBadged,
         dateIcon,
+        deptMission,
+        directorMission,
         drawer,
         drawerAbout,
         drawerAr,
@@ -335,6 +361,7 @@ class $AssetsSvgGen {
         notificationDate,
         notificationUser,
         pdf,
+        pepole,
         person,
         profile,
         questionMark,
@@ -345,7 +372,8 @@ class $AssetsSvgGen {
         timer,
         trainingRequest,
         userCircleIcon,
-        verified
+        verified,
+        world
       ];
 }
 

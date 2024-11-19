@@ -92,6 +92,7 @@ dependencies:
   # other
   dartz: ^0.10.1
   logger: ^2.4.0
+  flutter_calendar_carousel: ^2.4.4
 
   # webview
   webview_flutter: ^4.10.0

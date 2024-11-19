@@ -12,6 +12,36 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:kf_ess_mobile_app/core/network/network_helper.dart' as _i675;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_dept_mission/data/data_sources/remote/admin_dept_mission_remote_data_source.dart'
+    as _i949;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_dept_mission/data/repositories/admin_dept_mission_repository_impl.dart'
+    as _i1025;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_dept_mission/domain/repositories/admin_dept_mission_repository.dart'
+    as _i964;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_dept_mission/domain/use_cases/get_admin_dept_mission_usecase.dart'
+    as _i193;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_dept_mission/presentation/cubits/admin_dept_mission_cubit.dart'
+    as _i59;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_director_mission/data/data_sources/remote/admin_director_mission_remote_data_source.dart'
+    as _i750;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_director_mission/data/repositories/admin_director_mission_repository_impl.dart'
+    as _i894;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_director_mission/domain/repositories/admin_director_mission_repository.dart'
+    as _i704;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_director_mission/domain/use_cases/get_admin_director_mission_usecase.dart'
+    as _i611;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_director_mission/presentation/cubits/admin_director_mission_cubit.dart'
+    as _i573;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_home/data/data_sources/remote/admin_home_remote_data_source.dart'
+    as _i1029;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_home/data/repositories/admin_home_repository_impl.dart'
+    as _i308;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_home/domain/repositories/admin_home_repository.dart'
+    as _i887;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_home/domain/use_cases/get_admin_home_usecase.dart'
+    as _i524;
+import 'package:kf_ess_mobile_app/features/as_admin/admin_home/presentation/cubits/admin_home_cubit.dart'
+    as _i4;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/data_sources/remote/submissions_remote_data_source.dart'
     as _i809;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/repositories/submissions_repository_impl.dart'
@@ -205,6 +235,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i361.Dio>(
       () => registerModule.dio(gh<String>(instanceName: 'BaseUrl')));
   gh.factory<_i675.NetworkHelper>(() => _i675.NetworkHelper(gh<_i361.Dio>()));
+  gh.factory<_i750.AdminDirectorMissionRemoteDataSource>(() =>
+      _i750.AdminDirectorMissionDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i602.MoreRemoteDataSource>(
       () => _i602.MoreDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i90.PeraonalInfoRemoteDataSource>(
@@ -227,6 +259,10 @@ Future<_i174.GetIt> $initGetIt(
       () => _i809.SubmissionsDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i956.CertificatesRemoteDataSource>(
       () => _i956.CertificatesDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i704.AdminDirectorMissionRepository>(() =>
+      _i894.AdminDirectorMissionRepositoryImp(
+          adminDirectorMissionRemoteDataSource:
+              gh<_i750.AdminDirectorMissionRemoteDataSource>()));
   gh.factory<_i188.SubmissionsRepository>(() => _i542.SubmissionsRepositoryImp(
       submissionsRemoteDataSource: gh<_i809.SubmissionsRemoteDataSource>()));
   gh.factory<_i396.NotificationsRemoteDataSource>(
@@ -235,6 +271,10 @@ Future<_i174.GetIt> $initGetIt(
       moreRemoteDataSource: gh<_i602.MoreRemoteDataSource>()));
   gh.factory<_i826.AuthRemoteDataSource>(
       () => _i826.AuthDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i949.AdminDeptMissionRemoteDataSource>(
+      () => _i949.AdminDeptMissionDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i1029.AdminHomeRemoteDataSource>(
+      () => _i1029.AdminHomeDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i710.ProfileRemoteDataSource>(
       () => _i710.ProfileDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i951.ForgetPassRemoteDataSource>(
@@ -257,6 +297,10 @@ Future<_i174.GetIt> $initGetIt(
       () => _i243.GetHomeUseCase(homeRepository: gh<_i219.HomeRepository>()));
   gh.factory<_i273.GetMoreUseCase>(
       () => _i273.GetMoreUseCase(moreRepository: gh<_i508.MoreRepository>()));
+  gh.factory<_i964.AdminDeptMissionRepository>(() =>
+      _i1025.AdminDeptMissionRepositoryImp(
+          adminDeptMissionRemoteDataSource:
+              gh<_i949.AdminDeptMissionRemoteDataSource>()));
   gh.factory<_i254.GetCertificatesUseCase>(() => _i254.GetCertificatesUseCase(
       certificatesRepository: gh<_i504.CertificatesRepository>()));
   gh.factory<_i848.AuthRepository>(() => _i88.AuthRepositoryImp(
@@ -279,6 +323,8 @@ Future<_i174.GetIt> $initGetIt(
       requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i464.GetAuthUseCase>(
       () => _i464.GetAuthUseCase(authRepository: gh<_i848.AuthRepository>()));
+  gh.factory<_i887.AdminHomeRepository>(() => _i308.AdminHomeRepositoryImp(
+      adminHomeRemoteDataSource: gh<_i1029.AdminHomeRemoteDataSource>()));
   gh.factory<_i397.CreateRequestRepository>(() =>
       _i725.CreateRequestRepositoryImp(
           createRequestRemoteDataSource:
@@ -287,14 +333,25 @@ Future<_i174.GetIt> $initGetIt(
       profileRemoteDataSource: gh<_i710.ProfileRemoteDataSource>()));
   gh.factory<_i232.AuthCubit>(
       () => _i232.AuthCubit(getAuthUseCase: gh<_i464.GetAuthUseCase>()));
+  gh.factory<_i524.GetAdminHomeUseCase>(() => _i524.GetAdminHomeUseCase(
+      adminHomeRepository: gh<_i887.AdminHomeRepository>()));
   gh.factory<_i9.GetSubmissionsUseCase>(() => _i9.GetSubmissionsUseCase(
       submissionsRepository: gh<_i188.SubmissionsRepository>()));
+  gh.factory<_i4.AdminHomeCubit>(() =>
+      _i4.AdminHomeCubit(getAdminHomeUseCase: gh<_i524.GetAdminHomeUseCase>()));
+  gh.factory<_i193.GetAdminDeptMissionUseCase>(() =>
+      _i193.GetAdminDeptMissionUseCase(
+          adminDeptMissionRepository: gh<_i964.AdminDeptMissionRepository>()));
   gh.factory<_i727.GetProfileUseCase>(() => _i727.GetProfileUseCase(
       profileRepository: gh<_i246.ProfileRepository>()));
   gh.factory<_i1026.VisitorsLogsRepository>(() =>
       _i72.VisitorsLogsRepositoryImp(
           visitorsLogsRemoteDataSource:
               gh<_i643.VisitorsLogsRemoteDataSource>()));
+  gh.factory<_i611.GetAdminDirectorMissionUseCase>(() =>
+      _i611.GetAdminDirectorMissionUseCase(
+          adminDirectorMissionRepository:
+              gh<_i704.AdminDirectorMissionRepository>()));
   gh.factory<_i447.PeraonalInfoCubit>(() => _i447.PeraonalInfoCubit(
       getPeraonalInfoUseCase: gh<_i715.GetPeraonalInfoUseCase>()));
   gh.factory<_i623.CertificatesCubit>(() => _i623.CertificatesCubit(
@@ -317,11 +374,17 @@ Future<_i174.GetIt> $initGetIt(
       () => _i693.MoreCubit(getMoreUseCase: gh<_i273.GetMoreUseCase>()));
   gh.factory<_i588.ProfileCubit>(() =>
       _i588.ProfileCubit(getProfileUseCase: gh<_i727.GetProfileUseCase>()));
+  gh.factory<_i573.AdminDirectorMissionCubit>(() =>
+      _i573.AdminDirectorMissionCubit(
+          getAdminDirectorMissionUseCase:
+              gh<_i611.GetAdminDirectorMissionUseCase>()));
   gh.factory<_i540.VisitorsLogsCubit>(() => _i540.VisitorsLogsCubit(
       getVisitorsLogsUseCase: gh<_i266.GetVisitorsLogsUseCase>()));
   gh.factory<_i1068.GetCreateRequestUseCase>(() =>
       _i1068.GetCreateRequestUseCase(
           createRequestRepository: gh<_i397.CreateRequestRepository>()));
+  gh.factory<_i59.AdminDeptMissionCubit>(() => _i59.AdminDeptMissionCubit(
+      getAdminDeptMissionUseCase: gh<_i193.GetAdminDeptMissionUseCase>()));
   gh.factory<_i791.NotificationsCubit>(() => _i791.NotificationsCubit(
       getNotificationsUseCase: gh<_i362.GetNotificationsUseCase>()));
   gh.factory<_i368.SubmissionsCubit>(() => _i368.SubmissionsCubit(
