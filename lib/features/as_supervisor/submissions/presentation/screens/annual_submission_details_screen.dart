@@ -8,7 +8,7 @@ import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/rejection_reason_bottomsheet.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_leave_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/annual_leave_chart_widget.dart';
+import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/advanced_expandable_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -71,7 +71,7 @@ class AnnualSubmissionsDetailsScreen extends StatelessWidget {
             ),
             10.verticalSpace,
             IntrinsicHeight(
-              child: AnnualLeaveChart(
+              child: HalfCircleChartWidget(
                 leaveUsed: 26,
                 totalLeave: 30,
                 height: 80.h,

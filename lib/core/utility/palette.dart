@@ -21,10 +21,10 @@ class Palette {
   static var blue_3542B9 = Color(0xFF3542B9);
   static const Color gray_B6B7B8 = Color(0xFFB6B7B8);
   static const Color gray_8D8686 = Color(0xFF8D8686);
-
+  static var blue_4379BD = Color(0xFF4379BD);
   static const Color orange_FB5923 = Color(0xFFFB5923);
   static const Color blue_3B72C5 = Color(0xFF3B72C5);
-
+  static var orange_FFB162 = Color(0xFFFB5923);
   static const Color gray_C6C6C6 = Color(0xFFC6C6C6);
   static const Color gray_C8C2C2 = Color(0xFFC8C2C2);
 
