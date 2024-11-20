@@ -94,4 +94,6 @@ class AppRoutesConstants {
   static const String adminDirectorMission = 'adminDirectorMissionScreen';
 
   static const String adminDeptMission = 'adminDeptMissionScreen';
+
+  static const String surveyRoute = '/surveyScreen';
 }

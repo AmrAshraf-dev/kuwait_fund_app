@@ -249,6 +249,10 @@ class AppRouter extends RootStackRouter {
                 path: AppRoutesConstants.more,
               ),
             ]),
+        AutoRoute(
+          page: SurveyRoute.page,
+          path: AppRoutesConstants.surveyRoute,
+        ),
       ];
 }
 
