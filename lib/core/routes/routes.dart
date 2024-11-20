@@ -59,6 +59,50 @@ class AppRouter extends RootStackRouter {
             ]),
 
         AutoRoute(
+          page: EditProfileRoute.page,
+          path: AppRoutesConstants.editProfile,
+        ),
+        AutoRoute(
+          page: PersonalInfoRoute.page,
+          path: AppRoutesConstants.personalInfo,
+        ),
+        AutoRoute(
+          page: AddressRoute.page,
+          path: AppRoutesConstants.addressScreen,
+        ),
+        AutoRoute(
+          page: EditAddressRoute.page,
+          path: AppRoutesConstants.editAddressScreen,
+        ),
+        AutoRoute(
+          page: FamilyRoute.page,
+          path: AppRoutesConstants.familyScreen,
+        ),
+        AutoRoute(
+          page: EditFamilyRoute.page,
+          path: AppRoutesConstants.editFamilyScreen,
+        ),
+        AutoRoute(
+          page: AddFamilyRoute.page,
+          path: AppRoutesConstants.addFamilyScreen,
+        ),
+        AutoRoute(
+          page: QualificationsRoute.page,
+          path: AppRoutesConstants.qualificationScreen,
+        ),
+        AutoRoute(
+          page: AddQualificationRoute.page,
+          path: AppRoutesConstants.addQualificationScreen,
+        ),
+        AutoRoute(
+          page: WorkRoute.page,
+          path: AppRoutesConstants.workScreen,
+        ),
+        AutoRoute(
+          page: AddWorkRoute.page,
+          path: AppRoutesConstants.addWorkScreen,
+        ),
+        AutoRoute(
           page: AuthRoute.page,
           path: AppRoutesConstants.authScreen,
         ),
@@ -218,15 +262,6 @@ class AppRouter extends RootStackRouter {
                   path: AppRoutesConstants.profile,
                 ),
               ]),
-              AutoRoute(
-                page: EditProfileRoute.page,
-                path: AppRoutesConstants.editProfile,
-              ),
-              AutoRoute(
-                page: PeraonalInfoRoute.page,
-                path: AppRoutesConstants.personalInfo,
-              ),
-            ]),
 
         AutoRoute(
             page: AdminNavigationMainRoute.page,
@@ -249,7 +284,8 @@ class AppRouter extends RootStackRouter {
                 path: AppRoutesConstants.more,
               ),
             ]),
-      ];
+      ])
+  ];
 }
 
 @RoutePage()
