@@ -32,7 +32,7 @@ class _EditFamilyScreenState extends State<EditFamilyScreen> {
   Widget build(BuildContext context) {
     return MasterWidget(
         isBackEnabled: true,
-        screenTitle: context.tr("Edit Family"),
+        screenTitle: context.tr("editFamily"),
         widget: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
           child: Column(
@@ -59,29 +59,29 @@ class _EditFamilyScreenState extends State<EditFamilyScreen> {
                       children: [
                         30.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Name"),
-                          keyName: "Name",
+                          labelAboveField: context.tr("name"),
+                          keyName: "name",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Civil ID Number"),
-                          keyName: "Civil ID Number",
+                          labelAboveField: context.tr("civilIDNumber"),
+                          keyName: "civilIDNumber",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         CustomSingleRangeDatePicker(
-                          fromLabelAboveField: context.tr("Residency Expiry"),
+                          fromLabelAboveField: context.tr("residencyExpiryDate"),
                           customFormKey: _formKey,
-                          keyNameFrom: "Residency Expiry",
+                          keyNameFrom: "residencyExpiry",
                         ),
                         20.verticalSpace,
                         CustomSingleRangeDatePicker(
-                          fromLabelAboveField: context.tr("Date of Birth"),
+                          fromLabelAboveField: context.tr("birthDate"),
                           customFormKey: _formKey,
-                          keyNameFrom: "Date of Birth",
+                          keyNameFrom: "birthDate",
                         ),
                         40.verticalSpace,
                       ],
@@ -97,7 +97,7 @@ class _EditFamilyScreenState extends State<EditFamilyScreen> {
                     print(_formKey.currentState!.value);
                     CustomMainRouter.push(ThankYouRoute(
                       subtitle: context.tr(
-                          "you_training_request_submitted_successfully"),
+                          "submitted_successfully_waiting_administrator"),
                     ));
                   }
                 },

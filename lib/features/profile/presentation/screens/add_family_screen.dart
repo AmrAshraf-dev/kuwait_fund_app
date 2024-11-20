@@ -6,8 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/radio_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
@@ -25,8 +24,13 @@ class AddFamilyScreen extends StatefulWidget {
 class _AddFamilyScreenState extends State<AddFamilyScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
-  bool isChild = true;
+  int selectedIndex = 0;
 
+  void onRadioButtonChanged(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
   @override
   void initState() {
     super.initState();
@@ -35,7 +39,7 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-      screenTitle: context.tr("Add Family Member"),
+      screenTitle: context.tr("addFamilyMember"),
       isBackEnabled: true,
       widget: Padding(
         padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -66,64 +70,46 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Radio(
-                              value: isChild,
-                              groupValue: isChild,
-                              visualDensity: VisualDensity.compact,
-                              activeColor: Palette.primaryColor,
-                              materialTapTargetSize: MaterialTapTargetSize.padded,
-                              onChanged: (value) {
-                                setState(() {
-                                });
-                              }
-                          ),
-                          AppText(
-                            text: context.tr("Child"),
-                            fontSize: 16.sp,
+                          RadioButtonWidget(
+                            title: context.tr("child"),
+                            index: 0,
+                            onChanged: onRadioButtonChanged,
+                            selectedIndex: selectedIndex,
                           ),
                           20.horizontalSpace,
-                          Radio(
-                              value: !isChild,
-                              groupValue: isChild,
-                              visualDensity: VisualDensity.compact,
-                              activeColor: Palette.primaryColor,
-                              materialTapTargetSize: MaterialTapTargetSize.padded,
-                              onChanged: (value) {
-                                setState(() {
-                                });
-                              }
-                          ),
-                          AppText(
-                            text: context.tr("Spouse"),
-                            fontSize: 16.sp,
+                          RadioButtonWidget(
+                            title: context.tr("spouse"),
+                            index: 1,
+                            onChanged: onRadioButtonChanged,
+                            selectedIndex: selectedIndex,
                           ),
                         ],
                       ),
                       20.verticalSpace,
                       TextFieldWidget(
-                        labelAboveField: context.tr("Name"),
-                        keyName: "Name",
+                        labelAboveField: context.tr("name"),
+                        keyName: "name",
                         validator: FormBuilderValidators.required(),
                         textInputAction: TextInputAction.next,
                       ),
                       20.verticalSpace,
                       TextFieldWidget(
-                        labelAboveField: context.tr("Civil ID Number"),
-                        keyName: "Civil ID Number",
+                        labelAboveField: context.tr("civilIDNumber"),
+                        keyName: "civilIDNumber",
                         validator: FormBuilderValidators.required(),
                         textInputAction: TextInputAction.next,
                       ),
                       20.verticalSpace,
                       CustomSingleRangeDatePicker(
-                        fromLabelAboveField: context.tr("Residency Expiry"),
+                        fromLabelAboveField: context.tr("residencyExpiryDate"),
                         customFormKey: _formKey,
-                        keyNameFrom: "Residency Expiry",
+                        keyNameFrom: "residencyExpiryDate",
                       ),
                       20.verticalSpace,
                       CustomSingleRangeDatePicker(
-                        fromLabelAboveField: context.tr("Date of Birth"),
+                        fromLabelAboveField: context.tr("birthDate"),
                         customFormKey: _formKey,
-                        keyNameFrom: "Date of Birth",
+                        keyNameFrom: "birthDate",
                       ),
                       40.verticalSpace,
                     ],
@@ -139,7 +125,7 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                   print(_formKey.currentState!.value);
                   CustomMainRouter.push(ThankYouRoute(
                     subtitle: context.tr(
-                        "you_training_request_submitted_successfully"),
+                        "submitted_successfully_waiting_administrator"),
                   ));
                 }
               },

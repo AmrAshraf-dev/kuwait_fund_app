@@ -33,7 +33,7 @@ class _AddWorkScreenState extends State<AddWorkScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-      screenTitle: context.tr("Add Work Experience"),
+      screenTitle: context.tr("addWorkExperience"),
       isBackEnabled: true,
       widget: Padding(
         padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -61,29 +61,29 @@ class _AddWorkScreenState extends State<AddWorkScreen> {
                     children: [
                       30.verticalSpace,
                       TextFieldWidget(
-                        labelAboveField: context.tr("Company"),
-                        keyName: "Company",
+                        labelAboveField: context.tr("company"),
+                        keyName: "company",
                         validator: FormBuilderValidators.required(),
                         textInputAction: TextInputAction.next,
                       ),
                       20.verticalSpace,
                       TextFieldWidget(
-                        labelAboveField: context.tr("Position"),
-                        keyName: "Position",
+                        labelAboveField: context.tr("position"),
+                        keyName: "position",
                         validator: FormBuilderValidators.required(),
                         textInputAction: TextInputAction.next,
                       ),
                       20.verticalSpace,
                       CustomSingleRangeDatePicker(
-                        fromLabelAboveField: context.tr("Start date"),
+                        fromLabelAboveField: context.tr("start_date"),
                         customFormKey: _formKey,
-                        keyNameFrom: "Start date",
+                        keyNameFrom: "start_date",
                       ),
                       20.verticalSpace,
                       CustomSingleRangeDatePicker(
-                        fromLabelAboveField: context.tr("End date"),
+                        fromLabelAboveField: context.tr("end_date"),
                         customFormKey: _formKey,
-                        keyNameFrom: "End date",
+                        keyNameFrom: "end_date",
                       ),
                       40.verticalSpace,
                     ],
@@ -99,7 +99,7 @@ class _AddWorkScreenState extends State<AddWorkScreen> {
                   print(_formKey.currentState!.value);
                   CustomMainRouter.push(ThankYouRoute(
                     subtitle: context.tr(
-                        "you_training_request_submitted_successfully"),
+                        "submitted_successfully_waiting_administrator"),
                   ));
                 }
               },

@@ -27,7 +27,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-      screenTitle: context.tr("My Family"),
+      screenTitle: context.tr("myFamily"),
       isBackEnabled: true,
       widget: Padding(
         padding:
@@ -37,7 +37,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
           children: [
             AddButtonWidget(onPressed: (){
               CustomMainRouter.push(AddFamilyRoute());
-            }, title: context.tr("Add family member")),
+            }, title: context.tr("addFamilyMember")),
             14.verticalSpace,
             ListView.separated(
                 shrinkWrap: true,
@@ -48,13 +48,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
                   return DataWithEditCard(
                     title: index == 1 ? "Sara Ali Eid": "Ahmed Mohamed",
                     subTitle: context.tr("spouse"),
-                    icon: index == 1 ? Assets.svg.female.svg(
-                      height: 38.h,
-                      width: 38.w,
-                    ): Assets.svg.male.svg(
-                      height: 38.h,
-                      width: 38.w,
-                    ),
+                    icon: index == 1 ? Assets.svg.female.svg(): Assets.svg.male.svg(),
                     onPressed: () {
                       CustomMainRouter.push(EditFamilyRoute());
                     },
