@@ -191,6 +191,16 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/pdf_bottomsheet_widget
     as _i735;
 import 'package:kf_ess_mobile_app/features/splash/presentation/cubits/splash_cubit.dart'
     as _i79;
+import 'package:kf_ess_mobile_app/features/survey/data/data_sources/remote/survey_remote_data_source.dart'
+    as _i332;
+import 'package:kf_ess_mobile_app/features/survey/data/repositories/survey_repository_impl.dart'
+    as _i276;
+import 'package:kf_ess_mobile_app/features/survey/domain/repositories/survey_repository.dart'
+    as _i307;
+import 'package:kf_ess_mobile_app/features/survey/domain/use_cases/get_survey_usecase.dart'
+    as _i292;
+import 'package:kf_ess_mobile_app/features/survey/presentation/cubits/survey_cubit.dart'
+    as _i596;
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/data_sources/remote/visitors_logs_remote_data_source.dart'
     as _i643;
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/repositories/visitors_logs_repository_impl.dart'
@@ -243,6 +253,8 @@ Future<_i174.GetIt> $initGetIt(
       () => _i90.PeraonalInfoDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i399.MyAttendanceRemoteDataSource>(
       () => _i399.MyAttendanceDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i332.SurveyRemoteDataSource>(
+      () => _i332.SurveyDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i506.InsuranceRemoteDataSource>(
       () => _i506.InsuranceDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i119.CreateRequestRemoteDataSource>(
@@ -267,6 +279,8 @@ Future<_i174.GetIt> $initGetIt(
       submissionsRemoteDataSource: gh<_i809.SubmissionsRemoteDataSource>()));
   gh.factory<_i396.NotificationsRemoteDataSource>(
       () => _i396.NotificationsDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i307.SurveyRepository>(() => _i276.SurveyRepositoryImp(
+      surveyRemoteDataSource: gh<_i332.SurveyRemoteDataSource>()));
   gh.factory<_i508.MoreRepository>(() => _i920.MoreRepositoryImp(
       moreRemoteDataSource: gh<_i602.MoreRemoteDataSource>()));
   gh.factory<_i826.AuthRemoteDataSource>(
@@ -352,6 +366,8 @@ Future<_i174.GetIt> $initGetIt(
       _i611.GetAdminDirectorMissionUseCase(
           adminDirectorMissionRepository:
               gh<_i704.AdminDirectorMissionRepository>()));
+  gh.factory<_i292.GetSurveyUseCase>(() =>
+      _i292.GetSurveyUseCase(surveyRepository: gh<_i307.SurveyRepository>()));
   gh.factory<_i447.PeraonalInfoCubit>(() => _i447.PeraonalInfoCubit(
       getPeraonalInfoUseCase: gh<_i715.GetPeraonalInfoUseCase>()));
   gh.factory<_i623.CertificatesCubit>(() => _i623.CertificatesCubit(
@@ -389,6 +405,8 @@ Future<_i174.GetIt> $initGetIt(
       getNotificationsUseCase: gh<_i362.GetNotificationsUseCase>()));
   gh.factory<_i368.SubmissionsCubit>(() => _i368.SubmissionsCubit(
       getSubmissionsUseCase: gh<_i9.GetSubmissionsUseCase>()));
+  gh.factory<_i596.SurveyCubit>(
+      () => _i596.SurveyCubit(getSurveyUseCase: gh<_i292.GetSurveyUseCase>()));
   gh.factory<_i674.MyAttendanceCubit>(() => _i674.MyAttendanceCubit(
       getMyAttendanceUseCase: gh<_i107.GetMyAttendanceUseCase>()));
   gh.factory<_i708.CreateRequestCubit>(() => _i708.CreateRequestCubit(

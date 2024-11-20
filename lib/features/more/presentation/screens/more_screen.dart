@@ -78,7 +78,11 @@ class _MoreScreenState extends State<MoreScreen> {
                   CustomMainRouter.push(AdsRoute());
                 }),
             MoreItemWidget(
-                text: context.tr("survey"), svgIcon: survey, onTap: () {}),
+                text: context.tr("survey"),
+                svgIcon: survey,
+                onTap: () {
+                  CustomMainRouter.push(SurveyRoute());
+                }),
             MoreItemWidget(
                 text: context.tr("enable_smart_login"),
                 svgIcon: enableSmartLogin,
