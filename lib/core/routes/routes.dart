@@ -262,35 +262,33 @@ class AppRouter extends RootStackRouter {
                   path: AppRoutesConstants.profile,
                 ),
               ]),
-
-        AutoRoute(
-            page: AdminNavigationMainRoute.page,
-            path: AppRoutesConstants.adminNavigation,
-            children: <AutoRoute>[
               AutoRoute(
-                  page: AdminHomeRoute.page,
-                  path: AppRoutesConstants.adminHome,
-                  maintainState: false),
+                  page: AdminNavigationMainRoute.page,
+                  path: AppRoutesConstants.adminNavigation,
+                  children: <AutoRoute>[
+                    AutoRoute(
+                        page: AdminHomeRoute.page,
+                        path: AppRoutesConstants.adminHome,
+                        maintainState: false),
+                    AutoRoute(
+                        page: AdminDirectorMissionRoute.page,
+                        path: AppRoutesConstants.adminDirectorMission,
+                        maintainState: false),
+                    AutoRoute(
+                        page: AdminDeptMissionRoute.page,
+                        path: AppRoutesConstants.adminDeptMission,
+                        maintainState: false),
+                    AutoRoute(
+                      page: MoreRoute.page,
+                      path: AppRoutesConstants.more,
+                    ),
+                  ]),
               AutoRoute(
-                  page: AdminDirectorMissionRoute.page,
-                  path: AppRoutesConstants.adminDirectorMission,
-                  maintainState: false),
-              AutoRoute(
-                  page: AdminDeptMissionRoute.page,
-                  path: AppRoutesConstants.adminDeptMission,
-                  maintainState: false),
-              AutoRoute(
-                page: MoreRoute.page,
-                path: AppRoutesConstants.more,
+                page: SurveyRoute.page,
+                path: AppRoutesConstants.surveyRoute,
               ),
-            ]),
-        AutoRoute(
-          page: SurveyRoute.page,
-          path: AppRoutesConstants.surveyRoute,
-        ),
+            ])
       ];
-      ])
-  ];
 }
 
 @RoutePage()
