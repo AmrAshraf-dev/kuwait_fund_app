@@ -27,7 +27,7 @@ class _QualificationsScreenState extends State<QualificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-      screenTitle: context.tr("My Qualification"),
+      screenTitle: context.tr("myQualification"),
       isBackEnabled: true,
       widget: Padding(
         padding:
@@ -37,7 +37,7 @@ class _QualificationsScreenState extends State<QualificationsScreen> {
           children: [
             AddButtonWidget(onPressed: (){
               CustomMainRouter.push(AddQualificationRoute());
-            }, title: context.tr("Add Qualification")),
+            }, title: context.tr("addQualification")),
             14.verticalSpace,
             ListView.separated(
                 shrinkWrap: true,
@@ -48,10 +48,8 @@ class _QualificationsScreenState extends State<QualificationsScreen> {
                   return DataWithEditCard(
                     title: "Bachelor of Computer Science",
                     subTitle: "March, 2015",
-                    icon: Assets.svg.qualification.svg(
-                      height: 38.h,
-                      width: 38.w,
-                    ),
+                    withArrow: true,
+                    icon: Assets.svg.qualification.svg(),
                     onPressed: () {
                       CustomMainRouter.push(AddQualificationRoute());
                     },

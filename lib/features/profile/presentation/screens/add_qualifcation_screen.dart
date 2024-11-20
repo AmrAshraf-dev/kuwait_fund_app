@@ -33,7 +33,7 @@ class _AddQualificationScreenState extends State<AddQualificationScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-      screenTitle: context.tr("Add Qualification"),
+      screenTitle: context.tr("addQualification"),
       isBackEnabled: true,
       widget: Padding(
         padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -61,29 +61,29 @@ class _AddQualificationScreenState extends State<AddQualificationScreen> {
                     children: [
                       30.verticalSpace,
                       TextFieldWidget(
-                        labelAboveField: context.tr("Degree"),
-                        keyName: "Degree",
+                        labelAboveField: context.tr("degree"),
+                        keyName: "degree",
                         validator: FormBuilderValidators.required(),
                         textInputAction: TextInputAction.next,
                       ),
                       20.verticalSpace,
                       TextFieldWidget(
-                        labelAboveField: context.tr("Field of study"),
-                        keyName: "Field of study",
+                        labelAboveField: context.tr("fieldOfStudy"),
+                        keyName: "fieldOfStudy",
                         validator: FormBuilderValidators.required(),
                         textInputAction: TextInputAction.next,
                       ),
                       20.verticalSpace,
                       CustomSingleRangeDatePicker(
-                        fromLabelAboveField: context.tr("Start date"),
+                        fromLabelAboveField: context.tr("start_date"),
                         customFormKey: _formKey,
-                        keyNameFrom: "Residency Expiry",
+                        keyNameFrom: "start_date",
                       ),
                       20.verticalSpace,
                       CustomSingleRangeDatePicker(
-                        fromLabelAboveField: context.tr("End date"),
+                        fromLabelAboveField: context.tr("end_date"),
                         customFormKey: _formKey,
-                        keyNameFrom: "Date of Birth",
+                        keyNameFrom: "end_date",
                       ),
                       40.verticalSpace,
                     ],
@@ -99,7 +99,7 @@ class _AddQualificationScreenState extends State<AddQualificationScreen> {
                   print(_formKey.currentState!.value);
                   CustomMainRouter.push(ThankYouRoute(
                     subtitle: context.tr(
-                        "you_training_request_submitted_successfully"),
+                        "submitted_successfully_waiting_administrator"),
                   ));
                 }
               },

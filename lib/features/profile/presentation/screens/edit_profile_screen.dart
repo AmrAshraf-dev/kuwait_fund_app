@@ -28,7 +28,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return MasterWidget(
         isBackEnabled: true,
-        screenTitle: context.tr("Edit Profile"),
+        screenTitle: context.tr("editProfile"),
         widget: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
           child: Column(
@@ -55,50 +55,50 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       children: [
                         30.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Name"),
-                          keyName: "Name",
+                          labelAboveField: context.tr("name"),
+                          keyName: "name",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Job Title"),
-                          keyName: "Job Title",
+                          labelAboveField: context.tr("jobTitle"),
+                          keyName: "jobTitle",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Email"),
-                          keyName: "Email",
+                          labelAboveField: context.tr("email"),
+                          keyName: "email",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Phone"),
-                          keyName: "Phone",
+                          labelAboveField: context.tr("phoneNumber"),
+                          keyName: "phoneNumber",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         AppText(
-                          text: context.tr("Add Number"),
+                          text: context.tr("addNumber"),
                           style: AppTextStyle.medium_14,
                           textColor: Palette.blue_5490EB,
                         ),
                         30.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Passport Number"),
-                          keyName: "Passport Number",
+                          labelAboveField: context.tr("passportNumber"),
+                          keyName: "passportNumber",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         CustomSingleRangeDatePicker(
-                          fromLabelAboveField: context.tr("Passport Expiry Date"),
+                          fromLabelAboveField: context.tr("passportExpiryDate"),
                           customFormKey: _formKey,
-                          keyNameFrom: "Passport Expiry Date",
+                          keyNameFrom: "passportExpiryDate",
                         ),
                         60.verticalSpace,
                       ],
@@ -114,7 +114,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     print(_formKey.currentState!.value);
                     CustomMainRouter.push(ThankYouRoute(
                       subtitle: context.tr(
-                          "you_training_request_submitted_successfully"),
+                          "submitted_successfully_waiting_administrator"),
                     ));
                   }
                 },
