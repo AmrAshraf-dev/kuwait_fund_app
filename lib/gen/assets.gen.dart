@@ -122,6 +122,9 @@ class $AssetsPublicGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/address.svg
+  SvgGenImage get address => const SvgGenImage('assets/svg/address.svg');
+
   /// File path: assets/svg/advertisements.svg
   SvgGenImage get advertisements =>
       const SvgGenImage('assets/svg/advertisements.svg');
@@ -139,6 +142,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/arrow_target.svg
   SvgGenImage get arrowTarget =>
       const SvgGenImage('assets/svg/arrow_target.svg');
+
+  /// File path: assets/svg/bank.svg
+  SvgGenImage get bank => const SvgGenImage('assets/svg/bank.svg');
 
   /// File path: assets/svg/black_calander.svg
   SvgGenImage get blackCalander =>
@@ -198,6 +204,9 @@ class $AssetsSvgGen {
   SvgGenImage get directorMission =>
       const SvgGenImage('assets/svg/director_mission.svg');
 
+  /// File path: assets/svg/documents.svg
+  SvgGenImage get documents => const SvgGenImage('assets/svg/documents.svg');
+
   /// File path: assets/svg/drawer.svg
   SvgGenImage get drawer => const SvgGenImage('assets/svg/drawer.svg');
 
@@ -223,6 +232,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/enable_smart_login.svg
   SvgGenImage get enableSmartLogin =>
       const SvgGenImage('assets/svg/enable_smart_login.svg');
+
+  /// File path: assets/svg/family.svg
+  SvgGenImage get family => const SvgGenImage('assets/svg/family.svg');
 
   /// File path: assets/svg/female.svg
   SvgGenImage get female => const SvgGenImage('assets/svg/female.svg');
@@ -279,12 +291,23 @@ class $AssetsSvgGen {
   /// File path: assets/svg/person.svg
   SvgGenImage get person => const SvgGenImage('assets/svg/person.svg');
 
+  /// File path: assets/svg/personal_info.svg
+  SvgGenImage get personalInfo =>
+      const SvgGenImage('assets/svg/personal_info.svg');
+
   /// File path: assets/svg/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/svg/profile.svg');
+
+  /// File path: assets/svg/qualification.svg
+  SvgGenImage get qualification =>
+      const SvgGenImage('assets/svg/qualification.svg');
 
   /// File path: assets/svg/question_mark.svg
   SvgGenImage get questionMark =>
       const SvgGenImage('assets/svg/question_mark.svg');
+
+  /// File path: assets/svg/refresh.svg
+  SvgGenImage get refresh => const SvgGenImage('assets/svg/refresh.svg');
 
   /// File path: assets/svg/requests.svg
   SvgGenImage get requests => const SvgGenImage('assets/svg/requests.svg');
@@ -313,16 +336,21 @@ class $AssetsSvgGen {
   /// File path: assets/svg/verified.svg
   SvgGenImage get verified => const SvgGenImage('assets/svg/verified.svg');
 
+  /// File path: assets/svg/work.svg
+  SvgGenImage get work => const SvgGenImage('assets/svg/work.svg');
+
   /// File path: assets/svg/world.svg
   SvgGenImage get world => const SvgGenImage('assets/svg/world.svg');
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        address,
         advertisements,
         annualLeave,
         appVersion,
         arrowDown,
         arrowTarget,
+        bank,
         blackCalander,
         calander,
         calendar,
@@ -339,6 +367,7 @@ class $AssetsSvgGen {
         dateIcon,
         deptMission,
         directorMission,
+        documents,
         drawer,
         drawerAbout,
         drawerAr,
@@ -346,6 +375,7 @@ class $AssetsSvgGen {
         drawerOperation,
         emergencyLeave,
         enableSmartLogin,
+        family,
         female,
         filterIcon,
         home,
@@ -363,8 +393,11 @@ class $AssetsSvgGen {
         pdf,
         pepole,
         person,
+        personalInfo,
         profile,
+        qualification,
         questionMark,
+        refresh,
         requests,
         sickLeave,
         submissions,
@@ -373,6 +406,7 @@ class $AssetsSvgGen {
         trainingRequest,
         userCircleIcon,
         verified,
+        work,
         world
       ];
 }

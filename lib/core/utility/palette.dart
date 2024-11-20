@@ -75,6 +75,8 @@ class Palette {
   static const Color facebookBlue = Color(0xFF1777F2);
   static const Color grey_707070 = Color(0xFF707070);
   static const Color grey_D6D8DC = Color(0xFFD6D8DC);
+  static const Color grey_525252 = Color(0xFF525252);
+  static const Color grey_E5DEDE = Color(0xFFE5DEDE);
 
   static const Color white_F5F4F9 = Color(0xFFF5F4F9);
   static const Color disabledColor = Colors.grey;

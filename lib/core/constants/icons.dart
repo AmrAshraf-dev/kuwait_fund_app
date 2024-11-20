@@ -34,3 +34,14 @@ const String enableSmartLogin = '${iconDir}enable_smart_login.svg';
 const String logout = '${iconDir}logout.svg';
 const String language = '${iconDir}language.svg';
 const String appVersion = '${iconDir}app_version.svg';
+
+//profile page
+const String personalInfoIcon = '${iconDir}personal_info.svg';
+const String addressIcon = '${iconDir}address.svg';
+const String bankIcon = '${iconDir}bank.svg';
+const String documentsIcon = '${iconDir}documents.svg';
+const String familyIcon = '${iconDir}family.svg';
+const String qualificationIcon = '${iconDir}qualification.svg';
+const String refreshIcon = '${iconDir}refresh.svg';
+const String workIcon = '${iconDir}work.svg';
+

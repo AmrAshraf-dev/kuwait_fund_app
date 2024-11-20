@@ -6,29 +6,33 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+
+import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
-class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({super.key});
+class EditFamilyScreen extends StatefulWidget {
+  const EditFamilyScreen({super.key});
 
   @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
+  State<EditFamilyScreen> createState() => _EditFamilyScreenState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
+class _EditFamilyScreenState extends State<EditFamilyScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
         isBackEnabled: true,
-        screenTitle: context.tr("Edit Profile"),
+        screenTitle: context.tr("Edit Family"),
         widget: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
           child: Column(
@@ -62,51 +66,30 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Job Title"),
-                          keyName: "Job Title",
-                          validator: FormBuilderValidators.required(),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        20.verticalSpace,
-                        TextFieldWidget(
-                          labelAboveField: context.tr("Email"),
-                          keyName: "Email",
-                          validator: FormBuilderValidators.required(),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        20.verticalSpace,
-                        TextFieldWidget(
-                          labelAboveField: context.tr("Phone"),
-                          keyName: "Phone",
-                          validator: FormBuilderValidators.required(),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        20.verticalSpace,
-                        AppText(
-                          text: context.tr("Add Number"),
-                          style: AppTextStyle.medium_14,
-                          textColor: Palette.blue_5490EB,
-                        ),
-                        30.verticalSpace,
-                        TextFieldWidget(
-                          labelAboveField: context.tr("Passport Number"),
-                          keyName: "Passport Number",
+                          labelAboveField: context.tr("Civil ID Number"),
+                          keyName: "Civil ID Number",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         CustomSingleRangeDatePicker(
-                          fromLabelAboveField: context.tr("Passport Expiry Date"),
+                          fromLabelAboveField: context.tr("Residency Expiry"),
                           customFormKey: _formKey,
-                          keyNameFrom: "Passport Expiry Date",
+                          keyNameFrom: "Residency Expiry",
                         ),
-                        60.verticalSpace,
+                        20.verticalSpace,
+                        CustomSingleRangeDatePicker(
+                          fromLabelAboveField: context.tr("Date of Birth"),
+                          customFormKey: _formKey,
+                          keyNameFrom: "Date of Birth",
+                        ),
+                        40.verticalSpace,
                       ],
                     ),
                   ),
                 ),
               ),
-              80.verticalSpace,
+              120.verticalSpace,
               CustomElevatedButton(
                 text: context.tr("submit"),
                 onPressed: () {
@@ -123,5 +106,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ],
           ),
         ));
+
   }
 }
+
+
