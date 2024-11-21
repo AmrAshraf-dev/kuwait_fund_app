@@ -19,7 +19,7 @@ class _EditButtonState extends State<EditButton> {
     return CustomElevatedButton(
       height: 24.h,
       backgroundColor: Palette.yellow_FBD823,
-      text: context.tr("Edit"),
+      text: context.tr("edit"),
       textStyle: AppTextStyle.regular_14,
       removeWidth: true,
       radius: 16.r,

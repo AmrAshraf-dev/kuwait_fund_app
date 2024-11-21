@@ -114,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Assets.png.paci.image(),
                             6.horizontalSpace,
                             AppText(
-                              text: context.tr("Update with PACI"),
+                              text: context.tr("updateWithPACI"),
                               style: AppTextStyle.semiBold_14,
                               textColor: Palette.black,
                             ),
@@ -132,41 +132,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             10.verticalSpace,
             ProfileItemWidget(
-                text: context.tr("Personal Info"),
+                text: context.tr("personalInfo"),
                 svgIcon: personalInfoIcon,
                 onTap: () {
                   CustomMainRouter.push(PersonalInfoRoute());
                 }),
             ProfileItemWidget(
-                text: context.tr("Address"),
+                text: context.tr("address"),
                 svgIcon: addressIcon,
                 onTap: () {
                   CustomMainRouter.push(AddressRoute());
                 }),
             ProfileItemWidget(
-                text: context.tr("Bank Details"),
+                text: context.tr("bankDetails"),
                 svgIcon: bankIcon,
                 onTap: () {}),
             ProfileItemWidget(
-                text: context.tr("Family"),
+                text: context.tr("family"),
                 svgIcon: familyIcon,
                 onTap: () {
                   CustomMainRouter.push(FamilyRoute());
                 }),
             ProfileItemWidget(
-                text: context.tr("Qualification"),
+                text: context.tr("qualification"),
                 svgIcon: qualificationIcon,
                 onTap: () {
                   CustomMainRouter.push(QualificationsRoute());
                 }),
             ProfileItemWidget(
-                text: context.tr("Work Experience"),
+                text: context.tr("workExperience"),
                 svgIcon: workIcon,
                 onTap: () {
                   CustomMainRouter.push(WorkRoute());
                 }),
             ProfileItemWidget(
-                text: context.tr("Uploaded Documents"),
+                text: context.tr("uploadedDocuments"),
                 svgIcon: documentsIcon,
                 onTap: () {}),
           ],

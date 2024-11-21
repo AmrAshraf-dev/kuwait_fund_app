@@ -31,7 +31,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
   Widget build(BuildContext context) {
     return MasterWidget(
         isBackEnabled: true,
-        screenTitle: context.tr("Address"),
+        screenTitle: context.tr("address"),
         widget: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
           child: Column(
@@ -58,43 +58,43 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                       children: [
                         30.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Governate"),
-                          keyName: "Governate",
+                          labelAboveField: context.tr("government"),
+                          keyName: "government",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Street"),
-                          keyName: "Street",
+                          labelAboveField: context.tr("street"),
+                          keyName: "street",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Block"),
-                          keyName: "Block",
+                          labelAboveField: context.tr("block"),
+                          keyName: "block",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Building Number"),
-                          keyName: "Building Number",
+                          labelAboveField: context.tr("buildingNumber"),
+                          keyName: "buildingNumber",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Floor"),
-                          keyName: "Floor",
+                          labelAboveField: context.tr("floor"),
+                          keyName: "floor",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
                         20.verticalSpace,
                         TextFieldWidget(
-                          labelAboveField: context.tr("Flat"),
-                          keyName: "Flat",
+                          labelAboveField: context.tr("flat"),
+                          keyName: "flat",
                           validator: FormBuilderValidators.required(),
                           textInputAction: TextInputAction.next,
                         ),
@@ -112,7 +112,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                     print(_formKey.currentState!.value);
                     CustomMainRouter.push(ThankYouRoute(
                       subtitle: context.tr(
-                          "you_training_request_submitted_successfully"),
+                          "submitted_successfully_waiting_administrator"),
                     ));
                   }
                 },
