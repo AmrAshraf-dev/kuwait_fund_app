@@ -716,5 +716,12 @@
   "myWorkExperience": "خبرتي العملية",
   "addWorkExperience": "اضافة خبرة عمل",
   "company": "الشركة",
-  "position": "المنصب"
+  "position": "المنصب",
+  "fundManagement": "إدارة الصندوق",
+  "fundBoardOfDirectors": "مجلس إدارة الصندوق",
+  "fundGoal": "هدف الصندوق",
+  "typesOfFundActivities": "أنواع الأنشطة الصندوق",
+  "scopeOfFundOperations": "نطاق عمليات الصندوق",
+  "typesOfAid": "أنواع المساعدات"
+
 }
