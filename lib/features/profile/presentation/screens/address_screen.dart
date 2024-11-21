@@ -31,7 +31,7 @@ class _AddressScreenState extends State<AddressScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-      screenTitle: context.tr("Personal Info"),
+      screenTitle: context.tr("personalInfo"),
       isBackEnabled: true,
       widget: Padding(
         padding:
@@ -54,7 +54,7 @@ class _AddressScreenState extends State<AddressScreen> {
                         Assets.png.paci.image(),
                         6.horizontalSpace,
                         AppText(
-                          text: context.tr("Update with PACI"),
+                          text: context.tr("updateWithPACI"),
                           style: AppTextStyle.semiBold_14,
                           textColor: Palette.black,
                         ),
@@ -67,7 +67,7 @@ class _AddressScreenState extends State<AddressScreen> {
                 ]
             ),
             25.verticalSpace,
-            MainTitleWidget(title: context.tr("Address")),
+            MainTitleWidget(title: context.tr("address")),
             12.verticalSpace,
             SizedBox(
               height: 411.h,
@@ -93,17 +93,17 @@ class _AddressScreenState extends State<AddressScreen> {
                           },
                         ),
                       ),
-                      PersonalInfoItemWidget(title: context.tr("Governate"), body: "Farwaniya" , withDivider: false),
+                      PersonalInfoItemWidget(title: context.tr("government"), body: "Farwaniya" , withDivider: false),
                       12.verticalSpace,
-                      PersonalInfoItemWidget(title: context.tr("Street"), body: "Ahmad Riyad Abdel" , withDivider: false),
+                      PersonalInfoItemWidget(title: context.tr("street"), body: "Ahmad Riyad Abdel" , withDivider: false),
                       12.verticalSpace,
-                      PersonalInfoItemWidget(title: context.tr("Block"), body: "12" , withDivider: false),
+                      PersonalInfoItemWidget(title: context.tr("block"), body: "12" , withDivider: false),
                       12.verticalSpace,
-                      PersonalInfoItemWidget(title: context.tr("Building Number"), body: "230" , withDivider: false),
+                      PersonalInfoItemWidget(title: context.tr("buildingNumber"), body: "230" , withDivider: false),
                       12.verticalSpace,
-                      PersonalInfoItemWidget(title: context.tr("Floor"), body: "1" , withDivider: false),
+                      PersonalInfoItemWidget(title: context.tr("floor"), body: "1" , withDivider: false),
                       12.verticalSpace,
-                      PersonalInfoItemWidget(title: context.tr("Flat"), body: "13" , withDivider: false),
+                      PersonalInfoItemWidget(title: context.tr("flat"), body: "13" , withDivider: false),
                     ],
                   ),
                 ),

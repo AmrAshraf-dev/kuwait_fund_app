@@ -27,7 +27,7 @@ class _WorkScreenState extends State<WorkScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-      screenTitle: context.tr("My Work Experience"),
+      screenTitle: context.tr("myWorkExperience"),
       isBackEnabled: true,
       widget: Padding(
         padding:
@@ -37,7 +37,7 @@ class _WorkScreenState extends State<WorkScreen> {
           children: [
             AddButtonWidget(onPressed: (){
               CustomMainRouter.push(AddWorkRoute());
-            }, title: context.tr("Add work experience")),
+            }, title: context.tr("addWorkExperience")),
             14.verticalSpace,
             ListView.separated(
                 shrinkWrap: true,
@@ -48,10 +48,10 @@ class _WorkScreenState extends State<WorkScreen> {
                   return DataWithEditCard(
                     title: "ABC - Company Kuwait",
                     subTitle: context.tr("Project Manager"),
-                    icon: Assets.svg.work.svg(
-                      height: 38.h,
-                      width: 38.w,
-                    ),
+                    subTitle2: context.tr("February 2010 - March, 2015,"),
+                    withEdit: false,
+                    withArrow: true,
+                    icon: Assets.svg.work.svg(),
                     onPressed: () {
                       CustomMainRouter.push(AddWorkRoute());
                     },
