@@ -715,5 +715,11 @@
   "myWorkExperience": "My Work Experience",
   "addWorkExperience": "Add work experience",
   "company": "Company",
-  "position": "Position"
+  "position": "Position",
+  "fundManagement": "Fund management",
+  "fundBoardOfDirectors": "Fund Board of Directors",
+  "fundGoal": "Fund Goal",
+  "typesOfFundActivities": "Types Of Fund Activities",
+  "scopeOfFundOperations": "Scope Of Fund Operations",
+  "typesOfAid": "Types Of Aid"
 }
