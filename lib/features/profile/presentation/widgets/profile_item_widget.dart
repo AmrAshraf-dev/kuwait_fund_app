@@ -9,15 +9,18 @@ class ProfileItemWidget extends StatelessWidget {
   const ProfileItemWidget(
       {super.key,
       required this.text,
-      required this.svgIcon,
+      this.svgIcon,
       this.onTap,
       this.leadingText,
-      this.toggleButton});
+      this.toggleButton,
+      this.withIcon = true
+      });
   final String text;
-  final String svgIcon;
+  final String? svgIcon;
   final void Function()? onTap;
   final String? leadingText;
   final CustomToggleWidget? toggleButton;
+  final bool? withIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +43,16 @@ class ProfileItemWidget extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: Row(
                 children: <Widget>[
-                  SizedBox(
-                    width: 25.w,
-                    height: 25.h,
-                    child: SvgPicture.asset(
-                      svgIcon,
+                  if(withIcon ?? true)...[
+                    SizedBox(
+                      width: 25.w,
+                      height: 25.h,
+                      child: SvgPicture.asset(
+                        svgIcon ?? '',
+                      ),
                     ),
-                  ),
-                  10.horizontalSpace,
+                    10.horizontalSpace,
+                  ],
                   AppText(
                     text: text,
                     //    textLimit: 23,
