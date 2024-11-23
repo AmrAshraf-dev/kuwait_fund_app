@@ -85,7 +85,7 @@ class AppRoutesConstants {
 
   static const String editProfile = '/editProfileScreen';
 
-  static const String adminNavigation = 'adminNavigation';
+  static const String adminNavigation = '/adminNavigation';
 
   static const String adminHome = 'adminHomeScreen';
 
@@ -112,5 +112,5 @@ class AppRoutesConstants {
 
   static const String adminDeptMission = 'adminDeptMissionScreen';
 
-  static const String surveyRoute = 'surveyScreen';
+  static const String surveyRoute = '/surveyScreen';
 }

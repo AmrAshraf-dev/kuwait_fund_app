@@ -138,8 +138,9 @@ class _MoreScreenState extends State<MoreScreen> {
             32.verticalSpace,
             Center(
               child: SizedBox(
-                width: 272.w,
+                width: 290.w,
                 child: AppText(
+                    maxLines: 2,
                     text: context.tr("all_rights_reserved"),
                     style: AppTextStyle.medium_12,
                     textAlign: TextAlign.center,

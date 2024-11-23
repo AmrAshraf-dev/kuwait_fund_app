@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MasterWidget(
         waterMarkImage: waterMarkImage3,
-        appBarHeight: 240.0.h,
+        appBarHeight: 240.h,
         appBarBody: Column(
           children: [
             Row(
@@ -101,10 +101,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Badge(
                         padding: EdgeInsets.all(1),
                         backgroundColor: Palette.red_FF0606,
-                        label: AppText(
-                          text: '3',
-                          style: AppTextStyle.bold_12,
-                          textColor: Colors.white,
+                        label: SizedBox(
+                          height: 20.h,
+                          width: 20.w,
+                          child: Center(
+                            child: AppText(
+                              text: '3',
+                              style: AppTextStyle.bold_12,
+                              textColor: Colors.white,
+                            ),
+                          ),
                         ),
                         child: Container(
                             height: 38.h,

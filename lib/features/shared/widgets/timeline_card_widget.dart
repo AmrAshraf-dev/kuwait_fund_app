@@ -29,7 +29,7 @@ class TimeLineCard extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: 15.w,
+          width: 16.w,
           child: TimelineTile(
             isFirst: isFirst,
             isLast: isLast,

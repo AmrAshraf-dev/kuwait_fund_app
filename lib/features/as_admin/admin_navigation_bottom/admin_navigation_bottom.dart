@@ -123,10 +123,16 @@ class _AdminNavigationMainScreenState extends State<AdminNavigationMainScreen> {
                           child: Badge(
                               padding: EdgeInsets.all(3),
                               backgroundColor: Palette.red_FF0606,
-                              label: AppText(
-                                text: '3',
-                                style: AppTextStyle.bold_12,
-                                textColor: Colors.white,
+                              label: SizedBox(
+                                height: 15.h,
+                                width: 15.w,
+                                child: Center(
+                                  child: AppText(
+                                    text: '3',
+                                    style: AppTextStyle.bold_12,
+                                    textColor: Colors.white,
+                                  ),
+                                ),
                               ),
                               child: Assets.svg.deptMission.svg())),
                       activeIcon: Padding(
@@ -137,10 +143,16 @@ class _AdminNavigationMainScreenState extends State<AdminNavigationMainScreen> {
                         child: Badge(
                             padding: EdgeInsets.all(3),
                             backgroundColor: Palette.red_FF0606,
-                            label: AppText(
-                              text: '3',
-                              style: AppTextStyle.bold_12,
-                              textColor: Colors.white,
+                            label: SizedBox(
+                              height: 15.h,
+                              width: 15.w,
+                              child: Center(
+                                child: AppText(
+                                  text: '3',
+                                  style: AppTextStyle.bold_12,
+                                  textColor: Colors.white,
+                                ),
+                              ),
                             ),
                             child: Assets.svg.deptMission
                                 .svg(color: Colors.white)),

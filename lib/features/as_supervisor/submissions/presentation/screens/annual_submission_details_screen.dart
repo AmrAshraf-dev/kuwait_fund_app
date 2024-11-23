@@ -70,16 +70,14 @@ class AnnualSubmissionsDetailsScreen extends StatelessWidget {
               textColor: Palette.white,
             ),
             10.verticalSpace,
-            IntrinsicHeight(
-              child: HalfCircleChartWidget(
-                leaveUsed: 26,
-                totalLeave: 30,
-                height: 80.h,
-                width: 120.w,
-                color: Colors.blueAccent,
-                title: "${context.tr('from')} 01/01/2021 ",
-                subTitle: "${context.tr('to')} 01/01/2022",
-              ),
+            HalfCircleChartWidget(
+              leaveUsed: 26,
+              totalLeave: 30,
+              height: 80.h,
+              width: 120.w,
+              color: Colors.blueAccent,
+              title: "${context.tr('from')} 01/01/2021 ",
+              subTitle: "${context.tr('to')} 01/01/2022",
             ),
             10.verticalSpace,
             Container(

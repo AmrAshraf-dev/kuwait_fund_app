@@ -116,6 +116,7 @@ class _HalfCircleChartWidgetState extends State<HalfCircleChartWidget>
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               AppText(
+                  maxLines: 2,
                   text: widget.title,
                   textAlign: TextAlign.center,
                   style: AppTextStyle.bold_14,

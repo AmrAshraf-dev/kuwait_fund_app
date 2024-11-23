@@ -10,6 +10,7 @@ import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/profile_
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+
 import '../../../peraonal_info/presentation/widget/EditButton.dart';
 import '../../../shared/widgets/master_widget.dart';
 
@@ -48,20 +49,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 13.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Assets.svg.refresh.svg(),
-                          EditButton(
-                            onPressed: () {
-                              CustomMainRouter.push(EditProfileRoute());
-                            },
-                          ),
-                        ]
-                      ),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Assets.svg.refresh.svg(),
+                            EditButton(
+                              onPressed: () {
+                                CustomMainRouter.push(EditProfileRoute());
+                              },
+                            ),
+                          ]),
                       Container(
                         width: 60.w,
                         height: 60.w,
@@ -124,7 +125,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         height: 40.h,
                         radius: 10.r,
                       ),
-
                     ],
                   ),
                 ),

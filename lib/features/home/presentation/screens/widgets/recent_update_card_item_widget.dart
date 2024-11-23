@@ -45,7 +45,7 @@ class RecentUpdateCardItem extends StatelessWidget {
             children: [
               Container(
                 width: 53.w,
-                height: 60.h,
+                height: 65.h,
                 decoration: BoxDecoration(
                   color: Palette.blue_002A6A,
                   borderRadius: BorderRadius.circular(10.r),
@@ -85,6 +85,7 @@ class RecentUpdateCardItem extends StatelessWidget {
                     ),
                     5.verticalSpace,
                     AppText(
+                      maxLines: 2,
                       text: subtitle,
                       style: AppTextStyle.regular_14,
                       textColor: Palette.grey_7B7B7B,

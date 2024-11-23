@@ -7,14 +7,14 @@ import 'package:kf_ess_mobile_app/features/notifications/domain/entities/notific
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
 class LoanNotificationWidget extends StatelessWidget {
-  const LoanNotificationWidget({super.key , required this.notification});
+  const LoanNotificationWidget({super.key, required this.notification});
 
   final NotificationsEntity notification;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         CustomMainRouter.push(DocumentsRoute());
       },
       child: Padding(
@@ -58,8 +58,10 @@ class LoanNotificationWidget extends StatelessWidget {
                             ),
                             5.verticalSpace,
                             AppText(
-                              text: 'Loan request requires your signature on the contract and loan agreement documents.',
+                              text:
+                                  'Loan request requires your signature on the contract and loan agreement documents.',
                               style: AppTextStyle.medium_14,
+                              maxLines: 2,
                               textColor: Palette.black_2A2A2A,
                               lineHeight: 1,
                             ),

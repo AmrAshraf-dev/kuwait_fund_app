@@ -32,7 +32,7 @@ class SubmissionItemWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsetsDirectional.only(start: 27.w, end: 18.w, top: 21.h),
         child: Container(
-            height: 180.h,
+            height: 185.h,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(

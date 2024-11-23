@@ -39,14 +39,14 @@ class _MyAttendanceScreenState extends State<MyAttendanceScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SickLeaveChart(
-                  height: 130.h,
+                  height: 140.h,
                   width: 110.w,
                   timerString: "31:46",
                   color: Colors.blueAccent,
                   title: context.tr('available_leave_hours_untile_today'),
                 ),
                 SizedBox(
-                  height: 100.h,
+                  height: 130.h,
                   child: VerticalDivider(
                     color: Palette.blue_3B72C5,
                     thickness: 0.2,
@@ -60,7 +60,7 @@ class _MyAttendanceScreenState extends State<MyAttendanceScreen> {
                   title: context.tr('total_hours_of_leave_used'),
                 ),
                 SizedBox(
-                  height: 100.h,
+                  height: 130.h,
                   child: VerticalDivider(
                     color: Palette.blue_3B72C5,
                     thickness: 0.2,
@@ -76,6 +76,7 @@ class _MyAttendanceScreenState extends State<MyAttendanceScreen> {
             ),
             10.verticalSpace,
             AppText(
+              maxLines: 2,
               textAlign: TextAlign.center,
               style: AppTextStyle.medium_16,
               textColor: Palette.white,
