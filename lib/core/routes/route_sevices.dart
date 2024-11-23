@@ -15,9 +15,10 @@ class CustomMainRouter {
   }
 
   static void pop() {
-    // Navigator.pop(getIt<AppRouter>().navigatorKey.currentContext!);
-
     getIt<AppRouter>().navigatorKey.currentContext!.router.back();
+
+    //Navigator.of(getIt<AppRouter>().navigatorKey.currentContext!).pop();
+    //  getIt<AppRouter>().navigatorKey.currentContext!.router.back();
   }
 
   static void push(PageRouteInfo route,

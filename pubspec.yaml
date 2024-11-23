@@ -34,7 +34,8 @@ dependencies:
 
   # speech to text
   speech_to_text: ^7.0.0
-  # ui & theme
+  # ui &
+  auto_size_text: ^3.0.0
   flutter_screenutil: ^5.9.3
   cupertino_icons: ^1.0.6
   flutter_svg: ^2.0.14

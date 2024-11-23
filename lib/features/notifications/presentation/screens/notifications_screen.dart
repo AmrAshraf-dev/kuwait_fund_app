@@ -33,6 +33,7 @@ class NotificationsScreen extends StatelessWidget {
       hasScroll: false,
       screenTitle: context.tr("notification"),
       widget: ListView.builder(
+        cacheExtent: 1000,
         itemCount: allNotifications.length,
         itemBuilder: (context, index) {
           return NotificationItemWidget(notification: allNotifications[index]);

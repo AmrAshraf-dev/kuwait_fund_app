@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,10 +64,11 @@ class AppText extends StatelessWidget {
               textAlign: textAlign,
             ),
           )
-        : Text(
+        : AutoSizeText(
             _handleText(context: context),
             style: _handleCustomStyle(context),
-            maxLines: maxLines,
+            minFontSize: 5,
+            maxLines: maxLines ?? 1,
             overflow: overflow,
             softWrap: softWrap,
             textAlign: textAlign,

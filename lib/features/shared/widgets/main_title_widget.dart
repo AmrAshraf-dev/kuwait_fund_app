@@ -23,6 +23,7 @@ class MainTitleWidget extends StatelessWidget {
           isCenter ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         AppText(
+          maxLines: 2,
           text: title,
           style: fontStyle ?? AppTextStyle.bold_18,
           textAlign: isCenter ? TextAlign.center : TextAlign.start,

@@ -98,6 +98,7 @@ class _SickLeaveChartState extends State<SickLeaveChart>
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               AppText(
+                  maxLines: 3,
                   text: widget.title,
                   textAlign: TextAlign.center,
                   style: AppTextStyle.bold_14,

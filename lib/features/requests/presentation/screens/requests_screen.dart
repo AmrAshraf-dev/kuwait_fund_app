@@ -301,7 +301,7 @@ class RequestItemWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsetsDirectional.only(start: 27.w, end: 18.w, top: 21.h),
         child: Container(
-            height: 120.h,
+            height: 130.h,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(

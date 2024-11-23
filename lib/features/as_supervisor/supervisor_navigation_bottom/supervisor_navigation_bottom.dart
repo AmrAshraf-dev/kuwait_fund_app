@@ -63,7 +63,6 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
               ? true
               : false,
           child: Container(
-              // height: 100.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(30),
@@ -119,20 +118,20 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
                       label: context.tr('requests'),
                     ),
                     BottomNavigationBarItem(
-                      icon: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 9.h,
-                            top: 18.h,
-                          ),
-                          child: Badge(
-                              padding: EdgeInsets.all(3),
-                              backgroundColor: Palette.red_FF0606,
-                              label: AppText(
+                      icon: Badge(
+                          padding: EdgeInsets.all(3),
+                          backgroundColor: Palette.red_FF0606,
+                          label: SizedBox(
+                            height: 15.h,
+                            width: 15.w,
+                            child: Center(
+                              child: AppText(
                                 text: '3',
-                                style: AppTextStyle.bold_12,
                                 textColor: Colors.white,
                               ),
-                              child: Assets.svg.submissions.svg())),
+                            ),
+                          ),
+                          child: Assets.svg.submissions.svg()),
                       activeIcon: Padding(
                           padding: EdgeInsets.only(
                             bottom: 9.h,
@@ -141,10 +140,16 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
                           child: Badge(
                             padding: EdgeInsets.all(3),
                             backgroundColor: Palette.red_FF0606,
-                            label: AppText(
-                              text: '3',
-                              style: AppTextStyle.bold_12,
-                              textColor: Colors.white,
+                            label: SizedBox(
+                              height: 15.h,
+                              width: 15.w,
+                              child: Center(
+                                child: AppText(
+                                  text: '3',
+                                  style: AppTextStyle.bold_12,
+                                  textColor: Colors.white,
+                                ),
+                              ),
                             ),
                             child:
                                 Assets.svg.submissions.svg(color: Colors.white),

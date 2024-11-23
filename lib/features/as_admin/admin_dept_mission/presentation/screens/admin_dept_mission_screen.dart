@@ -173,6 +173,7 @@ class _AdminDeptMissionScreenState extends State<AdminDeptMissionScreen> {
                                           text: context
                                               .tr("total_mission_this_year"),
                                           style: AppTextStyle.regular_14,
+                                          maxLines: 2,
                                         ),
                                       ),
                                     ],
@@ -195,6 +196,7 @@ class _AdminDeptMissionScreenState extends State<AdminDeptMissionScreen> {
                                         width: 100.w,
                                         child: AppText(
                                           textAlign: TextAlign.center,
+                                          maxLines: 3,
                                           text: context.tr(
                                               "number_of_employees_on_mission"),
                                           style: AppTextStyle.regular_14,
@@ -222,6 +224,7 @@ class _AdminDeptMissionScreenState extends State<AdminDeptMissionScreen> {
                                       SizedBox(
                                         width: 100.w,
                                         child: AppText(
+                                          maxLines: 2,
                                           textAlign: TextAlign.center,
                                           text:
                                               context.tr("number_of_countries"),
@@ -355,6 +358,7 @@ class EmployeesOnMissionWidget extends StatelessWidget {
                           ),
                           5.horizontalSpace,
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               AppText(
                                 text: log['name']!,

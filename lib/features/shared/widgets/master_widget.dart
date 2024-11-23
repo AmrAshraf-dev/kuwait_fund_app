@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,8 @@ class MasterWidget extends StatefulWidget {
       this.appBarHeight = 100.0,
       this.appBarBody,
       this.actions = const [],
-      this.waterMarkImage = waterMarkImage2});
+      this.waterMarkImage = waterMarkImage2,
+      this.onBackTap});
 
   final DrawerSideMenu? drawer;
   final Widget? floatingActionButton;
@@ -57,6 +59,7 @@ class MasterWidget extends StatefulWidget {
   final Widget? appBarBody;
   final List<Widget> actions;
   final String? waterMarkImage;
+  final void Function()? onBackTap;
 
   @override
   State<MasterWidget> createState() => _MasterWidgetState();
@@ -187,9 +190,10 @@ class _MasterWidgetState extends State<MasterWidget> {
                                   textDirection: TextDirection.ltr,
                                   child: widget.isBackEnabled
                                       ? GestureDetector(
-                                          onTap: () {
-                                            CustomMainRouter.pop();
-                                          },
+                                          onTap: widget.onBackTap ??
+                                              () {
+                                                CustomMainRouter.pop();
+                                              },
                                           child: Container(
                                             height: 38.h,
                                             width: 38.w,
@@ -232,10 +236,15 @@ class _MasterWidgetState extends State<MasterWidget> {
                                 if (widget.screenTitle != null)
                                   Align(
                                     alignment: Alignment.center,
-                                    child: AppText(
-                                        text: widget.screenTitle,
-                                        style: AppTextStyle.bold_24,
-                                        textColor: Colors.white),
+                                    child: SizedBox(
+                                      width: 1.sw - 150.w,
+                                      child: Center(
+                                        child: AppText(
+                                            text: widget.screenTitle,
+                                            style: AppTextStyle.bold_24,
+                                            textColor: Colors.white),
+                                      ),
+                                    ),
                                   ),
                                 Align(
                                   alignment: LanguageHelper.isAr(context)
@@ -261,7 +270,7 @@ class _MasterWidgetState extends State<MasterWidget> {
         //  backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
         body: SafeArea(
-          bottom: false,
+          bottom: Platform.isAndroid ? true : false,
           child: SizedBox(
             width: 1.sw,
             child: StreamBuilder<List<ConnectivityResult>>(

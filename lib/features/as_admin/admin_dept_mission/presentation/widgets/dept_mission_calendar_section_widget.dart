@@ -55,7 +55,7 @@ class DeptMissionCalendarSection extends StatelessWidget {
         ),
         30.verticalSpace,
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(children: [
               Container(
@@ -72,7 +72,6 @@ class DeptMissionCalendarSection extends StatelessWidget {
                 style: AppTextStyle.medium_18,
               ),
             ]),
-            10.horizontalSpace,
             Row(children: [
               Container(
                 height: 14.h,
@@ -88,7 +87,6 @@ class DeptMissionCalendarSection extends StatelessWidget {
                 style: AppTextStyle.medium_18,
               ),
             ]),
-            10.horizontalSpace,
             Row(children: [
               Container(
                 height: 14.h,

@@ -99,10 +99,16 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       child: Badge(
                         padding: EdgeInsets.all(1),
                         backgroundColor: Palette.red_FF0606,
-                        label: AppText(
-                          text: '3',
-                          style: AppTextStyle.bold_12,
-                          textColor: Colors.white,
+                        label: SizedBox(
+                          height: 15.h,
+                          width: 15.w,
+                          child: Center(
+                            child: AppText(
+                              text: '3',
+                              style: AppTextStyle.bold_12,
+                              textColor: Colors.white,
+                            ),
+                          ),
                         ),
                         child: Container(
                             height: 38.h,
@@ -169,101 +175,105 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               style: AppTextStyle.bold_21,
             ),
             20.verticalSpace,
-            CalendarSectionWidget(
-              customChildWidget: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25.r),
-                    ),
-                    child: Container(
-                      margin: EdgeInsets.symmetric(
-                          vertical: 10.h, horizontal: 10.w),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CalendarSectionWidget(
+                customChildWidget: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
                       decoration: BoxDecoration(
-                        color: Palette.white_F7F7F7,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(25.r),
                       ),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            5.verticalSpace,
-                            LeaveDaysRowItemWidget(
-                              title:
-                                  context.tr("emoloyees_on_leave_this_month"),
-                              days: "4",
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 25.w),
-                              child: Divider(
-                                thickness: 1,
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical: 10.h, horizontal: 10.w),
+                        decoration: BoxDecoration(
+                          color: Palette.white_F7F7F7,
+                          borderRadius: BorderRadius.circular(25.r),
+                        ),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              5.verticalSpace,
+                              LeaveDaysRowItemWidget(
+                                title:
+                                    context.tr("emoloyees_on_leave_this_month"),
+                                days: "4",
                               ),
-                            ),
-                            LeaveDaysRowItemWidget(
-                              title:
-                                  context.tr("number_of_missions_this_month"),
-                              days: "4",
-                            ),
-                            5.verticalSpace,
-                          ]),
-                    )),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 25.w),
+                                child: Divider(
+                                  thickness: 1,
+                                ),
+                              ),
+                              LeaveDaysRowItemWidget(
+                                title:
+                                    context.tr("number_of_missions_this_month"),
+                                days: "4",
+                              ),
+                              5.verticalSpace,
+                            ]),
+                      )),
+                ),
               ),
             ),
             30.verticalSpace,
-            Row(
-              children: [
-                10.horizontalSpace,
-                Row(children: [
-                  Container(
-                    height: 14.h,
-                    width: 14.h,
-                    decoration: BoxDecoration(
-                      color: Palette.green_457403,
-                      shape: BoxShape.rectangle,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(children: [
+                    Container(
+                      height: 14.h,
+                      width: 14.h,
+                      decoration: BoxDecoration(
+                        color: Palette.green_457403,
+                        shape: BoxShape.rectangle,
+                      ),
                     ),
-                  ),
-                  10.horizontalSpace,
-                  AppText(
-                    text: context.tr("mission"),
-                    style: AppTextStyle.medium_18,
-                  ),
-                ]),
-                20.horizontalSpace,
-                Row(children: [
-                  Container(
-                    height: 14.h,
-                    width: 14.h,
-                    decoration: BoxDecoration(
-                      color: Palette.orange_FFB162,
-                      shape: BoxShape.rectangle,
+                    10.horizontalSpace,
+                    AppText(
+                      text: context.tr("mission"),
+                      style: AppTextStyle.medium_18,
                     ),
-                  ),
-                  10.horizontalSpace,
-                  AppText(
-                    text: context.tr("leave"),
-                    style: AppTextStyle.medium_18,
-                  ),
-                ]),
-                20.horizontalSpace,
-                Row(children: [
-                  Container(
-                    height: 14.h,
-                    width: 14.h,
-                    decoration: BoxDecoration(
+                  ]),
+                  Row(children: [
+                    Container(
+                      height: 14.h,
+                      width: 14.h,
+                      decoration: BoxDecoration(
                         color: Palette.orange_FFB162,
                         shape: BoxShape.rectangle,
-                        border: Border.all(
-                          color: Palette.green_457403,
-                          width: 2,
-                        )),
-                  ),
-                  10.horizontalSpace,
-                  AppText(
-                    text: context.tr("mission_and_leave"),
-                    style: AppTextStyle.medium_18,
-                  ),
-                ]),
-              ],
+                      ),
+                    ),
+                    10.horizontalSpace,
+                    AppText(
+                      text: context.tr("leave"),
+                      style: AppTextStyle.medium_18,
+                    ),
+                  ]),
+                  Row(children: [
+                    Container(
+                      height: 14.h,
+                      width: 14.h,
+                      decoration: BoxDecoration(
+                          color: Palette.orange_FFB162,
+                          shape: BoxShape.rectangle,
+                          border: Border.all(
+                            color: Palette.green_457403,
+                            width: 2,
+                          )),
+                    ),
+                    10.horizontalSpace,
+                    AppText(
+                      text: context.tr("mission_and_leave"),
+                      style: AppTextStyle.medium_18,
+                    ),
+                  ]),
+                ],
+              ),
             ),
             17.verticalSpace,
             RecentUpdatesSection(),

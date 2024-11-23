@@ -212,7 +212,8 @@ class _VisitorsLogsScreenState extends State<VisitorsLogsScreen> {
                 ),
               ]),
             ],
-          )
+          ),
+          30.verticalSpace,
         ],
       ),
     );

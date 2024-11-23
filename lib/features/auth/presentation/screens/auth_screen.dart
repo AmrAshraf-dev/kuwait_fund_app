@@ -146,9 +146,28 @@ class _AuthScreenState extends State<AuthScreen> {
                                                 '123456')) {
                                           CustomMainRouter.push(
                                               AdminNavigationMainRoute());
-                                        } else {
+                                        } else if ((_formKey
+                                                    .currentState
+                                                    ?.fields['username']
+                                                    ?.value ==
+                                                'user' &&
+                                            _formKey
+                                                    .currentState
+                                                    ?.fields['password']
+                                                    ?.value ==
+                                                '123456')) {
                                           CustomMainRouter.push(
                                               NavigationMainRoute());
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: AppText(
+                                              text: context.tr(
+                                                  "invalid_username_password"),
+                                              style: AppTextStyle.regular_16,
+                                              textColor: Palette.red_FF0606,
+                                            ),
+                                          ));
                                         }
                                       }
                                     },

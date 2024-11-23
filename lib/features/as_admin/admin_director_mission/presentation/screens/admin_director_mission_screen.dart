@@ -100,9 +100,12 @@ class _AdminDirectorMissionScreenState
               ),
             ),
             20.verticalSpace,
-            CalendarSectionWidget(
-              customChildWidget: Padding(
-                padding: const EdgeInsets.all(4.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CalendarSectionWidget(
+                customChildWidget: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                ),
               ),
             ),
             30.verticalSpace,
