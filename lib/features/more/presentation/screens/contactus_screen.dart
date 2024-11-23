@@ -68,7 +68,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> with TickerProviderSt
                                     border: Border.all(
                                         color: selectedIndex == 0
                                             ? Palette.yellow_FBD823
-                                            : Palette.gery_6C6D6F),
+                                            : Palette.gery_DADADA),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Center(
@@ -92,7 +92,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> with TickerProviderSt
                                     border: Border.all(
                                         color: selectedIndex == 1
                                             ? Palette.yellow_FBD823
-                                            : Palette.gery_6C6D6F),
+                                            : Palette.gery_DADADA),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Center(
@@ -114,7 +114,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> with TickerProviderSt
                                     border: Border.all(
                                         color: selectedIndex == 2
                                             ? Palette.yellow_FBD823
-                                            : Palette.gery_6C6D6F),
+                                            : Palette.gery_DADADA),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Center(
