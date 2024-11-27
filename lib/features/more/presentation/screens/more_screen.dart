@@ -15,6 +15,7 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/custom_toggle_button_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/toggle_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
+import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 
@@ -30,7 +31,7 @@ class _MoreScreenState extends State<MoreScreen> {
   final ToggleCubit toggleCubit = GetIt.I<ToggleCubit>();
   final ToggleModel toggleModel = GetIt.I<ToggleModel>();
   LocaleCubit localeCubit = getIt<LocaleCubit>();
-
+  final bool userIsAdmin = true;
   @override
   void initState() {
     super.initState();
@@ -59,30 +60,45 @@ class _MoreScreenState extends State<MoreScreen> {
                 onTap: () {
                   CustomMainRouter.push(MyAttendanceRoute());
                 }),
-            MoreItemWidget(
-                text: context.tr("certificates"),
-                svgIcon: loan,
-                onTap: () {
-                  CustomMainRouter.push(CertificatesRoute());
-                }),
-            MoreItemWidget(
-                text: context.tr("visitors_logs"),
-                svgIcon: loan,
-                onTap: () {
-                  CustomMainRouter.push(VisitorsLogsRoute());
-                }),
+            if (!userIsAdmin)
+              MoreItemWidget(
+                  text: context.tr("certificates"),
+                  svgIcon: loan,
+                  onTap: () {
+                    CustomMainRouter.push(CertificatesRoute());
+                  }),
             MoreItemWidget(
                 text: context.tr("advertisements"),
                 svgIcon: advertisements,
                 onTap: () {
                   CustomMainRouter.push(AdsRoute());
                 }),
-            MoreItemWidget(
-                text: context.tr("survey"),
-                svgIcon: survey,
-                onTap: () {
-                  CustomMainRouter.push(SurveyRoute());
-                }),
+            userIsAdmin
+                ? MoreItemWidget(
+                    text: context.tr("director_mission"),
+                    svgIcon: Assets.svg.directorMission.path,
+                    onTap: () {
+                      CustomMainRouter.push(VisitorsLogsRoute());
+                    })
+                : MoreItemWidget(
+                    text: context.tr("visitors_logs"),
+                    svgIcon: loan,
+                    onTap: () {
+                      CustomMainRouter.push(VisitorsLogsRoute());
+                    }),
+            userIsAdmin
+                ? MoreItemWidget(
+                    text: context.tr("dept_mission"),
+                    svgIcon: Assets.svg.deptMission.path,
+                    onTap: () {
+                      CustomMainRouter.push(SurveyRoute());
+                    })
+                : MoreItemWidget(
+                    text: context.tr("survey"),
+                    svgIcon: survey,
+                    onTap: () {
+                      CustomMainRouter.push(SurveyRoute());
+                    }),
             MoreItemWidget(
                 text: context.tr("enable_smart_login"),
                 svgIcon: enableSmartLogin,
@@ -92,19 +108,19 @@ class _MoreScreenState extends State<MoreScreen> {
             5.verticalSpace,
             MoreItemWidget(
                 text: context.tr("about_kuwait_fund"),
-                svgIcon: drawerAbout,
+                svgIcon: about,
                 onTap: () {
                   CustomMainRouter.push(AboutRoute());
                 }),
             MoreItemWidget(
                 text: context.tr("operations_and_statistics"),
-                svgIcon: drawerOperation,
+                svgIcon: operation,
                 onTap: () {
                   CustomMainRouter.push(OperationsRoute());
                 }),
             MoreItemWidget(
                 text: context.tr("contact_us"),
-                svgIcon: drawerContactUs,
+                svgIcon: contactus,
                 onTap: () {
                   CustomMainRouter.push(ContactUsRoute());
                 }),

@@ -200,8 +200,7 @@ class _RequestsScreenState extends State<RequestsScreen>
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
-                                  child: AppText(
-                                      text: context.tr("certificate")))),
+                                  child: AppText(text: context.tr("loan")))),
                         ),
                         ConstrainedBox(
                           constraints:

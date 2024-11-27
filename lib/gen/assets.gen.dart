@@ -122,6 +122,9 @@ class $AssetsPublicGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/about.svg
+  SvgGenImage get about => const SvgGenImage('assets/svg/about.svg');
+
   /// File path: assets/svg/address.svg
   SvgGenImage get address => const SvgGenImage('assets/svg/address.svg');
 
@@ -168,6 +171,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/clock.svg
   SvgGenImage get clock => const SvgGenImage('assets/svg/clock.svg');
+
+  /// File path: assets/svg/contactus.svg
+  SvgGenImage get contactus => const SvgGenImage('assets/svg/contactus.svg');
 
   /// File path: assets/svg/create_annual_request.svg
   SvgGenImage get createAnnualRequest =>
@@ -282,6 +288,9 @@ class $AssetsSvgGen {
   SvgGenImage get notificationUser =>
       const SvgGenImage('assets/svg/notification_user.svg');
 
+  /// File path: assets/svg/operation.svg
+  SvgGenImage get operation => const SvgGenImage('assets/svg/operation.svg');
+
   /// File path: assets/svg/pdf.svg
   SvgGenImage get pdf => const SvgGenImage('assets/svg/pdf.svg');
 
@@ -344,6 +353,7 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        about,
         address,
         advertisements,
         annualLeave,
@@ -358,6 +368,7 @@ class $AssetsSvgGen {
         chatbot,
         checkMark,
         clock,
+        contactus,
         createAnnualRequest,
         createEmergencyRequest,
         createInsuranceRequest,
@@ -390,6 +401,7 @@ class $AssetsSvgGen {
         notification,
         notificationDate,
         notificationUser,
+        operation,
         pdf,
         pepole,
         person,

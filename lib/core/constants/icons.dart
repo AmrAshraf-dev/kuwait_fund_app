@@ -10,6 +10,10 @@ const String drawerAbout = '${iconDir}drawer_about.svg';
 const String drawerOperation = '${iconDir}drawer_operation.svg';
 const String drawerContactUs = '${iconDir}drawer_contactus.svg';
 
+const String about = '${iconDir}about.svg';
+const String operation = '${iconDir}operation.svg';
+const String contactus = '${iconDir}contactus.svg';
+
 const String notification = '${iconDir}notification.svg';
 const String chatbot = '${iconDir}chatbot.svg';
 
@@ -44,4 +48,3 @@ const String familyIcon = '${iconDir}family.svg';
 const String qualificationIcon = '${iconDir}qualification.svg';
 const String refreshIcon = '${iconDir}refresh.svg';
 const String workIcon = '${iconDir}work.svg';
-

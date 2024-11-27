@@ -26,8 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
       try {
-        CustomMainRouter.navigate(const AdminNavigationMainRoute());
-        //CustomMainRouter.push(const AdminNavigationMainRoute());
+        //     CustomMainRouter.navigate(const AuthRoute());
+        CustomMainRouter.push(const AdminNavigationMainRoute());
       } catch (e) {
         debugPrint('Navigation Error: $e');
       }

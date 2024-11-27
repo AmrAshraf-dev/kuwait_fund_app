@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../features/shared/data/local_data.dart';
 import 'exception/exception_handle.dart';
@@ -17,11 +18,21 @@ enum Method {
 
 @injectable
 class NetworkHelper {
+  static const int _maxLineWidth = 90;
+  static final _prettyDioLogger = PrettyDioLogger(
+    requestHeader: true,
+    requestBody: true,
+    // responseBody: BuildConfig.instance.environment == Environment.DEVELOPMENT,
+    responseHeader: false,
+    error: true,
+    maxWidth: _maxLineWidth,
+  );
+
   NetworkHelper(this.dio) {
     dio.interceptors.clear();
     dio.interceptors.addAll(<Interceptor>[
       AuthInterceptor(),
-      if (kDebugMode) LoggingInterceptor(),
+      if (kDebugMode) _prettyDioLogger,
     ]);
 
     // if (kDebugMode) {
