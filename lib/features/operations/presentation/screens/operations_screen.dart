@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/more/presentation/widgets/loan_item_widget.dart';
+import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_loan_tap_page.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
@@ -95,7 +95,7 @@ class _OperationsScreenState extends State<OperationsScreen>
                             ),
                             child: Center(
                                 child: AppText(
-                              text: context.tr("grands"),
+                              text: context.tr("grants/countries"),
                               style: AppTextStyle.semiBold_13,
                               textColor: Palette.blue_002A6A,
                             ))),
@@ -117,7 +117,7 @@ class _OperationsScreenState extends State<OperationsScreen>
                             ),
                             child: Center(
                                 child: AppText(
-                              text: context.tr("govt_grands"),
+                              text: context.tr("grants/institutions"),
                               style: AppTextStyle.semiBold_13,
                               textColor: Palette.blue_002A6A,
                             ))),
@@ -139,7 +139,7 @@ class _OperationsScreenState extends State<OperationsScreen>
                             ),
                             child: Center(
                                 child: AppText(
-                              text: context.tr("condributions"),
+                              text: context.tr("contrabutions"),
                               style: AppTextStyle.semiBold_13,
                               textColor: Palette.blue_002A6A,
                             ))),
@@ -156,10 +156,10 @@ class _OperationsScreenState extends State<OperationsScreen>
               physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
               children: <Widget>[
-                OperationsLoanItemWidget(),
-                OperationsLoanItemWidget(),
-                OperationsLoanItemWidget(),
-                OperationsLoanItemWidget(),
+                OperationsLoanTapPage(),
+                Container(),
+                Container(),
+                Container(),
               ],
             ),
           ),

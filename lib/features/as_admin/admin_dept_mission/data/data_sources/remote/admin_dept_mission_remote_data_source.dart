@@ -24,7 +24,7 @@ class AdminDeptMissionDataSourceImpl
       {required AdminDeptMissionRequestModel
           adminDeptMissionRequestModel}) async {
     ({dynamic response, bool success}) result = await networkHelper
-        .post(path: ApiConstants.profile, data: <String, String>{
+        .post(path: ApiConstants.loan, data: <String, String>{
       "email": adminDeptMissionRequestModel.email ?? "",
       "lang": adminDeptMissionRequestModel.lang ?? "a"
     });

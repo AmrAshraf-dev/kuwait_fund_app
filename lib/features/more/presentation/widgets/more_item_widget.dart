@@ -44,6 +44,7 @@ class MoreItemWidget extends StatelessWidget {
                     svgIcon,
                     width: 25.w,
                     height: 25.h,
+                    color: Palette.primaryColor,
                   ),
                   10.horizontalSpace,
                   AppText(

@@ -61,6 +61,7 @@ class _SliderSectionState extends State<SliderSection> {
                               SizedBox(
                                 width: 150.w,
                                 child: AppText(
+                                  maxLines: 2,
                                   text: context.tr(
                                       "tips_to_achieve_better_productivity"),
                                   style: AppTextStyle.bold_22,

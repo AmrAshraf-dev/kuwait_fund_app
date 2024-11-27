@@ -115,7 +115,7 @@ class _AdvancedExpandableSectionState extends State<AdvancedExpandableSection> {
           secondChild: Container(
             color: Palette.white_F5F4F9,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: Column(children: widget.children),
             ),
           ),
