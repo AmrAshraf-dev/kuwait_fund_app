@@ -5,7 +5,7 @@ import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/more/presentation/widgets/operations_loan_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/loan_entity.dart';
+import 'package:kf_ess_mobile_app/features/operations/domain/entities/loan/loan_entity.dart';
 import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/loan_cubit/loan_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/advanced_expandable_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -95,27 +95,6 @@ class DivisionItem extends StatelessWidget {
                               .toList(),
                         ))
                     .toList()),
-          ),
-          12.verticalSpace,
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.r),
-              boxShadow: [
-                BoxShadow(
-                  color: Palette.grey_7B7B7B.withOpacity(0.3),
-                  spreadRadius: 0,
-                  blurRadius: 10,
-                  offset: Offset(0, 2), // changes position of shadow
-                ),
-              ],
-              border: Border.all(color: Palette.gery_DADADA),
-            ),
-            child: OperationsLoanItem(
-              countryName: "bulgaria",
-              sectorNames: ["agriculture", "agriculture"],
-              amounts: ["eight_millions", "eight_millions"],
-            ),
           ),
         ]);
   }

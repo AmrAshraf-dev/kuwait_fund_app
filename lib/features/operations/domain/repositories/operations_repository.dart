@@ -1,4 +1,7 @@
-import "package:kf_ess_mobile_app/features/operations/domain/entities/loan_entity.dart";
+import "package:kf_ess_mobile_app/features/operations/domain/entities/contribution_entity.dart";
+import "package:kf_ess_mobile_app/features/operations/domain/entities/country_grants_entity.dart";
+import "package:kf_ess_mobile_app/features/operations/domain/entities/institution_grants_entity.dart";
+import "package:kf_ess_mobile_app/features/operations/domain/entities/loan/loan_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
@@ -17,4 +20,13 @@ abstract class OperationsRepository {
   });
 
   Future<CustomResponseType<BaseEntity<List<LoanEntity>>>> getLoan();
+
+  Future<CustomResponseType<BaseEntity<List<CountryGrantsEntity>>>>
+      getCountriesGrants();
+
+  Future<CustomResponseType<BaseEntity<List<InstitutionGrantsEntity>>>>
+      getInstitutionsGrants();
+
+  Future<CustomResponseType<BaseEntity<List<ContributionEntity>>>>
+      getContributions();
 }
