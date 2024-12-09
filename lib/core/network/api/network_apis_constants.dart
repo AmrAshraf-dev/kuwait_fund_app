@@ -4,4 +4,10 @@ class ApiConstants {
   static String loan = "General/GetLoans";
 
   static var profile = "General/GetProfile";
+
+  static var countriesGrants = "General/GetTAGrantCountries";
+
+  static var institutionsGrants = "General/GetTAGrantInstitutions";
+
+  static var contributions = "General/GetContribution";
 }

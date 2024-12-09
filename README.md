@@ -26,6 +26,6 @@ mason add clean_module --git-url https://github.com/heshesh2010/bricks-diyar/ --
 
 
 
-mason make clean_module --name account --hasLocalData false --hasRemoteData true --state_management cubit --areCommentsOn true --addTemplateCode true
+mason make clean_module --name offers --hasLocalData false --hasRemoteData true --state_management cubit --areCommentsOn true --addTemplateCode true
 
 dart run flutter_native_splash:create --path=/Users/heshamelnemr/Desktop/FlutterProjects/kf_ess_mobile_app/flutter_native_splash.yaml

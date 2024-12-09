@@ -1,4 +1,8 @@
 {
+  "institution": "Institution",
+  "countries": "Countries",
+  "number_of_grants": "Number of Grants",
+  "value": "Value",
   "emoloyees_on_mission_this_year": "Employees on Mission this Year",
   "total_mission_this_year": "Total Mission this Year",
   "number_of_employees_on_mission": "Number of Employees on Mission",

@@ -1,4 +1,8 @@
 {
+  "institution": "المؤسسة",
+  "countries": "الدول",
+  "number_of_grants": "عدد المنح",
+  "value": "القيمة",
   "emoloyees_on_mission_this_year": "الموظفين في مهمة هذا العام",
   "total_mission_this_year": "إجمالي المهمات هذا العام",
   "number_of_employees_on_mission": "عدد الموظفين في مهمة",
