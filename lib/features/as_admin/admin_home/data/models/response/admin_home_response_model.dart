@@ -29,7 +29,7 @@ class AdminHomeModel extends AdminHomeEntity {
 @JsonSerializable()
 class AdminHomeResponseModel extends BaseEntity<AdminHomeModel> {
   const AdminHomeResponseModel({
-    super.statusCode,
+    super.code,
     super.data,
     super.message,
     super.totalRecords,

@@ -8,7 +8,7 @@ part of 'loan_response_model.dart';
 
 LoanResponseModel _$LoanResponseModelFromJson(Map<String, dynamic> json) =>
     LoanResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => LoanModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -20,7 +20,7 @@ LoanResponseModel _$LoanResponseModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$LoanResponseModelToJson(LoanResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

@@ -21,7 +21,7 @@ Map<String, dynamic> _$CertificatesModelToJson(CertificatesModel instance) =>
 CertificatesResponseModel _$CertificatesResponseModelFromJson(
         Map<String, dynamic> json) =>
     CertificatesResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : CertificatesModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -34,7 +34,7 @@ Map<String, dynamic> _$CertificatesResponseModelToJson(
         CertificatesResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

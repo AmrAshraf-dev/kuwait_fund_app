@@ -1,30 +1,52 @@
- import "package:equatable/equatable.dart";
+import 'package:equatable/equatable.dart';
+import 'package:kf_ess_mobile_app/features/auth/data/models/response/token_info_model.dart';
+import 'package:kf_ess_mobile_app/features/auth/data/models/response/user_info_model.dart';
 
+class AuthEntity extends Equatable {
+  final TokenInfoModel tokenInfo;
+  final UserInfoModel userInfo;
 
-
-
-
-/// Entity that contains the data of the Auth.
-class AuthEntity extends Equatable{
-
- final String? var1;
-
- final  String? var2;
-  /// Entity that contains the data of the Auth.
-   AuthEntity(
-    {required this.var1, required this.var2}
-   );
-
-  /*
-  An entity represents a real-world object with a distinct identity. 
-  */
+  const AuthEntity({
+    required this.tokenInfo,
+    required this.userInfo,
+  });
 
   @override
-  List<Object?> get props => [
-  /*
-  List your entity attributes here 
-  */
-  ];
+  List<Object> get props => [tokenInfo, userInfo];
+}
 
+class TokenInfo {
+  final String token;
+  final DateTime expireDate;
 
+  TokenInfo({
+    required this.token,
+    required this.expireDate,
+  });
+}
+
+class UserInfo {
+  final bool isError;
+  final String errorMsg;
+  final bool isValidUser;
+  final bool isDirector;
+  final bool isSupervisor;
+  final bool isTrainingSupervisor;
+  final String name;
+  final String designation;
+  final String phoneNumber;
+  final String photoURL;
+
+  UserInfo({
+    required this.isError,
+    required this.errorMsg,
+    required this.isValidUser,
+    required this.isDirector,
+    required this.isSupervisor,
+    required this.isTrainingSupervisor,
+    required this.name,
+    required this.designation,
+    required this.phoneNumber,
+    required this.photoURL,
+  });
 }

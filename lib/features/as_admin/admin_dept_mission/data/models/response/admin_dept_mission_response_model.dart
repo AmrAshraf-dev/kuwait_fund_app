@@ -29,7 +29,7 @@ class AdminDeptMissionModel extends AdminDeptMissionEntity {
 @JsonSerializable()
 class AdminDeptMissionResponseModel extends BaseEntity<AdminDeptMissionModel> {
   const AdminDeptMissionResponseModel({
-    super.statusCode,
+    super.code,
     super.data,
     super.message,
     super.totalRecords,

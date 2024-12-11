@@ -21,7 +21,7 @@ Map<String, dynamic> _$InsuranceModelToJson(InsuranceModel instance) =>
 InsuranceResponseModel _$InsuranceResponseModelFromJson(
         Map<String, dynamic> json) =>
     InsuranceResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : InsuranceModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -34,7 +34,7 @@ Map<String, dynamic> _$InsuranceResponseModelToJson(
         InsuranceResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

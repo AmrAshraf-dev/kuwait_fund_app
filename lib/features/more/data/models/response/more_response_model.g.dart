@@ -18,7 +18,7 @@ Map<String, dynamic> _$MoreModelToJson(MoreModel instance) => <String, dynamic>{
 
 MoreResponseModel _$MoreResponseModelFromJson(Map<String, dynamic> json) =>
     MoreResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : MoreModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -30,7 +30,7 @@ MoreResponseModel _$MoreResponseModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$MoreResponseModelToJson(MoreResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

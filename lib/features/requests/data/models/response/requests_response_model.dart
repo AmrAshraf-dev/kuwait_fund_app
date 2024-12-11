@@ -32,7 +32,7 @@ class RequestsModel extends RequestsEntity {
 @JsonSerializable()
 class RequestsResponseModel extends BaseEntity<RequestsModel> {
   const RequestsResponseModel({
-    super.statusCode,
+    super.code,
     super.data,
     super.message,
     super.totalRecords,

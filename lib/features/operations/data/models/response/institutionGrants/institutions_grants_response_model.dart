@@ -20,7 +20,7 @@ class InstitutionGrantsModel extends InstitutionGrantsEntity {
 class InstitutionsGrantsResponseModel
     extends BaseEntity<List<InstitutionGrantsModel>> {
   const InstitutionsGrantsResponseModel({
-    super.statusCode,
+    super.code,
     super.data,
     super.message,
     super.totalRecords,

@@ -21,7 +21,7 @@ Map<String, dynamic> _$MyAttendanceModelToJson(MyAttendanceModel instance) =>
 MyAttendanceResponseModel _$MyAttendanceResponseModelFromJson(
         Map<String, dynamic> json) =>
     MyAttendanceResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : MyAttendanceModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -34,7 +34,7 @@ Map<String, dynamic> _$MyAttendanceResponseModelToJson(
         MyAttendanceResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

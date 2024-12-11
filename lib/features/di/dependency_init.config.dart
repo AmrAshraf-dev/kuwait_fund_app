@@ -89,8 +89,12 @@ import 'package:kf_ess_mobile_app/features/forget_pass/data/repositories/forget_
     as _i151;
 import 'package:kf_ess_mobile_app/features/forget_pass/domain/repositories/forget_pass_repository.dart'
     as _i265;
+import 'package:kf_ess_mobile_app/features/forget_pass/domain/use_cases/change_password_usecase.dart'
+    as _i84;
 import 'package:kf_ess_mobile_app/features/forget_pass/domain/use_cases/get_forget_pass_usecase.dart'
     as _i776;
+import 'package:kf_ess_mobile_app/features/forget_pass/domain/use_cases/verify_otp_usecase.dart'
+    as _i359;
 import 'package:kf_ess_mobile_app/features/forget_pass/presentation/cubits/forget_pass_cubit.dart'
     as _i969;
 import 'package:kf_ess_mobile_app/features/home/data/data_sources/remote/home_remote_data_source.dart'
@@ -337,6 +341,10 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i956.CertificatesRemoteDataSource>()));
   gh.factory<_i776.GetForgetPassUseCase>(() => _i776.GetForgetPassUseCase(
       forgetPassRepository: gh<_i265.ForgetPassRepository>()));
+  gh.factory<_i359.VerifyOtpUseCase>(() => _i359.VerifyOtpUseCase(
+      forgetPassRepository: gh<_i265.ForgetPassRepository>()));
+  gh.factory<_i84.ChangePasswordUseCase>(() => _i84.ChangePasswordUseCase(
+      forgetPassRepository: gh<_i265.ForgetPassRepository>()));
   gh.factory<_i243.GetHomeUseCase>(
       () => _i243.GetHomeUseCase(homeRepository: gh<_i219.HomeRepository>()));
   gh.factory<_i583.GetOperationsUseCase>(() => _i583.GetOperationsUseCase(
@@ -363,8 +371,6 @@ Future<_i174.GetIt> $initGetIt(
       authRemoteDataSource: gh<_i826.AuthRemoteDataSource>()));
   gh.factory<_i715.GetPeraonalInfoUseCase>(() => _i715.GetPeraonalInfoUseCase(
       peraonalInfoRepository: gh<_i786.PeraonalInfoRepository>()));
-  gh.factory<_i969.ForgetPassCubit>(() => _i969.ForgetPassCubit(
-      getForgetPassUseCase: gh<_i776.GetForgetPassUseCase>()));
   gh.factory<_i835.MyAttendanceRepository>(() =>
       _i1001.MyAttendanceRepositoryImp(
           myAttendanceRemoteDataSource:
@@ -383,6 +389,11 @@ Future<_i174.GetIt> $initGetIt(
       () => _i464.GetAuthUseCase(authRepository: gh<_i848.AuthRepository>()));
   gh.factory<_i887.AdminHomeRepository>(() => _i308.AdminHomeRepositoryImp(
       adminHomeRemoteDataSource: gh<_i1029.AdminHomeRemoteDataSource>()));
+  gh.singleton<_i969.ForgetPassCubit>(() => _i969.ForgetPassCubit(
+        getForgetPassUseCase: gh<_i776.GetForgetPassUseCase>(),
+        verifyOtpUseCase: gh<_i359.VerifyOtpUseCase>(),
+        changePasswordUseCase: gh<_i84.ChangePasswordUseCase>(),
+      ));
   gh.factory<_i397.CreateRequestRepository>(() =>
       _i725.CreateRequestRepositoryImp(
           createRequestRemoteDataSource:

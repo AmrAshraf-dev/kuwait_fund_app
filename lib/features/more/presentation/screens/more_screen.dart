@@ -11,6 +11,7 @@ import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/di/toggle_button_model.dart';
 import 'package:kf_ess_mobile_app/features/more/presentation/widgets/more_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/cubit/locale_cubit/locale_cubit.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/custom_toggle_button_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/toggle_button_widget.dart';
@@ -150,6 +151,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 svgIcon: logout,
                 onTap: () {
                   CustomMainRouter.push(AuthRoute());
+                  LocalData.clearAllData();
                 }),
             32.verticalSpace,
             Center(

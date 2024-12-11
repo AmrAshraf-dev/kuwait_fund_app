@@ -20,7 +20,7 @@ class CountryGrantsModel extends CountryGrantsEntity {
 class CountriesGrantsResponseModel
     extends BaseEntity<List<CountryGrantsModel>> {
   const CountriesGrantsResponseModel({
-    super.statusCode,
+    super.code,
     super.data,
     super.message,
     super.totalRecords,

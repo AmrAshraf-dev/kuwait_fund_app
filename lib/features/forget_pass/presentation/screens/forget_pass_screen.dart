@@ -1,12 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/forget_pass/data/models/request/forget_pass_request_model.dart';
+import 'package:kf_ess_mobile_app/features/forget_pass/presentation/cubits/forget_pass_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/auth_screens_app_bar_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -23,7 +28,7 @@ class ForgetPassScreen extends StatefulWidget {
 
 class _ForgetPassScreenState extends State<ForgetPassScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
-
+  final ForgetPassCubit forgetPassCubit = getIt<ForgetPassCubit>();
   @override
   void initState() {
     super.initState();
@@ -32,10 +37,13 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        drawer: DrawerSideMenu(),
-        appBar: AuthAppBarWidget(),
-        body: Container(
+      resizeToAvoidBottomInset:
+          false, // Allows body to adjust when the keyboard appears
+      drawer: DrawerSideMenu(),
+      appBar: AuthAppBarWidget(),
+      body: BlocProvider(
+        create: (context) => forgetPassCubit,
+        child: Container(
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(color: Palette.primaryColor),
           child: Container(
@@ -44,93 +52,111 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
               color: Palette.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(35),
-                    topRight: Radius.circular(35)),
+                  topLeft: Radius.circular(35),
+                  topRight: Radius.circular(35),
+                ),
               ),
             ),
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  reverse: true,
-                  physics: const BouncingScrollPhysics(),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  42.verticalSpace,
+                  Container(
+                    padding: EdgeInsets.only(bottom: 7),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color(0xfffbd823),
+                          width: 7.0.w,
+                        ),
+                      ),
+                    ),
+                    child: AppText(
+                      text: context.tr("forget_password"),
+                      style: AppTextStyle.bold_24,
+                    ),
+                  ),
+                  8.verticalSpace,
+                  AppText(
+                    text: context.tr("forget_password_description"),
+                    style: AppTextStyle.regular_16,
+                    textColor: Palette.gery_6C6D6F,
+                  ),
+                  19.verticalSpace,
+                  FormBuilder(
+                    key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        42.verticalSpace,
-                        Container(
-                          padding: EdgeInsets.only(
-                            bottom: 7,
-                          ),
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                            color: Color(0xfffbd823),
-                            width: 7.0.w,
-                          ))),
-                          child: AppText(
-                            text: context.tr("forget_password"),
-                            style: AppTextStyle.bold_24,
-                          ),
+                        TextFieldWidget(
+                          labelAboveField: context.tr("username"),
+                          keyName: "userName",
+                          validator: FormBuilderValidators.required(),
+                          textInputAction: TextInputAction.done,
                         ),
-                        8.verticalSpace,
-                        AppText(
-                          text: context.tr("forget_password_description"),
-                          style: AppTextStyle.regular_16,
-                          textColor: Palette.gery_6C6D6F,
-                        ),
-                        19.verticalSpace,
-                        FormBuilder(
-                            key: _formKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextFieldWidget(
-                                  labelAboveField: context.tr("username"),
-                                  keyName: "username",
-                                  validator: FormBuilderValidators.required(),
-                                  textInputAction: TextInputAction.done,
-                                ),
-                                150.verticalSpace,
-                              ],
-                            )),
-                        // login button
+                      ],
+                    ),
+                  ),
+                  Spacer(), // Pushes buttons to the bottom
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 20.h,
+                      bottom: MediaQuery.of(context).viewInsets.bottom + 20.h,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
                         Center(
-                          child: CustomElevatedButton(
-                            text: context.tr("send_otp"),
-                            onPressed: () {
-                              if (_formKey.currentState?.saveAndValidate() ??
-                                  false) {
+                          child: BlocListener<ForgetPassCubit, ForgetPassState>(
+                            listener: (context, state) {
+                              if (state is ForgetPassLoadingState) {
+                                ViewsToolbox.showLoading();
+                              } else if (state is ForgetPassErrorState) {
+                                ViewsToolbox.dismissLoading();
+                                ViewsToolbox.showErrorAwesomeSnackBar(
+                                    context, state.message!);
+                              } else if (state is ForgetPassReadyState) {
+                                ViewsToolbox.dismissLoading();
                                 CustomMainRouter.push(
                                     ForgetPassVerifyOtpRoute());
                               }
                             },
                           ),
                         ),
-
-                        10.verticalSpace,
-
                         CustomElevatedButton(
-                            backgroundColor: Colors.transparent,
-                            textStyle: AppTextStyle.medium_20,
-                            text: context.tr("back"),
-                            textColor: Palette.blue_5490EB,
-                            onPressed: () {
-                              CustomMainRouter.pop();
-                            }),
-                        Padding(
-                            padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom /
-                                        2)),
+                          text: context.tr("send_otp"),
+                          onPressed: () {
+                            if (_formKey.currentState?.saveAndValidate() ??
+                                false) {
+                              forgetPassCubit.getForgetPass(
+                                  forgetPassModel: ForgetPassRequestModel(
+                                userName: _formKey
+                                    .currentState?.fields["userName"]?.value,
+                              ));
+                            }
+                          },
+                        ),
+                        10.verticalSpace,
+                        CustomElevatedButton(
+                          backgroundColor: Colors.transparent,
+                          textStyle: AppTextStyle.medium_20,
+                          text: context.tr("back"),
+                          textColor: Palette.blue_5490EB,
+                          onPressed: () {
+                            CustomMainRouter.pop();
+                          },
+                        ),
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

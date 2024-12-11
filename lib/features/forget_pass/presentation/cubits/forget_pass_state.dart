@@ -12,8 +12,7 @@ final class ForgetPassLoadingState extends ForgetPassState {}
 
 final class ForgetPassReadyState extends ForgetPassState {
   ForgetPassReadyState(this.response);
-    BaseEntity<ForgetPassEntity> response;
-
+  BaseEntity<bool> response;
 }
 
 abstract class ForgetPassState {}
