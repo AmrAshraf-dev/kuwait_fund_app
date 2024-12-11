@@ -11,14 +11,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../features/di/dependency_init.dart';
-import '../routes/routes.dart';
 import '../../features/shared/widgets/app_text.dart';
+import '../routes/routes.dart';
 import '../utility/palette.dart';
 import '../utility/theme.dart';
 import 'language_helper.dart';
@@ -785,6 +785,32 @@ class ViewsToolbox {
                 width: 120.w,
                 onPressed: onConfirmCallback,
                 text: context.tr('confirm')),
+          ],
+        );
+      },
+    );
+  }
+
+  static void loginShowDialog(
+      {required String title,
+      required String message,
+      required Null Function() onConfirm}) {
+    showDialog(
+      barrierDismissible: false,
+      context: getIt<AppRouter>().navigatorKey.currentContext!,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: SizedBox(
+              height: 30, width: 100, child: AppText(text: context.tr(title))),
+          content: SizedBox(
+              height: 30,
+              width: 300,
+              child: AppText(text: context.tr(message))),
+          actions: <Widget>[
+            TextButton(
+              onPressed: onConfirm,
+              child: Text(context.tr("ok")),
+            ),
           ],
         );
       },

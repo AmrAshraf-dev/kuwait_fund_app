@@ -27,7 +27,7 @@ Map<String, dynamic> _$RequestsModelToJson(RequestsModel instance) =>
 RequestsResponseModel _$RequestsResponseModelFromJson(
         Map<String, dynamic> json) =>
     RequestsResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : RequestsModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -40,7 +40,7 @@ Map<String, dynamic> _$RequestsResponseModelToJson(
         RequestsResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

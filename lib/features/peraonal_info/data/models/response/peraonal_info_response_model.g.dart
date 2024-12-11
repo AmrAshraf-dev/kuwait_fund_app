@@ -21,7 +21,7 @@ Map<String, dynamic> _$PeraonalInfoModelToJson(PeraonalInfoModel instance) =>
 PeraonalInfoResponseModel _$PeraonalInfoResponseModelFromJson(
         Map<String, dynamic> json) =>
     PeraonalInfoResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : PeraonalInfoModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -34,7 +34,7 @@ Map<String, dynamic> _$PeraonalInfoResponseModelToJson(
         PeraonalInfoResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

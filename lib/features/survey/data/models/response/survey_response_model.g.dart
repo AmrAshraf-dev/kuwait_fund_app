@@ -19,7 +19,7 @@ Map<String, dynamic> _$SurveyModelToJson(SurveyModel instance) =>
 
 SurveyResponseModel _$SurveyResponseModelFromJson(Map<String, dynamic> json) =>
     SurveyResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : SurveyModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -32,7 +32,7 @@ Map<String, dynamic> _$SurveyResponseModelToJson(
         SurveyResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

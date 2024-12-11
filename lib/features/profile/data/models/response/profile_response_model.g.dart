@@ -20,7 +20,7 @@ Map<String, dynamic> _$ProfileModelToJson(ProfileModel instance) =>
 ProfileResponseModel _$ProfileResponseModelFromJson(
         Map<String, dynamic> json) =>
     ProfileResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : ProfileModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -33,7 +33,7 @@ Map<String, dynamic> _$ProfileResponseModelToJson(
         ProfileResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

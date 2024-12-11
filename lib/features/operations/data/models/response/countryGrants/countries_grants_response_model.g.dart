@@ -23,7 +23,7 @@ Map<String, dynamic> _$CountryGrantsModelToJson(CountryGrantsModel instance) =>
 CountriesGrantsResponseModel _$CountriesGrantsResponseModelFromJson(
         Map<String, dynamic> json) =>
     CountriesGrantsResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => CountryGrantsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -36,7 +36,7 @@ Map<String, dynamic> _$CountriesGrantsResponseModelToJson(
         CountriesGrantsResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

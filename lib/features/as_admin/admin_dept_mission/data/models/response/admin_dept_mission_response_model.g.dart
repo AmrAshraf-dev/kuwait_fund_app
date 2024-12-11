@@ -23,7 +23,7 @@ Map<String, dynamic> _$AdminDeptMissionModelToJson(
 AdminDeptMissionResponseModel _$AdminDeptMissionResponseModelFromJson(
         Map<String, dynamic> json) =>
     AdminDeptMissionResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : AdminDeptMissionModel.fromJson(
@@ -37,7 +37,7 @@ Map<String, dynamic> _$AdminDeptMissionResponseModelToJson(
         AdminDeptMissionResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

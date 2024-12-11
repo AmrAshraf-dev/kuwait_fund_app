@@ -21,7 +21,7 @@ Map<String, dynamic> _$AdminHomeModelToJson(AdminHomeModel instance) =>
 AdminHomeResponseModel _$AdminHomeResponseModelFromJson(
         Map<String, dynamic> json) =>
     AdminHomeResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : AdminHomeModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -34,7 +34,7 @@ Map<String, dynamic> _$AdminHomeResponseModelToJson(
         AdminHomeResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

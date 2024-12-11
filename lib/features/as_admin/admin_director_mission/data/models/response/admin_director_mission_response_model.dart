@@ -30,7 +30,7 @@ class AdminDirectorMissionModel extends AdminDirectorMissionEntity {
 class AdminDirectorMissionResponseModel
     extends BaseEntity<AdminDirectorMissionModel> {
   const AdminDirectorMissionResponseModel({
-    super.statusCode,
+    super.code,
     super.data,
     super.message,
     super.totalRecords,

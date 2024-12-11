@@ -9,13 +9,15 @@ part of 'forget_pass_request_model.dart';
 ForgetPassRequestModel _$ForgetPassRequestModelFromJson(
         Map<String, dynamic> json) =>
     ForgetPassRequestModel(
-      email: json['email'] as String?,
-      lang: json['lang'] as String?,
+      userName: json['userName'] as String?,
+      otp: json['otp'] as String?,
+      password: json['password'] as String?,
     );
 
 Map<String, dynamic> _$ForgetPassRequestModelToJson(
         ForgetPassRequestModel instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'lang': instance.lang,
+      'userName': instance.userName,
+      'otp': instance.otp,
+      'password': instance.password,
     };

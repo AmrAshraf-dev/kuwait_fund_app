@@ -37,7 +37,7 @@ class LoanModel with _$LoanModel {
 @JsonSerializable()
 class LoanResponseModel extends BaseEntity<List<LoanModel>> {
   const LoanResponseModel({
-    super.statusCode,
+    super.code,
     super.data,
     super.message,
     super.totalRecords,
@@ -53,7 +53,7 @@ class LoanResponseModel extends BaseEntity<List<LoanModel>> {
     return BaseEntity<List<LoanEntity>>(
       data: data!.map((e) => e.toEntity()).toList(),
       message: message,
-      statusCode: statusCode,
+      code: code,
       totalRecords: totalRecords,
       hasMorePages: hasMorePages,
     );

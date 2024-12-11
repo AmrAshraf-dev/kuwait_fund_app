@@ -21,14 +21,10 @@ class AuthDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<CustomResponseType<AuthResponseModel>> getAuth(
       {required AuthRequestModel authRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper
-        .post(path: ApiConstants.profile, data: <String, String>{
-      "email": authRequestModel.email ?? "",
-      "lang": authRequestModel.lang ?? "a"
-    });
+    ({dynamic response, bool success}) result = await networkHelper.get(
+        path: ApiConstants.auth, queryParams: authRequestModel.toJson());
 
     if (result.success) {
-   
       return right(AuthResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));

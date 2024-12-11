@@ -10,4 +10,12 @@ class ApiConstants {
   static var institutionsGrants = "General/GetTAGrantInstitutions";
 
   static var contributions = "General/GetContribution";
+
+  static var auth = "Login/LoginUser";
+
+  static var generateOTP = "ChangePassword/GenerateOTP";
+
+  static var verifyOTP = "ChangePassword/VerifyOTP";
+
+  static var changePassword = "ChangePassword/ChangePassword";
 }

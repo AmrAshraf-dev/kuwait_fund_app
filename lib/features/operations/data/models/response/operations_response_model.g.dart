@@ -21,7 +21,7 @@ Map<String, dynamic> _$OperationsModelToJson(OperationsModel instance) =>
 OperationsResponseModel _$OperationsResponseModelFromJson(
         Map<String, dynamic> json) =>
     OperationsResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : OperationsModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -34,7 +34,7 @@ Map<String, dynamic> _$OperationsResponseModelToJson(
         OperationsResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

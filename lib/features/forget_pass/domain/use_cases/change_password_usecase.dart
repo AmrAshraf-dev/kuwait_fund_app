@@ -7,9 +7,9 @@ import "../../data/models/request/forget_pass_request_model.dart";
 import "../repositories/forget_pass_repository.dart";
 
 @injectable
-class GetForgetPassUseCase
+class ChangePasswordUseCase
     implements UseCase<BaseEntity<bool>, ForgetPassRequestModel> {
-  GetForgetPassUseCase({required this.forgetPassRepository});
+  ChangePasswordUseCase({required this.forgetPassRepository});
 
   final ForgetPassRepository forgetPassRepository;
 
@@ -17,6 +17,6 @@ class GetForgetPassUseCase
   Future<CustomResponseType<BaseEntity<bool>>> call(
     ForgetPassRequestModel params,
   ) {
-    return forgetPassRepository.getForgetPass(forgetPassParams: params);
+    return forgetPassRepository.changePassword(forgetPassParams: params);
   }
 }

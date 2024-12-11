@@ -7,18 +7,20 @@ part of 'auth_response_model.dart';
 // **************************************************************************
 
 AuthModel _$AuthModelFromJson(Map<String, dynamic> json) => AuthModel(
-      var1: json['var1'] as String?,
-      var2: json['var2'] as String?,
+      tokenInfo:
+          TokenInfoModel.fromJson(json['tokenInfo'] as Map<String, dynamic>),
+      userInfo:
+          UserInfoModel.fromJson(json['userInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AuthModelToJson(AuthModel instance) => <String, dynamic>{
-      'var1': instance.var1,
-      'var2': instance.var2,
+      'tokenInfo': instance.tokenInfo,
+      'userInfo': instance.userInfo,
     };
 
 AuthResponseModel _$AuthResponseModelFromJson(Map<String, dynamic> json) =>
     AuthResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : AuthModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -30,7 +32,7 @@ AuthResponseModel _$AuthResponseModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$AuthResponseModelToJson(AuthResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

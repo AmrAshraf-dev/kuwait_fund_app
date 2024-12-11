@@ -11,6 +11,12 @@ import '../../models/response/forget_pass_response_model.dart';
 abstract class ForgetPassRemoteDataSource {
   Future<CustomResponseType<ForgetPassResponseModel>> getForgetPass(
       {required ForgetPassRequestModel forgetPassRequestModel});
+
+  Future<CustomResponseType<ForgetPassResponseModel>> verifyOtp(
+      {required ForgetPassRequestModel forgetPassRequestModel});
+
+  Future<CustomResponseType<ForgetPassResponseModel>> changePassword(
+      {required ForgetPassRequestModel forgetPassRequestModel});
 }
 
 @Injectable(as: ForgetPassRemoteDataSource)
@@ -21,14 +27,42 @@ class ForgetPassDataSourceImpl implements ForgetPassRemoteDataSource {
   @override
   Future<CustomResponseType<ForgetPassResponseModel>> getForgetPass(
       {required ForgetPassRequestModel forgetPassRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper
-        .post(path: ApiConstants.profile, data: <String, String>{
-      "email": forgetPassRequestModel.email ?? "",
-      "lang": forgetPassRequestModel.lang ?? "a"
-    });
+    ({dynamic response, bool success}) result = await networkHelper.get(
+      path: ApiConstants.generateOTP,
+      queryParams: forgetPassRequestModel.toJson(),
+    );
 
     if (result.success) {
-   
+      return right(ForgetPassResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+
+  @override
+  Future<CustomResponseType<ForgetPassResponseModel>> verifyOtp(
+      {required ForgetPassRequestModel forgetPassRequestModel}) async {
+    ({dynamic response, bool success}) result = await networkHelper.get(
+      path: ApiConstants.verifyOTP,
+      queryParams: forgetPassRequestModel.toJson(),
+    );
+
+    if (result.success) {
+      return right(ForgetPassResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+
+  @override
+  Future<CustomResponseType<ForgetPassResponseModel>> changePassword(
+      {required ForgetPassRequestModel forgetPassRequestModel}) async {
+    ({dynamic response, bool success}) result = await networkHelper.get(
+      path: ApiConstants.changePassword,
+      queryParams: forgetPassRequestModel.toJson(),
+    );
+
+    if (result.success) {
       return right(ForgetPassResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));

@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       try {
         //     CustomMainRouter.navigate(const AuthRoute());
-        CustomMainRouter.push(const AdminNavigationMainRoute());
+        CustomMainRouter.push(const AuthRoute());
       } catch (e) {
         debugPrint('Navigation Error: $e');
       }

@@ -23,7 +23,7 @@ Map<String, dynamic> _$ContributionModelToJson(ContributionModel instance) =>
 ContributionsResponseModel _$ContributionsResponseModelFromJson(
         Map<String, dynamic> json) =>
     ContributionsResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => ContributionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -36,7 +36,7 @@ Map<String, dynamic> _$ContributionsResponseModelToJson(
         ContributionsResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

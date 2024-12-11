@@ -18,7 +18,7 @@ Map<String, dynamic> _$HomeModelToJson(HomeModel instance) => <String, dynamic>{
 
 HomeResponseModel _$HomeResponseModelFromJson(Map<String, dynamic> json) =>
     HomeResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : HomeModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -30,7 +30,7 @@ HomeResponseModel _$HomeResponseModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$HomeResponseModelToJson(HomeResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

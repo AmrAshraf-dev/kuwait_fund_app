@@ -19,7 +19,7 @@ class ContributionModel extends ContributionEntity {
 @JsonSerializable()
 class ContributionsResponseModel extends BaseEntity<List<ContributionModel>> {
   const ContributionsResponseModel({
-    super.statusCode,
+    super.code,
     super.data,
     super.message,
     super.totalRecords,

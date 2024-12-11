@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:kf_ess_mobile_app/features/auth/data/models/response/auth_response_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../di/dependency_init.dart';
@@ -11,10 +12,6 @@ class LocalData {
   static void clearAllData() {
     sharedPreferences.clear();
     // CustomMainRouter.push(const LoginRoute());
-  }
-
-  static void clearAzureToken() {
-    sharedPreferences.setString("azureToken", "");
   }
 
   static void clearProfilePhoto() {
@@ -29,24 +26,12 @@ class LocalData {
     return sharedPreferences.getString("iosVersion");
   }
 
-  static String? getAzureToken() {
-    return sharedPreferences.getString("azureToken");
-  }
-
-  static String? getAzureTokenDate() {
-    return sharedPreferences.getString("azureTokenDate");
-  }
-
   static bool? getIsDarkMode() {
     return sharedPreferences.getBool("isDarkMode");
   }
 
   static String? getLangCode() {
     return sharedPreferences.getString("LangCode");
-  }
-
-  static String? getMobKey() {
-    return sharedPreferences.getString("mobKey");
   }
 
   static String? getProfilePhoto() {
@@ -71,25 +56,12 @@ class LocalData {
     await sharedPreferences.setString("iosVersion", iosVersion);
   }
 
-  static void setAzureToken(String token) {
-    sharedPreferences.setString("azureToken", token);
-  }
-
-  static void setAzureTokenDate(DateTime azureTokenExpireDate) {
-    sharedPreferences.setString(
-        "azureTokenDate", azureTokenExpireDate.toString());
-  }
-
   static Future<void>? setIsDarkMode(bool isDarkMode) async {
     await sharedPreferences.setBool("isDarkMode", isDarkMode);
   }
 
   static Future<void>? setLangCode(String langCode) async {
     await sharedPreferences.setString("LangCode", langCode);
-  }
-
-  static Future<void>? setMobKey(String mobKey) async {
-    await sharedPreferences.setString("mobKey", mobKey);
   }
 
   static void setProfilePhoto(Uint8List bytes) {
@@ -114,5 +86,25 @@ class LocalData {
 
   getKeys() {
     return sharedPreferences.getKeys();
+  }
+
+  void saveUser(AuthModel? data) {
+    if (data != null) {
+      sharedPreferences.setString("userInfo", jsonEncode(data));
+    }
+  }
+
+  AuthModel? getUser() {
+    final String? userInfo = sharedPreferences.getString("userInfo");
+
+    if (userInfo != null) {
+      return AuthModel.fromJson(jsonDecode(userInfo));
+    }
+    return null;
+  }
+
+  clearAuthTokens() {
+    sharedPreferences.remove("userInfo");
+    sharedPreferences.remove("refreshToken");
   }
 }

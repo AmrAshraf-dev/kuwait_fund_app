@@ -29,7 +29,7 @@ Map<String, dynamic> _$SubmissionsModelToJson(SubmissionsModel instance) =>
 SubmissionsResponseModel _$SubmissionsResponseModelFromJson(
         Map<String, dynamic> json) =>
     SubmissionsResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
           : SubmissionsModel.fromJson(json['data'] as Map<String, dynamic>),
@@ -42,7 +42,7 @@ Map<String, dynamic> _$SubmissionsResponseModelToJson(
         SubmissionsResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

@@ -3,13 +3,13 @@ import 'package:equatable/equatable.dart';
 class BaseEntity<T> extends Equatable {
   const BaseEntity({
     this.message,
-    this.statusCode,
+    this.code,
     this.data,
     this.totalRecords,
     this.hasMorePages,
   });
   final String? message;
-  final int? statusCode;
+  final int? code;
   final T? data;
 
   final int? totalRecords;

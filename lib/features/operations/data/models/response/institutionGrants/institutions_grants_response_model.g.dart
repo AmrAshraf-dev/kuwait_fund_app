@@ -25,7 +25,7 @@ Map<String, dynamic> _$InstitutionGrantsModelToJson(
 InstitutionsGrantsResponseModel _$InstitutionsGrantsResponseModelFromJson(
         Map<String, dynamic> json) =>
     InstitutionsGrantsResponseModel(
-      statusCode: (json['statusCode'] as num?)?.toInt(),
+      code: (json['code'] as num?)?.toInt(),
       data: (json['data'] as List<dynamic>?)
           ?.map(
               (e) => InstitutionGrantsModel.fromJson(e as Map<String, dynamic>))
@@ -39,7 +39,7 @@ Map<String, dynamic> _$InstitutionsGrantsResponseModelToJson(
         InstitutionsGrantsResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'statusCode': instance.statusCode,
+      'code': instance.code,
       'data': instance.data,
       'totalRecords': instance.totalRecords,
       'hasMorePages': instance.hasMorePages,

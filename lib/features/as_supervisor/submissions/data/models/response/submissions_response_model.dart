@@ -33,7 +33,7 @@ class SubmissionsModel extends SubmissionsEntity {
 @JsonSerializable()
 class SubmissionsResponseModel extends BaseEntity<SubmissionsModel> {
   const SubmissionsResponseModel({
-    super.statusCode,
+    super.code,
     super.data,
     super.message,
     super.totalRecords,
