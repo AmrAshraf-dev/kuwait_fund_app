@@ -1,37 +1,43 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 class FundProfileItem extends StatelessWidget {
-  const FundProfileItem({super.key});
+  const FundProfileItem(
+      {super.key,
+      required this.imageUrl,
+      required this.name,
+      required this.role});
+
+  final String imageUrl;
+  final String name;
+  final String role;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          width: 120.w,
-          height: 120.h,
-          color: Palette.blue_0C4192,
-          child: Center(
-            child: Assets.svg.male.svg(
-              colorFilter: ColorFilter.mode(
-                Palette.white,
-                BlendMode.srcIn,
-              ),
-            ),
+        Center(
+          child: CachedNetworkImage(
+            fadeInDuration: const Duration(milliseconds: 400),
+            imageUrl: imageUrl,
+            width: 100.w,
+            height: 100.h,
+            placeholder: (context, url) =>
+                Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         ),
         10.verticalSpace,
         AppText(
-          text: 'Hesham El Nemr',
+          text: name,
           style: AppTextStyle.medium_18,
         ),
         AppText(
-          text: 'Software eng. flutter developer',
+          text: role,
+          maxLines: 2,
           style: AppTextStyle.regular_14,
           textAlign: TextAlign.center,
         ),

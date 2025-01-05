@@ -10,10 +10,11 @@ final class RequestsInitialState extends RequestsState {}
 
 final class RequestsLoadingState extends RequestsState {}
 
+final class RequestsEmptyState extends RequestsState {}
+
 final class RequestsReadyState extends RequestsState {
   RequestsReadyState(this.response);
-    BaseEntity<RequestsEntity> response;
-
+  BaseEntity<List<RequestsEntity>> response;
 }
 
 abstract class RequestsState {}

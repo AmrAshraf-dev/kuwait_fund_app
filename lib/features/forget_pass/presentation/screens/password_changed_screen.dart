@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/auth_screens_app_bar_widget.dart';
@@ -80,7 +81,7 @@ class _PasswordChangedScreenState extends State<PasswordChangedScreen> {
                                   textStyle: AppTextStyle.medium_20,
                                   text: context.tr("ok_thank_you"),
                                   onPressed: () {
-                                    CustomMainRouter.pop();
+                                    CustomMainRouter.push(AuthRoute());
                                   })
                             ],
                           ),

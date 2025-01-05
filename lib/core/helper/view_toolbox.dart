@@ -12,6 +12,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -598,16 +599,21 @@ class ViewsToolbox {
       SnackBar(
         elevation: 0,
         dismissDirection: DismissDirection.startToEnd,
-        behavior: SnackBarBehavior.fixed,
         backgroundColor: Colors.transparent,
+        behavior: SnackBarBehavior.floating,
         duration: const Duration(milliseconds: 2500),
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         content: AwesomeSnackbarContent(
+          messageTextStyle: TextStyle(
+            overflow: TextOverflow.visible, // This is the line added
+            fontSize: 12.sp, // lib default copied code
+            color: Colors.white, // lib default copied code
+          ),
           title: "",
           //title: "",          //color: Palette.secondaryGreen,
           message: message,
           color: Palette.darkRed,
-
+          inMaterialBanner: false,
           contentType: ContentType.failure,
         ),
       ),
@@ -815,5 +821,18 @@ class ViewsToolbox {
         );
       },
     );
+  }
+
+  static getImageWidget({String? imageUrl}) {
+    if (imageUrl != null && imageUrl.isNotEmpty) {
+      if (imageUrl.contains("http")) {
+        return Image.network(imageUrl);
+      } else {
+        return Image.asset(imageUrl);
+      }
+    } else {
+      return Assets.svg.userCircleIcon
+          .svg(width: 50.w, height: 50.w, color: Palette.white);
+    }
   }
 }

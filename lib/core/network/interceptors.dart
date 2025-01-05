@@ -55,7 +55,8 @@ class AuthInterceptor extends Interceptor {
 
       // Handle 401 (Unauthorized)
       if (err.response?.statusCode == 401) {
-        final refreshTokenResult = false; //await _handleRefreshToken(err);
+        bool refreshTokenResult = await _handleRefreshToken(err);
+
         if (refreshTokenResult) {
           handler.resolve(await _retryRequest(err));
           return;
@@ -64,7 +65,7 @@ class AuthInterceptor extends Interceptor {
           FirebaseCrashlytics.instance.recordError(err, null,
               reason:
                   "Refresh Token Failed for Request: ${err.requestOptions.path}");
-          LocalData().clearAuthTokens();
+          LocalData.clearAuthTokens();
           ViewsToolbox.loginShowDialog(
             title: "session_expired",
             message: "session_expired_message",
@@ -100,7 +101,7 @@ class AuthInterceptor extends Interceptor {
       // "Accept": "application/json",
       // "Content-Type": "application/json",
       // "Connection": "keep-alive",
-      "Authorization": "Bearer ${LocalData().getUser()?.tokenInfo.token}",
+      "Authorization": "Bearer ${LocalData.getUser()?.tokenInfo.token}",
     });
     handler.next(options);
   }
@@ -115,41 +116,42 @@ class AuthInterceptor extends Interceptor {
         pingResult.response?.ttl == null;
   }
 
-  // Future<bool> _handleRefreshToken(DioException err) async {
-  //   try {
-  //     Dio dio = Dio();
+  Future<bool> _handleRefreshToken(DioException err) async {
+    return false;
+    // try {
+    //   Dio dio = Dio();
 
-  //     dio.options.headers['Content-Type'] = 'application/json';
-  //     dio.options.headers['Accept'] = 'application/json';
-  //     dio.options.headers['Connection'] = 'keep-alive';
-  //     dio.options.headers['Accept-Language'] =
-  //         LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US";
-  //     dio.options.headers['Location'] =
-  //         Platform.isAndroid ? "CustomerAndroidApp" : "CustomerIOSApp";
-  //     dio.options.headers['DeviceIdentifier'] =
-  //         FirebaseMessagingService().token ?? "";
-  //     dio.options.headers['SessionIdentifier'] = DeviceService().getDeviceId();
+    //   dio.options.headers['Content-Type'] = 'application/json';
+    //   dio.options.headers['Accept'] = 'application/json';
+    //   dio.options.headers['Connection'] = 'keep-alive';
+    //   dio.options.headers['Accept-Language'] =
+    //       LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US";
+    //   dio.options.headers['Location'] =
+    //       Platform.isAndroid ? "CustomerAndroidApp" : "CustomerIOSApp";
+    //   dio.options.headers['DeviceIdentifier'] =
+    //       FirebaseMessagingService().token ?? "";
+    //   dio.options.headers['SessionIdentifier'] = DeviceService().getDeviceId();
 
-  //     final response = await dio.post(
-  //       "https://mpwpayment.diyarme.com/SplittcustomerAPI/api/Auth/GetRefreshToken",
-  //       data: {
-  //         "token": LocalData.getAuthTokens()?.token,
-  //         "refreshToken": LocalData.getAuthTokens()?.refreshToken,
-  //       },
-  //     );
+    //   final response = await dio.post(
+    //     "https://mpwpayment.diyarme.com/SplittcustomerAPI/api/Auth/GetRefreshToken",
+    //     data: {
+    //       "token": LocalData.getAuthTokens()?.token,
+    //       "refreshToken": LocalData.getAuthTokens()?.refreshToken,
+    //     },
+    //   );
 
-  //     if (response.statusCode == 200 && response.data != null) {
-  //       // Update local token storage
-  //       LocalData.setAuthTokens(response.data);
-  //       return true;
-  //     }
-  //   } catch (e) {
-  //     FirebaseCrashlytics.instance.recordError(e, null,
-  //         reason:
-  //             "Refresh Token Failed for Request: ${err.requestOptions.path}");
-  //   }
-  //   return false;
-  // }
+    //   if (response.statusCode == 200 && response.data != null) {
+    //     // Update local token storage
+    //     LocalData.setAuthTokens(response.data);
+    //     return true;
+    //   }
+    // } catch (e) {
+    //   FirebaseCrashlytics.instance.recordError(e, null,
+    //       reason:
+    //           "Refresh Token Failed for Request: ${err.requestOptions.path}");
+    // }
+    // return false;
+  }
 
   Future<Response> _retryRequest(DioException err) async {
     final newRequestOptions = err.requestOptions;

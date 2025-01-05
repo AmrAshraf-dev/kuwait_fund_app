@@ -12,8 +12,7 @@ final class CertificatesLoadingState extends CertificatesState {}
 
 final class CertificatesReadyState extends CertificatesState {
   CertificatesReadyState(this.response);
-    BaseEntity<CertificatesEntity> response;
-
+  BaseEntity<List<CertificatesEntity>> response;
 }
 
 abstract class CertificatesState {}

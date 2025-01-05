@@ -80,11 +80,11 @@ class LocalData {
     return sharedPreferences.getBool(key);
   }
 
-  Future<bool> setBool(String key, bool value) async {
+  static Future<bool> setBool(String key, bool value) async {
     return sharedPreferences.setBool(key, value);
   }
 
-  getKeys() {
+  static getKeys() {
     return sharedPreferences.getKeys();
   }
 
@@ -94,7 +94,7 @@ class LocalData {
     }
   }
 
-  AuthModel? getUser() {
+  static AuthModel? getUser() {
     final String? userInfo = sharedPreferences.getString("userInfo");
 
     if (userInfo != null) {
@@ -103,7 +103,7 @@ class LocalData {
     return null;
   }
 
-  clearAuthTokens() {
+  static clearAuthTokens() {
     sharedPreferences.remove("userInfo");
     sharedPreferences.remove("refreshToken");
   }

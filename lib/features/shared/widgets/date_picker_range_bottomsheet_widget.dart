@@ -1,27 +1,32 @@
 import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/shared/cubit/date_picker_range_cubit/range_date_picker_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 
 class RangeDatePickerBottomsheetWidget extends StatelessWidget {
-  const RangeDatePickerBottomsheetWidget(
-      {super.key,
-      this.fromDateController,
-      this.toDateController,
-      this.consumedDays,
-      this.totalDays,
-      this.labelTitle,
-      this.initialDate,
-      this.initNull,
-      this.firstDate,
-      this.lastDate,
-      this.customFormKey,
-      this.selectedRange,
-      this.isReadOnly = false});
+  RangeDatePickerBottomsheetWidget({
+    super.key,
+    this.fromDateController,
+    this.toDateController,
+    this.consumedDays,
+    this.totalDays,
+    this.labelTitle,
+    this.initialDate,
+    this.initNull,
+    this.firstDate,
+    this.lastDate,
+    this.customFormKey,
+    this.selectedRange,
+    this.isReadOnly = false,
+    required this.onDoneCallback,
+  });
 
   final TextEditingController? fromDateController;
   final TextEditingController? toDateController;
@@ -35,131 +40,158 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
   final GlobalKey<FormBuilderState>? customFormKey;
   final DateTimeRange? selectedRange;
   final bool isReadOnly;
-
+  final void Function(bool) onDoneCallback;
+  final RangeDatePickerCubit rangeDatePickerCubit =
+      getIt<RangeDatePickerCubit>();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        10.verticalSpace,
-        if (consumedDays != null && totalDays != null)
-          Container(
-            decoration: BoxDecoration(
-              color: Palette.yellow_FBD823,
-              borderRadius: BorderRadius.circular(10.r),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 20.w),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppText(
-                    text: labelTitle,
-                    style: AppTextStyle.regular_16,
+    return BlocProvider(
+      create: (_) => rangeDatePickerCubit,
+      child: BlocBuilder<RangeDatePickerCubit, RangeDatePickerState>(
+        builder: (context, state) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              10.verticalSpace,
+              if (state.consumedDays != null && totalDays != null)
+                Container(
+                  decoration: BoxDecoration(
+                    color: Palette.yellow_FBD823,
+                    borderRadius: BorderRadius.circular(10.r),
                   ),
-                  5.horizontalSpace,
-                  AppText(
-                    text: "$consumedDays" "/",
-                    style: AppTextStyle.bold_16,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: 10.0.h, horizontal: 20.w),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppText(
+                          text: labelTitle,
+                          style: AppTextStyle.regular_16,
+                        ),
+                        5.horizontalSpace,
+                        AppText(
+                          text: "${state.consumedDays}" "/",
+                          style: AppTextStyle.bold_16,
+                        ),
+                        AppText(
+                          text: "$totalDays",
+                          style: AppTextStyle.bold_16,
+                          textColor: Palette.gery_6C6D6F,
+                        ),
+                      ],
+                    ),
                   ),
-                  AppText(
-                    text: "$totalDays",
-                    style: AppTextStyle.bold_16,
-                    textColor: Palette.gery_6C6D6F,
+                ),
+              AbsorbPointer(
+                absorbing: isReadOnly,
+                child: RangeDatePicker(
+                  selectedRange: selectedRange,
+                  initialDate: initialDate ??
+                      ((initNull ?? true) ? null : DateTime.now()),
+                  minDate: firstDate ?? DateTime.now(),
+                  maxDate: lastDate ??
+                      DateTime.now().add(const Duration(days: 365 * 10)),
+                  selectedCellsDecoration: BoxDecoration(
+                    color: Palette.blue_ECEEF4,
                   ),
-                ],
+                  selectedCellsTextStyle: TextStyle(
+                      color: Palette.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.sp),
+                  singleSelectedCellDecoration: BoxDecoration(
+                    color: Palette.primaryColor,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                  ),
+                  currentDateDecoration: BoxDecoration(
+                    color: Palette.geryPattern,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                  ),
+                  currentDateTextStyle:
+                      TextStyle(color: Palette.black, fontSize: 16.sp),
+                  initialPickerType: PickerType.days,
+                  leadingDateTextStyle: const TextStyle(
+                      color: Palette.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                  slidersColor: Palette.primaryColor.withOpacity(0.2),
+                  highlightColor: Colors.redAccent,
+                  slidersSize: 20,
+                  splashRadius: 20,
+                  centerLeadingDate: false,
+                  onRangeSelected: (DateTimeRange? value) {
+                    if (value != null) {
+                      final selectedDays =
+                          value.end.difference(value.start).inDays;
+
+                      if (totalDays != null && selectedDays > totalDays!) {
+                        fromDateController?.text = "";
+                        toDateController?.text = "";
+                        customFormKey?.currentState!.fields["from"]!
+                            .didChange("");
+                        customFormKey?.currentState!.fields["to"]!
+                            .didChange("");
+                        // Show a message if the selected range exceeds totalDays
+                        rangeDatePickerCubit.emitErrorMessage(
+                            context.tr("selected_days_exceeds_available_days"));
+
+                        return; // Prevent further processing
+                      }
+
+                      // Update the consumed days in the cubit
+                      rangeDatePickerCubit.updateConsumedDays(selectedDays);
+
+                      if (fromDateController != null) {
+                        fromDateController?.text =
+                            DateFormat("yyyy-MM-dd", "en").format(value.start);
+                        customFormKey?.currentState!.fields["from"]!.didChange(
+                            DateFormat("yyyy-MM-dd", "en").format(value.start));
+                      }
+                      if (toDateController != null) {
+                        toDateController?.text =
+                            DateFormat("yyyy-MM-dd", "en").format(value.end);
+                        customFormKey?.currentState!.fields["to"]!.didChange(
+                            DateFormat("yyyy-MM-dd", "en").format(value.end));
+                      }
+                    }
+                  },
+                ),
               ),
-            ),
-          ),
-        AbsorbPointer(
-          absorbing: isReadOnly,
-          child: RangeDatePicker(
-            selectedRange: selectedRange,
-            initialDate:
-                initialDate ?? ((initNull ?? true) ? null : DateTime.now()),
-            minDate: firstDate ?? DateTime.now(),
-            maxDate:
-                lastDate ?? DateTime.now().add(const Duration(days: 365 * 10)),
-
-            // selectedRange:
-            //     DateTimeRange(start: DateTime(2022), end: Dat(2023)),
-            selectedCellsDecoration: BoxDecoration(
-              color: Palette.blue_ECEEF4,
-              //   shape: BoxShape.circle,
-            ),
-            selectedCellsTextStyle: TextStyle(
-                color: Palette.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 16.sp),
-            // singleSelectedCellTextStyle: const TextStyle(),
-
-            singleSelectedCellDecoration: BoxDecoration(
-              color: Palette.primaryColor,
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(10.r)),
-            ),
-            currentDateDecoration: BoxDecoration(
-              color: Palette.geryPattern,
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(10.r)),
-            ),
-            currentDateTextStyle:
-                TextStyle(color: Palette.black, fontSize: 16.sp),
-            // daysOfTheWeekTextStyle: const TextStyle(),
-            // disabledCellsTextStyle: const TextStyle(),
-            // enabledCellsDecoration: const BoxDecoration(),
-            // enabledCellsTextStyle: const TextStyle(),
-            initialPickerType: PickerType.days,
-            leadingDateTextStyle: const TextStyle(
-                color: Palette.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 20),
-            slidersColor: Palette.primaryColor.withOpacity(0.2),
-            highlightColor: Colors.redAccent,
-            slidersSize: 20,
-            //splashColor: Colors.lightBlueAccent,
-            splashRadius: 20,
-            centerLeadingDate: false,
-
-            onRangeSelected: (DateTimeRange? value) {
-              if (value != null) {
-                if (fromDateController != null) {
-                  fromDateController?.text =
-                      DateFormat("yyyy-MM-dd", "en").format(value.start);
-                  customFormKey?.currentState!.fields["from"]!.didChange(
-                      DateFormat("yyyy-MM-dd", "en").format(value.start));
-                }
-                if (toDateController != null) {
-                  toDateController?.text =
-                      DateFormat("yyyy-MM-dd", "en").format(value.end);
-                  customFormKey?.currentState!.fields["to"]!.didChange(
-                      DateFormat("yyyy-MM-dd", "en").format(value.end));
-                }
-              }
-            },
-          ),
-        ),
-        10.verticalSpace,
-        CustomElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          text: context.tr("done"),
-        ),
-        CustomElevatedButton(
-          backgroundColor: Palette.transparntColor,
-          onPressed: () {
-            if (fromDateController != null) fromDateController?.text = "";
-            if (toDateController != null) toDateController?.text = "";
-            Navigator.pop(context);
-          },
-          text: context.tr("cancel"),
-          textColor: Palette.primaryBackgroundDarkTheme,
-        ),
-      ],
+              if (state.errorMessage != null)
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: AppText(
+                    text: state.errorMessage!,
+                    style: AppTextStyle.regular_14,
+                    textColor: Palette.red_FF0606,
+                  ),
+                ),
+              10.verticalSpace,
+              CustomElevatedButton(
+                onPressed: () {
+                  onDoneCallback(state.errorMessage == null);
+                },
+                text: context.tr("done"),
+              ),
+              CustomElevatedButton(
+                backgroundColor: Palette.transparntColor,
+                onPressed: () {
+                  if (fromDateController != null) fromDateController?.text = "";
+                  if (toDateController != null) toDateController?.text = "";
+                  Navigator.pop(context);
+                },
+                text: context.tr("cancel"),
+                textColor: Palette.primaryBackgroundDarkTheme,
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

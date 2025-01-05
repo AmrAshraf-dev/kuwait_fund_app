@@ -123,20 +123,20 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
                                     ForgetPassVerifyOtpRoute());
                               }
                             },
+                            child: CustomElevatedButton(
+                              text: context.tr("send_otp"),
+                              onPressed: () {
+                                if (_formKey.currentState?.saveAndValidate() ??
+                                    false) {
+                                  forgetPassCubit.getForgetPass(
+                                      forgetPassModel: ForgetPassRequestModel(
+                                    userName: _formKey.currentState
+                                        ?.fields["userName"]?.value,
+                                  ));
+                                }
+                              },
+                            ),
                           ),
-                        ),
-                        CustomElevatedButton(
-                          text: context.tr("send_otp"),
-                          onPressed: () {
-                            if (_formKey.currentState?.saveAndValidate() ??
-                                false) {
-                              forgetPassCubit.getForgetPass(
-                                  forgetPassModel: ForgetPassRequestModel(
-                                userName: _formKey
-                                    .currentState?.fields["userName"]?.value,
-                              ));
-                            }
-                          },
                         ),
                         10.verticalSpace,
                         CustomElevatedButton(

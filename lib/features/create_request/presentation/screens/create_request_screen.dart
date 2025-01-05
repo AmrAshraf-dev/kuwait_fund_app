@@ -60,12 +60,12 @@ class _CreateRequestScreenState extends State<CreateRequestScreen> {
                   onTap: () {
                     CustomMainRouter.push(CreateInsuranceRequestRoute());
                   }),
-              MoreItemWidget(
-                  text: context.tr("training_request"),
-                  svgIcon: Assets.svg.createTrainingRequest.path,
-                  onTap: () {
-                    CustomMainRouter.push(CreateTrainingRequestRoute());
-                  }),
+              // MoreItemWidget(
+              //     text: context.tr("training_request"),
+              //     svgIcon: Assets.svg.createTrainingRequest.path,
+              //     onTap: () {
+              //       CustomMainRouter.push(CreateTrainingRequestRoute());
+              //     }),
               MoreItemWidget(
                   text: context.tr("loan_request"),
                   svgIcon: Assets.svg.loan.path,

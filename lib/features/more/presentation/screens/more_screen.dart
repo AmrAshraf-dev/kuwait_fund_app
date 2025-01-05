@@ -32,7 +32,7 @@ class _MoreScreenState extends State<MoreScreen> {
   final ToggleCubit toggleCubit = GetIt.I<ToggleCubit>();
   final ToggleModel toggleModel = GetIt.I<ToggleModel>();
   LocaleCubit localeCubit = getIt<LocaleCubit>();
-  final bool userIsAdmin = true;
+
   @override
   void initState() {
     super.initState();
@@ -61,7 +61,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 onTap: () {
                   CustomMainRouter.push(MyAttendanceRoute());
                 }),
-            if (!userIsAdmin)
+            if (LocalData.getUser()!.userInfo.isValidUser)
               MoreItemWidget(
                   text: context.tr("certificates"),
                   svgIcon: loan,
@@ -74,7 +74,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 onTap: () {
                   CustomMainRouter.push(AdsRoute());
                 }),
-            userIsAdmin
+            LocalData.getUser()!.userInfo.isDirector
                 ? MoreItemWidget(
                     text: context.tr("director_mission"),
                     svgIcon: Assets.svg.directorMission.path,
@@ -87,7 +87,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     onTap: () {
                       CustomMainRouter.push(VisitorsLogsRoute());
                     }),
-            userIsAdmin
+            LocalData.getUser()!.userInfo.isDirector
                 ? MoreItemWidget(
                     text: context.tr("dept_mission"),
                     svgIcon: Assets.svg.deptMission.path,

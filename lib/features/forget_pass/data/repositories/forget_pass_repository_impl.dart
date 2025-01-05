@@ -31,7 +31,7 @@ class ForgetPassRepositoryImp implements ForgetPassRepository {
   @override
   Future<CustomResponseType<BaseEntity<bool>>> changePassword(
       {required ForgetPassRequestModel forgetPassParams}) async {
-    return await forgetPassRemoteDataSource.verifyOtp(
+    return await forgetPassRemoteDataSource.changePassword(
         forgetPassRequestModel: forgetPassParams);
   }
 }

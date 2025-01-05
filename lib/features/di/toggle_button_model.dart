@@ -15,15 +15,15 @@ class ToggleModel {
   // Initialize SharedPreferences
   Future<void> init() async {
     // Load initial states from SharedPreferences
-    togglesKeys.forEach((String key) {
+    for (var key in togglesKeys) {
       bool value = LocalData().getBool(key) ?? false;
       toggleCubit.toggle(key, value); // Initialize the cubit with saved values
-    });
+    }
   }
 
   // Set the value to SharedPreferences and update the cubit
   Future<void> setValue(String key, bool value) async {
-    await LocalData().setBool(key, value);
+    await LocalData.setBool(key, value);
     toggleCubit.toggle(key, value); // Update the cubit state
   }
 

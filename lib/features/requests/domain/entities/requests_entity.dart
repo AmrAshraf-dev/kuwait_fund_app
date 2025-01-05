@@ -2,19 +2,29 @@ import "package:equatable/equatable.dart";
 
 /// Entity that contains the data of the Requests.
 class RequestsEntity extends Equatable {
+  final String? requestID;
+  final String? requestType;
   final String? status;
-  final String? date;
-  final String? type;
-  final String? from;
-  final String? to;
+  final String? statusCode;
+  final DateTime? requestDate;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final String? courseName;
+  final String? loanReason;
+  final String? loanAmount;
 
   /// Entity that contains the data of the Requests.
   const RequestsEntity({
+    required this.requestID,
+    required this.requestType,
     required this.status,
-    required this.date,
-    required this.type,
-    required this.from,
-    required this.to,
+    required this.statusCode,
+    required this.requestDate,
+    required this.startDate,
+    required this.endDate,
+    required this.courseName,
+    required this.loanReason,
+    required this.loanAmount,
   });
 
   /*
