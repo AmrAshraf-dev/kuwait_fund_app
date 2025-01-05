@@ -1,19 +1,13 @@
- import "package:equatable/equatable.dart";
-
-
-
-
+import "package:equatable/equatable.dart";
 
 /// Entity that contains the data of the Certificates.
-class CertificatesEntity extends Equatable{
+class CertificatesEntity extends Equatable {
+  final String? id;
 
- final String? var1;
+  final String? name;
 
- final  String? var2;
   /// Entity that contains the data of the Certificates.
-   CertificatesEntity(
-    {required this.var1, required this.var2}
-   );
+  const CertificatesEntity({required this.id, required this.name});
 
   /*
   An entity represents a real-world object with a distinct identity. 
@@ -21,10 +15,7 @@ class CertificatesEntity extends Equatable{
 
   @override
   List<Object?> get props => [
-  /*
-  List your entity attributes here 
-  */
-  ];
-
-
+        id,
+        name,
+      ];
 }

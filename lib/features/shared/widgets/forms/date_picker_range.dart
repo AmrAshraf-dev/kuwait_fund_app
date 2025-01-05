@@ -30,6 +30,7 @@ class CustomRangeDatePicker extends StatefulWidget {
     required this.labelTitle,
     this.consumedDays,
     this.totalDays,
+    required this.onDoneCallback,
   });
   final String? hintText;
   final String keyNameFrom;
@@ -48,6 +49,7 @@ class CustomRangeDatePicker extends StatefulWidget {
   final String labelTitle;
   final int? consumedDays;
   final int? totalDays;
+  final void Function(bool) onDoneCallback;
 
   @override
   State<CustomRangeDatePicker> createState() => _CustomRangeDatePickerState();
@@ -85,6 +87,7 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
               onTap: () async {
                 if (!(widget.disableField ?? false)) {
                   _selectFullScreenDate(
+                      onDoneCallback: widget.onDoneCallback,
                       widget: widget,
                       labelTitle: widget.labelTitle,
                       consumedDays: widget.consumedDays,
@@ -105,6 +108,7 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
               onIconPressed: () async {
                 if (!widget.disableField!) {
                   _selectFullScreenDate(
+                      onDoneCallback: widget.onDoneCallback,
                       widget: widget,
                       labelTitle: widget.labelTitle,
                       consumedDays: widget.consumedDays,
@@ -140,6 +144,7 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
                   onTap: () async {
                     if (!(widget.disableField ?? false)) {
                       _selectFullScreenDate(
+                          onDoneCallback: widget.onDoneCallback,
                           widget: widget,
                           labelTitle: widget.labelTitle,
                           consumedDays: widget.consumedDays,
@@ -160,6 +165,7 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
                   onIconPressed: () async {
                     if (!widget.disableField!) {
                       _selectFullScreenDate(
+                          onDoneCallback: widget.onDoneCallback,
                           widget: widget,
                           labelTitle: widget.labelTitle,
                           consumedDays: widget.consumedDays,
@@ -180,6 +186,7 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
     required int? consumedDays,
     required int? totalDays,
     required CustomRangeDatePicker widget,
+    required void Function(bool) onDoneCallback,
   }) {
     ViewsToolbox.showBottomSheet(
         height: 1.sh - 100,
@@ -193,6 +200,7 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
             toDateController: _toDateController,
             labelTitle: labelTitle,
             consumedDays: consumedDays,
-            totalDays: totalDays));
+            totalDays: totalDays,
+            onDoneCallback: onDoneCallback));
   }
 }

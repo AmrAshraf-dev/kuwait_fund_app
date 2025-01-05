@@ -6,8 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/splash/presentation/cubits/splash_cubit.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 
 @RoutePage()
 class SplashScreen extends StatefulWidget {
@@ -18,21 +17,24 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final SplashCubit _splashCubit = getIt<SplashCubit>();
   @override
   void initState() {
     Timer(const Duration(seconds: 1), () {
       FlutterNativeSplash.remove();
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
-      try {
-        //     CustomMainRouter.navigate(const AuthRoute());
+      if (LocalData.getUser() != null &&
+          LocalData.getUser()?.tokenInfo.token.isNotEmpty == true) {
+        if (LocalData.getUser()!.userInfo.isValidUser) {
+          CustomMainRouter.push(NavigationMainRoute());
+        } else if (LocalData.getUser()!.userInfo.isSupervisor) {
+          CustomMainRouter.push(SupervisorNavigationMainRoute());
+        } else if (LocalData.getUser()!.userInfo.isDirector) {
+          CustomMainRouter.push(SupervisorNavigationMainRoute());
+        } else if (LocalData.getUser()!.userInfo.isTrainingSupervisor) {}
+      } else {
         CustomMainRouter.push(const AuthRoute());
-      } catch (e) {
-        debugPrint('Navigation Error: $e');
       }
-
-      //CustomMainRouter.push(const NavigationMainRoute());
     });
     super.initState();
   }

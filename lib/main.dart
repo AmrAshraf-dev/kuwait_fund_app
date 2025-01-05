@@ -5,13 +5,14 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:get_it/get_it.dart';
+import 'package:kf_ess_mobile_app/core/services/cubit_observer.dart';
 import 'package:kf_ess_mobile_app/features/firebase/firebase_service.dart';
 
 import 'core/routes/router_observer.dart';
@@ -27,8 +28,7 @@ import 'features/shared/widgets/custom_toggle_button/custom_toggle_button_cubit.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  Gemini.init(apiKey: 'AIzaSyBmHpMqyXzn-Tr6hcErjjoAjn7Jiyp2fOo');
-
+  Bloc.observer = AliveCubitObserver();
   await Firebase.initializeApp(
     name: "Swa",
     options: DefaultFirebaseOptions.currentPlatform,
@@ -91,7 +91,6 @@ void setupDI() {
 }
 
 class MyApp extends StatefulWidget {
-  //LocaleCubit localeCubit = getIt<LocaleCubit>();
   MyApp({super.key});
   ThemeCubit themeCubit = getIt<ThemeCubit>();
 

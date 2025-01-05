@@ -9,7 +9,7 @@ import '../../data/local_data.dart';
 
 part 'theme_state.dart';
 
-@injectable
+@singleton
 class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit() : super(ThemeInitial());
   // Default locale

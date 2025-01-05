@@ -8,23 +8,23 @@ part of 'certificates_response_model.dart';
 
 CertificatesModel _$CertificatesModelFromJson(Map<String, dynamic> json) =>
     CertificatesModel(
-      var1: json['var1'] as String?,
-      var2: json['var2'] as String?,
+      id: json['id'] as String?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$CertificatesModelToJson(CertificatesModel instance) =>
     <String, dynamic>{
-      'var1': instance.var1,
-      'var2': instance.var2,
+      'id': instance.id,
+      'name': instance.name,
     };
 
 CertificatesResponseModel _$CertificatesResponseModelFromJson(
         Map<String, dynamic> json) =>
     CertificatesResponseModel(
       code: (json['code'] as num?)?.toInt(),
-      data: json['data'] == null
-          ? null
-          : CertificatesModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => CertificatesModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       message: json['message'] as String?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
       hasMorePages: json['hasMorePages'] as bool?,

@@ -120,6 +120,7 @@ class _CustomSingleRangeDatePickerState
         height: 1.sh - 100,
         context: context,
         widget: RangeDatePickerBottomsheetWidget(
+            onDoneCallback: (bool isSelectedRangeValid) {},
             customFormKey: widget.customFormKey,
             fromDateController: _fromDateController,
             labelTitle: labelTitle,

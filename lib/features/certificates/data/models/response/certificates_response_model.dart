@@ -15,9 +15,9 @@ part 'certificates_response_model.g.dart';
 
 @JsonSerializable()
 class CertificatesModel extends CertificatesEntity {
-  CertificatesModel({
-    required super.var1,
-    required super.var2,
+  const CertificatesModel({
+    required super.id,
+    required super.name,
   });
 
   factory CertificatesModel.fromJson(Map<String, dynamic> json) =>
@@ -27,7 +27,7 @@ class CertificatesModel extends CertificatesEntity {
 }
 
 @JsonSerializable()
-class CertificatesResponseModel extends BaseEntity<CertificatesModel> {
+class CertificatesResponseModel extends BaseEntity<List<CertificatesModel>> {
   const CertificatesResponseModel({
     super.code,
     super.data,

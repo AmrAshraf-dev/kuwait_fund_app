@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -65,6 +66,7 @@ class _ThankYouScreenState extends State<ThankYouScreen> {
                             ),
                             10.verticalSpace,
                             AppText(
+                                maxLines: 2,
                                 text: widget.subtitle ?? "",
                                 style: AppTextStyle.medium_16,
                                 textAlign: TextAlign.center,
@@ -74,7 +76,7 @@ class _ThankYouScreenState extends State<ThankYouScreen> {
                                 textStyle: AppTextStyle.medium_20,
                                 text: context.tr("ok_thank_you"),
                                 onPressed: () {
-                                  CustomMainRouter.pop();
+                                  CustomMainRouter.push(NavigationMainRoute());
                                 })
                           ],
                         ),

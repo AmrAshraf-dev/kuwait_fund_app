@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
+import 'package:kf_ess_mobile_app/core/helper/general_helper.dart';
+import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
@@ -12,8 +14,8 @@ import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/cre
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/recent_update_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/slider_section_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 
@@ -56,8 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 2.0,
                         ),
                       ),
-                      child: Assets.svg.userCircleIcon
-                          .svg(width: 50.w, height: 50.w, color: Palette.white),
+                      child: ViewsToolbox.getImageWidget(
+                        imageUrl: LocalData.getUser()?.userInfo.photoURL,
+                      ),
                     ),
                     12.horizontalSpace,
                     Column(
@@ -65,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         AppText(
                           text:
-                              "${context.tr('hi')} ${context.tr('good_morning')}",
+                              "${context.tr('hi')} ${GeneralHelper.getWelcomeMessage(context)}",
                           style: AppTextStyle.regular_16,
                           textColor: Colors.white,
                         ),
@@ -73,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           width: 150.w,
                           child: AppText(
-                            text: 'Ahmed Mohamed',
+                            text: LocalData.getUser()?.userInfo.name,
                             style: AppTextStyle.bold_16,
                             textColor: Colors.white,
                           ),

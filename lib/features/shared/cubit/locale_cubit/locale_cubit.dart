@@ -8,7 +8,7 @@ import '../../data/local_data.dart';
 
 part 'locale_state.dart';
 
-@injectable
+@singleton
 class LocaleCubit extends Cubit<Locale> {
   LocaleCubit()
       : super(Locale(LocalData.getLangCode() ?? "en")); // Default locale
@@ -19,9 +19,9 @@ class LocaleCubit extends Cubit<Locale> {
   }
 
   // Method to update the locale
-  void setLocale(BuildContext context, Locale _locale) {
-    LocalData.setLangCode(_locale.languageCode);
-    context.setLocale(_locale);
+  void setLocale(BuildContext context, Locale locale) {
+    LocalData.setLangCode(locale.languageCode);
+    context.setLocale(locale);
 
     MyApp.of(context).updateState();
     // emit(LocaleChangedState(_locale));

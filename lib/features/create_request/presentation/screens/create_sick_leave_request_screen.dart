@@ -56,6 +56,7 @@ class _CreateSickLeaveRequestScreenState
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),
                     child: CustomRangeDatePicker(
+                      onDoneCallback: (bool isSelectedRangeValid) {},
                       labelTitle: context.tr("sick_leave_days"),
                       consumedDays: 4,
                       totalDays: 4,
