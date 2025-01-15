@@ -19,4 +19,10 @@ class CertificatesRepositoryImp implements CertificatesRepository {
       getCertificates() async {
     return await certificatesRemoteDataSource.getCertificates();
   }
+
+  @override
+  Future<CustomResponseType<BaseEntity<String>>> generateCertificate(
+      statmentType) {
+    return certificatesRemoteDataSource.generateCertificate(statmentType);
+  }
 }

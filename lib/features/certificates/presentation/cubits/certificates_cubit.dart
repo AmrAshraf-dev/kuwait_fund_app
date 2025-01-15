@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
+import 'package:kf_ess_mobile_app/features/certificates/domain/use_cases/generate_certificates_usecase.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
@@ -12,7 +15,12 @@ part 'certificates_state.dart';
 @injectable
 class CertificatesCubit extends Cubit<CertificatesState> {
   final GetCertificatesUseCase getCertificatesUseCase;
-  CertificatesCubit({required this.getCertificatesUseCase})
+
+  final GenerateCertificateUserCase generateCertificateUserCase;
+
+  CertificatesCubit(
+      {required this.getCertificatesUseCase,
+      required this.generateCertificateUserCase})
       : super(CertificatesInitialState()) {
     getCertificates();
   }
@@ -30,6 +38,21 @@ class CertificatesCubit extends Cubit<CertificatesState> {
       ));
     }, (BaseEntity<List<CertificatesEntity>> response) {
       emit(CertificatesReadyState(response));
+    });
+  }
+
+  void generateCertificate(String statmentType) async {
+    emit(CertificatesLoadingState());
+    final CustomResponseType<BaseEntity<String>> eitherPackagesOrFailure =
+        await generateCertificateUserCase(statmentType);
+
+    eitherPackagesOrFailure.fold((Failure failure) {
+      final FailureToMassage massage = FailureToMassage();
+      emit(CertificatesErrorState(
+        message: massage.mapFailureToMessage(failure),
+      ));
+    }, (BaseEntity<String> response) {
+      CustomMainRouter.push(CertificateDetailsRoute());
     });
   }
 }

@@ -14,13 +14,15 @@ part 'submissions_state.dart';
 class SubmissionsCubit extends Cubit<SubmissionsState> {
   final GetSubmissionsUseCase getSubmissionsUseCase;
   SubmissionsCubit({required this.getSubmissionsUseCase})
-      : super(SubmissionsInitialState());
+      : super(SubmissionsInitialState()) {
+    getSubmissions(submissionsModel: SubmissionsRequestModel());
+  }
 
   Future<void> getSubmissions(
       {required SubmissionsRequestModel submissionsModel}) async {
     emit(SubmissionsLoadingState());
 
-    final CustomResponseType<BaseEntity<SubmissionsEntity>>
+    final CustomResponseType<BaseEntity<List<SubmissionsEntity>>>
         eitherPackagesOrFailure = await getSubmissionsUseCase(submissionsModel);
 
     eitherPackagesOrFailure.fold((Failure failure) {
@@ -28,8 +30,13 @@ class SubmissionsCubit extends Cubit<SubmissionsState> {
       emit(SubmissionsErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<SubmissionsEntity> response) {
-      emit(SubmissionsReadyState(response));
+    }, (BaseEntity<List<SubmissionsEntity>> response) {
+      if (response.data?.isEmpty ?? true) {
+        emit(SubmissionsEmptyState());
+        return;
+      } else {
+        emit(SubmissionsReadyState(response));
+      }
     });
   }
 }

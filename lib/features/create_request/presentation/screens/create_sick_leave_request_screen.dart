@@ -8,7 +8,7 @@ import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/date_picker_range.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/forms/custom_date_picker_range.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 
@@ -55,7 +55,7 @@ class _CreateSickLeaveRequestScreenState
                   key: _formKey,
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),
-                    child: CustomRangeDatePicker(
+                    child: CustomDatePickerRange(
                       onDoneCallback: (bool isSelectedRangeValid) {},
                       labelTitle: context.tr("sick_leave_days"),
                       consumedDays: 4,

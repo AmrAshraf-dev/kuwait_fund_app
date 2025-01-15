@@ -21,10 +21,11 @@ class SubmissionItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (submissionsEntity.type == RequestTypeEnum.trainingRequest.name) {
+        if (submissionsEntity.requestType ==
+            RequestTypeEnum.trainingRequest.name) {
           CustomMainRouter.push(TrainingSubmissionsDetailsRoute());
           return;
-        } else if (submissionsEntity.type ==
+        } else if (submissionsEntity.requestType ==
             RequestTypeEnum.annualLeaveRequest.name) {
           CustomMainRouter.push(AnnualSubmissionsDetailsRoute());
         }
@@ -52,7 +53,7 @@ class SubmissionItemWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppText(
-                        text: submissionsEntity.date,
+                        text: submissionsEntity.requestDate,
                         style: AppTextStyle.semiBold_12,
                         textColor: Palette.semiTextGrey,
                       ),
@@ -64,7 +65,7 @@ class SubmissionItemWidget extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: AppText(
-                            text: context.tr(submissionsEntity.status!),
+                            text: context.tr(submissionsEntity.statusCode!),
                             textColor: Colors.white,
                             style: AppTextStyle.semiBold_12,
                           ),
@@ -81,7 +82,7 @@ class SubmissionItemWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AppText(
-                            text: context.tr(submissionsEntity.type!),
+                            text: context.tr(submissionsEntity.requestType!),
                             style: AppTextStyle.bold_16,
                             textColor: Palette.black,
                           ),
@@ -91,7 +92,7 @@ class SubmissionItemWidget extends StatelessWidget {
                               Assets.svg.person.svg(),
                               5.horizontalSpace,
                               AppText(
-                                text: submissionsEntity.requesterName,
+                                text: submissionsEntity.courseName,
                                 style: AppTextStyle.medium_14,
                                 textColor: Palette.black,
                               ),
@@ -105,7 +106,7 @@ class SubmissionItemWidget extends StatelessWidget {
                               5.horizontalSpace,
                               AppText(
                                 text:
-                                    "${submissionsEntity.from} - ${submissionsEntity.to}",
+                                    "${submissionsEntity.startDate} - ${submissionsEntity.endDate}",
                                 style: AppTextStyle.medium_14,
                                 textColor: Palette.black,
                               ),

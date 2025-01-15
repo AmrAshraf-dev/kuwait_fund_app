@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';
@@ -9,6 +10,9 @@ import '../../models/response/certificates_response_model.dart';
 
 abstract class CertificatesRemoteDataSource {
   Future<CustomResponseType<CertificatesResponseModel>> getCertificates();
+
+  Future<CustomResponseType<BaseEntity<String>>> generateCertificate(
+      statmentType);
 }
 
 @Injectable(as: CertificatesRemoteDataSource)
@@ -26,6 +30,22 @@ class CertificatesDataSourceImpl implements CertificatesRemoteDataSource {
 
     if (result.success) {
       return right(CertificatesResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<String>>> generateCertificate(
+      statmentType) async {
+    ({dynamic response, bool success}) result = await networkHelper
+        .get(path: ApiConstants.getQrCertificates, queryParams: {
+      "userName": "TEST70",
+      "statementType": statmentType,
+    });
+
+    if (result.success) {
+      return right(result.response["data"]);
     } else {
       return left(ServerFailure(message: result.response as String));
     }

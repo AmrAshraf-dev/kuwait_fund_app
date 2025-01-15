@@ -15,9 +15,19 @@ part 'insurance_response_model.g.dart';
 
 @JsonSerializable()
 class InsuranceModel extends InsuranceEntity {
-  InsuranceModel({
-    required super.var1,
-    required super.var2,
+  const InsuranceModel({
+    required super.id,
+    required super.programName,
+    required super.employeeName,
+    required super.insuranceCompanyName,
+    required super.insuranceCompany,
+    required super.statusLabel,
+    required super.noOfPersons,
+    required super.startDate,
+    required super.deleteNotes,
+    required super.programSubscribed,
+    required super.viewButtons,
+    required super.beneficiaries,
   });
 
   factory InsuranceModel.fromJson(Map<String, dynamic> json) =>
@@ -27,7 +37,7 @@ class InsuranceModel extends InsuranceEntity {
 }
 
 @JsonSerializable()
-class InsuranceResponseModel extends BaseEntity<InsuranceModel> {
+class InsuranceResponseModel extends BaseEntity<List<InsuranceModel>> {
   const InsuranceResponseModel({
     super.code,
     super.data,

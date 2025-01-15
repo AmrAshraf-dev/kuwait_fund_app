@@ -22,9 +22,10 @@ class SubmissionsDataSourceImpl implements SubmissionsRemoteDataSource {
   Future<CustomResponseType<SubmissionsResponseModel>> getSubmissions(
       {required SubmissionsRequestModel submissionsRequestModel}) async {
     ({dynamic response, bool success}) result = await networkHelper
-        .post(path: ApiConstants.profile, data: <String, String>{
-      "email": submissionsRequestModel.email ?? "",
-      "lang": submissionsRequestModel.lang ?? "a"
+        .get(path: ApiConstants.getSubmissions, queryParams: <String, String>{
+      if (submissionsRequestModel.requestTypeID != null)
+        "requestTypeID": submissionsRequestModel.requestTypeID ?? "",
+      "userName": "TEST33"
     });
 
     if (result.success) {

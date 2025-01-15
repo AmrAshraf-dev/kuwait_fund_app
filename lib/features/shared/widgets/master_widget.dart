@@ -268,7 +268,7 @@ class _MasterWidgetState extends State<MasterWidget> {
               ),
             ),
         //  backgroundColor: Colors.transparent,
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         body: SafeArea(
           bottom: Platform.isAndroid ? true : false,
           child: SizedBox(
@@ -300,26 +300,26 @@ class _MasterWidgetState extends State<MasterWidget> {
                   }
                   return ValueListenableBuilder<bool>(
                     valueListenable: hasInternet,
-                    builder: (BuildContext context, bool value,
-                            Widget? child) =>
-                        widget.hasScroll!
-                            ? SingleChildScrollView(
-                                reverse: isKeyboardVisible.value ? true : false,
-                                child: widget.isSupportOffline!
+                    builder:
+                        (BuildContext context, bool value, Widget? child) =>
+                            widget.hasScroll!
+                                ? SingleChildScrollView(
+                                    reverse: isKeyboardVisible.value,
+                                    child: widget.isSupportOffline!
+                                        ? widget.widget
+                                        : snapshot.data?.first ==
+                                                    ConnectivityResult.none ||
+                                                !hasInternet.value
+                                            ? const NoInternetConnection()
+                                            : widget.widget,
+                                  )
+                                : widget.isSupportOffline!
                                     ? widget.widget
                                     : snapshot.data?.first ==
                                                 ConnectivityResult.none ||
                                             !hasInternet.value
                                         ? const NoInternetConnection()
                                         : widget.widget,
-                              )
-                            : widget.isSupportOffline!
-                                ? widget.widget
-                                : snapshot.data?.first ==
-                                            ConnectivityResult.none ||
-                                        !hasInternet.value
-                                    ? const NoInternetConnection()
-                                    : widget.widget,
                   );
                 }),
           ),

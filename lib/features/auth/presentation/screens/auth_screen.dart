@@ -123,15 +123,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                 if (userInfo.isError) {
                                   ViewsToolbox.showErrorAwesomeSnackBar(
                                       context, userInfo.errorMsg);
-                                } else if (userInfo.isValidUser) {
-                                  CustomMainRouter.push(NavigationMainRoute());
                                 } else if (userInfo.isSupervisor) {
                                   CustomMainRouter.push(
                                       SupervisorNavigationMainRoute());
                                 } else if (userInfo.isDirector) {
                                   CustomMainRouter.push(
                                       SupervisorNavigationMainRoute());
-                                } else if (userInfo.isTrainingSupervisor) {}
+                                } else {
+                                  CustomMainRouter.push(NavigationMainRoute());
+                                }
                               }
                             },
                             child: FormBuilder(

@@ -6,8 +6,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/features/certificates/domain/entities/certificates_entity.dart';
 import 'package:kf_ess_mobile_app/features/certificates/presentation/cubits/certificates_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
@@ -142,8 +140,11 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                   CustomElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.saveAndValidate()) {
-                          print(_formKey.currentState!.value);
-                          CustomMainRouter.push(CertificateDetailsRoute());
+                          certificatesCubit.generateCertificate(_formKey
+                              .currentState!
+                              .fields["certificateType"]!
+                              .value
+                              .name);
                         }
                       },
                       text: context.tr("submit")),

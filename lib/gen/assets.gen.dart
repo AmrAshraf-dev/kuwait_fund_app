@@ -202,6 +202,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/date_icon.svg
   SvgGenImage get dateIcon => const SvgGenImage('assets/svg/date_icon.svg');
 
+  /// File path: assets/svg/delete.svg
+  SvgGenImage get delete => const SvgGenImage('assets/svg/delete.svg');
+
   /// File path: assets/svg/dept_mission.svg
   SvgGenImage get deptMission =>
       const SvgGenImage('assets/svg/dept_mission.svg');
@@ -376,6 +379,7 @@ class $AssetsSvgGen {
         createTrainingRequest,
         dateOutlineBadged,
         dateIcon,
+        delete,
         deptMission,
         directorMission,
         documents,

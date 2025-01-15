@@ -47,6 +47,7 @@ class _RequestsScreenState extends State<RequestsScreen>
           create: (context) => _requestCubit,
           child: RefreshIndicator(
             onRefresh: () async {
+              //TODO: change to the current tap typeId
               _requestCubit.getRequests(
                   requestsModel: RequestsRequestModel(
                 typeId: 1,

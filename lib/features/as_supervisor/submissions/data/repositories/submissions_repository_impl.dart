@@ -16,7 +16,7 @@ class SubmissionsRepositoryImp implements SubmissionsRepository {
   final SubmissionsRemoteDataSource submissionsRemoteDataSource;
 
   @override
-  Future<CustomResponseType<BaseEntity<SubmissionsModel>>> getSubmissions(
+  Future<CustomResponseType<BaseEntity<List<SubmissionsModel>>>> getSubmissions(
       {required SubmissionsRequestModel submissionsParams}) async {
     return await submissionsRemoteDataSource.getSubmissions(
         submissionsRequestModel: submissionsParams);

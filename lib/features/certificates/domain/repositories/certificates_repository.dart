@@ -11,4 +11,7 @@ abstract class CertificatesRepository {
 
   Future<CustomResponseType<BaseEntity<List<CertificatesEntity>>>>
       getCertificates();
+
+  Future<CustomResponseType<BaseEntity<String>>> generateCertificate(
+      statmentType);
 }

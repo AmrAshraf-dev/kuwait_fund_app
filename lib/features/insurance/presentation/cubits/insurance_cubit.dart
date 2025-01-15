@@ -1,53 +1,73 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/insurance/domain/use_cases/get_insurance_details_usecase.dart';
+import 'package:kf_ess_mobile_app/features/insurance/domain/use_cases/unsubscribe_insurance_usecase.dart';
+import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
-import "../../../shared/entity/base_entity.dart";
-import '../../domain/use_cases/get_insurance_usecase.dart';
 import '../../domain/entities/insurance_entity.dart';
-import '../../data/models/request/insurance_request_model.dart';
+import '../../domain/use_cases/get_insurance_usecase.dart';
 
 part 'insurance_state.dart';
-
-
-
-
 
 @injectable
 class InsuranceCubit extends Cubit<InsuranceState> {
   final GetInsuranceUseCase getInsuranceUseCase;
-  InsuranceCubit({required this.getInsuranceUseCase}) : super(InsuranceInitialState());
+  final GetInsuranceDetailsUseCase getInsuranceDetailsUseCase;
+  final UnsubscribeInsuranceUseCase unsubscribeInsuranceUseCase;
 
-  Future<void> getInsurance(
-      {required InsuranceRequestModel insuranceModel}) async {
+  InsuranceCubit({
+    required this.getInsuranceUseCase,
+    required this.getInsuranceDetailsUseCase,
+    required this.unsubscribeInsuranceUseCase,
+  }) : super(InsuranceInitialState());
+
+  Future<void> getInsurancePrograms() async {
     emit(InsuranceLoadingState());
 
-    final CustomResponseType<BaseEntity<InsuranceEntity>> eitherPackagesOrFailure =
-        await getInsuranceUseCase(insuranceModel);
+    final CustomResponseType<BaseEntity<List<InsuranceEntity>>>
+        eitherPackagesOrFailure = await getInsuranceUseCase();
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
       emit(InsuranceErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<InsuranceEntity> response) {
+    }, (BaseEntity<List<InsuranceEntity>> response) {
       emit(InsuranceReadyState(response));
     });
   }
+
+  Future<void> getInsuranceDetails() async {
+    emit(InsuranceLoadingState());
+
+    final CustomResponseType<BaseEntity<InsuranceEntity>>
+        eitherDetailsOrFailure = await getInsuranceDetailsUseCase();
+
+    eitherDetailsOrFailure.fold((Failure failure) {
+      final FailureToMassage massage = FailureToMassage();
+      emit(InsuranceErrorState(
+        message: massage.mapFailureToMessage(failure),
+      ));
+    }, (BaseEntity<InsuranceEntity> response) {
+      emit(InsuranceDetailsReadyState(response));
+    });
+  }
+
+  Future<void> unsubscribeInsurance() async {
+    emit(InsuranceLoadingState());
+
+    final CustomResponseType<BaseEntity<void>> eitherUnsubscribeOrFailure =
+        await unsubscribeInsuranceUseCase();
+
+    eitherUnsubscribeOrFailure.fold((Failure failure) {
+      final FailureToMassage massage = FailureToMassage();
+      emit(InsuranceErrorState(
+        message: massage.mapFailureToMessage(failure),
+      ));
+    }, (BaseEntity<void> response) {
+      emit(InsuranceUnsubscribedState());
+    });
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

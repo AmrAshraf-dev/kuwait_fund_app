@@ -11,8 +11,8 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/advanced_expandable_se
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 
-class OperationsLoanTapPage extends StatelessWidget {
-  OperationsLoanTapPage({super.key});
+class OperationsLoanTabPage extends StatelessWidget {
+  OperationsLoanTabPage({super.key});
 
   final LoanCubit _loanCubit = getIt<LoanCubit>();
   @override
