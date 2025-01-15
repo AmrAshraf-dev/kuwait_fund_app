@@ -10,7 +10,8 @@ abstract class SubmissionsRepository {
   abstracting the data layer from the business logic layer. 
   */
 
-  Future<CustomResponseType<BaseEntity<SubmissionsEntity>>> getSubmissions({
+  Future<CustomResponseType<BaseEntity<List<SubmissionsEntity>>>>
+      getSubmissions({
     required SubmissionsRequestModel submissionsParams,
   });
 }

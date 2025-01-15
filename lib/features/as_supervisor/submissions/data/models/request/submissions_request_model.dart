@@ -10,12 +10,11 @@ part 'submissions_request_model.g.dart';
 
 @JsonSerializable()
 class SubmissionsRequestModel {
-  SubmissionsRequestModel({required this.email, required this.lang});
+  SubmissionsRequestModel({this.requestTypeID});
 
   factory SubmissionsRequestModel.fromJson(Map<String, dynamic> json) =>
       _$SubmissionsRequestModelFromJson(json);
-  final String? email;
-  final String? lang;
+  final String? requestTypeID;
 
   Map<String, dynamic> toJson() => _$SubmissionsRequestModelToJson(this);
 }

@@ -46,4 +46,18 @@ class ApiConstants {
   static var createEmergencyLeaveRequest = "Leave/CreateEmergencyLeave";
 
   static var getCertificates = "Certificate/GetCertificates";
+
+  static var getLoanReasons = "Loan/GetPersonalLoanReason";
+
+  static var getQrCertificates = "Certificate/GeneratePersonalStatmentWithQR";
+
+  static var createPersonalLoanRequest = "Loan/CreatePersonalLoanRequest";
+
+  static var getSubmissions = "Request/GetEmployeeRequestsByType";
+
+  static var getInsurancePrograms = "Insurence/GetInsurancePrograms";
+
+  static var getInsuranceDetails = "Insurence/GetInsuranceInfo";
+
+  static var unsubscribeInsurance = "Insurence/CancelMedicalInsurance";
 }

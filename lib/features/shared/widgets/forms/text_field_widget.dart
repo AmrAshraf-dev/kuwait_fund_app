@@ -27,7 +27,9 @@ class TextFieldWidget extends StatelessWidget {
       this.maxLength,
       this.focusNode,
       this.keyboardType,
-      this.textInputAction});
+      this.textInputAction,
+      this.onChanged});
+  final void Function(dynamic value)? onChanged;
   final String keyName;
   final String? labelAboveField;
   final String? hintText;
@@ -66,6 +68,7 @@ class TextFieldWidget extends StatelessWidget {
           child: SizedBox(
             //  height: 56.h,
             child: FormBuilderTextField(
+              onChanged: onChanged,
               //onSubmitted: (value) => FocusScope.of(context).nextFocus(),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               onTapOutside: (event) => FocusScope.of(context).unfocus(),

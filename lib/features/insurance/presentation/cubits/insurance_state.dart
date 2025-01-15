@@ -12,8 +12,14 @@ final class InsuranceLoadingState extends InsuranceState {}
 
 final class InsuranceReadyState extends InsuranceState {
   InsuranceReadyState(this.response);
-    BaseEntity<InsuranceEntity> response;
+  BaseEntity<List<InsuranceEntity>> response;
+}
 
+final class InsuranceUnsubscribedState extends InsuranceState {}
+
+final class InsuranceDetailsReadyState extends InsuranceState {
+  InsuranceDetailsReadyState(this.response);
+  BaseEntity<InsuranceEntity> response;
 }
 
 abstract class InsuranceState {}

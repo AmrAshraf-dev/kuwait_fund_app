@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/submissions_request_model.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submissions_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
@@ -11,12 +13,13 @@ class SubmissionTabbarWidget extends StatelessWidget {
     super.key,
     required TabCubit tabCubit,
     required TabController tabController,
+    required this.submissionsCubit,
   })  : _tabCubit = tabCubit,
         _tabController = tabController;
 
   final TabCubit _tabCubit;
   final TabController _tabController;
-
+  final SubmissionsCubit submissionsCubit;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -32,6 +35,10 @@ class SubmissionTabbarWidget extends StatelessWidget {
             indicatorColor: Colors.transparent,
             onTap: (value) {
               _tabCubit.changeTab(value);
+              submissionsCubit.getSubmissions(
+                  submissionsModel: SubmissionsRequestModel(
+                requestTypeID: value.toString(),
+              ));
             },
             //      padding: EdgeInsets.zero,
             //      indicatorWeight: double.minPositive,
@@ -90,22 +97,22 @@ class SubmissionTabbarWidget extends StatelessWidget {
                     child: Center(
                         child: AppText(text: context.tr("certificate")))),
               ),
-              ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 100.w, minHeight: 37.h),
-                child: Container(
-                    decoration: BoxDecoration(
-                      color: selectedIndex == 3
-                          ? Palette.yellow_FBD823
-                          : Palette.white,
-                      border: Border.all(
-                          color: selectedIndex == 3
-                              ? Palette.yellow_FBD823
-                              : Palette.gery_DADADA),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child:
-                        Center(child: AppText(text: context.tr("training")))),
-              ),
+              // ConstrainedBox(
+              //   constraints: BoxConstraints(minWidth: 100.w, minHeight: 37.h),
+              //   child: Container(
+              //       decoration: BoxDecoration(
+              //         color: selectedIndex == 3
+              //             ? Palette.yellow_FBD823
+              //             : Palette.white,
+              //         border: Border.all(
+              //             color: selectedIndex == 3
+              //                 ? Palette.yellow_FBD823
+              //                 : Palette.gery_DADADA),
+              //         borderRadius: BorderRadius.circular(10),
+              //       ),
+              //       child:
+              //           Center(child: AppText(text: context.tr("training")))),
+              // ),
               ConstrainedBox(
                 constraints: BoxConstraints(minWidth: 100.w, minHeight: 37.h),
                 child: Container(

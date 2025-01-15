@@ -9,13 +9,14 @@ import "../repositories/submissions_repository.dart";
 
 @injectable
 class GetSubmissionsUseCase
-    implements UseCase<BaseEntity<SubmissionsEntity>, SubmissionsRequestModel> {
+    implements
+        UseCase<BaseEntity<List<SubmissionsEntity>>, SubmissionsRequestModel> {
   GetSubmissionsUseCase({required this.submissionsRepository});
 
   final SubmissionsRepository submissionsRepository;
 
   @override
-  Future<CustomResponseType<BaseEntity<SubmissionsEntity>>> call(
+  Future<CustomResponseType<BaseEntity<List<SubmissionsEntity>>>> call(
     SubmissionsRequestModel params,
   ) {
     return submissionsRepository.getSubmissions(submissionsParams: params);

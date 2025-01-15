@@ -11,8 +11,8 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/date_picker_range_bott
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_label.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
-class CustomRangeDatePicker extends StatefulWidget {
-  const CustomRangeDatePicker({
+class CustomDatePickerRange extends StatefulWidget {
+  const CustomDatePickerRange({
     super.key,
     this.hintText,
     this.firstDate,
@@ -52,10 +52,10 @@ class CustomRangeDatePicker extends StatefulWidget {
   final void Function(bool) onDoneCallback;
 
   @override
-  State<CustomRangeDatePicker> createState() => _CustomRangeDatePickerState();
+  State<CustomDatePickerRange> createState() => _CustomDatePickerRangeState();
 }
 
-class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
+class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
   final TextEditingController _fromDateController = TextEditingController();
   final TextEditingController _toDateController = TextEditingController();
   @override
@@ -185,7 +185,7 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
     required String labelTitle,
     required int? consumedDays,
     required int? totalDays,
-    required CustomRangeDatePicker widget,
+    required CustomDatePickerRange widget,
     required void Function(bool) onDoneCallback,
   }) {
     ViewsToolbox.showBottomSheet(

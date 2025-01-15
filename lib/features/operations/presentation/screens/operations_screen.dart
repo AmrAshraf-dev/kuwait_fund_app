@@ -5,10 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_contributions_tap_page.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_countries_grants_tap_page.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_institutions_grants_tap_page.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_loan_tap_page.dart';
+import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_contributions_tab_page.dart';
+import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_countries_grants_tab_page.dart';
+import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_institutions_grants_tab_page.dart';
+import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_loan_tab_page.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
@@ -159,10 +159,10 @@ class _OperationsScreenState extends State<OperationsScreen>
               physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
               children: <Widget>[
-                OperationsLoanTapPage(),
-                OperationsCountriesGrantsTapPage(),
-                OperationsInstitutionsGrantsTapPage(),
-                OperationsContributionsTapPage(),
+                OperationsLoanTabPage(),
+                OperationsCountriesGrantsTabPage(),
+                OperationsInstitutionsGrantsTabPage(),
+                OperationsContributionsTabPage(),
               ],
             ),
           ),

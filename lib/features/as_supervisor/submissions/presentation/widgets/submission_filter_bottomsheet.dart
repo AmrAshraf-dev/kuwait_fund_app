@@ -8,7 +8,7 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_check_box/check_box_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_check_box/custom_checkbox_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/date_picker_range.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/forms/custom_date_picker_range.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 
 class SubmissionFilterBottomSheet extends StatelessWidget {
@@ -93,7 +93,7 @@ class SubmissionFilterBottomSheet extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomRangeDatePicker(
+                          CustomDatePickerRange(
                             keyNameFrom: "from",
                             keyNameTo: "to",
                             fromLabelAboveField: context.tr("from_date"),

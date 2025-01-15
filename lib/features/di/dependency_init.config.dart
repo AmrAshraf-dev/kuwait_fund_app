@@ -102,6 +102,8 @@ import 'package:kf_ess_mobile_app/features/certificates/data/repositories/certif
     as _i408;
 import 'package:kf_ess_mobile_app/features/certificates/domain/repositories/certificates_repository.dart'
     as _i504;
+import 'package:kf_ess_mobile_app/features/certificates/domain/use_cases/generate_certificates_usecase.dart'
+    as _i842;
 import 'package:kf_ess_mobile_app/features/certificates/domain/use_cases/get_certificates_usecase.dart'
     as _i254;
 import 'package:kf_ess_mobile_app/features/certificates/presentation/cubits/certificates_cubit.dart'
@@ -171,10 +173,32 @@ import 'package:kf_ess_mobile_app/features/insurance/data/repositories/insurance
     as _i454;
 import 'package:kf_ess_mobile_app/features/insurance/domain/repositories/insurance_repository.dart'
     as _i1062;
+import 'package:kf_ess_mobile_app/features/insurance/domain/use_cases/create_insurance_request_usecase.dart'
+    as _i739;
+import 'package:kf_ess_mobile_app/features/insurance/domain/use_cases/get_insurance_details_usecase.dart'
+    as _i327;
 import 'package:kf_ess_mobile_app/features/insurance/domain/use_cases/get_insurance_usecase.dart'
     as _i595;
+import 'package:kf_ess_mobile_app/features/insurance/domain/use_cases/unsubscribe_insurance_usecase.dart'
+    as _i603;
+import 'package:kf_ess_mobile_app/features/insurance/presentation/cubits/beneficiary_cubit/beneficiary_cubit.dart'
+    as _i919;
+import 'package:kf_ess_mobile_app/features/insurance/presentation/cubits/create_insurance_request_cubit/create_insurance_request_cubit.dart'
+    as _i641;
 import 'package:kf_ess_mobile_app/features/insurance/presentation/cubits/insurance_cubit.dart'
     as _i163;
+import 'package:kf_ess_mobile_app/features/loan_request/data/data_sources/remote/loan_request_remote_data_source.dart'
+    as _i449;
+import 'package:kf_ess_mobile_app/features/loan_request/data/repositories/loan_request_repository_impl.dart'
+    as _i632;
+import 'package:kf_ess_mobile_app/features/loan_request/domain/repositories/loan_request_repository.dart'
+    as _i815;
+import 'package:kf_ess_mobile_app/features/loan_request/domain/use_cases/create_loan_request_usecase.dart'
+    as _i1045;
+import 'package:kf_ess_mobile_app/features/loan_request/domain/use_cases/get_loan_request_usecase.dart'
+    as _i302;
+import 'package:kf_ess_mobile_app/features/loan_request/presentation/cubits/loan_request_cubit.dart'
+    as _i992;
 import 'package:kf_ess_mobile_app/features/more/data/data_sources/remote/more_remote_data_source.dart'
     as _i602;
 import 'package:kf_ess_mobile_app/features/more/data/repositories/more_repository_impl.dart'
@@ -323,6 +347,7 @@ Future<_i174.GetIt> $initGetIt(
       () => _i763.EmergencyReminingLeaveBalanceCubit());
   gh.factory<_i663.AnnualLeaveReminingLeaveBalanceCubit>(
       () => _i663.AnnualLeaveReminingLeaveBalanceCubit());
+  gh.factory<_i919.BeneficiaryCubit>(() => _i919.BeneficiaryCubit());
   await gh.singletonAsync<_i460.SharedPreferences>(
     () => registerModule.prefs,
     preResolve: true,
@@ -411,6 +436,8 @@ Future<_i174.GetIt> $initGetIt(
       requestsRemoteDataSource: gh<_i560.RequestsRemoteDataSource>()));
   gh.factory<_i643.VisitorsLogsRemoteDataSource>(
       () => _i643.VisitorsLogsDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i449.LoanRequestRemoteDataSource>(
+      () => _i449.LoanRequestDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i624.OperationsRepository>(() => _i110.OperationsRepositoryImp(
       operationsRemoteDataSource: gh<_i1002.OperationsRemoteDataSource>()));
   gh.factory<_i504.CertificatesRepository>(() =>
@@ -445,6 +472,9 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i949.AdminDeptMissionRemoteDataSource>()));
   gh.factory<_i254.GetCertificatesUseCase>(() => _i254.GetCertificatesUseCase(
       certificatesRepository: gh<_i504.CertificatesRepository>()));
+  gh.factory<_i842.GenerateCertificateUserCase>(() =>
+      _i842.GenerateCertificateUserCase(
+          certificatesRepository: gh<_i504.CertificatesRepository>()));
   gh.factory<_i848.AuthRepository>(() => _i88.AuthRepositoryImp(
       authRemoteDataSource: gh<_i826.AuthRemoteDataSource>()));
   gh.factory<_i715.GetPeraonalInfoUseCase>(() => _i715.GetPeraonalInfoUseCase(
@@ -480,6 +510,8 @@ Future<_i174.GetIt> $initGetIt(
       profileRemoteDataSource: gh<_i710.ProfileRemoteDataSource>()));
   gh.factory<_i232.AuthCubit>(
       () => _i232.AuthCubit(getAuthUseCase: gh<_i464.GetAuthUseCase>()));
+  gh.factory<_i815.LoanRequestRepository>(() => _i632.LoanRequestRepositoryImp(
+      loanRequestRemoteDataSource: gh<_i449.LoanRequestRemoteDataSource>()));
   gh.factory<_i355.GetCoordinatesUseCase>(() => _i355.GetCoordinatesUseCase(
       contactusRepository: gh<_i15.ContactusRepository>()));
   gh.factory<_i587.GetContactusUseCase>(() => _i587.GetContactusUseCase(
@@ -490,6 +522,10 @@ Future<_i174.GetIt> $initGetIt(
       adminHomeRepository: gh<_i887.AdminHomeRepository>()));
   gh.factory<_i9.GetSubmissionsUseCase>(() => _i9.GetSubmissionsUseCase(
       submissionsRepository: gh<_i188.SubmissionsRepository>()));
+  gh.factory<_i623.CertificatesCubit>(() => _i623.CertificatesCubit(
+        getCertificatesUseCase: gh<_i254.GetCertificatesUseCase>(),
+        generateCertificateUserCase: gh<_i842.GenerateCertificateUserCase>(),
+      ));
   gh.factory<_i4.AdminHomeCubit>(() =>
       _i4.AdminHomeCubit(getAdminHomeUseCase: gh<_i524.GetAdminHomeUseCase>()));
   gh.factory<_i193.GetAdminDeptMissionUseCase>(() =>
@@ -535,22 +571,25 @@ Future<_i174.GetIt> $initGetIt(
       _i292.GetSurveyUseCase(surveyRepository: gh<_i307.SurveyRepository>()));
   gh.factory<_i447.PeraonalInfoCubit>(() => _i447.PeraonalInfoCubit(
       getPeraonalInfoUseCase: gh<_i715.GetPeraonalInfoUseCase>()));
-  gh.factory<_i623.CertificatesCubit>(() => _i623.CertificatesCubit(
-      getCertificatesUseCase: gh<_i254.GetCertificatesUseCase>()));
   gh.factory<_i910.CountriesGrantsCubit>(() => _i910.CountriesGrantsCubit(
       getCountriesGrantsUseCase: gh<_i243.GetCountriesGrantsUseCase>()));
   gh.factory<_i362.GetNotificationsUseCase>(() => _i362.GetNotificationsUseCase(
       notificationsRepository: gh<_i218.NotificationsRepository>()));
   gh.factory<_i595.GetInsuranceUseCase>(() => _i595.GetInsuranceUseCase(
       insuranceRepository: gh<_i1062.InsuranceRepository>()));
+  gh.factory<_i739.CreateInsuranceRequestUseCase>(() =>
+      _i739.CreateInsuranceRequestUseCase(
+          insuranceRepository: gh<_i1062.InsuranceRepository>()));
   gh.factory<_i266.GetVisitorsLogsUseCase>(() => _i266.GetVisitorsLogsUseCase(
       visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
   gh.factory<_i313.RequestsCubit>(() =>
       _i313.RequestsCubit(getRequestsUseCase: gh<_i270.GetRequestsUseCase>()));
   gh.factory<_i474.LoanCubit>(
       () => _i474.LoanCubit(getLoanUseCase: gh<_i80.GetLoanUseCase>()));
-  gh.factory<_i163.InsuranceCubit>(() => _i163.InsuranceCubit(
-      getInsuranceUseCase: gh<_i595.GetInsuranceUseCase>()));
+  gh.factory<_i641.CreateInsuranceRequestCubit>(() =>
+      _i641.CreateInsuranceRequestCubit(
+          createInsuranceRequestUseCase:
+              gh<_i739.CreateInsuranceRequestUseCase>()));
   gh.factory<_i408.HomeCubit>(
       () => _i408.HomeCubit(getHomeUseCase: gh<_i243.GetHomeUseCase>()));
   gh.factory<_i107.GetMyAttendanceUseCase>(() => _i107.GetMyAttendanceUseCase(
@@ -561,6 +600,11 @@ Future<_i174.GetIt> $initGetIt(
       _i699.EmergencyLeaveBalanceCubit(
           getEmergencyLeaveBalanceUseCase:
               gh<_i545.GetEmergencyLeaveBalanceUseCase>()));
+  gh.factory<_i302.GetLoanReasonsUseCase>(() => _i302.GetLoanReasonsUseCase(
+      loanRequestRepository: gh<_i815.LoanRequestRepository>()));
+  gh.factory<_i1045.CreateLoanReasonsUseCase>(() =>
+      _i1045.CreateLoanReasonsUseCase(
+          loanRequestRepository: gh<_i815.LoanRequestRepository>()));
   gh.factory<_i382.AnnualLeaveBalanceCubit>(() => _i382.AnnualLeaveBalanceCubit(
       getAnnualLeaveBalanceUseCase: gh<_i1045.GetAnnualLeaveBalanceUseCase>()));
   gh.factory<_i588.ProfileCubit>(() =>
@@ -569,6 +613,10 @@ Future<_i174.GetIt> $initGetIt(
       _i573.AdminDirectorMissionCubit(
           getAdminDirectorMissionUseCase:
               gh<_i611.GetAdminDirectorMissionUseCase>()));
+  gh.factory<_i327.GetInsuranceDetailsUseCase>(
+      () => _i327.GetInsuranceDetailsUseCase(gh<_i1062.InsuranceRepository>()));
+  gh.factory<_i603.UnsubscribeInsuranceUseCase>(() =>
+      _i603.UnsubscribeInsuranceUseCase(gh<_i1062.InsuranceRepository>()));
   gh.factory<_i500.EmergencyAvailableDaysCubit>(() =>
       _i500.EmergencyAvailableDaysCubit(
           getEmergencyAvailableDaysUseCase:
@@ -588,6 +636,15 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i359.AnnualLeaveRequestCubit>(() => _i359.AnnualLeaveRequestCubit(
       annualLeaveRequestUseCase: gh<_i610.AnnualLeaveRequestUseCase>()));
+  gh.factory<_i992.LoanRequestCubit>(() => _i992.LoanRequestCubit(
+        getLoanReasonsUseCase: gh<_i302.GetLoanReasonsUseCase>(),
+        createLoanReasonsUseCase: gh<_i1045.CreateLoanReasonsUseCase>(),
+      ));
+  gh.factory<_i163.InsuranceCubit>(() => _i163.InsuranceCubit(
+        getInsuranceUseCase: gh<_i595.GetInsuranceUseCase>(),
+        getInsuranceDetailsUseCase: gh<_i327.GetInsuranceDetailsUseCase>(),
+        unsubscribeInsuranceUseCase: gh<_i603.UnsubscribeInsuranceUseCase>(),
+      ));
   gh.factory<_i707.GetKFBoardOfDirectorsUseCase>(() =>
       _i707.GetKFBoardOfDirectorsUseCase(
           aboutRepository: gh<_i31.AboutRepository>()));

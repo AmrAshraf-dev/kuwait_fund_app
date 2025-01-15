@@ -3,11 +3,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/core/utility/theme.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/date_picker_range_bottomsheet_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_label.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
@@ -54,7 +52,8 @@ class CustomSingleRangeDatePicker extends StatefulWidget {
 
 class _CustomSingleRangeDatePickerState
     extends State<CustomSingleRangeDatePicker> {
-  final TextEditingController _fromDateController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  DateTime? selectedDate;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,10 +80,7 @@ class _CustomSingleRangeDatePickerState
             enableBorder: true,
             onTap: () async {
               if (!(widget.disableField ?? false)) {
-                _selectFullScreenDate(
-                    labelTitle: widget.labelTitle,
-                    consumedDays: widget.consumedDays,
-                    totalDays: widget.totalDays);
+                _selectDate(context);
               }
             },
             validator: widget.validator,
@@ -100,10 +96,7 @@ class _CustomSingleRangeDatePickerState
             //  iconColor: Palette.primaryColor,
             onIconPressed: () async {
               if (!widget.disableField!) {
-                _selectFullScreenDate(
-                    labelTitle: widget.labelTitle,
-                    consumedDays: widget.consumedDays,
-                    totalDays: widget.totalDays);
+                _selectDate(context);
               }
             },
           ),
@@ -112,19 +105,22 @@ class _CustomSingleRangeDatePickerState
     );
   }
 
-  void _selectFullScreenDate(
-      {required String? labelTitle,
-      required int? consumedDays,
-      required int? totalDays}) {
-    ViewsToolbox.showBottomSheet(
-        height: 1.sh - 100,
-        context: context,
-        widget: RangeDatePickerBottomsheetWidget(
-            onDoneCallback: (bool isSelectedRangeValid) {},
-            customFormKey: widget.customFormKey,
-            fromDateController: _fromDateController,
-            labelTitle: labelTitle,
-            consumedDays: consumedDays,
-            totalDays: totalDays));
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate ??
+          widget.initialDate ??
+          (widget.initNull! ? null : DateTime.now()),
+      firstDate: widget.firstDate ?? DateTime(1900),
+      lastDate:
+          widget.lastDate ?? DateTime.now().add(const Duration(days: 365 * 10)),
+    );
+    if (picked != null && picked != selectedDate) {
+      selectedDate = picked;
+      _dateController.text =
+          DateFormat("yyyy-MM-dd", "en").format(selectedDate!);
+      widget.customFormKey.currentState!.fields[widget.keyNameFrom]!
+          .didChange(DateFormat("yyyy-MM-dd", "en").format(selectedDate!));
+    }
   }
 }

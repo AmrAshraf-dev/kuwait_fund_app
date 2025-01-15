@@ -8,31 +8,37 @@ part of 'submissions_response_model.dart';
 
 SubmissionsModel _$SubmissionsModelFromJson(Map<String, dynamic> json) =>
     SubmissionsModel(
-      type: json['type'] as String?,
-      date: json['date'] as String?,
-      status: json['status'] as String?,
-      from: json['from'] as String?,
-      to: json['to'] as String?,
-      requesterName: json['requesterName'] as String?,
+      courseName: json['courseName'] as String?,
+      endDate: json['endDate'] as String?,
+      loanAmount: json['loanAmount'] as String?,
+      loanReason: json['loanReason'] as String?,
+      requestDate: json['requestDate'] as String?,
+      requestID: json['requestID'] as String?,
+      requestType: json['requestType'] as String?,
+      startDate: json['startDate'] as String?,
+      statusCode: json['statusCode'] as String?,
     );
 
 Map<String, dynamic> _$SubmissionsModelToJson(SubmissionsModel instance) =>
     <String, dynamic>{
-      'status': instance.status,
-      'date': instance.date,
-      'type': instance.type,
-      'from': instance.from,
-      'to': instance.to,
-      'requesterName': instance.requesterName,
+      'requestID': instance.requestID,
+      'requestType': instance.requestType,
+      'statusCode': instance.statusCode,
+      'requestDate': instance.requestDate,
+      'startDate': instance.startDate,
+      'endDate': instance.endDate,
+      'courseName': instance.courseName,
+      'loanReason': instance.loanReason,
+      'loanAmount': instance.loanAmount,
     };
 
 SubmissionsResponseModel _$SubmissionsResponseModelFromJson(
         Map<String, dynamic> json) =>
     SubmissionsResponseModel(
       code: (json['code'] as num?)?.toInt(),
-      data: json['data'] == null
-          ? null
-          : SubmissionsModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => SubmissionsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       message: json['message'] as String?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
       hasMorePages: json['hasMorePages'] as bool?,

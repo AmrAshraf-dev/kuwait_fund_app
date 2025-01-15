@@ -8,23 +8,43 @@ part of 'insurance_response_model.dart';
 
 InsuranceModel _$InsuranceModelFromJson(Map<String, dynamic> json) =>
     InsuranceModel(
-      var1: json['var1'] as String?,
-      var2: json['var2'] as String?,
+      id: json['id'] as String?,
+      programName: json['programName'] as String?,
+      employeeName: json['employeeName'] as String?,
+      insuranceCompanyName: json['insuranceCompanyName'] as String?,
+      insuranceCompany: json['insuranceCompany'] as String?,
+      statusLabel: json['statusLabel'] as String?,
+      noOfPersons: json['noOfPersons'] as String?,
+      startDate: json['startDate'] as String?,
+      deleteNotes: json['deleteNotes'] as String?,
+      programSubscribed: json['programSubscribed'] as String?,
+      viewButtons: json['viewButtons'] as String?,
+      beneficiaries: json['beneficiaries'] as String?,
     );
 
 Map<String, dynamic> _$InsuranceModelToJson(InsuranceModel instance) =>
     <String, dynamic>{
-      'var1': instance.var1,
-      'var2': instance.var2,
+      'id': instance.id,
+      'programName': instance.programName,
+      'employeeName': instance.employeeName,
+      'insuranceCompanyName': instance.insuranceCompanyName,
+      'insuranceCompany': instance.insuranceCompany,
+      'statusLabel': instance.statusLabel,
+      'noOfPersons': instance.noOfPersons,
+      'startDate': instance.startDate,
+      'deleteNotes': instance.deleteNotes,
+      'programSubscribed': instance.programSubscribed,
+      'viewButtons': instance.viewButtons,
+      'beneficiaries': instance.beneficiaries,
     };
 
 InsuranceResponseModel _$InsuranceResponseModelFromJson(
         Map<String, dynamic> json) =>
     InsuranceResponseModel(
       code: (json['code'] as num?)?.toInt(),
-      data: json['data'] == null
-          ? null
-          : InsuranceModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => InsuranceModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       message: json['message'] as String?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
       hasMorePages: json['hasMorePages'] as bool?,

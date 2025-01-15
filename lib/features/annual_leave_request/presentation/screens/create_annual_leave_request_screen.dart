@@ -15,7 +15,7 @@ import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cub
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_request_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/date_picker_range.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/forms/custom_date_picker_range.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 
@@ -77,7 +77,7 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                               key: _formKey,
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 20.h),
-                                child: CustomRangeDatePicker(
+                                child: CustomDatePickerRange(
                                   labelTitle: context.tr("annual_leave_days"),
                                   consumedDays: 0,
                                   totalDays: int.parse(

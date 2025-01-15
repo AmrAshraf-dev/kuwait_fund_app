@@ -7,8 +7,8 @@ import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/instit
 import 'package:kf_ess_mobile_app/features/operations/presentation/widgets/institutions_grants_datatable_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
-class OperationsInstitutionsGrantsTapPage extends StatelessWidget {
-  OperationsInstitutionsGrantsTapPage({super.key});
+class OperationsInstitutionsGrantsTabPage extends StatelessWidget {
+  OperationsInstitutionsGrantsTabPage({super.key});
 
   final InstitutionsGrantsCubit _institutionsGrantsCubit =
       getIt<InstitutionsGrantsCubit>();
