@@ -2,33 +2,33 @@ import "package:equatable/equatable.dart";
 
 /// Entity that contains the data of the Insurance.
 class InsuranceEntity extends Equatable {
-  final String? id;
-  final String? programName;
+  final String? insuranceCompanyID;
+  final String? insurenceStatus;
+  final bool? isMedicallySubscribed;
+  final bool? hasMedicalRequest;
+  final bool? viewCancelButton;
+  final bool? isAllowedTosubscribe;
   final String? employeeName;
   final String? insuranceCompanyName;
-  final String? insuranceCompany;
-  final String? statusLabel;
   final String? noOfPersons;
   final String? startDate;
-  final String? deleteNotes;
   final String? programSubscribed;
-  final String? viewButtons;
   final String? beneficiaries;
 
   /// Entity that contains the data of the Insurance.
   const InsuranceEntity({
-    required this.id,
-    required this.programName,
     required this.employeeName,
     required this.insuranceCompanyName,
-    required this.insuranceCompany,
-    required this.statusLabel,
     required this.noOfPersons,
     required this.startDate,
-    required this.deleteNotes,
     required this.programSubscribed,
-    required this.viewButtons,
     required this.beneficiaries,
+    this.insuranceCompanyID,
+    this.insurenceStatus,
+    this.isMedicallySubscribed,
+    this.hasMedicalRequest,
+    this.viewCancelButton,
+    this.isAllowedTosubscribe,
   });
 
   /*
@@ -37,17 +37,11 @@ class InsuranceEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        programName,
         employeeName,
         insuranceCompanyName,
-        insuranceCompany,
-        statusLabel,
         noOfPersons,
         startDate,
-        deleteNotes,
         programSubscribed,
-        viewButtons,
         beneficiaries,
       ];
 }

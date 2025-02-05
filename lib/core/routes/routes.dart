@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:kf_ess_mobile_app/features/about/presentation/screens/about_screen_details.dart';
 
 import '../../features/shared/navigations/app_routes_constants.dart';
 import 'routes.gr.dart';
@@ -194,10 +193,7 @@ class AppRouter extends RootStackRouter {
           page: CreateTrainingRequestRoute.page,
           path: AppRoutesConstants.createTrainingRequest,
         ),
-        AutoRoute(
-          page: CreateInsuranceRequestRoute.page,
-          path: AppRoutesConstants.createInsuranceRequest,
-        ),
+
         AutoRoute(
           page: CertificatesRoute.page,
           path: AppRoutesConstants.certificates,

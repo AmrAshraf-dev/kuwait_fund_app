@@ -1,4 +1,10 @@
 {
+  "employee_name": "اسم الموظف",
+  "company_name": "اسم الشركة",
+  "life_insurance_beneficiaries": "المستفيدين من التأمين على الحياة",
+  "downloaded": "تم التنزيل",
+  "download": "تحميل",
+  "can't_generate_certificate": "لا يمكن إصدار الشهادة",
   "session_expired": "انتهت الجلسة",
   "session_expired_message": "انتهت الجلسة، يرجى تسجيل الدخول مرة أخرى",
   "selected_days_exceeds_available_days": "الأيام المحددة تتجاوز الأيام المتاحة",
@@ -78,7 +84,6 @@
   "purpose_of_loan": "الغرض من القرض",
   "loan_amount": "مبلغ القرض",
   "you_loan_request_submitted_successfully": "تم تقديم طلب القرض بنجاح",
-  "print": "طباعة",
   "system_will_generate_certificate_of_the_current_month": "سيقوم النظام بإصدار شهادة الشهر الحالي",
   "select_certificate": "اختر الشهادة",
   "add_beneficiary": "إضافة مستفيد",

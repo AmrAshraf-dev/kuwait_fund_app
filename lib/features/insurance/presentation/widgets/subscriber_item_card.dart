@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/beneficiary_entity.dart';
+import 'package:kf_ess_mobile_app/features/insurance/domain/entities/subscriber_entity.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
-class BeneficiaryItemCard extends StatelessWidget {
-  final List<BeneficiaryEntity> beneficiaries;
-  final Function(int) onDelete;
+class SubscriberItemCard extends StatelessWidget {
+  final List<SubscriberEntity> subscriberList;
+  final Function(int) onSelect;
 
-  const BeneficiaryItemCard({
+  const SubscriberItemCard({
     super.key,
-    required this.beneficiaries,
-    required this.onDelete,
+    required this.subscriberList,
+    required this.onSelect,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: beneficiaries.length,
+      itemCount: subscriberList.length,
       itemBuilder: (context, index) {
-        final beneficiary = beneficiaries[index];
+        final SubscriberEntity subscriber = subscriberList[index];
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 13.w),
+          padding: EdgeInsets.symmetric(vertical: 10.h),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -38,16 +37,12 @@ class BeneficiaryItemCard extends StatelessWidget {
             ),
             child: ListTile(
               title: AppText(
-                text: beneficiary.beneficiaryName,
+                text: subscriber.name,
                 style: AppTextStyle.medium_18,
               ),
               subtitle: AppText(
-                text: beneficiary.relationshipWithBeneficiary,
+                text: subscriber.relation,
                 style: AppTextStyle.regular_16,
-              ),
-              trailing: IconButton(
-                icon: Assets.svg.delete.svg(),
-                onPressed: () => onDelete(index),
               ),
             ),
           ),

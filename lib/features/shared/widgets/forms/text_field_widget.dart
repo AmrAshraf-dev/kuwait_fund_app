@@ -88,6 +88,11 @@ class TextFieldWidget extends StatelessWidget {
               initialValue: initalValue,
               focusNode: focusNode,
               decoration: InputDecoration(
+                  fillColor: readOnly ? Palette.greyBorder : Palette.white,
+                  disabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                    borderSide: BorderSide(color: Palette.grey_9C9C9C),
+                  ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.r),
                     borderSide: BorderSide(color: Palette.red_FF0606),

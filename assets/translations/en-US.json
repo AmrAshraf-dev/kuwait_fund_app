@@ -1,4 +1,9 @@
 {
+  "employee_name": "Employee Name",
+  "company_name": "Company Name",
+  "life_insurance_beneficiaries": "Life Insurance Beneficiaries",
+  "download": "Download",
+  "can't_generate_certificate": "Can't generate certificate",
   "session_expired": "Session Expired",
   "session_expired_message": "Your session has expired. Please login again.",
   "selected_days_exceeds_available_days": "Selected days exceeds available days",
@@ -78,7 +83,6 @@
   "purpose_of_loan": "Purpose of Loan",
   "loan_amount": "Loan Amount",
   "you_loan_request_submitted_successfully": "Your loan request has been submitted successfully",
-  "print": "Print",
   "system_will_generate_certificate_of_the_current_month": "System will generate certificate of the current month",
   "select_certificate": "Select Certificate",
   "add_beneficiary": "Add Beneficiary",

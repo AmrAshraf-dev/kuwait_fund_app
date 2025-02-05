@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kf_ess_mobile_app/core/helper/google_map_helper.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/core/utility/theme.dart';
 import 'package:kf_ess_mobile_app/features/contactus/domain/entities/contactus_entity.dart';
 import 'package:kf_ess_mobile_app/features/contactus/presentation/cubits/contactus_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
@@ -249,10 +247,8 @@ class MapWidget extends StatelessWidget {
           icon: BitmapDescriptor.defaultMarker,
         ),
       },
-      polylines: GoogleMapHelper.polylines,
-      circles: <Circle>{GoogleMapHelper.circle},
       myLocationEnabled: true,
-      style: AppTheme.isDarkMode(context) ? GoogleMapHelper.mapStyle : "",
+      style: "",
       onMapCreated: (GoogleMapController controller) {},
     );
   }

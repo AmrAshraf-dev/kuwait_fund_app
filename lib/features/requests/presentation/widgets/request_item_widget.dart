@@ -17,11 +17,12 @@ class RequestItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (request.requestType == RequestTypeEnum.trainingRequest.name) {
+        if (int.parse(request.requestTypeID ?? "0") ==
+            RequestTypeEnum.trainingRequest.index) {
           CustomMainRouter.push(TrainingRequestDetailsRoute());
           return;
-        } else if (request.requestType ==
-            RequestTypeEnum.annualLeaveRequest.name) {
+        } else if (int.parse(request.requestTypeID ?? "0") ==
+            RequestTypeEnum.annualLeaveRequest.index) {
           CustomMainRouter.push(AnnualLeaveRequestDetailsRoute());
         }
       },
@@ -60,7 +61,7 @@ class RequestItemWidget extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: AppText(
-                            text: context.tr(request.status ?? ""),
+                            text: context.tr(request.requestStatus ?? ""),
                             textColor: Colors.white,
                             style: AppTextStyle.semiBold_12,
                           ),
@@ -77,13 +78,13 @@ class RequestItemWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AppText(
-                            text: context.tr(request.requestType ?? ""),
+                            text: context.tr(request.requestTypeID ?? ""),
                             style: AppTextStyle.bold_16,
                             textColor: Palette.black,
                           ),
                           5.verticalSpace,
                           AppText(
-                            text: "${request.startDate} - ${request.endDate}",
+                            text: "${request.details}",
                             style: AppTextStyle.medium_14,
                             textColor: Palette.black_2A2A2A,
                           ),

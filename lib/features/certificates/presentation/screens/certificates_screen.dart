@@ -73,7 +73,7 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                                         is CertificatesErrorState) {
                                       ViewsToolbox.dismissLoading();
                                       ViewsToolbox.showErrorAwesomeSnackBar(
-                                          context, state.message!);
+                                          context, context.tr(state.message!));
                                     } else if (state
                                         is CertificatesReadyState) {
                                       ViewsToolbox.dismissLoading();

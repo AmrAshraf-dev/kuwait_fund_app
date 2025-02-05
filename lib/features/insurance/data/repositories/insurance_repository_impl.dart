@@ -1,11 +1,15 @@
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/insurance/data/models/request/create_insurance_request_model.dart';
 import 'package:kf_ess_mobile_app/features/insurance/data/models/response/insurance_details_response_model.dart';
+import 'package:kf_ess_mobile_app/features/insurance/data/models/response/insurance_programs_response_model.dart';
+import 'package:kf_ess_mobile_app/features/insurance/domain/entities/family_member_entity.dart';
+import 'package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_entity.dart';
+import 'package:kf_ess_mobile_app/features/insurance/domain/entities/subscriber_entity.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../insurance/data/data_sources/remote/insurance_remote_data_source.dart';
 import '../../../shared/entity/base_entity.dart';
 import '../../domain/repositories/insurance_repository.dart';
-import '../models/response/insurance_response_model.dart';
 
 @Injectable(as: InsuranceRepository)
 class InsuranceRepositoryImp implements InsuranceRepository {
@@ -16,19 +20,39 @@ class InsuranceRepositoryImp implements InsuranceRepository {
   final InsuranceRemoteDataSource insuranceRemoteDataSource;
 
   @override
-  Future<CustomResponseType<BaseEntity<List<InsuranceModel>>>>
+  Future<CustomResponseType<BaseEntity<List<InsuranceProgramsModel>>>>
       getInsurancePrograms() async {
     return await insuranceRemoteDataSource.getInsurancePrograms();
   }
 
   @override
   Future<CustomResponseType<BaseEntity<InsuranceDetailsModel>>>
-      getInsuranceDetails() async {
-    return await insuranceRemoteDataSource.getInsuranceDetails();
+      getInsuranceMasterInfo() async {
+    return await insuranceRemoteDataSource.getInsuranceMasterInfo();
   }
 
   @override
   Future<CustomResponseType<BaseEntity<String>>> unsubscribeInsurance() async {
     return await insuranceRemoteDataSource.unsubscribeInsurance();
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<FamilyMemberEntity>>>>
+      getFamilyMembers() async {
+    return await insuranceRemoteDataSource.getFamilyMembers();
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<SubscriberEntity>>>>
+      getSubscribers() async {
+    return await insuranceRemoteDataSource.getSubscribers();
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<InsuranceEntity>>>
+      createInsuranceRequest(
+          {required CreateInsuranceRequestModel insuranceRequestModel}) {
+    return insuranceRemoteDataSource.createInsuranceRequest(
+        insuranceRequestModel: insuranceRequestModel);
   }
 }

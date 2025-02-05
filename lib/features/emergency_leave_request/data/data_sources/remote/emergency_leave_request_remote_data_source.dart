@@ -36,7 +36,6 @@ class EmergencyLeaveRequestDataSourceImpl
     ({dynamic response, bool success}) result = await networkHelper.get(
         path: ApiConstants.createEmergencyLeaveRequest,
         queryParams: <String, String>{
-          "userName": "TEST70",
           "requestedDays":
               emergencyLeaveRequestRequestModel.requestedDays.toString()
         });
@@ -54,7 +53,6 @@ class EmergencyLeaveRequestDataSourceImpl
       getEmergencyAvailableDays() async {
     ({dynamic response, bool success}) result = await networkHelper.get(
       path: ApiConstants.getEmergencyAvailableDays,
-      queryParams: <String, String>{"userName": "TEST70"},
     );
 
     if (result.success) {
@@ -69,7 +67,6 @@ class EmergencyLeaveRequestDataSourceImpl
       getEmergencyLeaveBalance() async {
     ({dynamic response, bool success}) result = await networkHelper.get(
       path: ApiConstants.getEmergencyLeaveBalance,
-      queryParams: <String, String>{"userName": "TEST70"},
     );
 
     if (result.success) {

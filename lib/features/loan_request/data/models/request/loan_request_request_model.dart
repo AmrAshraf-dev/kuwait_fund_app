@@ -11,7 +11,7 @@ part 'loan_request_request_model.g.dart';
 @JsonSerializable()
 class LoanRequestRequestModel {
   LoanRequestRequestModel(
-      {required this.userName,
+      {this.userName,
       required this.applicationDate,
       required this.reason,
       required this.reasonRemarks,

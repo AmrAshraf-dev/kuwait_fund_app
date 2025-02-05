@@ -31,9 +31,6 @@ class AnnualLeaveRequestDataSourceImpl
               annualLeaveRequestRequestModel}) async {
     ({dynamic response, bool success}) result = await networkHelper.post(
         path: ApiConstants.createAnnualLeaveRequest,
-        queryParams: <String, String>{
-          "userName": "TEST70",
-        },
         data: annualLeaveRequestRequestModel.toJson());
 
     if (result.success) {
@@ -48,7 +45,6 @@ class AnnualLeaveRequestDataSourceImpl
       getAnnualLeaveBalance() async {
     ({dynamic response, bool success}) result = await networkHelper.get(
       path: ApiConstants.getLeaveBalance,
-      queryParams: <String, String>{"userName": "TEST70"},
     );
 
     if (result.success) {

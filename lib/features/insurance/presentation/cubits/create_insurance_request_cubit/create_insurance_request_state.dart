@@ -15,7 +15,7 @@ final class CreateInsuranceRequestLoadingState
 final class CreateInsuranceRequestReadyState
     extends CreateInsuranceRequestState {
   CreateInsuranceRequestReadyState(this.response);
-  BaseEntity<List<InsuranceEntity>> response;
+  BaseEntity<InsuranceEntity> response;
 }
 
 abstract class CreateInsuranceRequestState {}

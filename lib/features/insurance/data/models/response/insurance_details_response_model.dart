@@ -16,17 +16,17 @@ part 'insurance_details_response_model.g.dart';
 @JsonSerializable()
 class InsuranceDetailsModel extends InsuranceEntity {
   const InsuranceDetailsModel({
-    required super.id,
-    required super.programName,
     required super.employeeName,
+    required super.insuranceCompanyID,
+    required super.insurenceStatus,
     required super.insuranceCompanyName,
-    required super.insuranceCompany,
-    required super.statusLabel,
     required super.noOfPersons,
     required super.startDate,
-    required super.deleteNotes,
     required super.programSubscribed,
-    required super.viewButtons,
+    required super.isMedicallySubscribed,
+    required super.hasMedicalRequest,
+    required super.viewCancelButton,
+    required super.isAllowedTosubscribe,
     required super.beneficiaries,
   });
 

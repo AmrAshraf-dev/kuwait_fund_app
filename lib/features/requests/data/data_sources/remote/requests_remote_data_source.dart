@@ -21,13 +21,13 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
   @override
   Future<CustomResponseType<RequestsResponseModel>> getRequests(
       {required RequestsRequestModel requestsRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
-        path: ApiConstants.getEmployeeRequestsByType,
-        queryParams: <String, String>{
-          "userName": "TEST70",
-          if (requestsRequestModel.typeId != null)
-            "requestTypeID": requestsRequestModel.typeId.toString(),
-        });
+    ({dynamic response, bool success}) result = await networkHelper
+        .get(path: ApiConstants.getUserRequests, queryParams: <String, String>{
+      if (requestsRequestModel.typeId == null)
+        "requestTypeID": "0"
+      else
+        "requestTypeID": requestsRequestModel.typeId.toString(),
+    });
 
     if (result.success) {
       return right(RequestsResponseModel.fromJson(result.response));
