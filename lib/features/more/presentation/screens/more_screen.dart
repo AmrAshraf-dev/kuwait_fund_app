@@ -61,13 +61,12 @@ class _MoreScreenState extends State<MoreScreen> {
                 onTap: () {
                   CustomMainRouter.push(MyAttendanceRoute());
                 }),
-            if (LocalData.getUser()!.userInfo.isValidUser)
-              MoreItemWidget(
-                  text: context.tr("certificates"),
-                  svgIcon: loan,
-                  onTap: () {
-                    CustomMainRouter.push(CertificatesRoute());
-                  }),
+            MoreItemWidget(
+                text: context.tr("certificates"),
+                svgIcon: loan,
+                onTap: () {
+                  CustomMainRouter.push(CertificatesRoute());
+                }),
             MoreItemWidget(
                 text: context.tr("advertisements"),
                 svgIcon: advertisements,

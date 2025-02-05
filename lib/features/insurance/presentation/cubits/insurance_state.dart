@@ -12,14 +12,29 @@ final class InsuranceLoadingState extends InsuranceState {}
 
 final class InsuranceReadyState extends InsuranceState {
   InsuranceReadyState(this.response);
-  BaseEntity<List<InsuranceEntity>> response;
+  BaseEntity<List<InsuranceProgramsEntity>> response;
 }
 
 final class InsuranceUnsubscribedState extends InsuranceState {}
 
-final class InsuranceDetailsReadyState extends InsuranceState {
-  InsuranceDetailsReadyState(this.response);
-  BaseEntity<InsuranceEntity> response;
+final class CanAddInsuranceState extends InsuranceState {
+  final InsuranceEntity insuranceEntity;
+
+  CanAddInsuranceState(this.insuranceEntity);
+}
+
+final class CanNotAddInsuranceState extends InsuranceState {
+  final InsuranceEntity insuranceEntity;
+
+  CanNotAddInsuranceState(this.insuranceEntity);
+}
+
+final class ViewOnlyInsuranceState extends InsuranceState {
+  final InsuranceEntity insuranceEntity;
+  final bool showCancelButton;
+
+  ViewOnlyInsuranceState(this.insuranceEntity,
+      {required this.showCancelButton});
 }
 
 abstract class InsuranceState {}

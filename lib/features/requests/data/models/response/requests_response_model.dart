@@ -15,17 +15,14 @@ part 'requests_response_model.g.dart';
 
 @JsonSerializable()
 class RequestsModel extends RequestsEntity {
-  const RequestsModel(
-      {required super.requestID,
-      required super.requestType,
-      required super.status,
-      required super.statusCode,
-      required super.requestDate,
-      required super.startDate,
-      required super.endDate,
-      required super.courseName,
-      required super.loanReason,
-      required super.loanAmount});
+  const RequestsModel({
+    required super.requestID,
+    required super.requestTypeID,
+    required super.requestDate,
+    required super.requestStatus,
+    required super.requestTitle,
+    required super.details,
+  });
 
   factory RequestsModel.fromJson(Map<String, dynamic> json) =>
       _$RequestsModelFromJson(json);

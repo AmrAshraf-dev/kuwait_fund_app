@@ -63,7 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1068010075335',
     projectId: 'kf-ess-mobile-app',
     storageBucket: 'kf-ess-mobile-app.firebasestorage.app',
-    iosBundleId: 'com.example.kfEssMobileApp',
+    iosBundleId: 'com.kf_ess_mobile_app.devp',
   );
-
 }

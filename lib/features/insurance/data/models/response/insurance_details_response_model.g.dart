@@ -9,34 +9,34 @@ part of 'insurance_details_response_model.dart';
 InsuranceDetailsModel _$InsuranceDetailsModelFromJson(
         Map<String, dynamic> json) =>
     InsuranceDetailsModel(
-      id: json['id'] as String?,
-      programName: json['programName'] as String?,
       employeeName: json['employeeName'] as String?,
+      insuranceCompanyID: json['insuranceCompanyID'] as String?,
+      insurenceStatus: json['insurenceStatus'] as String?,
       insuranceCompanyName: json['insuranceCompanyName'] as String?,
-      insuranceCompany: json['insuranceCompany'] as String?,
-      statusLabel: json['statusLabel'] as String?,
       noOfPersons: json['noOfPersons'] as String?,
       startDate: json['startDate'] as String?,
-      deleteNotes: json['deleteNotes'] as String?,
       programSubscribed: json['programSubscribed'] as String?,
-      viewButtons: json['viewButtons'] as String?,
+      isMedicallySubscribed: json['isMedicallySubscribed'] as bool?,
+      hasMedicalRequest: json['hasMedicalRequest'] as bool?,
+      viewCancelButton: json['viewCancelButton'] as bool?,
+      isAllowedTosubscribe: json['isAllowedTosubscribe'] as bool?,
       beneficiaries: json['beneficiaries'] as String?,
     );
 
 Map<String, dynamic> _$InsuranceDetailsModelToJson(
         InsuranceDetailsModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'programName': instance.programName,
+      'insuranceCompanyID': instance.insuranceCompanyID,
+      'insurenceStatus': instance.insurenceStatus,
+      'isMedicallySubscribed': instance.isMedicallySubscribed,
+      'hasMedicalRequest': instance.hasMedicalRequest,
+      'viewCancelButton': instance.viewCancelButton,
+      'isAllowedTosubscribe': instance.isAllowedTosubscribe,
       'employeeName': instance.employeeName,
       'insuranceCompanyName': instance.insuranceCompanyName,
-      'insuranceCompany': instance.insuranceCompany,
-      'statusLabel': instance.statusLabel,
       'noOfPersons': instance.noOfPersons,
       'startDate': instance.startDate,
-      'deleteNotes': instance.deleteNotes,
       'programSubscribed': instance.programSubscribed,
-      'viewButtons': instance.viewButtons,
       'beneficiaries': instance.beneficiaries,
     };
 

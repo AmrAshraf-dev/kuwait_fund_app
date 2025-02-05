@@ -23,10 +23,9 @@ class CertificatesDataSourceImpl implements CertificatesRemoteDataSource {
   @override
   Future<CustomResponseType<CertificatesResponseModel>>
       getCertificates() async {
-    ({dynamic response, bool success}) result = await networkHelper
-        .get(path: ApiConstants.getCertificates, queryParams: {
-      "userName": "TEST70",
-    });
+    ({dynamic response, bool success}) result = await networkHelper.get(
+      path: ApiConstants.getCertificates,
+    );
 
     if (result.success) {
       return right(CertificatesResponseModel.fromJson(result.response));
@@ -40,12 +39,11 @@ class CertificatesDataSourceImpl implements CertificatesRemoteDataSource {
       statmentType) async {
     ({dynamic response, bool success}) result = await networkHelper
         .get(path: ApiConstants.getQrCertificates, queryParams: {
-      "userName": "TEST70",
       "statementType": statmentType,
     });
 
     if (result.success) {
-      return right(result.response["data"]);
+      return right(BaseEntity(data: result.response["data"]));
     } else {
       return left(ServerFailure(message: result.response as String));
     }

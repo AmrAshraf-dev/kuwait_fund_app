@@ -9,35 +9,21 @@ part of 'requests_response_model.dart';
 RequestsModel _$RequestsModelFromJson(Map<String, dynamic> json) =>
     RequestsModel(
       requestID: json['requestID'] as String?,
-      requestType: json['requestType'] as String?,
-      status: json['status'] as String?,
-      statusCode: json['statusCode'] as String?,
-      requestDate: json['requestDate'] == null
-          ? null
-          : DateTime.parse(json['requestDate'] as String),
-      startDate: json['startDate'] == null
-          ? null
-          : DateTime.parse(json['startDate'] as String),
-      endDate: json['endDate'] == null
-          ? null
-          : DateTime.parse(json['endDate'] as String),
-      courseName: json['courseName'] as String?,
-      loanReason: json['loanReason'] as String?,
-      loanAmount: json['loanAmount'] as String?,
+      requestTypeID: json['requestTypeID'] as String?,
+      requestDate: json['requestDate'] as String?,
+      requestStatus: json['requestStatus'] as String?,
+      requestTitle: json['requestTitle'] as String?,
+      details: json['details'] as String?,
     );
 
 Map<String, dynamic> _$RequestsModelToJson(RequestsModel instance) =>
     <String, dynamic>{
       'requestID': instance.requestID,
-      'requestType': instance.requestType,
-      'status': instance.status,
-      'statusCode': instance.statusCode,
-      'requestDate': instance.requestDate?.toIso8601String(),
-      'startDate': instance.startDate?.toIso8601String(),
-      'endDate': instance.endDate?.toIso8601String(),
-      'courseName': instance.courseName,
-      'loanReason': instance.loanReason,
-      'loanAmount': instance.loanAmount,
+      'requestTypeID': instance.requestTypeID,
+      'requestDate': instance.requestDate,
+      'requestStatus': instance.requestStatus,
+      'requestTitle': instance.requestTitle,
+      'details': instance.details,
     };
 
 RequestsResponseModel _$RequestsResponseModelFromJson(

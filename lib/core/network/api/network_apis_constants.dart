@@ -31,7 +31,7 @@ class ApiConstants {
 
   static var telephoneFax = "General/GetTelephoneNumberAndFax";
 
-  static var getEmployeeRequestsByType = "Request/GetEmployeeRequestsByType";
+  static var getUserRequests = "Request/GetUserRequests";
 
   static var getLeaveBalance = "Leave/GetAnnualLeaveBalance";
 
@@ -55,9 +55,15 @@ class ApiConstants {
 
   static var getSubmissions = "Request/GetEmployeeRequestsByType";
 
-  static var getInsurancePrograms = "Insurence/GetInsurancePrograms";
+  static var getInsurancePrograms = "Insurance/GetInsuranceProgramsList";
 
-  static var getInsuranceDetails = "Insurence/GetInsuranceInfo";
+  static var getInsuranceMasterInfo = "Insurance/GetInsuranceMasterInfo";
 
-  static var unsubscribeInsurance = "Insurence/CancelMedicalInsurance";
+  static var unsubscribeInsurance = "Insurance/CancelMedicalInsurance";
+
+  static var getFamilyMembers = "Insurance/GetEmployeeFamilyMembersInfo";
+
+  static var getSubscribers = "Insurance/GetInsuranceSubscribersList";
+
+  static var createInsuranceRequest = "Insurance/SubmitMedicalInsuranceRequest";
 }

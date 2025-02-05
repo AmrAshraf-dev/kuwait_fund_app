@@ -8,14 +8,14 @@ import '../entities/insurance_entity.dart';
 import '../repositories/insurance_repository.dart';
 
 @injectable
-class GetInsuranceDetailsUseCase
+class GetInsuranceMasterInfoUseCase
     implements UseCaseNoParam<BaseEntity<InsuranceEntity>> {
   final InsuranceRepository repository;
 
-  GetInsuranceDetailsUseCase(this.repository);
+  GetInsuranceMasterInfoUseCase(this.repository);
 
   @override
   Future<Either<Failure, BaseEntity<InsuranceEntity>>> call() async {
-    return await repository.getInsuranceDetails();
+    return await repository.getInsuranceMasterInfo();
   }
 }

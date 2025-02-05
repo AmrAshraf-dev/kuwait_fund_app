@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/core/network/base_handling.dart';
@@ -14,18 +16,20 @@ class CreateInsuranceRequestCubit extends Cubit<CreateInsuranceRequestState> {
   CreateInsuranceRequestCubit({required this.createInsuranceRequestUseCase})
       : super(CreateInsuranceRequestInitialState());
 
-  Future<void> createInsuranceRequest() async {
+  Future<void> createInsuranceRequest(createInsuranceRequestModel) async {
+    log(createInsuranceRequestModel.toString());
     emit(CreateInsuranceRequestLoadingState());
 
-    final CustomResponseType<BaseEntity<List<InsuranceEntity>>>
-        eitherPackagesOrFailure = await createInsuranceRequestUseCase();
+    final CustomResponseType<BaseEntity<InsuranceEntity>>
+        eitherPackagesOrFailure =
+        await createInsuranceRequestUseCase(createInsuranceRequestModel);
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
       emit(CreateInsuranceRequestErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<List<InsuranceEntity>> response) {
+    }, (BaseEntity<InsuranceEntity> response) {
       emit(CreateInsuranceRequestReadyState(response));
     });
   }
