@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:kf_ess_mobile_app/features/my_attendance/data/models/response/attendance_data_response_model.dart';
 
 import '../../../../shared/entity/base_entity.dart';
 import '../../../domain/entities/my_attendance_entity.dart';
@@ -15,9 +16,11 @@ part 'my_attendance_response_model.g.dart';
 
 @JsonSerializable()
 class MyAttendanceModel extends MyAttendanceEntity {
-  MyAttendanceModel({
-    required super.var1,
-    required super.var2,
+  const MyAttendanceModel({
+    required super.availableHours,
+    required super.usedHours,
+    required super.delayHours,
+    required super.attendanceData,
   });
 
   factory MyAttendanceModel.fromJson(Map<String, dynamic> json) =>

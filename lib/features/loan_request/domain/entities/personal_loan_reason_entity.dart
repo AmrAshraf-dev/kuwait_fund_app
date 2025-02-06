@@ -2,14 +2,14 @@ import "package:equatable/equatable.dart";
 
 /// Entity that contains the data of the CreateRequest.
 class PersonalLoanReasonEntity extends Equatable {
-  final String? code;
+  final String? id;
 
-  final String? reson;
+  final String? name;
 
   /// Entity that contains the data of the CreateRequest.
   const PersonalLoanReasonEntity({
-    required this.code,
-    required this.reson,
+    required this.id,
+    required this.name,
   });
 
   /*
@@ -18,7 +18,6 @@ class PersonalLoanReasonEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        code,
-        reson,
+        id,
       ];
 }

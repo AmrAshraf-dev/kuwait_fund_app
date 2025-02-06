@@ -8,14 +8,20 @@ part of 'my_attendance_response_model.dart';
 
 MyAttendanceModel _$MyAttendanceModelFromJson(Map<String, dynamic> json) =>
     MyAttendanceModel(
-      var1: json['var1'] as String?,
-      var2: json['var2'] as String?,
+      availableHours: json['availableHours'] as String?,
+      usedHours: json['usedHours'] as String?,
+      delayHours: json['delayHours'] as String?,
+      attendanceData: (json['attendanceData'] as List<dynamic>)
+          .map((e) => AttendanceDataModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$MyAttendanceModelToJson(MyAttendanceModel instance) =>
     <String, dynamic>{
-      'var1': instance.var1,
-      'var2': instance.var2,
+      'availableHours': instance.availableHours,
+      'usedHours': instance.usedHours,
+      'delayHours': instance.delayHours,
+      'attendanceData': instance.attendanceData,
     };
 
 MyAttendanceResponseModel _$MyAttendanceResponseModelFromJson(

@@ -44,7 +44,7 @@ class _SickLeaveChartState extends State<SickLeaveChart>
     // Define the animation to go from 0 to the actual progress value
     _animation = Tween<double>(
       begin: 0,
-      end: 26 / 30,
+      end: 30 / 30,
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,

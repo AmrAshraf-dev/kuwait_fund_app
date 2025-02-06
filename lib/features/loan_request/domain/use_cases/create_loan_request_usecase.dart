@@ -7,9 +7,9 @@ import '../../../shared/entity/base_entity.dart';
 import "../repositories/loan_request_repository.dart";
 
 @injectable
-class CreateLoanReasonsUseCase
+class CreateLoanRequestUseCase
     implements UseCase<BaseEntity<String>, LoanRequestRequestModel> {
-  CreateLoanReasonsUseCase({required this.loanRequestRepository});
+  CreateLoanRequestUseCase({required this.loanRequestRepository});
 
   final LoanRequestRepository loanRequestRepository;
 
@@ -17,6 +17,6 @@ class CreateLoanReasonsUseCase
   Future<CustomResponseType<BaseEntity<String>>> call(
     LoanRequestRequestModel loanRequestModel,
   ) {
-    return loanRequestRepository.createAnnualLeaveRequest(loanRequestModel);
+    return loanRequestRepository.createLoanRequest(loanRequestModel);
   }
 }

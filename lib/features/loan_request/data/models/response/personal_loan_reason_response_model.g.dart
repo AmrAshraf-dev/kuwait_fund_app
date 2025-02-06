@@ -9,15 +9,15 @@ part of 'personal_loan_reason_response_model.dart';
 PersonalLoanReasonModel _$PersonalLoanReasonModelFromJson(
         Map<String, dynamic> json) =>
     PersonalLoanReasonModel(
-      code: json['code'] as String?,
-      reson: json['reson'] as String?,
+      name: json['name'] as String?,
+      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$PersonalLoanReasonModelToJson(
         PersonalLoanReasonModel instance) =>
     <String, dynamic>{
-      'code': instance.code,
-      'reson': instance.reson,
+      'id': instance.id,
+      'name': instance.name,
     };
 
 PersonalLoanReasonResponseModel _$PersonalLoanReasonResponseModelFromJson(

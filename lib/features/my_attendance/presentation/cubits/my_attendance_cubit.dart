@@ -4,27 +4,24 @@ import 'package:injectable/injectable.dart';
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
 import "../../../shared/entity/base_entity.dart";
-import '../../domain/use_cases/get_my_attendance_usecase.dart';
 import '../../domain/entities/my_attendance_entity.dart';
-import '../../data/models/request/my_attendance_request_model.dart';
+import '../../domain/use_cases/get_my_attendance_usecase.dart';
 
 part 'my_attendance_state.dart';
-
-
-
-
 
 @injectable
 class MyAttendanceCubit extends Cubit<MyAttendanceState> {
   final GetMyAttendanceUseCase getMyAttendanceUseCase;
-  MyAttendanceCubit({required this.getMyAttendanceUseCase}) : super(MyAttendanceInitialState());
+  MyAttendanceCubit({required this.getMyAttendanceUseCase})
+      : super(MyAttendanceInitialState()) {
+    getMyAttendance();
+  }
 
-  Future<void> getMyAttendance(
-      {required MyAttendanceRequestModel myAttendanceModel}) async {
+  Future<void> getMyAttendance() async {
     emit(MyAttendanceLoadingState());
 
-    final CustomResponseType<BaseEntity<MyAttendanceEntity>> eitherPackagesOrFailure =
-        await getMyAttendanceUseCase(myAttendanceModel);
+    final CustomResponseType<BaseEntity<MyAttendanceEntity>>
+        eitherPackagesOrFailure = await getMyAttendanceUseCase();
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
@@ -36,18 +33,3 @@ class MyAttendanceCubit extends Cubit<MyAttendanceState> {
     });
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

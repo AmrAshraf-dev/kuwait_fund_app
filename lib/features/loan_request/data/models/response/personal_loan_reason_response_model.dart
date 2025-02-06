@@ -16,8 +16,8 @@ part 'personal_loan_reason_response_model.g.dart';
 @JsonSerializable()
 class PersonalLoanReasonModel extends PersonalLoanReasonEntity {
   const PersonalLoanReasonModel({
-    required super.code,
-    required super.reson,
+    required super.name,
+    required super.id,
   });
 
   factory PersonalLoanReasonModel.fromJson(Map<String, dynamic> json) =>

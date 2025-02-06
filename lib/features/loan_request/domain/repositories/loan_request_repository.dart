@@ -1,3 +1,4 @@
+import "package:kf_ess_mobile_app/features/loan_request/domain/entities/personal_loan_master_info_entity.dart";
 import "package:kf_ess_mobile_app/features/loan_request/domain/entities/personal_loan_reason_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
@@ -13,6 +14,9 @@ abstract class LoanRequestRepository {
   Future<CustomResponseType<BaseEntity<List<PersonalLoanReasonEntity>>>>
       getLoanReasons();
 
-  Future<CustomResponseType<BaseEntity<String>>> createAnnualLeaveRequest(
+  Future<CustomResponseType<BaseEntity<String>>> createLoanRequest(
       loanRequestModel);
+
+  Future<CustomResponseType<BaseEntity<PersonalLoanMasterInfoEntity>>>
+      getPersonalLoanMasterInfo();
 }
