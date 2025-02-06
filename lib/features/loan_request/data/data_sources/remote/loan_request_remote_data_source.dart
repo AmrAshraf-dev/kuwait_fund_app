@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/loan_request/data/models/response/personal_loan_master_info_response_model.dart';
 import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
@@ -11,8 +12,11 @@ import '../../models/response/personal_loan_reason_response_model.dart';
 abstract class LoanRequestRemoteDataSource {
   Future<CustomResponseType<PersonalLoanReasonResponseModel>> getLoanReasons();
 
-  Future<CustomResponseType<BaseEntity<String>>> createAnnualLeaveRequest(
+  Future<CustomResponseType<BaseEntity<String>>> createLoanRequest(
       loanRequestModel);
+
+  Future<CustomResponseType<PersonalLoanMasterInfoResponseModel>>
+      getPersonalLoanMasterInfo();
 }
 
 @Injectable(as: LoanRequestRemoteDataSource)
@@ -34,14 +38,28 @@ class LoanRequestDataSourceImpl implements LoanRequestRemoteDataSource {
   }
 
   @override
-  Future<CustomResponseType<BaseEntity<String>>> createAnnualLeaveRequest(
+  Future<CustomResponseType<BaseEntity<String>>> createLoanRequest(
       loanRequestModel) async {
     ({dynamic response, bool success}) result = await networkHelper.post(
         path: ApiConstants.createPersonalLoanRequest,
         data: loanRequestModel.toJson());
 
     if (result.success) {
-      return right(BaseEntity<String>(data: result.response as String));
+      return right(BaseEntity<String>(data: result.response["data"] as String));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+
+  @override
+  Future<CustomResponseType<PersonalLoanMasterInfoResponseModel>>
+      getPersonalLoanMasterInfo() async {
+    ({dynamic response, bool success}) result =
+        await networkHelper.get(path: ApiConstants.getPersonalLoanMasterInfo);
+
+    if (result.success) {
+      return right(
+          PersonalLoanMasterInfoResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));
     }

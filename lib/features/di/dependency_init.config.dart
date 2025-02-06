@@ -204,6 +204,14 @@ import 'package:kf_ess_mobile_app/features/loan_request/domain/use_cases/create_
     as _i1045;
 import 'package:kf_ess_mobile_app/features/loan_request/domain/use_cases/get_loan_request_usecase.dart'
     as _i302;
+import 'package:kf_ess_mobile_app/features/loan_request/domain/use_cases/get_personal_loan_master_info_usecase.dart'
+    as _i793;
+import 'package:kf_ess_mobile_app/features/loan_request/presentation/cubits/create_logn_request_cubit/create_loan_request_cubit.dart'
+    as _i236;
+import 'package:kf_ess_mobile_app/features/loan_request/presentation/cubits/loan_amount_calculator_cubit/loan_amount_calculator_cubit.dart'
+    as _i52;
+import 'package:kf_ess_mobile_app/features/loan_request/presentation/cubits/loan_reasons_cubit/loan_reasons_cubit.dart'
+    as _i808;
 import 'package:kf_ess_mobile_app/features/loan_request/presentation/cubits/loan_request_cubit.dart'
     as _i992;
 import 'package:kf_ess_mobile_app/features/more/data/data_sources/remote/more_remote_data_source.dart'
@@ -356,6 +364,8 @@ Future<_i174.GetIt> $initGetIt(
       () => _i763.EmergencyReminingLeaveBalanceCubit());
   gh.factory<_i885.SelectedFamilyMembersCubit>(
       () => _i885.SelectedFamilyMembersCubit());
+  gh.factory<_i52.LoanAmountCalculatorCubit>(
+      () => _i52.LoanAmountCalculatorCubit());
   await gh.singletonAsync<_i460.SharedPreferences>(
     () => registerModule.prefs,
     preResolve: true,
@@ -608,13 +618,15 @@ Future<_i174.GetIt> $initGetIt(
       _i699.EmergencyLeaveBalanceCubit(
           getEmergencyLeaveBalanceUseCase:
               gh<_i545.GetEmergencyLeaveBalanceUseCase>()));
-  gh.factory<_i1045.CreateLoanReasonsUseCase>(() =>
-      _i1045.CreateLoanReasonsUseCase(
+  gh.factory<_i1045.CreateLoanRequestUseCase>(() =>
+      _i1045.CreateLoanRequestUseCase(
           loanRequestRepository: gh<_i815.LoanRequestRepository>()));
   gh.factory<_i302.GetLoanReasonsUseCase>(() => _i302.GetLoanReasonsUseCase(
       loanRequestRepository: gh<_i815.LoanRequestRepository>()));
   gh.factory<_i382.AnnualLeaveBalanceCubit>(() => _i382.AnnualLeaveBalanceCubit(
       getAnnualLeaveBalanceUseCase: gh<_i1045.GetAnnualLeaveBalanceUseCase>()));
+  gh.factory<_i236.CreateLoanRequestCubit>(() => _i236.CreateLoanRequestCubit(
+      createLoanRequestUseCase: gh<_i1045.CreateLoanRequestUseCase>()));
   gh.factory<_i588.ProfileCubit>(() =>
       _i588.ProfileCubit(getProfileUseCase: gh<_i727.GetProfileUseCase>()));
   gh.factory<_i573.AdminDirectorMissionCubit>(() =>
@@ -654,9 +666,13 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i359.AnnualLeaveRequestCubit>(() => _i359.AnnualLeaveRequestCubit(
       annualLeaveRequestUseCase: gh<_i610.AnnualLeaveRequestUseCase>()));
+  gh.factory<_i793.GetPersonalLoanMasterInfoUseCase>(() =>
+      _i793.GetPersonalLoanMasterInfoUseCase(
+          gh<_i815.LoanRequestRepository>()));
   gh.factory<_i992.LoanRequestCubit>(() => _i992.LoanRequestCubit(
         getLoanReasonsUseCase: gh<_i302.GetLoanReasonsUseCase>(),
-        createLoanReasonsUseCase: gh<_i1045.CreateLoanReasonsUseCase>(),
+        getPersonalLoanMasterInfoUseCase:
+            gh<_i793.GetPersonalLoanMasterInfoUseCase>(),
       ));
   gh.factory<_i707.GetKFBoardOfDirectorsUseCase>(() =>
       _i707.GetKFBoardOfDirectorsUseCase(
@@ -670,6 +686,8 @@ Future<_i174.GetIt> $initGetIt(
       getKFBoardOfDirectorsUseCase: gh<_i707.GetKFBoardOfDirectorsUseCase>()));
   gh.factory<_i596.SurveyCubit>(
       () => _i596.SurveyCubit(getSurveyUseCase: gh<_i292.GetSurveyUseCase>()));
+  gh.factory<_i808.LoanReasonsCubit>(() => _i808.LoanReasonsCubit(
+      getLoanReasonsUseCase: gh<_i302.GetLoanReasonsUseCase>()));
   gh.factory<_i674.MyAttendanceCubit>(() => _i674.MyAttendanceCubit(
       getMyAttendanceUseCase: gh<_i107.GetMyAttendanceUseCase>()));
   gh.factory<_i79.KFManagmentCubit>(() => _i79.KFManagmentCubit(

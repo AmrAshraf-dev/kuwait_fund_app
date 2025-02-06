@@ -10,22 +10,15 @@ final class LoanRequestInitialState extends LoanRequestState {}
 
 final class LoanRequestLoadingState extends LoanRequestState {}
 
-final class LoanRequestReadyState extends LoanRequestState {
-  LoanRequestReadyState(this.response);
-  BaseEntity<List<PersonalLoanReasonEntity>> response;
-}
+final class LoanRequestReadyState extends LoanRequestState {}
 
 // Define a new state for the calculated installments
-class LoanRequestInstallmentCalculatedState extends LoanRequestState {
-  final int numberOfInstallments;
-  final double monthlyInstallment;
-  final BaseEntity<List<PersonalLoanReasonEntity>>? loanReasonsResponse;
 
-  LoanRequestInstallmentCalculatedState({
-    required this.numberOfInstallments,
-    required this.monthlyInstallment,
-    this.loanReasonsResponse,
-  });
+final class CanAddLoanRequestState extends LoanRequestState {
+  CanAddLoanRequestState(this.response);
+  BaseEntity<PersonalLoanMasterInfoEntity> response;
 }
+
+final class CanNotAddLoanRequestState extends LoanRequestState {}
 
 abstract class LoanRequestState {}

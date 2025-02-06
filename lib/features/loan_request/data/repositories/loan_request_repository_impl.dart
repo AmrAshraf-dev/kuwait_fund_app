@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/loan_request/data/models/response/personal_loan_master_info_response_model.dart';
 import 'package:kf_ess_mobile_app/features/loan_request/data/models/response/personal_loan_reason_response_model.dart';
 
 import '../../../../core/network/base_handling.dart';
@@ -21,9 +22,15 @@ class LoanRequestRepositoryImp implements LoanRequestRepository {
   }
 
   @override
-  Future<CustomResponseType<BaseEntity<String>>> createAnnualLeaveRequest(
+  Future<CustomResponseType<BaseEntity<String>>> createLoanRequest(
       loanRequestModel) async {
     return await loanRequestRemoteDataSource
-        .createAnnualLeaveRequest(loanRequestModel);
+        .createLoanRequest(loanRequestModel);
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<PersonalLoanMasterInfoModel>>>
+      getPersonalLoanMasterInfo() async {
+    return await loanRequestRemoteDataSource.getPersonalLoanMasterInfo();
   }
 }
