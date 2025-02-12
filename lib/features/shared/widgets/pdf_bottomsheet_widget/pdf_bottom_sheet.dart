@@ -36,7 +36,8 @@ void showPDFBottomSheet(BuildContext context, String pdfPath,
         ),
         height: 600.h,
         child: BlocProvider(
-          create: (BuildContext context) => PDFCubit()..loadPDF(pdfPath),
+          create: (BuildContext context) =>
+              PDFCubit()..loadPDF(pdfPath: pdfPath),
           child: BlocBuilder<PDFCubit, PDFState>(
             builder: (BuildContext context, PDFState state) {
               if (state is PDFLoading) {

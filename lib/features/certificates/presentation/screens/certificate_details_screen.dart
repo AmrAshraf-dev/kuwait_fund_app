@@ -35,26 +35,30 @@ class CertificateDetailsScreen extends StatelessWidget {
           child: Column(
             children: [
               22.verticalSpace,
-              PdfViewWidget(
-                  pdfPath:
-                      "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf"),
+              SizedBox(
+                height: 400,
+                width: 1.sw,
+                child: PdfViewWidget(pdfPath: certificatePdf),
+              ),
               17.verticalSpace,
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomElevatedButton(
-                      width: 110.w,
+                      width: 130.w,
                       height: 50.h,
                       backgroundColor: Palette.yellow_FBD823,
                       onPressed: () {
-                        certificatesCubit.downloadPdf(certificatePdf);
+                        certificatesCubit.downloadBase64Pdf(certificatePdf);
                         ViewsToolbox.showSuccessAwesomeSnackBar(
                             context, context.tr("downloaded"));
                       },
                       customChild: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.print_outlined,
+                          Icon(Icons.download,
                               color: Palette.black, size: 25.sp),
                           5.horizontalSpace,
                           AppText(
@@ -65,13 +69,15 @@ class CertificateDetailsScreen extends StatelessWidget {
                       )),
                   10.horizontalSpace,
                   CustomElevatedButton(
-                      width: 110.w,
+                      width: 130.w,
                       height: 50.h,
                       backgroundColor: Palette.primaryColor,
                       onPressed: () {
-                        certificatesCubit.sharePdf(certificatePdf);
+                        certificatesCubit.shareBase64Pdf(certificatePdf);
                       },
                       customChild: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.share_outlined,
                               color: Palette.white, size: 25.sp),
@@ -118,7 +124,7 @@ class PdfViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => PDFCubit()..loadPDF(pdfPath),
+      create: (BuildContext context) => PDFCubit()..loadPDF(pdfPath: pdfPath),
       child: BlocBuilder<PDFCubit, PDFState>(
         builder: (BuildContext context, PDFState state) {
           if (state is PDFLoading) {

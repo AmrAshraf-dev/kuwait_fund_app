@@ -109,6 +109,8 @@ import 'package:kf_ess_mobile_app/features/certificates/domain/use_cases/get_cer
     as _i254;
 import 'package:kf_ess_mobile_app/features/certificates/presentation/cubits/certificates_cubit.dart'
     as _i623;
+import 'package:kf_ess_mobile_app/features/certificates/presentation/cubits/generate_certificate_cubit/generate_certificates_cubit.dart'
+    as _i887;
 import 'package:kf_ess_mobile_app/features/contactus/data/data_sources/remote/contactus_remote_data_source.dart'
     as _i719;
 import 'package:kf_ess_mobile_app/features/contactus/data/repositories/contactus_repository_impl.dart'
@@ -517,6 +519,10 @@ Future<_i174.GetIt> $initGetIt(
       requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i464.GetAuthUseCase>(
       () => _i464.GetAuthUseCase(authRepository: gh<_i848.AuthRepository>()));
+  gh.factory<_i887.GenerateCertificatesCubit>(() =>
+      _i887.GenerateCertificatesCubit(
+          generateCertificateUserCase:
+              gh<_i842.GenerateCertificateUserCase>()));
   gh.factory<_i887.AdminHomeRepository>(() => _i308.AdminHomeRepositoryImp(
       adminHomeRemoteDataSource: gh<_i1029.AdminHomeRemoteDataSource>()));
   gh.singleton<_i969.ForgetPassCubit>(() => _i969.ForgetPassCubit(

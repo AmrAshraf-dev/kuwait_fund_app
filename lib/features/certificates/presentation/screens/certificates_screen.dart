@@ -6,8 +6,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/features/certificates/domain/entities/certificates_entity.dart';
 import 'package:kf_ess_mobile_app/features/certificates/presentation/cubits/certificates_cubit.dart';
+import 'package:kf_ess_mobile_app/features/certificates/presentation/cubits/generate_certificate_cubit/generate_certificates_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -27,6 +30,8 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
   final CertificatesCubit certificatesCubit = getIt<CertificatesCubit>();
+  final GenerateCertificatesCubit generateCertificatesCubit =
+      getIt<GenerateCertificatesCubit>();
   @override
   void initState() {
     super.initState();
@@ -37,8 +42,15 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
     return MasterWidget(
         isBackEnabled: true,
         screenTitle: context.tr("certificates"),
-        widget: BlocProvider(
-          create: (context) => certificatesCubit,
+        widget: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => certificatesCubit,
+            ),
+            BlocProvider(
+              create: (context) => generateCertificatesCubit,
+            ),
+          ],
           child: Padding(
               padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
               child: Column(
@@ -137,17 +149,35 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                                 ],
                               )))),
                   350.verticalSpace,
-                  CustomElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.saveAndValidate()) {
-                          certificatesCubit.generateCertificate(_formKey
-                              .currentState!
-                              .fields["certificateType"]!
-                              .value
-                              .name);
+                  BlocBuilder<GenerateCertificatesCubit,
+                      GenerateCertificatesState>(
+                    builder: (context, state) {
+                      if (state is GenerateCertificatesLoadingState) {
+                        ViewsToolbox.showLoading();
+                      } else if (state is GenerateCertificatesErrorState) {
+                        ViewsToolbox.dismissLoading();
+                        ViewsToolbox.showErrorAwesomeSnackBar(
+                            context, context.tr(state.message!));
+                      } else if (state is GenerateCertificatesReadyState) {
+                        ViewsToolbox.dismissLoading();
+                        if (state.response.data == null) {
+                          ViewsToolbox.showErrorAwesomeSnackBar(context,
+                              context.tr("can't_generate_certificate"));
                         }
-                      },
-                      text: context.tr("submit")),
+                        CustomMainRouter.push(CertificateDetailsRoute(
+                            certificatePdf: state.response.data!));
+                      }
+                      return CustomElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.saveAndValidate()) {
+                              generateCertificatesCubit.generateCertificate(
+                                  _formKey.currentState!
+                                      .fields["certificateType"]!.value.name);
+                            }
+                          },
+                          text: context.tr("submit"));
+                    },
+                  ),
                 ],
               )),
         ));
