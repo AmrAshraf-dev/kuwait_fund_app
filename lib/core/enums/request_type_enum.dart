@@ -1,5 +1,6 @@
 // annualLeaveRequest, sickLeaveRequest, trainingRequest, loanRequest, insuranceRequest, emergencyLeaveRequest,
 enum RequestTypeEnum {
+  all,
   annualLeaveRequest,
   sickLeaveRequest,
   trainingRequest,
@@ -7,7 +8,6 @@ enum RequestTypeEnum {
   insuranceRequest,
   emergencyLeaveRequest,
 }
-
 
 enum NotificationTypeEnum {
   normal,

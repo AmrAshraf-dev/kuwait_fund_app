@@ -17,11 +17,7 @@ class RequestItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (int.parse(request.requestTypeID ?? "0") ==
-            RequestTypeEnum.trainingRequest.index) {
-          CustomMainRouter.push(TrainingRequestDetailsRoute());
-          return;
-        } else if (int.parse(request.requestTypeID ?? "0") ==
+        if (int.parse(request.requestTypeID ?? "1") ==
             RequestTypeEnum.annualLeaveRequest.index) {
           CustomMainRouter.push(AnnualLeaveRequestDetailsRoute());
         }

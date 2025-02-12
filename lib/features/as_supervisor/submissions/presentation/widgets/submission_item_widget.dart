@@ -22,10 +22,6 @@ class SubmissionItemWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (submissionsEntity.requestType ==
-            RequestTypeEnum.trainingRequest.name) {
-          CustomMainRouter.push(TrainingSubmissionsDetailsRoute());
-          return;
-        } else if (submissionsEntity.requestType ==
             RequestTypeEnum.annualLeaveRequest.name) {
           CustomMainRouter.push(AnnualSubmissionsDetailsRoute());
         }

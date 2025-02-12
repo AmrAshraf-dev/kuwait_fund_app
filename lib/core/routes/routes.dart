@@ -339,11 +339,11 @@ class AppRouter extends RootStackRouter {
                   path: AppRoutesConstants.annualSubmissionDetails,
                   maintainState: true,
                 ),
-                AutoRoute(
-                  page: TrainingSubmissionsDetailsRoute.page,
-                  path: AppRoutesConstants.trainingSubmissionDetails,
-                  maintainState: true,
-                ),
+                // AutoRoute(
+                //   page: TrainingSubmissionsDetailsRoute.page,
+                //   path: AppRoutesConstants.trainingSubmissionDetails,
+                //   maintainState: true,
+                // ),
               ]),
               AutoRoute(
                 page: InsuranceRoute.page,

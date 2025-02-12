@@ -34,7 +34,7 @@ class _RequestsScreenState extends State<RequestsScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
   }
 
   @override
@@ -173,7 +173,11 @@ class _RequestsScreenState extends State<RequestsScreen>
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Center(
-                                    child: AppText(text: context.tr("leave")))),
+                                    child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child:
+                                      AppText(text: context.tr("annual_leave")),
+                                ))),
                           ),
                           ConstrainedBox(
                             constraints: BoxConstraints(
@@ -190,7 +194,11 @@ class _RequestsScreenState extends State<RequestsScreen>
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Center(
-                                    child: AppText(text: context.tr("loan")))),
+                                    child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child:
+                                      AppText(text: context.tr("sick_leave")),
+                                ))),
                           ),
                           ConstrainedBox(
                             constraints: BoxConstraints(
@@ -207,8 +215,28 @@ class _RequestsScreenState extends State<RequestsScreen>
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Center(
-                                    child:
-                                        AppText(text: context.tr("training")))),
+                                    child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: AppText(
+                                      text: context.tr("emergency_leave")),
+                                ))),
+                          ),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(
+                                minWidth: 100.w, minHeight: 37.h),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                  color: selectedIndex == 4
+                                      ? Palette.yellow_FBD823
+                                      : Palette.white,
+                                  border: Border.all(
+                                      color: selectedIndex == 4
+                                          ? Palette.yellow_FBD823
+                                          : Palette.gery_DADADA),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                    child: AppText(text: context.tr("loan")))),
                           ),
                         ],
                       );
@@ -243,6 +271,9 @@ class _RequestsScreenState extends State<RequestsScreen>
                         child: TabBarView(
                           controller: _tabController,
                           children: <Widget>[
+                            RequestsListViewWidget(
+                              requestsList: state.response.data ?? [],
+                            ),
                             RequestsListViewWidget(
                               requestsList: state.response.data ?? [],
                             ),
