@@ -21,15 +21,18 @@ class AppRouter extends RootStackRouter {
           maintainState: true,
         ),
 
-        AutoRoute(
-            page: NavigationMainRoute.page,
+        CustomRoute(
+             page: NavigationMainRoute.page,
             path: AppRoutesConstants.mainNavigation,
+            transitionsBuilder: TransitionsBuilders.fadeIn,
             maintainState: true,
             children: <AutoRoute>[
-              AutoRoute(
+              CustomRoute(
                 page: HomeRoute.page,
                 path: AppRoutesConstants.home,
                 maintainState: true,
+                transitionsBuilder: TransitionsBuilders.fadeIn,
+
               ),
               AutoRoute(
                   path: 'tab1',

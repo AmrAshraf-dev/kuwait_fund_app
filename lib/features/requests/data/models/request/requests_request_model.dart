@@ -11,12 +11,12 @@ part 'requests_request_model.g.dart';
 @JsonSerializable()
 class RequestsRequestModel {
   RequestsRequestModel({
-    this.typeId,
+    this.requestTypeID,
   });
 
   factory RequestsRequestModel.fromJson(Map<String, dynamic> json) =>
       _$RequestsRequestModelFromJson(json);
-  final int? typeId;
+  final String? requestTypeID;
 
   Map<String, dynamic> toJson() => _$RequestsRequestModelToJson(this);
 }

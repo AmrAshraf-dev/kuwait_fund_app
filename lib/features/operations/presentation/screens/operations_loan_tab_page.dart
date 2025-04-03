@@ -29,10 +29,8 @@ class OperationsLoanTabPage extends StatelessWidget {
               }
               if (state is LoanErrorState) {
                 ViewsToolbox.dismissLoading();
-                return Container(
-                  child: AppText(
-                    text: state.message,
-                  ),
+                return AppText(
+                  text: state.message,
                 );
               } else if (state is LoanReadyState) {
                 ViewsToolbox.dismissLoading();

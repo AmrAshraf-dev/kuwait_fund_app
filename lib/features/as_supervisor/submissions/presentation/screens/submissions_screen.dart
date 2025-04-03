@@ -12,7 +12,8 @@ import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentatio
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_tabbar_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/tab_cubit.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_type_cubit/request_types_cubit.dart';
+import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';

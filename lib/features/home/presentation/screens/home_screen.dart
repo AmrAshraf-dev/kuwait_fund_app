@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MasterWidget(
         waterMarkImage: waterMarkImage3,
-        appBarHeight: 240.h,
+        appBarHeight: 260.h,
         appBarBody: Column(
           children: [
             Row(

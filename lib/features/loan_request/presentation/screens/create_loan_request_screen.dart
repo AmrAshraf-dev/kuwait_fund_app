@@ -199,8 +199,7 @@ class _CreateLoanRequestScreenState extends State<CreateLoanRequestScreen> {
                                           .fields["numberOfInstallments"]!
                                           .value,
                                       reasonRemarks: "",
-                                      applicationDate: DateFormat("DD/MM/YYYY")
-                                          .format(DateTime.now()),
+                                      applicationDate: DateFormat("dd/MM/yyyy").format(DateTime.now()),
                                       loanAmount: _loanAmountController.text,
                                       reason: _formKey.currentState!
                                           .fields["purposeOfLoan"]!.value.name,

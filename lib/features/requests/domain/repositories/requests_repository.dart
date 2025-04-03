@@ -1,3 +1,7 @@
+import "package:dartz/dartz.dart";
+import "package:kf_ess_mobile_app/error/failure.dart";
+import "package:kf_ess_mobile_app/features/requests/domain/entities/request_type_entity.dart";
+
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
 import "../../data/models/request/requests_request_model.dart";
@@ -13,4 +17,6 @@ abstract class RequestsRepository {
   Future<CustomResponseType<BaseEntity<List<RequestsEntity>>>> getRequests({
     required RequestsRequestModel requestsParams,
   });
+
+Future<CustomResponseType<BaseEntity<List<RequestTypeEntity>>>> getRequestTypes();
 }

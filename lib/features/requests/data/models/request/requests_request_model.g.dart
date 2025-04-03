@@ -9,11 +9,11 @@ part of 'requests_request_model.dart';
 RequestsRequestModel _$RequestsRequestModelFromJson(
         Map<String, dynamic> json) =>
     RequestsRequestModel(
-      typeId: (json['typeId'] as num?)?.toInt(),
+      requestTypeID: json['requestTypeID'] as String?,
     );
 
 Map<String, dynamic> _$RequestsRequestModelToJson(
         RequestsRequestModel instance) =>
     <String, dynamic>{
-      'typeId': instance.typeId,
+      'requestTypeID': instance.requestTypeID,
     };

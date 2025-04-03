@@ -69,4 +69,6 @@ class ApiConstants {
   static var unsubscribeInsurance = "Insurance/CancelMedicalInsurance";
 
   static var getAttendanceDetails = "Attendance/GetAttendanceDetails";
+
+  static var getRequestTypes = "Request/GetRequestType";
 }

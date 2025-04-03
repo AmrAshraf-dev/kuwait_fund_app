@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/submissions_request_model.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submissions_cubit.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/tab_cubit.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_type_cubit/request_types_cubit.dart';
+import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
 class SubmissionTabbarWidget extends StatelessWidget {
