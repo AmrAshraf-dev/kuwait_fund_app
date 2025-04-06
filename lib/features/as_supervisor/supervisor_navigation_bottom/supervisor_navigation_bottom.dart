@@ -23,7 +23,7 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
     "home",
     "requests",
     "submissions",
-    "insurance",
+    // "insurance",
     "more",
   ];
 
@@ -39,7 +39,7 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
                 const HomeRoute(),
                 const RequestsRoute(),
                 const SubmissionsRoute(),
-                const InsuranceRoute(),
+                // const InsuranceRoute(),
                 const MoreRoute()
               ],
               bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
@@ -156,24 +156,24 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
                           )),
                       label: context.tr('submissions'),
                     ),
-                    BottomNavigationBarItem(
-                      icon: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 9.h,
-                            top: 18.h,
-                          ),
-                          child: SvgPicture.asset(insurance)),
-                      activeIcon: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 9.h,
-                            top: 18.h,
-                          ),
-                          child: SvgPicture.asset(
-                            insurance,
-                            color: Colors.white,
-                          )),
-                      label: context.tr('insurance'),
-                    ),
+                    // BottomNavigationBarItem(
+                    //   icon: Padding(
+                    //       padding: EdgeInsets.only(
+                    //         bottom: 9.h,
+                    //         top: 18.h,
+                    //       ),
+                    //       child: SvgPicture.asset(insurance)),
+                    //   activeIcon: Padding(
+                    //       padding: EdgeInsets.only(
+                    //         bottom: 9.h,
+                    //         top: 18.h,
+                    //       ),
+                    //       child: SvgPicture.asset(
+                    //         insurance,
+                    //         color: Colors.white,
+                    //       )),
+                    //   label: context.tr('insurance'),
+                    // ),
                     BottomNavigationBarItem(
                       icon: Padding(
                         padding: EdgeInsets.only(bottom: 9.h, top: 18.h),

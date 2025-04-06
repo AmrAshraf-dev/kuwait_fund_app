@@ -131,7 +131,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       SupervisorNavigationMainRoute());
                                 } else if (userInfo.isDirector) {
                                   CustomMainRouter.push(
-                                      SupervisorNavigationMainRoute());
+                                      AdminNavigationMainRoute());
                                 } else {
                                   CustomMainRouter.push(NavigationMainRoute());
                                 }

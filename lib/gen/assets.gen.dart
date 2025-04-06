@@ -443,12 +443,16 @@ class $AssetsTranslationsGen {
 class Assets {
   const Assets._();
 
+  static const String aEnv = '.env';
   static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsPdfGen pdf = $AssetsPdfGen();
   static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsPublicGen public = $AssetsPublicGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
   static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
+
+  /// List of all assets
+  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {
