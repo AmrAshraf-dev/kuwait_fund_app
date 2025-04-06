@@ -63,7 +63,7 @@ class ForgetPassDataSourceImpl implements ForgetPassRemoteDataSource {
     );
 
     if (result.success) {
-      return right(ForgetPassResponseModel.fromJson(result.response));
+      return right(ForgetPassResponseModel(data: result.response["data"]=="true"));
     } else {
       return left(ServerFailure(message: result.response as String));
     }

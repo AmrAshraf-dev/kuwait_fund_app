@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dart_ping/dart_ping.dart';
 import 'package:dio/dio.dart';
@@ -6,7 +8,9 @@ import 'package:flutter/foundation.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
+import 'package:kf_ess_mobile_app/core/services/device_service.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/firebase/firebase_service.dart';
 import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -94,14 +98,17 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers.addAll({
-      //   "Accept-Language": LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US",
-      //   "Location": Platform.isAndroid ? "CustomerAndroidApp" : "CustomerIOSApp",
-      // "DeviceIdentifier": FirebaseMessagingService().token ?? "",
-      // "SessionIdentifier": DeviceService().getDeviceId(),
-      // "Accept": "application/json",
-      // "Content-Type": "application/json",
-      // "Connection": "keep-alive",
+
+        "Accept-Language": LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US",
+      "Location": Platform.isAndroid ? "CustomerAndroidApp" : "CustomerIOSApp",
+      "DeviceIdentifier": FirebaseMessagingService().token ?? "",
+      "SessionIdentifier": DeviceService().getDeviceId(),
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "Connection": "keep-alive",
       "Authorization": "Bearer ${LocalData.getUser()?.tokenInfo.token}",
+      
+ 
     });
     handler.next(options);
   }

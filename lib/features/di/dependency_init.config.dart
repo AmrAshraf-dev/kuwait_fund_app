@@ -13,6 +13,7 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:kf_ess_mobile_app/core/network/network_helper.dart' as _i675;
+import 'package:kf_ess_mobile_app/core/services/device_service.dart' as _i402;
 import 'package:kf_ess_mobile_app/features/about/data/data_sources/remote/about_remote_data_source.dart'
     as _i561;
 import 'package:kf_ess_mobile_app/features/about/data/repositories/about_repository_impl.dart'
@@ -354,6 +355,7 @@ Future<_i174.GetIt> $initGetIt(
     environmentFilter,
   );
   final registerModule = _$RegisterModule();
+  gh.factory<_i360.TabCubit>(() => _i360.TabCubit());
   gh.factory<_i94.RangeDatePickerCubit>(() => _i94.RangeDatePickerCubit());
   gh.factory<_i777.LocationCubit>(() => _i777.LocationCubit());
   gh.factory<_i768.FilePickerCubit>(() => _i768.FilePickerCubit());
@@ -367,7 +369,7 @@ Future<_i174.GetIt> $initGetIt(
       () => _i52.LoanAmountCalculatorCubit());
   gh.factory<_i885.SelectedFamilyMembersCubit>(
       () => _i885.SelectedFamilyMembersCubit());
-  gh.factory<_i360.TabCubit>(() => _i360.TabCubit());
+  gh.singleton<_i402.DeviceService>(() => _i402.DeviceService());
   await gh.singletonAsync<_i460.SharedPreferences>(
     () => registerModule.prefs,
     preResolve: true,

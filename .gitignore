@@ -100,14 +100,5 @@ app.*.symbols
 !/dev/ci/**/Gemfile.lock
 !.vscode/settings.json
 
-.fvm
-
 .fvm/
 
-.fvm
-
-.fvm/
-
-.fvm
-
-.fvm
