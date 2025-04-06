@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
+import 'package:kf_ess_mobile_app/core/services/encryption_service.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/auth/data/models/request/auth_request_model.dart';
 import 'package:kf_ess_mobile_app/features/auth/data/models/response/user_info_model.dart';
@@ -164,8 +167,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                             authModel: AuthRequestModel(
                                               userName: _formKey.currentState
                                                   ?.fields["userName"]?.value,
-                                              password: _formKey.currentState
-                                                  ?.fields["password"]?.value,
+                                              password: EncryptionService().encryptString(
+                                                _formKey.currentState
+                                                    ?.fields["password"]?.value,
+                                                    Platform.isAndroid ? KeyType.CustomerAuthAndroid : KeyType.CustomerAuthIOS,
+                                              ),
+                                            
+                                              
+                                              
+                                           
                                             ),
                                           );
                                         }

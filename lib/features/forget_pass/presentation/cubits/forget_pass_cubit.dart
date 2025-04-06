@@ -76,8 +76,8 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<bool> response) {
-      if (response.data ?? false) {
-        emit(ForgetPassReadyState(response));
+      if (response.data??false) {
+        emit(ForgetPassReadyState(BaseEntity(data: true)));
       } else {
         emit(ForgetPassErrorState(message: response.message));
       }

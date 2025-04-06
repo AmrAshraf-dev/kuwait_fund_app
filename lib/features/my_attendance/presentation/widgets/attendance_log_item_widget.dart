@@ -65,7 +65,7 @@ class AttendanceLogCardItem extends StatelessWidget {
                             ),
                             5.horizontalSpace,
                             AppText(
-                              text: context.tr("enter"),
+                              text: context.tr("entrance"),
                               style: AppTextStyle.bold_16,
                               textColor: Palette.black,
                             ),
