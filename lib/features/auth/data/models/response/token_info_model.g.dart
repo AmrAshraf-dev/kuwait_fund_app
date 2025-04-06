@@ -9,11 +9,14 @@ part of 'token_info_model.dart';
 TokenInfoModel _$TokenInfoModelFromJson(Map<String, dynamic> json) =>
     TokenInfoModel(
       token: json['token'] as String,
-      expireDate: DateTime.parse(json['expireDate'] as String),
+      accessTokenExpiryTime:
+          DateTime.parse(json['accessTokenExpiryTime'] as String),
+      refreshToken: json['refreshToken'] as String,
     );
 
 Map<String, dynamic> _$TokenInfoModelToJson(TokenInfoModel instance) =>
     <String, dynamic>{
       'token': instance.token,
-      'expireDate': instance.expireDate.toIso8601String(),
+      'accessTokenExpiryTime': instance.accessTokenExpiryTime.toIso8601String(),
+      'refreshToken': instance.refreshToken,
     };

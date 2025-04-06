@@ -5,11 +5,13 @@ part 'token_info_model.g.dart';
 @JsonSerializable()
 class TokenInfoModel {
   final String token;
-  final DateTime expireDate;
+  final DateTime accessTokenExpiryTime;
+  final String refreshToken;
 
   TokenInfoModel({
     required this.token,
-    required this.expireDate,
+    required this.accessTokenExpiryTime,
+    required this.refreshToken,
   });
 
   // Factory method to create an instance from a JSON map

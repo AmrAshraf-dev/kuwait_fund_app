@@ -8,12 +8,12 @@ part of 'auth_request_model.dart';
 
 AuthRequestModel _$AuthRequestModelFromJson(Map<String, dynamic> json) =>
     AuthRequestModel(
-      userName: json['userName'] as String?,
+      userId: json['userId'] as String?,
       password: json['password'] as String?,
     );
 
 Map<String, dynamic> _$AuthRequestModelToJson(AuthRequestModel instance) =>
     <String, dynamic>{
-      'userName': instance.userName,
+      'userId': instance.userId,
       'password': instance.password,
     };

@@ -11,7 +11,7 @@ class ApiConstants {
 
   static var contributions = "General/GetContribution";
 
-  static var auth = "Login/LoginUser";
+  static var auth = "Auth/Login";
 
   static var generateOTP = "ChangePassword/GenerateOTP";
 
