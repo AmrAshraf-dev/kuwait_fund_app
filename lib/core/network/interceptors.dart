@@ -100,7 +100,7 @@ class AuthInterceptor extends Interceptor {
     options.headers.addAll({
 
         "Accept-Language": LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US",
-      "Location": Platform.isAndroid ? "CustomerAndroidApp" : "CustomerIOSApp",
+      "Location": "EssPortal" , //TODO: //Platform.isAndroid ? "CustomerAndroidApp" : "CustomerIOSApp",
       "DeviceIdentifier": FirebaseMessagingService().token ?? "",
       "SessionIdentifier": DeviceService().getDeviceId(),
       "Accept": "application/json",

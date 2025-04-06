@@ -8,16 +8,16 @@ part of 'user_info_model.dart';
 
 UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
     UserInfoModel(
-      isError: json['isError'] as bool,
-      errorMsg: json['errorMsg'] as String,
-      isValidUser: json['isValidUser'] as bool,
-      isDirector: json['isDirector'] as bool,
-      isSupervisor: json['isSupervisor'] as bool,
-      isTrainingSupervisor: json['isTrainingSupervisor'] as bool,
-      name: json['name'] as String,
-      designation: json['designation'] as String,
-      phoneNumber: json['phoneNumber'] as String,
-      photoURL: json['photoURL'] as String,
+      isError: json['isError'] as bool?,
+      errorMsg: json['errorMsg'] as String?,
+      isValidUser: json['isValidUser'] as bool?,
+      isDirector: json['isDirector'] as bool?,
+      isSupervisor: json['isSupervisor'] as bool?,
+      isTrainingSupervisor: json['isTrainingSupervisor'] as bool?,
+      name: json['name'] as String?,
+      designation: json['designation'] as String?,
+      phoneNumber: json['phoneNumber'] as String?,
+      photoURL: json['photoURL'] as String?,
     );
 
 Map<String, dynamic> _$UserInfoModelToJson(UserInfoModel instance) =>

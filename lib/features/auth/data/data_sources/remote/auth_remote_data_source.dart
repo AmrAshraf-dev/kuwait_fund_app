@@ -21,8 +21,8 @@ class AuthDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<CustomResponseType<AuthResponseModel>> getAuth(
       {required AuthRequestModel authRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
-        path: ApiConstants.auth, queryParams: authRequestModel.toJson());
+    ({dynamic response, bool success}) result = await networkHelper.post(
+        path: ApiConstants.auth, data : authRequestModel.toJson());
 
     if (result.success) {
       return right(AuthResponseModel.fromJson(result.response));
