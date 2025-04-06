@@ -1,6 +1,5 @@
 class ApiConstants {
-  static String baseUrl =
-      "https://mpwpayment.diyarme.com/ESSAPI/api/";
+  static String baseUrl = "https://mpwpayment.diyarme.com/ESSAPI/api/";
   static String loan = "General/GetLoans";
 
   static var profile = "General/GetProfile";
