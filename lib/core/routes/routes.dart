@@ -64,11 +64,11 @@ class AppRouter extends RootStackRouter {
                       path: AppRoutesConstants.trainingRequestDetails,
                     )
                   ]),
-              AutoRoute(
-                page: InsuranceRoute.page,
-                path: AppRoutesConstants.insurance,
-                maintainState: true,
-              ),
+              // AutoRoute(
+              //   page: InsuranceRoute.page,
+              //   path: AppRoutesConstants.insurance,
+              //   maintainState: true,
+              // ),
               AutoRoute(
                   maintainState: true,
                   path: 'tab4',
@@ -205,10 +205,10 @@ class AppRouter extends RootStackRouter {
           page: CertificateDetailsRoute.page,
           path: AppRoutesConstants.certificateDetails,
         ),
-        AutoRoute(
-          page: CreateLoanRequestRoute.page,
-          path: AppRoutesConstants.createLoanRequest,
-        ),
+        // AutoRoute(
+        //   page: CreateLoanRequestRoute.page,
+        //   path: AppRoutesConstants.createLoanRequest,
+        // ),
         AutoRoute(
           page: DocumentsRoute.page,
           path: AppRoutesConstants.documents,
@@ -348,11 +348,11 @@ class AppRouter extends RootStackRouter {
                 //   maintainState: true,
                 // ),
               ]),
-              AutoRoute(
-                page: InsuranceRoute.page,
-                path: AppRoutesConstants.insurance,
-                maintainState: true,
-              ),
+              // AutoRoute(
+              //   page: InsuranceRoute.page,
+              //   path: AppRoutesConstants.insurance,
+              //   maintainState: true,
+              // ),
               AutoRoute(
                   maintainState: true,
                   path: 'tab4',

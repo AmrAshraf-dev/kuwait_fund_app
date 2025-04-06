@@ -7,7 +7,6 @@ import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/create_request_card_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 class CreateRequestSection extends StatefulWidget {
   const CreateRequestSection({super.key});
@@ -68,13 +67,13 @@ class _CreateRequestSectionState extends State<CreateRequestSection> {
                     CustomMainRouter.push(CreateEmergencyLeaveRequestRoute());
                   },
                 ),
-                CreateRequestCardItem(
-                  title: context.tr("loan_request"),
-                  svgIcon: Assets.svg.loan.path,
-                  onClick: () {
-                    CustomMainRouter.push(CreateLoanRequestRoute());
-                  },
-                ),
+                // CreateRequestCardItem(
+                //   title: context.tr("loan_request"),
+                //   svgIcon: Assets.svg.loan.path,
+                //   onClick: () {
+                //     CustomMainRouter.push(CreateLoanRequestRoute());
+                //   },
+                // ),
                 // CreateRequestCardItem(
                 //   title: context.tr("training_request"),
                 //   svgIcon: trainingRequest,
