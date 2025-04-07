@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/enums/request_type_enum.dart';
+import 'package:kf_ess_mobile_app/core/extensions/date_extensions.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
@@ -45,13 +46,15 @@ class RequestItemWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppText(
-                        text: request.requestDate.toString(),
+                        text: 
+                        request.requestDate?.showDateWithFormat(),
                         style: AppTextStyle.semiBold_12,
                         textColor: Palette.semiTextGrey,
                       ),
+                      if(request.requestStatus != null)
                       Container(
                         decoration: BoxDecoration(
-                          color: Palette.orangeDark,
+                          color: _getRequestStatusColor(request.requestStatus ?? ""),
                           borderRadius: BorderRadius.circular(6.r),
                         ),
                         child: Padding(
@@ -74,7 +77,7 @@ class RequestItemWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AppText(
-                            text: context.tr(request.requestTypeID ?? ""),
+                            text: context.tr(request.requestTitle ?? ""),
                             style: AppTextStyle.bold_16,
                             textColor: Palette.black,
                           ),
@@ -98,5 +101,18 @@ class RequestItemWidget extends StatelessWidget {
             )),
       ),
     );
+  }
+  
+  _getRequestStatusColor(String requestStatus) {
+    switch (requestStatus) {
+      case "Pending":
+        return Palette.orangeBackgroundTheme;
+      case "Approved":
+        return Palette.green;
+      case "Rejected":
+        return Palette.redBackgroundTheme;
+      default:
+        return Palette.grey_7B7B7B;
+    }
   }
 }

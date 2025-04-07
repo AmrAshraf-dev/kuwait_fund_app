@@ -20,7 +20,7 @@ class AnnualLeaveRequestDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MasterWidget(
         waterMarkImage: waterMarkImage4,
-        appBarHeight: 340.h,
+        appBarHeight: 355.h,
         isBackEnabled: true,
         screenTitle: context.tr("annual_leave_request"),
         appBarBody: Column(

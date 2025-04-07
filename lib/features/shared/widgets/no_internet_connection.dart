@@ -15,7 +15,7 @@ class NoInternetConnection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        260.heightBox,
+        20.heightBox,
         Center(
           child: SvgPicture.asset(
             "assets/svg/no-internet.svg",

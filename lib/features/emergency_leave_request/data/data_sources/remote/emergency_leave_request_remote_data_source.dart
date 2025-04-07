@@ -33,7 +33,7 @@ class EmergencyLeaveRequestDataSourceImpl
       createEmergencyLeaveRequest(
           {required EmergencyLeaveRequestRequestModel
               emergencyLeaveRequestRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
+    ({dynamic response, bool success}) result = await networkHelper.post(
         path: ApiConstants.createEmergencyLeaveRequest,
         queryParams: <String, String>{
           "requestedDays":

@@ -47,7 +47,7 @@ class _MyAttendanceScreenState extends State<MyAttendanceScreen> {
             ViewsToolbox.dismissLoading();
             final MyAttendanceEntity attendance = state.response.data!;
             return MasterWidget(
-                appBarHeight: 300.h,
+                appBarHeight: 310.h,
                 screenTitle: context.tr("my_attendance"),
                 waterMarkImage: waterMarkImage4,
                 appBarBody: Column(

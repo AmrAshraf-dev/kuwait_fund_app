@@ -71,4 +71,6 @@ class ApiConstants {
   static var getAttendanceDetails = "Attendance/GetAttendanceDetails";
 
   static var getRequestTypes = "Request/GetRequestType";
+
+  static var getLeaveDashboard = "Leave/GetLeaveDashboard";
 }

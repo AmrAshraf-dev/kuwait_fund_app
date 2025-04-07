@@ -167,14 +167,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                             authModel: AuthRequestModel(
                                               userId: _formKey.currentState
                                                   ?.fields["userName"]?.value,
-                                              password:  _formKey.currentState
-                                                     ?.fields["password"]?.value
+                                              password:  
+                                              // _formKey.currentState
+                                              //        ?.fields["password"]?.value
                                               
-                                              // EncryptionService().encryptString(
-                                              //   _formKey.currentState
-                                              //       ?.fields["password"]?.value,
-                                              //       Platform.isAndroid ? KeyType.CustomerAuthAndroid : KeyType.CustomerAuthIOS,
-                                              // ),
+                                              EncryptionService().encryptString(
+                                                _formKey.currentState
+                                                    ?.fields["password"]?.value,
+                                                    Platform.isAndroid ? KeyType.CustomerAuthAndroid : KeyType.CustomerAuthIOS,
+                                              ),
                                             
                                               
                                               

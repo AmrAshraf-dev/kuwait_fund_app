@@ -1,30 +1,46 @@
- import "package:equatable/equatable.dart";
-
-
-
-
-
 /// Entity that contains the data of the Home.
-class HomeEntity extends Equatable{
+class HomeEntity {
 
- final String? var1;
 
- final  String? var2;
+  final String? leaveRequestID;
+  final String? arabicSupervisorName;
+  final String? leaveStatus;
+  final String? leaveStatusCode;
+  final DateTime? requestDate;
+  final String? leaveType;
+  final DateTime? requestStartDate;
+  final DateTime? requestEndDate;
+  final DateTime? requestExtendDate;
+  final String? leaveBalance;
+  final String? shortSickDays;
+  final String? leavDaysTaken;
+  final String? leaveRequestsCount;
+  final String? emergencyBalance;
+  final String? availableExceseBalance;
+  final String? tolalExecese;
+  final String? lateBalance;
+  final String? emergencyTransffered;
+
   /// Entity that contains the data of the Home.
-   HomeEntity(
-    {required this.var1, required this.var2}
-   );
+  HomeEntity({
 
-  /*
-  An entity represents a real-world object with a distinct identity. 
-  */
-
-  @override
-  List<Object?> get props => [
-  /*
-  List your entity attributes here 
-  */
-  ];
-
-
+    this.leaveRequestID,
+    this.arabicSupervisorName,
+    this.leaveStatus,
+    this.leaveStatusCode,
+    this.requestDate,
+    this.leaveType,
+    this.requestStartDate,
+    this.requestEndDate,
+    this.requestExtendDate,
+    this.leaveBalance,
+    this.shortSickDays,
+    this.leavDaysTaken,
+    this.leaveRequestsCount,
+    this.emergencyBalance,
+    this.availableExceseBalance,
+    this.tolalExecese,
+    this.lateBalance,
+    this.emergencyTransffered,
+  });
 }

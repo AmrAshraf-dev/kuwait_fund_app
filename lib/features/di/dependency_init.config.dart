@@ -169,6 +169,8 @@ import 'package:kf_ess_mobile_app/features/home/domain/repositories/home_reposit
     as _i219;
 import 'package:kf_ess_mobile_app/features/home/domain/use_cases/get_home_usecase.dart'
     as _i243;
+import 'package:kf_ess_mobile_app/features/home/domain/use_cases/get_leave_dashboard_usecase.dart'
+    as _i786;
 import 'package:kf_ess_mobile_app/features/home/presentation/cubits/home_cubit.dart'
     as _i408;
 import 'package:kf_ess_mobile_app/features/insurance/data/data_sources/remote/insurance_remote_data_source.dart'
@@ -474,6 +476,9 @@ Future<_i174.GetIt> $initGetIt(
       forgetPassRepository: gh<_i265.ForgetPassRepository>()));
   gh.factory<_i243.GetHomeUseCase>(
       () => _i243.GetHomeUseCase(homeRepository: gh<_i219.HomeRepository>()));
+  gh.factory<_i786.GetLeaveDashboardUseCase>(() =>
+      _i786.GetLeaveDashboardUseCase(
+          homeRepository: gh<_i219.HomeRepository>()));
   gh.factory<_i243.GetCountriesGrantsUseCase>(() =>
       _i243.GetCountriesGrantsUseCase(
           operationsRepository: gh<_i624.OperationsRepository>()));
@@ -511,6 +516,10 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i399.MyAttendanceRemoteDataSource>()));
   gh.factory<_i1062.InsuranceRepository>(() => _i454.InsuranceRepositoryImp(
       insuranceRemoteDataSource: gh<_i506.InsuranceRemoteDataSource>()));
+  gh.factory<_i408.HomeCubit>(() => _i408.HomeCubit(
+        getHomeUseCase: gh<_i243.GetHomeUseCase>(),
+        getLeaveDashboardUseCase: gh<_i786.GetLeaveDashboardUseCase>(),
+      ));
   gh.factory<_i218.NotificationsRepository>(() =>
       _i1012.NotificationsRepositoryImp(
           notificationsRemoteDataSource:
@@ -616,8 +625,6 @@ Future<_i174.GetIt> $initGetIt(
       _i641.CreateInsuranceRequestCubit(
           createInsuranceRequestUseCase:
               gh<_i739.CreateInsuranceRequestUseCase>()));
-  gh.factory<_i408.HomeCubit>(
-      () => _i408.HomeCubit(getHomeUseCase: gh<_i243.GetHomeUseCase>()));
   gh.factory<_i107.GetMyAttendanceUseCase>(() => _i107.GetMyAttendanceUseCase(
       myAttendanceRepository: gh<_i835.MyAttendanceRepository>()));
   gh.factory<_i693.MoreCubit>(

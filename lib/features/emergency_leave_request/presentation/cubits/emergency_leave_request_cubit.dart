@@ -21,7 +21,7 @@ class EmergencyLeaveRequestCubit extends Cubit<EmergencyLeaveRequestState> {
           emergencyLeaveRequestModel}) async {
     emit(EmergencyLeaveRequestLoadingState());
 
-    final CustomResponseType<BaseEntity<EmergencyLeaveRequestEntity>>
+    final CustomResponseType<BaseEntity<String>>
         eitherPackagesOrFailure =
         await createEmergencyLeaveRequestUseCase(emergencyLeaveRequestModel);
 
@@ -30,7 +30,7 @@ class EmergencyLeaveRequestCubit extends Cubit<EmergencyLeaveRequestState> {
       emit(EmergencyLeaveRequestErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<EmergencyLeaveRequestEntity> response) {
+    }, (BaseEntity<String> response) {
       emit(EmergencyLeaveRequestReadyState(response));
     });
   }

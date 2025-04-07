@@ -45,7 +45,8 @@ class _HalfCircleChartWidgetState extends State<HalfCircleChartWidget>
     // Define the animation to go from 0 to the actual progress value
     _animation = Tween<double>(
       begin: 0,
-      end: widget.leaveUsed / widget.totalLeave,
+      end: // show only haf circle 
+          1,
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
@@ -92,11 +93,15 @@ class _HalfCircleChartWidgetState extends State<HalfCircleChartWidget>
                       style: AppTextStyle.bold_16,
                       textColor: widget.color,
                     ),
+                                        if(widget.totalLeave != -1)
+
                     AppText(
                       text: "/",
                       style: AppTextStyle.bold_16,
                       textColor: Colors.white,
                     ),
+                    if(widget.totalLeave != -1)
+                     
                     AppText(
                       text: "${widget.totalLeave}",
                       style: AppTextStyle.bold_16,

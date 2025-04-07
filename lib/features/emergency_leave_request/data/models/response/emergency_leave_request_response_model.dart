@@ -13,22 +13,11 @@ part 'emergency_leave_request_response_model.g.dart';
   This could involve deserializing JSON from an API into objects, or mapping database rows to objects.
   */
 
-@JsonSerializable()
-class EmergencyLeaveRequestModel extends EmergencyLeaveRequestEntity {
-  EmergencyLeaveRequestModel({
-    required super.var1,
-    required super.var2,
-  });
 
-  factory EmergencyLeaveRequestModel.fromJson(Map<String, dynamic> json) =>
-      _$EmergencyLeaveRequestModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$EmergencyLeaveRequestModelToJson(this);
-}
 
 @JsonSerializable()
 class EmergencyLeaveRequestResponseModel
-    extends BaseEntity<EmergencyLeaveRequestModel> {
+    extends BaseEntity<String> {
   const EmergencyLeaveRequestResponseModel({
     super.code,
     super.data,
