@@ -18,7 +18,7 @@ class EmergencyLeaveRequestRepositoryImp
       emergencyLeaveRequestRemoteDataSource;
 
   @override
-  Future<CustomResponseType<BaseEntity<EmergencyLeaveRequestModel>>>
+  Future<CustomResponseType<BaseEntity<String>>>
       createEmergencyLeaveRequest(
           {required EmergencyLeaveRequestRequestModel
               emergencyLeaveRequestParams}) async {

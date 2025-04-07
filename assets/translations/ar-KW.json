@@ -1,4 +1,19 @@
+
+
 {
+  
+  "Annual Leave Request": "طلب إجازة سنوية",
+  "Sick Leave Request": "طلب إجازة مرضية",
+  "Emergency Leave Request": "طلب إجازة طارئة",
+  "Pending": "قيد الانتظار",
+  "Rejected": "مرفوض",
+  "Approved": "تم الموافقة",
+  "All": "الكل",
+  "AnnualLeave": "إجازة سنوية",
+  "SickLeave": "إجازة مرضية",
+  "EmergencyLeave": "إجازة طارئة",
+  "Loan": "قرض",
+  "please_select_from_and_to_dates": "يرجى اختيار تواريخ البداية والنهاية",
   "you_can't_add_loan_request": "لا يمكنك إضافة طلب قرض",
   "employee_name": "اسم الموظف",
   "company_name": "اسم الشركة",
@@ -691,6 +706,7 @@
   "map": "الخريطة",
   "telephone": "الهاتف",
   "fax": "الفاكس",
+  "telephone_fax": "الهاتف / الفاكس",
   "you_can_send_message": "يمكنك إرسال رسالة إلى",
   "operations": "العمليات:",
   "webmaster": "مشرف الموقع:",

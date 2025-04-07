@@ -86,7 +86,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     onTap: () {
                       CustomMainRouter.push(VisitorsLogsRoute());
                     }),
-           (  LocalData.getUser()!.userInfo.isDirector??false)
+           (  LocalData.getUser()?.userInfo.isDirector??false)
                 ? MoreItemWidget(
                     text: context.tr("dept_mission"),
                     svgIcon: Assets.svg.deptMission.path,

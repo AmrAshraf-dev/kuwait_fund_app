@@ -115,7 +115,8 @@ class _CreateSickLeaveRequestScreenState
               120.verticalSpace,
               CustomElevatedButton(
                   onPressed: () {
-                    CustomMainRouter.push(ThankYouRoute(
+                    CustomMainRouter.push(
+                      ThankYouRoute(
                       title: context.tr("request_submitted_successfully"),
                       subtitle: context.tr(
                           "your_sick_leave_request_has_been_submitted_successfully"),

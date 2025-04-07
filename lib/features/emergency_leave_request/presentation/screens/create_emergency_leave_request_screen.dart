@@ -225,8 +225,19 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                       ),
                     ),
                     120.verticalSpace,
-                    BlocBuilder<EmergencyLeaveRequestCubit,
-                        EmergencyLeaveRequestState>(builder: (context, state) {
+                    BlocConsumer<EmergencyLeaveRequestCubit,
+                        EmergencyLeaveRequestState>(
+                          
+                          listener: (context, state) {
+                         if (state is EmergencyLeaveRequestErrorState) {
+                        ViewsToolbox.dismissLoading();
+
+                        ViewsToolbox.showErrorAwesomeSnackBar(
+                            context, state.message!);
+                      }
+                          }
+                          ,
+                          builder: (context, state) {
                       if (state is EmergencyLeaveRequestReadyState) {
                         ViewsToolbox.dismissLoading();
                         CustomMainRouter.push(ThankYouRoute(
@@ -236,12 +247,7 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                         ));
                       } else if (state is EmergencyLeaveRequestLoadingState) {
                         ViewsToolbox.showLoading();
-                      } else if (state is EmergencyLeaveRequestErrorState) {
-                        ViewsToolbox.dismissLoading();
-
-                        ViewsToolbox.showErrorAwesomeSnackBar(
-                            context, state.message!);
-                      }
+                      }   
                       return CustomElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.saveAndValidate()) {

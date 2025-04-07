@@ -35,7 +35,7 @@ class MasterWidget extends StatefulWidget {
       this.drawer,
       this.isBackEnabled = false,
       this.isDrawerEnabled = false,
-      this.appBarHeight = 100.0,
+      this.appBarHeight = 120.0,
       this.appBarBody,
       this.actions = const [],
       this.waterMarkImage = waterMarkImage2,

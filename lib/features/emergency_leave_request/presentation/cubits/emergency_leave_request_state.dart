@@ -12,7 +12,7 @@ final class EmergencyLeaveRequestLoadingState extends EmergencyLeaveRequestState
 
 final class EmergencyLeaveRequestReadyState extends EmergencyLeaveRequestState {
   EmergencyLeaveRequestReadyState(this.response);
-    BaseEntity<EmergencyLeaveRequestEntity> response;
+    BaseEntity<String> response;
 
 }
 

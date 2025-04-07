@@ -4,8 +4,7 @@
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
 
-import "../../data/models/request/home_request_model.dart";
-import "../entities/home_entity.dart";
+ import "../entities/home_entity.dart";
 
 
 
@@ -18,7 +17,5 @@ abstract class HomeRepository {
   */
   
 
-  Future<CustomResponseType<BaseEntity< HomeEntity>>> getHome({
-    required HomeRequestModel homeParams,
-  });
+  Future<CustomResponseType<BaseEntity< HomeEntity>>> getHome();
 }
