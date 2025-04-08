@@ -373,11 +373,11 @@ class _VisitorsLogsScreenState extends State<VisitorsLogsScreen> {
                                 //             calendarResponse.data
                                 //                 ?.map((item) => item.date)
                                 //                 .toList() &&
-                                matchingDates == true &&
+                                matchingDates == "true" &&
                                         calendarResponse.data
                                                 ?.map((item) => item.visitType)
                                                 .toList() ==
-                                            redColor
+                                            'Red'
                                     ? Palette.redBackgroundTheme
                                     : Palette.blueBackgroundTheme,
                             shape: BoxShape.rectangle,

@@ -10,7 +10,7 @@ abstract class EmergencyLeaveRequestRepository {
   abstracting the data layer from the business logic layer. 
   */
 
-  Future<CustomResponseType<BaseEntity<EmergencyLeaveRequestEntity>>>
+  Future<CustomResponseType<BaseEntity<String>>>
       createEmergencyLeaveRequest({
     required EmergencyLeaveRequestRequestModel emergencyLeaveRequestParams,
   });

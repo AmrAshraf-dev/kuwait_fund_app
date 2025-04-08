@@ -48,7 +48,17 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
               create: (context) => leaveBalanceCubit..getAnnualLeaveBalance(),
             ),
           ],
-          child: BlocBuilder<AnnualLeaveBalanceCubit, LeaveBalanceState>(
+          child: BlocConsumer<AnnualLeaveBalanceCubit, LeaveBalanceState>(
+            listener: (context, state) {
+              if(state is LeaveBalanceErrorState){
+           
+                ViewsToolbox.dismissLoading();
+                ViewsToolbox.showErrorAwesomeSnackBar(
+                    context, state.message!);
+              
+             }
+          
+            },
             builder: (context, leaveBalanceState) {
               if (leaveBalanceState is LeaveBalanceReadyState) {
                 ViewsToolbox.dismissLoading();
@@ -170,8 +180,18 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                           ),
 
                           120.verticalSpace,
-                          BlocBuilder<AnnualLeaveRequestCubit,
+                          BlocConsumer<AnnualLeaveRequestCubit,
                               AnnualLeaveRequestState>(
+
+                            listener: (context, state) {
+                              if (state
+                                  is AnnualLeaveRequestErrorState) {
+                                ViewsToolbox.dismissLoading();
+
+                                ViewsToolbox.showErrorAwesomeSnackBar(
+                                    context, state.message!);
+                              }
+                            },
                             builder: (context, state) {
                               if (state is AnnualLeaveRequestReadyState) {
                                 ViewsToolbox.dismissLoading();
@@ -184,13 +204,7 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                               } else if (state
                                   is AnnualLeaveRequestLoadingState) {
                                 ViewsToolbox.showLoading();
-                              } else if (state
-                                  is AnnualLeaveRequestErrorState) {
-                                ViewsToolbox.dismissLoading();
-
-                                ViewsToolbox.showErrorAwesomeSnackBar(
-                                    context, state.message!);
-                              }
+                              }  
                               return CustomElevatedButton(
                                   onPressed: () {
                                     if (_formKey.currentState!
@@ -214,11 +228,7 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                         ]));
               } else if (leaveBalanceState is LeaveBalanceLoadingState) {
                 ViewsToolbox.showLoading();
-              } else if (leaveBalanceState is LeaveBalanceErrorState) {
-                ViewsToolbox.dismissLoading();
-                ViewsToolbox.showErrorAwesomeSnackBar(
-                    context, leaveBalanceState.message!);
-              }
+              } 
               return Container();
             },
           ),

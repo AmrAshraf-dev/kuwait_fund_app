@@ -174,7 +174,14 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
               10.verticalSpace,
               CustomElevatedButton(
                 onPressed: () {
+                  if(rangeDatePickerCubit.state.consumedDays == 0){ 
+                    rangeDatePickerCubit.emitErrorMessage(
+                        context.tr("please_select_from_and_to_dates"));
+                    return;
+                  }
+                  else{
                   onDoneCallback(state.errorMessage == null);
+                  }
                 },
                 text: context.tr("done"),
               ),

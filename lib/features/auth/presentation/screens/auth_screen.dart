@@ -167,21 +167,19 @@ class _AuthScreenState extends State<AuthScreen> {
                                             authModel: AuthRequestModel(
                                               userId: _formKey.currentState
                                                   ?.fields["userName"]?.value,
-                                              password:
-                                                  // _formKey.currentState
-                                                  //        ?.fields["password"]?.value
-
-                                                  //     EncryptionService()
-                                                  //         .encryptString(
-                                                  //   _formKey.currentState
-                                                  //       ?.fields["password"]?.value,
-
-                                                  //   Platform.isAndroid
-                                                  //       ? KeyType
-                                                  //           .CustomerAuthAndroid
-                                                  //       : KeyType.CustomerAuthIOS,
-                                                  // ),
-                                                  'x8rnMf/hbxsAVug19OwJrE6VNy5d/fL9IpSi1YvLkt3ZwEwopwtpopbtLwjyaz9XCCMvQ7t7fciAju2CIC+gl7NWKMMxhJlbRNYjJuk/vEb3l3UdoHrrgJ//Pj3SwlIkdSwJuz0xS06izrOCqwz74oc72pMWxszTbn3F3k5TcoDzJjF7p3/l2b3K3cIkAEuV9rZ001KhfDPFkc2e71uZQ6zPJnGLa9eF+/DILb73sY0aMU1gi5jM447cA8NQyhj7dyWmey3Zu1xP5Grh8q8Hi0kaJu2IEhLaAM5cWxFRCCy6b38GtrYaCBuhNWeKpDXmakoUtkDYpMcPIPryLshbYw==',
+                                              password:  
+                                              // _formKey.currentState
+                                              //        ?.fields["password"]?.value
+                                              
+                                              EncryptionService().encryptString(
+                                                _formKey.currentState
+                                                    ?.fields["password"]?.value,
+                                                    Platform.isAndroid ? KeyType.CustomerAuthAndroid : KeyType.CustomerAuthIOS,
+                                              ),
+                                            
+                                              
+                                              
+                                           
                                             ),
                                           );
                                         }

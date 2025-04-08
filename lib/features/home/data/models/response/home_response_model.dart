@@ -16,8 +16,25 @@ part 'home_response_model.g.dart';
 @JsonSerializable()
 class HomeModel extends HomeEntity {
   HomeModel({
-    required super.var1,
-    required super.var2,
+    required super.arabicSupervisorName,
+    required super.availableExceseBalance,
+    required super.emergencyBalance,
+    required super.emergencyTransffered,
+    required super.leaveBalance,
+    required super.leaveRequestsCount,
+    required super.leaveStatus,
+    required super.leaveStatusCode,
+    required super.leaveType,
+    required super.leaveRequestID,
+    required super.leavDaysTaken,
+    required super.lateBalance,
+    required super.requestDate,
+    required super.requestEndDate,
+    required super.requestExtendDate,
+    required super.requestStartDate,
+    required super.shortSickDays,
+    required super.tolalExecese,
+  
   });
 
   factory HomeModel.fromJson(Map<String, dynamic> json) =>

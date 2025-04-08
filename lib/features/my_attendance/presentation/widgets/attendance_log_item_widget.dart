@@ -77,10 +77,13 @@ class AttendanceLogCardItem extends StatelessWidget {
                             horizontal: 15.0),
                         child: Row(
                           children: [
-                            Icon(
-                              Icons.logout,
-                              color: Palette.primaryColor,
-                              size: 20.sp,
+                            RotatedBox(
+                              quarterTurns: 2,
+                              child: Icon(
+                                Icons.logout,
+                                color: Palette.primaryColor,
+                                size: 20.sp,
+                              ),
                             ),
                             5.horizontalSpace,
                             AppText(

@@ -1,6 +1,5 @@
 import "../../../../core/domain/usecase/base_usecase.dart";
-import "../../data/models/request/home_request_model.dart";
-import "../entities/home_entity.dart";
+ import "../entities/home_entity.dart";
 import "../repositories/home_repository.dart";
 
 import 'package:injectable/injectable.dart';
@@ -11,8 +10,8 @@ import '../../../../core/network/base_handling.dart';
 
 
 @injectable
-class GetHomeUseCase implements UseCaseNoParam<BaseEntity<HomeEntity>> {
-    GetHomeUseCase ({required this.homeRepository});
+class GetLeaveDashboardUseCase implements UseCaseNoParam<BaseEntity<HomeEntity>> {
+    GetLeaveDashboardUseCase ({required this.homeRepository});
 
   final HomeRepository homeRepository;
 

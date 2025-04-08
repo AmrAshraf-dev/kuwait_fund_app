@@ -71,10 +71,8 @@ class ApiConstants {
 
   static var getRequestTypes = "Request/GetRequestType";
 
-  static var getHosts = 'VisitorsLog/GetHosts/date=1';
+  static var getLeaveDashboard = "Leave/GetLeaveDashboard";
 
-  static var getManagementVisitorsCalendar =
-      'VisitorsLog/GetManagementVisitorsCalender';
-
-  //VisitorsLog/GetManagementVisitorsCalender?month=03&year=2025
+  static var getManagementVisitorsCalendar='GetManagementVisitorsCalender';
+  static var getHosts = '';
 }
