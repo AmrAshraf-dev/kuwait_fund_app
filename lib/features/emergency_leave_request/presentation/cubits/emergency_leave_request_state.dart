@@ -16,4 +16,16 @@ final class EmergencyLeaveRequestReadyState extends EmergencyLeaveRequestState {
 
 }
 
+final class EmergencyEligibleDaysReadyState extends EmergencyLeaveRequestState {
+  EmergencyEligibleDaysReadyState(this.response);
+  int response;
+}
+
+final class EmergencyEligibleDaysLoadingState
+    extends EmergencyLeaveRequestState {}
+final class EmergencyEligibleDaysErrorState extends EmergencyLeaveRequestState {
+  final String? message;
+
+  EmergencyEligibleDaysErrorState({this.message});
+}
 abstract class EmergencyLeaveRequestState {}

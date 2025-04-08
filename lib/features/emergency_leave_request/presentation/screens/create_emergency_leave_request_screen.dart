@@ -30,9 +30,10 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   final EmergencyReminingLeaveBalanceCubit reminingLeaveBalanceCubit =
       getIt<EmergencyReminingLeaveBalanceCubit>();
-  final EmergencyLeaveRequestCubit createRequestCubit =
+  final EmergencyLeaveRequestCubit emergencyLeaveRequestCubit =
       getIt<EmergencyLeaveRequestCubit>();
-  @override
+
+   @override
   Widget build(BuildContext context) {
     return MasterWidget(
         waterMarkImage: waterMarkImage2,
@@ -49,8 +50,9 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
               create: (context) => reminingLeaveBalanceCubit,
             ),
             BlocProvider<EmergencyLeaveRequestCubit>(
-              create: (context) => createRequestCubit,
+              create: (context) => emergencyLeaveRequestCubit..getEmergencyEligibleDays(),
             ),
+            
           ],
           child: Padding(
               padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -90,59 +92,90 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                                     context.tr("emergency_date"),
                               ),
                               20.verticalSpace,
-                              CustomDropDownField<String>(
-                                keyName: "numberOfDays",
-                                labelText:
-                                    context.tr("number_of_days_required"),
-                                disableSearch: true,
-                                disableFiled: false,
-                                labelAboveField:
-                                    context.tr("number_of_days_required"),
-                                onChanged: (
-                                  String? selectedDays,
-                                ) {
-                                  reminingLeaveBalanceCubit.updateFormState(
-                                      showDetails: true,
-                                      selectedDays: int.parse(selectedDays!));
+                              BlocConsumer<EmergencyLeaveRequestCubit, EmergencyLeaveRequestState>(
+                                listener: (context, state) {
+                                    if (state is EmergencyEligibleDaysLoadingState) {
+                                    ViewsToolbox.showLoading();
+                                  }
+
+                               else   if (state is EmergencyEligibleDaysErrorState) {
+                                    ViewsToolbox.dismissLoading();
+                                    ViewsToolbox.showErrorAwesomeSnackBar(
+                                        context, state.message!);
+                                  }
                                 },
-                                items:
-                                    <String>['1', '2', '3'].map((String item) {
-                                  return DropdownMenuItem<String>(
-                                    value: item,
-                                    child: AppText(
-                                      text: item,
-                                      style: AppTextStyle.medium_18,
-                                    ),
+                                builder: (context, state) {
+                                
+                                 
+                                      if (state
+                                          is EmergencyEligibleDaysReadyState) {
+                                         return Column(
+                                    children: [
+                                      CustomDropDownField<int>(
+                                        keyName: "numberOfDays",
+                                        labelText: context
+                                            .tr("number_of_days_required"),
+                                        disableSearch: true,
+                                        disableFiled: false,
+                                        labelAboveField: context
+                                            .tr("number_of_days_required"),
+                                        onChanged: (
+                                          int? selectedDays,
+                                        ) {
+                                          reminingLeaveBalanceCubit
+                                              .updateFormState(
+                                                  showDetails: true,
+                                                  selectedDays:
+                                                    selectedDays!);
+                                        },
+                                        items: <int>[1, 2, 3]
+                                            .map((int item) {
+                                          return DropdownMenuItem<int>(
+                                            value: item,
+                                            child: AppText(
+                                              text: item.toString(),
+                                              style: AppTextStyle.medium_18,
+                                            ),
+                                          );
+                                        }).toList(),
+                                        validator: (int? value) =>
+                                            AppValidator.validatorRequired(
+                                          value,
+                                          context,
+                                        ),
+                                      ),
+                                      15.verticalSpace,
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            color: Palette.orange_FF7904,
+                                          ),
+                                          5.horizontalSpace,
+                                          Flexible(
+                                            child: AppText(
+                                              maxLines: 2,
+                                              text:
+                                                  "${context.tr("maximum_number_of_days_you_can_request")}: ",
+                                              style: AppTextStyle.regular_13,
+                                            ),
+                                          ),
+                                          2.horizontalSpace,
+                                          AppText(
+                                            text: state.response
+                                            
+                                                .toString(),
+                                            style: AppTextStyle.bold_14,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   );
-                                }).toList(),
-                                validator: (String? value) =>
-                                    AppValidator.validatorRequired(
-                                  value,
-                                  context,
-                                ),
-                              ),
-                              15.verticalSpace,
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.info_outline,
-                                    color: Palette.orange_FF7904,
-                                  ),
-                                  5.horizontalSpace,
-                                  Flexible(
-                                    child: AppText(
-                                      maxLines: 2,
-                                      text:
-                                          "${context.tr("maximum_number_of_days_you_can_request")}: ",
-                                      style: AppTextStyle.regular_13,
-                                    ),
-                                  ),
-                                  2.horizontalSpace,
-                                  AppText(
-                                    text: context.tr("3"),
-                                    style: AppTextStyle.bold_14,
-                                  ),
-                                ],
+                                      }
+                                         return Container();
+                                    
+                                }
+                                
                               ),
                               15.verticalSpace,
                             ],
@@ -224,20 +257,16 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    120.verticalSpace,
+                    20.verticalSpace,
                     BlocConsumer<EmergencyLeaveRequestCubit,
-                        EmergencyLeaveRequestState>(
-                          
-                          listener: (context, state) {
-                         if (state is EmergencyLeaveRequestErrorState) {
+                        EmergencyLeaveRequestState>(listener: (context, state) {
+                      if (state is EmergencyLeaveRequestErrorState) {
                         ViewsToolbox.dismissLoading();
 
                         ViewsToolbox.showErrorAwesomeSnackBar(
                             context, state.message!);
                       }
-                          }
-                          ,
-                          builder: (context, state) {
+                    }, builder: (context, state) {
                       if (state is EmergencyLeaveRequestReadyState) {
                         ViewsToolbox.dismissLoading();
                         CustomMainRouter.push(ThankYouRoute(
@@ -247,11 +276,11 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                         ));
                       } else if (state is EmergencyLeaveRequestLoadingState) {
                         ViewsToolbox.showLoading();
-                      }   
+                      }
                       return CustomElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.saveAndValidate()) {
-                              createRequestCubit.createEmergencyLeaveRequest(
+                              emergencyLeaveRequestCubit.createEmergencyLeaveRequest(
                                   emergencyLeaveRequestModel:
                                       EmergencyLeaveRequestRequestModel(
                                           requestedDays:

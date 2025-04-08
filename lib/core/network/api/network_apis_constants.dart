@@ -75,4 +75,5 @@ class ApiConstants {
 
   static var getManagementVisitorsCalendar='GetManagementVisitorsCalender';
   static var getHosts = '';
+  static var getEmergencyEligibleDays = "Leave/GetEmergencyEligibleDays";
 }
