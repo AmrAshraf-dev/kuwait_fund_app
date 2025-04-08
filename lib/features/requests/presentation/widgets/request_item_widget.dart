@@ -89,6 +89,7 @@ class RequestItemWidget extends StatelessWidget {
                           ),
                         ],
                       ),
+                      if(request.requestTypeID == "1")
                       Icon(
                         Icons.arrow_forward_ios,
                         color: Palette.gery_DADADA,

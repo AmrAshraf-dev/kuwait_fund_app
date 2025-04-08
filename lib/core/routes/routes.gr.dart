@@ -374,18 +374,39 @@ class AdsRoute extends _i54.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i13.AnnualLeaveRequestDetailsScreen]
-class AnnualLeaveRequestDetailsRoute extends _i54.PageRouteInfo<void> {
-  const AnnualLeaveRequestDetailsRoute({List<_i54.PageRouteInfo>? children})
-    : super(AnnualLeaveRequestDetailsRoute.name, initialChildren: children);
+class AnnualLeaveRequestDetailsRoute
+    extends _i54.PageRouteInfo<AnnualLeaveRequestDetailsRouteArgs> {
+  AnnualLeaveRequestDetailsRoute({
+    _i55.Key? key,
+    List<_i54.PageRouteInfo>? children,
+  }) : super(
+         AnnualLeaveRequestDetailsRoute.name,
+         args: AnnualLeaveRequestDetailsRouteArgs(key: key),
+         initialChildren: children,
+       );
 
   static const String name = 'AnnualLeaveRequestDetailsRoute';
 
   static _i54.PageInfo page = _i54.PageInfo(
     name,
     builder: (data) {
-      return const _i13.AnnualLeaveRequestDetailsScreen();
+      final args = data.argsAs<AnnualLeaveRequestDetailsRouteArgs>(
+        orElse: () => const AnnualLeaveRequestDetailsRouteArgs(),
+      );
+      return _i13.AnnualLeaveRequestDetailsScreen(key: args.key);
     },
   );
+}
+
+class AnnualLeaveRequestDetailsRouteArgs {
+  const AnnualLeaveRequestDetailsRouteArgs({this.key});
+
+  final _i55.Key? key;
+
+  @override
+  String toString() {
+    return 'AnnualLeaveRequestDetailsRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

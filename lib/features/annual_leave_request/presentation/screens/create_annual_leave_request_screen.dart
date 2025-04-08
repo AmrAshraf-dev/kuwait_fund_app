@@ -217,6 +217,7 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                                             .fields["from"]!.value,
                                         endDate: _formKey
                                             .currentState!.fields["to"]!.value,
+                                            exitDate: null
                                         // exitDate: _formKey
                                         //     .currentState!.fields["to"]!.value,
                                       ));

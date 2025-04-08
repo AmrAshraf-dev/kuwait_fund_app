@@ -14,8 +14,8 @@ class AnnualLeaveRequestRequestModel {
     this.leaveType,
     this.startDate,
     this.endDate,
-    this.exitDate,
-    this.requestedDays,
+  required   this.exitDate,
+    //this.requestedDays,
   });
 
   factory AnnualLeaveRequestRequestModel.fromJson(Map<String, dynamic> json) =>
@@ -24,7 +24,7 @@ class AnnualLeaveRequestRequestModel {
   final String? startDate;
   final String? endDate;
   final String? exitDate;
-  final int? requestedDays;
+ // final int? requestedDays;
 
   Map<String, dynamic> toJson() => _$AnnualLeaveRequestRequestModelToJson(this);
 }
