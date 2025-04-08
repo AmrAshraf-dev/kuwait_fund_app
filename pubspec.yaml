@@ -59,7 +59,7 @@ dependencies:
   skeletonizer: ^1.4.3
   timeline_tile_plus: ^0.0.3
   date_picker_plus:
-   path: C:\Users\amras\OneDrive\Desktop\Flutter Projects\KuwaitFunds-ESS-MobileApp\date_picker
+   #path: C:\Users\amras\OneDrive\Desktop\Flutter Projects\KuwaitFunds-ESS-MobileApp\date_picker
   table_calendar: 
   syncfusion_flutter_datepicker: ^29.1.35
   timer_count_down: ^2.2.2
