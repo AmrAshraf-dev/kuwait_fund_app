@@ -48,85 +48,30 @@ class EmergencyLeaveAvailableDaysWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         AppText(
-                          text: context.tr("available_days"),
+                          text: context.tr("available_emergency_leave_days"),
                         ),
-                        10.verticalSpace,
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                    width: 50.w,
-                                    decoration: BoxDecoration(
-                                      color: Palette.yellow_FBD823,
-                                      borderRadius: BorderRadius.circular(16.r),
-                                    ),
-                                    child: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: AppText(
-                                            text: state.response.data,
-                                            style: AppTextStyle.bold_14),
+                                                10.verticalSpace,
+
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Palette.yellow_FBD823,
+                                        borderRadius: BorderRadius.circular(16.r),
                                       ),
-                                    )),
-                                5.verticalSpace,
-                                AppText(
-                                  text: context.tr("days"),
-                                  style: AppTextStyle.regular_16,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Container(
-                                    width: 50.w,
-                                    decoration: BoxDecoration(
-                                      color: Palette.yellow_FBD823,
-                                      borderRadius: BorderRadius.circular(16.r),
-                                    ),
-                                    child: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: AppText(
-                                            text: state.response.data,
-                                            style: AppTextStyle.bold_14),
-                                      ),
-                                    )),
-                                5.verticalSpace,
-                                AppText(
-                                  text: context.tr("hours"),
-                                  style: AppTextStyle.regular_16,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Container(
-                                    width: 50.w,
-                                    decoration: BoxDecoration(
-                                      color: Palette.yellow_FBD823,
-                                      borderRadius: BorderRadius.circular(16.r),
-                                    ),
-                                    child: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: AppText(
-                                            text: state.response.data,
-                                            style: AppTextStyle.bold_14),
-                                      ),
-                                    )),
-                                5.verticalSpace,
-                                AppText(
-                                  text: context.tr("minutes"),
-                                  style: AppTextStyle.regular_16,
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: AppText(
+                                              text: state.response.data,
+                                              style: AppTextStyle.bold_14),
+                                        ),
+                                      )),
+    ),                        
+                          
+                         
+                          
+                      
                       ]),
                 ));
           }

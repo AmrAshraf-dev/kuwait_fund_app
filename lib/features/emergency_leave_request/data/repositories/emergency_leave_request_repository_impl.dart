@@ -40,4 +40,10 @@ class EmergencyLeaveRequestRepositoryImp
     return await emergencyLeaveRequestRemoteDataSource
         .getEmergencyLeaveBalance();
   }
+  
+  @override
+  Future<CustomResponseType<int>> getEmergencyEligibleDays() async {
+    return await emergencyLeaveRequestRemoteDataSource
+        .getEmergencyEligibleDays();
+  }
 }

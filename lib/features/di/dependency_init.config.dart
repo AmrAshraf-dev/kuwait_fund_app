@@ -139,6 +139,8 @@ import 'package:kf_ess_mobile_app/features/emergency_leave_request/domain/use_ca
     as _i769;
 import 'package:kf_ess_mobile_app/features/emergency_leave_request/domain/use_cases/get_emergency_balance_usecase.dart'
     as _i545;
+import 'package:kf_ess_mobile_app/features/emergency_leave_request/domain/use_cases/get_emergency_eligible_days_usecase.dart'
+    as _i58;
 import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/cubits/emergency_available_days_cubit/emergency_available_days_cubit.dart'
     as _i500;
 import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/cubits/emergency_leave_balance_cubit/emergency_leave_balance_cubit.dart'
@@ -574,16 +576,16 @@ Future<_i174.GetIt> $initGetIt(
       _i545.GetEmergencyLeaveBalanceUseCase(
           createRequestRepository:
               gh<_i1035.EmergencyLeaveRequestRepository>()));
+  gh.factory<_i58.GetEmergencyEligibleDaysUseCase>(() =>
+      _i58.GetEmergencyEligibleDaysUseCase(
+          createRequestRepository:
+              gh<_i1035.EmergencyLeaveRequestRepository>()));
   gh.factory<_i727.GetProfileUseCase>(() => _i727.GetProfileUseCase(
       profileRepository: gh<_i246.ProfileRepository>()));
   gh.factory<_i1026.VisitorsLogsRepository>(() =>
       _i72.VisitorsLogsRepositoryImp(
           visitorsLogsRemoteDataSource:
               gh<_i643.VisitorsLogsRemoteDataSource>()));
-  gh.factory<_i405.EmergencyLeaveRequestCubit>(() =>
-      _i405.EmergencyLeaveRequestCubit(
-          createEmergencyLeaveRequestUseCase:
-              gh<_i888.CreateEmergencyLeaveRequestUseCase>()));
   gh.factory<_i611.GetAdminDirectorMissionUseCase>(() =>
       _i611.GetAdminDirectorMissionUseCase(
           adminDirectorMissionRepository:
@@ -684,6 +686,13 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i793.GetPersonalLoanMasterInfoUseCase>(() =>
       _i793.GetPersonalLoanMasterInfoUseCase(
           gh<_i815.LoanRequestRepository>()));
+  gh.factory<_i405.EmergencyLeaveRequestCubit>(
+      () => _i405.EmergencyLeaveRequestCubit(
+            createEmergencyLeaveRequestUseCase:
+                gh<_i888.CreateEmergencyLeaveRequestUseCase>(),
+            getEmergencyEligibleDaysUseCase:
+                gh<_i58.GetEmergencyEligibleDaysUseCase>(),
+          ));
   gh.factory<_i992.LoanRequestCubit>(() => _i992.LoanRequestCubit(
         getLoanReasonsUseCase: gh<_i302.GetLoanReasonsUseCase>(),
         getPersonalLoanMasterInfoUseCase:

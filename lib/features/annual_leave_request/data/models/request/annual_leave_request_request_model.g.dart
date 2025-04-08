@@ -13,7 +13,6 @@ AnnualLeaveRequestRequestModel _$AnnualLeaveRequestRequestModelFromJson(
       startDate: json['startDate'] as String?,
       endDate: json['endDate'] as String?,
       exitDate: json['exitDate'] as String?,
-      requestedDays: (json['requestedDays'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$AnnualLeaveRequestRequestModelToJson(
@@ -23,5 +22,4 @@ Map<String, dynamic> _$AnnualLeaveRequestRequestModelToJson(
       'startDate': instance.startDate,
       'endDate': instance.endDate,
       'exitDate': instance.exitDate,
-      'requestedDays': instance.requestedDays,
     };

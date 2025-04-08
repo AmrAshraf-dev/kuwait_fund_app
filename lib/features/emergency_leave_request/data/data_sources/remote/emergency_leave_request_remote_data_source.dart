@@ -20,6 +20,10 @@ abstract class EmergencyLeaveRequestRemoteDataSource {
 
   Future<CustomResponseType<LeaveBalanceResponseModel>>
       getEmergencyLeaveBalance();
+
+
+
+    Future<CustomResponseType<int>>  getEmergencyEligibleDays();
 }
 
 @Injectable(as: EmergencyLeaveRequestRemoteDataSource)
@@ -71,6 +75,19 @@ class EmergencyLeaveRequestDataSourceImpl
 
     if (result.success) {
       return right(LeaveBalanceResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+  
+  @override
+  Future<CustomResponseType<int>> getEmergencyEligibleDays() async {
+      ({dynamic response, bool success}) result = await networkHelper.get(
+      path: ApiConstants.getEmergencyEligibleDays,
+    );
+
+    if (result.success && result.response["data"] !=null) {
+      return right(result.response["data"]);
     } else {
       return left(ServerFailure(message: result.response as String));
     }

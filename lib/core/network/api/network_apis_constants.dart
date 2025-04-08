@@ -73,4 +73,6 @@ class ApiConstants {
   static var getRequestTypes = "Request/GetRequestType";
 
   static var getLeaveDashboard = "Leave/GetLeaveDashboard";
+
+  static var getEmergencyEligibleDays = "Leave/GetEmergencyEligibleDays";
 }

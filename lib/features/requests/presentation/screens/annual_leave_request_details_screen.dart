@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/screens/annual_submission_details_screen.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_leave_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/advanced_expandable_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
@@ -14,7 +17,29 @@ import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 @RoutePage()
 class AnnualLeaveRequestDetailsScreen extends StatelessWidget {
-  const AnnualLeaveRequestDetailsScreen({super.key});
+
+    AnnualLeaveRequestDetailsScreen({super.key});
+
+ List<RequestHistory> requestHistory = [
+    RequestHistory(
+      type: "Training Request",
+      date: "01/01/2021",
+      status: "approved",
+      days: "4",
+    ),
+    RequestHistory(
+      type: "Training Request",
+      date: "01/01/2021",
+      status: "approved",
+      days: "4",
+    ),
+    RequestHistory(
+      type: "Training Request",
+      date: "01/01/2021",
+      status: "approved",
+      days: "4",
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -116,10 +141,24 @@ class AnnualLeaveRequestDetailsScreen extends StatelessWidget {
                         ]),
                   )),
               20.verticalSpace,
-              MainTitleWidget(
-                title: context.tr("track_request"),
+              // MainTitleWidget(
+              //   title: context.tr("track_request"),
+              // ),
+              // ApprovalTimeline(),
+
+                    AdvancedExpandableSection(
+                headerPadding: const EdgeInsetsDirectional.only(
+                    start: 20, top: 20, bottom: 20),
+                customText: SizedBox(
+                    width: 240.w,
+                    child: MainTitleWidget(
+                        title: context.tr("training_request_history"))),
+                children: requestHistory.map((RequestHistory requestHistory) {
+                  return SubmissionLeaveItemWidget(
+                    requestHistory: requestHistory,
+                  );
+                }).toList(),
               ),
-              ApprovalTimeline(),
             ])));
   }
 }
