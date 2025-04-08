@@ -25,11 +25,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
       if (LocalData.getUser() != null &&
           LocalData.getUser()?.tokenInfo.token.isNotEmpty == true) {
-        if (LocalData.getUser()!.userInfo.isSupervisor) {
+        if (LocalData.getUser()!.userInfo.isSupervisor??false) {
           CustomMainRouter.push(SupervisorNavigationMainRoute());
-        } else if (LocalData.getUser()!.userInfo.isDirector) {
-          CustomMainRouter.push(SupervisorNavigationMainRoute());
-        } else if (LocalData.getUser()!.userInfo.isTrainingSupervisor) {
+        } else if (LocalData.getUser()!.userInfo.isDirector??false) {
+          CustomMainRouter.push(AdminNavigationMainRoute());
+   
         } else {
           CustomMainRouter.push(NavigationMainRoute());
         }

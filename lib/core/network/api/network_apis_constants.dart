@@ -10,7 +10,7 @@ class ApiConstants {
 
   static var contributions = "General/GetContribution";
 
-  static var auth = "Login/LoginUser";
+  static var auth = "Auth/Login";
 
   static var generateOTP = "ChangePassword/GenerateOTP";
 
@@ -70,4 +70,11 @@ class ApiConstants {
   static var getAttendanceDetails = "Attendance/GetAttendanceDetails";
 
   static var getRequestTypes = "Request/GetRequestType";
+
+  static var getHosts = 'VisitorsLog/GetHosts/date=1';
+
+  static var getManagementVisitorsCalendar =
+      'VisitorsLog/GetManagementVisitorsCalender';
+
+  //VisitorsLog/GetManagementVisitorsCalender?month=03&year=2025
 }

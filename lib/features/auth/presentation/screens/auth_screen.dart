@@ -123,13 +123,13 @@ class _AuthScreenState extends State<AuthScreen> {
                                 UserInfoModel userInfo =
                                     state.response.data!.userInfo;
                                 ViewsToolbox.dismissLoading();
-                                if (userInfo.isError) {
+                                if (userInfo.isError ?? false) {
                                   ViewsToolbox.showErrorAwesomeSnackBar(
-                                      context, userInfo.errorMsg);
-                                } else if (userInfo.isSupervisor) {
+                                      context, userInfo.errorMsg ?? "error");
+                                } else if (userInfo.isSupervisor ?? false) {
                                   CustomMainRouter.push(
                                       SupervisorNavigationMainRoute());
-                                } else if (userInfo.isDirector) {
+                                } else if (userInfo.isDirector ?? false) {
                                   CustomMainRouter.push(
                                       AdminNavigationMainRoute());
                                 } else {
@@ -165,19 +165,23 @@ class _AuthScreenState extends State<AuthScreen> {
                                             false) {
                                           authCubit.getAuth(
                                             authModel: AuthRequestModel(
-                                              userName: _formKey.currentState
+                                              userId: _formKey.currentState
                                                   ?.fields["userName"]?.value,
-                                              password: //EncryptionService()
-                                                  // .encryptString(
-                                                  _formKey
-                                                      .currentState
-                                                      ?.fields["password"]
-                                                      ?.value,
-                                              // Platform.isAndroid
-                                              //     ? KeyType
-                                              //         .CustomerAuthAndroid
-                                              //     : KeyType.CustomerAuthIOS,
-                                              // ),
+                                              password:
+                                                  // _formKey.currentState
+                                                  //        ?.fields["password"]?.value
+
+                                                  //     EncryptionService()
+                                                  //         .encryptString(
+                                                  //   _formKey.currentState
+                                                  //       ?.fields["password"]?.value,
+
+                                                  //   Platform.isAndroid
+                                                  //       ? KeyType
+                                                  //           .CustomerAuthAndroid
+                                                  //       : KeyType.CustomerAuthIOS,
+                                                  // ),
+                                                  'x8rnMf/hbxsAVug19OwJrE6VNy5d/fL9IpSi1YvLkt3ZwEwopwtpopbtLwjyaz9XCCMvQ7t7fciAju2CIC+gl7NWKMMxhJlbRNYjJuk/vEb3l3UdoHrrgJ//Pj3SwlIkdSwJuz0xS06izrOCqwz74oc72pMWxszTbn3F3k5TcoDzJjF7p3/l2b3K3cIkAEuV9rZ001KhfDPFkc2e71uZQ6zPJnGLa9eF+/DILb73sY0aMU1gi5jM447cA8NQyhj7dyWmey3Zu1xP5Grh8q8Hi0kaJu2IEhLaAM5cWxFRCCy6b38GtrYaCBuhNWeKpDXmakoUtkDYpMcPIPryLshbYw==',
                                             ),
                                           );
                                         }

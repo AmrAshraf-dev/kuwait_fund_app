@@ -38,6 +38,8 @@ dependencies:
   dart_ping_ios: ^4.0.2
   connectivity_plus: ^6.1.2
   http: ^1.3.0
+ 
+  
 
   # speech to text
   speech_to_text: ^7.0.0
@@ -56,8 +58,12 @@ dependencies:
   flutter_easyloading: ^3.0.5
   skeletonizer: ^1.4.3
   timeline_tile_plus: ^0.0.3
-  date_picker_plus: ^4.1.0
+  date_picker_plus:
+   path: C:\Users\amras\OneDrive\Desktop\Flutter Projects\KuwaitFunds-ESS-MobileApp\date_picker
+  table_calendar: 
+  syncfusion_flutter_datepicker: ^29.1.35
   timer_count_down: ^2.2.2
+  dropdown_search: ^5.0.6
   awesome_snackbar_content:
     git:
       url: https://github.com/AbdelrahmanMahmoudM94/awesome_snackbar_content

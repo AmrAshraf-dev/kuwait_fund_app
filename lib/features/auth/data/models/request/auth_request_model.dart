@@ -10,11 +10,11 @@ part 'auth_request_model.g.dart';
 
 @JsonSerializable()
 class AuthRequestModel {
-  AuthRequestModel({required this.userName, required this.password});
+  AuthRequestModel({required this.userId, required this.password});
 
   factory AuthRequestModel.fromJson(Map<String, dynamic> json) =>
       _$AuthRequestModelFromJson(json);
-  final String? userName;
+  final String? userId;
   final String? password;
 
   Map<String, dynamic> toJson() => _$AuthRequestModelToJson(this);

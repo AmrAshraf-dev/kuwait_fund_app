@@ -8,23 +8,23 @@ part of 'visitors_logs_response_model.dart';
 
 VisitorsLogsModel _$VisitorsLogsModelFromJson(Map<String, dynamic> json) =>
     VisitorsLogsModel(
-      var1: json['var1'] as String?,
-      var2: json['var2'] as String?,
+      date: json['date'] as String?,
+      visitType: json['visitType'] as String?,
     );
 
 Map<String, dynamic> _$VisitorsLogsModelToJson(VisitorsLogsModel instance) =>
     <String, dynamic>{
-      'var1': instance.var1,
-      'var2': instance.var2,
+      'date': instance.date,
+      'visitType': instance.visitType,
     };
 
 VisitorsLogsResponseModel _$VisitorsLogsResponseModelFromJson(
         Map<String, dynamic> json) =>
     VisitorsLogsResponseModel(
       code: (json['code'] as num?)?.toInt(),
-      data: json['data'] == null
-          ? null
-          : VisitorsLogsModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => VisitorsLogsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       message: json['message'] as String?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
       hasMorePages: json['hasMorePages'] as bool?,

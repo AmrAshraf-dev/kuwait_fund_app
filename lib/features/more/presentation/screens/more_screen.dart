@@ -73,7 +73,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 onTap: () {
                   CustomMainRouter.push(AdsRoute());
                 }),
-            LocalData.getUser()!.userInfo.isDirector
+            (LocalData.getUser()?.userInfo.isDirector ?? false)
                 ? MoreItemWidget(
                     text: context.tr("director_mission"),
                     svgIcon: Assets.svg.directorMission.path,
@@ -86,7 +86,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     onTap: () {
                       CustomMainRouter.push(VisitorsLogsRoute());
                     }),
-            LocalData.getUser()!.userInfo.isDirector
+            (LocalData.getUser()?.userInfo.isDirector ?? false)
                 ? MoreItemWidget(
                     text: context.tr("dept_mission"),
                     svgIcon: Assets.svg.deptMission.path,

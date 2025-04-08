@@ -16,8 +16,8 @@ part 'visitors_logs_response_model.g.dart';
 @JsonSerializable()
 class VisitorsLogsModel extends VisitorsLogsEntity {
   VisitorsLogsModel({
-    required super.var1,
-    required super.var2,
+    required super.date,
+    required super.visitType,
   });
 
   factory VisitorsLogsModel.fromJson(Map<String, dynamic> json) =>
@@ -27,7 +27,7 @@ class VisitorsLogsModel extends VisitorsLogsEntity {
 }
 
 @JsonSerializable()
-class VisitorsLogsResponseModel extends BaseEntity<VisitorsLogsModel> {
+class VisitorsLogsResponseModel extends BaseEntity<List<VisitorsLogsModel>> {
   const VisitorsLogsResponseModel({
     super.code,
     super.data,

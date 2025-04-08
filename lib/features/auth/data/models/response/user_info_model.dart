@@ -4,16 +4,16 @@ part 'user_info_model.g.dart';
 
 @JsonSerializable()
 class UserInfoModel {
-  final bool isError;
-  final String errorMsg;
-  final bool isValidUser;
-  final bool isDirector;
-  final bool isSupervisor;
-  final bool isTrainingSupervisor;
-  final String name;
-  final String designation;
-  final String phoneNumber;
-  final String photoURL;
+  final bool? isError;
+  final String? errorMsg;
+  final bool? isValidUser;
+  final bool? isDirector;
+  final bool? isSupervisor;
+  final bool? isTrainingSupervisor;
+  final String? name;
+  final String? designation;
+  final String? phoneNumber;
+  final String? photoURL;
 
   UserInfoModel({
     required this.isError,
