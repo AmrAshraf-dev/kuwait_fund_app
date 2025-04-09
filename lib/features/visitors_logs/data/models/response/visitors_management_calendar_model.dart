@@ -1,13 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitors_logs_entity.dart';
-
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
+ 
 part 'visitors_management_calendar_model.g.dart';
 
 @JsonSerializable()
-class VisitorsManagementCalendarModel extends VisitorsManagementCalendarEntity {
+class VisitorsManagementCalendarModel extends VisitorsLogsEntity {
   VisitorsManagementCalendarModel({
-    super.date,
-    super.visitType,
+   required  super.date,
+   required super.visitType,
   });
   factory VisitorsManagementCalendarModel.fromJson(Map<String, dynamic> json) =>
       _$VisitorsManagementCalendarModelFromJson(json);

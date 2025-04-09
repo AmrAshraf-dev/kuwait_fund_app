@@ -1,4 +1,7 @@
 {
+  "you_can_not_view_visitors_logs": "لا يمكنك عرض سجلات الزوار",
+  "general-error": "حدث خطأ ما ، من فضلك حاول مرة أخرى",
+  "select_host_name": "اختر اسم المضيف",
   "available_emergency_leave_days": "رصيد الطارئة ( عرضي ) المتاح",
   "Annual Leave Request": "طلب إجازة سنوية",
   "Sick Leave Request": "طلب إجازة مرضية",

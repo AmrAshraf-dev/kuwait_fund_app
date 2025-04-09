@@ -1,22 +1,31 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/host_name_dropmenu_widget.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 class VisitsBottomSheet extends StatefulWidget {
-  const VisitsBottomSheet({super.key});
+  String selectedDate;
+  final List<VisitorsLogsEntity> selectedMonthDays;
 
+  VisitsBottomSheet(
+      {super.key, required this.selectedDate, required this.selectedMonthDays});
   @override
-  _VisitsBottomSheetState createState() => _VisitsBottomSheetState();
+  VisitsBottomSheetState createState() => VisitsBottomSheetState();
 }
 
-class _VisitsBottomSheetState extends State<VisitsBottomSheet> {
-  final List<String> dates = ['14', '15', '16', '20', '21', '24'];
-  String selectedDate = '14';
-
+class VisitsBottomSheetState extends State<VisitsBottomSheet> {
+  final VisitorsLogsCubit visitorsLogsCubit = getIt<VisitorsLogsCubit>();
+  VisitorsLogsHostsEntity? selectedHostName;
   final List<Map<String, String>> visits = [
     {
       'name': 'Ahmed Elsayed',
@@ -70,62 +79,84 @@ class _VisitsBottomSheetState extends State<VisitsBottomSheet> {
 
   @override
   Widget build(BuildContext conAppText) {
-    List<Map<String, String>> filteredVisits =
-        visits.where((visit) => visit['date'] == selectedDate).toList();
+     
 
-    return Container(
-      padding: EdgeInsets.all(16),
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(35.r),
-          topRight: Radius.circular(35.r),
+    List<Map<String, String>> filteredVisits =
+        visits.where((visit) => visit['date'] == widget.selectedDate).toList();
+
+    return BlocProvider(
+      create: (context) => visitorsLogsCubit
+        ..getVisitorLogsDetails(
+          VisitorsLogsDetailsRequestModel(
+            date: widget.selectedDate.toString(),
+          ),
         ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          20.verticalSpace,
-          AppText(
-            text: 'October 2024',
-            style: AppTextStyle.bold_21,
+      child: Container(
+        padding: EdgeInsets.all(16),
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(35.r),
+            topRight: Radius.circular(35.r),
           ),
-          16.verticalSpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: dates.map((date) {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedDate = date;
-                  });
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: selectedDate == date ? Colors.yellow : Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                        color: selectedDate == date
-                            ? Colors.transparent
-                            : Palette.gery_DADADA),
-                  ),
-                  child: AppText(
-                    text: date,
-                    // style: AppTextStyle(
-                    //   fontWeight: FontWeight.bold,
-                    //   color: selectedDate == date ? Colors.black : Colors.grey,
-                    // ),
-                  ),
-                ),
-              );
-            }).toList(),
-          ),
-          16.verticalSpace,
-          Flexible(
-            child: ListView.builder(
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            20.verticalSpace,
+            AppText(
+              text: DateFormat("MMMM yyyy").format(DateTime.parse(widget.selectedDate)), // Display the formatted date
+              style: AppTextStyle.bold_21,
+            ),
+            16.verticalSpace,
+            SizedBox(
+              height: 40.h,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: widget.selectedMonthDays.map((visitoreLogsEntity) {
+                   return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                    child: GestureDetector(
+                      onTap: () {
+                        visitorsLogsCubit.getVisitorLogsDetails(
+                          VisitorsLogsDetailsRequestModel(
+                            hostName: selectedHostName?.name,
+                            date: visitoreLogsEntity.date,
+                          ),
+                        );
+                        setState(() {
+                          widget.selectedDate = visitoreLogsEntity.date;
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: widget.selectedDate == visitoreLogsEntity.date
+                              ? Colors.yellow
+                              : Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                              color: widget.selectedDate == visitoreLogsEntity.date
+                                  ? Colors.transparent
+                                  : Palette.gery_DADADA),
+                        ),
+                        child: AppText(
+                          text: DateFormat("dd/MM/yyyy").parse(visitoreLogsEntity.date).day.toString(), // Format as "dd/MM/yyyy"
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            HostNameDropdown(
+              visitorsLogsCubit: visitorsLogsCubit,
+              onHostSelected: (host) => setState(() => selectedHostName = host),
+            ),
+            10.verticalSpace,
+            ListView.builder(
               itemCount: filteredVisits.length,
               shrinkWrap: true,
               itemBuilder: (conAppText, index) {
@@ -159,7 +190,9 @@ class _VisitsBottomSheetState extends State<VisitsBottomSheet> {
                             ),
                           ),
                           child: Assets.svg.userCircleIcon.svg(
-                              width: 50.w, height: 50.w, color: Palette.black),
+                              width: 50.w,
+                              height: 50.w,
+                              color: Palette.black),
                         ),
                         title: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -181,11 +214,6 @@ class _VisitsBottomSheetState extends State<VisitsBottomSheet> {
                                 text: context.tr(visit['type']!),
                                 style: AppTextStyle.semiBold_12,
                                 textColor: Colors.white,
-                                // style: AppTextStyle(
-                                //   color: Colors.white,
-                                //   fontWeight: FontWeight.bold,
-                                //   fontSize: 12,
-                                // ),
                               ),
                             ),
                           ],
@@ -215,10 +243,6 @@ class _VisitsBottomSheetState extends State<VisitsBottomSheet> {
                                         "${context.tr("number_of_delegation")} : ${visit['delegation']}"),
                               ],
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: Palette.grey_D4CDCD,
-                            ),
                           ],
                         ),
                       ),
@@ -227,13 +251,13 @@ class _VisitsBottomSheetState extends State<VisitsBottomSheet> {
                 );
               },
             ),
-          ),
-          16.verticalSpace,
-          CustomElevatedButton(
-              backgroundColor: Colors.transparent,
-              onPressed: () => Navigator.pop(conAppText),
-              text: context.tr("colose")),
-        ],
+            16.verticalSpace,
+            CustomElevatedButton(
+                backgroundColor: Colors.transparent,
+                onPressed: () => Navigator.pop(conAppText),
+                text: context.tr("close")),
+          ],
+        ),
       ),
     );
   }

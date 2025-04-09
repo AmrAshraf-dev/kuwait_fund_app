@@ -2,11 +2,9 @@
 
 import 'package:injectable/injectable.dart';
 
-import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitor_logs_hosts_model.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitors_logs_entity.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/repositories/visitor_logs_hosts_repository.dart';
-
+ import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
+ 
 import '../../../../core/network/base_handling.dart';
 import '../../../shared/entity/base_entity.dart';
 import '../../../visitors_logs/data/data_sources/remote/visitors_logs_remote_data_source.dart';
@@ -27,35 +25,16 @@ class VisitorsLogsRepositoryImp implements VisitorsLogsRepository {
     return await visitorsLogsRemoteDataSource.getVisitorsLogs(
         visitorsLogsRequestModel: visitorsLogsParams);
   }
-
+ 
   @override
-  Future<CustomResponseType<List<VisitorsManagementCalendarModel>>>
-      getVisitorsManagementCalendarList(
-          {required List<VisitorsManagementCalendarModel>
-              visitorManagementCalendarParams}) async {
-    return await visitorsLogsRemoteDataSource.getVisitorsManagementCalendar(
-        visitorsManagementCalendarModel: visitorManagementCalendarParams);
-  }
+  Future<CustomResponseType<BaseEntity<List<VisitorsLogsHostsEntity>>>> getVisitorLogsHosts({required String date}) async {
+      return await visitorsLogsRemoteDataSource.getVisitorsHostsLogs(date: date);
 }
 
-@Injectable(as: VisitorLogsHostsRepository)
-class VisitorLogsHostsRepositoryImp implements VisitorLogsHostsRepository {
-  VisitorLogsHostsRepositoryImp({
-    required this.visitorsLogsRemoteDataSource,
-  });
-
-  final VisitorsLogsRemoteDataSource visitorsLogsRemoteDataSource;
-
-  Future<CustomResponseType<List<VisitorLogsHostsModel>>> getHostsList(
-      {required List<VisitorLogsHostsModel> visitorsLogsHostsParams}) async {
-    return visitorsLogsRemoteDataSource.getVisitorsHostsLogs(
-        visitorsLogsHostsModel: visitorsLogsHostsParams);
-  }
-
   @override
-  Future<CustomResponseType<BaseEntity<List<VisitorLogsHostsEntity>>>>
-      getVisitorLogsHosts(
-          {required List<VisitorLogsHostsModel> visitorsLogsHostsParams}) {
-    throw UnimplementedError();
-  }
+  Future<CustomResponseType<bool>> getCanViewVisitorsLogs() async {
+    return await visitorsLogsRemoteDataSource.getCanViewVisitorsLogs();
+  } 
 }
+
+

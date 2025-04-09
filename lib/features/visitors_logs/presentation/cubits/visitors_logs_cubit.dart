@@ -1,25 +1,28 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitor_logs_hosts_model.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_can_view_visitors_logs_usecase.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_visitor_logs_hosts_usecase.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
 import "../../../shared/entity/base_entity.dart";
 import '../../domain/use_cases/get_visitors_logs_usecase.dart';
-import '../../domain/entities/visitors_logs_entity.dart';
 import '../../data/models/request/visitors_logs_request_model.dart';
 
 part 'visitors_logs_state.dart';
 
 @injectable
 class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
-  final GetVisitorsLogsUseCase getVisitorsLogsUseCase;
   final GetVisitorLogsHostsUseCase getVisitorLogsHostsUseCase;
-  final VisitorsManagementCalendarUseCase visitorsManagementCalendarUseCase;
+  final GetVisitorLogsUseCase  getVisitorLogsUseCase;
+
+  final GetCanViewVisitorsLogsUsecase getCanViewVisitorsLogsUseCase;
   VisitorsLogsCubit(this.getVisitorLogsHostsUseCase,
-      this.getVisitorsLogsUseCase, this.visitorsManagementCalendarUseCase)
+  this.getCanViewVisitorsLogsUseCase,
+     this.getVisitorLogsUseCase)
       : super(VisitorsLogsInitialState());
 
   Future<void> getVisitorsLogs(
@@ -28,7 +31,7 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
 
     final CustomResponseType<BaseEntity<List<VisitorsLogsEntity>>>
         eitherPackagesOrFailure =
-        await getVisitorsLogsUseCase(visitorsLogsModel);
+        await getVisitorLogsUseCase(visitorsLogsModel);
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
@@ -42,39 +45,47 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
   //
 
   Future<void> getHostsList(
-      {List<VisitorLogsHostsModel>? visitorsLogsHostsModel}) async {
+      String currentDate) async {
     emit(VisitorsLogsLoadingState());
 
-    final CustomResponseType<BaseEntity<List<VisitorLogsHostsEntity>>>
+    final CustomResponseType<BaseEntity<List<VisitorsLogsHostsEntity>>>
         eitherPackagesOrFailure =
-        await getVisitorLogsHostsUseCase(visitorsLogsHostsModel ?? []);
+        await getVisitorLogsHostsUseCase(currentDate);
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
       emit(VisitorsLogsErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<List<VisitorLogsHostsEntity>> response) {
+    }, (BaseEntity<List<VisitorsLogsHostsEntity>> response) {
       emit(VisitorsLogsHostsReadyState(response));
     });
   }
 
-  Future<void> getVisitorsManagementCalendarList(
-      {List<VisitorsManagementCalendarModel>?
-          visitorManagementCalendarModel}) async {
-    emit(VisitorsLogsLoadingState());
+  getCanViewVisitorsLogs() async {
+        emit(VisitorsLogsLoadingState());
 
-    final CustomResponseType<List<VisitorsManagementCalendarEntity>>
-        eitherPackagesOrFailure = await visitorsManagementCalendarUseCase(
-            visitorManagementCalendarModel ?? []);
+    final CustomResponseType<bool>
+        eitherPackagesOrFailure =
+        await getCanViewVisitorsLogsUseCase();
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
       emit(VisitorsLogsErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (List<VisitorsManagementCalendarEntity> response) {
-      emit(VisitorsManagementCalendarReadyState(response));
+    }, (bool canView) {
+      if(canView){
+        emit(VisitorsLogsCanViewState());
+        
+      }else{
+        emit(VisitorsLogsCanNotViewState());
+      }
+      
     });
   }
+
+  getVisitorLogsDetails(visitorLogsDetailsRequestModel) {}
+
+ 
 }

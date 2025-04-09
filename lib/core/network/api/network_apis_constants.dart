@@ -74,8 +74,10 @@ class ApiConstants {
   static var getLeaveDashboard = "Leave/GetLeaveDashboard";
 
   static var getManagementVisitorsCalendar = 'GetManagementVisitorsCalender';
-  static var getHosts = '';
   static var getEmergencyEligibleDays = "Leave/GetEmergencyEligibleDays";
   static var getLeaveRequestHistory = 'Leave/GetLeaveRequestHistory';
   static var getLeaveRequestInfo = 'Leave/GetLeaveRequestInfo';
+  static var getHosts = 'VisitorsLog/GetHosts';
+
+  static var getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';
 }
