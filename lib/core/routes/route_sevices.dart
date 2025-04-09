@@ -14,13 +14,9 @@ class CustomMainRouter {
     appRouter.navigate(route).then(then ?? (Object? value) {});
   }
 
-  static void pop() {
-    getIt<AppRouter>().navigatorKey.currentContext!.router.back();
-
-    //Navigator.of(getIt<AppRouter>().navigatorKey.currentContext!).pop();
-    //  getIt<AppRouter>().navigatorKey.currentContext!.router.back();
+   static void pop({Object? result}) {
+    Navigator.pop(getIt<AppRouter>().navigatorKey.currentContext!, result);
   }
-
   static void push(PageRouteInfo route,
       {FutureOr<dynamic> Function(Object?)? then}) {
     appRouter.push(route).then(then ?? (Object? value) {});

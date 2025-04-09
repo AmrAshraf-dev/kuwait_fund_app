@@ -1,5 +1,10 @@
 {
 
+"you_can_not_view_visitors_logs": "You can't view visitors logs",
+  "general-error":  "Error , please try again later ",
+
+
+"select_host_name": "Select Host Name",
   "Annual Leave Request":  "Annual Leave Request",
   "Sick Leave Request":  "Sick Leave Request",
   "Emergency Leave Request":  "Emergency Leave Request",

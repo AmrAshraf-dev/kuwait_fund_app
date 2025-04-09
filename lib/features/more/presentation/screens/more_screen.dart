@@ -78,7 +78,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     text: context.tr("director_mission"),
                     svgIcon: Assets.svg.directorMission.path,
                     onTap: () {
-                      CustomMainRouter.push(VisitorsLogsRoute());
+                      CustomMainRouter.push(VisitorsLogsRoute());//TODO: change route
                     })
                 : MoreItemWidget(
                     text: context.tr("visitors_logs"),

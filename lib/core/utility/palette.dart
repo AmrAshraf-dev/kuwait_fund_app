@@ -8,10 +8,15 @@ class Palette {
   static const Color blue_002A69 = Color(0xFF002A69);
   static const Color blue_083983 = Color(0xFF083983);
   static const Color blue_002A6A = Color(0xFF002A6A);
+    static const Color grey_0F2F2F2 = Color(0xFFF2F2F2);
+  static const Color black_1E1E1E = Color(0xFF1E1E1E);
+
   static const Color red_FF0606 = Color(0xFFff0606);
   static const Color green_07BF0D = Color(0xFF07BF0D);
   static const Color green_457403 = Color(0xFF457403);
   static const Color white_F7F7F7 = Color(0xFFF7F7F7);
+    static const Color grey_626C83 = Color(0xFF626C83);
+
   static const Color gery_AAAAAA = Color(0xFFAAAAAA);
   static const Color blue_0C4192 = Color(0xFF0C4192);
   static const Color grey_8C8181 = Color(0xFF8C8181);

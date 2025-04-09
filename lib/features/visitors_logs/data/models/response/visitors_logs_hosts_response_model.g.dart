@@ -1,37 +1,40 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'visitors_logs_response_model.dart';
+part of 'visitors_logs_hosts_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-VisitorsLogsModel _$VisitorsLogsModelFromJson(Map<String, dynamic> json) =>
-    VisitorsLogsModel(
-      date: json['date'] as String,
-      visitType: json['visitType'] as String,
+VisitorsLogsHostsModel _$VisitorsLogsHostsModelFromJson(
+        Map<String, dynamic> json) =>
+    VisitorsLogsHostsModel(
+      id: json['id'] as String,
+      name: json['name'] as String,
     );
 
-Map<String, dynamic> _$VisitorsLogsModelToJson(VisitorsLogsModel instance) =>
+Map<String, dynamic> _$VisitorsLogsHostsModelToJson(
+        VisitorsLogsHostsModel instance) =>
     <String, dynamic>{
-      'visitType': instance.visitType,
-      'date': instance.date,
+      'id': instance.id,
+      'name': instance.name,
     };
 
-VisitorsLogsResponseModel _$VisitorsLogsResponseModelFromJson(
+VisitorsLogsHostsResponseModel _$VisitorsLogsHostsResponseModelFromJson(
         Map<String, dynamic> json) =>
-    VisitorsLogsResponseModel(
+    VisitorsLogsHostsResponseModel(
       code: (json['code'] as num?)?.toInt(),
       data: (json['data'] as List<dynamic>?)
-          ?.map((e) => VisitorsLogsModel.fromJson(e as Map<String, dynamic>))
+          ?.map(
+              (e) => VisitorsLogsHostsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       message: json['message'] as String?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
       hasMorePages: json['hasMorePages'] as bool?,
     );
 
-Map<String, dynamic> _$VisitorsLogsResponseModelToJson(
-        VisitorsLogsResponseModel instance) =>
+Map<String, dynamic> _$VisitorsLogsHostsResponseModelToJson(
+        VisitorsLogsHostsResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
       'code': instance.code,

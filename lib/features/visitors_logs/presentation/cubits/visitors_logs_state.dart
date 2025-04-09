@@ -18,13 +18,23 @@ final class VisitorsLogsReadyState extends VisitorsLogsState {
 final class VisitorsLogsHostsReadyState extends VisitorsLogsState {
   VisitorsLogsHostsReadyState(this.response);
 
-  BaseEntity<List<VisitorLogsHostsEntity>> response;
+  BaseEntity<List<VisitorsLogsHostsEntity>> response;
 }
 
 final class VisitorsManagementCalendarReadyState extends VisitorsLogsState {
   VisitorsManagementCalendarReadyState(this.response);
 
-  List<VisitorsManagementCalendarEntity> response;
+  List<VisitorsLogsHostsEntity> response;
 }
 
+
+final class VisitorsLogsCanViewState extends VisitorsLogsState {
+  VisitorsLogsCanViewState( );
+ 
+}
+
+final class VisitorsLogsCanNotViewState extends VisitorsLogsState {
+  
+  VisitorsLogsCanNotViewState();
+}
 abstract class VisitorsLogsState {}

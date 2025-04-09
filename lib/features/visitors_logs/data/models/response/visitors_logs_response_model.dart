@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
 
 import '../../../../shared/entity/base_entity.dart';
-import '../../../domain/entities/visitors_logs_entity.dart';
-
+ 
 part 'visitors_logs_response_model.g.dart';
 
 /// Model that transforms the VisitorsLogs data from the API to the

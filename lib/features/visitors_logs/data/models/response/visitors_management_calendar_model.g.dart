@@ -9,13 +9,13 @@ part of 'visitors_management_calendar_model.dart';
 VisitorsManagementCalendarModel _$VisitorsManagementCalendarModelFromJson(
         Map<String, dynamic> json) =>
     VisitorsManagementCalendarModel(
-      date: json['date'] as String?,
-      visitType: json['visitType'] as String?,
+      date: json['date'] as String,
+      visitType: json['visitType'] as String,
     );
 
 Map<String, dynamic> _$VisitorsManagementCalendarModelToJson(
         VisitorsManagementCalendarModel instance) =>
     <String, dynamic>{
-      'date': instance.date,
       'visitType': instance.visitType,
+      'date': instance.date,
     };
