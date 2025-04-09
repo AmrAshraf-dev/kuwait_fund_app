@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 import 'package:path_provider/path_provider.dart';
@@ -37,6 +38,43 @@ class ViewsToolbox {
     }
     return true;
   }
+
+
+  static void showMessageBottomsheet(
+      {required BuildContext context,
+      required ConfirmationPopupStatus status,
+      final String? message,
+      final Widget? actionsData,
+      bool showCloseButton = false,
+      final bool showActionsButtons = true,
+      final String? description,
+      final bool closeOnlyPopup = false,
+      final Object? firstPopData,
+      final Object? secondPopData,
+      dynamic title,
+      final bool showDescription = true,
+      void Function()? continueButtonCallback}) {
+    ViewsToolbox.showBottomSheet(
+      showCloseButton: showCloseButton,
+      title: title,
+      context: context,
+      isDismissible: false,
+      enableDrag: false,
+      widget: ConfirmationPopupContentBody(
+          status: status,
+          message: message,
+          description: description,
+          firstPopData: firstPopData,
+          secondPopData: secondPopData,
+          closeOnlyPopup: closeOnlyPopup,
+          showActionsButtons: showActionsButtons,
+          showDescription: showDescription,
+          actionsData: actionsData,
+          continueButtonCallback: continueButtonCallback),
+    );
+  }
+
+
 
   static Future<File> convertBase64ToImage(
       String base64Str, String fileName) async {
@@ -196,67 +234,138 @@ class ViewsToolbox {
     );
   }
 
-  static void showBottomSheet({
+ static void showBottomSheet({
     double? height,
+    double? width,
     Widget? widget,
     Widget? customWidget,
+    Widget? topIndicator,
+    dynamic title, // can be String or Widget
+    AppTextStyle? titleStyle,
     BorderRadius? borderRadius,
+    bool showCloseButton = true,
+    void Function()? onCloseButtonClicked,
+    bool isDismissible = true,
+    bool enableDrag = true,
     required BuildContext context,
+    Color? customBackgroundColor,
   }) {
     showModalBottomSheet<void>(
+      backgroundColor: Palette.transparntColor,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      enableDrag: false,
+      enableDrag: enableDrag,
       context: context,
+      isDismissible: isDismissible,
       builder: (BuildContext context) {
         return customWidget ??
-            Container(
-              decoration: BoxDecoration(
-                color: (AppTheme.isDarkMode(
-                        getIt<AppRouter>().navigatorKey.currentContext!)
-                    ? Palette.black
-                    : Palette.white),
-                borderRadius: borderRadius ??
-                    BorderRadius.only(
-                        topLeft: Radius.circular(40.r),
-                        topRight: Radius.circular(40.r)),
-              ),
-              height: height ?? 300.h,
-              width: 1.sw,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 20.h,
-                  horizontal: 20.h,
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          _buildIndicator(),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              size: 30.w,
-                            ),
+            Wrap(
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    height: height,
+                    decoration: BoxDecoration(
+                      color: customBackgroundColor ??
+                          AppTheme.inDarkMode(context,
+                              light: Palette.grey_0F2F2F2,
+                              dark: Palette.black_1E1E1E),
+                      borderRadius: borderRadius ??
+                          BorderRadius.only(
+                              topLeft: Radius.circular(40.r),
+                              topRight: Radius.circular(40.r)),
+                    ),
+                    //  height: height ?? 300.h,
+                    width: width ?? 1.sw,
+                    child: Wrap(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.h,
+                          ).add(EdgeInsets.only(top: 16.h)),
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  topIndicator ?? _buildIndicator(),
+                                ],
+                              ),
+                              if (showCloseButton || title != null)
+                                SizedBox(height: 16.h),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  showCloseButton || title != null
+                                      ? Container(
+                                          height: 52.sp,
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 16.w),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: <Widget>[
+                                              // Bottom sheet title
+                                              Flexible(
+                                                child: title is Widget
+                                                    ? title
+                                                    : title is String
+                                                        ? AppText(
+                                                            text: title
+                                                                .toString(),
+                                                            textColor: AppTheme
+                                                                .inDarkMode(
+                                                              context,
+                                                              dark: Theme.of(
+                                                                      context)
+                                                                  .primaryColor,
+                                                              light: Theme.of(
+                                                                      context)
+                                                                  .primaryColor,
+                                                            ),
+                                                            style: AppTextStyle
+                                                                .semiBold_24,
+                                                            maxLines: 2,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          )
+                                                        : Container(),
+                                              ),
+                                              if (showCloseButton)
+                                                IconButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                    if (onCloseButtonClicked !=
+                                                        null)
+                                                      onCloseButtonClicked();
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.close,
+                                                    size: 24.sp,
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        )
+                                      : Container(
+                                          height: 15.h,
+                                        ),
+                                  // SizedBox(height: 16.h),
+                                  // // Title bold Line
+                                  // TitleBoldLine(),
+                                  // SizedBox(height: 16.h),
+                                  widget ?? Container(),
+                                ],
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      widget ?? Container(),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+              ],
             );
       },
     );
