@@ -123,13 +123,13 @@ class _AuthScreenState extends State<AuthScreen> {
                                 UserInfoModel userInfo =
                                     state.response.data!.userInfo;
                                 ViewsToolbox.dismissLoading();
-                                if (userInfo .isError??false) {
+                                if (userInfo.isError ?? false) {
                                   ViewsToolbox.showErrorAwesomeSnackBar(
-                                      context, userInfo.errorMsg??"error");
-                                } else if (userInfo .isSupervisor??false) {
+                                      context, userInfo.errorMsg ?? "error");
+                                } else if (userInfo.isSupervisor ?? false) {
                                   CustomMainRouter.push(
                                       SupervisorNavigationMainRoute());
-                                } else if (userInfo.isDirector??false) {
+                                } else if (userInfo.isDirector ?? false) {
                                   CustomMainRouter.push(
                                       AdminNavigationMainRoute());
                                 } else {
