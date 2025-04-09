@@ -299,10 +299,18 @@ import 'package:kf_ess_mobile_app/features/requests/data/repositories/requests_r
     as _i180;
 import 'package:kf_ess_mobile_app/features/requests/domain/repositories/requests_repository.dart'
     as _i974;
+import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/get_annual_leave_details_usecase.dart'
+    as _i427;
+import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/get_annual_leave_info_usecase.dart'
+    as _i181;
 import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/get_request_types_usecase.dart'
     as _i346;
 import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/get_requests_usecase.dart'
     as _i270;
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_leave_details_history_cubit/annual_leave_details_history_cubit.dart'
+    as _i460;
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_leave_info_cubit/annual_leave_info_cubit.dart'
+    as _i818;
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/request_types_cubit/requests_cubit.dart'
     as _i1046;
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_type_cubit/request_types_cubit.dart'
@@ -485,6 +493,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i786.GetLeaveDashboardUseCase>(() =>
       _i786.GetLeaveDashboardUseCase(
           homeRepository: gh<_i219.HomeRepository>()));
+  gh.factory<_i492.GetContributionsUseCase>(() => _i492.GetContributionsUseCase(
+      operationsRepository: gh<_i624.OperationsRepository>()));
   gh.factory<_i243.GetCountriesGrantsUseCase>(() =>
       _i243.GetCountriesGrantsUseCase(
           operationsRepository: gh<_i624.OperationsRepository>()));
@@ -532,6 +542,12 @@ Future<_i174.GetIt> $initGetIt(
       getInstitutionsGrantsUseCase: gh<_i279.GetInstitutionsGrantsUseCase>()));
   gh.factory<_i270.GetRequestsUseCase>(() => _i270.GetRequestsUseCase(
       requestsRepository: gh<_i974.RequestsRepository>()));
+  gh.factory<_i427.GetAnnualLeaveDetailsHistoryUseCase>(() =>
+      _i427.GetAnnualLeaveDetailsHistoryUseCase(
+          requestsRepository: gh<_i974.RequestsRepository>()));
+  gh.factory<_i181.GetAnnualLeaveInfoUseCase>(() =>
+      _i181.GetAnnualLeaveInfoUseCase(
+          requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i464.GetAuthUseCase>(
       () => _i464.GetAuthUseCase(authRepository: gh<_i848.AuthRepository>()));
   gh.factory<_i887.GenerateCertificatesCubit>(() =>
@@ -633,6 +649,8 @@ Future<_i174.GetIt> $initGetIt(
       _i641.CreateInsuranceRequestCubit(
           createInsuranceRequestUseCase:
               gh<_i739.CreateInsuranceRequestUseCase>()));
+  gh.factory<_i818.AnnualLeaveInfoCubit>(() => _i818.AnnualLeaveInfoCubit(
+      getAnnualLeaveInfoUseCase: gh<_i181.GetAnnualLeaveInfoUseCase>()));
   gh.factory<_i107.GetMyAttendanceUseCase>(() => _i107.GetMyAttendanceUseCase(
       myAttendanceRepository: gh<_i835.MyAttendanceRepository>()));
   gh.factory<_i924.GetVisitorLogsHostsUseCase>(() =>
@@ -675,6 +693,10 @@ Future<_i174.GetIt> $initGetIt(
       () => _i939.GetSubscribersUseCase(gh<_i1062.InsuranceRepository>()));
   gh.factory<_i603.UnsubscribeInsuranceUseCase>(() =>
       _i603.UnsubscribeInsuranceUseCase(gh<_i1062.InsuranceRepository>()));
+  gh.factory<_i460.AnnualLeaveDetailsHistoryCubit>(() =>
+      _i460.AnnualLeaveDetailsHistoryCubit(
+          getAnnualLeaveDetailsHistoryUseCase:
+              gh<_i427.GetAnnualLeaveDetailsHistoryUseCase>()));
   gh.factory<_i500.EmergencyAvailableDaysCubit>(() =>
       _i500.EmergencyAvailableDaysCubit(
           getEmergencyAvailableDaysUseCase:

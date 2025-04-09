@@ -20,7 +20,9 @@ class RequestItemWidget extends StatelessWidget {
       onTap: () {
         if (int.parse(request.requestTypeID ?? "1") ==
             RequestTypeEnum.annualLeaveRequest.index) {
-          CustomMainRouter.push(AnnualLeaveRequestDetailsRoute());
+          CustomMainRouter.push(AnnualLeaveRequestDetailsRoute(
+            requestID: request.requestID ?? '1001',
+          ));
         }
       },
       child: Padding(
@@ -46,26 +48,26 @@ class RequestItemWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppText(
-                        text: 
-                        request.requestDate?.showDateWithFormat(),
+                        text: request.requestDate?.showDateWithFormat(),
                         style: AppTextStyle.semiBold_12,
                         textColor: Palette.semiTextGrey,
                       ),
-                      if(request.requestStatus != null)
-                      Container(
-                        decoration: BoxDecoration(
-                          color: _getRequestStatusColor(request.requestStatus ?? ""),
-                          borderRadius: BorderRadius.circular(6.r),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: AppText(
-                            text: context.tr(request.requestStatus ?? ""),
-                            textColor: Colors.white,
-                            style: AppTextStyle.semiBold_12,
+                      if (request.requestStatus != null)
+                        Container(
+                          decoration: BoxDecoration(
+                            color: _getRequestStatusColor(
+                                request.requestStatus ?? ""),
+                            borderRadius: BorderRadius.circular(6.r),
                           ),
-                        ),
-                      )
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: AppText(
+                              text: context.tr(request.requestStatus ?? ""),
+                              textColor: Colors.white,
+                              style: AppTextStyle.semiBold_12,
+                            ),
+                          ),
+                        )
                     ],
                   ),
                   11.verticalSpace,
@@ -89,12 +91,12 @@ class RequestItemWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      if(request.requestTypeID == "1")
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Palette.gery_DADADA,
-                        size: 20.sp,
-                      )
+                      if (request.requestTypeID == "1")
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Palette.gery_DADADA,
+                          size: 20.sp,
+                        )
                     ],
                   ),
                 ],
@@ -103,7 +105,7 @@ class RequestItemWidget extends StatelessWidget {
       ),
     );
   }
-  
+
   _getRequestStatusColor(String requestStatus) {
     switch (requestStatus) {
       case "Pending":

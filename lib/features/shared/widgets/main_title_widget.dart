@@ -7,6 +7,7 @@ class MainTitleWidget extends StatelessWidget {
   final AppTextStyle? fontStyle;
   final double? indicatorWidth;
   final bool isCenter;
+  
 
   const MainTitleWidget({
     super.key,
@@ -14,6 +15,7 @@ class MainTitleWidget extends StatelessWidget {
     this.fontStyle,
     this.indicatorWidth,
     this.isCenter = false,
+  
   });
 
   @override

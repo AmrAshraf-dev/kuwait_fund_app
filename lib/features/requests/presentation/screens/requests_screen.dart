@@ -87,20 +87,21 @@ class _RequestsScreenState extends State<RequestsScreen>
                   indicatorColor: Colors.transparent,
                   onTap: (int value) {
                     _tabCubit.changeTab(value);
-                    if(value == 0){
+                    if (value == 0) {
                       _requestCubit.getRequests(
                         requestsModel: RequestsRequestModel(),
                       );
                       return;
                     }
                     _requestCubit.getRequests(
-                      requestsModel: RequestsRequestModel(requestTypeID:state.requestTypes[value-1].id ),
+                      requestsModel: RequestsRequestModel(
+                          requestTypeID: state.requestTypes[value - 1].id),
                     );
                   },
                   controller: _tabController,
                   isScrollable: true,
-                  tabs: _buildTabs(
-                      context, selectedTabIndex, state.requestTypes),
+                  tabs:
+                      _buildTabs(context, selectedTabIndex, state.requestTypes),
                 );
               },
             );

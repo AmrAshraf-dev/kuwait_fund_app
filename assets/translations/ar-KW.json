@@ -1,5 +1,3 @@
-
-
 {
   "available_emergency_leave_days": "رصيد الطارئة ( عرضي ) المتاح",
   "Annual Leave Request": "طلب إجازة سنوية",
@@ -56,6 +54,7 @@
   "host_name": "اسم المضيف",
   "visitors_logs": "سجلات الزوار",
   "training_request_history": "سجل طلبات التدريب",
+  "leave_history": "سجل الإجازة",
   "leave_details": "تفاصيل الإجازة",
   "apply_filters": "تطبيق الفلاتر",
   "clear_filters": "مسح الفلاتر",

@@ -1,7 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/error/failure.dart';
+import 'package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_details_request.model.dart';
+import 'package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_info_request_model.dart';
+import 'package:kf_ess_mobile_app/features/requests/data/models/response/annual_leave_details_response_model.dart';
+import 'package:kf_ess_mobile_app/features/requests/data/models/response/annual_leave_info_response_model.dart';
 import 'package:kf_ess_mobile_app/features/requests/data/models/response/request_type_response_model.dart';
+import 'package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_details_entity.dart';
+import 'package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_info_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/request_type_entity.dart';
 
 import '../../../../core/network/base_handling.dart';
@@ -27,7 +33,33 @@ class RequestsRepositoryImp implements RequestsRepository {
   }
 
   @override
- Future<CustomResponseType<BaseEntity<List<RequestTypeModel>>>> getRequestTypes() async {
+  Future<CustomResponseType<BaseEntity<List<RequestTypeModel>>>>
+      getRequestTypes() async {
     return await requestsRemoteDataSource.getRequestTypes();
   }
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<AnnualDetailsModel>>>>
+      getAnnualLeaveDetailsHistoryList(
+          {required AnnualLeaveDetailsRequestModel
+              annualLeaveDetailsParams}) async {
+    return await requestsRemoteDataSource.getAnnualLeaveDetailsHistoryList(
+        annualLeaveDetailsRequestModel: annualLeaveDetailsParams);
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<AnnualDetailsInfoModel>>>
+      getAnnualLeaveInfo(
+          {required AnnualLeaveInfoRequestModel annualLeaveInfoParams}) async {
+    return await requestsRemoteDataSource.getAnnualLeaveInfoRemote(
+        annualLeaveInfoRequestModel: annualLeaveInfoParams);
+  }
+
+  //  @override
+  // Future<CustomResponseType<BaseEntity<AnnualDetailsInfoModel>>> getAnnualLeaveInfo(
+  //         {required AnnualLeaveInfoRequestModel
+  //             annualLeaveInfoParams}) async {
+  //   return await requestsRemoteDataSource.getAnnualLeaveInfoRemote(
+  //       annualLeaveInfoRequestModel: annualLeaveInfoParams);
+  // }
 }

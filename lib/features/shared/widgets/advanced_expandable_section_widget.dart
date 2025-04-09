@@ -11,15 +11,18 @@ class AdvancedExpandableSection extends StatefulWidget {
   final List<Widget> children;
   final Widget? iconWidget;
   final EdgeInsetsGeometry? headerPadding;
+  final Widget? widget;
 
-  AdvancedExpandableSection(
-      {super.key,
-      this.title,
-      required this.children,
-      this.customText,
-      this.iconWidget,
-      this.headerPadding,
-      this.subTitle});
+  AdvancedExpandableSection({
+    super.key,
+    this.title,
+    required this.children,
+    this.customText,
+    this.iconWidget,
+    this.headerPadding,
+    this.subTitle,
+    this.widget,
+  });
 
   @override
   State<AdvancedExpandableSection> createState() =>
