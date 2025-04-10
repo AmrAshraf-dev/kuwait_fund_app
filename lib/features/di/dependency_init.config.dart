@@ -126,6 +126,16 @@ import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_teleph
     as _i198;
 import 'package:kf_ess_mobile_app/features/contactus/presentation/cubits/contactus_cubit.dart'
     as _i713;
+import 'package:kf_ess_mobile_app/features/create_request/data/data_sources/remote/sick_leave_request_remote_data_source.dart'
+    as _i706;
+import 'package:kf_ess_mobile_app/features/create_request/data/repositories/sick_leave_request_repository_impl.dart'
+    as _i697;
+import 'package:kf_ess_mobile_app/features/create_request/domain/repositories/sick_leave_repository.dart'
+    as _i24;
+import 'package:kf_ess_mobile_app/features/create_request/domain/use_cases/create_sick_leave_usecase.dart'
+    as _i88;
+import 'package:kf_ess_mobile_app/features/create_request/presentation/cubits/sick_leave_request_cubit.dart'
+    as _i166;
 import 'package:kf_ess_mobile_app/features/di/register_module.dart' as _i758;
 import 'package:kf_ess_mobile_app/features/emergency_leave_request/data/data_sources/remote/emergency_leave_request_remote_data_source.dart'
     as _i1003;
@@ -466,6 +476,8 @@ Future<_i174.GetIt> $initGetIt(
       () => _i951.ForgetPassDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i560.RequestsRemoteDataSource>(
       () => _i560.RequestsDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i706.SickLeaveRequestRemoteDataSource>(
+      () => _i706.SickLeaveRequestDataSourceImp(gh<_i675.NetworkHelper>()));
   gh.factory<_i265.ForgetPassRepository>(() => _i151.ForgetPassRepositoryImp(
       forgetPassRemoteDataSource: gh<_i951.ForgetPassRemoteDataSource>()));
   gh.factory<_i15.ContactusRepository>(() => _i1003.ContactusRepositoryImp(
@@ -622,6 +634,10 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i723.AnnualLeaveRequestRepository>()));
   gh.factory<_i292.GetSurveyUseCase>(() =>
       _i292.GetSurveyUseCase(surveyRepository: gh<_i307.SurveyRepository>()));
+  gh.factory<_i24.SickLeaveRequestRepository>(() =>
+      _i697.SickLeaveRequestRepositoryImp(
+          sickLeaveRequestRemoteDataSource:
+              gh<_i706.SickLeaveRequestRemoteDataSource>()));
   gh.factory<_i447.PeraonalInfoCubit>(() => _i447.PeraonalInfoCubit(
       getPeraonalInfoUseCase: gh<_i715.GetPeraonalInfoUseCase>()));
   gh.factory<_i403.RequestTypesCubit>(
@@ -745,8 +761,15 @@ Future<_i174.GetIt> $initGetIt(
       getKFBoardOfDirectorsUseCase: gh<_i707.GetKFBoardOfDirectorsUseCase>()));
   gh.factory<_i596.SurveyCubit>(
       () => _i596.SurveyCubit(getSurveyUseCase: gh<_i292.GetSurveyUseCase>()));
+  gh.factory<_i88.CreateSickLeaveRequestUseCase>(() =>
+      _i88.CreateSickLeaveRequestUseCase(
+          sickLeaveRequestRepository: gh<_i24.SickLeaveRequestRepository>()));
   gh.factory<_i808.LoanReasonsCubit>(() => _i808.LoanReasonsCubit(
       getLoanReasonsUseCase: gh<_i302.GetLoanReasonsUseCase>()));
+  gh.factory<_i166.CreateSickLeaveRequestCubit>(() =>
+      _i166.CreateSickLeaveRequestCubit(
+          createSickLeaveRequestUseCase:
+              gh<_i88.CreateSickLeaveRequestUseCase>()));
   gh.factory<_i674.MyAttendanceCubit>(() => _i674.MyAttendanceCubit(
       getMyAttendanceUseCase: gh<_i107.GetMyAttendanceUseCase>()));
   gh.factory<_i79.KFManagmentCubit>(() => _i79.KFManagmentCubit(

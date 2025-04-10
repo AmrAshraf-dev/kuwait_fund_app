@@ -80,4 +80,6 @@ class ApiConstants {
   static var getHosts = 'VisitorsLog/GetHosts';
 
   static var getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';
+  static var createSickLeaveRequest = 'Leave/CreateSickLeaveRequest';
+  //https://mpwpayment.diyarme.com/ESSAPI/api/Leave/CreateSickLeaveRequest
 }

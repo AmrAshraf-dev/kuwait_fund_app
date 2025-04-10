@@ -756,5 +756,9 @@
   "fundGoal": "Fund Goal",
   "typesOfFundActivities": "Types Of Fund Activities",
   "scopeOfFundOperations": "Scope Of Fund Operations",
-  "typesOfAid": "Types Of Aid"
+  "typesOfAid": "Types Of Aid",
+  "UploadPDForImage": "Upload PDF or Image",
+  "UploadedImage": "🖼 Uploaded Image",
+  "UploadedPDF": "📄 Uploaded PDF",
+  "error": "❌ File is too large. Maximum size is 1MB."
 }

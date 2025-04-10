@@ -50,9 +50,12 @@ class _AnnualLeaveRequestDetailsScreenState
     annualLeaveDetailsHistoryCubit.getAnnualLeaveDetailsHistory(
         annualLeaveDetailsRequestModel: AnnualLeaveDetailsRequestModel(
             startDate: '8/4/2025', endDate: '8/5/2025'));
-    annualLeaveInfoCubit.getAnnualLeaveInfo(
-        annualLeaveInfoRequestModel:
-            AnnualLeaveInfoRequestModel(leaveRequestID: '22'));
+    // annualLeaveInfoCubit.getAnnualLeaveInfo(
+    //     annualLeaveInfoRequestModel:
+    //         AnnualLeaveInfoRequestModel(leaveRequestID: widget.requestID)
+    //    );
+
+    ///api/Request/GetUserRequests/
 
     super.initState();
   }
@@ -75,8 +78,8 @@ class _AnnualLeaveRequestDetailsScreenState
             BlocProvider(
               create: (context) => annualLeaveInfoCubit
                 ..getAnnualLeaveInfo(
-                  annualLeaveInfoRequestModel:
-                      AnnualLeaveInfoRequestModel(leaveRequestID: '22'),
+                  annualLeaveInfoRequestModel: AnnualLeaveInfoRequestModel(
+                      leaveRequestID: widget.requestID),
                 ),
             ),
           ],
@@ -86,15 +89,16 @@ class _AnnualLeaveRequestDetailsScreenState
                     height: 1.sh - 200,
                     context: context,
                     widget: RangeDatePickerBottomsheetWidget(
-                        isReadOnly: true,
-                        selectedRange: DateTimeRange(
-                          start: DateTime.now(),
-                          end: DateTime.now().add(const Duration(days: 7)),
-                        ),
-                        labelTitle: context.tr("applied_for"),
-                        onDoneCallback: (bool isSelectedRangeValid) {},
-                        consumedDays: 26,
-                        totalDays: 30));
+                      isReadOnly: true,
+                      selectedRange: DateTimeRange(
+                        start: DateTime.now(),
+                        end: DateTime.now().add(const Duration(days: 7)),
+                      ),
+                      //    labelTitle: context.tr("applied_for"),
+                      onDoneCallback: (bool isSelectedRangeValid) {},
+                      //consumedDays: 26,
+                      // totalDays: 30
+                    ));
               },
               child: BlocConsumer<AnnualLeaveInfoCubit, AnnualLeaveInfoState>(
                   listener: (context, state) {
@@ -296,31 +300,33 @@ class _AnnualLeaveRequestDetailsScreenState
                         20.verticalSpace,
 
                         // annualLeaveInfoEntityResponse?.showCancelButton ==
-                        //             "true" &&
+                        //             true &&
                         //         annualLeaveInfoEntityResponse
                         //                 ?.showExtendButton ==
-                        //             "true"
+                        //             true
                         //     ?
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             //accept
                             CustomElevatedButton(
-                              text: context.tr('approve'),
+                              text: context.tr('approve'),//extend
                               backgroundColor: Palette.greenBackgroundTheme,
                               width: 150.w,
                               height: 50.h,
                               onPressed: () {},
                             ),
-
+         //choose from calendar from and to date 
+         //
                             //reject
                             CustomElevatedButton(
-                              text: context.tr('reject'),
+                              text: context.tr('reject'),//delete
                               backgroundColor: Palette.redBackgroundTheme,
                               width: 150.w,
                               height: 50.h,
                               onPressed: () {},
                             ),
+                            //new viewToolBox
                           ],
                         )
                       ]));
