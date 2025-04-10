@@ -15,6 +15,8 @@ import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/create_request/data/models/request/sick_leave_request_model.dart';
+import 'package:kf_ess_mobile_app/features/create_request/data/models/response/leave_balance_response_model.dart';
+import 'package:kf_ess_mobile_app/features/create_request/domain/entities/leave_balance_entity.dart';
 import 'package:kf_ess_mobile_app/features/create_request/presentation/cubits/sick_leave_request_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -22,6 +24,8 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 import 'package:open_file/open_file.dart';
+
+import '../cubits/leave_balance_cubit.dart';
 
 @RoutePage()
 class CreateSickLeaveRequestScreen extends StatefulWidget {
@@ -38,6 +42,7 @@ class _CreateSickLeaveRequestScreenState
   final CreateSickLeaveRequestCubit createSickLeaveRequestCubit =
       getIt<CreateSickLeaveRequestCubit>();
 
+  final LeaveBalanceCubit leaveBalanceCubit = getIt<LeaveBalanceCubit>();
   File? _pdfFile;
   Uint8List? _imageBytes;
   String? _error;
@@ -119,6 +124,10 @@ class _CreateSickLeaveRequestScreenState
             BlocProvider(
               create: (context) => createSickLeaveRequestCubit,
             ),
+            BlocProvider(
+              create: (context) => leaveBalanceCubit,
+            ),
+            //
           ],
           child: Padding(
               padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -214,49 +223,67 @@ class _CreateSickLeaveRequestScreenState
                     ),
                     //date selector from and two
                     20.verticalSpace,
-                    Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25.r),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: Offset(0, 3),
+                    BlocConsumer<LeaveBalanceCubit, LeaveBalanceState>(
+                        listener: (context, state) {
+                      if (state is LeaveBalanceErrorState) {
+                        ViewsToolbox.dismissLoading();
+                        ViewsToolbox.showErrorAwesomeSnackBar(
+                            context, state.message);
+                      }
+                    }, builder: (context, state) {
+                      if (state is LeaveBalanceLoading) {
+                        ViewsToolbox.showLoading();
+                      } else if (state is LeaveBalanceReadyState) {
+                        ViewsToolbox.dismissLoading();
+
+                        return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(25.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: Container(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.h, horizontal: 10.w),
-                          decoration: BoxDecoration(
-                            color: Palette.white_F7F7F7,
-                            borderRadius: BorderRadius.circular(25.r),
-                          ),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                5.verticalSpace,
-                                LeaveDaysRowItemWidget(
-                                  title: context.tr("paid_days"),
-                                  days: "4",
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 25.w),
-                                  child: Divider(
-                                    thickness: 1,
-                                  ),
-                                ),
-                                LeaveDaysRowItemWidget(
-                                  title: context
-                                      .tr("remaining_days_after_vacation"),
-                                  days: "4",
-                                ),
-                                5.verticalSpace,
-                              ]),
-                        )),
+                            child: Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10.h, horizontal: 10.w),
+                              decoration: BoxDecoration(
+                                color: Palette.white_F7F7F7,
+                                borderRadius: BorderRadius.circular(25.r),
+                              ),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    5.verticalSpace,
+                                    LeaveDaysRowItemWidget(
+                                      // title: context.tr("paid_days"),
+                                      title: context
+                                          .tr("remaining_days_after_vacation"),
+                                      days: state.leaveBalance.data ?? '',
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 25.w),
+                                      child: Divider(
+                                        thickness: 1,
+                                      ),
+                                    ),
+                                    // LeaveDaysRowItemWidget(
+                                    //   title: context
+                                    //       .tr("remaining_days_after_vacation"),
+                                    //   days: "4",
+                                    // ),
+                                    // 5.verticalSpace,
+                                  ]),
+                            ));
+                      }
+                      return Container();
+                    }),
                     120.verticalSpace,
                     BlocConsumer<CreateSickLeaveRequestCubit,
                             CreateSickLeaveRequestState>(
@@ -284,7 +311,8 @@ class _CreateSickLeaveRequestScreenState
                                   .createSickLeaveRequest(SickLeaveRequestModel(
                                 bytes:
                                     fileString ?? '', //_imageBytes.toString(),
-                                fileExtention: _pdfFile.toString(),
+                                fileExtention:
+                                    fileType ?? '', // _pdfFile.toString(),
                               ));
                               //}
                             },

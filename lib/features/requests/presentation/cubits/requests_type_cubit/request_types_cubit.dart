@@ -9,7 +9,8 @@ part 'request_types_state.dart';
 
 @injectable
 class RequestTypesCubit extends Cubit<RequestTypesState> {
-  RequestTypesCubit(this._getRequestTypesUseCase) : super(RequestTypesInitial()){
+  RequestTypesCubit(this._getRequestTypesUseCase)
+      : super(RequestTypesInitial()) {
     fetchRequestTypes();
   }
 
@@ -21,8 +22,10 @@ class RequestTypesCubit extends Cubit<RequestTypesState> {
     emit(RequestTypesLoading());
     final result = await _getRequestTypesUseCase();
     result.fold(
-      (failure) => emit(RequestTypesError(message:FailureToMassage().mapFailureToMessage(failure))),
-      (requestTypes) => emit(RequestTypesLoaded(requestTypes:requestTypes.data! )),
+      (failure) => emit(RequestTypesError(
+          message: FailureToMassage().mapFailureToMessage(failure))),
+      (requestTypes) =>
+          emit(RequestTypesLoaded(requestTypes: requestTypes.data!)),
     );
   }
 }

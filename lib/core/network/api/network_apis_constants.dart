@@ -81,5 +81,5 @@ class ApiConstants {
 
   static var getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';
   static var createSickLeaveRequest = 'Leave/CreateSickLeaveRequest';
-  //https://mpwpayment.diyarme.com/ESSAPI/api/Leave/CreateSickLeaveRequest
+  static var getMyLeaveBalance = 'Leave/GetLeaveBalance';
 }

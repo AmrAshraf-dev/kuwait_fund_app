@@ -1,3 +1,6 @@
+
+import "package:kf_ess_mobile_app/features/create_request/domain/entities/leave_balance_entity.dart";
+
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
 
@@ -9,4 +12,6 @@ abstract class SickLeaveRequestRepository {
   */
   Future<CustomResponseType<BaseEntity<String>>> createSickLeaveRequest(
       sickLeaveRequestModel);
+
+  Future<CustomResponseType<LeaveBalanceEntity>> getLeaveBalance();
 }

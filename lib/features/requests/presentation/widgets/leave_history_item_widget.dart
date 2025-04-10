@@ -44,14 +44,14 @@ class LeaveHistoryItemWidget extends StatelessWidget {
                   end: DateTime.now().add(const Duration(days: 7)),
                 ),
                 labelTitle: context.tr("applied_for"),
-                onDoneCallback: (bool isSelectedRangeValid) {},
+                onDoneCallback:
+                    (bool isSelectedRangeValid, DateTimeRange? pickedRange) {},
                 consumedDays: 26,
                 totalDays: 30));
       },
       child: Padding(
         padding: EdgeInsetsDirectional.only(top: 21.h),
         child: Container(
-         
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(

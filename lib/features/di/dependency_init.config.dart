@@ -134,6 +134,10 @@ import 'package:kf_ess_mobile_app/features/create_request/domain/repositories/si
     as _i24;
 import 'package:kf_ess_mobile_app/features/create_request/domain/use_cases/create_sick_leave_usecase.dart'
     as _i88;
+import 'package:kf_ess_mobile_app/features/create_request/domain/use_cases/leave_balance_usecase.dart'
+    as _i208;
+import 'package:kf_ess_mobile_app/features/create_request/presentation/cubits/leave_balance_cubit.dart'
+    as _i521;
 import 'package:kf_ess_mobile_app/features/create_request/presentation/cubits/sick_leave_request_cubit.dart'
     as _i166;
 import 'package:kf_ess_mobile_app/features/di/register_module.dart' as _i758;
@@ -732,6 +736,8 @@ Future<_i174.GetIt> $initGetIt(
         getCoordinatesUseCase: gh<_i355.GetCoordinatesUseCase>(),
         getTelephoneFaxUseCase: gh<_i198.GetTelephoneFaxUseCase>(),
       ));
+  gh.factory<_i208.GetLeaveBalanceUseCase>(() =>
+      _i208.GetLeaveBalanceUseCase(gh<_i24.SickLeaveRequestRepository>()));
   gh.factory<_i359.AnnualLeaveRequestCubit>(() => _i359.AnnualLeaveRequestCubit(
       annualLeaveRequestUseCase: gh<_i610.AnnualLeaveRequestUseCase>()));
   gh.factory<_i793.GetPersonalLoanMasterInfoUseCase>(() =>
@@ -778,6 +784,8 @@ Future<_i174.GetIt> $initGetIt(
         getFamilyMembersUseCase: gh<_i601.GetFamilyMembersUseCase>(),
         getSubscribersUseCase: gh<_i939.GetSubscribersUseCase>(),
       ));
+  gh.factory<_i521.LeaveBalanceCubit>(
+      () => _i521.LeaveBalanceCubit(gh<_i208.GetLeaveBalanceUseCase>()));
   gh.factory<_i163.GeneralInformationCubit>(() => _i163.GeneralInformationCubit(
       getGeneralInformationUseCase: gh<_i1031.GetGeneralInformationUseCase>()));
   return getIt;

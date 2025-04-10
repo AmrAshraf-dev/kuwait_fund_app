@@ -43,20 +43,15 @@ class _AnnualLeaveRequestDetailsScreenState
       getIt<AnnualLeaveDetailsHistoryCubit>();
   final AnnualLeaveInfoCubit annualLeaveInfoCubit =
       getIt<AnnualLeaveInfoCubit>();
-  //
+
+  DateTime? startDate;
+  DateTime? endDate;
 
   @override
   void initState() {
     annualLeaveDetailsHistoryCubit.getAnnualLeaveDetailsHistory(
         annualLeaveDetailsRequestModel: AnnualLeaveDetailsRequestModel(
             startDate: '8/4/2025', endDate: '8/5/2025'));
-    // annualLeaveInfoCubit.getAnnualLeaveInfo(
-    //     annualLeaveInfoRequestModel:
-    //         AnnualLeaveInfoRequestModel(leaveRequestID: widget.requestID)
-    //    );
-
-    ///api/Request/GetUserRequests/
-
     super.initState();
   }
 
@@ -85,20 +80,41 @@ class _AnnualLeaveRequestDetailsScreenState
           ],
           child: GestureDetector(
               onTap: () {
+                
                 ViewsToolbox.showBottomSheet(
-                    height: 1.sh - 200,
-                    context: context,
-                    widget: RangeDatePickerBottomsheetWidget(
-                      isReadOnly: true,
-                      selectedRange: DateTimeRange(
-                        start: DateTime.now(),
-                        end: DateTime.now().add(const Duration(days: 7)),
-                      ),
-                      //    labelTitle: context.tr("applied_for"),
-                      onDoneCallback: (bool isSelectedRangeValid) {},
-                      //consumedDays: 26,
-                      // totalDays: 30
-                    ));
+                  height: 1.sh - 200,
+                  context: context,
+                  widget: RangeDatePickerBottomsheetWidget(
+                    isReadOnly: true,
+                    // selectedRange:
+
+                    // DateTimeRange(
+                    //   start: startDate, //DateTime.now(),
+                    //   end:
+                    //       endDate, //DateTime.now().add(const Duration(days: 7)),
+                    // ),
+                    selectedRange: startDate != null && endDate != null
+                        ? DateTimeRange(start: startDate!, end: endDate!)
+                        : null,
+                    onDoneCallback: (bool isSelectedRangeValid,
+                        DateTimeRange? pickedRange) {
+                      if (isSelectedRangeValid && pickedRange != null) {
+                        setState(() {
+                          startDate = pickedRange.start;
+                          endDate = pickedRange.end;
+                        });
+                      }
+                      print(
+                          'Start out: ${DateFormat('dd MMM, yyyy').format(startDate ?? DateTime.now())}');
+                      print('End out: ${DateFormat('dd MMM, yyyy').format(
+                        endDate ?? DateTime.now().add(const Duration(days: 7)),
+                      )}');
+                      Navigator.pop(context);
+                    },
+                    //consumedDays: 26,
+                    // totalDays: 30
+                  ),
+                );
               },
               child: BlocConsumer<AnnualLeaveInfoCubit, AnnualLeaveInfoState>(
                   listener: (context, state) {
@@ -144,7 +160,7 @@ class _AnnualLeaveRequestDetailsScreenState
                         title:
                             "${context.tr('from')} ${annualLeaveInfoEntityResponse?.requestStartDate ?? '01/01/2021'} ",
                         subTitle:
-                            "${context.tr('to')} ${annualLeaveInfoEntityResponse?.requestStartDate ?? '01/01/2022'}",
+                            "${context.tr('to')} ${annualLeaveInfoEntityResponse?.requestEndDate ?? '01/01/2022'}",
                       ),
                       10.verticalSpace,
                       Container(
@@ -310,17 +326,17 @@ class _AnnualLeaveRequestDetailsScreenState
                           children: [
                             //accept
                             CustomElevatedButton(
-                              text: context.tr('approve'),//extend
+                              text: context.tr('extend'), //extend
                               backgroundColor: Palette.greenBackgroundTheme,
                               width: 150.w,
                               height: 50.h,
                               onPressed: () {},
                             ),
-         //choose from calendar from and to date 
-         //
+                            //choose from calendar from and to date
+                            //
                             //reject
                             CustomElevatedButton(
-                              text: context.tr('reject'),//delete
+                              text: context.tr('delete'), //delete
                               backgroundColor: Palette.redBackgroundTheme,
                               width: 150.w,
                               height: 50.h,
