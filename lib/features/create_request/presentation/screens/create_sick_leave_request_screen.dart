@@ -5,7 +5,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
@@ -109,7 +108,8 @@ class FilePickerSection extends StatelessWidget {
                   if (state.isEmpty) {
                     return _FilePickerButton(filePickerCubit: filePickerCubit);
                   } else {
-                    return _SelectedFilePreview(state: state, filePickerCubit: filePickerCubit);
+                    return _SelectedFilePreview(
+                        state: state, filePickerCubit: filePickerCubit);
                   }
                 },
               ),
@@ -198,12 +198,14 @@ class _SelectedFilePreview extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded( // Prevent overflow by wrapping in Expanded
+            Expanded(
+              // Prevent overflow by wrapping in Expanded
               child: Row(
                 children: [
                   Icon(isPdf ? Icons.picture_as_pdf : Icons.image),
                   5.widthBox,
-                  Flexible( // Ensure text wraps instead of overflowing
+                  Flexible(
+                    // Ensure text wraps instead of overflowing
                     child: AppText(
                       text: file.name,
                       textColor: Palette.blue_002A69,
@@ -216,13 +218,19 @@ class _SelectedFilePreview extends StatelessWidget {
             ),
             InkWell(
               onTap: () => filePickerCubit.clear(),
-              child: Icon(Icons.close, color: Palette.redBackgroundTheme, size: 25.sp),
+              child: Icon(Icons.close,
+                  color: Palette.redBackgroundTheme, size: 25.sp),
             ),
           ],
         ),
         5.verticalSpace,
         if (!isPdf)
-          Image.file(File(file.path), height: 150.h, width: 150.w, fit:  BoxFit.cover,),
+          Image.file(
+            File(file.path),
+            height: 150.h,
+            width: 150.w,
+            fit: BoxFit.cover,
+          ),
       ],
     );
   }
@@ -320,7 +328,8 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CreateSickLeaveRequestCubit, CreateSickLeaveRequestState>(
+    return BlocConsumer<CreateSickLeaveRequestCubit,
+        CreateSickLeaveRequestState>(
       listener: (context, state) {
         if (state is CreateSickLeaveRequestErrorState) {
           ViewsToolbox.dismissLoading();
@@ -334,7 +343,8 @@ class SubmitButton extends StatelessWidget {
           ViewsToolbox.dismissLoading();
           CustomMainRouter.push(ThankYouRoute(
             title: context.tr("request_submitted_successfully"),
-            subtitle: context.tr("your_sick_leave_request_has_been_submitted_successfully"),
+            subtitle: context
+                .tr("your_sick_leave_request_has_been_submitted_successfully"),
           ));
         } else {
           return CustomElevatedButton(
