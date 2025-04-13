@@ -33,6 +33,11 @@ final class VisitorsLogsCanViewState extends VisitorsLogsState {
  
 }
 
+final class VisitorsLogsDetailsReadyState extends VisitorsLogsState {
+  VisitorsLogsDetailsReadyState(this.response);
+  BaseEntity<List<VisitorsLogsDetailsEntity>> response;
+}
+
 final class VisitorsLogsCanNotViewState extends VisitorsLogsState {
   
   VisitorsLogsCanNotViewState();

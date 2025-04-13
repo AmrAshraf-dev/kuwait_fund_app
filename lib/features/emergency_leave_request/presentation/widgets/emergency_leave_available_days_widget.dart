@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,9 +62,12 @@ class EmergencyLeaveAvailableDaysWidget extends StatelessWidget {
                                       child: Center(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: AppText(
-                                              text: state.response.data,
-                                              style: AppTextStyle.bold_14),
+                                          child: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: AppText(
+                                                text: state.response.data,
+                                                style: AppTextStyle.bold_14),
+                                          ),
                                         ),
                                       )),
     ),                        

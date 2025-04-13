@@ -171,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       HalfCircleChartWidget(
-                        leaveUsed: int.parse(state.response.data?.emergencyBalance??"0"),
+                        leaveUsed: int.parse(state.response.data?.leaveBalance??"0"),
                         totalLeave: -1,
                         color: Color(0xFFEDA18C),
                         title: context.tr('sick_leave'),

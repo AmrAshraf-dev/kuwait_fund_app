@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -10,7 +11,9 @@ import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/helper/language_helper.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/drawer_widget.dart';
 
@@ -192,7 +195,8 @@ class _MasterWidgetState extends State<MasterWidget> {
                                       ? GestureDetector(
                                           onTap: widget.onBackTap ??
                                               () {
-                                                CustomMainRouter.pop();
+                                                   getIt<AppRouter>().navigatorKey.currentContext!.router.back();
+
                                               },
                                           child: Container(
                                             height: 38.h,

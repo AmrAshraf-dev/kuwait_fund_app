@@ -2,11 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
@@ -26,63 +29,13 @@ class VisitsBottomSheet extends StatefulWidget {
 class VisitsBottomSheetState extends State<VisitsBottomSheet> {
   final VisitorsLogsCubit visitorsLogsCubit = getIt<VisitorsLogsCubit>();
   VisitorsLogsHostsEntity? selectedHostName;
-  final List<Map<String, String>> visits = [
-    {
-      'name': 'Ahmed Elsayed',
-      'type': 'private_visit',
-      'host': 'accounts_department',
-      'time': '10:30-AM - 12:30-PM',
-      'delegation': '2',
-      'date': '14'
-    },
-    {
-      'name': 'Ahmed Al-Farsi',
-      'type': 'official_visit',
-      'host': 'accounts_department',
-      'time': '10:30-AM - 12:30-PM',
-      'delegation': '2',
-      'date': '14'
-    },
-    {
-      'name': 'Fatima Al-Mansoori',
-      'type': 'official_visit',
-      'host': 'accounts_department',
-      'time': '10:30-AM - 12:30-PM',
-      'delegation': '2',
-      'date': '14'
-    },
-    {
-      'name': 'Fatima Al-Mansoori',
-      'type': 'official_visit',
-      'host': 'accounts_department',
-      'time': '10:30-AM - 12:30-PM',
-      'delegation': '2',
-      'date': '15',
-    },
-    {
-      'name': 'Fatima Al-Mansoori',
-      'type': 'official_visit',
-      'host': 'accounts_department',
-      'time': '10:30-AM - 12:30-PM',
-      'delegation': '2',
-      'date': '16',
-    },
-    {
-      'name': 'Fatima Al-Mansoori',
-      'type': 'official_visit',
-      'host': 'accounts_department',
-      'time': '10:30-AM - 12:30-PM',
-      'delegation': '2',
-      'date': '16',
-    },
-  ];
+  
 
   @override
   Widget build(BuildContext conAppText) {
      
 
-    List<Map<String, String>> filteredVisits =
-        visits.where((visit) => visit['date'] == widget.selectedDate).toList();
+   
 
     return BlocProvider(
       create: (context) => visitorsLogsCubit
@@ -111,56 +64,71 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
               style: AppTextStyle.bold_21,
             ),
             16.verticalSpace,
-            SizedBox(
-              height: 40.h,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: widget.selectedMonthDays.map((visitoreLogsEntity) {
-                   return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 4.w),
-                    child: GestureDetector(
-                      onTap: () {
-                        visitorsLogsCubit.getVisitorLogsDetails(
-                          VisitorsLogsDetailsRequestModel(
-                            hostName: selectedHostName?.name,
-                            date: visitoreLogsEntity.date,
-                          ),
-                        );
-                        setState(() {
-                          widget.selectedDate = visitoreLogsEntity.date;
-                        });
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: widget.selectedDate == visitoreLogsEntity.date
-                              ? Colors.yellow
-                              : Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                              color: widget.selectedDate == visitoreLogsEntity.date
-                                  ? Colors.transparent
-                                  : Palette.gery_DADADA),
-                        ),
-                        child: AppText(
-                          text: DateFormat("dd/MM/yyyy").parse(visitoreLogsEntity.date).day.toString(), // Format as "dd/MM/yyyy"
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
+
+            SelectableDaysChips(
+              selectedDate: widget.selectedDate,
+              selectedMonthDays: widget.selectedMonthDays,
+              onDaySelected: (day) {
+                setState(() {
+                  widget.selectedDate = day;
+                });
+              },
             ),
+          
             HostNameDropdown(
               visitorsLogsCubit: visitorsLogsCubit,
               onHostSelected: (host) => setState(() => selectedHostName = host),
             ),
             10.verticalSpace,
-            ListView.builder(
-              itemCount: filteredVisits.length,
+
+            VisitorsLogsDetilsListItemsWidget(
+              visitorsLogsCubit: visitorsLogsCubit,
+              selectedHostName: selectedHostName,
+            ),
+            
+            16.verticalSpace,
+            CustomElevatedButton(
+                backgroundColor: Colors.transparent,
+                onPressed: () => Navigator.pop(conAppText),
+                text: context.tr("close")),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class VisitorsLogsDetilsListItemsWidget  extends StatelessWidget {
+  final VisitorsLogsCubit visitorsLogsCubit;
+  final VisitorsLogsHostsEntity? selectedHostName;
+
+  const VisitorsLogsDetilsListItemsWidget({
+    super.key,
+    required this.visitorsLogsCubit,
+    required this.selectedHostName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<VisitorsLogsCubit, VisitorsLogsState>(
+      listener: (context, state) {
+if( state is VisitorsLogsLoadingState){
+  ViewsToolbox.showLoading(   );
+}
+
+        if (state is VisitorsLogsErrorState) {
+           ViewsToolbox.showMessageBottomsheet(context: context, status: ConfirmationPopupStatus.failure,
+            message: state.message);  
+        }
+      
+      },
+      builder: (context, state) {
+       if (state is VisitorsLogsDetailsReadyState) {
+          return ListView.builder(
+              itemCount: state.response.data?.length?? 0,
               shrinkWrap: true,
               itemBuilder: (conAppText, index) {
-                final visit = filteredVisits[index];
+                final VisitorsLogsDetailsEntity visit = state.response.data![index];
                 return Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Container(
@@ -198,20 +166,20 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             AppText(
-                              text: visit['name']!,
+                              text: visit.visitType,
                               style: AppTextStyle.bold_14,
                             ),
                             Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
                               decoration: BoxDecoration(
-                                color: visit['type'] == "private_visit"
+                                color: visit.visitType == "private_visit"
                                     ? Palette.blue_3542B9
                                     : Palette.blue_5490EB,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: AppText(
-                                text: context.tr(visit['type']!),
+                                text: context.tr(visit.visitType),
                                 style: AppTextStyle.semiBold_12,
                                 textColor: Colors.white,
                               ),
@@ -230,17 +198,17 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
                                     style: AppTextStyle.regular_14,
                                     textColor: Colors.black,
                                     text:
-                                        "${context.tr("host_name")}:${context.tr(visit['host']!)}"),
+                                        "${context.tr("host_name")}:${visit.visitType}"),
                                 AppText(
                                     style: AppTextStyle.regular_14,
                                     textColor: Colors.black,
                                     text:
-                                        '${visit['date']}-Oct-2024 ${visit['time']}'),
+                                        visit.visitDate),
                                 AppText(
                                     style: AppTextStyle.regular_14,
                                     textColor: Colors.black,
                                     text:
-                                        "${context.tr("number_of_delegation")} : ${visit['delegation']}"),
+                                        "${context.tr("number_of_delegation")} : ${visit.visitorsCount}"),
                               ],
                             ),
                           ],
@@ -250,14 +218,60 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
                   ),
                 );
               },
+            );
+        }
+        return Container();
+      },
+    );
+  }
+}
+
+class SelectableDaysChips  extends StatelessWidget {
+  final String selectedDate;
+  final List<VisitorsLogsEntity> selectedMonthDays;
+  final Function(String) onDaySelected;
+
+  const SelectableDaysChips({
+    super.key,
+    required this.selectedDate,
+    required this.selectedMonthDays,
+    required this.onDaySelected,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 40.h,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: selectedMonthDays.map((visitoreLogsEntity) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            child: GestureDetector(
+              onTap: () {
+                onDaySelected(visitoreLogsEntity.date);
+              },
+              child: Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                decoration: BoxDecoration(
+                  color: selectedDate == visitoreLogsEntity.date
+                      ? Colors.yellow
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                      color: selectedDate == visitoreLogsEntity.date
+                          ? Colors.transparent
+                          : Palette.gery_DADADA),
+                ),
+                child: AppText(
+                  text:
+                      DateFormat("dd/MM/yyyy").parse(visitoreLogsEntity.date).day.toString(), // Format as "dd/MM/yyyy"
+                ),
+              ),
             ),
-            16.verticalSpace,
-            CustomElevatedButton(
-                backgroundColor: Colors.transparent,
-                onPressed: () => Navigator.pop(conAppText),
-                text: context.tr("close")),
-          ],
-        ),
+          );
+        }).toList(),
       ),
     );
   }
