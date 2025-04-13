@@ -82,4 +82,5 @@ class ApiConstants {
   static var getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';
   static var createSickLeaveRequest = 'Leave/CreateSickLeaveRequest';
   static var getMyLeaveBalance = 'Leave/GetLeaveBalance';
+  static var extendLeave = 'Leave/ExtendLeave';
 }

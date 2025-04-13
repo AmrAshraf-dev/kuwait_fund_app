@@ -313,6 +313,8 @@ import 'package:kf_ess_mobile_app/features/requests/data/repositories/requests_r
     as _i180;
 import 'package:kf_ess_mobile_app/features/requests/domain/repositories/requests_repository.dart'
     as _i974;
+import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/extend_leave_request_usecase.dart'
+    as _i120;
 import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/get_annual_leave_details_usecase.dart'
     as _i427;
 import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/get_annual_leave_info_usecase.dart'
@@ -325,6 +327,8 @@ import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_l
     as _i460;
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_leave_info_cubit/annual_leave_info_cubit.dart'
     as _i818;
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/extend_leave_cubit/extend_leave_cubit.dart'
+    as _i534;
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/request_types_cubit/requests_cubit.dart'
     as _i1046;
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_type_cubit/request_types_cubit.dart'
@@ -564,6 +568,8 @@ Future<_i174.GetIt> $initGetIt(
           requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i270.GetRequestsUseCase>(() => _i270.GetRequestsUseCase(
       requestsRepository: gh<_i974.RequestsRepository>()));
+  gh.factory<_i120.GetExtendLeaveUseCase>(() => _i120.GetExtendLeaveUseCase(
+      requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i464.GetAuthUseCase>(
       () => _i464.GetAuthUseCase(authRepository: gh<_i848.AuthRepository>()));
   gh.factory<_i887.GenerateCertificatesCubit>(() =>
@@ -602,6 +608,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i193.GetAdminDeptMissionUseCase>(() =>
       _i193.GetAdminDeptMissionUseCase(
           adminDeptMissionRepository: gh<_i964.AdminDeptMissionRepository>()));
+  gh.factory<_i534.ExtendLeaveCubit>(() => _i534.ExtendLeaveCubit(
+      getExtendLeaveUseCase: gh<_i120.GetExtendLeaveUseCase>()));
   gh.factory<_i769.GetEmergencyAvailableDaysUseCase>(() =>
       _i769.GetEmergencyAvailableDaysUseCase(
           createRequestRepository:

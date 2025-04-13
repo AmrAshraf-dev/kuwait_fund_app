@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
@@ -21,10 +22,13 @@ import 'package:kf_ess_mobile_app/features/create_request/presentation/cubits/si
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 import 'package:open_file/open_file.dart';
-
+import 'package:cross_file/cross_file.dart';
+import 'package:path/path.dart' as path;
 import '../cubits/leave_balance_cubit.dart';
 
 @RoutePage()
@@ -41,6 +45,8 @@ class _CreateSickLeaveRequestScreenState
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   final CreateSickLeaveRequestCubit createSickLeaveRequestCubit =
       getIt<CreateSickLeaveRequestCubit>();
+
+  final FilePickerCubit filePickerCubit = getIt<FilePickerCubit>();
 
   final LeaveBalanceCubit leaveBalanceCubit = getIt<LeaveBalanceCubit>();
   File? _pdfFile;
@@ -127,201 +133,259 @@ class _CreateSickLeaveRequestScreenState
             BlocProvider(
               create: (context) => leaveBalanceCubit,
             ),
+            BlocProvider(
+              create: (context) => filePickerCubit,
+            ),
             //
           ],
           child: Padding(
               padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    44.verticalSpace,
+              child: FormBuilder(
+                key: _formKey,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      44.verticalSpace,
 
-                    Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25.r),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child:
-                            // FormBuilder(
-                            //   key: _formKey,
-                            //   child: Padding(
-                            //     padding: EdgeInsets.symmetric(vertical: 20.h),
-                            //     child: CustomDatePickerRange(
-                            //       onDoneCallback: (bool isSelectedRangeValid) {},
-                            //       labelTitle: context.tr("sick_leave_days"),
-                            //       consumedDays: 4,
-                            //       totalDays: 4,
-                            //       keyNameFrom: "from",
-                            //       keyNameTo: "to",
-                            //       customFormKey: _formKey,
-                            //       fromLabelAboveField: context.tr("from"),
-                            //       toLabelAboveField: context.tr("to"),
-                            //     ),
-                            //   ),
-                            // ),
-                            Column(
-                          children: [
-                            ElevatedButton.icon(
-                              onPressed: _pickFile,
-                              icon: const Icon(Icons.upload),
-                              label: AppText(
-                                text: context.tr('UploadPDForImage'),
-                                textColor: Palette.white,
+                      Center(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3),
                               ),
-                            ),
-                            const SizedBox(height: 16),
-                            if (_error != null)
-                              AppText(
-                                text: _error, //context.tr('error'),
-                                textColor: Palette.redBackgroundTheme,
-                              ),
-                            if (_imageBytes != null)
+                            ],
+                          ),
+                          child:
+                              // FormBuilder(
+                              //   key: _formKey,
+                              //   child: Padding(
+                              //     padding: EdgeInsets.symmetric(vertical: 20.h),
+                              //     child: CustomDatePickerRange(
+                              //       onDoneCallback: (bool isSelectedRangeValid) {},
+                              //       labelTitle: context.tr("sick_leave_days"),
+                              //       consumedDays: 4,
+                              //       totalDays: 4,
+                              //       keyNameFrom: "from",
+                              //       keyNameTo: "to",
+                              //       customFormKey: _formKey,
+                              //       fromLabelAboveField: context.tr("from"),
+                              //       toLabelAboveField: context.tr("to"),
+                              //     ),
+                              //   ),
+                              // ),
                               Column(
-                                children: [
-                                  AppText(
-                                    text: context.tr('UploadedImage'),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Image.memory(_imageBytes!, height: 200),
-                                ],
+                            children: [
+                              // ElevatedButton.icon(
+                              //   onPressed: _pickFile,
+                              //   icon: const Icon(Icons.upload),
+                              //   label: AppText(
+                              //     text: context.tr('UploadPDForImage'),
+                              //     textColor: Palette.white,
+                              //   ),
+                              // ),
+                              Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child:
+                                    BlocBuilder<FilePickerCubit, List<XFile>>(
+                                        builder: (context, state) {
+                                  if (state.isEmpty) {
+                                    return GenericFilePicker(
+                                      filePickerCubit: FilePickerCubit(),
+                                      isFromFile: true,
+                                      keyName: 'file',
+                                      buttonTitle:
+                                          context.tr("attach_course_file"),
+                                      isFromCamera: true,
+                                      isFromGallery: true,
+                                    );
+                                  } else {
+                                    if (_getFileExtension(_formKey.currentState!
+                                            .fields["file"]!.value) ==
+                                        '.pdf') {
+                                      Row(
+                                        children: [
+                                          Icon(Icons.picture_as_pdf),
+                                          AppText(
+                                            text: (_formKey
+                                                    .currentState!
+                                                    .fields["file"]!
+                                                    .value as XFile)
+                                                .name,
+                                          ),
+                                        ],
+                                      );
+                                    } else {}
+                                  }
+                                  return Container();
+                                }),
                               ),
-                            if (_pdfFile != null)
-                              Column(
-                                children: [
-                                  //
-                                  AppText(
-                                    text: context.tr('UploadedPDF'),
-                                    //    textColor: Palette.white,
-                                  ),
-                                  const SizedBox(height: 8),
-                                  InkWell(
-                                    onTap: () {
-                                      OpenFile.open(_pdfFile!.path);
-                                    },
-                                    child: Text(
-                                      _pdfFile!.path.split('/').last,
-                                      style: const TextStyle(
-                                        color: Colors.blue,
-                                        decoration: TextDecoration.underline,
+                              const SizedBox(height: 16),
+                              if (_error != null)
+                                AppText(
+                                  text: _error, //context.tr('error'),
+                                  textColor: Palette.redBackgroundTheme,
+                                ),
+                              if (_imageBytes != null)
+                                Column(
+                                  children: [
+                                    AppText(
+                                      text: context.tr('UploadedImage'),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Image.memory(_imageBytes!, height: 200),
+                                  ],
+                                ),
+                              if (_pdfFile != null)
+                                Column(
+                                  children: [
+                                    //
+                                    AppText(
+                                      text: context.tr('UploadedPDF'),
+                                      //    textColor: Palette.white,
+                                    ),
+                                    const SizedBox(height: 8),
+                                    InkWell(
+                                      onTap: () {
+                                        OpenFile.open(_pdfFile!.path);
+                                      },
+                                      child: Text(
+                                        _pdfFile!.path.split('/').last,
+                                        style: const TextStyle(
+                                          color: Colors.blue,
+                                          decoration: TextDecoration.underline,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                          ],
+                                  ],
+                                ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    //date selector from and two
-                    20.verticalSpace,
-                    BlocConsumer<LeaveBalanceCubit, LeaveBalanceState>(
-                        listener: (context, state) {
-                      if (state is LeaveBalanceErrorState) {
-                        ViewsToolbox.dismissLoading();
-                        ViewsToolbox.showErrorAwesomeSnackBar(
-                            context, state.message);
-                      }
-                    }, builder: (context, state) {
-                      if (state is LeaveBalanceLoading) {
-                        ViewsToolbox.showLoading();
-                      } else if (state is LeaveBalanceReadyState) {
-                        ViewsToolbox.dismissLoading();
+                      //date selector from and two
+                      20.verticalSpace,
+                      BlocConsumer<LeaveBalanceCubit, LeaveBalanceState>(
+                          listener: (context, state) {
+                        if (state is LeaveBalanceErrorState) {
+                          ViewsToolbox.dismissLoading();
+                          ViewsToolbox.showErrorAwesomeSnackBar(
+                              context, state.message);
+                        }
+                      }, builder: (context, state) {
+                        if (state is LeaveBalanceLoading) {
+                          ViewsToolbox.showLoading();
+                        } else if (state is LeaveBalanceReadyState) {
+                          ViewsToolbox.dismissLoading();
 
-                        return Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(25.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3),
-                                ),
-                              ],
-                            ),
-                            child: Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: 10.h, horizontal: 10.w),
+                          return Container(
                               decoration: BoxDecoration(
-                                color: Palette.white_F7F7F7,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(25.r),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    5.verticalSpace,
-                                    LeaveDaysRowItemWidget(
-                                      // title: context.tr("paid_days"),
-                                      title: context
-                                          .tr("remaining_days_after_vacation"),
-                                      days: state.leaveBalance.data ?? '',
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 25.w),
-                                      child: Divider(
-                                        thickness: 1,
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 10.h, horizontal: 10.w),
+                                decoration: BoxDecoration(
+                                  color: Palette.white_F7F7F7,
+                                  borderRadius: BorderRadius.circular(25.r),
+                                ),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      5.verticalSpace,
+                                      LeaveDaysRowItemWidget(
+                                        // title: context.tr("paid_days"),
+                                        title: context.tr(
+                                            "remaining_days_after_vacation"),
+                                        days: state.leaveBalance.data ?? '',
                                       ),
-                                    ),
-                                    // LeaveDaysRowItemWidget(
-                                    //   title: context
-                                    //       .tr("remaining_days_after_vacation"),
-                                    //   days: "4",
-                                    // ),
-                                    // 5.verticalSpace,
-                                  ]),
-                            ));
-                      }
-                      return Container();
-                    }),
-                    120.verticalSpace,
-                    BlocConsumer<CreateSickLeaveRequestCubit,
-                            CreateSickLeaveRequestState>(
-                        listener: (context, state) {
-                      if (state is CreateSickLeaveRequestErrorState) {
-                        ViewsToolbox.dismissLoading();
-                        ViewsToolbox.showErrorAwesomeSnackBar(
-                            context, state.message!);
-                      }
-                    }, builder: (context, state) {
-                      if (state is CreateSickLeaveRequestLoadingState) {
-                        ViewsToolbox.showLoading();
-                      } else if (state is CreateSickLeaveRequestReadyState) {
-                        ViewsToolbox.dismissLoading();
-                        CustomMainRouter.push(ThankYouRoute(
-                          title: context.tr("request_submitted_successfully"),
-                          subtitle: context.tr(
-                              "your_sick_leave_request_has_been_submitted_successfully"),
-                        ));
-                      } else {
-                        return CustomElevatedButton(
-                            onPressed: () {
-                              //   if (_formKey.currentState!.saveAndValidate()) {
-                              createSickLeaveRequestCubit
-                                  .createSickLeaveRequest(SickLeaveRequestModel(
-                                bytes:
-                                    fileString ?? '', //_imageBytes.toString(),
-                                fileExtention:
-                                    fileType ?? '', // _pdfFile.toString(),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 25.w),
+                                        child: Divider(
+                                          thickness: 1,
+                                        ),
+                                      ),
+                                      // LeaveDaysRowItemWidget(
+                                      //   title: context
+                                      //       .tr("remaining_days_after_vacation"),
+                                      //   days: "4",
+                                      // ),
+                                      // 5.verticalSpace,
+                                    ]),
                               ));
-                              //}
-                            },
-                            text: context.tr("submit"));
-                      }
+                        }
+                        return Container();
+                      }),
+                      120.verticalSpace,
+                      BlocConsumer<CreateSickLeaveRequestCubit,
+                              CreateSickLeaveRequestState>(
+                          listener: (context, state) {
+                        if (state is CreateSickLeaveRequestErrorState) {
+                          ViewsToolbox.dismissLoading();
+                          ViewsToolbox.showErrorAwesomeSnackBar(
+                              context, state.message!);
+                        }
+                      }, builder: (context, state) {
+                        if (state is CreateSickLeaveRequestLoadingState) {
+                          ViewsToolbox.showLoading();
+                        } else if (state is CreateSickLeaveRequestReadyState) {
+                          ViewsToolbox.dismissLoading();
+                          CustomMainRouter.push(ThankYouRoute(
+                            title: context.tr("request_submitted_successfully"),
+                            subtitle: context.tr(
+                                "your_sick_leave_request_has_been_submitted_successfully"),
+                          ));
+                        } else {
+                          return CustomElevatedButton(
+                              onPressed: () async {
+                                if (_formKey.currentState!.saveAndValidate()) {
+                                  createSickLeaveRequestCubit.createSickLeaveRequest(
+                                      SickLeaveRequestModel(
+                                          bytes: await _getFileBytes(_formKey
+                                              .currentState!
+                                              .fields["file"]!
+                                              .value),
+                                          //  fileString ?? '', //_imageBytes.toString(),
+                                          fileExtention: _getFileExtension(
+                                              _formKey.currentState!
+                                                  .fields["file"]!.value)
+                                          // fileType ?? '', // _pdfFile.toString(),
+                                          ));
+                                }
+                              },
+                              text: context.tr("submit"));
+                        }
 
-                      return Container();
-                    })
-                  ])),
+                        return Container();
+                      })
+                    ]),
+              )),
         ));
   }
+}
+
+_getFileExtension(XFile value) {
+  return path
+      .extension(value.path); // returns extension with dot (e.g., ".jpg")
+}
+
+_getFileBytes(XFile value) async {
+  final bytes = await value.readAsBytes();
+  return base64Encode(bytes);
 }

@@ -10,15 +10,16 @@ import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_details_request.model.dart';
 import 'package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_info_request_model.dart';
+import 'package:kf_ess_mobile_app/features/requests/data/models/request/extend_leave_request_model.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_info_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_leave_details_history_cubit/annual_leave_details_history_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_leave_info_cubit/annual_leave_info_cubit.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/extend_leave_cubit/extend_leave_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/leave_history_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/advanced_expandable_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/date_picker_range_bottomsheet_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
@@ -43,6 +44,7 @@ class _AnnualLeaveRequestDetailsScreenState
       getIt<AnnualLeaveDetailsHistoryCubit>();
   final AnnualLeaveInfoCubit annualLeaveInfoCubit =
       getIt<AnnualLeaveInfoCubit>();
+  final ExtendLeaveCubit extendLeaveCubit = getIt<ExtendLeaveCubit>();
 
   DateTime? startDate;
   DateTime? endDate;
@@ -51,7 +53,10 @@ class _AnnualLeaveRequestDetailsScreenState
   void initState() {
     annualLeaveDetailsHistoryCubit.getAnnualLeaveDetailsHistory(
         annualLeaveDetailsRequestModel: AnnualLeaveDetailsRequestModel(
-            startDate: '8/4/2025', endDate: '8/5/2025'));
+            startDate:
+                DateFormat('dd/MM/yyyy').format(startDate ?? DateTime.now()),
+            endDate:
+                DateFormat('dd/MM/yyyy').format(endDate ?? DateTime.now())));
     super.initState();
   }
 
@@ -79,42 +84,65 @@ class _AnnualLeaveRequestDetailsScreenState
             ),
           ],
           child: GestureDetector(
-              onTap: () {
-                
-                ViewsToolbox.showBottomSheet(
-                  height: 1.sh - 200,
-                  context: context,
-                  widget: RangeDatePickerBottomsheetWidget(
-                    isReadOnly: true,
-                    // selectedRange:
+              onTap: () async {
+                // ViewsToolbox.showBottomSheet(
+                //   height: 1.sh - 200,
+                //   context: context,
+                //   widget:
+                // RangeDatePickerBottomsheetWidget(
+                //     isReadOnly: true,
+                //     // selectedRange:
 
-                    // DateTimeRange(
-                    //   start: startDate, //DateTime.now(),
-                    //   end:
-                    //       endDate, //DateTime.now().add(const Duration(days: 7)),
-                    // ),
-                    selectedRange: startDate != null && endDate != null
-                        ? DateTimeRange(start: startDate!, end: endDate!)
-                        : null,
-                    onDoneCallback: (bool isSelectedRangeValid,
-                        DateTimeRange? pickedRange) {
-                      if (isSelectedRangeValid && pickedRange != null) {
-                        setState(() {
-                          startDate = pickedRange.start;
-                          endDate = pickedRange.end;
-                        });
-                      }
-                      print(
-                          'Start out: ${DateFormat('dd MMM, yyyy').format(startDate ?? DateTime.now())}');
-                      print('End out: ${DateFormat('dd MMM, yyyy').format(
-                        endDate ?? DateTime.now().add(const Duration(days: 7)),
-                      )}');
-                      Navigator.pop(context);
-                    },
-                    //consumedDays: 26,
-                    // totalDays: 30
-                  ),
+                //     // DateTimeRange(
+                //     //   start: startDate, //DateTime.now(),
+                //     //   end:
+                //     //       endDate, //DateTime.now().add(const Duration(days: 7)),
+                //     // ),
+                //     selectedRange: startDate != null && endDate != null
+                //         ? DateTimeRange(start: startDate!, end: endDate!)
+                //         : null,
+                //     onDoneCallback: (bool isSelectedRangeValid,
+                //         DateTimeRange? pickedRange) {
+                //       if (isSelectedRangeValid && pickedRange != null) {
+                //         setState(() {
+                //           startDate = pickedRange.start;
+                //           endDate = pickedRange.end;
+                //         });
+                //       }
+                //       print(
+                //           'Start out: ${DateFormat('dd MMM, yyyy').format(startDate! //?? DateTime.now()
+                //               )}');
+                //       print(
+                //           'End out: ${DateFormat('dd MMM, yyyy').format(endDate! // ??
+                //               // DateTime.now().add(
+                //               //   const Duration(days: 10),
+                //               // ),
+                //               )}');
+                //       Navigator.pop(context);
+                //     },
+                //     //consumedDays: 26,
+                //     // totalDays: 30
+                //   ),
+                // );
+                DateTimeRange? picked = await showDateRangePicker(
+                  context: context,
+                  firstDate: DateTime(2020),
+                  lastDate: DateTime(2030),
                 );
+
+                if (picked != null) {
+                  setState(() {
+                    startDate = picked.start;
+                    endDate = picked.end;
+                  });
+
+                  // Print selected dates
+                  // print(
+                  //     'Start date: ${DateFormat('dd/MM/yyyy').format(startDate!)}');
+                  // print('End date: ${DateFormat('dd/MM/yyyy').format(endDate!)}');
+
+                  Navigator.pop(context); // Close the bottom sheet
+                }
               },
               child: BlocConsumer<AnnualLeaveInfoCubit, AnnualLeaveInfoState>(
                   listener: (context, state) {
@@ -190,16 +218,31 @@ class _AnnualLeaveRequestDetailsScreenState
                 ..getAnnualLeaveDetailsHistory(
                   annualLeaveDetailsRequestModel:
                       AnnualLeaveDetailsRequestModel(
-                          startDate: '4/4/2025', endDate: '4/5/2025'),
+                          startDate: DateFormat('dd/MM/yyyy').format(
+                              startDate ??
+                                  DateTime.now()) //startStringDate //'4/4/2025'
+                          ,
+                          endDate: DateFormat('dd/MM/yyyy').format(startDate ??
+                              DateTime.now()) //endStringDate //'4/5/2025'
+                          ),
                 ),
             ),
             BlocProvider(
               create: (context) => annualLeaveInfoCubit
                 ..getAnnualLeaveInfo(
-                  annualLeaveInfoRequestModel:
-                      AnnualLeaveInfoRequestModel(leaveRequestID: '22'),
+                  annualLeaveInfoRequestModel: AnnualLeaveInfoRequestModel(
+                      leaveRequestID: widget.requestID ?? ''),
                 ),
             ),
+            BlocProvider(
+              create: (context) => extendLeaveCubit
+                ..getExtendLeave(
+                  extendLeaveRequestModel: ExtendLeaveRequestModel(
+                      leaveRequestId: widget.requestID ?? '',
+                      extendDate: endDate.toString()),
+                ),
+            ),
+            //
           ],
           child: BlocConsumer<AnnualLeaveInfoCubit, AnnualLeaveInfoState>(
               listener: (context, state) {
@@ -212,6 +255,10 @@ class _AnnualLeaveRequestDetailsScreenState
             if (state is AnnualLeaveInfoLoadingState) {
               ViewsToolbox.showLoading();
             } else if (state is AnnualLeaveInfoReadyState) {
+              // print(
+              //     'START DATE IS : ${DateFormat('dd/MM/yyyy').format(startDate ?? DateTime.now())}');
+              // print(
+              //     'END DATE IS : ${DateFormat('dd/MM/yyyy').format(endDate ?? DateTime.now())}');
               annualLeaveInfoEntityResponse = state.response.data;
               ViewsToolbox.dismissLoading();
               return Padding(
@@ -325,12 +372,47 @@ class _AnnualLeaveRequestDetailsScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             //accept
-                            CustomElevatedButton(
-                              text: context.tr('extend'), //extend
-                              backgroundColor: Palette.greenBackgroundTheme,
-                              width: 150.w,
-                              height: 50.h,
-                              onPressed: () {},
+                            BlocConsumer<ExtendLeaveCubit, ExtendLeaveState>(
+                              listener: (context, state) {
+                                if (state is ExtendLeaveErrorState) {
+                              ViewsToolbox.dismissLoading();
+                              ViewsToolbox.showErrorAwesomeSnackBar(
+                                  context, state.message ?? '');
+                            }
+                              },
+                              builder: (context, state) {
+                                
+                                return CustomElevatedButton(
+                                  text: context.tr('extend'), //extend
+                                  backgroundColor: Palette.greenBackgroundTheme,
+                                  width: 150.w,
+                                  height: 50.h,
+                                  onPressed: () async {
+                                    DateTimeRange? picked =
+                                        await showDateRangePicker(
+                                      context: context,
+                                      firstDate: DateTime(2020),
+                                      lastDate: DateTime(2030),
+                                    );
+
+                                    if (picked != null) {
+                                      setState(() {
+                                        startDate = picked.start;
+                                        endDate = picked.end;
+                                      });
+
+                                      // Print selected dates
+                                      // print(
+                                      //     'Start date: ${DateFormat('dd/MM/yyyy').format(startDate!)}');
+                                      // print('End date: ${DateFormat('dd/MM/yyyy').format(endDate!)}');
+
+                                      // Navigator.pop(
+                                      //     context);
+                                      // Close the bottom sheet
+                                    }
+                                  },
+                                );
+                              },
                             ),
                             //choose from calendar from and to date
                             //
