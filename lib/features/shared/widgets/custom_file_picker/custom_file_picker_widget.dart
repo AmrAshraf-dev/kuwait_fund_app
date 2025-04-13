@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/extensions/size_extensions.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -46,6 +47,7 @@ class GenericFilePicker extends StatelessWidget {
                     backgroundColor: Palette.primaryColor,
                     onPressed: () {
                       filePickerCubit.pickCamera();
+                      CustomMainRouter.pop();
                     },
                     text: context.tr('takePhoto'),
                   ),
@@ -55,9 +57,12 @@ class GenericFilePicker extends StatelessWidget {
                     backgroundColor: Palette.primaryColor,
                     onPressed: () {
                       filePickerCubit.pickFile(
-                        filetype: FileType.image,
+ 
+                        filetype: FileType.custom,
                         allowedExtensions:  ['jpg', 'png', 'jpeg'],
                       );
+                                            CustomMainRouter.pop();
+
                     },
                     text: context.tr('choosePhoto'),
                   ),
@@ -69,8 +74,13 @@ class GenericFilePicker extends StatelessWidget {
                     backgroundColor: Palette.transparntColor,
                     onPressed: () {
                       filePickerCubit.pickFile(
+                        filetype:  FileType.custom,
                         allowedExtensions: ['pdf'],
+ 
+                        
                       );
+                                            CustomMainRouter.pop();
+
                     },
                     customChild: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

@@ -380,10 +380,14 @@ class AnnualLeaveRequestDetailsRoute
     extends _i55.PageRouteInfo<AnnualLeaveRequestDetailsRouteArgs> {
   AnnualLeaveRequestDetailsRoute({
     _i56.Key? key,
+    String? requestID,
     List<_i55.PageRouteInfo>? children,
   }) : super(
          AnnualLeaveRequestDetailsRoute.name,
-         args: AnnualLeaveRequestDetailsRouteArgs(key: key),
+         args: AnnualLeaveRequestDetailsRouteArgs(
+           key: key,
+           requestID: requestID,
+         ),
          initialChildren: children,
        );
 
@@ -395,19 +399,24 @@ class AnnualLeaveRequestDetailsRoute
       final args = data.argsAs<AnnualLeaveRequestDetailsRouteArgs>(
         orElse: () => const AnnualLeaveRequestDetailsRouteArgs(),
       );
-      return _i13.AnnualLeaveRequestDetailsScreen(key: args.key);
+      return _i13.AnnualLeaveRequestDetailsScreen(
+        key: args.key,
+        requestID: args.requestID,
+      );
     },
   );
 }
 
 class AnnualLeaveRequestDetailsRouteArgs {
-  const AnnualLeaveRequestDetailsRouteArgs({this.key});
+  const AnnualLeaveRequestDetailsRouteArgs({this.key, this.requestID});
 
   final _i56.Key? key;
 
+  final String? requestID;
+
   @override
   String toString() {
-    return 'AnnualLeaveRequestDetailsRouteArgs{key: $key}';
+    return 'AnnualLeaveRequestDetailsRouteArgs{key: $key, requestID: $requestID}';
   }
 }
 

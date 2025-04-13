@@ -97,8 +97,9 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                                   customFormKey: _formKey,
                                   fromLabelAboveField: context.tr("from_date"),
                                   toLabelAboveField: context.tr("to_date"),
-                                  onDoneCallback: (bool isSelectedRangeValid) {
-                                    Navigator.of(context).pop();
+                                  onDoneCallback: (bool isSelectedRangeValid, 
+                                      DateTimeRange? pickedRange) {
+                                    CustomMainRouter.pop();
                                     reminingLeaveBalanceCubit.updateFormState(
                                         showDetails: isSelectedRangeValid);
                                   },

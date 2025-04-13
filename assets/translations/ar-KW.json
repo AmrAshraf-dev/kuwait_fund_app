@@ -1,4 +1,6 @@
 {
+"please_attach_medical_report_file": "يرجى إرفاق ملف التقرير الطبي",
+  "attach_medical_report_file": "إرفاق ملف التقرير الطبي",
   "no_visitors_logs": "لا توجد سجلات زوار",
   "you_can_not_view_visitors_logs": "لا يمكنك عرض سجلات الزوار",
   "general-error": "حدث خطأ ما ، من فضلك حاول مرة أخرى",
