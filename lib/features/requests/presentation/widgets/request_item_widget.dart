@@ -20,8 +20,9 @@ class RequestItemWidget extends StatelessWidget {
       onTap: () {
         if (int.parse(request.requestTypeID ?? "1") ==
             RequestTypeEnum.annualLeaveRequest.index) {
-          CustomMainRouter.push(AnnualLeaveRequestDetailsRoute(
-            requestID: request.requestID ?? '1001',
+          CustomMainRouter.push(
+            AnnualLeaveRequestDetailsRoute(
+            requestID: request.requestID,
           ));
         }
       },

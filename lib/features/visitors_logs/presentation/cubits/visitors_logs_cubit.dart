@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_can_view_visitors_logs_usecase.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_visitor_logs_hosts_usecase.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_visitors_logs__details_usecase.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
@@ -19,8 +21,11 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
   final GetVisitorLogsHostsUseCase getVisitorLogsHostsUseCase;
   final GetVisitorLogsUseCase  getVisitorLogsUseCase;
 
+  final GetVisitorsLogsDetailsUseCase getVisitorLogsDetailsUseCase;
+
   final GetCanViewVisitorsLogsUsecase getCanViewVisitorsLogsUseCase;
   VisitorsLogsCubit(this.getVisitorLogsHostsUseCase,
+  this.getVisitorLogsDetailsUseCase,
   this.getCanViewVisitorsLogsUseCase,
      this.getVisitorLogsUseCase)
       : super(VisitorsLogsInitialState());
@@ -85,7 +90,22 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
     });
   }
 
-  getVisitorLogsDetails(visitorLogsDetailsRequestModel) {}
+  getVisitorLogsDetails(visitorLogsDetailsRequestModel) async {
+    emit(VisitorsLogsLoadingState());
+
+    final CustomResponseType<BaseEntity<List<VisitorsLogsDetailsEntity>>>
+        eitherPackagesOrFailure =
+        await getVisitorLogsDetailsUseCase(visitorLogsDetailsRequestModel);
+
+    eitherPackagesOrFailure.fold((Failure failure) {
+      final FailureToMassage massage = FailureToMassage();
+      emit(VisitorsLogsErrorState(
+        message: massage.mapFailureToMessage(failure),
+      ));
+    }, (BaseEntity<List<VisitorsLogsDetailsEntity>> response) {
+      emit(VisitorsLogsDetailsReadyState(response));
+    });
+  }
 
  
 }

@@ -46,23 +46,21 @@ class AppRouter extends RootStackRouter {
                     ),
                     AutoRoute(
                       maintainState: true,
-
                       page: AnnualLeaveRequestDetailsRoute.page,
                       path: AppRoutesConstants.annualLeaveRequestDetails,
                       //  meta: <String, dynamic>{'hideBottomNav': true},
                     ),
                     AutoRoute(
-                      maintainState: true,
-
+                      maintainState: false,
                       page: CreateRequestRoute.page,
                       path: AppRoutesConstants.createRequest,
                       //  meta: <String, dynamic>{'hideBottomNav': true},
                     ),
-                    AutoRoute(
-                      maintainState: true,
-                      page: TrainingRequestDetailsRoute.page,
-                      path: AppRoutesConstants.trainingRequestDetails,
-                    )
+                    // AutoRoute(
+                    //   maintainState: true,
+                    //   page: TrainingRequestDetailsRoute.page,
+                    //   path: AppRoutesConstants.trainingRequestDetails,
+                    // )
                   ]),
               // AutoRoute(
               //   page: InsuranceRoute.page,
@@ -311,7 +309,6 @@ class AppRouter extends RootStackRouter {
                         ),
                     AutoRoute(
                       maintainState: true,
-
                       page: CreateRequestRoute.page,
                       path: AppRoutesConstants.createRequest,
                       //  meta: <String, dynamic>{'hideBottomNav': true},

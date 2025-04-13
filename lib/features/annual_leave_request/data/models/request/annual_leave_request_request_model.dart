@@ -14,7 +14,7 @@ class AnnualLeaveRequestRequestModel {
     this.leaveType,
     this.startDate,
     this.endDate,
-  required   this.exitDate,
+     this.exitDate,
     //this.requestedDays,
   });
 

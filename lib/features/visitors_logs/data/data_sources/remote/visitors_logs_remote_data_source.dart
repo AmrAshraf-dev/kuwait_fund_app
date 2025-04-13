@@ -1,10 +1,9 @@
-import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_logs_details_response_model.dart';
  import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_logs_hosts_response_model.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';
@@ -20,6 +19,8 @@ abstract class VisitorsLogsRemoteDataSource {
       {required String date});
 
   Future<CustomResponseType<bool>> getCanViewVisitorsLogs() ;
+
+  Future<CustomResponseType<VisitorsLogsDetailsResponseModel>> getVisitorsLogsDetails({required VisitorsLogsDetailsRequestModel visitorsLogsDetailsRequestModel}) ;
 
   
 }
@@ -78,6 +79,25 @@ class VisitorsLogsDataSourceImpl implements VisitorsLogsRemoteDataSource {
     } else {
       return left(ServerFailure(message: result.response as String));
     }
+
+  }
+  
+  @override
+   Future<CustomResponseType<VisitorsLogsDetailsResponseModel>> getVisitorsLogsDetails({required VisitorsLogsDetailsRequestModel visitorsLogsDetailsRequestModel})  async {
+    ({dynamic response, bool success}) result = await networkHelper.get(
+        path: ApiConstants.getManagementVisitorsCalendarDetails,
+        queryParams: <String, dynamic>{
+          "date": visitorsLogsDetailsRequestModel.date ?? "",
+          if (visitorsLogsDetailsRequestModel.hostName != null)
+            "hostName": visitorsLogsDetailsRequestModel.hostName ?? "",
+         });
+
+    if (result.success) {
+      return right(VisitorsLogsDetailsResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+
 
   }
  

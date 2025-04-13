@@ -1,4 +1,6 @@
- import "package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart";
+ import "package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart";
+import "package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart";
+import "package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_details_entity.dart";
 import "package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart";
 import "package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart";
 
@@ -22,4 +24,6 @@ abstract class VisitorsLogsRepository {
   Future<CustomResponseType<BaseEntity<List<VisitorsLogsHostsEntity>>>> getVisitorLogsHosts({required String date}) ;
 
   Future<CustomResponseType<bool>> getCanViewVisitorsLogs();
+
+  Future<CustomResponseType<BaseEntity<List<VisitorsLogsDetailsEntity>>>> getVisitorsLogsDetails({required VisitorsLogsDetailsRequestModel visitorsLogsDetailsParams});
 }
