@@ -41,38 +41,42 @@ class _VisitorsLogsScreenState extends State<VisitorsLogsScreen> {
             ],
        child: BlocConsumer<VisitorsLogsCubit, VisitorsLogsState>(
               listener: (context, state) {
+ if (state is VisitorsLogsLoadingState) {
+  ViewsToolbox.showLoading();
+ }
+ else
                 if(state is VisitorsLogsCanNotViewState){
                   ViewsToolbox.dismissLoading();
                   ViewsToolbox.showMessageBottomsheet(
                     context: context,
                     status: ConfirmationPopupStatus.failure,
                     message: tr("you_can_not_view_visitors_logs"),
-                    
                   );
                 }
               else if (state is VisitorsLogsErrorState) {
                   ViewsToolbox.dismissLoading();
-        ViewsToolbox.showMessageBottomsheet(
+                  ViewsToolbox.showMessageBottomsheet(
                 context: context,
                 status: ConfirmationPopupStatus.failure,
                 message: tr("general-error"),
               ); 
-              } else if (state is VisitorsLogsLoadingState) {
-                  ViewsToolbox.showLoading();
-                } else if (state is VisitorsLogsCanViewState) {
-                  
-                 
+              }  else if (state is VisitorsLogsCanViewState) {
+              ViewsToolbox.dismissLoading();
                    visitorsLogsCubit.getVisitorsLogs(
-                  visitorsLogsModel: VisitorsLogsRequestModel(
-      month: _focusedDay.month.toString().padLeft(2, '0'),
-      year: _focusedDay.year.toString(),
+                  visitorsLogsModel: VisitorsLogsRequestModel( month: _focusedDay.month.toString().padLeft(2, '0'),year: _focusedDay.year.toString(),
     ),
                 );
-                   visitorsLogsCubit.getHostsList(DateTime.now().toString());
                 }
               },
-              builder: (context, state) {
-                
+buildWhen: (previous, current) {
+   return current is VisitorsLogsReadyState;
+},
+
+
+
+
+
+              builder: (context, state) {       
                 return MasterWidget(
         screenTitle: context.tr("visitors_logs"),
         isBackEnabled: true,
@@ -81,12 +85,11 @@ class _VisitorsLogsScreenState extends State<VisitorsLogsScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
          20.verticalSpace,
-            VisitorsLogsCalenderWidget(
+            CalendarContent(
               visitorsLogsCubit: visitorsLogsCubit,
-              focusedDay: _focusedDay,
-               onFocusedDayChanged: (day) => setState((){
-                
-_focusedDay = day;
+              focusedDay: _focusedDay,    
+               onFocusedDayChanged: (day) => setState((){            
+                  _focusedDay = day;
                 visitorsLogsCubit.getVisitorsLogs(
                   visitorsLogsModel: VisitorsLogsRequestModel(
       month: _focusedDay.month.toString().padLeft(2, '0'),

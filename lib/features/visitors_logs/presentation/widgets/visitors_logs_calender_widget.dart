@@ -1,27 +1,36 @@
-import 'dart:ui';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
- import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/selected_day_widget.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_bottomsheet.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class VisitorsLogsCalenderWidget extends StatelessWidget {
-  final VisitorsLogsCubit visitorsLogsCubit;
+ 
+class CalendarContent extends StatefulWidget {
   final DateTime focusedDay;
-   final ValueChanged<DateTime> onFocusedDayChanged;
+  final ValueChanged<DateTime> onFocusedDayChanged;
+  final VisitorsLogsCubit visitorsLogsCubit;
 
-  const VisitorsLogsCalenderWidget({
-    required this.visitorsLogsCubit,
+    CalendarContent({
     required this.focusedDay,
-     required this.onFocusedDayChanged,
-    super.key,
-  });
+    required this.onFocusedDayChanged,
+    required this.visitorsLogsCubit,
+      super.key,
+  }) ;
+
+  @override
+  State<CalendarContent> createState() => _CalendarContentState();
+}
+
+class _CalendarContentState extends State<CalendarContent> {
+   List<VisitorsLogsEntity> calendarResponse = [];
+
+ DateTime selectedCalendarDay  = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -31,43 +40,36 @@ class VisitorsLogsCalenderWidget extends StatelessWidget {
           ViewsToolbox.dismissLoading();
           ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
         }
-      },
-      buildWhen: (previous, current) => current is VisitorsLogsReadyState,
-      builder: (context, state) {
-        if (state is VisitorsLogsLoadingState) {
-          ViewsToolbox.showLoading();
-        } else if (state is VisitorsLogsReadyState) {
-          ViewsToolbox.dismissLoading();
-          return CalendarContent(
-            calendarResponse: state.response.data,
-            focusedDay: focusedDay,
-             onFocusedDayChanged: onFocusedDayChanged,
-            visitorsLogsCubit: visitorsLogsCubit,
-          );
-        }
-        return Container();
-      },
-    );
-  }
+else if  (state is VisitorsLogsReadyState){
+            ViewsToolbox.dismissLoading();
+setState(() {
+    calendarResponse = state.response.data??[];
+});
 }
 
-class CalendarContent extends StatelessWidget {
-  final   List<VisitorsLogsEntity>? calendarResponse;
-  final DateTime focusedDay;
-   final ValueChanged<DateTime> onFocusedDayChanged;
-  final VisitorsLogsCubit visitorsLogsCubit;
 
-  const CalendarContent({
-    required this.calendarResponse,
-    required this.focusedDay,
-     required this.onFocusedDayChanged,
-    required this.visitorsLogsCubit,
-    Key? key,
-  }) : super(key: key);
+          else if (state is VisitorsLogsDetailsReadyState){
+                        ViewsToolbox.dismissLoading();
+if(state.showNewBottomSheet){
+          ViewsToolbox.showBottomSheet(
+                    height: 400.h,
+                    context: context,
+                    customWidget: VisitsBottomSheet(
+                      selectedDate: selectedCalendarDay,
+                      calendarVisitorsLogsDates: 
+                          _getCalendarVisitorsLogsDates(calendarResponse),
+                      visitorsLogsCubit: widget.visitorsLogsCubit,
+                      visitorsLogsDetails: state.response.data!,
+                    ),
+                  );
+}
+        }
+      },
+      buildWhen: (previous, current) => current is VisitorsLogsReadyState ,
+      builder: (context, state) {
+      
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
+          return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
@@ -86,15 +88,13 @@ class CalendarContent extends StatelessWidget {
           availableGestures: AvailableGestures.horizontalSwipe,
           firstDay: DateTime.utc(2025, 3, 1),
           lastDay: DateTime.utc(2025, 12, 31),
-          focusedDay: focusedDay,
-          onPageChanged: onFocusedDayChanged,
+          focusedDay: widget.focusedDay,
+          onPageChanged: widget.onFocusedDayChanged,
           onDaySelected: (selectedDay, focusedDay) {
-       
-
-       // check if the selected day is is not in the calendarResponse list 
-            if (calendarResponse == null ||
-                calendarResponse!.isEmpty ||
-                !calendarResponse!
+            // check if the selected day is is not in the calendarResponse list
+            if ( 
+                calendarResponse.isEmpty ||
+                !calendarResponse
                     .map((item) => item.date)
                     .whereType<String>()
                     .toList()
@@ -103,20 +103,18 @@ class CalendarContent extends StatelessWidget {
                   context, "no_visitors_logs".tr());
               return;
             }
-            ViewsToolbox.showBottomSheet(
-              height: 400.h,
-              context: context,
-              customWidget: VisitsBottomSheet(
-                selectedDate:
-                selectedDay.toString() ,
-                selectedMonthDays: _getSelectedMonthDays(calendarResponse!),
+            selectedCalendarDay = selectedDay;
+            widget.visitorsLogsCubit.getVisitorLogsDetails(
+              VisitorsLogsDetailsRequestModel(
+                date: selectedDay.toString(),
                 
-              
               ),
+              showNewBottomSheet: true
             );
+         
           },
           selectedDayPredicate: (day) {
-            return calendarResponse!
+            return calendarResponse
                 .map((item) => item.date)
                 .whereType<String>()
                 .toList()
@@ -145,12 +143,15 @@ class CalendarContent extends StatelessWidget {
           ),
           calendarBuilders: CalendarBuilders(
             selectedBuilder: (context, day, focusedDay) =>
-                _buildSelectedDay(calendarResponse, day),
+                SelectedDayWidget(calendarResponse: calendarResponse, day: day),
           ),
         ),
-      ),
-    );
-  }
+      ));
+      
+    
+       
+      }
+      );}
 
   Widget _buildChevron(IconData icon) {
     return Container(
@@ -163,63 +164,15 @@ class CalendarContent extends StatelessWidget {
     );
   }
 
-  Widget _buildSelectedDay( List<VisitorsLogsEntity>? calendarResponse, DateTime day) {
-    final formattedDay = DateFormat("dd/MM/yyyy").format(day);
-    final matchingEntries = calendarResponse
-        ?.where((entry) => entry.date == formattedDay)
-        .toList();
-
-    if (matchingEntries != null && matchingEntries.isNotEmpty) {
-      final hasRed = matchingEntries.any((entry) => entry.visitType == "Red");
-      final hasBlue = matchingEntries.any((entry) => entry.visitType == "Blue");
-
-      return Center(
-        child: Container(
-          width: 36,
-          height: 36,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.r),
-            color: hasBlue ? Palette.blue_3542B9 : Colors.red,
-            border: hasRed ? Border.all(color: Colors.red, width: 2) : null,
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            '${day.day}',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      );
-    }
-    return Center(
-      child: Container(
-        width: 36,
-        height: 36,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-          color: Colors.transparent,
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          '${day.day}',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-  
-  _getSelectedMonthDays(List<VisitorsLogsEntity> list) {
-    // This method filters the list of VisitorsLogsEntity objects to get unique dates
+ List<String>  _getCalendarVisitorsLogsDates(List<VisitorsLogsEntity> list) {
+    // This method filters the list of VisitorsLogsEntity objects to get unique dates as string 
     return list
         .map((e) => e.date)
         .toSet()
         .toList()
-        .map((e) => list.firstWhere((element) => element.date == e))
-        .toList();
+        .map((e) => list.firstWhere((element) => element.date == e).date)
+        .toList(); 
   }
 }
+
+

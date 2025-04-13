@@ -1,4 +1,6 @@
-class VisitorsLogsHostsEntity {
+import 'package:equatable/equatable.dart';
+
+class VisitorsLogsHostsEntity  extends Equatable{
 
   
   final String id;
@@ -8,4 +10,11 @@ class VisitorsLogsHostsEntity {
     required this.id,
     required this.name,
   });
+  
+  @override
+  // TODO: implement props
+  List<Object?> get props =>  [
+    id,
+    name,
+  ];
 }

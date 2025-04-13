@@ -34,7 +34,8 @@ final class VisitorsLogsCanViewState extends VisitorsLogsState {
 }
 
 final class VisitorsLogsDetailsReadyState extends VisitorsLogsState {
-  VisitorsLogsDetailsReadyState(this.response);
+  VisitorsLogsDetailsReadyState(this.response, this.showNewBottomSheet);
+  final bool showNewBottomSheet;
   BaseEntity<List<VisitorsLogsDetailsEntity>> response;
 }
 
