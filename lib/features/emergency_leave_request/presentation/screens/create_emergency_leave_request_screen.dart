@@ -128,7 +128,7 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                                                   selectedDays:
                                                     selectedDays!);
                                         },
-                                        items: <int>[1, 2, 3]
+                                        items: List<int>.generate(state.response, (index) => index + 1) // Generate list dynamically
                                             .map((int item) {
                                           return DropdownMenuItem<int>(
                                             value: item,

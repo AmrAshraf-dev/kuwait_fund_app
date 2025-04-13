@@ -345,6 +345,8 @@ import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_ca
     as _i313;
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_visitor_logs_hosts_usecase.dart'
     as _i924;
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_visitors_logs__details_usecase.dart'
+    as _i139;
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_visitors_logs_usecase.dart'
     as _i266;
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart'
@@ -629,6 +631,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i313.GetCanViewVisitorsLogsUsecase>(() =>
       _i313.GetCanViewVisitorsLogsUsecase(
           visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
+  gh.factory<_i139.GetVisitorsLogsDetailsUseCase>(() =>
+      _i139.GetVisitorsLogsDetailsUseCase(
+          visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
   gh.factory<_i1046.RequestsCubit>(() =>
       _i1046.RequestsCubit(getRequestsUseCase: gh<_i270.GetRequestsUseCase>()));
   gh.factory<_i474.LoanCubit>(
@@ -654,11 +659,6 @@ Future<_i174.GetIt> $initGetIt(
       loanRequestRepository: gh<_i815.LoanRequestRepository>()));
   gh.factory<_i382.AnnualLeaveBalanceCubit>(() => _i382.AnnualLeaveBalanceCubit(
       getAnnualLeaveBalanceUseCase: gh<_i1045.GetAnnualLeaveBalanceUseCase>()));
-  gh.factory<_i540.VisitorsLogsCubit>(() => _i540.VisitorsLogsCubit(
-        gh<_i924.GetVisitorLogsHostsUseCase>(),
-        gh<_i313.GetCanViewVisitorsLogsUsecase>(),
-        gh<_i266.GetVisitorLogsUseCase>(),
-      ));
   gh.factory<_i236.CreateLoanRequestCubit>(() => _i236.CreateLoanRequestCubit(
       createLoanRequestUseCase: gh<_i1045.CreateLoanRequestUseCase>()));
   gh.factory<_i588.ProfileCubit>(() =>
@@ -725,6 +725,12 @@ Future<_i174.GetIt> $initGetIt(
       getKFBoardOfDirectorsUseCase: gh<_i707.GetKFBoardOfDirectorsUseCase>()));
   gh.factory<_i596.SurveyCubit>(
       () => _i596.SurveyCubit(getSurveyUseCase: gh<_i292.GetSurveyUseCase>()));
+  gh.factory<_i540.VisitorsLogsCubit>(() => _i540.VisitorsLogsCubit(
+        gh<_i924.GetVisitorLogsHostsUseCase>(),
+        gh<_i139.GetVisitorsLogsDetailsUseCase>(),
+        gh<_i313.GetCanViewVisitorsLogsUsecase>(),
+        gh<_i266.GetVisitorLogsUseCase>(),
+      ));
   gh.factory<_i808.LoanReasonsCubit>(() => _i808.LoanReasonsCubit(
       getLoanReasonsUseCase: gh<_i302.GetLoanReasonsUseCase>()));
   gh.factory<_i674.MyAttendanceCubit>(() => _i674.MyAttendanceCubit(

@@ -3,21 +3,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_request_model.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/use_cases/get_can_view_visitors_logs_usecase.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/host_name_dropmenu_widget.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_bottomsheet.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_calender_widget.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 
@@ -53,6 +47,7 @@ class _VisitorsLogsScreenState extends State<VisitorsLogsScreen> {
                     context: context,
                     status: ConfirmationPopupStatus.failure,
                     message: tr("you_can_not_view_visitors_logs"),
+                    
                   );
                 }
               else if (state is VisitorsLogsErrorState) {
@@ -68,7 +63,10 @@ class _VisitorsLogsScreenState extends State<VisitorsLogsScreen> {
                   
                  
                    visitorsLogsCubit.getVisitorsLogs(
-                  visitorsLogsModel: _createVisitorsLogsRequestModel(),
+                  visitorsLogsModel: VisitorsLogsRequestModel(
+      month: _focusedDay.month.toString().padLeft(2, '0'),
+      year: _focusedDay.year.toString(),
+    ),
                 );
                    visitorsLogsCubit.getHostsList(DateTime.now().toString());
                 }
@@ -86,7 +84,17 @@ class _VisitorsLogsScreenState extends State<VisitorsLogsScreen> {
             VisitorsLogsCalenderWidget(
               visitorsLogsCubit: visitorsLogsCubit,
               focusedDay: _focusedDay,
-               onFocusedDayChanged: (day) => setState(() => _focusedDay = day),
+               onFocusedDayChanged: (day) => setState((){
+                
+_focusedDay = day;
+                visitorsLogsCubit.getVisitorsLogs(
+                  visitorsLogsModel: VisitorsLogsRequestModel(
+      month: _focusedDay.month.toString().padLeft(2, '0'),
+      year: _focusedDay.year.toString(),
+    ),
+                );
+ 
+               } ),
             ),
             30.verticalSpace,
             LegendWidget(),
@@ -99,13 +107,7 @@ class _VisitorsLogsScreenState extends State<VisitorsLogsScreen> {
      );
     
   }
-
-  VisitorsLogsRequestModel _createVisitorsLogsRequestModel() {
-    return VisitorsLogsRequestModel(
-      month: _focusedDay.month.toString().padLeft(2, '0'),
-      year: _focusedDay.year.toString(),
-    );
-  }
+ 
 }
 
 

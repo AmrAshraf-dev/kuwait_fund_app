@@ -32,7 +32,7 @@ class ApiConstants {
 
   static var getUserRequests = "Request/GetUserRequests";
 
-  static var getLeaveBalance = "Leave/GetAnnualLeaveBalance";
+  static var getAnnualLeaveBalance = "Leave/GetAnnualLeaveBalance";
 
   static var createAnnualLeaveRequest =
       "Leave/CreateEmployeeAnnualLeaveRequest";
@@ -75,6 +75,9 @@ class ApiConstants {
 
    static var getEmergencyEligibleDays = "Leave/GetEmergencyEligibleDays";
    static var getManagementVisitorsCalendar='VisitorsLog/GetManagementVisitorsCalender';
+   static var getManagementVisitorsCalendarDetails='VisitorsLog/GetManagementVisitorsDetails';
+
+   
   static var getHosts = 'VisitorsLog/GetHosts';
 
   static var getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';

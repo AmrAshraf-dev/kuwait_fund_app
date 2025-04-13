@@ -7,8 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
+ import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_bottomsheet.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -91,6 +90,19 @@ class CalendarContent extends StatelessWidget {
           onPageChanged: onFocusedDayChanged,
           onDaySelected: (selectedDay, focusedDay) {
        
+
+       // check if the selected day is is not in the calendarResponse list 
+            if (calendarResponse == null ||
+                calendarResponse!.isEmpty ||
+                !calendarResponse!
+                    .map((item) => item.date)
+                    .whereType<String>()
+                    .toList()
+                    .contains(DateFormat("dd/MM/yyyy").format(selectedDay))) {
+              ViewsToolbox.showErrorAwesomeSnackBar(
+                  context, "no_visitors_logs".tr());
+              return;
+            }
             ViewsToolbox.showBottomSheet(
               height: 400.h,
               context: context,

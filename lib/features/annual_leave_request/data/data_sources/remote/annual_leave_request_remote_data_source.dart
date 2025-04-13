@@ -44,7 +44,7 @@ class AnnualLeaveRequestDataSourceImpl
   Future<CustomResponseType<LeaveBalanceResponseModel>>
       getAnnualLeaveBalance() async {
     ({dynamic response, bool success}) result = await networkHelper.get(
-      path: ApiConstants.getLeaveBalance,
+      path: ApiConstants.getAnnualLeaveBalance,
     );
 
     if (result.success) {

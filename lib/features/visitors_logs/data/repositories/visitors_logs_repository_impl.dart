@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart';
 
  import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
  
 import '../../../../core/network/base_handling.dart';
@@ -34,6 +36,11 @@ class VisitorsLogsRepositoryImp implements VisitorsLogsRepository {
   @override
   Future<CustomResponseType<bool>> getCanViewVisitorsLogs() async {
     return await visitorsLogsRemoteDataSource.getCanViewVisitorsLogs();
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<VisitorsLogsDetailsEntity>>>> getVisitorsLogsDetails({required VisitorsLogsDetailsRequestModel visitorsLogsDetailsParams}) async  {
+    return await visitorsLogsRemoteDataSource.getVisitorsLogsDetails(visitorsLogsDetailsRequestModel: visitorsLogsDetailsParams);
   } 
 }
 

@@ -18,8 +18,7 @@ import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/request
 import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
-
+ 
 @RoutePage()
 class RequestsScreen extends StatefulWidget {
   const RequestsScreen({super.key});
@@ -39,7 +38,7 @@ class _RequestsScreenState extends State<RequestsScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override

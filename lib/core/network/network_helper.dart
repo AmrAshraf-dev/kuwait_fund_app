@@ -123,11 +123,11 @@ class NetworkHelper {
           );
         }
         
-        //  else {
-        //   if (data is Map<String, dynamic>) {
-        //     data.removeWhere((String key, value) => value == null);
-        //   }
-        // }
+         else {
+          if (data is Map<String, dynamic>) {
+            data.removeWhere((String key, value) => value == null);
+          }
+        }
       }
 
       final Response response = await dio.post(

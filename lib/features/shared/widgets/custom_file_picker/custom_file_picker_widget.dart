@@ -56,6 +56,7 @@ class GenericFilePicker extends StatelessWidget {
                     onPressed: () {
                       filePickerCubit.pickFile(
                         filetype: FileType.image,
+                        allowedExtensions:  ['jpg', 'png', 'jpeg'],
                       );
                     },
                     text: context.tr('choosePhoto'),
@@ -67,7 +68,9 @@ class GenericFilePicker extends StatelessWidget {
                     borderColor: Palette.gery_6C6D6F,
                     backgroundColor: Palette.transparntColor,
                     onPressed: () {
-                      filePickerCubit.pickFile();
+                      filePickerCubit.pickFile(
+                        allowedExtensions: ['pdf'],
+                      );
                     },
                     customChild: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
