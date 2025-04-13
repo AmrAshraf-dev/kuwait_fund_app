@@ -40,7 +40,7 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
   final GlobalKey<FormBuilderState>? customFormKey;
   final DateTimeRange? selectedRange;
   final bool isReadOnly;
-  final void Function(bool) onDoneCallback;
+  final void Function(bool, DateTimeRange? pickedRange) onDoneCallback;
   final RangeDatePickerCubit rangeDatePickerCubit =
       getIt<RangeDatePickerCubit>();
   @override
@@ -86,81 +86,77 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-              AbsorbPointer(
-                absorbing: isReadOnly,
-                child: RangeDatePicker(
-                  selectedRange: selectedRange,
-                  initialDate: initialDate ??
-                      ((initNull ?? true) ? null : DateTime.now()),
-                  minDate: firstDate ?? DateTime.now(),
-                  maxDate: lastDate ??
-                      DateTime.now().add(const Duration(days: 365 * 10)),
-                  selectedCellsDecoration: BoxDecoration(
-                    color: Palette.blue_ECEEF4,
-                  ),
-                  selectedCellsTextStyle: TextStyle(
-                      color: Palette.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.sp),
-                  singleSelectedCellDecoration: BoxDecoration(
-                    color: Palette.primaryColor,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                  ),
-                  currentDateDecoration: BoxDecoration(
-                    color: Palette.geryPattern,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                  ),
-                  currentDateTextStyle:
-                      TextStyle(color: Palette.black, fontSize: 16.sp),
-                  initialPickerType: PickerType.days,
-                  leadingDateTextStyle: const TextStyle(
-                      color: Palette.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                  slidersColor: Palette.primaryColor.withOpacity(0.2),
-                  highlightColor: Colors.redAccent,
-                  slidersSize: 20,
-                  splashRadius: 20,
-                  centerLeadingDate: false,
-                  onRangeSelected: (DateTimeRange? value) {
-                    if (value != null) {
-                      final selectedDays =
-                          value.end.difference(value.start).inDays;
-
-                      if (totalDays != null && selectedDays > totalDays!) {
-                        fromDateController?.text = "";
-                        toDateController?.text = "";
-                        customFormKey?.currentState!.fields["from"]!
-                            .didChange("");
-                        customFormKey?.currentState!.fields["to"]!
-                            .didChange("");
-                        // Show a message if the selected range exceeds totalDays
-                        rangeDatePickerCubit.emitErrorMessage(
-                            context.tr("selected_days_exceeds_available_days"));
-
-                        return; // Prevent further processing
-                      }
-
-                      // Update the consumed days in the cubit
-                      rangeDatePickerCubit.updateConsumedDays(selectedDays);
-
-                      if (fromDateController != null) {
-                        fromDateController?.text =
-                            DateFormat("yyyy-MM-dd", "en").format(value.start);
-                        customFormKey?.currentState!.fields["from"]!.didChange(
-                            DateFormat("yyyy-MM-dd", "en").format(value.start));
-                      }
-                      if (toDateController != null) {
-                        toDateController?.text =
-                            DateFormat("yyyy-MM-dd", "en").format(value.end);
-                        customFormKey?.currentState!.fields["to"]!.didChange(
-                            DateFormat("yyyy-MM-dd", "en").format(value.end));
-                      }
-                    }
-                  },
+              RangeDatePicker(
+                selectedRange: selectedRange,
+                initialDate:
+                    initialDate ?? ((initNull ?? true) ? null : DateTime.now()),
+                minDate: firstDate ?? DateTime.now(),
+                maxDate: lastDate ??
+                    DateTime.now().add(const Duration(days: 365 * 10)),
+                selectedCellsDecoration: BoxDecoration(
+                  color: Palette.blue_ECEEF4,
                 ),
+                selectedCellsTextStyle: TextStyle(
+                    color: Palette.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.sp),
+                singleSelectedCellDecoration: BoxDecoration(
+                  color: Palette.primaryColor,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                ),
+                currentDateDecoration: BoxDecoration(
+                  color: Palette.geryPattern,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                ),
+                currentDateTextStyle:
+                    TextStyle(color: Palette.black, fontSize: 16.sp),
+                initialPickerType: PickerType.days,
+                leadingDateTextStyle: const TextStyle(
+                    color: Palette.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+                slidersColor: Palette.primaryColor.withOpacity(0.2),
+                highlightColor: Colors.redAccent,
+                slidersSize: 20,
+                splashRadius: 20,
+                centerLeadingDate: false,
+                onRangeSelected: (DateTimeRange? value) {
+                  if (value != null) {
+                    final selectedDays =
+                        value.end.difference(value.start).inDays;
+
+                    if (totalDays != null && selectedDays > totalDays!) {
+                      fromDateController?.text = "";
+                      toDateController?.text = "";
+                      customFormKey?.currentState!.fields["from"]!
+                          .didChange("");
+                      customFormKey?.currentState!.fields["to"]!.didChange("");
+                      // Show a message if the selected range exceeds totalDays
+                      rangeDatePickerCubit.emitErrorMessage(
+                          context.tr("selected_days_exceeds_available_days"));
+
+                      return; // Prevent further processing
+                    }
+
+                    // Update the consumed days in the cubit
+                    rangeDatePickerCubit.updateConsumedDays(selectedDays);
+
+                    if (fromDateController != null) {
+                      fromDateController?.text =
+                          DateFormat("yyyy-MM-dd", "en").format(value.start);
+                      customFormKey?.currentState!.fields["from"]!.didChange(
+                          DateFormat("yyyy-MM-dd", "en").format(value.start));
+                    }
+                    if (toDateController != null) {
+                      toDateController?.text =
+                          DateFormat("yyyy-MM-dd", "en").format(value.end);
+                      customFormKey?.currentState!.fields["to"]!.didChange(
+                          DateFormat("yyyy-MM-dd", "en").format(value.end));
+                    }
+                  }
+                },
               ),
               if (state.errorMessage != null)
                 Padding(
@@ -174,13 +170,12 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
               10.verticalSpace,
               CustomElevatedButton(
                 onPressed: () {
-                  if(rangeDatePickerCubit.state.consumedDays == 0){ 
+                  if (rangeDatePickerCubit.state.consumedDays == 0) {
                     rangeDatePickerCubit.emitErrorMessage(
                         context.tr("please_select_from_and_to_dates"));
                     return;
-                  }
-                  else{
-                  onDoneCallback(state.errorMessage == null);
+                  } else {
+                    onDoneCallback(state.errorMessage == null, selectedRange);
                   }
                 },
                 text: context.tr("done"),

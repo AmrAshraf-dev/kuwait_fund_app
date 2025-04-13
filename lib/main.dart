@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_ping_ios/dart_ping_ios.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +32,7 @@ import 'features/shared/widgets/custom_toggle_button/custom_toggle_button_cubit.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-    await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: ".env");
 
   Bloc.observer = AliveCubitObserver();
   await Firebase.initializeApp(
@@ -38,9 +40,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessagingService().init();
-    await DeviceService.initialize();
+  await DeviceService.initialize();
 
-  DartPingIOS.register();
+  if (Platform.isIOS) {
+    DartPingIOS.register();
+  }
   if (!kDebugMode) {
     FlutterError.onError = (FlutterErrorDetails errorDetails) {
       FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);

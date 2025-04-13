@@ -142,6 +142,7 @@ class _CreateTrainingRequestScreenState
                       isFromFile: true,
                       keyName: 'file',
                       buttonTitle: context.tr("attach_course_file"),
+                      
                     ),
                     50.verticalSpace,
                     CustomElevatedButton(

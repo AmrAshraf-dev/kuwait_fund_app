@@ -49,7 +49,7 @@ class CustomDatePickerRange extends StatefulWidget {
   final String labelTitle;
   final int? consumedDays;
   final int? totalDays;
-  final void Function(bool) onDoneCallback;
+  final void Function(bool, DateTimeRange? pickedRange) onDoneCallback;
 
   @override
   State<CustomDatePickerRange> createState() => _CustomDatePickerRangeState();
@@ -186,7 +186,7 @@ class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
     required int? consumedDays,
     required int? totalDays,
     required CustomDatePickerRange widget,
-    required void Function(bool) onDoneCallback,
+    required void Function(bool, DateTimeRange? pickedRange) onDoneCallback,
   }) {
     ViewsToolbox.showBottomSheet(
         height: 1.sh - 100,
