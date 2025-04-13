@@ -122,7 +122,7 @@ class NetworkHelper {
                 e.removeWhere((String key, value) => value == null),
           );
         }
-        
+
         //  else {
         //   if (data is Map<String, dynamic>) {
         //     data.removeWhere((String key, value) => value == null);

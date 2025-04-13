@@ -180,7 +180,14 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
                   submissionsCubit: _submissionsCubit,
                 ),
                 // Tab Views
-                BlocBuilder<SubmissionsCubit, SubmissionsState>(
+                BlocConsumer<SubmissionsCubit, SubmissionsState>(
+                  listener: (context, state) {
+                    if (state is SubmissionsErrorState) {
+                      ViewsToolbox.dismissLoading();
+                      ViewsToolbox.showErrorAwesomeSnackBar(
+                          context, state.message!);
+                    }
+                  },
                   builder: (context, state) {
                     if (state is SubmissionsLoadingState) {
                       ViewsToolbox.showLoading();
