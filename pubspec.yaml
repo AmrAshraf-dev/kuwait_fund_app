@@ -63,6 +63,7 @@ dependencies:
    #path: C:\Users\amras\OneDrive\Desktop\Flutter Projects\KuwaitFunds-ESS-MobileApp\date_picker
   timer_count_down: ^2.2.2
   dropdown_search: ^5.0.6
+  open_file:
   awesome_snackbar_content:
     git:
       url: https://github.com/AbdelrahmanMahmoudM94/awesome_snackbar_content

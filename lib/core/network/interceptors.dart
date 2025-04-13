@@ -98,30 +98,43 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers.addAll({
-
-        "Accept-Language": LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US",
-      "Location":  Platform.isAndroid ? "AndroidApp" : "IOSApp",
+      "Accept-Language": LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US",
+      "Location": Platform.isAndroid ? "AndroidApp" : "IOSApp",
       "DeviceIdentifier": FirebaseMessagingService().token ?? "",
       "SessionIdentifier": DeviceService().getDeviceId(),
       "Accept": "application/json",
       "Content-Type": "application/json",
       "Connection": "keep-alive",
-      if(LocalData.getUser()?.tokenInfo.token!=null)
-      "Authorization": "Bearer ${LocalData.getUser()?.tokenInfo.token}",
-      
- 
+      if (LocalData.getUser()?.tokenInfo.token != null)
+        "Authorization": "Bearer ${LocalData.getUser()?.tokenInfo.token}",
     });
     handler.next(options);
   }
 
   Future<bool> _isNetworkUnavailable(DioException err) async {
     final connectivityResult = await Connectivity().checkConnectivity();
-    final pingResult = await Ping('google.com', count: 1).stream.first;
 
+    // Consider no connection if connectivity is 'none'
+    if (connectivityResult.first == ConnectivityResult.none) {
+      return true;
+    }
+
+    // Check if ping to a reliable host fails
+    bool pingFailed = false;
+    try {
+      final ping = Ping('www.google.com', count: 1);
+      final pingData = await ping.stream.first;
+      if (pingData.response == null || pingData.response!.ttl == null) {
+        pingFailed = true;
+      }
+    } catch (_) {
+      pingFailed = true;
+    }
+
+    // Consider network unavailable if any of these are true
     return err.type == DioExceptionType.connectionTimeout ||
         err.type == DioExceptionType.receiveTimeout ||
-        connectivityResult == ConnectivityResult.none ||
-        pingResult.response?.ttl == null;
+        pingFailed;
   }
 
   Future<bool> _handleRefreshToken(DioException err) async {

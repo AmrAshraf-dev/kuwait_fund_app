@@ -54,13 +54,13 @@ class _CreateRequestScreenState extends State<CreateRequestScreen> {
                   onTap: () {
                     CustomMainRouter.push(CreateEmergencyLeaveRequestRoute());
                   }),
-            //   MoreItemWidget(
-            //       text: context.tr("loan_request"),
-            //       svgIcon: Assets.svg.loan.path,
-            //       onTap: () {
-            //         CustomMainRouter.push(CreateLoanRequestRoute());
-            //       }),
-           ],
+              //   MoreItemWidget(
+              //       text: context.tr("loan_request"),
+              //       svgIcon: Assets.svg.loan.path,
+              //       onTap: () {
+              //         CustomMainRouter.push(CreateLoanRequestRoute());
+              //       }),
+            ],
           ),
         ));
   }

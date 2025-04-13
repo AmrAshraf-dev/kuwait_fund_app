@@ -100,7 +100,8 @@ class SubmissionFilterBottomSheet extends StatelessWidget {
                             toLabelAboveField: context.tr("to_date"),
                             customFormKey: _formKey,
                             labelTitle: context.tr("date_range"),
-                            onDoneCallback: (bool isSelectedRangeValid) {},
+                            onDoneCallback: (bool isSelectedRangeValid,
+                                DateTimeRange? pickedRange) {},
                           ),
                           20.verticalSpace,
                           MainTitleWidget(

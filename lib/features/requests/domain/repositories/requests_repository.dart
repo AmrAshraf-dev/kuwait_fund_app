@@ -1,5 +1,9 @@
-import "package:dartz/dartz.dart";
-import "package:kf_ess_mobile_app/error/failure.dart";
+import "package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_details_request.model.dart";
+import "package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_info_request_model.dart";
+import "package:kf_ess_mobile_app/features/requests/data/models/request/extend_leave_request_model.dart";
+import "package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_details_entity.dart";
+import "package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_info_entity.dart";
+import "package:kf_ess_mobile_app/features/requests/domain/entities/extend_leave_entity.dart";
 import "package:kf_ess_mobile_app/features/requests/domain/entities/request_type_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
@@ -18,5 +22,19 @@ abstract class RequestsRepository {
     required RequestsRequestModel requestsParams,
   });
 
-Future<CustomResponseType<BaseEntity<List<RequestTypeEntity>>>> getRequestTypes();
+  Future<CustomResponseType<BaseEntity<List<RequestTypeEntity>>>>
+      getRequestTypes();
+  Future<CustomResponseType<BaseEntity<List<AnnualLeaveDetailsEntity>>>>
+      getAnnualLeaveDetailsHistoryList({
+    required AnnualLeaveDetailsRequestModel annualLeaveDetailsParams,
+  });
+
+  Future<CustomResponseType<BaseEntity<AnnualLeaveInfoEntity>>>
+      getAnnualLeaveInfo({
+    required AnnualLeaveInfoRequestModel annualLeaveInfoParams,
+  });
+
+  Future<CustomResponseType<BaseEntity<CreateExtendLeaveEntity>>>
+      createExtendLeaveRequest(
+          {required ExtendLeaveRequestModel extendLeaveRequestParams});
 }

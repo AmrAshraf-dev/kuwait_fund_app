@@ -27,7 +27,7 @@ class SubmissionLeaveItemWidget extends StatelessWidget {
                   end: DateTime.now().add(const Duration(days: 7)),
                 ),
                 labelTitle: context.tr("applied_for"),
-                onDoneCallback: (bool isSelectedRangeValid) {},
+                onDoneCallback: (bool isSelectedRangeValid,DateTimeRange? pickedRange) {},
                 consumedDays: 26,
                 totalDays: 30));
       },
