@@ -45,6 +45,8 @@ class _RequestsScreenState extends State<RequestsScreen>
   Widget build(BuildContext context) {
     return MasterWidget(
       hasScroll: false,
+              isBackEnabled: false,
+
       screenTitle: context.tr("my_requests"),
       appBarHeight: 90.h,
       widget: MultiBlocProvider(

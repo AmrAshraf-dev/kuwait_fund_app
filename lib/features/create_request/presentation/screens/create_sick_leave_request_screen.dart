@@ -64,7 +64,11 @@ class _CreateSickLeaveRequestScreenState
               44.verticalSpace,
               FilePickerSection(
                 filePickerCubit: filePickerCubit,
-                onFileSelected: (filePath) => _selectedFile = filePath,
+                onFileSelected: (filePath) =>
+                
+                setState(() {
+                  _selectedFile = filePath;
+                })  
               ),
               20.verticalSpace,
               LeaveBalanceSection(leaveBalanceCubit: leaveBalanceCubit),
@@ -365,6 +369,7 @@ class SubmitButton extends StatelessWidget {
                   context: context,
                   status: ConfirmationPopupStatus.failure,
                   message: context.tr("please_attach_medical_report_file"),
+                  closeOnlyPopup: true,
                 );
               } else {
                 createSickLeaveRequestCubit.createSickLeaveRequest(

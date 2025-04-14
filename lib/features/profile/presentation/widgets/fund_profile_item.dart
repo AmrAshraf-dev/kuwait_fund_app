@@ -27,7 +27,12 @@ class FundProfileItem extends StatelessWidget {
             height: 100.h,
             placeholder: (context, url) =>
                 Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+            errorWidget: (context, url, error) => Image.asset(
+              'assets/png/default_profile.png', // Path to your default image
+              width: 100.w,
+              height: 100.h,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         10.verticalSpace,

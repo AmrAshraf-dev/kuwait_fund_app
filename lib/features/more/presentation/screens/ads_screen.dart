@@ -47,6 +47,8 @@ class _AdsScreenState extends State<AdsScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
+              isBackEnabled: true,
+
       screenTitle: context.tr("advertisement"),
       widget: Column(
         children: [

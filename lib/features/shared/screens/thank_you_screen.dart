@@ -31,6 +31,8 @@ class _ThankYouScreenState extends State<ThankYouScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
+              isBackEnabled: false,
+
         hasScroll: false,
         screenTitle: context.tr("thank_you"),
         widget: Column(

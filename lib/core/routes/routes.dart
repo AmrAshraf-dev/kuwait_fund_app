@@ -191,6 +191,10 @@ class AppRouter extends RootStackRouter {
           path: AppRoutesConstants.createEmergencyLeaveRequest,
         ),
         AutoRoute(
+          page: MyAttendanceRoute.page,
+          path: AppRoutesConstants.myAttendance,
+        ),
+        AutoRoute(
           page: CreateTrainingRequestRoute.page,
           path: AppRoutesConstants.createTrainingRequest,
         ),
@@ -207,14 +211,14 @@ class AppRouter extends RootStackRouter {
         //   page: CreateLoanRequestRoute.page,
         //   path: AppRoutesConstants.createLoanRequest,
         // ),
-        AutoRoute(
-          page: DocumentsRoute.page,
-          path: AppRoutesConstants.documents,
-        ),
-        AutoRoute(
-          page: SignPaciRoute.page,
-          path: AppRoutesConstants.signPaciScreen,
-        ),
+        // AutoRoute(
+        //   page: DocumentsRoute.page,
+        //   path: AppRoutesConstants.documents,
+        // ),
+        // AutoRoute(
+        //   page: SignPaciRoute.page,
+        //   path: AppRoutesConstants.signPaciScreen,
+        // ),
         AutoRoute(
           page: AdsRoute.page,
           path: AppRoutesConstants.adsScreen,
@@ -235,10 +239,10 @@ class AppRouter extends RootStackRouter {
           page: OperationsRoute.page,
           path: AppRoutesConstants.operationsScreen,
         ),
-        AutoRoute(
-          page: MyAttendanceRoute.page,
-          path: AppRoutesConstants.myAttendance,
-        ),
+        // AutoRoute(
+        //   page: MyAttendanceRoute.page,
+        //   path: AppRoutesConstants.myAttendance,
+        // ),
         AutoRoute(
             page: SurveyRoute.page,
             path: AppRoutesConstants.surveyRoute,

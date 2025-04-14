@@ -41,6 +41,8 @@ class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
+              isBackEnabled: false,
+
       screenTitle: context.tr("more"),
       appBarHeight: 90.h,
       widget: Padding(

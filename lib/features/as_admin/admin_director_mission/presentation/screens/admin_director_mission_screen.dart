@@ -31,6 +31,7 @@ class _AdminDirectorMissionScreenState
   Widget build(BuildContext context) {
     return MasterWidget(
         screenTitle: context.tr("director_mission"),
+        isBackEnabled: true,
         widget: Column(
           children: [
             Padding(

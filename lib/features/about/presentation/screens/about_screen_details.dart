@@ -14,6 +14,8 @@ class AboutItemDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MasterWidget(
         screenTitle: title,
+      isBackEnabled: true,
+
         widget: Center(
           child: AppText(
             text: details,
