@@ -6,26 +6,26 @@ import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submissions_entity.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submission_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/rejection_reason_bottomsheet.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 class SubmissionItemWidget extends StatelessWidget {
-  final SubmissionsEntity submissionsEntity;
+  final SubmissionEntity submissionsEntity;
 
   const SubmissionItemWidget({super.key, required this.submissionsEntity});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        if (submissionsEntity.requestType ==
-            RequestTypeEnum.annualLeaveRequest.name) {
-          CustomMainRouter.push(AnnualSubmissionsDetailsRoute());
-        }
-      },
+      // onTap: () {
+      //   if (submissionsEntity.requestType ==
+      //       RequestTypeEnum.annualLeaveRequest.name) {
+      //     CustomMainRouter.push(AnnualSubmissionsDetailsRoute());
+      //   }
+      // },
       child: Padding(
         padding: EdgeInsetsDirectional.only(start: 27.w, end: 18.w, top: 21.h),
         child: Container(
@@ -49,7 +49,7 @@ class SubmissionItemWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppText(
-                        text: submissionsEntity.requestDate,
+                        text: submissionsEntity.createDate,
                         style: AppTextStyle.semiBold_12,
                         textColor: Palette.semiTextGrey,
                       ),
@@ -61,7 +61,7 @@ class SubmissionItemWidget extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: AppText(
-                            text: context.tr(submissionsEntity.statusCode!),
+                            text: context.tr(submissionsEntity.leaveStatus!),
                             textColor: Colors.white,
                             style: AppTextStyle.semiBold_12,
                           ),
@@ -78,7 +78,7 @@ class SubmissionItemWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AppText(
-                            text: context.tr(submissionsEntity.requestType!),
+                            text: context.tr(submissionsEntity.leaveType!),
                             style: AppTextStyle.bold_16,
                             textColor: Palette.black,
                           ),
@@ -88,7 +88,7 @@ class SubmissionItemWidget extends StatelessWidget {
                               Assets.svg.person.svg(),
                               5.horizontalSpace,
                               AppText(
-                                text: submissionsEntity.courseName,
+                                text: submissionsEntity.empLoginName,
                                 style: AppTextStyle.medium_14,
                                 textColor: Palette.black,
                               ),

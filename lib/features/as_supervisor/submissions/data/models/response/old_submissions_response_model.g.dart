@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'submissions_response_model.dart';
+part of 'old_submissions_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SubmissionsModel _$SubmissionsModelFromJson(Map<String, dynamic> json) =>
-    SubmissionsModel(
+OldSubmissionsModel _$OldSubmissionsModelFromJson(Map<String, dynamic> json) =>
+    OldSubmissionsModel(
       courseName: json['courseName'] as String?,
       endDate: json['endDate'] as String?,
       loanAmount: json['loanAmount'] as String?,
@@ -19,7 +19,8 @@ SubmissionsModel _$SubmissionsModelFromJson(Map<String, dynamic> json) =>
       statusCode: json['statusCode'] as String?,
     );
 
-Map<String, dynamic> _$SubmissionsModelToJson(SubmissionsModel instance) =>
+Map<String, dynamic> _$OldSubmissionsModelToJson(
+        OldSubmissionsModel instance) =>
     <String, dynamic>{
       'requestID': instance.requestID,
       'requestType': instance.requestType,
@@ -32,20 +33,20 @@ Map<String, dynamic> _$SubmissionsModelToJson(SubmissionsModel instance) =>
       'loanAmount': instance.loanAmount,
     };
 
-SubmissionsResponseModel _$SubmissionsResponseModelFromJson(
+OldSubmissionsResponseModel _$OldSubmissionsResponseModelFromJson(
         Map<String, dynamic> json) =>
-    SubmissionsResponseModel(
+    OldSubmissionsResponseModel(
       code: (json['code'] as num?)?.toInt(),
       data: (json['data'] as List<dynamic>?)
-          ?.map((e) => SubmissionsModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => OldSubmissionsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       message: json['message'] as String?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
       hasMorePages: json['hasMorePages'] as bool?,
     );
 
-Map<String, dynamic> _$SubmissionsResponseModelToJson(
-        SubmissionsResponseModel instance) =>
+Map<String, dynamic> _$OldSubmissionsResponseModelToJson(
+        OldSubmissionsResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
       'code': instance.code,

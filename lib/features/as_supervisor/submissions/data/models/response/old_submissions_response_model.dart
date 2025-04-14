@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../../shared/entity/base_entity.dart';
-import '../../../domain/entities/submissions_entity.dart';
+import '../../../domain/entities/old_submissions_entity.dart';
 
-part 'submissions_response_model.g.dart';
+part 'old_submissions_response_model.g.dart';
 
 /// Model that transforms the Submissions data from the API to the
 /// application entity
@@ -14,8 +14,8 @@ part 'submissions_response_model.g.dart';
   */
 
 @JsonSerializable()
-class SubmissionsModel extends SubmissionsEntity {
-  const SubmissionsModel({
+class OldSubmissionsModel extends OldSubmissionsEntity {
+  const OldSubmissionsModel({
     required super.courseName,
     required super.endDate,
     required super.loanAmount,
@@ -27,15 +27,16 @@ class SubmissionsModel extends SubmissionsEntity {
     required super.statusCode,
   });
 
-  factory SubmissionsModel.fromJson(Map<String, dynamic> json) =>
-      _$SubmissionsModelFromJson(json);
+  factory OldSubmissionsModel.fromJson(Map<String, dynamic> json) =>
+      _$OldSubmissionsModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SubmissionsModelToJson(this);
+  Map<String, dynamic> toJson() => _$OldSubmissionsModelToJson(this);
 }
 
 @JsonSerializable()
-class SubmissionsResponseModel extends BaseEntity<List<SubmissionsModel>> {
-  const SubmissionsResponseModel({
+class OldSubmissionsResponseModel
+    extends BaseEntity<List<OldSubmissionsModel>> {
+  const OldSubmissionsResponseModel({
     super.code,
     super.data,
     super.message,
@@ -43,8 +44,8 @@ class SubmissionsResponseModel extends BaseEntity<List<SubmissionsModel>> {
     super.hasMorePages,
   });
 
-  factory SubmissionsResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$SubmissionsResponseModelFromJson(json);
+  factory OldSubmissionsResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$OldSubmissionsResponseModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SubmissionsResponseModelToJson(this);
+  Map<String, dynamic> toJson() => _$OldSubmissionsResponseModelToJson(this);
 }
