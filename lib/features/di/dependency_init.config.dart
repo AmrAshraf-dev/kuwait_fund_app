@@ -85,13 +85,13 @@ import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/reposi
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/repositories/submissions_repository.dart'
     as _i188;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/use_cases/get_old_submissions_usecase.dart'
-    as _i9;
+    as _i33;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/use_cases/submissions_usecase.dart'
-    as _i673;
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submission_cubit.dart'
-    as _i757;
+    as _i20;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/old_submissions_cubit.dart'
-    as _i368;
+    as _i936;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submission_cubit.dart'
+    as _i235;
 import 'package:kf_ess_mobile_app/features/auth/data/data_sources/remote/auth_remote_data_source.dart'
     as _i826;
 import 'package:kf_ess_mobile_app/features/auth/data/repositories/auth_repository_impl.dart'
@@ -603,11 +603,10 @@ Future<_i174.GetIt> $initGetIt(
       contactusRepository: gh<_i15.ContactusRepository>()));
   gh.factory<_i524.GetAdminHomeUseCase>(() => _i524.GetAdminHomeUseCase(
       adminHomeRepository: gh<_i887.AdminHomeRepository>()));
-  gh.factory<_i9.GetOldSubmissionsUseCase>(() => _i9.GetOldSubmissionsUseCase(
+  gh.factory<_i33.GetOldSubmissionsUseCase>(() => _i33.GetOldSubmissionsUseCase(
       submissionsRepository: gh<_i188.SubmissionsRepository>()));
-  gh.factory<_i673.GetLeaveRequestWaitingUseCase>(() =>
-      _i673.GetLeaveRequestWaitingUseCase(
-          submissionsRepository: gh<_i188.SubmissionsRepository>()));
+  gh.factory<_i20.GetSubmissionUseCase>(() => _i20.GetSubmissionUseCase(
+      submissionsRepository: gh<_i188.SubmissionsRepository>()));
   gh.factory<_i623.CertificatesCubit>(() => _i623.CertificatesCubit(
         getCertificatesUseCase: gh<_i254.GetCertificatesUseCase>(),
         generateCertificateUserCase: gh<_i842.GenerateCertificateUserCase>(),
@@ -641,10 +640,6 @@ Future<_i174.GetIt> $initGetIt(
       _i611.GetAdminDirectorMissionUseCase(
           adminDirectorMissionRepository:
               gh<_i704.AdminDirectorMissionRepository>()));
-  gh.factory<_i757.LeaveRequestWaitingCubit>(() =>
-      _i757.LeaveRequestWaitingCubit(
-          getLeaveRequestWaitingUseCase:
-              gh<_i673.GetLeaveRequestWaitingUseCase>()));
   gh.factory<_i398.ContributionsCubit>(() => _i398.ContributionsCubit(
       getContributionsUseCase: gh<_i492.GetContributionsUseCase>()));
   gh.factory<_i31.AboutRepository>(() => _i54.AboutRepositoryImp(
@@ -691,6 +686,8 @@ Future<_i174.GetIt> $initGetIt(
       _i1046.RequestsCubit(getRequestsUseCase: gh<_i270.GetRequestsUseCase>()));
   gh.factory<_i474.LoanCubit>(
       () => _i474.LoanCubit(getLoanUseCase: gh<_i80.GetLoanUseCase>()));
+  gh.factory<_i936.OldSubmissionsCubit>(() => _i936.OldSubmissionsCubit(
+      getOldSubmissionsUseCase: gh<_i33.GetOldSubmissionsUseCase>()));
   gh.factory<_i641.CreateInsuranceRequestCubit>(() =>
       _i641.CreateInsuranceRequestCubit(
           createInsuranceRequestUseCase:
@@ -714,6 +711,8 @@ Future<_i174.GetIt> $initGetIt(
       loanRequestRepository: gh<_i815.LoanRequestRepository>()));
   gh.factory<_i382.AnnualLeaveBalanceCubit>(() => _i382.AnnualLeaveBalanceCubit(
       getAnnualLeaveBalanceUseCase: gh<_i1045.GetAnnualLeaveBalanceUseCase>()));
+  gh.factory<_i235.SubmissionCubit>(() => _i235.SubmissionCubit(
+      getSubmissionUseCase: gh<_i20.GetSubmissionUseCase>()));
   gh.factory<_i236.CreateLoanRequestCubit>(() => _i236.CreateLoanRequestCubit(
       createLoanRequestUseCase: gh<_i1045.CreateLoanRequestUseCase>()));
   gh.factory<_i588.ProfileCubit>(() =>
@@ -760,8 +759,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i793.GetPersonalLoanMasterInfoUseCase>(() =>
       _i793.GetPersonalLoanMasterInfoUseCase(
           gh<_i815.LoanRequestRepository>()));
-  gh.factory<_i368.OldSubmissionsCubit>(() => _i368.OldSubmissionsCubit(
-      getOldSubmissionsUseCase: gh<_i9.GetOldSubmissionsUseCase>()));
   gh.factory<_i405.EmergencyLeaveRequestCubit>(
       () => _i405.EmergencyLeaveRequestCubit(
             createEmergencyLeaveRequestUseCase:

@@ -31,12 +31,16 @@ class GenericFilePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FilePickerCubit, List<XFile>>(
+    return BlocBuilder<FilePickerCubit, FilePickerState>(
       bloc: filePickerCubit,
-      builder: (BuildContext context, List<XFile> state) {
+      builder: (BuildContext context, FilePickerState state) {
         return FormBuilderField<String>(
           name: keyName,
-          initialValue: state.isNotEmpty ? state.first.path : '',
+          initialValue: state is FilePickerReadyState
+              ? state.xFile.isNotEmpty
+                  ? state.xFile.first.path
+                  : ''
+              : null,
           builder: (FormFieldState<String> field) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,12 +61,10 @@ class GenericFilePicker extends StatelessWidget {
                     backgroundColor: Palette.primaryColor,
                     onPressed: () {
                       filePickerCubit.pickFile(
- 
                         filetype: FileType.custom,
-                        allowedExtensions:  ['jpg', 'png', 'jpeg'],
+                        allowedExtensions: ['jpg', 'png', 'jpeg'],
                       );
-                                            CustomMainRouter.pop();
-
+                      CustomMainRouter.pop();
                     },
                     text: context.tr('choosePhoto'),
                   ),
@@ -74,13 +76,10 @@ class GenericFilePicker extends StatelessWidget {
                     backgroundColor: Palette.transparntColor,
                     onPressed: () {
                       filePickerCubit.pickFile(
-                        filetype:  FileType.custom,
+                        filetype: FileType.custom,
                         allowedExtensions: ['pdf'],
- 
-                        
                       );
-                                            CustomMainRouter.pop();
-
+                      CustomMainRouter.pop();
                     },
                     customChild: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

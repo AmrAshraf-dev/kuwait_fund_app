@@ -34,6 +34,7 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
 
   final TabCubit _tabCubit = getIt<TabCubit>();
   final SubmissionCubit submissionCubit = getIt<SubmissionCubit>();
+  final RequestsCubit _requestCubit = getIt<RequestsCubit>();
   final RequestTypesCubit _requestTypesCubit = getIt<RequestTypesCubit>();
 
   @override
@@ -52,6 +53,7 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
         providers: [
           BlocProvider(create: (context) => submissionCubit),
           BlocProvider(create: (context) => _requestTypesCubit),
+          BlocProvider(create: (context) => _requestCubit),
           BlocProvider(create: (context) => _tabCubit),
         ],
         child: Column(
@@ -72,11 +74,11 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
   Widget _buildTabBar(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 27.w),
-      child: BlocBuilder<SubmissionCubit, SubmissionState>(
+      child: BlocBuilder<RequestTypesCubit, RequestTypesState>(
         builder: (context, state) {
-          if (state is SubmissionLoadingState) {
+          if (state is RequestTypesLoading) {
             ViewsToolbox.showLoading();
-          } else if (state is SubmissionReadyState) {
+          } else if (state is RequestTypesLoaded) {
             ViewsToolbox.dismissLoading();
 
             return BlocBuilder<TabCubit, int>(
@@ -88,10 +90,15 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
                   onTap: (int value) {
                     _tabCubit.changeTab(value);
                     if (value == 0) {
-                      submissionCubit.getSubmissions();
+                      _requestCubit.getRequests(
+                        requestsModel: RequestsRequestModel(),
+                      );
                       return;
                     }
-                    submissionCubit.getSubmissions();
+                    _requestCubit.getRequests(
+                      requestsModel: RequestsRequestModel(
+                          requestTypeID: state.requestTypes[value - 1].id),
+                    );
                   },
                   controller: _tabController,
                   isScrollable: true,

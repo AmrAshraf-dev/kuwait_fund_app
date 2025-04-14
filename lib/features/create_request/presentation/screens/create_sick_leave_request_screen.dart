@@ -100,16 +100,27 @@ class FilePickerSection extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(18.0),
-              child: BlocConsumer<FilePickerCubit, List<XFile>>(
+              child: BlocConsumer<FilePickerCubit, FilePickerState>(
                 listener: (context, state) {
-                  onFileSelected(state.isNotEmpty ? state.first.path : null);
+                  if (state is FilePickerReadyState) {
+                    onFileSelected(
+                        state.xFile.isNotEmpty ? state.xFile.first.path : null);
+                  } else if (state is FilePickerErrorState) {
+                    ViewsToolbox.showAwesomeSnackBar(
+                      context,
+                      state.message.tr(),
+                      isError: true,
+                    );
+                  }
                 },
                 builder: (context, state) {
-                  if (state.isEmpty) {
+                  if (state is FilePickerReadyState) {
+                    return _SelectedFilePreview(
+                        state: state.xFile, filePickerCubit: filePickerCubit);
+                  } else if (state is FilePickerInitialState) {
                     return _FilePickerButton(filePickerCubit: filePickerCubit);
                   } else {
-                    return _SelectedFilePreview(
-                        state: state, filePickerCubit: filePickerCubit);
+                    return _FilePickerButton(filePickerCubit: filePickerCubit);
                   }
                 },
               ),

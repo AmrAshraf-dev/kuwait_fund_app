@@ -6,13 +6,11 @@ final class FilePickerInitialState extends FilePickerState {}
 
 final class FilePickerLoadingState extends FilePickerState {}
 
-final class FilePickerEmptyState extends FilePickerState {
-  
-}
+final class FilePickerEmptyState extends FilePickerState {}
 
 final class FilePickerReadyState extends FilePickerState {
-  // RequestsReadyState(this.response);
-  // BaseEntity<List<RequestsEntity>> response;
+  List<XFile> xFile;
+  FilePickerReadyState(this.xFile);
 }
 
 class FilePickerErrorState extends FilePickerState {
