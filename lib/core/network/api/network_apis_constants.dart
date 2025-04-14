@@ -88,5 +88,6 @@ class ApiConstants {
   static var getMyLeaveBalance = 'Leave/GetLeaveBalance';
   static var extendLeave = 'Leave/ExtendLeave';
   static var getAllLeaveRequestsWaiting = 'Leave/GetAllLeaveRequestsWaiting';
-  //
+  static var approveLeaveRequest = 'Leave/ApproveLeaveRequest';
+  static var rejectLeaveRequest = 'Leave/RejectLeaveRequest';
 }

@@ -13,6 +13,10 @@ final class CreateSickLeaveRequestLoadingState
     extends CreateSickLeaveRequestState {}
 
 final class CreateSickLeaveRequestReadyState
-    extends CreateSickLeaveRequestState {}
+    extends CreateSickLeaveRequestState {
+  final SickLeaveRequestModel sickLeaveRequestModel;
+
+  CreateSickLeaveRequestReadyState({required this.sickLeaveRequestModel});
+}
 
 abstract class CreateSickLeaveRequestState {}

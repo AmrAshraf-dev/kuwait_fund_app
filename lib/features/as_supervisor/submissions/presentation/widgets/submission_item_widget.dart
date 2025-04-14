@@ -9,6 +9,7 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submission_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/rejection_reason_bottomsheet.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
@@ -115,7 +116,14 @@ class SubmissionItemWidget extends StatelessWidget {
                                   width: 100.w,
                                   height: 35.h,
                                   backgroundColor: Palette.green_5CAC00,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    ViewsToolbox.showMessageBottomsheet(
+                                      context: context,
+                                      status: ConfirmationPopupStatus.success,
+                                      message: context
+                                          .tr("request_submitted_successfully"),
+                                    );
+                                  },
                                   customChild: AppText(
                                     text: context.tr("approve"),
                                     style: AppTextStyle.semiBold_13,

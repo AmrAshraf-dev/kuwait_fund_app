@@ -1,6 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/approve_leave_request_model.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/reject_leave_request_model.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/response/approve_leave_request_response_model.dart';
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/response/reject_leave_request_response_model.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/response/submission_response_model.dart';
+import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
 import '../../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../../core/network/base_handling.dart';
@@ -14,6 +19,14 @@ abstract class SubmissionsRemoteDataSource {
       {required SubmissionsRequestModel oldSubmissionsRequestModel});
 
   Future<CustomResponseType<SubmissionResponseModel>> getSubmission();
+
+  Future<CustomResponseType<ApproveLeaveRequestResponseModel>>
+      createApproveLeaveRequest(
+          {required ApproveLeaveRequestModel approveLeaveRequestModel});
+
+  Future<CustomResponseType<RejectLeaveRequestResponseModel>>
+      createRejectLeaveRequest(
+          {required RejectLeaveRequestModel rejectLeaveRequestModel});
 }
 
 @Injectable(as: SubmissionsRemoteDataSource)
@@ -45,6 +58,36 @@ class SubmissionsDataSourceImpl implements SubmissionsRemoteDataSource {
 
     if (result.success) {
       return right(SubmissionResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+
+  @override
+  Future<CustomResponseType<ApproveLeaveRequestResponseModel>>
+      createApproveLeaveRequest(
+          {required ApproveLeaveRequestModel approveLeaveRequestModel}) async {
+    ({dynamic response, bool success}) result = await networkHelper.post(
+        path: ApiConstants.approveLeaveRequest,
+        data: approveLeaveRequestModel.toJson());
+
+    if (result.success) {
+      return right(ApproveLeaveRequestResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+
+  @override
+  Future<CustomResponseType<RejectLeaveRequestResponseModel>>
+      createRejectLeaveRequest(
+          {required RejectLeaveRequestModel rejectLeaveRequestModel}) async {
+    ({dynamic response, bool success}) result = await networkHelper.post(
+        path: ApiConstants.rejectLeaveRequest,
+        data: rejectLeaveRequestModel.toJson());
+
+    if (result.success) {
+      return right(RejectLeaveRequestResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));
     }

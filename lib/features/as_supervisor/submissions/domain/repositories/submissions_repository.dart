@@ -1,3 +1,5 @@
+import "package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/approve_leave_request_model.dart";
+import "package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/reject_leave_request_model.dart";
 import "package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submission_entity.dart";
 
 import "../../../../../core/network/base_handling.dart";
@@ -19,4 +21,12 @@ abstract class SubmissionsRepository {
 
   Future<CustomResponseType<BaseEntity<List<SubmissionEntity>>>>
       getSubmission();
+
+  Future<CustomResponseType<BaseEntity<String>>> createApproveLeaveRequest({
+    required ApproveLeaveRequestModel approveLeaveRequestModel,
+  });
+
+  Future<CustomResponseType<BaseEntity<String>>> createRejectLeaveRequest({
+    required RejectLeaveRequestModel rejectLeaveRequestModel,
+  });
 }
