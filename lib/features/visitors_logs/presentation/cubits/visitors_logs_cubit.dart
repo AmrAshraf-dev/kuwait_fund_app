@@ -62,12 +62,13 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
       emit(VisitorsLogsErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<List<VisitorsLogsHostsEntity>> response) {
+    }, (BaseEntity<List<VisitorsLogsHostsEntity>> response) async {
       emit(VisitorsLogsHostsReadyState(response));
     });
   }
 
   getCanViewVisitorsLogs() async {
+    await Future.delayed(const Duration(milliseconds: 100));
         emit(VisitorsLogsLoadingState());
 
     final CustomResponseType<bool>
@@ -90,7 +91,8 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
     });
   }
 
-  getVisitorLogsDetails(visitorLogsDetailsRequestModel) async {
+  getVisitorLogsDetails(visitorLogsDetailsRequestModel,{required bool showNewBottomSheet}) async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(VisitorsLogsLoadingState());
 
     final CustomResponseType<BaseEntity<List<VisitorsLogsDetailsEntity>>>
@@ -103,7 +105,7 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<List<VisitorsLogsDetailsEntity>> response) {
-      emit(VisitorsLogsDetailsReadyState(response));
+      emit(VisitorsLogsDetailsReadyState(response,  showNewBottomSheet));
     });
   }
 

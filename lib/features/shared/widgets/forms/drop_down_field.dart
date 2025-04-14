@@ -66,6 +66,17 @@ class _CustomDropDownFieldState<T> extends State<CustomDropDownField<T>> {
   }
 
   @override
+  void didUpdateWidget(covariant CustomDropDownField<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Update selectedInialValue when initialValue changes
+    if (widget.initialValue != oldWidget.initialValue) {
+      setState(() {
+        selectedInialValue = widget.initialValue;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -39,6 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
     print('TOKEN : ${LocalData.getUser()?.tokenInfo.token ?? ''}');
     //
     super.initState();
+
+    print('TOKEN : ${LocalData.getUser()?.tokenInfo.token ?? ''}');
+ 
+ 
   }
 
   @override
