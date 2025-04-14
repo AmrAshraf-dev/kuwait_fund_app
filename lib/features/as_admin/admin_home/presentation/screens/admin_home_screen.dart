@@ -36,6 +36,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     return MasterWidget(
         waterMarkImage: waterMarkImage3,
         appBarHeight: 240.0.h,
+                isBackEnabled: false,
+
         appBarBody: Column(
           children: [
             Row(

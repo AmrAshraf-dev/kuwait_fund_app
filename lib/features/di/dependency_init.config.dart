@@ -395,20 +395,20 @@ Future<_i174.GetIt> $initGetIt(
     environmentFilter,
   );
   final registerModule = _$RegisterModule();
+  gh.factory<_i360.TabCubit>(() => _i360.TabCubit());
+  gh.factory<_i94.RangeDatePickerCubit>(() => _i94.RangeDatePickerCubit());
+  gh.factory<_i777.LocationCubit>(() => _i777.LocationCubit());
+  gh.factory<_i768.FilePickerCubit>(() => _i768.FilePickerCubit());
+  gh.factory<_i735.PDFCubit>(() => _i735.PDFCubit());
+  gh.factory<_i749.DatePickerCubit>(() => _i749.DatePickerCubit());
   gh.factory<_i663.AnnualLeaveReminingLeaveBalanceCubit>(
       () => _i663.AnnualLeaveReminingLeaveBalanceCubit());
   gh.factory<_i763.EmergencyReminingLeaveBalanceCubit>(
       () => _i763.EmergencyReminingLeaveBalanceCubit());
-  gh.factory<_i885.SelectedFamilyMembersCubit>(
-      () => _i885.SelectedFamilyMembersCubit());
   gh.factory<_i52.LoanAmountCalculatorCubit>(
       () => _i52.LoanAmountCalculatorCubit());
-  gh.factory<_i94.RangeDatePickerCubit>(() => _i94.RangeDatePickerCubit());
-  gh.factory<_i360.TabCubit>(() => _i360.TabCubit());
-  gh.factory<_i749.DatePickerCubit>(() => _i749.DatePickerCubit());
-  gh.factory<_i768.FilePickerCubit>(() => _i768.FilePickerCubit());
-  gh.factory<_i777.LocationCubit>(() => _i777.LocationCubit());
-  gh.factory<_i735.PDFCubit>(() => _i735.PDFCubit());
+  gh.factory<_i885.SelectedFamilyMembersCubit>(
+      () => _i885.SelectedFamilyMembersCubit());
   gh.singleton<_i402.DeviceService>(() => _i402.DeviceService());
   await gh.singletonAsync<_i460.SharedPreferences>(
     () => registerModule.prefs,
@@ -508,27 +508,27 @@ Future<_i174.GetIt> $initGetIt(
       _i408.CertificatesRepositoryImp(
           certificatesRemoteDataSource:
               gh<_i956.CertificatesRemoteDataSource>()));
-  gh.factory<_i84.ChangePasswordUseCase>(() => _i84.ChangePasswordUseCase(
-      forgetPassRepository: gh<_i265.ForgetPassRepository>()));
   gh.factory<_i776.GetForgetPassUseCase>(() => _i776.GetForgetPassUseCase(
       forgetPassRepository: gh<_i265.ForgetPassRepository>()));
   gh.factory<_i359.VerifyOtpUseCase>(() => _i359.VerifyOtpUseCase(
       forgetPassRepository: gh<_i265.ForgetPassRepository>()));
-  gh.factory<_i243.GetHomeUseCase>(
-      () => _i243.GetHomeUseCase(homeRepository: gh<_i219.HomeRepository>()));
+  gh.factory<_i84.ChangePasswordUseCase>(() => _i84.ChangePasswordUseCase(
+      forgetPassRepository: gh<_i265.ForgetPassRepository>()));
   gh.factory<_i786.GetLeaveDashboardUseCase>(() =>
       _i786.GetLeaveDashboardUseCase(
           homeRepository: gh<_i219.HomeRepository>()));
-  gh.factory<_i492.GetContributionsUseCase>(() => _i492.GetContributionsUseCase(
-      operationsRepository: gh<_i624.OperationsRepository>()));
+  gh.factory<_i243.GetHomeUseCase>(
+      () => _i243.GetHomeUseCase(homeRepository: gh<_i219.HomeRepository>()));
   gh.factory<_i243.GetCountriesGrantsUseCase>(() =>
       _i243.GetCountriesGrantsUseCase(
           operationsRepository: gh<_i624.OperationsRepository>()));
+  gh.factory<_i80.GetLoanUseCase>(() => _i80.GetLoanUseCase(
+      operationsRepository: gh<_i624.OperationsRepository>()));
+  gh.factory<_i492.GetContributionsUseCase>(() => _i492.GetContributionsUseCase(
+      operationsRepository: gh<_i624.OperationsRepository>()));
   gh.factory<_i279.GetInstitutionsGrantsUseCase>(() =>
       _i279.GetInstitutionsGrantsUseCase(
           operationsRepository: gh<_i624.OperationsRepository>()));
-  gh.factory<_i80.GetLoanUseCase>(() => _i80.GetLoanUseCase(
-      operationsRepository: gh<_i624.OperationsRepository>()));
   gh.factory<_i273.GetMoreUseCase>(
       () => _i273.GetMoreUseCase(moreRepository: gh<_i508.MoreRepository>()));
   gh.factory<_i346.GetRequestTypesUseCase>(
@@ -566,11 +566,11 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i396.NotificationsRemoteDataSource>()));
   gh.factory<_i756.InstitutionsGrantsCubit>(() => _i756.InstitutionsGrantsCubit(
       getInstitutionsGrantsUseCase: gh<_i279.GetInstitutionsGrantsUseCase>()));
-  gh.factory<_i427.GetAnnualLeaveDetailsHistoryUseCase>(() =>
-      _i427.GetAnnualLeaveDetailsHistoryUseCase(
-          requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i181.GetAnnualLeaveInfoUseCase>(() =>
       _i181.GetAnnualLeaveInfoUseCase(
+          requestsRepository: gh<_i974.RequestsRepository>()));
+  gh.factory<_i427.GetAnnualLeaveDetailsHistoryUseCase>(() =>
+      _i427.GetAnnualLeaveDetailsHistoryUseCase(
           requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i270.GetRequestsUseCase>(() => _i270.GetRequestsUseCase(
       requestsRepository: gh<_i974.RequestsRepository>()));
@@ -595,9 +595,9 @@ Future<_i174.GetIt> $initGetIt(
       () => _i232.AuthCubit(getAuthUseCase: gh<_i464.GetAuthUseCase>()));
   gh.factory<_i815.LoanRequestRepository>(() => _i632.LoanRequestRepositoryImp(
       loanRequestRemoteDataSource: gh<_i449.LoanRequestRemoteDataSource>()));
-  gh.factory<_i587.GetContactusUseCase>(() => _i587.GetContactusUseCase(
-      contactusRepository: gh<_i15.ContactusRepository>()));
   gh.factory<_i355.GetCoordinatesUseCase>(() => _i355.GetCoordinatesUseCase(
+      contactusRepository: gh<_i15.ContactusRepository>()));
+  gh.factory<_i587.GetContactusUseCase>(() => _i587.GetContactusUseCase(
       contactusRepository: gh<_i15.ContactusRepository>()));
   gh.factory<_i198.GetTelephoneFaxUseCase>(() => _i198.GetTelephoneFaxUseCase(
       contactusRepository: gh<_i15.ContactusRepository>()));
@@ -666,18 +666,18 @@ Future<_i174.GetIt> $initGetIt(
       getCountriesGrantsUseCase: gh<_i243.GetCountriesGrantsUseCase>()));
   gh.factory<_i362.GetNotificationsUseCase>(() => _i362.GetNotificationsUseCase(
       notificationsRepository: gh<_i218.NotificationsRepository>()));
+  gh.factory<_i1049.GetInsuranceUseCase>(() => _i1049.GetInsuranceUseCase(
+      insuranceRepository: gh<_i1062.InsuranceRepository>()));
   gh.factory<_i739.CreateInsuranceRequestUseCase>(() =>
       _i739.CreateInsuranceRequestUseCase(
           insuranceRepository: gh<_i1062.InsuranceRepository>()));
-  gh.factory<_i1049.GetInsuranceUseCase>(() => _i1049.GetInsuranceUseCase(
-      insuranceRepository: gh<_i1062.InsuranceRepository>()));
-  gh.factory<_i313.GetCanViewVisitorsLogsUsecase>(() =>
-      _i313.GetCanViewVisitorsLogsUsecase(
-          visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
   gh.factory<_i266.GetVisitorsLogsUseCase>(() => _i266.GetVisitorsLogsUseCase(
       visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
   gh.factory<_i924.GetVisitorLogsHostsUseCase>(() =>
       _i924.GetVisitorLogsHostsUseCase(
+          visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
+  gh.factory<_i313.GetCanViewVisitorsLogsUsecase>(() =>
+      _i313.GetCanViewVisitorsLogsUsecase(
           visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
   gh.factory<_i139.GetVisitorsLogsDetailsUseCase>(() =>
       _i139.GetVisitorsLogsDetailsUseCase(
@@ -721,14 +721,14 @@ Future<_i174.GetIt> $initGetIt(
       _i573.AdminDirectorMissionCubit(
           getAdminDirectorMissionUseCase:
               gh<_i611.GetAdminDirectorMissionUseCase>()));
-  gh.factory<_i601.GetFamilyMembersUseCase>(
-      () => _i601.GetFamilyMembersUseCase(gh<_i1062.InsuranceRepository>()));
+  gh.factory<_i603.UnsubscribeInsuranceUseCase>(() =>
+      _i603.UnsubscribeInsuranceUseCase(gh<_i1062.InsuranceRepository>()));
   gh.factory<_i261.GetInsuranceMasterInfoUseCase>(() =>
       _i261.GetInsuranceMasterInfoUseCase(gh<_i1062.InsuranceRepository>()));
   gh.factory<_i939.GetSubscribersUseCase>(
       () => _i939.GetSubscribersUseCase(gh<_i1062.InsuranceRepository>()));
-  gh.factory<_i603.UnsubscribeInsuranceUseCase>(() =>
-      _i603.UnsubscribeInsuranceUseCase(gh<_i1062.InsuranceRepository>()));
+  gh.factory<_i601.GetFamilyMembersUseCase>(
+      () => _i601.GetFamilyMembersUseCase(gh<_i1062.InsuranceRepository>()));
   gh.factory<_i460.AnnualLeaveDetailsHistoryCubit>(() =>
       _i460.AnnualLeaveDetailsHistoryCubit(
           getAnnualLeaveDetailsHistoryUseCase:
@@ -771,11 +771,11 @@ Future<_i174.GetIt> $initGetIt(
         getPersonalLoanMasterInfoUseCase:
             gh<_i793.GetPersonalLoanMasterInfoUseCase>(),
       ));
-  gh.factory<_i1031.GetGeneralInformationUseCase>(() =>
-      _i1031.GetGeneralInformationUseCase(
-          aboutRepository: gh<_i31.AboutRepository>()));
   gh.factory<_i707.GetKFBoardOfDirectorsUseCase>(() =>
       _i707.GetKFBoardOfDirectorsUseCase(
+          aboutRepository: gh<_i31.AboutRepository>()));
+  gh.factory<_i1031.GetGeneralInformationUseCase>(() =>
+      _i1031.GetGeneralInformationUseCase(
           aboutRepository: gh<_i31.AboutRepository>()));
   gh.factory<_i777.GetKFManagmentUseCase>(() =>
       _i777.GetKFManagmentUseCase(aboutRepository: gh<_i31.AboutRepository>()));

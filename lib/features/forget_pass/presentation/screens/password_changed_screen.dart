@@ -31,6 +31,8 @@ class _PasswordChangedScreenState extends State<PasswordChangedScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
+              isBackEnabled: false,
+
         hasScroll: false,
         drawer: DrawerSideMenu(),
         appBar: AuthAppBarWidget(),

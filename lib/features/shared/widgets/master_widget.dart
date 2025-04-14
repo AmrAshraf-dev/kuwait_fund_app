@@ -36,7 +36,7 @@ class MasterWidget extends StatefulWidget {
       this.appBar,
       this.floatingActionButton,
       this.drawer,
-      this.isBackEnabled = false,
+     required  this.isBackEnabled ,
       this.isDrawerEnabled = false,
       this.appBarHeight = 120.0,
       this.appBarBody,
@@ -195,7 +195,13 @@ class _MasterWidgetState extends State<MasterWidget> {
                                       ? GestureDetector(
                                           onTap: widget.onBackTap ??
                                               () {
-                                                   getIt<AppRouter>().navigatorKey.currentContext!.router.back();
+                                                final router = getIt<AppRouter>();
+
+if (router.canPop()) {
+  router.back(); // or router.back();
+}
+
+                                               //    getIt<AppRouter>().navigatorKey.currentContext!.router.back();
 
                                               },
                                           child: Container(

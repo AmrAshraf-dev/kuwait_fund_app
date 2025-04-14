@@ -32,6 +32,7 @@ class _AdminDeptMissionScreenState extends State<AdminDeptMissionScreen> {
     return MasterWidget(
         screenTitle: context.tr("dept_mission"),
         hasScroll: false,
+        isBackEnabled: true,
         widget: Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 15.w),
           child: SingleChildScrollView(

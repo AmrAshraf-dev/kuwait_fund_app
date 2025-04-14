@@ -50,6 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocProvider(
       create: (context) => homeCubit..getLeaveDashboard(),
       child: MasterWidget(
+                isBackEnabled: false,
+
           waterMarkImage: waterMarkImage3,
           appBarHeight: 260.h,
           appBarBody: Column(
