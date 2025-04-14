@@ -47,7 +47,7 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
   Widget build(BuildContext context) {
     return MasterWidget(
       hasScroll: false,
-      screenTitle: context.tr("my_requests"),
+      screenTitle: context.tr("submissions"),
       appBarHeight: 90.h,
       widget: MultiBlocProvider(
         providers: [
@@ -157,7 +157,7 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
           return Expanded(
             child: Center(
               child: AppText(
-                text: context.tr("no_requests"),
+                text: context.tr("no_submissions"),
                 style: AppTextStyle.medium_18,
               ),
             ),

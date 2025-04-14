@@ -1,3 +1,5 @@
+import "package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/approve_leave_request_model.dart";
+
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
 import "../../data/models/request/annual_leave_request_request_model.dart";
@@ -14,4 +16,6 @@ abstract class AnnualLeaveRequestRepository {
   });
 
   Future<CustomResponseType<BaseEntity<dynamic>>> getAnnualLeaveBalance();
+
+ 
 }
