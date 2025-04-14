@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
+part 'custom_file_picker_state.dart';
+
 @injectable
-class FilePickerCubit extends Cubit<List<XFile>> {
-  FilePickerCubit() : super(<XFile>[]);
+class FilePickerCubit extends Cubit<FilePickerState> {
+  FilePickerCubit() : super(FilePickerInitialState());
   static const maxSizeInBytes = 1048576; // 1MB
 
   Future<void> pickFile({
@@ -28,13 +30,12 @@ class FilePickerCubit extends Cubit<List<XFile>> {
 
       if (files.length != pickedImage.files.length) {
         // Emit an empty state if any file exceeds the size limit
-        emit(<XFile>[]);
-        throw Exception("File size exceeds 1 MB limit.");
+        emit(FilePickerErrorState(message: 'File size exceeds 1 MB limit.'));
       } else {
-        emit(files);
+        emit(FilePickerReadyState(files));
       }
     } else {
-      emit(<XFile>[]);
+      emit(FilePickerInitialState());
     }
   }
 
@@ -49,17 +50,16 @@ class FilePickerCubit extends Cubit<List<XFile>> {
     if (pickedImage != null) {
       final fileSize = await pickedImage.length();
       if (fileSize > maxSizeInBytes) {
-        emit(<XFile>[]);
-        throw Exception("File size exceeds 1 MB limit.");
+        emit(FilePickerErrorState(message: 'File size exceeds 1 MB limit.'));
       } else {
-        emit(<XFile>[pickedImage]);
+        emit(FilePickerReadyState([pickedImage]));
       }
     } else {
-      emit(<XFile>[]);
+      emit(FilePickerInitialState());
     }
   }
 
   void clear() {
-    emit(<XFile>[]);
+    emit(FilePickerInitialState());
   }
 }

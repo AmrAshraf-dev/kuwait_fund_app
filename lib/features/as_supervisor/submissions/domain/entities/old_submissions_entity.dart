@@ -1,7 +1,7 @@
 import "package:equatable/equatable.dart";
 
 /// Entity that contains the data of the Submissions.
-class SubmissionsEntity extends Equatable {
+class OldSubmissionsEntity extends Equatable {
   final String? requestID;
   final String? requestType;
   final String? statusCode;
@@ -13,7 +13,7 @@ class SubmissionsEntity extends Equatable {
   final String? loanAmount;
 
   /// Entity that contains the data of the Submissions.
-  const SubmissionsEntity({
+  const OldSubmissionsEntity({
     required this.requestID,
     required this.requestType,
     required this.statusCode,

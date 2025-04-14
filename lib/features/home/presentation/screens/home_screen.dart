@@ -36,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final HomeCubit homeCubit = getIt<HomeCubit>();
   @override
   void initState() {
+    print('TOKEN : ${LocalData.getUser()?.tokenInfo.token ?? ''}');
+    //
     super.initState();
 
     print('TOKEN : ${LocalData.getUser()?.tokenInfo.token ?? ''}');
@@ -146,61 +148,59 @@ class _HomeScreenState extends State<HomeScreen> {
               20.verticalSpace,
               BlocConsumer<HomeCubit, HomeState>(
                 listener: (context, state) {
-                 if (state is  HomeLoadingState) {
-                        ViewsToolbox.showLoading();
-                      }
+                  if (state is HomeLoadingState) {
+                    ViewsToolbox.showLoading();
+                  }
                   if (state is HomeErrorState) {
-                        ViewsToolbox.dismissLoading();
-                        ViewsToolbox.showErrorAwesomeSnackBar(
-                       context, state.message!);
-                      }  
+                    ViewsToolbox.dismissLoading();
+                    ViewsToolbox.showErrorAwesomeSnackBar(
+                        context, state.message!);
+                  }
                 },
                 builder: (context, state) {
-      if (state is HomeReadyState) {
-                   return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      HalfCircleChartWidget(
-                        leaveUsed:int.parse(state.response.data?.leaveBalance??"0") ,
-                        totalLeave: -1,
-                        color: Colors.blueAccent,
-                        title: context.tr('annual_leave'),
-                      ),
-                      SizedBox(
-                        height: 100.h,
-                        child: VerticalDivider(
-                          color: Palette.blue_3B72C5,
-                          thickness: 0.2,
-                        ),
-                      ),
-                      HalfCircleChartWidget(
-                        leaveUsed: int.parse(state.response.data?.leaveBalance??"0"),
-                        totalLeave: -1,
-                        color: Color(0xFFEDA18C),
-                        title: context.tr('sick_leave'),
-                      ),
-                      SizedBox(
-                        height: 100.h,
-                        child: VerticalDivider(
-                          color: Palette.blue_3B72C5,
-                          thickness: 0.2,
-                        ),
-                      ),
-                      HalfCircleChartWidget(
-                          leaveUsed: int.parse(state.response.data?.leavDaysTaken??"0"),
+                  if (state is HomeReadyState) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        HalfCircleChartWidget(
+                          leaveUsed: int.parse(
+                              state.response.data?.leaveBalance ?? "0"),
                           totalLeave: -1,
-                          title: context.tr('vacations_used'),
-                          color: Color(0xFFFBD823)),
-                    ],
-                  );
-                      }   
-                      else return Container();
-
-
-
-
-                 
+                          color: Colors.blueAccent,
+                          title: context.tr('annual_leave'),
+                        ),
+                        SizedBox(
+                          height: 100.h,
+                          child: VerticalDivider(
+                            color: Palette.blue_3B72C5,
+                            thickness: 0.2,
+                          ),
+                        ),
+                        HalfCircleChartWidget(
+                          leaveUsed: int.parse(
+                              state.response.data?.leaveBalance ?? "0"),
+                          totalLeave: -1,
+                          color: Color(0xFFEDA18C),
+                          title: context.tr('sick_leave'),
+                        ),
+                        SizedBox(
+                          height: 100.h,
+                          child: VerticalDivider(
+                            color: Palette.blue_3B72C5,
+                            thickness: 0.2,
+                          ),
+                        ),
+                        HalfCircleChartWidget(
+                            leaveUsed: int.parse(
+                                state.response.data?.leavDaysTaken ?? "0"),
+                            totalLeave: -1,
+                            title: context.tr('vacations_used'),
+                            color: Color(0xFFFBD823)),
+                      ],
+                    );
+                  } else
+                    return Container();
                 },
               ),
             ],
