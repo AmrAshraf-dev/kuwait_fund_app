@@ -19,12 +19,12 @@ import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/extend_l
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/leave_history_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/advanced_expandable_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/timeline_card_widget.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+ import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 @RoutePage()
 class AnnualLeaveRequestDetailsScreen extends StatefulWidget {
@@ -236,11 +236,7 @@ class _AnnualLeaveRequestDetailsScreenState
             ),
             BlocProvider(
               create: (context) => extendLeaveCubit
-                ..getExtendLeave(
-                  extendLeaveRequestModel: ExtendLeaveRequestModel(
-                      leaveRequestId: widget.requestID ?? '',
-                      extendDate: endDate.toString()),
-                ),
+                
             ),
             //
           ],
@@ -374,12 +370,23 @@ class _AnnualLeaveRequestDetailsScreenState
                             //accept
                             BlocConsumer<ExtendLeaveCubit, ExtendLeaveState>(
                               listener: (context, state) {
-                                if (state is ExtendLeaveErrorState) {
-                              ViewsToolbox.dismissLoading();
-                              ViewsToolbox.showErrorAwesomeSnackBar(
-                                  context, state.message ?? '');
+                                if (state is ExtendLeaveErrorState) { 
+                           ViewsToolbox.dismissLoading();
+                                ViewsToolbox.showMessageBottomsheet(
+                                    context: context,
+                                    message: context.tr('error'),
+                                    status:ConfirmationPopupStatus.failure );
                             }
+
+                            else if (state is ExtendLeaveReadyState) {
+                              }
+                                ViewsToolbox.dismissLoading();
+                                ViewsToolbox.showMessageBottomsheet(
+                                    context: context,
+                                    message: context.tr('leave_extended_successfully'),
+                                    status:ConfirmationPopupStatus.success );
                               },
+                              
                               builder: (context, state) {
                                 
                                 return CustomElevatedButton(
@@ -396,10 +403,13 @@ class _AnnualLeaveRequestDetailsScreenState
                                     );
 
                                     if (picked != null) {
-                                      setState(() {
-                                        startDate = picked.start;
-                                        endDate = picked.end;
-                                      });
+                                  
+                              
+                                      
+                                      extendLeaveCubit.getExtendLeave(extendLeaveRequestModel: ExtendLeaveRequestModel(
+                                        leaveRequestId: widget.requestID ?? '',
+                                        extendDate: picked.end.toString(),
+                                      ));
 
                                       // Print selected dates
                                       // print(
@@ -445,34 +455,5 @@ class _AnnualLeaveRequestDetailsScreenState
       default:
         return Palette.grey_7B7B7B;
     }
-  }
-}
-
-class ApprovalTimeline extends StatelessWidget {
-  const ApprovalTimeline({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        10.verticalSpace,
-        TimeLineCard(
-          name: "Ahmed Al-Rashid",
-          position: "Supervisor",
-          status: "Approved",
-          date: "22/Oct/2024",
-          isFirst: true,
-          isLast: false,
-        ),
-        TimeLineCard(
-          name: "Ahmed Al-Rashid",
-          position: "Supervisor",
-          status: "Approved",
-          date: "22/Oct/2024",
-          isFirst: false,
-          isLast: true,
-        ),
-      ],
-    );
   }
 }

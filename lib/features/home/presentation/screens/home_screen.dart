@@ -37,6 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
+    print('TOKEN : ${LocalData.getUser()?.tokenInfo.token ?? ''}');
+ 
+ 
   }
 
   @override
