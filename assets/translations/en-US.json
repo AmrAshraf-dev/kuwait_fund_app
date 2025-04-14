@@ -766,5 +766,6 @@
   "error": "❌ File is too large. Maximum size is 1MB.",
   "extend": "Extend",
   "delete": "Delete",
-  "fileSize": "File size exceeds 1 MB limit."
+  "fileSize": "File size exceeds 1 MB limit.",
+  "no_submissions":"No Submissions"
 }

@@ -84,10 +84,16 @@ import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/reposi
     as _i542;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/repositories/submissions_repository.dart'
     as _i188;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/use_cases/approve_leave_request_usecase.dart'
+    as _i559;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/use_cases/get_old_submissions_usecase.dart'
     as _i33;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/use_cases/reject_leave_request_usecase.dart'
+    as _i138;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/use_cases/submissions_usecase.dart'
     as _i20;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/approve_leave_request_cubit/approve_leave_request_cubit.dart'
+    as _i49;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/old_submissions_cubit.dart'
     as _i936;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submission_cubit.dart'
@@ -537,6 +543,9 @@ Future<_i174.GetIt> $initGetIt(
       _i1025.AdminDeptMissionRepositoryImp(
           adminDeptMissionRemoteDataSource:
               gh<_i949.AdminDeptMissionRemoteDataSource>()));
+  gh.factory<_i559.ApproveLeaveRequestUseCase>(() =>
+      _i559.ApproveLeaveRequestUseCase(
+          approveLeaveRequestRepository: gh<_i188.SubmissionsRepository>()));
   gh.factory<_i842.GenerateCertificateUserCase>(() =>
       _i842.GenerateCertificateUserCase(
           certificatesRepository: gh<_i504.CertificatesRepository>()));
@@ -593,6 +602,8 @@ Future<_i174.GetIt> $initGetIt(
       profileRemoteDataSource: gh<_i710.ProfileRemoteDataSource>()));
   gh.factory<_i232.AuthCubit>(
       () => _i232.AuthCubit(getAuthUseCase: gh<_i464.GetAuthUseCase>()));
+  gh.factory<_i49.ApproveLeaveRequestCubit>(() => _i49.ApproveLeaveRequestCubit(
+      approveLeaveRequestUseCase: gh<_i559.ApproveLeaveRequestUseCase>()));
   gh.factory<_i815.LoanRequestRepository>(() => _i632.LoanRequestRepositoryImp(
       loanRequestRemoteDataSource: gh<_i449.LoanRequestRemoteDataSource>()));
   gh.factory<_i355.GetCoordinatesUseCase>(() => _i355.GetCoordinatesUseCase(
@@ -611,6 +622,9 @@ Future<_i174.GetIt> $initGetIt(
         getCertificatesUseCase: gh<_i254.GetCertificatesUseCase>(),
         generateCertificateUserCase: gh<_i842.GenerateCertificateUserCase>(),
       ));
+  gh.factory<_i138.RejectLeaveRequestUseCase>(() =>
+      _i138.RejectLeaveRequestUseCase(
+          rejectLeaveRequestRepository: gh<_i188.SubmissionsRepository>()));
   gh.factory<_i4.AdminHomeCubit>(() =>
       _i4.AdminHomeCubit(getAdminHomeUseCase: gh<_i524.GetAdminHomeUseCase>()));
   gh.factory<_i193.GetAdminDeptMissionUseCase>(() =>

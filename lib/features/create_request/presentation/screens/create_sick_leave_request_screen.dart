@@ -112,7 +112,7 @@ class FilePickerSection extends StatelessWidget {
                   } else if (state is FilePickerErrorState) {
                     ViewsToolbox.showAwesomeSnackBar(
                       context,
-                      state.message.tr(),
+                      state.message,
                       isError: true,
                     );
                   }
