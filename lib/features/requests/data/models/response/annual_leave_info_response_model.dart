@@ -6,36 +6,14 @@ part 'annual_leave_info_response_model.g.dart';
 
 @JsonSerializable()
 class AnnualDetailsInfoModel extends AnnualLeaveInfoEntity {
-  const AnnualDetailsInfoModel(
-      {required super.leaveRequestId,
-      required super.arabicSupervisorName,
-      required super.englishSupervisorName,
-      required super.englishLeaveStatus,
-      required super.arabicLeaveStatus,
-      required super.leaveStatusCode,
-      required super.requestDate,
-      required super.leaveTypeArabic,
-      required super.leaveTypeEnglish,
-      required super.requestStartDate,
-      required super.requestEndDate,
-      required super.leaveId,
-      required super.leaveStartDate,
-      required super.leaveEndDate,
-      required super.requestExtendDate,
-      required super.extended_flg,
-      required super.showExtendButton,
-      required super.showCancelButton,
-      required super.leaveBalance,
-      required super.shortSickDays,
-      required super.leavDaysTaken,
-      required super.leaveRequestsCount,
-      required super.emergencyBalance,
-      required super.availableExceseBalance,
-      required super.tolalExecese,
-      required super.lateBalance,
-      required super.emergencyTransffered,
-      required super.requestTypeEnglish,
-      required super.requestTypeArabic});
+  const AnnualDetailsInfoModel({
+    required super.leaveType,
+    required super.leaveStatus,
+    required super.leaveStatusCode,
+    required super.requestDate,
+    required super.leaveStartDate,
+    required super.leaveEndDate,
+  });
 
   factory AnnualDetailsInfoModel.fromJson(Map<String, dynamic> json) =>
       _$AnnualDetailsInfoModelFromJson(json);
