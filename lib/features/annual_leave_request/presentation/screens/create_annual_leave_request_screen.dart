@@ -50,14 +50,10 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
           ],
           child: BlocConsumer<AnnualLeaveBalanceCubit, LeaveBalanceState>(
             listener: (context, state) {
-              if(state is LeaveBalanceErrorState){
-           
+              if (state is LeaveBalanceErrorState) {
                 ViewsToolbox.dismissLoading();
-                ViewsToolbox.showErrorAwesomeSnackBar(
-                    context, state.message!);
-              
-             }
-          
+                ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
+              }
             },
             builder: (context, leaveBalanceState) {
               if (leaveBalanceState is LeaveBalanceReadyState) {
@@ -97,7 +93,7 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                                   customFormKey: _formKey,
                                   fromLabelAboveField: context.tr("from_date"),
                                   toLabelAboveField: context.tr("to_date"),
-                                  onDoneCallback: (bool isSelectedRangeValid, 
+                                  onDoneCallback: (bool isSelectedRangeValid,
                                       DateTimeRange? pickedRange) {
                                     CustomMainRouter.pop();
                                     reminingLeaveBalanceCubit.updateFormState(
@@ -183,10 +179,8 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                           120.verticalSpace,
                           BlocConsumer<AnnualLeaveRequestCubit,
                               AnnualLeaveRequestState>(
-
                             listener: (context, state) {
-                              if (state
-                                  is AnnualLeaveRequestErrorState) {
+                              if (state is AnnualLeaveRequestErrorState) {
                                 ViewsToolbox.dismissLoading();
 
                                 ViewsToolbox.showErrorAwesomeSnackBar(
@@ -205,7 +199,7 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                               } else if (state
                                   is AnnualLeaveRequestLoadingState) {
                                 ViewsToolbox.showLoading();
-                              }  
+                              }
                               return CustomElevatedButton(
                                   onPressed: () {
                                     if (_formKey.currentState!
@@ -229,7 +223,7 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                         ]));
               } else if (leaveBalanceState is LeaveBalanceLoadingState) {
                 ViewsToolbox.showLoading();
-              } 
+              }
               return Container();
             },
           ),

@@ -1,8 +1,10 @@
 import "package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_details_request.model.dart";
 import "package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_info_request_model.dart";
+import "package:kf_ess_mobile_app/features/requests/data/models/request/delete_leave_request_model.dart";
 import "package:kf_ess_mobile_app/features/requests/data/models/request/extend_leave_request_model.dart";
 import "package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_details_entity.dart";
 import "package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_info_entity.dart";
+import "package:kf_ess_mobile_app/features/requests/domain/entities/delete_leave_entity.dart";
 import "package:kf_ess_mobile_app/features/requests/domain/entities/extend_leave_entity.dart";
 import "package:kf_ess_mobile_app/features/requests/domain/entities/request_type_entity.dart";
 
@@ -37,4 +39,8 @@ abstract class RequestsRepository {
   Future<CustomResponseType<BaseEntity<CreateExtendLeaveEntity>>>
       createExtendLeaveRequest(
           {required ExtendLeaveRequestModel extendLeaveRequestParams});
+
+  Future<CustomResponseType<BaseEntity<CreateDeleteLeaveEntity>>>
+      createDeleteLeaveRequest(
+          {required DeleteLeaveRequestModel deleteLeaveRequestParams});
 }
