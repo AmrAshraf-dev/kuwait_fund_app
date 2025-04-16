@@ -75,7 +75,7 @@ class _CustomSingleRangeDatePickerState
             fieldName: widget.keyNameFrom,
             hintText: widget.hintText ?? "",
             initialValue: widget.initialDate != null
-                ? DateFormat("yyyy-MM-dd", "en").format(widget.initialDate!)
+                ? DateFormat("dd/MM/yyyy", "en").format(widget.initialDate!)
                 : null,
             enableBorder: true,
             onTap: () async {
@@ -118,9 +118,9 @@ class _CustomSingleRangeDatePickerState
     if (picked != null && picked != selectedDate) {
       selectedDate = picked;
       _dateController.text =
-          DateFormat("yyyy-MM-dd", "en").format(selectedDate!);
+          DateFormat("dd/MM/yyyy", "en").format(selectedDate!);
       widget.customFormKey.currentState!.fields[widget.keyNameFrom]!
-          .didChange(DateFormat("yyyy-MM-dd", "en").format(selectedDate!));
+          .didChange(DateFormat("dd/MM/yyyy", "en").format(selectedDate!));
     }
   }
 }

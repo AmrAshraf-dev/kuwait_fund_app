@@ -338,11 +338,11 @@ class AppRouter extends RootStackRouter {
 
                   //  meta: <String, dynamic>{'hideBottomNav': true},
                 ),
-                AutoRoute(
-                  page: AnnualSubmissionsDetailsRoute.page,
-                  path: AppRoutesConstants.annualSubmissionDetails,
-                  maintainState: true,
-                ),
+                // AutoRoute(
+                //   page: AnnualSubmissionsDetailsRoute.page,
+                //   path: AppRoutesConstants.annualSubmissionDetails,
+                //   maintainState: true,
+                // ),
                 // AutoRoute(
                 //   page: TrainingSubmissionsDetailsRoute.page,
                 //   path: AppRoutesConstants.trainingSubmissionDetails,

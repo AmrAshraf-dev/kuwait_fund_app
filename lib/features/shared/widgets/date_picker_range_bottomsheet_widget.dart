@@ -145,15 +145,15 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
 
                     if (fromDateController != null) {
                       fromDateController?.text =
-                          DateFormat("yyyy-MM-dd", "en").format(value.start);
+                          DateFormat("dd/MM/yyyy", "en").format(value.start);
                       customFormKey?.currentState!.fields["from"]!.didChange(
-                          DateFormat("yyyy-MM-dd", "en").format(value.start));
+                          DateFormat("dd/MM/yyyy", "en").format(value.start));
                     }
                     if (toDateController != null) {
                       toDateController?.text =
-                          DateFormat("yyyy-MM-dd", "en").format(value.end);
+                          DateFormat("dd/MM/yyyy", "en").format(value.end);
                       customFormKey?.currentState!.fields["to"]!.didChange(
-                          DateFormat("yyyy-MM-dd", "en").format(value.end));
+                          DateFormat("dd/MM/yyyy", "en").format(value.end));
                     }
                   }
                 },

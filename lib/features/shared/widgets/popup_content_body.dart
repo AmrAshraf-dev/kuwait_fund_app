@@ -87,8 +87,10 @@ class PopupContentBody extends StatelessWidget {
                             CustomMainRouter.pop();
                             CustomMainRouter.pop(result: secondPopData);
                           }
-                          if (continueButtonCallback != null)
+                          if (continueButtonCallback != null){
                             continueButtonCallback!();
+
+                          }
                         }),
               ],
             ),

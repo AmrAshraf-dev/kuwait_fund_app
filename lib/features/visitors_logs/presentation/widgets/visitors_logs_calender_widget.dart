@@ -106,8 +106,8 @@ if(state.showNewBottomSheet){
             selectedCalendarDay = selectedDay;
             widget.visitorsLogsCubit.getVisitorLogsDetails(
               VisitorsLogsDetailsRequestModel(
-                date: selectedDay.toString(),
-                
+                date:  DateFormat("yyyy-MM-dd").format(selectedDay)
+                 
               ),
               showNewBottomSheet: true
             );

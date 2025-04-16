@@ -302,7 +302,7 @@ class _LeaveBalanceDetails extends StatelessWidget {
           children: [
             5.verticalSpace,
             LeaveDaysRowItemWidget(
-              title: context.tr("remaining_days_after_vacation"),
+              title: context.tr("available_days"),
               days: days,
             ),
             Padding(

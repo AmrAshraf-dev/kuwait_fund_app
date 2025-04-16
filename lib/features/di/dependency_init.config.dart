@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:kf_ess_mobile_app/core/network/network_helper.dart' as _i675;
@@ -96,6 +97,8 @@ import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentatio
     as _i49;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/old_submissions_cubit.dart'
     as _i936;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/reject_leave_request_cubit/reject_leave_request_cubit.dart'
+    as _i971;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submission_cubit.dart'
     as _i235;
 import 'package:kf_ess_mobile_app/features/auth/data/data_sources/remote/auth_remote_data_source.dart'
@@ -351,6 +354,8 @@ import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart
     as _i360;
 import 'package:kf_ess_mobile_app/features/shared/cubit/theme_cubit/theme_cubit.dart'
     as _i501;
+import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart'
+    as _i980;
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_check_box/check_box_cubit.dart'
     as _i735;
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_date_picker/custom_date_picker_cubit.dart'
@@ -422,6 +427,9 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i101.LocaleCubit>(() => _i101.LocaleCubit());
   gh.singleton<_i501.ThemeCubit>(() => _i501.ThemeCubit());
+  gh.lazySingleton<_i558.FlutterSecureStorage>(
+      () => registerModule.secureStorage);
+  gh.lazySingleton<_i980.SecuredStorageData>(() => _i980.SecuredStorageData());
   gh.factory<String>(
     () => registerModule.baseUrl,
     instanceName: 'BaseUrl',
@@ -712,6 +720,8 @@ Future<_i174.GetIt> $initGetIt(
       myAttendanceRepository: gh<_i835.MyAttendanceRepository>()));
   gh.factory<_i266.GetVisitorLogsUseCase>(
       () => _i266.GetVisitorLogsUseCase(gh<_i1026.VisitorsLogsRepository>()));
+  gh.factory<_i971.RejectLeaveRequestCubit>(() => _i971.RejectLeaveRequestCubit(
+      rejectLeaveRequestUseCase: gh<_i138.RejectLeaveRequestUseCase>()));
   gh.factory<_i693.MoreCubit>(
       () => _i693.MoreCubit(getMoreUseCase: gh<_i273.GetMoreUseCase>()));
   gh.factory<_i699.EmergencyLeaveBalanceCubit>(() =>
