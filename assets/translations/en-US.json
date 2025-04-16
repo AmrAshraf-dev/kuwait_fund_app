@@ -767,5 +767,7 @@
   "extend": "Extend",
   "delete": "Delete",
   "fileSize": "File size exceeds 1 MB limit.",
-  "no_submissions":"No Submissions"
+  "no_submissions": "No Submissions",
+  "approveRequest": "Approve request",
+  "approveConfirmation": "Are you sure you want to approve this request ?"
 }

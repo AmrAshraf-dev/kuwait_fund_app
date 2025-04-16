@@ -10,21 +10,22 @@ import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_details_request.model.dart';
 import 'package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_info_request_model.dart';
+import 'package:kf_ess_mobile_app/features/requests/data/models/request/delete_leave_request_model.dart';
 import 'package:kf_ess_mobile_app/features/requests/data/models/request/extend_leave_request_model.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_info_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_leave_details_history_cubit/annual_leave_details_history_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_leave_info_cubit/annual_leave_info_cubit.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/delete_leave_cubit/delete_leave_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/extend_leave_cubit/extend_leave_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/leave_history_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/advanced_expandable_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
- import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 @RoutePage()
 class AnnualLeaveRequestDetailsScreen extends StatefulWidget {
@@ -45,6 +46,7 @@ class _AnnualLeaveRequestDetailsScreenState
   final AnnualLeaveInfoCubit annualLeaveInfoCubit =
       getIt<AnnualLeaveInfoCubit>();
   final ExtendLeaveCubit extendLeaveCubit = getIt<ExtendLeaveCubit>();
+  final DeleteLeaveCubit deleteLeaveCubit = getIt<DeleteLeaveCubit>();
 
   DateTime? startDate;
   DateTime? endDate;
@@ -62,10 +64,12 @@ class _AnnualLeaveRequestDetailsScreenState
 
   @override
   Widget build(BuildContext context) {
-    String leaveUsed = annualLeaveInfoEntityResponse?.leavDaysTaken ?? '26';
+    String leaveUsed = //annualLeaveInfoEntityResponse?.leavDaysTaken ??
+        '26';
     int leaveDaysTaken = int.parse(leaveUsed);
     String totalLeave =
-        annualLeaveInfoEntityResponse?.leaveRequestsCount ?? '30';
+        //annualLeaveInfoEntityResponse?.leaveRequestsCount ??
+        '30';
     int leaveRequestsCount = int.parse(totalLeave);
 
     return MasterWidget(
@@ -156,6 +160,7 @@ class _AnnualLeaveRequestDetailsScreenState
                   ViewsToolbox.showLoading();
                 } else if (state is AnnualLeaveInfoReadyState) {
                   annualLeaveInfoEntityResponse = state.response.data;
+                
                   ViewsToolbox.dismissLoading();
                   return Column(
                     children: [
@@ -186,9 +191,9 @@ class _AnnualLeaveRequestDetailsScreenState
                         width: 120.w,
                         color: Colors.blueAccent,
                         title:
-                            "${context.tr('from')} ${annualLeaveInfoEntityResponse?.requestStartDate ?? '01/01/2021'} ",
+                            "${context.tr('from')} ${annualLeaveInfoEntityResponse?.leaveStartDate ?? '01/01/2021'} ",
                         subTitle:
-                            "${context.tr('to')} ${annualLeaveInfoEntityResponse?.requestEndDate ?? '01/01/2022'}",
+                            "${context.tr('to')} ${annualLeaveInfoEntityResponse?.leaveEndDate ?? '01/01/2022'}",
                       ),
                       10.verticalSpace,
                       Container(
@@ -234,10 +239,8 @@ class _AnnualLeaveRequestDetailsScreenState
                       leaveRequestID: widget.requestID ?? ''),
                 ),
             ),
-            BlocProvider(
-              create: (context) => extendLeaveCubit
-                
-            ),
+            BlocProvider(create: (context) => extendLeaveCubit),
+            BlocProvider(create: (context) => deleteLeaveCubit),
             //
           ],
           child: BlocConsumer<AnnualLeaveInfoCubit, AnnualLeaveInfoState>(
@@ -263,53 +266,54 @@ class _AnnualLeaveRequestDetailsScreenState
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(25.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3),
-                                ),
-                              ],
-                            ),
-                            child: Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: 10.h, horizontal: 10.w),
-                              decoration: BoxDecoration(
-                                color: Palette.white_F7F7F7,
-                                borderRadius: BorderRadius.circular(25.r),
-                              ),
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    5.verticalSpace,
-                                    LeaveDaysRowItemWidget(
-                                      title: context.tr("paid_days"),
-                                      days: annualLeaveInfoEntityResponse
-                                              ?.shortSickDays ??
-                                          '4',
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 25.w),
-                                      child: Divider(
-                                        thickness: 1,
-                                      ),
-                                    ),
-                                    LeaveDaysRowItemWidget(
-                                      title: context
-                                          .tr("remaining_days_after_vacation"),
-                                      days: annualLeaveInfoEntityResponse
-                                              ?.tolalExecese ??
-                                          '4',
-                                    ),
-                                    5.verticalSpace,
-                                  ]),
-                            )),
+                        // Container(
+                        //     decoration: BoxDecoration(
+                        //       color: Colors.white,
+                        //       borderRadius: BorderRadius.circular(25.r),
+                        //       boxShadow: [
+                        //         BoxShadow(
+                        //           color: Colors.grey.withOpacity(0.5),
+                        //           spreadRadius: 5,
+                        //           blurRadius: 7,
+                        //           offset: Offset(0, 3),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //     child: Container(
+                        //       margin: EdgeInsets.symmetric(
+                        //           vertical: 10.h, horizontal: 10.w),
+                        //       decoration: BoxDecoration(
+                        //         color: Palette.white_F7F7F7,
+                        //         borderRadius: BorderRadius.circular(25.r),
+                        //       ),
+                        //       child: Column(
+                        //           crossAxisAlignment: CrossAxisAlignment.start,
+                        //           children: [
+                        //             5.verticalSpace,
+                        //             LeaveDaysRowItemWidget(
+                        //               title: context.tr("paid_days"),
+                        //               days: annualLeaveInfoEntityResponse
+                        //                       ?.shortSickDays ??
+                        //                   '4',
+                        //             ),
+                        //             Padding(
+                        //               padding: EdgeInsets.symmetric(
+                        //                   horizontal: 25.w),
+                        //               child: Divider(
+                        //                 thickness: 1,
+                        //               ),
+                        //             ),
+                        //             LeaveDaysRowItemWidget(
+                        //               title: context
+                        //                   .tr("remaining_days_after_vacation"),
+                        //               days: annualLeaveInfoEntityResponse
+                        //                       ?.tolalExecese ??
+                        //                   '4',
+                        //             ),
+                        //             5.verticalSpace,
+                        //           ]),
+                        //     ),
+                        //     ),
                         20.verticalSpace,
                         // MainTitleWidget(
                         //   title: context.tr("track_request"),
@@ -370,70 +374,99 @@ class _AnnualLeaveRequestDetailsScreenState
                             //accept
                             BlocConsumer<ExtendLeaveCubit, ExtendLeaveState>(
                               listener: (context, state) {
-                                if (state is ExtendLeaveErrorState) { 
-                           ViewsToolbox.dismissLoading();
-                                ViewsToolbox.showMessageBottomsheet(
-                                    context: context,
-                                    message: context.tr('error'),
-                                    status:ConfirmationPopupStatus.failure );
-                            }
-
-                            else if (state is ExtendLeaveReadyState) {
-                              }
-                                ViewsToolbox.dismissLoading();
-                                ViewsToolbox.showMessageBottomsheet(
-                                    context: context,
-                                    message: context.tr('leave_extended_successfully'),
-                                    status:ConfirmationPopupStatus.success );
-                              },
-                              
-                              builder: (context, state) {
-                                
-                                return CustomElevatedButton(
-                                  text: context.tr('extend'), //extend
-                                  backgroundColor: Palette.greenBackgroundTheme,
-                                  width: 150.w,
-                                  height: 50.h,
-                                  onPressed: () async {
-                                    DateTimeRange? picked =
-                                        await showDateRangePicker(
+                                if (state is ExtendLeaveErrorState) {
+                                  ViewsToolbox.dismissLoading();
+                                  ViewsToolbox.showMessageBottomsheet(
                                       context: context,
-                                      firstDate: DateTime(2020),
-                                      lastDate: DateTime(2030),
-                                    );
+                                      message: context.tr('error'),
+                                      status: ConfirmationPopupStatus.failure);
+                                }
+                              },
+                              builder: (context, state) {
+                                if (state is ExtendLeaveLoadingState) {
+                                  ViewsToolbox.showLoading();
+                                } else if (state is ExtendLeaveReadyState) {
+                                  ViewsToolbox.dismissLoading();
+                                  ViewsToolbox.showMessageBottomsheet(
+                                      context: context,
+                                      message: context
+                                          .tr('leave_extended_successfully'),
+                                      status: ConfirmationPopupStatus.success);
+                                  return CustomElevatedButton(
+                                    text: context.tr('extend'), //extend
+                                    backgroundColor:
+                                        Palette.greenBackgroundTheme,
+                                    width: 150.w,
+                                    height: 50.h,
+                                    onPressed: () async {
+                                      DateTimeRange? picked =
+                                          await showDateRangePicker(
+                                        context: context,
+                                        firstDate: DateTime(2020),
+                                        lastDate: DateTime(2030),
+                                      );
 
-                                    if (picked != null) {
-                                  
-                              
-                                      
-                                      extendLeaveCubit.getExtendLeave(extendLeaveRequestModel: ExtendLeaveRequestModel(
-                                        leaveRequestId: widget.requestID ?? '',
-                                        extendDate: picked.end.toString(),
-                                      ));
+                                      if (picked != null) {
+                                        extendLeaveCubit.getExtendLeave(
+                                            extendLeaveRequestModel:
+                                                ExtendLeaveRequestModel(
+                                          leaveRequestId:
+                                              widget.requestID ?? '',
+                                          extendDate: picked.end.toString(),
+                                        ));
 
-                                      // Print selected dates
-                                      // print(
-                                      //     'Start date: ${DateFormat('dd/MM/yyyy').format(startDate!)}');
-                                      // print('End date: ${DateFormat('dd/MM/yyyy').format(endDate!)}');
+                                        // Print selected dates
+                                        // print(
+                                        //     'Start date: ${DateFormat('dd/MM/yyyy').format(startDate!)}');
+                                        // print('End date: ${DateFormat('dd/MM/yyyy').format(endDate!)}');
 
-                                      // Navigator.pop(
-                                      //     context);
-                                      // Close the bottom sheet
-                                    }
-                                  },
+                                        // Navigator.pop(
+                                        //     context);
+                                        // Close the bottom sheet
+                                      }
+                                    },
+                                  );
+                                }
+                                return AppText(
+                                  text: 'Empty',
                                 );
                               },
                             ),
                             //choose from calendar from and to date
                             //
                             //reject
-                            CustomElevatedButton(
-                              text: context.tr('delete'), //delete
-                              backgroundColor: Palette.redBackgroundTheme,
-                              width: 150.w,
-                              height: 50.h,
-                              onPressed: () {},
-                            ),
+                            BlocConsumer<DeleteLeaveCubit, DeleteLeaveState>(
+                                listener: (context, state) {
+                              if (state is ExtendLeaveErrorState) {
+                                ViewsToolbox.dismissLoading();
+                                ViewsToolbox.showMessageBottomsheet(
+                                    context: context,
+                                    message: context.tr('error'),
+                                    status: ConfirmationPopupStatus.failure);
+                              }
+                            }, builder: (context, state) {
+                              if (state is DeleteLeaveLoadingState) {
+                                ViewsToolbox.showLoading();
+                              } else if (state is DeleteLeaveReadyState) {
+                                ViewsToolbox.dismissLoading();
+                                return CustomElevatedButton(
+                                  text: context.tr('delete'), //delete
+                                  backgroundColor: Palette.redBackgroundTheme,
+                                  width: 150.w,
+                                  height: 50.h,
+                                  onPressed: () {
+                                    deleteLeaveCubit.getDeleteLeave(
+                                        deleteLeaveRequestModel:
+                                            DeleteLeaveRequestModel(
+                                      leaveRequestID: widget.requestID ?? '',
+                                    ));
+                                  },
+                                );
+                              }
+                              return AppText(
+                                text: 'Empty',
+                              );
+                            }),
                             //new viewToolBox
                           ],
                         )

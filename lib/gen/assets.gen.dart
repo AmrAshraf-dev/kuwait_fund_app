@@ -42,6 +42,9 @@ class $AssetsPngGen {
   AssetGenImage get certificate =>
       const AssetGenImage('assets/png/certificate.png');
 
+  /// File path: assets/png/failure.png
+  AssetGenImage get failure => const AssetGenImage('assets/png/failure.png');
+
   /// File path: assets/png/ic_launcher.jpg
   AssetGenImage get icLauncher =>
       const AssetGenImage('assets/png/ic_launcher.jpg');
@@ -69,6 +72,12 @@ class $AssetsPngGen {
   /// File path: assets/png/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/png/splash.png');
 
+  /// File path: assets/png/success.png
+  AssetGenImage get success => const AssetGenImage('assets/png/success.png');
+
+  /// File path: assets/png/warning.png
+  AssetGenImage get warning => const AssetGenImage('assets/png/warning.png');
+
   /// File path: assets/png/watermark.png
   AssetGenImage get watermark =>
       const AssetGenImage('assets/png/watermark.png');
@@ -93,6 +102,7 @@ class $AssetsPngGen {
   List<AssetGenImage> get values => [
     appLogo,
     certificate,
+    failure,
     icLauncher,
     loanAgreement,
     paci,
@@ -101,6 +111,8 @@ class $AssetsPngGen {
     slide2,
     slide3,
     splash,
+    success,
+    warning,
     watermark,
     watermark2,
     watermark3,

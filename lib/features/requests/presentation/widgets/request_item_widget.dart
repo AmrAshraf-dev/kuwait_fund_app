@@ -8,6 +8,7 @@ import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 
 class RequestItemWidget extends StatelessWidget {
   final RequestsEntity request;
@@ -18,18 +19,17 @@ class RequestItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (int.parse(request.requestTypeID ?? "1") ==
-            RequestTypeEnum.annualLeaveRequest.index) {
-          CustomMainRouter.push(
-            AnnualLeaveRequestDetailsRoute(
-            requestID: request.requestID,
-          ));
-        }
+        // if (int.parse(request.requestTypeID ?? "1") ==
+        //     RequestTypeEnum.annualLeaveRequest.index) {
+        //   CustomMainRouter.push(AnnualLeaveRequestDetailsRoute(
+        //     requestID: request.requestID,
+        //   ));
+        // }
       },
       child: Padding(
         padding: EdgeInsetsDirectional.only(start: 27.w, end: 18.w, top: 21.h),
         child: Container(
-            height: 130.h,
+            height: request.requestStatus == 'Pending' ? 190.h : 150.h,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -100,6 +100,36 @@ class RequestItemWidget extends StatelessWidget {
                         )
                     ],
                   ),
+                  15.verticalSpace,
+                  request.requestStatus == 'Pending'
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            CustomElevatedButton(
+                              onPressed: () {
+                                if (int.parse(request.requestTypeID ?? "1") ==
+                                    RequestTypeEnum.annualLeaveRequest.index) {
+                                  CustomMainRouter.push(
+                                      AnnualLeaveRequestDetailsRoute(
+                                    requestID: request.requestID,
+                                  ));
+                                }
+                              },
+                              text: context.tr("extend"),
+                              width: 100.w,
+                              height: 40.h,
+                              backgroundColor: Palette.greenBackgroundTheme,
+                            ),
+                            CustomElevatedButton(
+                              onPressed: () {},
+                              text: context.tr("cancel"),
+                              width: 100.w,
+                              height: 40.h,
+                              backgroundColor: Palette.redBackgroundTheme,
+                            ),
+                          ],
+                        )
+                      : Offstage()
                 ],
               ),
             )),

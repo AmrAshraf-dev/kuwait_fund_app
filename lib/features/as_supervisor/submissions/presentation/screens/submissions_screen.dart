@@ -62,8 +62,8 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
           children: [
             RequestsHeaderWidget(),
             20.verticalSpace,
-            _buildTabBar(context),
-            10.verticalSpace,
+            // _buildTabBar(context),
+            //10.verticalSpace,
             _buildTabViews(),
           ],
         ),
