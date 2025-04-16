@@ -165,7 +165,7 @@ class _AnnualLeaveRequestDetailsScreenState
                           // app text date
                           AppText(
                             text: annualLeaveInfoEntityResponse?.requestDate ??
-                                '01/01/2021',
+                                '',
                             style: AppTextStyle.semiBold_12,
                             textColor: Palette.white,
                           ),
@@ -428,7 +428,7 @@ class _AnnualLeaveRequestDetailsScreenState
                             //
                             //reject
                             CustomElevatedButton(
-                              text: context.tr('delete'), //delete
+                              text: context.tr('cancel'), //delete
                               backgroundColor: Palette.redBackgroundTheme,
                               width: 150.w,
                               height: 50.h,

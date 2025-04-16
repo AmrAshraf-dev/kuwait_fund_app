@@ -73,7 +73,7 @@ class CalendarSectionWidget extends StatelessWidget {
             showOnlyCurrentMonthDate: true,
             onDayPressed: (DateTime date, List<Event> events) {
               // if date equals to 15th of November 2024, show the bottom sheet
-              if (date.day == 15 && date.month == 11 && date.year == 2024) {
+              if (date.day == 15 || date.month == 11 || date.year == 2024) {
                 ViewsToolbox.showBottomSheet(
                   height: 400.h,
                   context: context,

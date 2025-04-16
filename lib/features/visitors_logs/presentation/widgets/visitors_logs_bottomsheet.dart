@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -100,10 +101,13 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
           selectedDate = DateFormat("dd/MM/yyyy").parse(day);
           selectedHostName = null;
         });
-        widget.visitorsLogsCubit.getHostsList(selectedDate.toString());
+        widget.visitorsLogsCubit.getHostsList(
+          DateFormat("yyyy-MM-dd").format(selectedDate)
+          );
         widget.visitorsLogsCubit.getVisitorLogsDetails(
           VisitorsLogsDetailsRequestModel(
-            date: day,
+            date: DateFormat("yyyy-MM-dd").format(
+                                          DateFormat("dd/MM/yyyy").parse(day)),
             hostName: selectedHostName?.name,
           ),
           showNewBottomSheet: false,
@@ -119,7 +123,7 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
           ViewsToolbox.showLoading();
         } else if (state is VisitorsLogsErrorState) {
           ViewsToolbox.dismissLoading();
-          ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
+          
         } else if (state is VisitorsLogsHostsReadyState) {
           ViewsToolbox.dismissLoading();
         }
@@ -135,7 +139,7 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
               });
               widget.visitorsLogsCubit.getVisitorLogsDetails(
                 VisitorsLogsDetailsRequestModel(
-                  date: DateFormat("dd/MM/yyyy").format(selectedDate),
+                  date: DateFormat("yyyy-MM-dd").format(selectedDate),
                   hostName: selectedHostName?.name,
                 ),
                 showNewBottomSheet: false,
@@ -150,7 +154,15 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
   Widget _buildCloseButton(BuildContext context) {
     return CustomElevatedButton(
       backgroundColor: Colors.transparent,
-      onPressed: () => CustomMainRouter.pop(),
+      onPressed: () {
+
+                                                      final router = getIt<AppRouter>();
+
+if (router.canPop()) {
+  router.back(); // or router.back();
+}
+      },
+
       textColor: Palette.primaryColor,
       text: context.tr("close"),
     );
@@ -178,6 +190,7 @@ class VisitorsLogsDetailsListView extends StatelessWidget {
             context: context,
             status: ConfirmationPopupStatus.failure,
             message: state.message,
+            closeOnlyPopup: true
           );
         } else if (state is VisitorsLogsDetailsReadyState) {
           ViewsToolbox.dismissLoading();

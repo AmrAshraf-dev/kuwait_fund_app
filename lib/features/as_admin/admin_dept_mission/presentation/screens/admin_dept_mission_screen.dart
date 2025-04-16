@@ -32,7 +32,8 @@ class _AdminDeptMissionScreenState extends State<AdminDeptMissionScreen> {
     return MasterWidget(
         screenTitle: context.tr("dept_mission"),
         hasScroll: false,
-        isBackEnabled: true,
+        isBackEnabled: false,
+        
         widget: Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 15.w),
           child: SingleChildScrollView(
@@ -48,7 +49,7 @@ class _AdminDeptMissionScreenState extends State<AdminDeptMissionScreen> {
                       children: [
                         CustomDropDownField<String>(
                           keyName: "deptName",
-                          height: 42.h,
+                           
                           width: 230.w,
                           labelText: context.tr("deptName"),
                           disableSearch: true,

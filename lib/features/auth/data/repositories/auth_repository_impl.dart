@@ -1,6 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../auth/data/data_sources/remote/auth_remote_data_source.dart';
@@ -16,6 +19,7 @@ class AuthRepositoryImp implements AuthRepository {
   });
 
   final AuthRemoteDataSource authRemoteDataSource;
+    final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
 
   @override
   Future<CustomResponseType<BaseEntity<AuthModel>>> getAuth(
@@ -26,8 +30,14 @@ class AuthRepositoryImp implements AuthRepository {
       (failure) {
         Left(failure);
       },
-      (response) {
-        if (response.code == 200) LocalData().saveUser(response.data);
+      (response) async {
+        if (response.code == 200 || response.code == 201) LocalData().saveUser(response.data);
+
+     await securedStorageData.saveCredentials(
+         authParams.userId!,
+         authParams.password!,
+        );
+ 
         return Right(response);
       },
     );

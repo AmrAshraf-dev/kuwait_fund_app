@@ -72,8 +72,7 @@ class GenericFilePicker extends StatelessWidget {
                 if (isFromFile)
                   CustomElevatedButton(
                     showBorder: true,
-                    borderColor: Palette.gery_6C6D6F,
-                    backgroundColor: Palette.transparntColor,
+                     backgroundColor: Palette.primaryColor,
                     onPressed: () {
                       filePickerCubit.pickFile(
                         filetype: FileType.custom,
@@ -93,8 +92,7 @@ class GenericFilePicker extends StatelessWidget {
                         AppText(
                           text: buttonTitle ?? context.tr("attach_file"),
                           style: AppTextStyle.medium_16,
-                          textColor: Palette.black,
-                        )
+                         )
                       ],
                     ),
                   ),

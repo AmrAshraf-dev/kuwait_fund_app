@@ -38,7 +38,7 @@ class AnnualLeaveRequestDataSourceImpl
         data: annualLeaveRequestRequestModel.toJson());
 
     if (result.success) {
-      return right(AnnualLeaveRequestResponseModel.fromJson(result.response));
+      return right(AnnualLeaveRequestResponseModel(data:  result.response["data"]["returnMsg"]));
     } else {
       return left(ServerFailure(message: result.response as String));
     }

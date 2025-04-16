@@ -38,7 +38,7 @@ class CertificatesDataSourceImpl implements CertificatesRemoteDataSource {
   Future<CustomResponseType<BaseEntity<String>>> generateCertificate(
       statmentType) async {
     ({dynamic response, bool success}) result = await networkHelper
-        .get(path: ApiConstants.getQrCertificates, queryParams: {
+        .post(path: ApiConstants.getQrCertificates, queryParams: {
       "statementType": statmentType,
     });
 

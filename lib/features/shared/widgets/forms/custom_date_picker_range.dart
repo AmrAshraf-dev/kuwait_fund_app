@@ -81,7 +81,7 @@ class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
               fieldName: widget.keyNameFrom,
               hintText: widget.hintText ?? "",
               initialValue: widget.initialDate != null
-                  ? DateFormat("yyyy-MM-dd", "en").format(widget.initialDate!)
+                  ? DateFormat("dd/MM/yyyy", "en").format(widget.initialDate!)
                   : null,
               enableBorder: true,
               onTap: () async {
@@ -137,7 +137,7 @@ class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
                   fieldName: widget.keyNameTo,
                   hintText: widget.hintText ?? "",
                   initialValue: widget.initialDate != null
-                      ? DateFormat("yyyy-MM-dd", "en")
+                      ? DateFormat("dd/MM/yyyy", "en")
                           .format(widget.initialDate!)
                       : null,
                   enableBorder: true,
