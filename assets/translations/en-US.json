@@ -769,5 +769,9 @@
   "fileSize": "File size exceeds 1 MB limit.",
   "no_submissions": "No Submissions",
   "approveRequest": "Approve request",
-  "approveConfirmation": "Are you sure you want to approve this request ?"
+  "approveConfirmation": "Are you sure you want to approve this request ?",
+  "leaveStatus": "Leave status",
+  "leaveType": "Leave type",
+  "selectedDate": "Selected date",
+  "extendDialog": "Are you sure you want this extension ?"
 }

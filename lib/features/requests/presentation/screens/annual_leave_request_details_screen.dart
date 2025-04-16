@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
+import 'package:kf_ess_mobile_app/core/extensions/date_extensions.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
@@ -53,13 +54,44 @@ class _AnnualLeaveRequestDetailsScreenState
 
   @override
   void initState() {
-    annualLeaveDetailsHistoryCubit.getAnnualLeaveDetailsHistory(
-        annualLeaveDetailsRequestModel: AnnualLeaveDetailsRequestModel(
-            startDate:
-                DateFormat('dd/MM/yyyy').format(startDate ?? DateTime.now()),
-            endDate:
-                DateFormat('dd/MM/yyyy').format(endDate ?? DateTime.now())));
     super.initState();
+  }
+
+  DateTime? _selectedDate;
+  final TextEditingController _dateController = TextEditingController();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(), // Disable past dates
+      lastDate: DateTime(2100),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Palette.primaryColor, // Header background color
+              onPrimary: Colors.white, // Header text color
+              onSurface: Colors.black, // Body text color
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: Palette.primaryColor, // Button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+        _dateController.text = DateFormat('yyyy-MM-dd').format(picked);
+      });
+      debugPrint("Selected Date: ${_dateController.text}");
+    }
   }
 
   @override
@@ -160,7 +192,7 @@ class _AnnualLeaveRequestDetailsScreenState
                   ViewsToolbox.showLoading();
                 } else if (state is AnnualLeaveInfoReadyState) {
                   annualLeaveInfoEntityResponse = state.response.data;
-                
+
                   ViewsToolbox.dismissLoading();
                   return Column(
                     children: [
@@ -169,12 +201,17 @@ class _AnnualLeaveRequestDetailsScreenState
                         children: [
                           // app text date
                           AppText(
-                            text: annualLeaveInfoEntityResponse?.requestDate ??
-                                '01/01/2021',
+                            text: annualLeaveInfoEntityResponse?.requestDate !=
+                                    null
+                                ? DateFormat('yyyy-MM-dd').format(
+                                    DateTime.parse(annualLeaveInfoEntityResponse
+                                            ?.requestDate ??
+                                        ''))
+                                : '',
                             style: AppTextStyle.semiBold_12,
                             textColor: Palette.white,
                           ),
-                          Assets.svg.calander.svg(width: 28.w, height: 28.h),
+                          //    Assets.svg.calander.svg(width: 28.w, height: 28.h),
                         ],
                       ),
                       10.verticalSpace,
@@ -191,20 +228,20 @@ class _AnnualLeaveRequestDetailsScreenState
                         width: 120.w,
                         color: Colors.blueAccent,
                         title:
-                            "${context.tr('from')} ${annualLeaveInfoEntityResponse?.leaveStartDate ?? '01/01/2021'} ",
+                            "${context.tr('from')} ${annualLeaveInfoEntityResponse?.leaveStartDate != null ? DateFormat('yyyy-MM-dd').format(DateTime.parse(annualLeaveInfoEntityResponse?.leaveStartDate ?? '')) : ''}",
                         subTitle:
-                            "${context.tr('to')} ${annualLeaveInfoEntityResponse?.leaveEndDate ?? '01/01/2022'}",
+                            "${context.tr('to')} ${annualLeaveInfoEntityResponse?.leaveEndDate != null ? DateFormat('yyyy-MM-dd').format(DateTime.parse(annualLeaveInfoEntityResponse?.leaveEndDate ?? '')) : ''}",
                       ),
                       10.verticalSpace,
                       Container(
                         decoration: BoxDecoration(
-                          color: Palette.green_07BF0D,
+                          color: Palette.orangeBackgroundTheme,
                           borderRadius: BorderRadius.circular(10.r),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: AppText(
-                            text: context.tr("approved"),
+                            text: context.tr("pending"),
                             style: AppTextStyle.semiBold_16,
                             textColor: Palette.white,
                           ),
@@ -223,13 +260,10 @@ class _AnnualLeaveRequestDetailsScreenState
                 ..getAnnualLeaveDetailsHistory(
                   annualLeaveDetailsRequestModel:
                       AnnualLeaveDetailsRequestModel(
-                          startDate: DateFormat('dd/MM/yyyy').format(
-                              startDate ??
-                                  DateTime.now()) //startStringDate //'4/4/2025'
-                          ,
-                          endDate: DateFormat('dd/MM/yyyy').format(startDate ??
-                              DateTime.now()) //endStringDate //'4/5/2025'
-                          ),
+                          startDate: DateFormat('yyyy-MM-dd')
+                              .format(startDate ?? DateTime.now()),
+                          endDate: DateFormat('yyyy-MM-dd')
+                              .format(startDate ?? DateTime.now())),
                 ),
             ),
             BlocProvider(
@@ -254,10 +288,6 @@ class _AnnualLeaveRequestDetailsScreenState
             if (state is AnnualLeaveInfoLoadingState) {
               ViewsToolbox.showLoading();
             } else if (state is AnnualLeaveInfoReadyState) {
-              // print(
-              //     'START DATE IS : ${DateFormat('dd/MM/yyyy').format(startDate ?? DateTime.now())}');
-              // print(
-              //     'END DATE IS : ${DateFormat('dd/MM/yyyy').format(endDate ?? DateTime.now())}');
               annualLeaveInfoEntityResponse = state.response.data;
               ViewsToolbox.dismissLoading();
               return Padding(
@@ -314,53 +344,54 @@ class _AnnualLeaveRequestDetailsScreenState
                         //           ]),
                         //     ),
                         //     ),
-                        20.verticalSpace,
+                        // 20.verticalSpace,
                         // MainTitleWidget(
                         //   title: context.tr("track_request"),
                         // ),
                         // ApprovalTimeline(),
 
-                        BlocConsumer<AnnualLeaveDetailsHistoryCubit,
-                            AnnualLeaveDetailsHistoryState>(
-                          listener: (context, state) {
-                            if (state is AnnualLeaveDetailsHistoryErrorState) {
-                              ViewsToolbox.dismissLoading();
-                              ViewsToolbox.showErrorAwesomeSnackBar(
-                                  context, state.message ?? '');
-                            }
-                          },
-                          builder: (context, state) {
-                            if (state
-                                is AnnualLeaveDetailsHistoryLoadingState) {
-                              ViewsToolbox.showLoading();
-                            } else if (state
-                                is AnnualLeaveDetailsHistoryReadyState) {
-                              annualLeaveDetailsEntityResponse =
-                                  state.response.data ?? [];
-                              ViewsToolbox.dismissLoading();
-                              return AdvancedExpandableSection(
-                                  headerPadding:
-                                      const EdgeInsetsDirectional.only(
-                                          start: 20, top: 20, bottom: 20),
-                                  customText: SizedBox(
-                                      width: 240.w,
-                                      child: MainTitleWidget(
-                                          title: context.tr("leave_history"))),
-                                  children: annualLeaveDetailsEntityResponse!
-                                      .map((AnnualLeaveDetailsEntity
-                                          annualLeaveDetailsEntity) {
-                                    return LeaveHistoryItemWidget(
-                                      annualLeaveDetailsEntity:
-                                          annualLeaveDetailsEntity,
-                                    );
-                                  }).toList());
-                            }
-                            // print(
-                            //     'RESPONSE : ${annualLeaveDetailsEntityResponse?.first.leaveStatus ?? 'null1'}');
-                            return Container();
-                          },
-                        ),
-                        20.verticalSpace,
+//? AnnualLeaveDetailsHistory
+                        // BlocConsumer<AnnualLeaveDetailsHistoryCubit,
+                        //     AnnualLeaveDetailsHistoryState>(
+                        //   listener: (context, state) {
+                        //     if (state is AnnualLeaveDetailsHistoryErrorState) {
+                        //       ViewsToolbox.dismissLoading();
+                        //       ViewsToolbox.showErrorAwesomeSnackBar(
+                        //           context, state.message ?? '');
+                        //     }
+                        //   },
+                        //   builder: (context, state) {
+                        //     if (state
+                        //         is AnnualLeaveDetailsHistoryLoadingState) {
+                        //       ViewsToolbox.showLoading();
+                        //     } else if (state
+                        //         is AnnualLeaveDetailsHistoryReadyState) {
+                        //       annualLeaveDetailsEntityResponse =
+                        //           state.response.data ?? [];
+                        //       ViewsToolbox.dismissLoading();
+                        //       return AdvancedExpandableSection(
+                        //           headerPadding:
+                        //               const EdgeInsetsDirectional.only(
+                        //                   start: 20, top: 20, bottom: 20),
+                        //           customText: SizedBox(
+                        //               width: 240.w,
+                        //               child: MainTitleWidget(
+                        //                   title: context.tr("leave_history"))),
+                        //           children: annualLeaveDetailsEntityResponse!
+                        //               .map((AnnualLeaveDetailsEntity
+                        //                   annualLeaveDetailsEntity) {
+                        //             return LeaveHistoryItemWidget(
+                        //               annualLeaveDetailsEntity:
+                        //                   annualLeaveDetailsEntity,
+                        //             );
+                        //           }).toList());
+                        //     }
+                        //     // print(
+                        //     //     'RESPONSE : ${annualLeaveDetailsEntityResponse?.first.leaveStatus ?? 'null1'}');
+                        //     return Container();
+                        //   },
+                        // ),
+                        //10.verticalSpace,
 
                         // annualLeaveInfoEntityResponse?.showCancelButton ==
                         //             true &&
@@ -372,104 +403,334 @@ class _AnnualLeaveRequestDetailsScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             //accept
-                            BlocConsumer<ExtendLeaveCubit, ExtendLeaveState>(
-                              listener: (context, state) {
-                                if (state is ExtendLeaveErrorState) {
-                                  ViewsToolbox.dismissLoading();
-                                  ViewsToolbox.showMessageBottomsheet(
-                                      context: context,
-                                      message: context.tr('error'),
-                                      status: ConfirmationPopupStatus.failure);
-                                }
-                              },
-                              builder: (context, state) {
-                                if (state is ExtendLeaveLoadingState) {
-                                  ViewsToolbox.showLoading();
-                                } else if (state is ExtendLeaveReadyState) {
-                                  ViewsToolbox.dismissLoading();
-                                  ViewsToolbox.showMessageBottomsheet(
-                                      context: context,
-                                      message: context
-                                          .tr('leave_extended_successfully'),
-                                      status: ConfirmationPopupStatus.success);
-                                  return CustomElevatedButton(
-                                    text: context.tr('extend'), //extend
-                                    backgroundColor:
-                                        Palette.greenBackgroundTheme,
-                                    width: 150.w,
-                                    height: 50.h,
-                                    onPressed: () async {
-                                      DateTimeRange? picked =
-                                          await showDateRangePicker(
-                                        context: context,
-                                        firstDate: DateTime(2020),
-                                        lastDate: DateTime(2030),
-                                      );
+                            // BlocConsumer<ExtendLeaveCubit, ExtendLeaveState>(
+                            //   listener: (context, state) {
+                            //     if (state is ExtendLeaveErrorState) {
+                            //       ViewsToolbox.dismissLoading();
+                            //       ViewsToolbox.showMessageBottomsheet(
+                            //           context: context,
+                            //           message: context.tr('error'),
+                            //           status: ConfirmationPopupStatus.failure);
+                            //     }
+                            //   },
+                            //   builder: (context, state) {
+                            //     if (state is ExtendLeaveLoadingState) {
+                            //       ViewsToolbox.showLoading();
+                            //     } else if (state is ExtendLeaveReadyState) {
+                            //       ViewsToolbox.dismissLoading();
+                            //       ViewsToolbox.showMessageBottomsheet(
+                            //           context: context,
+                            //           message: context
+                            //               .tr('leave_extended_successfully'),
+                            //           status: ConfirmationPopupStatus.success);
+                            //       return CustomElevatedButton(
+                            //         text: context.tr('extend'), //extend
+                            //         backgroundColor:
+                            //             Palette.greenBackgroundTheme,
+                            //         width: 150.w,
+                            //         height: 50.h,
+                            //         onPressed: () async {
+                            //           DateTimeRange? picked =
+                            //               await showDateRangePicker(
+                            //             context: context,
+                            //             firstDate: DateTime(2020),
+                            //             lastDate: DateTime(2030),
+                            //           );
 
-                                      if (picked != null) {
-                                        extendLeaveCubit.getExtendLeave(
-                                            extendLeaveRequestModel:
-                                                ExtendLeaveRequestModel(
-                                          leaveRequestId:
-                                              widget.requestID ?? '',
-                                          extendDate: picked.end.toString(),
-                                        ));
+                            //           if (picked != null) {
+                            //             extendLeaveCubit.getExtendLeave(
+                            //                 extendLeaveRequestModel:
+                            //                     ExtendLeaveRequestModel(
+                            //               leaveRequestId:
+                            //                   widget.requestID ?? '',
+                            //               extendDate: picked.end.toString(),
+                            //             ));
 
-                                        // Print selected dates
-                                        // print(
-                                        //     'Start date: ${DateFormat('dd/MM/yyyy').format(startDate!)}');
-                                        // print('End date: ${DateFormat('dd/MM/yyyy').format(endDate!)}');
+                            //             // Print selected dates
+                            //             // print(
+                            //             //     'Start date: ${DateFormat('dd/MM/yyyy').format(startDate!)}');
+                            //             // print('End date: ${DateFormat('dd/MM/yyyy').format(endDate!)}');
 
-                                        // Navigator.pop(
-                                        //     context);
-                                        // Close the bottom sheet
-                                      }
-                                    },
-                                  );
-                                }
-                                return AppText(
-                                  text: 'Empty',
-                                );
-                              },
-                            ),
+                            //             // Navigator.pop(
+                            //             //     context);
+                            //             // Close the bottom sheet
+                            //           }
+                            //         },
+                            //       );
+                            //     }
+                            //     return
+                            //         AppText(
+                            //           text: 'Empty',
+                            //         );
+
+                            //   },
+                            // ),
                             //choose from calendar from and to date
                             //
                             //reject
-                            BlocConsumer<DeleteLeaveCubit, DeleteLeaveState>(
-                                listener: (context, state) {
-                              if (state is ExtendLeaveErrorState) {
-                                ViewsToolbox.dismissLoading();
-                                ViewsToolbox.showMessageBottomsheet(
-                                    context: context,
-                                    message: context.tr('error'),
-                                    status: ConfirmationPopupStatus.failure);
-                              }
-                            }, builder: (context, state) {
-                              if (state is DeleteLeaveLoadingState) {
-                                ViewsToolbox.showLoading();
-                              } else if (state is DeleteLeaveReadyState) {
-                                ViewsToolbox.dismissLoading();
-                                return CustomElevatedButton(
-                                  text: context.tr('delete'), //delete
-                                  backgroundColor: Palette.redBackgroundTheme,
-                                  width: 150.w,
-                                  height: 50.h,
-                                  onPressed: () {
-                                    deleteLeaveCubit.getDeleteLeave(
-                                        deleteLeaveRequestModel:
-                                            DeleteLeaveRequestModel(
-                                      leaveRequestID: widget.requestID ?? '',
-                                    ));
-                                  },
-                                );
-                              }
-                              return AppText(
-                                text: 'Empty',
-                              );
-                            }),
+                            // BlocConsumer<DeleteLeaveCubit, DeleteLeaveState>(
+                            //     listener: (context, state) {
+                            //   if (state is ExtendLeaveErrorState) {
+                            //     ViewsToolbox.dismissLoading();
+                            //     ViewsToolbox.showMessageBottomsheet(
+                            //         context: context,
+                            //         message: context.tr('error'),
+                            //         status: ConfirmationPopupStatus.failure);
+                            //   }
+                            // }, builder: (context, state) {
+                            //   if (state is DeleteLeaveLoadingState) {
+                            //     ViewsToolbox.showLoading();
+                            //   } else if (state is DeleteLeaveReadyState) {
+                            //     ViewsToolbox.dismissLoading();
+                            //     return CustomElevatedButton(
+                            //       text: context.tr('delete'), //delete
+                            //       backgroundColor: Palette.redBackgroundTheme,
+                            //       width: 150.w,
+                            //       height: 50.h,
+                            //       onPressed: () {
+                            //         deleteLeaveCubit.getDeleteLeave(
+                            //             deleteLeaveRequestModel:
+                            //                 DeleteLeaveRequestModel(
+                            //           leaveRequestID: widget.requestID ?? '',
+                            //         ));
+                            //       },
+                            //     );
+                            //   }
+                            //   return AppText(
+                            //     text: 'Empty',
+                            //   );
+                            // }),
                             //new viewToolBox
                           ],
-                        )
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height * 0.5.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Palette.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Palette.grey_9C9C9C,
+                                blurRadius: 7,
+                                offset: const Offset(
+                                    0, 3), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AppText(
+                                        text: annualLeaveInfoEntityResponse
+                                                    ?.requestDate !=
+                                                null
+                                            ? DateFormat('yyyy-MM-dd').format(
+                                                DateTime.parse(
+                                                    annualLeaveInfoEntityResponse
+                                                            ?.requestDate ??
+                                                        ''))
+                                            : '',
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Palette.orangeBackgroundTheme,
+                                          borderRadius:
+                                              BorderRadius.circular(10.r),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: AppText(
+                                            text: context.tr("pending"),
+                                            style: AppTextStyle.semiBold_16,
+                                            textColor: Palette.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 25.w),
+                                  child: Divider(
+                                    thickness: 1,
+                                  ),
+                                ),
+                                //
+                                //
+                                //
+
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          AppText(
+                                              style: AppTextStyle.bold_18,
+                                              text: context.tr('leaveStatus')),
+                                          AppText(
+                                              text:
+                                                  annualLeaveInfoEntityResponse
+                                                          ?.leaveStatus ??
+                                                      ''),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 25.w),
+                                  child: Divider(
+                                    thickness: 1,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          AppText(
+                                              style: AppTextStyle.bold_18,
+                                              text: context.tr('leaveType')),
+                                          AppText(
+                                              text:
+                                                  annualLeaveInfoEntityResponse
+                                                          ?.leaveType ??
+                                                      ''),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 25.w),
+                                  child: Divider(
+                                    thickness: 1,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          AppText(
+                                              style: AppTextStyle.bold_18,
+                                              text: context.tr('from_date')),
+                                          AppText(
+                                            text: annualLeaveInfoEntityResponse
+                                                        ?.leaveStartDate !=
+                                                    null
+                                                ? DateFormat('yyyy-MM-dd')
+                                                    .format(DateTime.parse(
+                                                        annualLeaveInfoEntityResponse
+                                                                ?.leaveStartDate ??
+                                                            ''))
+                                                : '',
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 25.w),
+                                  child: Divider(
+                                    thickness: 1,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          AppText(
+                                              style: AppTextStyle.bold_18,
+                                              text: context.tr('to_date')),
+                                          AppText(
+                                            text: annualLeaveInfoEntityResponse
+                                                        ?.leaveEndDate !=
+                                                    null
+                                                ? DateFormat('yyyy-MM-dd')
+                                                    .format(DateTime.parse(
+                                                        annualLeaveInfoEntityResponse
+                                                                ?.leaveEndDate ??
+                                                            ''))
+                                                : '',
+                                          ),
+                                          if (_selectedDate != null)
+                                            AppText(
+                                              style: AppTextStyle.bold_15,
+                                              text:
+                                                  '${context.tr('selectedDate')}: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}',
+                                            )
+                                        ],
+                                      ),
+                                      CustomElevatedButton(
+                                        onPressed: () {
+                                          _selectDate(context);
+                                        },
+                                        text: context.tr("extend"),
+                                        width: 100.w,
+                                        height: 40.h,
+                                        backgroundColor:
+                                            Palette.greenBackgroundTheme,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 25.w),
+                                  child: Divider(
+                                    thickness: 1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        12.verticalSpace,
+                        Center(
+                          child: CustomElevatedButton(
+                            onPressed: () async {
+                              final result = await showConfirmationDialog(
+                                  context: context,
+                                  title: context.tr('extend'),
+                                  content: context.tr('extendDialog'),
+                                  yesText: context.tr('submit'),
+                                  noText: context.tr('cancel'),
+                                  yesColor: Palette.primaryColor,
+                                  noColor: Palette.red_FF0606);
+                              if (result ?? false) {
+                                // User confirmed
+                              }
+                            },
+                            text: context.tr("submit"),
+                            width: 300.w,
+                            height: 50.h,
+                            backgroundColor: Palette.primaryColor,
+                          ),
+                        ),
                       ]));
             }
             return Container();
@@ -483,10 +744,51 @@ class _AnnualLeaveRequestDetailsScreenState
         return Palette.orangeBackgroundTheme;
       case "Approved" || "مقبولة":
         return Palette.green;
-      case "Rejected" || "ملغية":
+      case "Rejected" || "مرفوض":
         return Palette.redBackgroundTheme;
       default:
         return Palette.grey_7B7B7B;
     }
+  }
+
+  Future<bool?> showConfirmationDialog({
+    required BuildContext context,
+    required String title,
+    required String content,
+    String yesText = 'Yes',
+    String noText = 'No',
+    Color? yesColor,
+    Color? noColor,
+  }) async {
+    return await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: [
+            TextButton(
+              child: Text(
+                noText,
+                style: TextStyle(color: noColor),
+              ),
+              onPressed: () => Navigator.of(context).pop(true),
+            ),
+            TextButton(
+                child: Text(
+                  yesText,
+                  style: TextStyle(color: yesColor),
+                ),
+                onPressed: () {
+                  // approveLeaveRequestCubit
+                  //     .createApproveLeaveRequest(ApproveLeaveRequestModel(
+                  //   leaveRequestID: submissionsEntity.id,
+                  // ));
+                  Navigator.pop(context);
+                }),
+          ],
+        );
+      },
+    );
   }
 }

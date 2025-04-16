@@ -92,12 +92,12 @@ class RequestItemWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      if (request.requestTypeID == "1")
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: Palette.gery_DADADA,
-                          size: 20.sp,
-                        )
+                      // if (request.requestTypeID == "1")
+                      //   Icon(
+                      //     Icons.arrow_forward_ios,
+                      //     color: Palette.gery_DADADA,
+                      //     size: 20.sp,
+                      //   )
                     ],
                   ),
                   15.verticalSpace,
