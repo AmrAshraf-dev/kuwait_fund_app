@@ -1,4 +1,9 @@
 {
+  "continue": "Continue",
+"authenticate_to_login": "Authenticate to login",
+  "authentication_failed_please_login_again": "Authentication failed, please login again",
+"authentication_failed": "Authentication failed",
+  "no_saved_credentials_please_login_first": "No saved credentials, please login first",
   "please_attach_medical_report_file": "Please attach medical report file",
   "attach_medical_report_file": "Attach Medical Report File",
   "no_visitors_logs": "No Visitors Logs",

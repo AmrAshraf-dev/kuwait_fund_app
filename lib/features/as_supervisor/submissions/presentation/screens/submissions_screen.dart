@@ -47,7 +47,10 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
   Widget build(BuildContext context) {
     return MasterWidget(
       hasScroll: false,
+              isBackEnabled: false,
+
       screenTitle: context.tr("submissions"),
+
       appBarHeight: 90.h,
       widget: MultiBlocProvider(
         providers: [

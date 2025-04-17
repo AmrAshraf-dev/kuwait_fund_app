@@ -76,17 +76,23 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   20.verticalSpace,
-                                  BlocBuilder<CertificatesCubit,
+                                  BlocConsumer<CertificatesCubit,
                                           CertificatesState>(
-                                      builder: (context, state) {
-                                    if (state is CertificatesLoadingState) {
+                                            listener: (context, state) {
+                                              if (state
+                                                  is CertificatesErrorState) {
+                                                ViewsToolbox.dismissLoading();
+                                                ViewsToolbox.showErrorAwesomeSnackBar(
+                                                    context,
+                                                    context.tr(
+                                                        state.message!));
+                                              }
+                                              else if (state is CertificatesLoadingState) {
                                       ViewsToolbox.showLoading();
-                                    } else if (state
-                                        is CertificatesErrorState) {
-                                      ViewsToolbox.dismissLoading();
-                                      ViewsToolbox.showErrorAwesomeSnackBar(
-                                          context, context.tr(state.message!));
-                                    } else if (state
+                                    } 
+                                            },
+                                      builder: (context, state) {
+                                   if (state
                                         is CertificatesReadyState) {
                                       ViewsToolbox.dismissLoading();
 

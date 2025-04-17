@@ -31,6 +31,7 @@ class _AdminDirectorMissionScreenState
   Widget build(BuildContext context) {
     return MasterWidget(
         screenTitle: context.tr("director_mission"),
+        isBackEnabled: false,
         widget: Column(
           children: [
             Padding(
@@ -42,8 +43,7 @@ class _AdminDirectorMissionScreenState
                 children: [
                   CustomDropDownField<String>(
                     keyName: "directorName",
-                    height: 42.h,
-                    width: 250.w,
+                     width: 250.w,
                     labelText: context.tr("directorName"),
                     disableSearch: true,
                     disableFiled: false,

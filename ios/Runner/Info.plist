@@ -10,7 +10,9 @@
 		<string>camera permissions</string>
 		<key>NSLocationAlwaysAndWhenInUsageDescription</key>
 		<string>Always and in usage permissions</string>
-		<key>NSLocationAlwaysUsageDescription</key>
+		<key>NSFaceIDUsageDescription</key>
+<string>  Enable this option to use Face ID for authentication.</string>
+	 		<key>NSLocationAlwaysUsageDescription</key>
 		<string>always permissions</string>
 		<key>NSLocationUsageDescription</key>
 		<string>location permissions</string>

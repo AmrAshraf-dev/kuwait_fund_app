@@ -208,10 +208,12 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                                           .createAnnualLeaveRequest(
                                               AnnualLeaveRequestRequestModel(
                                         leaveType: 0,
-                                        startDate: _formKey.currentState!
-                                            .fields["from"]!.value,
-                                        endDate: _formKey
-                                            .currentState!.fields["to"]!.value,
+                                        startDate: DateFormat("yyyy-MM-dd").format(
+                                          DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["from"]!.value),
+                                        ),
+                                        endDate: DateFormat("yyyy-MM-dd").format(
+                                          DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["to"]!.value),
+                                        ),
                                       ));
                                     }
                                   },
@@ -236,8 +238,8 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
   }
 
   num _calculatePaidDays({required String from, required String to}) {
-    final DateTime fromDate = DateTime.parse(from);
-    final DateTime toDate = DateTime.parse(to);
+    final DateTime fromDate =   DateFormat("dd/MM/yyyy").parse(from)  ;
+    final DateTime toDate =   DateFormat("dd/MM/yyyy").parse(to);
     return toDate.difference(fromDate).inDays;
   }
 }

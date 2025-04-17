@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:kf_ess_mobile_app/core/network/network_helper.dart' as _i675;
@@ -357,6 +358,8 @@ import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart
     as _i360;
 import 'package:kf_ess_mobile_app/features/shared/cubit/theme_cubit/theme_cubit.dart'
     as _i501;
+import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart'
+    as _i980;
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_check_box/check_box_cubit.dart'
     as _i735;
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_date_picker/custom_date_picker_cubit.dart'
@@ -428,6 +431,9 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i101.LocaleCubit>(() => _i101.LocaleCubit());
   gh.singleton<_i501.ThemeCubit>(() => _i501.ThemeCubit());
+  gh.lazySingleton<_i558.FlutterSecureStorage>(
+      () => registerModule.secureStorage);
+  gh.lazySingleton<_i980.SecuredStorageData>(() => _i980.SecuredStorageData());
   gh.factory<String>(
     () => registerModule.baseUrl,
     instanceName: 'BaseUrl',
@@ -581,6 +587,10 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i396.NotificationsRemoteDataSource>()));
   gh.factory<_i756.InstitutionsGrantsCubit>(() => _i756.InstitutionsGrantsCubit(
       getInstitutionsGrantsUseCase: gh<_i279.GetInstitutionsGrantsUseCase>()));
+  gh.factory<_i582.GetDeleteLeaveUseCase>(() => _i582.GetDeleteLeaveUseCase(
+      requestsRepository: gh<_i974.RequestsRepository>()));
+  gh.factory<_i120.GetExtendLeaveUseCase>(() => _i120.GetExtendLeaveUseCase(
+      requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i427.GetAnnualLeaveDetailsHistoryUseCase>(() =>
       _i427.GetAnnualLeaveDetailsHistoryUseCase(
           requestsRepository: gh<_i974.RequestsRepository>()));
@@ -588,10 +598,6 @@ Future<_i174.GetIt> $initGetIt(
       _i181.GetAnnualLeaveInfoUseCase(
           requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i270.GetRequestsUseCase>(() => _i270.GetRequestsUseCase(
-      requestsRepository: gh<_i974.RequestsRepository>()));
-  gh.factory<_i120.GetExtendLeaveUseCase>(() => _i120.GetExtendLeaveUseCase(
-      requestsRepository: gh<_i974.RequestsRepository>()));
-  gh.factory<_i582.GetDeleteLeaveUseCase>(() => _i582.GetDeleteLeaveUseCase(
       requestsRepository: gh<_i974.RequestsRepository>()));
   gh.factory<_i464.GetAuthUseCase>(
       () => _i464.GetAuthUseCase(authRepository: gh<_i848.AuthRepository>()));
@@ -700,11 +706,11 @@ Future<_i174.GetIt> $initGetIt(
           visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
   gh.factory<_i266.GetVisitorsLogsUseCase>(() => _i266.GetVisitorsLogsUseCase(
       visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
-  gh.factory<_i924.GetVisitorLogsHostsUseCase>(() =>
-      _i924.GetVisitorLogsHostsUseCase(
-          visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
   gh.factory<_i139.GetVisitorsLogsDetailsUseCase>(() =>
       _i139.GetVisitorsLogsDetailsUseCase(
+          visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
+  gh.factory<_i924.GetVisitorLogsHostsUseCase>(() =>
+      _i924.GetVisitorLogsHostsUseCase(
           visitorsLogsRepository: gh<_i1026.VisitorsLogsRepository>()));
   gh.factory<_i1046.RequestsCubit>(() =>
       _i1046.RequestsCubit(getRequestsUseCase: gh<_i270.GetRequestsUseCase>()));

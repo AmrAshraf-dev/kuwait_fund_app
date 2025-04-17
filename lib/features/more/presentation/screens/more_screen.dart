@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
@@ -12,6 +13,7 @@ import 'package:kf_ess_mobile_app/features/di/toggle_button_model.dart';
 import 'package:kf_ess_mobile_app/features/more/presentation/widgets/more_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/cubit/locale_cubit/locale_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/custom_toggle_button_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/toggle_button_widget.dart';
@@ -32,6 +34,7 @@ class _MoreScreenState extends State<MoreScreen> {
   final ToggleCubit toggleCubit = GetIt.I<ToggleCubit>();
   final ToggleModel toggleModel = GetIt.I<ToggleModel>();
   LocaleCubit localeCubit = getIt<LocaleCubit>();
+     final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
 
   @override
   void initState() {
@@ -41,6 +44,8 @@ class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
+              isBackEnabled: false,
+
       screenTitle: context.tr("more"),
       appBarHeight: 90.h,
       widget: Padding(
@@ -151,6 +156,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 onTap: () {
                   CustomMainRouter.push(AuthRoute());
                   LocalData.clearAllData();
+           //       securedStorageData.clearCredentials();
                 }),
             32.verticalSpace,
             Center(

@@ -1,4 +1,9 @@
 {
+
+"authenticate_to_login":  "المصادقة لتسجيل الدخول",
+ "continue" : "استمرار",
+"authentication_failed_please_login_again":  "فشلت المصادقة، يرجى تسجيل الدخول مرة أخرى",
+  "no_saved_credentials_please_login_first": "لا توجد بيانات اعتماد محفوظة، يرجى تسجيل الدخول أولاً",
   "please_attach_medical_report_file": "يرجى إرفاق ملف التقرير الطبي",
   "attach_medical_report_file": "إرفاق ملف التقرير الطبي",
   "no_visitors_logs": "لا توجد سجلات زوار",

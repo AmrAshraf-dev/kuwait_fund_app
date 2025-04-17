@@ -1,5 +1,6 @@
+import 'dart:developer';
 import 'dart:io';
-
+ 
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +19,14 @@ import 'package:kf_ess_mobile_app/features/auth/data/models/request/auth_request
 import 'package:kf_ess_mobile_app/features/auth/data/models/response/user_info_model.dart';
 import 'package:kf_ess_mobile_app/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/auth_screens_app_bar_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/drawer_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/password_field_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
+import 'package:local_auth/local_auth.dart';
 
 @RoutePage()
 class AuthScreen extends StatefulWidget {
@@ -36,11 +39,73 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   final FocusNode passwordFocusNode = FocusNode();
+  final LocalAuthentication localAuth = LocalAuthentication();
+    final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
 
+  bool isBiometricAvailable = true;
   final AuthCubit authCubit = getIt<AuthCubit>();
   @override
   void initState() {
     super.initState();
+    _checkBiometricAvailability();
+  }
+
+ 
+
+  Future<void> _checkBiometricAvailability() async {
+    try {
+      bool canCheckBiometrics = await localAuth.canCheckBiometrics;
+      bool isDeviceSupported = await localAuth.isDeviceSupported();
+      if (!canCheckBiometrics || !isDeviceSupported) {
+        setState(() {
+                 isBiometricAvailable = false;
+        });
+      }
+    } catch (e) {
+      log("Error checking biometric availability: $e");
+        setState(() {
+                 isBiometricAvailable = false;
+
+        });
+    }
+  }
+
+  Future<void> _authenticateAndLogin() async {
+    try {
+      bool authenticated = await localAuth.authenticate(
+        localizedReason: context.tr("authenticate_to_login"),
+        options: const AuthenticationOptions(
+          biometricOnly: false,
+          stickyAuth: true,
+        ),
+      );
+
+      if (authenticated) {
+        // Retrieve saved credentials from local storage
+        String? savedUserName = await securedStorageData.getUsername();
+        String? savedPassword = await securedStorageData.getPassword();
+
+        if (savedUserName != null && savedPassword != null) {
+          authCubit.getAuth(
+            authModel: AuthRequestModel(
+              userId: savedUserName,
+              password: savedPassword,
+            ),
+          );
+        } else {
+          if(mounted){
+          ViewsToolbox.showErrorAwesomeSnackBar(context,
+            "no_saved_credentials_please_login_first".tr());
+          }
+        }
+      }
+    } catch (e) {
+      if(mounted){
+   ViewsToolbox.showErrorAwesomeSnackBar(
+          context, "authentication_failed_please_login_again".tr());
+      }
+   
+    }
   }
 
   @override
@@ -126,13 +191,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                 if (userInfo.isError ?? false) {
                                   ViewsToolbox.showErrorAwesomeSnackBar(
                                       context, userInfo.errorMsg ?? "error");
-                                } else if (userInfo.isSupervisor ?? false) {
-                                  CustomMainRouter.push(
-                                      SupervisorNavigationMainRoute());
                                 } else if (userInfo.isDirector ?? false) {
                                   CustomMainRouter.push(
                                       AdminNavigationMainRoute());
-                                } else {
+                                }
+                                
+                                else if (userInfo.isSupervisor ?? false) {
+                                  CustomMainRouter.push(
+                                      SupervisorNavigationMainRoute());
+                                }  else {
                                   CustomMainRouter.push(NavigationMainRoute());
                                 }
                               }
@@ -157,33 +224,55 @@ class _AuthScreenState extends State<AuthScreen> {
                                   ),
                                   46.verticalSpace,
                                   Center(
-                                    child: CustomElevatedButton(
-                                      text: context.tr("login"),
-                                      onPressed: () {
-                                        if (_formKey.currentState
-                                                ?.saveAndValidate() ??
-                                            false) {
-                                          authCubit.getAuth(
-                                            authModel: AuthRequestModel(
-                                              userId: _formKey.currentState
-                                                  ?.fields["userName"]?.value,
-                                              password:  
-                                              // _formKey.currentState
-                                              //        ?.fields["password"]?.value
+                                    child: 
+                                    Row(
+                                      children: [
+                                        if(isBiometricAvailable)
+ Flexible(
+  flex: 1,
+   child: CustomElevatedButton(
+     backgroundColor:    Palette.blue_5490EB,
+    customChild: Icon(
+      Icons.fingerprint,
+      color: Palette.white,
+      size: 40.sp,
+    ),
+    onPressed: _authenticateAndLogin,
+   ),
+ ),
+10.horizontalSpace,
+
+                                        Flexible(
+                                          flex: 4,
+                                          child: CustomElevatedButton(
+                                          
+                                            text: context.tr("login"),
+                                            onPressed: () {
+                                              if (_formKey.currentState
+                                                      ?.saveAndValidate() ??
+                                                  false) {
+                                                authCubit.getAuth(
+                                                  authModel: AuthRequestModel(
+                                                    userId: _formKey.currentState
+                                                        ?.fields["userName"]?.value,
+                                                    password:  
                                               
-                                              EncryptionService().encryptString(
-                                                _formKey.currentState
-                                                    ?.fields["password"]?.value,
-                                                    Platform.isAndroid ? KeyType.CustomerAuthAndroid : KeyType.CustomerAuthIOS,
-                                              ),
-                                            
-                                              
-                                              
-                                           
-                                            ),
-                                          );
-                                        }
-                                      },
+                                                    EncryptionService().encryptString(
+                                                      _formKey.currentState
+                                                          ?.fields["password"]?.value,
+                                                          Platform.isAndroid ? KeyType.CustomerAuthAndroid : KeyType.CustomerAuthIOS,
+                                                    ),
+                                                  
+                                                    
+                                                    
+                                                 
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],

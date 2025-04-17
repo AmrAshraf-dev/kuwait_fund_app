@@ -5,11 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
+import 'package:kf_ess_mobile_app/core/helper/general_helper.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/recent_update_section_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/calendar_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
@@ -36,6 +38,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     return MasterWidget(
         waterMarkImage: waterMarkImage3,
         appBarHeight: 240.0.h,
+                isBackEnabled: false,
+
         appBarBody: Column(
           children: [
             Row(
@@ -63,7 +67,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       children: [
                         AppText(
                           text:
-                              "${context.tr('hi')} ${context.tr('good_morning')}",
+                           "${context.tr('hi')} ${GeneralHelper.getWelcomeMessage(context)}",
+
                           style: AppTextStyle.regular_16,
                           textColor: Colors.white,
                         ),
@@ -71,7 +76,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         SizedBox(
                           width: 150.w,
                           child: AppText(
-                            text: 'Ahmed Mohamed',
+                            text: LocalData.getUser()?.userInfo.name,
                             style: AppTextStyle.bold_16,
                             textColor: Colors.white,
                           ),
@@ -178,44 +183,41 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CalendarSectionWidget(
-                customChildWidget: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25.r),
-                      ),
-                      child: Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical: 10.h, horizontal: 10.w),
-                        decoration: BoxDecoration(
-                          color: Palette.white_F7F7F7,
-                          borderRadius: BorderRadius.circular(25.r),
-                        ),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              5.verticalSpace,
-                              LeaveDaysRowItemWidget(
-                                title:
-                                    context.tr("emoloyees_on_leave_this_month"),
-                                days: "4",
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 25.w),
-                                child: Divider(
-                                  thickness: 1,
-                                ),
-                              ),
-                              LeaveDaysRowItemWidget(
-                                title:
-                                    context.tr("number_of_missions_this_month"),
-                                days: "4",
-                              ),
-                              5.verticalSpace,
-                            ]),
-                      )),
-                ),
+                customChildWidget: Container(
+                   decoration: BoxDecoration(
+                     color: Colors.white,
+                     borderRadius: BorderRadius.circular(25.r),
+                   ),
+                   child: Container(
+                     margin: EdgeInsets.symmetric(
+                         vertical: 10.h, horizontal: 10.w),
+                     decoration: BoxDecoration(
+                       color: Palette.white_F7F7F7,
+                       borderRadius: BorderRadius.circular(25.r),
+                     ),
+                     child: Column(
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         children: [
+                           5.verticalSpace,
+                           LeaveDaysRowItemWidget(
+                             title:
+                                 context.tr("emoloyees_on_leave_this_month"),
+                             days: "4",
+                           ),
+                           Padding(
+                             padding: EdgeInsets.symmetric(horizontal: 25.w),
+                             child: Divider(
+                               thickness: 1,
+                             ),
+                           ),
+                           LeaveDaysRowItemWidget(
+                             title:
+                                 context.tr("number_of_missions_this_month"),
+                             days: "4",
+                           ),
+                           5.verticalSpace,
+                         ]),
+                   )),
               ),
             ),
             30.verticalSpace,

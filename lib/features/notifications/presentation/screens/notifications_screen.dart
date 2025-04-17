@@ -31,6 +31,8 @@ class NotificationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MasterWidget(
       hasScroll: false,
+              isBackEnabled: true,
+
       screenTitle: context.tr("notification"),
       widget: ListView.builder(
         cacheExtent: 1000,
@@ -52,8 +54,6 @@ class NotificationItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return notification.type == NotificationTypeEnum.withResponse
         ? ResponseNotificationWidget(notification: notification)
-        : notification.type == NotificationTypeEnum.loan
-            ? LoanNotificationWidget(notification: notification)
-            : NormalNotificationWidget(notification: notification);
+        :   NormalNotificationWidget(notification: notification);
   }
 }
