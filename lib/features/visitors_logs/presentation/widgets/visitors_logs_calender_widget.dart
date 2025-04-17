@@ -6,17 +6,17 @@ import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/selected_day_widget.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_selected_day_widget.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_bottomsheet.dart';
 import 'package:table_calendar/table_calendar.dart';
 
  
-class CalendarContent extends StatefulWidget {
+class VisitorsLogsCalenderWidget extends StatefulWidget {
   final DateTime focusedDay;
   final ValueChanged<DateTime> onFocusedDayChanged;
   final VisitorsLogsCubit visitorsLogsCubit;
 
-    CalendarContent({
+    VisitorsLogsCalenderWidget({
     required this.focusedDay,
     required this.onFocusedDayChanged,
     required this.visitorsLogsCubit,
@@ -24,10 +24,10 @@ class CalendarContent extends StatefulWidget {
   }) ;
 
   @override
-  State<CalendarContent> createState() => _CalendarContentState();
+  State<VisitorsLogsCalenderWidget> createState() => _VisitorsLogsCalenderWidgetState();
 }
 
-class _CalendarContentState extends State<CalendarContent> {
+class _VisitorsLogsCalenderWidgetState extends State<VisitorsLogsCalenderWidget> {
    List<VisitorsLogsEntity> calendarResponse = [];
 
  DateTime selectedCalendarDay  = DateTime.now();
@@ -86,8 +86,8 @@ if(state.showNewBottomSheet){
         ),
         child: TableCalendar(
           availableGestures: AvailableGestures.horizontalSwipe,
-          firstDay: DateTime.utc(2025, 3, 1),
-          lastDay: DateTime.utc(2025, 12, 31),
+          firstDay: DateTime.utc(2020, 1, 1),
+          lastDay: DateTime.utc(2045, 12, 31),
           focusedDay: widget.focusedDay,
           onPageChanged: widget.onFocusedDayChanged,
           onDaySelected: (selectedDay, focusedDay) {
