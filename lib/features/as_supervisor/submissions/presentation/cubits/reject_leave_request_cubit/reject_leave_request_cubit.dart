@@ -16,6 +16,7 @@ class RejectLeaveRequestCubit extends Cubit<RejectLeaveRequestState> {
 
   void createRejectLeaveRequest(
       RejectLeaveRequestModel rejectLeaveRequestModel) async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(RejectLeaveRequestLoadingState());
 
     final CustomResponseType<BaseEntity<String>> eitherPackagesOrFailure =
@@ -27,7 +28,14 @@ class RejectLeaveRequestCubit extends Cubit<RejectLeaveRequestState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<String> response) {
-      emit(RejectLeaveRequestReadyState(response));
+      //emit(RejectLeaveRequestReadyState(response));
+      if (response.code != 404) {
+        emit(RejectLeaveRequestReadyState(response));
+      } else {
+        emit(RejectLeaveRequestErrorState(
+          message: response.message ?? "Error",
+        ));
+      }
     });
   }
 }

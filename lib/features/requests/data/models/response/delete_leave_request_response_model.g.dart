@@ -8,7 +8,7 @@ part of 'delete_leave_request_response_model.dart';
 
 DeleteLeaveModel _$DeleteLeaveModelFromJson(Map<String, dynamic> json) =>
     DeleteLeaveModel(
-      leaveRequestId: json['leaveRequestId'] as String?,
+      leaveRequestId: (json['leaveRequestId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$DeleteLeaveModelToJson(DeleteLeaveModel instance) =>

@@ -14,7 +14,7 @@ class DeleteLeaveRequestModel {
 
   factory DeleteLeaveRequestModel.fromJson(Map<String, dynamic> json) =>
       _$DeleteLeaveRequestModelFromJson(json);
-  final String? leaveRequestID;
+  final int? leaveRequestID;
 
   Map<String, dynamic> toJson() => _$DeleteLeaveRequestModelToJson(this);
 }

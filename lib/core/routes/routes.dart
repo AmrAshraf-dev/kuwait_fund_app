@@ -22,7 +22,7 @@ class AppRouter extends RootStackRouter {
         ),
 
         CustomRoute(
-             page: NavigationMainRoute.page,
+            page: NavigationMainRoute.page,
             path: AppRoutesConstants.mainNavigation,
             transitionsBuilder: TransitionsBuilders.fadeIn,
             maintainState: true,
@@ -32,7 +32,6 @@ class AppRouter extends RootStackRouter {
                 path: AppRoutesConstants.home,
                 maintainState: true,
                 transitionsBuilder: TransitionsBuilders.fadeIn,
-
               ),
               AutoRoute(
                   path: 'tab1',
@@ -334,11 +333,11 @@ class AppRouter extends RootStackRouter {
 
                   //  meta: <String, dynamic>{'hideBottomNav': true},
                 ),
-                AutoRoute(
-                  page: AnnualSubmissionsDetailsRoute.page,
-                  path: AppRoutesConstants.annualSubmissionDetails,
-                  maintainState: true,
-                ),
+                // AutoRoute(
+                //   page: AnnualSubmissionsDetailsRoute.page,
+                //   path: AppRoutesConstants.annualSubmissionDetails,
+                //   maintainState: true,
+                // ),
                 // AutoRoute(
                 //   page: TrainingSubmissionsDetailsRoute.page,
                 //   path: AppRoutesConstants.trainingSubmissionDetails,

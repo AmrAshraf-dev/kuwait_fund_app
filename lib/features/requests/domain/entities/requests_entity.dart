@@ -2,21 +2,29 @@ import "package:equatable/equatable.dart";
 
 /// Entity that contains the data of the Requests.
 class RequestsEntity extends Equatable {
-  final String? requestID;
-  final String? requestTypeID;
+  final String? leaveID;
   final String? requestDate;
-  final String? requestStatus;
-  final String? requestTitle;
-  final String? details;
+  final String? leaveStatus;
+  final String? leaveStartDate;
+  final String? leaveEndDate;
+  final String? leaveType;
+  final String? leaveExtendDate;
+  final bool? leaveExtendedFlag;
+  final bool? showExtendButton;
+  final bool? showCancelButton;
 
   /// Entity that contains the data of the Requests.
   const RequestsEntity({
-    required this.requestID,
-    required this.requestTypeID,
-    required this.requestStatus,
+    required this.leaveID,
     required this.requestDate,
-    required this.requestTitle,
-    required this.details,
+    required this.leaveStatus,
+    required this.leaveStartDate,
+    required this.leaveEndDate,
+    required this.leaveType,
+    required this.leaveExtendDate,
+    required this.leaveExtendedFlag,
+    required this.showExtendButton,
+    required this.showCancelButton,
   });
 
   /*

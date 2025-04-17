@@ -773,5 +773,11 @@
   "leaveStatus": "Leave status",
   "leaveType": "Leave type",
   "selectedDate": "Selected date",
-  "extendDialog": "Are you sure you want this extension ?"
+  "extendDialog": "Are you sure you want this extension ?",
+  "deleteDialog": "Are you sure you want to delete ?",
+  "remove": "remove",
+  "request_approved_successfully": "Request approved successfully",
+  "request_rejected_successfully": "Request rejected successfully",
+  "request_extended_successfully": "Request extended successfully",
+  "request_deleted_successfully": "Request deleted successfully"
 }

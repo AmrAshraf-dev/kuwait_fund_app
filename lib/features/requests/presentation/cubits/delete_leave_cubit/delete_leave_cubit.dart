@@ -32,7 +32,14 @@ class DeleteLeaveCubit extends Cubit<DeleteLeaveState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<CreateDeleteLeaveEntity> response) {
-      emit(DeleteLeaveReadyState(response));
+      //emit(DeleteLeaveReadyState(response));
+      if (response.code != 404) {
+        emit(DeleteLeaveReadyState(response));
+      } else {
+        emit(DeleteLeaveErrorState(
+          message: response.message ?? "Error",
+        ));
+      }
     });
   }
 }
