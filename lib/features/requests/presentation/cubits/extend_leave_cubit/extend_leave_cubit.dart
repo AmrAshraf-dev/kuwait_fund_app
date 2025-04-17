@@ -30,7 +30,14 @@ class ExtendLeaveCubit extends Cubit<ExtendLeaveState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<CreateExtendLeaveEntity> response) {
-      emit(ExtendLeaveReadyState(response));
+      //emit(ExtendLeaveReadyState(response));
+      if (response.code != 404) {
+        emit(ExtendLeaveReadyState(response));
+      } else {
+        emit(ExtendLeaveErrorState(
+          message: response.message ?? "Error",
+        ));
+      }
     });
   }
 }

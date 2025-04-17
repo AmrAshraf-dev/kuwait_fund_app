@@ -2,7 +2,7 @@ import "package:equatable/equatable.dart";
 
 /// Entity that contains the data of the CreateRequest.
 class CreateDeleteLeaveEntity extends Equatable {
-  final String? leaveRequestId;
+  final int? leaveRequestId;
 
   /// Entity that contains the data of the CreateRequest.
   const CreateDeleteLeaveEntity({

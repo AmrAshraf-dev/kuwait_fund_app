@@ -776,5 +776,15 @@
   "fileSize": "حجم الملف يتجاوز الحد الأقصى 1 ميجا بايت.",
   "no_submissions": "لا توجد تقديمات",
   "approveRequest": "الموافقة على الطلب",
-  "approveConfirmation": "هل أنت متأكد أنك تريد الموافقة على هذا الطلب ؟"
+  "approveConfirmation": "هل أنت متأكد أنك تريد الموافقة على هذا الطلب ؟",
+  "leaveStatus": "حالة الإجازة",
+  "leaveType": "نوع الإجازة",
+  "selectedDate": "التاريخ المحدد",
+  "extendDialog": "هل انت متأكد انك تريد هذا التمديد ؟",
+  "deleteDialog": "هل أنت متأكد أنك تريد الحذف ؟",
+  "remove": "مسح",
+  "request_approved_successfully": "تمت الموافقة على الطلب بنجاح",
+  "request_rejected_successfully": "تم رفض الطلب بنجاح",
+  "request_extended_successfully": "تمت التمديد بنجاح",
+  "request_deleted_successfully": "تم حذف الطلب بنجاح"
 }

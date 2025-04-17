@@ -22,7 +22,7 @@ class AppRouter extends RootStackRouter {
         ),
 
         CustomRoute(
-             page: NavigationMainRoute.page,
+            page: NavigationMainRoute.page,
             path: AppRoutesConstants.mainNavigation,
             transitionsBuilder: TransitionsBuilders.fadeIn,
             maintainState: true,
@@ -32,7 +32,6 @@ class AppRouter extends RootStackRouter {
                 path: AppRoutesConstants.home,
                 maintainState: true,
                 transitionsBuilder: TransitionsBuilders.fadeIn,
-
               ),
               AutoRoute(
                   path: 'tab1',
