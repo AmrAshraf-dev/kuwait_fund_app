@@ -13,8 +13,8 @@ import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/vis
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/host_name_dropmenu_widget.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/selectable_days_chips_widget.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_host_name_dropmenu_widget.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_selectable_days_chips_widget.dart';
 
 class VisitsBottomSheet extends StatefulWidget {
   final DateTime selectedDate;

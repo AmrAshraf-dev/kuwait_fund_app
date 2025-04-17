@@ -249,7 +249,7 @@ class AppRouter extends RootStackRouter {
             maintainState: true),
 
         AutoRoute(
-            page: AdminNavigationMainRoute.page,
+            page: DirectorNavigationMainRoute.page,
             path: AppRoutesConstants.adminNavigation,
             maintainState: true,
             children: <AutoRoute>[

@@ -1,5 +1,5 @@
 {
-
+"director_name": "اسم المدير",
 "authenticate_to_login":  "المصادقة لتسجيل الدخول",
  "continue" : "استمرار",
 "authentication_failed_please_login_again":  "فشلت المصادقة، يرجى تسجيل الدخول مرة أخرى",
@@ -47,7 +47,7 @@
   "project_director": "مدير المشروع",
   "on_mission": "في مهمة",
   "on_leave": "في إجازة",
-  "mission/leave_calendar": "تقويم المهمات والإجازات",
+  "mission/leave_calendar_for_directors":  "تقويم المهمات/الإجازات للمديرين",
   "managers_on_mission": "المديرون في مهمة",
   "managers_on_leave": "المديرون في إجازة",
   "department_on_mission": "القسم في مهمة",

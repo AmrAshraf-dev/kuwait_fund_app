@@ -10,8 +10,7 @@ import '../../../../core/network/base_handling.dart';
 import '../../../operations/data/data_sources/remote/operations_remote_data_source.dart';
 import '../../../shared/entity/base_entity.dart';
 import '../../domain/repositories/operations_repository.dart';
-import '../models/request/operations_request_model.dart';
-
+ 
 @Injectable(as: OperationsRepository)
 class OperationsRepositoryImp implements OperationsRepository {
   OperationsRepositoryImp({

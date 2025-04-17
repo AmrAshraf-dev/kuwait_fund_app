@@ -36,7 +36,7 @@ void main() async {
 
   Bloc.observer = AliveCubitObserver();
   await Firebase.initializeApp(
-    name: "Swa",
+    name: "kf_ess",
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessagingService().init();

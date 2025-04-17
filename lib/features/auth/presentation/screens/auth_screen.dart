@@ -193,7 +193,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       context, userInfo.errorMsg ?? "error");
                                 } else if (userInfo.isDirector ?? false) {
                                   CustomMainRouter.push(
-                                      AdminNavigationMainRoute());
+                                      DirectorNavigationMainRoute());
                                 }
                                 
                                 else if (userInfo.isSupervisor ?? false) {
