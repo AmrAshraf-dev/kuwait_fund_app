@@ -16,6 +16,7 @@ class ApproveLeaveRequestCubit extends Cubit<ApproveLeaveRequestState> {
 
   void createApproveLeaveRequest(
       ApproveLeaveRequestModel approveLeaveRequestModel) async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(ApproveLeaveRequestLoadingState());
 
     final CustomResponseType<BaseEntity<String>> eitherPackagesOrFailure =
@@ -27,7 +28,14 @@ class ApproveLeaveRequestCubit extends Cubit<ApproveLeaveRequestState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<String> response) {
-      emit(ApproveLeaveRequestReadyState(response));
+      //emit(ApproveLeaveRequestReadyState(response)
+      if (response.code != 404) {
+        emit(ApproveLeaveRequestReadyState(response));
+      } else {
+        emit(ApproveLeaveRequestErrorState(
+          message: response.message ?? "Error",
+        ));
+      }
     });
   }
 }

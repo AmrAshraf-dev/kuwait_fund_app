@@ -69,7 +69,7 @@ class SubmissionsDataSourceImpl implements SubmissionsRemoteDataSource {
           {required ApproveLeaveRequestModel approveLeaveRequestModel}) async {
     ({dynamic response, bool success}) result = await networkHelper.post(
         path: ApiConstants.approveLeaveRequest,
-        data: approveLeaveRequestModel.toJson());
+        queryParams: approveLeaveRequestModel.toJson());
 
     if (result.success) {
       return right(ApproveLeaveRequestResponseModel.fromJson(result.response));
@@ -84,7 +84,7 @@ class SubmissionsDataSourceImpl implements SubmissionsRemoteDataSource {
           {required RejectLeaveRequestModel rejectLeaveRequestModel}) async {
     ({dynamic response, bool success}) result = await networkHelper.post(
         path: ApiConstants.rejectLeaveRequest,
-        data: rejectLeaveRequestModel.toJson());
+        queryParams: rejectLeaveRequestModel.toJson());
 
     if (result.success) {
       return right(RejectLeaveRequestResponseModel.fromJson(result.response));

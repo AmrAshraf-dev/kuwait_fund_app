@@ -14,6 +14,7 @@ import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentatio
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/rejection_reason_bottomsheet.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
@@ -130,95 +131,105 @@ class SubmissionItemWidget extends StatelessWidget {
                                 BlocConsumer<ApproveLeaveRequestCubit,
                                         ApproveLeaveRequestState>(
                                     listener: (context, state) {
-                                  if (state is ApproveLeaveRequestErrorState) {
+                                  if (state
+                                      is ApproveLeaveRequestLoadingState) {
+                                    ViewsToolbox.showLoading();
+                                  } else if (state
+                                      is ApproveLeaveRequestReadyState) {
+                                    ViewsToolbox.dismissLoading();
+                                    ViewsToolbox.showMessageBottomsheet(
+                                      context: context,
+                                      closeOnlyPopup: true,
+                                      status: ConfirmationPopupStatus.success,
+                                      message: context
+                                          .tr("request_approved_successfully"),
+                                    );
+                                  } else if (state
+                                      is ApproveLeaveRequestErrorState) {
                                     ViewsToolbox.dismissLoading();
 
                                     ViewsToolbox.showErrorAwesomeSnackBar(
                                         context, state.message!);
                                   }
                                 }, builder: (context, state) {
-                                  if (state
-                                      is ApproveLeaveRequestLoadingState) {
-                                    ViewsToolbox.showLoading();
-                                  } else if (state
-                                      is ApproveLeaveRequestReadyState) {
-                                    return CustomElevatedButton(
-                                        width: 100.w,
-                                        height: 35.h,
-                                        backgroundColor: Palette.green_5CAC00,
-                                        onPressed: () async {
-                                          // ViewsToolbox.showMessageBottomsheet(
-                                          //   context: context,
-                                          //   status: ConfirmationPopupStatus.success,
-                                          //   message: context
-                                          //       .tr("request_submitted_successfully"),
-                                          // );
-                                          // Usage:
-                                          final result =
-                                              await showConfirmationDialog(
-                                                  context: context,
-                                                  title: context
-                                                      .tr('approveRequest'),
-                                                  content: context.tr(
-                                                      'approveConfirmation'),
-                                                  yesText:
-                                                      context.tr('approve'),
-                                                  noText: context.tr('cancel'),
-                                                  yesColor:
-                                                      Palette.green_5CAC00,
-                                                  noColor: Palette.red_FF0606);
-                                          if (result ?? false) {
-                                            // User confirmed
-                                          }
-                                        },
-                                        customChild: AppText(
-                                          text: context.tr("approve"),
-                                          style: AppTextStyle.semiBold_13,
-                                          textColor: Palette.white,
-                                        ));
-                                  }
-                                  return AppText(
-                                    text: 'empty approve',
-                                  );
+                                  return CustomElevatedButton(
+                                      width: 100.w,
+                                      height: 35.h,
+                                      backgroundColor: Palette.green_5CAC00,
+                                      onPressed: () async {
+                                        // ViewsToolbox.showMessageBottomsheet(
+                                        //   context: context,
+                                        //   status: ConfirmationPopupStatus.success,
+                                        //   message: context
+                                        //       .tr("request_submitted_successfully"),
+                                        // );
+                                        // Usage:
+                                        final result =
+                                            await showConfirmationDialog(
+                                                context: context,
+                                                title: context
+                                                    .tr('approveRequest'),
+                                                content: context
+                                                    .tr('approveConfirmation'),
+                                                yesText: context.tr('approve'),
+                                                noText: context.tr('cancel'),
+                                                yesColor: Palette.green_5CAC00,
+                                                noColor: Palette.red_FF0606);
+                                        if (result ?? false) {
+                                          // User confirmed
+                                        }
+                                      },
+                                      customChild: AppText(
+                                        text: context.tr("approve"),
+                                        style: AppTextStyle.semiBold_13,
+                                        textColor: Palette.white,
+                                      ));
                                 }),
                                 10.horizontalSpace,
                                 BlocConsumer<RejectLeaveRequestCubit,
                                         RejectLeaveRequestState>(
                                     listener: (context, state) {
+                                  if (state is RejectLeaveRequestLoadingState) {
+                                    ViewsToolbox.showLoading();
+                                  }
                                   if (state is RejectLeaveRequestErrorState) {
                                     ViewsToolbox.dismissLoading();
 
                                     ViewsToolbox.showErrorAwesomeSnackBar(
                                         context, state.message!);
                                   } else if (state
-                                      is RejectLeaveRequestLoadingState) {
-                                    ViewsToolbox.showLoading();
+                                      is RejectLeaveRequestReadyState) {
+                                    ViewsToolbox.dismissLoading();
+                                    ViewsToolbox.showMessageBottomsheet(
+                                      context: context,
+                                      closeOnlyPopup: true,
+                                      status: ConfirmationPopupStatus.success,
+                                      message: context
+                                          .tr("request_rejected_successfully"),
+                                    );
                                   }
                                 }, builder: (context, state) {
-                                  if (state is RejectLeaveRequestReadyState) {
-                                    return CustomElevatedButton(
-                                        width: 100.w,
-                                        height: 35.h,
-                                        backgroundColor: Palette.red_FF0606,
-                                        onPressed: () {
-                                          ViewsToolbox.showBottomSheet(
-                                              context: context,
-                                              height: 400.h,
-                                              customWidget:
-                                                  RejectionReasonBottomSheet(
-                                                submissionsEntity:
-                                                    submissionsEntity,
-                                              ));
-                                        },
-                                        customChild: AppText(
-                                          text: context.tr("reject"),
-                                          style: AppTextStyle.semiBold_13,
-                                          textColor: Palette.white,
-                                        ));
-                                  }
-                                  return AppText(
-                                    text: 'empty reject',
-                                  );
+                                  return CustomElevatedButton(
+                                      width: 100.w,
+                                      height: 35.h,
+                                      backgroundColor: Palette.red_FF0606,
+                                      onPressed: ()  {
+                                        ViewsToolbox.showBottomSheet(
+                                            context: context,
+                                            height: 400.h,
+                                            customWidget:
+                                                 RejectionReasonBottomSheet(
+                                              submissionsEntity:
+                                                  submissionsEntity,
+                                              rejectLeaveRequestCubit:
+                                                  rejectLeaveRequestCubit,
+                                            ));
+                                      },
+                                      customChild: AppText(
+                                        text: context.tr("reject"),
+                                        style: AppTextStyle.semiBold_13,
+                                        textColor: Palette.white,
+                                      ));
                                 })
                               ],
                             ),
@@ -268,6 +279,7 @@ class SubmissionItemWidget extends StatelessWidget {
                   style: TextStyle(color: yesColor),
                 ),
                 onPressed: () {
+                  Navigator.of(context).pop(true);
                   approveLeaveRequestCubit
                       .createApproveLeaveRequest(ApproveLeaveRequestModel(
                     leaveRequestID: submissionsEntity.id,

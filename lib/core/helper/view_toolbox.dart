@@ -249,6 +249,7 @@ class ViewsToolbox {
     bool enableDrag = true,
     required BuildContext context,
     Color? customBackgroundColor,
+    void Function()? func,
   }) {
     showModalBottomSheet<void>(
       backgroundColor: Palette.transparntColor,

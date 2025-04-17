@@ -46,13 +46,15 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
   @override
   Future<CustomResponseType<RequestsResponseModel>> getRequests(
       {required RequestsRequestModel requestsRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper
-        .get(path: ApiConstants.getUserRequests, queryParams: <String, String>{
-      if (requestsRequestModel.requestTypeID == null)
-        "requestTypeID": "0" // Get all requests
-      else
-        "requestTypeID": requestsRequestModel.requestTypeID!,
-    });
+    ({dynamic response, bool success}) result = await networkHelper.get(
+      path: ApiConstants.getUserRequests,
+      //     queryParams: <String, String>{
+      //   if (requestsRequestModel.requestTypeID == null)
+      //     "requestTypeID": "0" // Get all requests
+      //   else
+      //     "requestTypeID": requestsRequestModel.requestTypeID!,
+      // }
+    );
 
     if (result.success) {
       return right(RequestsResponseModel.fromJson(result.response));
@@ -131,10 +133,9 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
   @override
   Future<CustomResponseType<DeleteLeaveResponseModel>> deleteLeave(
       {required DeleteLeaveRequestModel deleteLeaveRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper
-        .post(path: ApiConstants.deleteLeave, queryParams: <String, dynamic>{
-      "leaveRequestId": deleteLeaveRequestModel.leaveRequestID ?? '100',
-    });
+    ({dynamic response, bool success}) result = await networkHelper.post(
+        path: ApiConstants.deleteLeave,
+        queryParams: deleteLeaveRequestModel.toJson());
 
     if (result.success) {
       return right(DeleteLeaveResponseModel.fromJson(result.response));

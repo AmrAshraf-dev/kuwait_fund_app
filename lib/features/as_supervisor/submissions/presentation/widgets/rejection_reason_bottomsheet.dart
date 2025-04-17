@@ -8,17 +8,18 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/reject_leave_request_model.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submission_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/reject_leave_request_cubit/reject_leave_request_cubit.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_area_field_widget.dart';
 
 class RejectionReasonBottomSheet extends StatelessWidget {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
-  final RejectLeaveRequestCubit rejectLeaveRequestCubit =
-      getIt<RejectLeaveRequestCubit>();
+  final RejectLeaveRequestCubit rejectLeaveRequestCubit;
   final SubmissionEntity? submissionsEntity;
-  RejectionReasonBottomSheet({super.key, this.submissionsEntity});
+  RejectionReasonBottomSheet(
+      {super.key,
+      this.submissionsEntity,
+      required this.rejectLeaveRequestCubit});
   TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
@@ -67,13 +68,14 @@ class RejectionReasonBottomSheet extends StatelessWidget {
                       text: context.tr("submit"),
                       onPressed: () {
                         if (_formKey.currentState!.saveAndValidate()) {
-                          print(_formKey.currentState!.value);
-                          rejectLeaveRequestCubit.rejectLeaveRequestUseCase(
-                              RejectLeaveRequestModel(
+                          Navigator.pop(context);
+                          rejectLeaveRequestCubit
+                              .createRejectLeaveRequest(RejectLeaveRequestModel(
                             leaveRequestID: submissionsEntity?.id,
-                            rejectReason: controller?.text,
+                            rejectReason: _formKey.currentState!
+                                .fields["reason_for_rejection"]!.value
+                                .toString(),
                           ));
-                          CustomMainRouter.pop();
                         }
                       },
                     ),

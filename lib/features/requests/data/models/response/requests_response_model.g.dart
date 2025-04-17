@@ -8,22 +8,30 @@ part of 'requests_response_model.dart';
 
 RequestsModel _$RequestsModelFromJson(Map<String, dynamic> json) =>
     RequestsModel(
-      requestID: json['requestID'] as String?,
-      requestTypeID: json['requestTypeID'] as String?,
+      leaveID: json['leaveID'] as String?,
       requestDate: json['requestDate'] as String?,
-      requestStatus: json['requestStatus'] as String?,
-      requestTitle: json['requestTitle'] as String?,
-      details: json['details'] as String?,
+      leaveStatus: json['leaveStatus'] as String?,
+      leaveStartDate: json['leaveStartDate'] as String?,
+      leaveEndDate: json['leaveEndDate'] as String?,
+      leaveType: json['leaveType'] as String?,
+      leaveExtendDate: json['leaveExtendDate'] as String?,
+      leaveExtendedFlag: json['leaveExtendedFlag'] as bool?,
+      showExtendButton: json['showExtendButton'] as bool?,
+      showCancelButton: json['showCancelButton'] as bool?,
     );
 
 Map<String, dynamic> _$RequestsModelToJson(RequestsModel instance) =>
     <String, dynamic>{
-      'requestID': instance.requestID,
-      'requestTypeID': instance.requestTypeID,
+      'leaveID': instance.leaveID,
       'requestDate': instance.requestDate,
-      'requestStatus': instance.requestStatus,
-      'requestTitle': instance.requestTitle,
-      'details': instance.details,
+      'leaveStatus': instance.leaveStatus,
+      'leaveStartDate': instance.leaveStartDate,
+      'leaveEndDate': instance.leaveEndDate,
+      'leaveType': instance.leaveType,
+      'leaveExtendDate': instance.leaveExtendDate,
+      'leaveExtendedFlag': instance.leaveExtendedFlag,
+      'showExtendButton': instance.showExtendButton,
+      'showCancelButton': instance.showCancelButton,
     };
 
 RequestsResponseModel _$RequestsResponseModelFromJson(

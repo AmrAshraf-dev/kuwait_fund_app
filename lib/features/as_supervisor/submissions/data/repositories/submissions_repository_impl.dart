@@ -40,8 +40,9 @@ class SubmissionsRepositoryImp implements SubmissionsRepository {
   }
 
   @override
-  Future<CustomResponseType<BaseEntity<String>>> createRejectLeaveRequest({required RejectLeaveRequestModel rejectLeaveRequestModel}) {
-   return submissionsRemoteDataSource.createRejectLeaveRequest(
+  Future<CustomResponseType<BaseEntity<String>>> createRejectLeaveRequest(
+      {required RejectLeaveRequestModel rejectLeaveRequestModel}) {
+    return submissionsRemoteDataSource.createRejectLeaveRequest(
         rejectLeaveRequestModel: rejectLeaveRequestModel);
   }
 }
