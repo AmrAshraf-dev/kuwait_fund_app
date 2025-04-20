@@ -7,11 +7,10 @@ import "package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave
 import "package:kf_ess_mobile_app/features/requests/domain/entities/delete_leave_entity.dart";
 import "package:kf_ess_mobile_app/features/requests/domain/entities/extend_leave_entity.dart";
 import "package:kf_ess_mobile_app/features/requests/domain/entities/request_type_entity.dart";
+import "package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
-import "../../data/models/request/requests_request_model.dart";
-import "../entities/requests_entity.dart";
 
 /// Data operations for the Requests collection
 abstract class RequestsRepository {
@@ -20,9 +19,7 @@ abstract class RequestsRepository {
   abstracting the data layer from the business logic layer. 
   */
 
-  Future<CustomResponseType<BaseEntity<List<RequestsEntity>>>> getRequests({
-    required RequestsRequestModel requestsParams,
-  });
+  Future<CustomResponseType<BaseEntity<List<RequestsEntity>>>> getRequests();
 
   Future<CustomResponseType<BaseEntity<List<RequestTypeEntity>>>>
       getRequestTypes();

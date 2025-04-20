@@ -15,9 +15,9 @@ ContributionModel _$ContributionModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ContributionModelToJson(ContributionModel instance) =>
     <String, dynamic>{
-      'foundationName': instance.foundationName,
-      'paidUpAmount': instance.paidUpAmount,
-      'committedAmount': instance.committedAmount,
+      if (instance.foundationName case final value?) 'foundationName': value,
+      if (instance.paidUpAmount case final value?) 'paidUpAmount': value,
+      if (instance.committedAmount case final value?) 'committedAmount': value,
     };
 
 ContributionsResponseModel _$ContributionsResponseModelFromJson(
@@ -35,9 +35,10 @@ ContributionsResponseModel _$ContributionsResponseModelFromJson(
 Map<String, dynamic> _$ContributionsResponseModelToJson(
         ContributionsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

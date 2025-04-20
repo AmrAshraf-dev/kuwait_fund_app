@@ -15,5 +15,5 @@ SubmissionsRequestModel _$SubmissionsRequestModelFromJson(
 Map<String, dynamic> _$SubmissionsRequestModelToJson(
         SubmissionsRequestModel instance) =>
     <String, dynamic>{
-      'requestTypeID': instance.requestTypeID,
+      if (instance.requestTypeID case final value?) 'requestTypeID': value,
     };

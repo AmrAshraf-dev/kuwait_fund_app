@@ -15,9 +15,9 @@ SubscriberModel _$SubscriberModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SubscriberModelToJson(SubscriberModel instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'relation': instance.relation,
-      'dateOfBirth': instance.dateOfBirth,
+      if (instance.name case final value?) 'name': value,
+      if (instance.relation case final value?) 'relation': value,
+      if (instance.dateOfBirth case final value?) 'dateOfBirth': value,
     };
 
 SubscriberResponseModel _$SubscriberResponseModelFromJson(
@@ -35,9 +35,10 @@ SubscriberResponseModel _$SubscriberResponseModelFromJson(
 Map<String, dynamic> _$SubscriberResponseModelToJson(
         SubscriberResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

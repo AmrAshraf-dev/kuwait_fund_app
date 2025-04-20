@@ -22,15 +22,15 @@ OldSubmissionsModel _$OldSubmissionsModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$OldSubmissionsModelToJson(
         OldSubmissionsModel instance) =>
     <String, dynamic>{
-      'requestID': instance.requestID,
-      'requestType': instance.requestType,
-      'statusCode': instance.statusCode,
-      'requestDate': instance.requestDate,
-      'startDate': instance.startDate,
-      'endDate': instance.endDate,
-      'courseName': instance.courseName,
-      'loanReason': instance.loanReason,
-      'loanAmount': instance.loanAmount,
+      if (instance.requestID case final value?) 'requestID': value,
+      if (instance.requestType case final value?) 'requestType': value,
+      if (instance.statusCode case final value?) 'statusCode': value,
+      if (instance.requestDate case final value?) 'requestDate': value,
+      if (instance.startDate case final value?) 'startDate': value,
+      if (instance.endDate case final value?) 'endDate': value,
+      if (instance.courseName case final value?) 'courseName': value,
+      if (instance.loanReason case final value?) 'loanReason': value,
+      if (instance.loanAmount case final value?) 'loanAmount': value,
     };
 
 OldSubmissionsResponseModel _$OldSubmissionsResponseModelFromJson(
@@ -48,9 +48,10 @@ OldSubmissionsResponseModel _$OldSubmissionsResponseModelFromJson(
 Map<String, dynamic> _$OldSubmissionsResponseModelToJson(
         OldSubmissionsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

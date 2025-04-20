@@ -16,6 +16,6 @@ MyAttendanceRequestModel _$MyAttendanceRequestModelFromJson(
 Map<String, dynamic> _$MyAttendanceRequestModelToJson(
         MyAttendanceRequestModel instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'lang': instance.lang,
+      if (instance.email case final value?) 'email': value,
+      if (instance.lang case final value?) 'lang': value,
     };

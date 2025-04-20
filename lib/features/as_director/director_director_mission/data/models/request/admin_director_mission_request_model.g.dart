@@ -16,6 +16,6 @@ AdminDirectorMissionRequestModel _$AdminDirectorMissionRequestModelFromJson(
 Map<String, dynamic> _$AdminDirectorMissionRequestModelToJson(
         AdminDirectorMissionRequestModel instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'lang': instance.lang,
+      if (instance.email case final value?) 'email': value,
+      if (instance.lang case final value?) 'lang': value,
     };

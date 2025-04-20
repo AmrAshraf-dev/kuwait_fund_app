@@ -16,6 +16,6 @@ CertificatesRequestModel _$CertificatesRequestModelFromJson(
 Map<String, dynamic> _$CertificatesRequestModelToJson(
         CertificatesRequestModel instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'lang': instance.lang,
+      if (instance.email case final value?) 'email': value,
+      if (instance.lang case final value?) 'lang': value,
     };

@@ -14,8 +14,8 @@ DirectorsModel _$DirectorsModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$DirectorsModelToJson(DirectorsModel instance) =>
     <String, dynamic>{
-      'employeeId': instance.employeeId,
-      'employeeName': instance.employeeName,
+      if (instance.employeeId case final value?) 'employeeId': value,
+      if (instance.employeeName case final value?) 'employeeName': value,
     };
 
 DirectorsResponseModel _$DirectorsResponseModelFromJson(
@@ -33,9 +33,10 @@ DirectorsResponseModel _$DirectorsResponseModelFromJson(
 Map<String, dynamic> _$DirectorsResponseModelToJson(
         DirectorsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

@@ -16,6 +16,6 @@ ContactusRequestModel _$ContactusRequestModelFromJson(
 Map<String, dynamic> _$ContactusRequestModelToJson(
         ContactusRequestModel instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'lang': instance.lang,
+      if (instance.email case final value?) 'email': value,
+      if (instance.lang case final value?) 'lang': value,
     };

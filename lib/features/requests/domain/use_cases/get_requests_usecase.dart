@@ -9,15 +9,15 @@ import "../repositories/requests_repository.dart";
 
 @injectable
 class GetRequestsUseCase
-    implements UseCase<BaseEntity<List<RequestsEntity>>, RequestsRequestModel> {
+    implements UseCaseNoParam<BaseEntity<List<RequestsEntity>>> {
   GetRequestsUseCase({required this.requestsRepository});
 
   final RequestsRepository requestsRepository;
 
   @override
   Future<CustomResponseType<BaseEntity<List<RequestsEntity>>>> call(
-    RequestsRequestModel params,
+   
   ) {
-    return requestsRepository.getRequests(requestsParams: params);
+    return requestsRepository.getRequests();
   }
 }

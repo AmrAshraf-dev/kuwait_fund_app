@@ -17,7 +17,7 @@ ManagementCalenderDataRequestModel _$ManagementCalenderDataRequestModelFromJson(
 Map<String, dynamic> _$ManagementCalenderDataRequestModelToJson(
         ManagementCalenderDataRequestModel instance) =>
     <String, dynamic>{
-      'month': instance.month,
-      'year': instance.year,
-      'empID': instance.empID,
+      if (instance.month case final value?) 'month': value,
+      if (instance.year case final value?) 'year': value,
+      if (instance.empID case final value?) 'empID': value,
     };

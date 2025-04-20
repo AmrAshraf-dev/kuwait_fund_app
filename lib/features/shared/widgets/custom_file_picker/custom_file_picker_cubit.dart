@@ -12,7 +12,7 @@ class FilePickerCubit extends Cubit<FilePickerState> {
 
   Future<void> pickFile({
     FileType filetype = FileType.custom,
-    List<String> allowedExtensions = const <String>['pdf'],
+    List<String>? allowedExtensions ,
     bool allowMultiple = false,
   }) async {
     final FilePickerResult? pickedImage = await FilePicker.platform.pickFiles(

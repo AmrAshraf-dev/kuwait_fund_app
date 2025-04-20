@@ -21,13 +21,13 @@ ContactusModel _$ContactusModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ContactusModelToJson(ContactusModel instance) =>
     <String, dynamic>{
-      'operationsEmail': instance.operationsEmail,
-      'webmasterEmail': instance.webmasterEmail,
-      'fax': instance.fax,
-      'telephoneNumber': instance.telephoneNumber,
-      'address': instance.address,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
+      if (instance.operationsEmail case final value?) 'operationsEmail': value,
+      if (instance.webmasterEmail case final value?) 'webmasterEmail': value,
+      if (instance.fax case final value?) 'fax': value,
+      if (instance.telephoneNumber case final value?) 'telephoneNumber': value,
+      if (instance.address?.toJson() case final value?) 'address': value,
+      if (instance.latitude case final value?) 'latitude': value,
+      if (instance.longitude case final value?) 'longitude': value,
     };
 
 ContactusResponseModel _$ContactusResponseModelFromJson(
@@ -45,9 +45,9 @@ ContactusResponseModel _$ContactusResponseModelFromJson(
 Map<String, dynamic> _$ContactusResponseModelToJson(
         ContactusResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

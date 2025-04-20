@@ -27,7 +27,7 @@ class ForgetPassDataSourceImpl implements ForgetPassRemoteDataSource {
   @override
   Future<CustomResponseType<ForgetPassResponseModel>> getForgetPass(
       {required ForgetPassRequestModel forgetPassRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
+    ({dynamic response, bool success}) result = await networkHelper.post(
       path: ApiConstants.generateOTP,
       queryParams: forgetPassRequestModel.toJson(),
     );
@@ -42,7 +42,7 @@ class ForgetPassDataSourceImpl implements ForgetPassRemoteDataSource {
   @override
   Future<CustomResponseType<ForgetPassResponseModel>> verifyOtp(
       {required ForgetPassRequestModel forgetPassRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
+    ({dynamic response, bool success}) result = await networkHelper.post(
       path: ApiConstants.verifyOTP,
       queryParams: forgetPassRequestModel.toJson(),
     );
@@ -57,7 +57,7 @@ class ForgetPassDataSourceImpl implements ForgetPassRemoteDataSource {
   @override
   Future<CustomResponseType<ForgetPassResponseModel>> changePassword(
       {required ForgetPassRequestModel forgetPassRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
+    ({dynamic response, bool success}) result = await networkHelper.post(
       path: ApiConstants.changePassword,
       queryParams: forgetPassRequestModel.toJson(),
     );

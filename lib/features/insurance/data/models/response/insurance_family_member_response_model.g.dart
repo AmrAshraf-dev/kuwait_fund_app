@@ -21,13 +21,13 @@ InsuranceFamilyMemberModel _$InsuranceFamilyMemberModelFromJson(
 Map<String, dynamic> _$InsuranceFamilyMemberModelToJson(
         InsuranceFamilyMemberModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'englishName': instance.englishName,
-      'dateOfBirth': instance.dateOfBirth,
-      'gender': instance.gender,
-      'relativeInd': instance.relativeInd,
-      'isSubscribed': instance.isSubscribed,
+      if (instance.id case final value?) 'id': value,
+      if (instance.name case final value?) 'name': value,
+      if (instance.englishName case final value?) 'englishName': value,
+      if (instance.dateOfBirth case final value?) 'dateOfBirth': value,
+      if (instance.gender case final value?) 'gender': value,
+      if (instance.relativeInd case final value?) 'relativeInd': value,
+      if (instance.isSubscribed case final value?) 'isSubscribed': value,
     };
 
 InsuranceFamilyMemberResponseModel _$InsuranceFamilyMemberResponseModelFromJson(
@@ -46,9 +46,10 @@ InsuranceFamilyMemberResponseModel _$InsuranceFamilyMemberResponseModelFromJson(
 Map<String, dynamic> _$InsuranceFamilyMemberResponseModelToJson(
         InsuranceFamilyMemberResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

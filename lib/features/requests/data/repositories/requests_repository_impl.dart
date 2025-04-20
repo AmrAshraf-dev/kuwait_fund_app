@@ -26,9 +26,9 @@ class RequestsRepositoryImp implements RequestsRepository {
 
   @override
   Future<CustomResponseType<BaseEntity<List<RequestsModel>>>> getRequests(
-      {required RequestsRequestModel requestsParams}) async {
+    ) async {
     return await requestsRemoteDataSource.getRequests(
-        requestsRequestModel: requestsParams);
+        );
   }
 
   @override

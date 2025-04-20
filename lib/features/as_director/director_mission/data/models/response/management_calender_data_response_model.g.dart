@@ -16,8 +16,8 @@ ManagementCalenderDataModel _$ManagementCalenderDataModelFromJson(
 Map<String, dynamic> _$ManagementCalenderDataModelToJson(
         ManagementCalenderDataModel instance) =>
     <String, dynamic>{
-      'asDate': instance.asDate,
-      'leave_type': instance.leave_type,
+      if (instance.asDate case final value?) 'asDate': value,
+      if (instance.leave_type case final value?) 'leave_type': value,
     };
 
 ManagementCalenderDataResponseModel
@@ -36,9 +36,10 @@ ManagementCalenderDataResponseModel
 Map<String, dynamic> _$ManagementCalenderDataResponseModelToJson(
         ManagementCalenderDataResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

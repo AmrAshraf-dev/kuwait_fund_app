@@ -19,26 +19,27 @@ class LocaleCubit extends Cubit<Locale> {
   }
 
   // Method to update the locale
-  void setLocale(BuildContext context, Locale locale) {
-    LocalData.setLangCode(locale.languageCode);
-    context.setLocale(locale);
+  // void setLocale(BuildContext context, Locale locale) {
+  //   LocalData.setLangCode(locale.languageCode);
+  //   context.setLocale(locale); // Update EasyLocalization context
+  //   emit(locale); // Emit the new locale
+  //   debugPrint("Locale set to: ${locale.languageCode}");
+  //   MyApp.of(context).updateState(); // Force app rebuild
+  // }
 
-    MyApp.of(context).updateState();
-    // emit(LocaleChangedState(_locale));
-  }
-
-  void toggleLocale(BuildContext context, bool isEnglish) {
-    if (isEnglish) {
+  void toggleLocale(BuildContext context, bool isArabic) {
+    Locale newLocale;
+    if (isArabic) {
+      newLocale = const Locale("en", "US"); // English locale
       LocalData.setLangCode("en");
-      context.setLocale(Locale("en", "US"));
-      MyApp.of(context).updateState();
-      emit(const Locale("en", "US")); // English locale
     } else {
+      newLocale = const Locale("ar", "KW"); // Arabic locale
       LocalData.setLangCode("ar");
-      context.setLocale(Locale("ar", "KW"));
-      MyApp.of(context).updateState();
-      emit(const Locale("ar", "KW")); // Arabic locale
     }
+    context.setLocale(newLocale); // Update EasyLocalization context
+    emit(newLocale); // Emit the new locale
+    debugPrint("Locale toggled to: ${newLocale.languageCode}");
+   // MyApp.of(context).updateState(); // Force app rebuild
   }
 
   Locale _getLocal() {

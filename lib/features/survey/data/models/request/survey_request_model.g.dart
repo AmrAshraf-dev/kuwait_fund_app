@@ -14,6 +14,6 @@ SurveyRequestModel _$SurveyRequestModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SurveyRequestModelToJson(SurveyRequestModel instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'lang': instance.lang,
+      if (instance.email case final value?) 'email': value,
+      if (instance.lang case final value?) 'lang': value,
     };

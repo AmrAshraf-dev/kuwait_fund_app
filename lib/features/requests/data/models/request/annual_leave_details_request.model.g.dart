@@ -16,6 +16,6 @@ AnnualLeaveDetailsRequestModel _$AnnualLeaveDetailsRequestModelFromJson(
 Map<String, dynamic> _$AnnualLeaveDetailsRequestModelToJson(
         AnnualLeaveDetailsRequestModel instance) =>
     <String, dynamic>{
-      'startDate': instance.startDate,
-      'endDate': instance.endDate,
+      if (instance.startDate case final value?) 'startDate': value,
+      if (instance.endDate case final value?) 'endDate': value,
     };

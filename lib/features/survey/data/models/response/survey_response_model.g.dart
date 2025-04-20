@@ -13,8 +13,8 @@ SurveyModel _$SurveyModelFromJson(Map<String, dynamic> json) => SurveyModel(
 
 Map<String, dynamic> _$SurveyModelToJson(SurveyModel instance) =>
     <String, dynamic>{
-      'var1': instance.var1,
-      'var2': instance.var2,
+      if (instance.var1 case final value?) 'var1': value,
+      if (instance.var2 case final value?) 'var2': value,
     };
 
 SurveyResponseModel _$SurveyResponseModelFromJson(Map<String, dynamic> json) =>
@@ -31,9 +31,9 @@ SurveyResponseModel _$SurveyResponseModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SurveyResponseModelToJson(
         SurveyResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

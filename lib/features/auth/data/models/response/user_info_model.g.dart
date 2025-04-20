@@ -22,14 +22,15 @@ UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserInfoModelToJson(UserInfoModel instance) =>
     <String, dynamic>{
-      'isError': instance.isError,
-      'errorMsg': instance.errorMsg,
-      'isValidUser': instance.isValidUser,
-      'isDirector': instance.isDirector,
-      'isSupervisor': instance.isSupervisor,
-      'isTrainingSupervisor': instance.isTrainingSupervisor,
-      'name': instance.name,
-      'designation': instance.designation,
-      'phoneNumber': instance.phoneNumber,
-      'photoURL': instance.photoURL,
+      if (instance.isError case final value?) 'isError': value,
+      if (instance.errorMsg case final value?) 'errorMsg': value,
+      if (instance.isValidUser case final value?) 'isValidUser': value,
+      if (instance.isDirector case final value?) 'isDirector': value,
+      if (instance.isSupervisor case final value?) 'isSupervisor': value,
+      if (instance.isTrainingSupervisor case final value?)
+        'isTrainingSupervisor': value,
+      if (instance.name case final value?) 'name': value,
+      if (instance.designation case final value?) 'designation': value,
+      if (instance.phoneNumber case final value?) 'phoneNumber': value,
+      if (instance.photoURL case final value?) 'photoURL': value,
     };

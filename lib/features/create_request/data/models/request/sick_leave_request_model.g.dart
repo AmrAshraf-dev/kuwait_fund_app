@@ -16,6 +16,6 @@ SickLeaveRequestModel _$SickLeaveRequestModelFromJson(
 Map<String, dynamic> _$SickLeaveRequestModelToJson(
         SickLeaveRequestModel instance) =>
     <String, dynamic>{
-      'fileExtention': instance.fileExtention,
-      'bytes': instance.bytes,
+      if (instance.fileExtention case final value?) 'fileExtention': value,
+      if (instance.bytes case final value?) 'bytes': value,
     };

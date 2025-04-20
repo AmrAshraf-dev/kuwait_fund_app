@@ -13,7 +13,7 @@ LeaveBalanceModel _$LeaveBalanceModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$LeaveBalanceModelToJson(LeaveBalanceModel instance) =>
     <String, dynamic>{
-      'data': instance.data,
+      if (instance.data case final value?) 'data': value,
     };
 
 LeaveBalanceResponseModel _$LeaveBalanceResponseModelFromJson(
@@ -29,9 +29,9 @@ LeaveBalanceResponseModel _$LeaveBalanceResponseModelFromJson(
 Map<String, dynamic> _$LeaveBalanceResponseModelToJson(
         LeaveBalanceResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

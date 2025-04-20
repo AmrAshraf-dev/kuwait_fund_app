@@ -14,6 +14,6 @@ HomeRequestModel _$HomeRequestModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$HomeRequestModelToJson(HomeRequestModel instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'lang': instance.lang,
+      if (instance.email case final value?) 'email': value,
+      if (instance.lang case final value?) 'lang': value,
     };

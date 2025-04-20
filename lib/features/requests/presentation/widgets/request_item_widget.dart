@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,15 +17,21 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 
-class RequestItemWidget extends StatelessWidget {
+class RequestItemWidget extends StatefulWidget {
   final RequestsEntity request;
-  int? requestID;
+  final RequestsCubit requestsCubit;
 
-  RequestItemWidget({super.key, required this.request, this.requestID});
+  RequestItemWidget({super.key, required this.request , required this.requestsCubit});
 
+  @override
+  State<RequestItemWidget> createState() => _RequestItemWidgetState();
+}
+
+class _RequestItemWidgetState extends State<RequestItemWidget> {
   final DeleteLeaveCubit deleteLeaveCubit = getIt<DeleteLeaveCubit>();
+
   final ExtendLeaveCubit extendLeaveCubit = getIt<ExtendLeaveCubit>();
-  final RequestsCubit requestsCubit = getIt<RequestsCubit>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,173 +39,139 @@ class RequestItemWidget extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => deleteLeaveCubit),
         BlocProvider(create: (context) => extendLeaveCubit),
-        BlocProvider(create: (context) => requestsCubit),
       ],
-      child: Padding(
-        padding: EdgeInsetsDirectional.only(start: 27.w, end: 18.w, top: 21.h),
-        child: Container(
-            height: request.leaveStatus == 'Pending' ? 190.h : 150.h,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Palette.grey_7B7B7B.withOpacity(0.2),
-                  blurRadius: 10.0,
-                  offset: Offset(0, 4),
-                ),
-              ],
-              color: Palette.white,
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 23.w, vertical: 18.h),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppText(
-                        text: request.requestDate?.showDateWithFormat(),
+      child: Container(
+          height: widget.request.leaveStatus == 'Pending' ? 190.h : 150.h,
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Palette.grey_7B7B7B.withOpacity(0.2),
+                blurRadius: 10.0,
+                offset: Offset(0, 4),
+              ),
+            ],
+            color: Palette.white,
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 23.w, vertical: 18.h),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Directionality(
+                         textDirection: TextDirection.ltr,
+                      child: AppText(
+                        text: widget.request.requestDate?.showDateWithFormat(),
                         style: AppTextStyle.semiBold_12,
                         textColor: Palette.semiTextGrey,
                       ),
-                      if (request.leaveStatus != null)
-                        Container(
-                          decoration: BoxDecoration(
-                            color: _getRequestStatusColor(
-                                request.leaveStatus ?? ""),
-                            borderRadius: BorderRadius.circular(6.r),
+                    ),
+                    if (widget.request.leaveStatus != null)
+                      Container(
+                        decoration: BoxDecoration(
+                          color: _getRequestStatusColor(
+                              widget.request.leaveStatus ?? ""),
+                          borderRadius: BorderRadius.circular(6.r),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: AppText(
+                            text: context.tr(widget.request.leaveStatus ?? ""),
+                            textColor: Colors.white,
+                            style: AppTextStyle.semiBold_12,
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: AppText(
-                              text: context.tr(request.leaveStatus ?? ""),
-                              textColor: Colors.white,
-                              style: AppTextStyle.semiBold_12,
-                            ),
-                          ),
-                        )
-                    ],
-                  ),
-                  11.verticalSpace,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText(
-                            //  text: context.tr(request.title ?? ""),
-                            text: context.tr(request.leaveType ?? ""),
-                            style: AppTextStyle.bold_16,
-                            textColor: Palette.black,
-                          ),
-                          5.verticalSpace,
-                          Row(
-                            children: [
-                              AppText(
-                                text: request.leaveStartDate != null
-                                    ?
-                                    //  DateFormat('yyyy-MMMM-dd').format(
-                                    //     DateTime.parse(
-                                    request.leaveStartDate ?? ''
-                                    //)
-                                    //)
-                                    : '',
-                              ),
-                              20.horizontalSpace,
-                              AppText(
-                                text: request.leaveEndDate != null
-                                    ?
-                                    // DateFormat('yyyy-MMMM-dd').format(
-                                    //     DateTime.parse(
-                                    request.leaveEndDate ?? '' //))
-                                    : '',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      // if (request.requestTypeID == "1")
-                      //   Icon(
-                      //     Icons.arrow_forward_ios,
-                      //     color: Palette.gery_DADADA,
-                      //     size: 20.sp,
-                      //   )
-                    ],
-                  ),
-                  15.verticalSpace,
-                  request.leaveStatus == 'Pending'
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            // if (request.showExtendButton ?? false)
-                            CustomElevatedButton(
-                              onPressed: () {
-                                //    if (int.parse(request.requestTypeID ?? "1") ==
-                                //      RequestTypeEnum.annualLeaveRequest.index) {
-                                CustomMainRouter.push(
-                                    AnnualLeaveRequestDetailsRoute(
-                                        requestsEntity: request));
-                              },
-                              //  },
-                              text: context.tr("extend"),
-                              width: 100.w,
-                              height: 40.h,
-                              backgroundColor: Palette.greenBackgroundTheme,
-                            ),
-                            if (request.showCancelButton ?? false)
-                              BlocConsumer<DeleteLeaveCubit, DeleteLeaveState>(
-                                listener: (context, state) {
-                                  if (state is DeleteLeaveLoadingState) {
-                                    ViewsToolbox.showLoading();
-                                  } else if (state is DeleteLeaveReadyState) {
-                                    ViewsToolbox.dismissLoading();
-                                    ViewsToolbox.showMessageBottomsheet(
-                                      context: context,
-                                      closeOnlyPopup: true,
-                                      status: ConfirmationPopupStatus.success,
-                                      message: context
-                                          .tr("request_deleted_successfully"),
-                                    );
-                                  } else if (state is DeleteLeaveErrorState) {
-                                    ViewsToolbox.dismissLoading();
+                        ),
+                      )
+                  ],
+                ),
+                15.verticalSpace,
+                         AppText(
+                           //  text: context.tr(request.title ?? ""),
+                           text: context.tr(widget.request.leaveType ?? ""),
+                           style: AppTextStyle.bold_16,
+                           textColor: Palette.black,
+                         ),
+                                         10.verticalSpace,
 
-                                    ViewsToolbox.showErrorAwesomeSnackBar(
-                                        context, state.message!);
-                                  }
-                                },
-                                builder: (context, state) {
-                                  return CustomElevatedButton(
-                                    onPressed: () async {
-                                      final result =
-                                          await showConfirmationDialog(
-                                              context: context,
-                                              title: context.tr('delete'),
-                                              content:
-                                                  context.tr('deleteDialog'),
-                                              yesText: context.tr('remove'),
-                                              noText: context.tr('back'),
-                                              yesColor: Palette.primaryColor,
-                                              noColor: Palette.red_FF0606);
-                                      if (result ?? false) {
-                                        // User confirmed
-                                      }
-                                    },
-                                    text: context.tr("cancel"),
-                                    width: 100.w,
-                                    height: 40.h,
-                                    backgroundColor: Palette.redBackgroundTheme,
+                        Directionality(
+                              textDirection: TextDirection.ltr,
+                              child: AppText(
+                                text:"${widget.request.leaveStartDate} - ${widget.request.leaveEndDate}" 
+                              ),
+                            ),
+                15.verticalSpace,
+               Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                           if ((widget.request.showExtendButton ?? false))
+                          CustomElevatedButton(
+                            onPressed: () {
+                              CustomMainRouter.push(
+                                 ExtendLeaveDetailsRoute(
+                                      requestsEntity: widget.request));
+                            },
+                            text: context.tr("extend"),
+                            width: 100.w,
+                            height: 40.h,
+                            backgroundColor: Palette.greenBackgroundTheme,
+                          ),
+                          if (widget.request.showCancelButton ?? false)
+                            BlocConsumer<DeleteLeaveCubit, DeleteLeaveState>(
+                              listener: (context, state) {
+                                if (state is DeleteLeaveLoadingState) {
+                                  ViewsToolbox.showLoading();
+                                } else if (state is DeleteLeaveReadyState) {
+                                  // To refresh requests again after deleting
+                                 widget.requestsCubit.getRequests();
+
+                                  ViewsToolbox.dismissLoading();
+                                  ViewsToolbox.showMessageBottomsheet(
+                                    context: context,
+                                    closeOnlyPopup: true,
+                                    status: ConfirmationPopupStatus.success,
+                                    message: context
+                                        .tr("request_canceled_successfully"),
                                   );
-                                },
-                              )
-                          ],
-                        )
-                      : Offstage()
-                ],
-              ),
-            )),
-      ),
+                                } else if (state is DeleteLeaveErrorState) {
+                                  ViewsToolbox.dismissLoading();
+                                  ViewsToolbox.showErrorAwesomeSnackBar(
+                                      context, state.message!);
+                                }
+                              },
+                              builder: (context, state) {
+                                return CustomElevatedButton(
+                                  onPressed: () async {
+                                    final result =
+                                        await showConfirmationDialog(
+                                            context: context,
+                                            title: context.tr('cancel'),
+                                            content:
+                                                context.tr('deleteDialog'),
+                                            yesText: context.tr('cancel_request'),
+                                            noText: context.tr('back'),
+                                            yesColor: Palette.red_FF0606 ,
+                                            noColor: Palette.primaryColor);
+                                    if (result ?? false) {
+                                      // User confirmed
+                                    }
+                                  },
+                                  text: context.tr("cancel"),
+                                  width: 100.w,
+                                  height: 40.h,
+                                  backgroundColor: Palette.redBackgroundTheme,
+                                );
+                              },
+                            )
+                        ],
+                      )
+                    
+              ],
+            ),
+          )),
     );
   }
 
@@ -232,6 +204,18 @@ class RequestItemWidget extends StatelessWidget {
           title: Text(title),
           content: Text(content),
           actions: [
+               TextButton(
+                child: Text(
+                  yesText,
+                  style: TextStyle(color: yesColor),
+                ),
+                onPressed: () {
+                  CustomMainRouter.pop();
+                  deleteLeaveCubit.getDeleteLeave(
+                      deleteLeaveRequestModel: DeleteLeaveRequestModel(
+                    leaveRequestID:int.parse(widget.request.leaveID??"0")  ,
+                  ));
+                }),
             TextButton(
               child: Text(
                 noText,
@@ -239,18 +223,7 @@ class RequestItemWidget extends StatelessWidget {
               ),
               onPressed: () => Navigator.of(context).pop(true),
             ),
-            TextButton(
-                child: Text(
-                  yesText,
-                  style: TextStyle(color: yesColor),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                  deleteLeaveCubit.getDeleteLeave(
-                      deleteLeaveRequestModel: DeleteLeaveRequestModel(
-                    leaveRequestID: requestID ?? 0,
-                  ));
-                }),
+         
           ],
         );
       },
