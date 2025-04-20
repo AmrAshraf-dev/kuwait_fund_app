@@ -16,6 +16,6 @@ ExtendLeaveRequestModel _$ExtendLeaveRequestModelFromJson(
 Map<String, dynamic> _$ExtendLeaveRequestModelToJson(
         ExtendLeaveRequestModel instance) =>
     <String, dynamic>{
-      'leaveRequestId': instance.leaveRequestId,
-      'extendDate': instance.extendDate,
+      if (instance.leaveRequestId case final value?) 'leaveRequestId': value,
+      if (instance.extendDate case final value?) 'extendDate': value,
     };

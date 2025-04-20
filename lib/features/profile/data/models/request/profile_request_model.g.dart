@@ -15,6 +15,6 @@ ProfileRequestModel _$ProfileRequestModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ProfileRequestModelToJson(
         ProfileRequestModel instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'lang': instance.lang,
+      if (instance.email case final value?) 'email': value,
+      if (instance.lang case final value?) 'lang': value,
     };

@@ -36,24 +36,33 @@ HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => HomeModel(
     );
 
 Map<String, dynamic> _$HomeModelToJson(HomeModel instance) => <String, dynamic>{
-      'leaveRequestID': instance.leaveRequestID,
-      'arabicSupervisorName': instance.arabicSupervisorName,
-      'leaveStatus': instance.leaveStatus,
-      'leaveStatusCode': instance.leaveStatusCode,
-      'requestDate': instance.requestDate?.toIso8601String(),
-      'leaveType': instance.leaveType,
-      'requestStartDate': instance.requestStartDate?.toIso8601String(),
-      'requestEndDate': instance.requestEndDate?.toIso8601String(),
-      'requestExtendDate': instance.requestExtendDate?.toIso8601String(),
-      'leaveBalance': instance.leaveBalance,
-      'shortSickDays': instance.shortSickDays,
-      'leavDaysTaken': instance.leavDaysTaken,
-      'leaveRequestsCount': instance.leaveRequestsCount,
-      'emergencyBalance': instance.emergencyBalance,
-      'availableExceseBalance': instance.availableExceseBalance,
-      'tolalExecese': instance.tolalExecese,
-      'lateBalance': instance.lateBalance,
-      'emergencyTransffered': instance.emergencyTransffered,
+      if (instance.leaveRequestID case final value?) 'leaveRequestID': value,
+      if (instance.arabicSupervisorName case final value?)
+        'arabicSupervisorName': value,
+      if (instance.leaveStatus case final value?) 'leaveStatus': value,
+      if (instance.leaveStatusCode case final value?) 'leaveStatusCode': value,
+      if (instance.requestDate?.toIso8601String() case final value?)
+        'requestDate': value,
+      if (instance.leaveType case final value?) 'leaveType': value,
+      if (instance.requestStartDate?.toIso8601String() case final value?)
+        'requestStartDate': value,
+      if (instance.requestEndDate?.toIso8601String() case final value?)
+        'requestEndDate': value,
+      if (instance.requestExtendDate?.toIso8601String() case final value?)
+        'requestExtendDate': value,
+      if (instance.leaveBalance case final value?) 'leaveBalance': value,
+      if (instance.shortSickDays case final value?) 'shortSickDays': value,
+      if (instance.leavDaysTaken case final value?) 'leavDaysTaken': value,
+      if (instance.leaveRequestsCount case final value?)
+        'leaveRequestsCount': value,
+      if (instance.emergencyBalance case final value?)
+        'emergencyBalance': value,
+      if (instance.availableExceseBalance case final value?)
+        'availableExceseBalance': value,
+      if (instance.tolalExecese case final value?) 'tolalExecese': value,
+      if (instance.lateBalance case final value?) 'lateBalance': value,
+      if (instance.emergencyTransffered case final value?)
+        'emergencyTransffered': value,
     };
 
 HomeResponseModel _$HomeResponseModelFromJson(Map<String, dynamic> json) =>
@@ -69,9 +78,9 @@ HomeResponseModel _$HomeResponseModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$HomeResponseModelToJson(HomeResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

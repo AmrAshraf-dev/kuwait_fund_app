@@ -16,6 +16,6 @@ VisitorsLogsRequestModel _$VisitorsLogsRequestModelFromJson(
 Map<String, dynamic> _$VisitorsLogsRequestModelToJson(
         VisitorsLogsRequestModel instance) =>
     <String, dynamic>{
-      'month': instance.month,
-      'year': instance.year,
+      if (instance.month case final value?) 'month': value,
+      if (instance.year case final value?) 'year': value,
     };

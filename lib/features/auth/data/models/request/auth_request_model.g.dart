@@ -14,6 +14,6 @@ AuthRequestModel _$AuthRequestModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AuthRequestModelToJson(AuthRequestModel instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
-      'password': instance.password,
+      if (instance.userId case final value?) 'userId': value,
+      if (instance.password case final value?) 'password': value,
     };

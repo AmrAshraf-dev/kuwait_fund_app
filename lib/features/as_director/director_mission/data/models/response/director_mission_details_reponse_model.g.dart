@@ -21,13 +21,13 @@ DirectorMissionDetailsModel _$DirectorMissionDetailsModelFromJson(
 Map<String, dynamic> _$DirectorMissionDetailsModelToJson(
         DirectorMissionDetailsModel instance) =>
     <String, dynamic>{
-      'employee_name': instance.employee_name,
-      'leave_type': instance.leave_type,
-      'location': instance.location,
-      'from_date': instance.from_date,
-      'to_date': instance.to_date,
-      'evant_name': instance.evant_name,
-      'missionCount': instance.missionCount,
+      if (instance.employee_name case final value?) 'employee_name': value,
+      if (instance.leave_type case final value?) 'leave_type': value,
+      if (instance.location case final value?) 'location': value,
+      if (instance.from_date case final value?) 'from_date': value,
+      if (instance.to_date case final value?) 'to_date': value,
+      if (instance.evant_name case final value?) 'evant_name': value,
+      if (instance.missionCount case final value?) 'missionCount': value,
     };
 
 DirectorMissionDetailsResponseModel
@@ -46,9 +46,10 @@ DirectorMissionDetailsResponseModel
 Map<String, dynamic> _$DirectorMissionDetailsResponseModelToJson(
         DirectorMissionDetailsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

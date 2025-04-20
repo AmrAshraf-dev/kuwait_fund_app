@@ -15,5 +15,5 @@ AnnualLeaveInfoRequestModel _$AnnualLeaveInfoRequestModelFromJson(
 Map<String, dynamic> _$AnnualLeaveInfoRequestModelToJson(
         AnnualLeaveInfoRequestModel instance) =>
     <String, dynamic>{
-      'leaveRequestID': instance.leaveRequestID,
+      if (instance.leaveRequestID case final value?) 'leaveRequestID': value,
     };

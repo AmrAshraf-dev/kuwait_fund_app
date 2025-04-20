@@ -342,18 +342,12 @@ import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/get_request
     as _i346;
 import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/get_requests_usecase.dart'
     as _i270;
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_leave_details_history_cubit/annual_leave_details_history_cubit.dart'
-    as _i460;
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/annual_leave_info_cubit/annual_leave_info_cubit.dart'
-    as _i818;
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/delete_leave_cubit/delete_leave_cubit.dart'
     as _i355;
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/extend_leave_cubit/extend_leave_cubit.dart'
     as _i534;
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/request_types_cubit/requests_cubit.dart'
     as _i1046;
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_type_cubit/request_types_cubit.dart'
-    as _i403;
 import 'package:kf_ess_mobile_app/features/shared/cubit/date_picker_range_cubit/range_date_picker_cubit.dart'
     as _i94;
 import 'package:kf_ess_mobile_app/features/shared/cubit/locale_cubit/locale_cubit.dart'
@@ -688,8 +682,6 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i197.AdminDirectorMissionRemoteDataSource>()));
   gh.factory<_i355.DeleteLeaveCubit>(() => _i355.DeleteLeaveCubit(
       getDeleteLeaveUseCase: gh<_i582.GetDeleteLeaveUseCase>()));
-  gh.factory<_i403.RequestTypesCubit>(
-      () => _i403.RequestTypesCubit(gh<_i346.GetRequestTypesUseCase>()));
   gh.factory<_i910.CountriesGrantsCubit>(() => _i910.CountriesGrantsCubit(
       getCountriesGrantsUseCase: gh<_i243.GetCountriesGrantsUseCase>()));
   gh.factory<_i362.GetNotificationsUseCase>(() => _i362.GetNotificationsUseCase(
@@ -720,8 +712,6 @@ Future<_i174.GetIt> $initGetIt(
       _i641.CreateInsuranceRequestCubit(
           createInsuranceRequestUseCase:
               gh<_i739.CreateInsuranceRequestUseCase>()));
-  gh.factory<_i818.AnnualLeaveInfoCubit>(() => _i818.AnnualLeaveInfoCubit(
-      getAnnualLeaveInfoUseCase: gh<_i181.GetAnnualLeaveInfoUseCase>()));
   gh.factory<_i107.GetMyAttendanceUseCase>(() => _i107.GetMyAttendanceUseCase(
       myAttendanceRepository: gh<_i835.MyAttendanceRepository>()));
   gh.factory<_i266.GetVisitorLogsUseCase>(
@@ -759,10 +749,6 @@ Future<_i174.GetIt> $initGetIt(
       _i130.GetAdminDirectorMissionUseCase(
           adminDirectorMissionRepository:
               gh<_i161.AdminDirectorMissionRepository>()));
-  gh.factory<_i460.AnnualLeaveDetailsHistoryCubit>(() =>
-      _i460.AnnualLeaveDetailsHistoryCubit(
-          getAnnualLeaveDetailsHistoryUseCase:
-              gh<_i427.GetAnnualLeaveDetailsHistoryUseCase>()));
   gh.factory<_i500.EmergencyAvailableDaysCubit>(() =>
       _i500.EmergencyAvailableDaysCubit(
           getEmergencyAvailableDaysUseCase:

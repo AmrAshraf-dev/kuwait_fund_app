@@ -1,4 +1,13 @@
 {
+
+  "please_select_extend_date": "يرجى اختيار تاريخ التمديد",
+  "pdf_jpg_png": "PDF، JPG، JPEG، PNG",
+"supported_file_types": "أنواع الملفات المدعومة",
+  "max_file_size_1mb": "حجم الملف الأقصى 1 ميغابايت",
+"committedAmount": "الملتزم به",
+  "paidUpAmount": "المدفوع",
+"choose_date": "اختر التاريخ",
+  "extended_date": "تاريخ التمديد",
 "director_name": "اسم المدير",
 "authenticate_to_login":  "المصادقة لتسجيل الدخول",
  "continue" : "استمرار",
@@ -781,10 +790,11 @@
   "leaveType": "نوع الإجازة",
   "selectedDate": "التاريخ المحدد",
   "extendDialog": "هل انت متأكد انك تريد هذا التمديد ؟",
-  "deleteDialog": "هل أنت متأكد أنك تريد الحذف ؟",
+  "deleteDialog": "هل أنت متأكد أنك تريد الغاء الطلب ؟",
   "remove": "مسح",
   "request_approved_successfully": "تمت الموافقة على الطلب بنجاح",
   "request_rejected_successfully": "تم رفض الطلب بنجاح",
   "request_extended_successfully": "تمت التمديد بنجاح",
-  "request_deleted_successfully": "تم حذف الطلب بنجاح"
+  "request_canceled_successfully": "تم الغاء الطلب بنجاح",
+  "cancel_request": "الغاء الطلب"
 }

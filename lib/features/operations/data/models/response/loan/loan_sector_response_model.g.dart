@@ -9,9 +9,9 @@ part of 'loan_sector_response_model.dart';
 _$LoanSectorModelImpl _$$LoanSectorModelImplFromJson(
         Map<String, dynamic> json) =>
     _$LoanSectorModelImpl(
-      sectorName: json['sector_name'] as String,
-      number: (json['number'] as num).toInt(),
-      amount: (json['amount'] as num).toDouble(),
+      sectorName: json['sector_name'] as String? ?? '',
+      number: json['number'] as String,
+      amount: json['amount'] as String,
     );
 
 Map<String, dynamic> _$$LoanSectorModelImplToJson(

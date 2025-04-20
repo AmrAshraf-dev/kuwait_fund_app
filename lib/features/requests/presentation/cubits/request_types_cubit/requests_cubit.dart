@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart';
 import "../../../../../core/network/base_handling.dart";
 import '../../../../../error/failure.dart';
 import "../../../../shared/entity/base_entity.dart";
-import '../../../data/models/request/requests_request_model.dart';
 import '../../../domain/entities/requests_entity.dart';
 import '../../../domain/use_cases/get_requests_usecase.dart';
 
@@ -14,16 +13,14 @@ part 'requests_state.dart';
 class RequestsCubit extends Cubit<RequestsState> {
   final GetRequestsUseCase getRequestsUseCase;
   RequestsCubit({required this.getRequestsUseCase})
-      : super(RequestsInitialState()) {
-    getRequests(requestsModel: RequestsRequestModel());
-  }
+      : super(RequestsInitialState()) ;
 
   Future<void> getRequests(
-      {required RequestsRequestModel requestsModel}) async {
+     ) async {
     emit(RequestsLoadingState());
 
     final CustomResponseType<BaseEntity<List<RequestsEntity>>>
-        eitherPackagesOrFailure = await getRequestsUseCase(requestsModel);
+        eitherPackagesOrFailure = await getRequestsUseCase();
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();

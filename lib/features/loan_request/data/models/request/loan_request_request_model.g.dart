@@ -20,10 +20,10 @@ LoanRequestRequestModel _$LoanRequestRequestModelFromJson(
 Map<String, dynamic> _$LoanRequestRequestModelToJson(
         LoanRequestRequestModel instance) =>
     <String, dynamic>{
-      'userName': instance.userName,
-      'applicationDate': instance.applicationDate,
-      'reason': instance.reason,
-      'reasonRemarks': instance.reasonRemarks,
-      'loanAmount': instance.loanAmount,
-      'noOfInstalments': instance.noOfInstalments,
+      if (instance.userName case final value?) 'userName': value,
+      if (instance.applicationDate case final value?) 'applicationDate': value,
+      if (instance.reason case final value?) 'reason': value,
+      if (instance.reasonRemarks case final value?) 'reasonRemarks': value,
+      if (instance.loanAmount case final value?) 'loanAmount': value,
+      if (instance.noOfInstalments case final value?) 'noOfInstalments': value,
     };

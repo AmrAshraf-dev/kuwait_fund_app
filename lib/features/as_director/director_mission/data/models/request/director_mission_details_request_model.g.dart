@@ -16,6 +16,6 @@ DirectorMissionDetailsRequestModel _$DirectorMissionDetailsRequestModelFromJson(
 Map<String, dynamic> _$DirectorMissionDetailsRequestModelToJson(
         DirectorMissionDetailsRequestModel instance) =>
     <String, dynamic>{
-      'asDate': instance.asDate,
-      'empID': instance.empID,
+      if (instance.asDate case final value?) 'asDate': value,
+      if (instance.empID case final value?) 'empID': value,
     };

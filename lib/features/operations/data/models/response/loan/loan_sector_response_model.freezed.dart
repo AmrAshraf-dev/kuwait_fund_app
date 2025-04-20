@@ -20,12 +20,12 @@ LoanSectorModel _$LoanSectorModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoanSectorModel {
-  @JsonKey(name: 'sector_name')
+  @JsonKey(name: 'sector_name', defaultValue: "")
   String get sectorName => throw _privateConstructorUsedError;
   @JsonKey(name: 'number')
-  int get number => throw _privateConstructorUsedError;
+  String get number => throw _privateConstructorUsedError;
   @JsonKey(name: 'amount')
-  double get amount => throw _privateConstructorUsedError;
+  String get amount => throw _privateConstructorUsedError;
 
   /// Serializes this LoanSectorModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,9 +44,9 @@ abstract class $LoanSectorModelCopyWith<$Res> {
       _$LoanSectorModelCopyWithImpl<$Res, LoanSectorModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'sector_name') String sectorName,
-      @JsonKey(name: 'number') int number,
-      @JsonKey(name: 'amount') double amount});
+      {@JsonKey(name: 'sector_name', defaultValue: "") String sectorName,
+      @JsonKey(name: 'number') String number,
+      @JsonKey(name: 'amount') String amount});
 }
 
 /// @nodoc
@@ -76,11 +76,11 @@ class _$LoanSectorModelCopyWithImpl<$Res, $Val extends LoanSectorModel>
       number: null == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
     ) as $Val);
   }
 }
@@ -94,9 +94,9 @@ abstract class _$$LoanSectorModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'sector_name') String sectorName,
-      @JsonKey(name: 'number') int number,
-      @JsonKey(name: 'amount') double amount});
+      {@JsonKey(name: 'sector_name', defaultValue: "") String sectorName,
+      @JsonKey(name: 'number') String number,
+      @JsonKey(name: 'amount') String amount});
 }
 
 /// @nodoc
@@ -124,11 +124,11 @@ class __$$LoanSectorModelImplCopyWithImpl<$Res>
       number: null == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
     ));
   }
 }
@@ -137,7 +137,7 @@ class __$$LoanSectorModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LoanSectorModelImpl extends _LoanSectorModel {
   const _$LoanSectorModelImpl(
-      {@JsonKey(name: 'sector_name') required this.sectorName,
+      {@JsonKey(name: 'sector_name', defaultValue: "") required this.sectorName,
       @JsonKey(name: 'number') required this.number,
       @JsonKey(name: 'amount') required this.amount})
       : super._();
@@ -146,14 +146,14 @@ class _$LoanSectorModelImpl extends _LoanSectorModel {
       _$$LoanSectorModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'sector_name')
+  @JsonKey(name: 'sector_name', defaultValue: "")
   final String sectorName;
   @override
   @JsonKey(name: 'number')
-  final int number;
+  final String number;
   @override
   @JsonKey(name: 'amount')
-  final double amount;
+  final String amount;
 
   @override
   String toString() {
@@ -194,9 +194,10 @@ class _$LoanSectorModelImpl extends _LoanSectorModel {
 
 abstract class _LoanSectorModel extends LoanSectorModel {
   const factory _LoanSectorModel(
-          {@JsonKey(name: 'sector_name') required final String sectorName,
-          @JsonKey(name: 'number') required final int number,
-          @JsonKey(name: 'amount') required final double amount}) =
+          {@JsonKey(name: 'sector_name', defaultValue: "")
+          required final String sectorName,
+          @JsonKey(name: 'number') required final String number,
+          @JsonKey(name: 'amount') required final String amount}) =
       _$LoanSectorModelImpl;
   const _LoanSectorModel._() : super._();
 
@@ -204,14 +205,14 @@ abstract class _LoanSectorModel extends LoanSectorModel {
       _$LoanSectorModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'sector_name')
+  @JsonKey(name: 'sector_name', defaultValue: "")
   String get sectorName;
   @override
   @JsonKey(name: 'number')
-  int get number;
+  String get number;
   @override
   @JsonKey(name: 'amount')
-  double get amount;
+  String get amount;
 
   /// Create a copy of LoanSectorModel
   /// with the given fields replaced by the non-null parameter values.

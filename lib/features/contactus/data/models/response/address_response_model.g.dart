@@ -17,10 +17,10 @@ AddressModel _$AddressModelFromJson(Map<String, dynamic> json) => AddressModel(
 
 Map<String, dynamic> _$AddressModelToJson(AddressModel instance) =>
     <String, dynamic>{
-      'line1': instance.line1,
-      'line2': instance.line2,
-      'line3': instance.line3,
-      'line4': instance.line4,
-      'line5': instance.line5,
-      'line6': instance.line6,
+      if (instance.line1 case final value?) 'line1': value,
+      if (instance.line2 case final value?) 'line2': value,
+      if (instance.line3 case final value?) 'line3': value,
+      if (instance.line4 case final value?) 'line4': value,
+      if (instance.line5 case final value?) 'line5': value,
+      if (instance.line6 case final value?) 'line6': value,
     };

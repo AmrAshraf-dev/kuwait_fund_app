@@ -9,9 +9,9 @@ class LoanSectorModel with _$LoanSectorModel {
   const LoanSectorModel._();
 
   const factory LoanSectorModel({
-    @JsonKey(name: 'sector_name') required String sectorName,
-    @JsonKey(name: 'number') required int number,
-    @JsonKey(name: 'amount') required double amount,
+    @JsonKey(name: 'sector_name', defaultValue: "") required String sectorName,
+    @JsonKey(name: 'number') required String number,
+    @JsonKey(name: 'amount') required String amount,
   }) = _LoanSectorModel;
 
   factory LoanSectorModel.fromJson(Map<String, dynamic> json) =>

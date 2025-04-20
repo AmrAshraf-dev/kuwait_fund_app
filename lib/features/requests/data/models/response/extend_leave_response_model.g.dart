@@ -14,8 +14,8 @@ ExtendLeaveModel _$ExtendLeaveModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ExtendLeaveModelToJson(ExtendLeaveModel instance) =>
     <String, dynamic>{
-      'leaveRequestId': instance.leaveRequestId,
-      'extendDate': instance.extendDate,
+      if (instance.leaveRequestId case final value?) 'leaveRequestId': value,
+      if (instance.extendDate case final value?) 'extendDate': value,
     };
 
 ExtendLeaveResponseModel _$ExtendLeaveResponseModelFromJson(
@@ -33,9 +33,9 @@ ExtendLeaveResponseModel _$ExtendLeaveResponseModelFromJson(
 Map<String, dynamic> _$ExtendLeaveResponseModelToJson(
         ExtendLeaveResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

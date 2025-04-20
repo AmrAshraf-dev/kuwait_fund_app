@@ -15,7 +15,7 @@ class AuthCubit extends Cubit<AuthState> {
   final GetAuthUseCase getAuthUseCase;
   AuthCubit({required this.getAuthUseCase}) : super(AuthInitialState());
 
-  Future<void> getAuth({required AuthRequestModel authModel}) async {
+  Future<bool> getAuth({required AuthRequestModel authModel}) async {
     emit(AuthLoadingState());
 
     final CustomResponseType<BaseEntity<AuthEntity>> eitherPackagesOrFailure =
@@ -26,12 +26,16 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
+      return false;
     }, (BaseEntity<AuthEntity> response) {
       if (response.code == 200) {
         emit(AuthReadyState(response));
+        return true;
       } else {
         emit(AuthErrorState(message: response.message));
+        return false;
       }
     });
+    return false;
   }
 }

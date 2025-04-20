@@ -16,8 +16,8 @@ AdminDirectorMissionModel _$AdminDirectorMissionModelFromJson(
 Map<String, dynamic> _$AdminDirectorMissionModelToJson(
         AdminDirectorMissionModel instance) =>
     <String, dynamic>{
-      'var1': instance.var1,
-      'var2': instance.var2,
+      if (instance.var1 case final value?) 'var1': value,
+      if (instance.var2 case final value?) 'var2': value,
     };
 
 AdminDirectorMissionResponseModel _$AdminDirectorMissionResponseModelFromJson(
@@ -36,9 +36,9 @@ AdminDirectorMissionResponseModel _$AdminDirectorMissionResponseModelFromJson(
 Map<String, dynamic> _$AdminDirectorMissionResponseModelToJson(
         AdminDirectorMissionResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

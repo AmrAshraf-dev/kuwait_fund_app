@@ -92,7 +92,9 @@ class _AuthScreenState extends State<AuthScreen> {
               password: savedPassword,
             ),
           );
-        } else {
+        }
+        
+         else {
           if(mounted){
           ViewsToolbox.showErrorAwesomeSnackBar(context,
             "no_saved_credentials_please_login_first".tr());

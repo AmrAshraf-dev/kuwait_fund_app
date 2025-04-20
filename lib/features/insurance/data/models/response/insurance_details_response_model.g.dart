@@ -26,18 +26,25 @@ InsuranceDetailsModel _$InsuranceDetailsModelFromJson(
 Map<String, dynamic> _$InsuranceDetailsModelToJson(
         InsuranceDetailsModel instance) =>
     <String, dynamic>{
-      'insuranceCompanyID': instance.insuranceCompanyID,
-      'insurenceStatus': instance.insurenceStatus,
-      'isMedicallySubscribed': instance.isMedicallySubscribed,
-      'hasMedicalRequest': instance.hasMedicalRequest,
-      'viewCancelButton': instance.viewCancelButton,
-      'isAllowedTosubscribe': instance.isAllowedTosubscribe,
-      'employeeName': instance.employeeName,
-      'insuranceCompanyName': instance.insuranceCompanyName,
-      'noOfPersons': instance.noOfPersons,
-      'startDate': instance.startDate,
-      'programSubscribed': instance.programSubscribed,
-      'beneficiaries': instance.beneficiaries,
+      if (instance.insuranceCompanyID case final value?)
+        'insuranceCompanyID': value,
+      if (instance.insurenceStatus case final value?) 'insurenceStatus': value,
+      if (instance.isMedicallySubscribed case final value?)
+        'isMedicallySubscribed': value,
+      if (instance.hasMedicalRequest case final value?)
+        'hasMedicalRequest': value,
+      if (instance.viewCancelButton case final value?)
+        'viewCancelButton': value,
+      if (instance.isAllowedTosubscribe case final value?)
+        'isAllowedTosubscribe': value,
+      if (instance.employeeName case final value?) 'employeeName': value,
+      if (instance.insuranceCompanyName case final value?)
+        'insuranceCompanyName': value,
+      if (instance.noOfPersons case final value?) 'noOfPersons': value,
+      if (instance.startDate case final value?) 'startDate': value,
+      if (instance.programSubscribed case final value?)
+        'programSubscribed': value,
+      if (instance.beneficiaries case final value?) 'beneficiaries': value,
     };
 
 InsuranceDetailsResponseModel _$InsuranceDetailsResponseModelFromJson(
@@ -56,9 +63,9 @@ InsuranceDetailsResponseModel _$InsuranceDetailsResponseModelFromJson(
 Map<String, dynamic> _$InsuranceDetailsResponseModelToJson(
         InsuranceDetailsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

@@ -24,16 +24,18 @@ PersonalLoanMasterInfoModel _$PersonalLoanMasterInfoModelFromJson(
 Map<String, dynamic> _$PersonalLoanMasterInfoModelToJson(
         PersonalLoanMasterInfoModel instance) =>
     <String, dynamic>{
-      'personalLoanRequestID': instance.personalLoanRequestID,
-      'employeeName': instance.employeeName,
-      'loanAmount': instance.loanAmount,
-      'noOfInstalments': instance.noOfInstalments,
-      'installmentAmount': instance.installmentAmount,
-      'applicationDate': instance.applicationDate,
-      'approvalType': instance.approvalType,
-      'remarks': instance.remarks,
-      'reasonLabel': instance.reasonLabel,
-      'maxLoanAmount': instance.maxLoanAmount,
+      if (instance.personalLoanRequestID case final value?)
+        'personalLoanRequestID': value,
+      if (instance.employeeName case final value?) 'employeeName': value,
+      if (instance.loanAmount case final value?) 'loanAmount': value,
+      if (instance.noOfInstalments case final value?) 'noOfInstalments': value,
+      if (instance.installmentAmount case final value?)
+        'installmentAmount': value,
+      if (instance.applicationDate case final value?) 'applicationDate': value,
+      if (instance.approvalType case final value?) 'approvalType': value,
+      if (instance.remarks case final value?) 'remarks': value,
+      if (instance.reasonLabel case final value?) 'reasonLabel': value,
+      if (instance.maxLoanAmount case final value?) 'maxLoanAmount': value,
     };
 
 PersonalLoanMasterInfoResponseModel
@@ -52,9 +54,9 @@ PersonalLoanMasterInfoResponseModel
 Map<String, dynamic> _$PersonalLoanMasterInfoResponseModelToJson(
         PersonalLoanMasterInfoResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

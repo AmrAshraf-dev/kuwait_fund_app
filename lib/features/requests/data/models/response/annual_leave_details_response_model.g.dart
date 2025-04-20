@@ -21,15 +21,15 @@ AnnualDetailsModel _$AnnualDetailsModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AnnualDetailsModelToJson(AnnualDetailsModel instance) =>
     <String, dynamic>{
-      'leaveRequestId': instance.leaveRequestId,
-      'requestDate': instance.requestDate,
-      'requestType': instance.requestType,
-      'leaveStatus': instance.leaveStatus,
-      'leaveStatusCode': instance.leaveStatusCode,
-      'startDate': instance.startDate,
-      'endDate': instance.endDate,
-      'supervisionName': instance.supervisionName,
-      'approvalDate': instance.approvalDate,
+      if (instance.leaveRequestId case final value?) 'leaveRequestId': value,
+      if (instance.requestDate case final value?) 'requestDate': value,
+      if (instance.requestType case final value?) 'requestType': value,
+      if (instance.leaveStatus case final value?) 'leaveStatus': value,
+      if (instance.leaveStatusCode case final value?) 'leaveStatusCode': value,
+      if (instance.startDate case final value?) 'startDate': value,
+      if (instance.endDate case final value?) 'endDate': value,
+      if (instance.supervisionName case final value?) 'supervisionName': value,
+      if (instance.approvalDate case final value?) 'approvalDate': value,
     };
 
 AnnualDetailsResponseModel _$AnnualDetailsResponseModelFromJson(
@@ -47,9 +47,10 @@ AnnualDetailsResponseModel _$AnnualDetailsResponseModelFromJson(
 Map<String, dynamic> _$AnnualDetailsResponseModelToJson(
         AnnualDetailsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

@@ -20,14 +20,14 @@ SubmissionModel _$SubmissionModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SubmissionModelToJson(SubmissionModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'empLoginName': instance.empLoginName,
-      'mobile': instance.mobile,
-      'createDate': instance.createDate,
-      'leaveType': instance.leaveType,
-      'leaveStatus': instance.leaveStatus,
-      'startDate': instance.startDate,
-      'endDate': instance.endDate,
+      if (instance.id case final value?) 'id': value,
+      if (instance.empLoginName case final value?) 'empLoginName': value,
+      if (instance.mobile case final value?) 'mobile': value,
+      if (instance.createDate case final value?) 'createDate': value,
+      if (instance.leaveType case final value?) 'leaveType': value,
+      if (instance.leaveStatus case final value?) 'leaveStatus': value,
+      if (instance.startDate case final value?) 'startDate': value,
+      if (instance.endDate case final value?) 'endDate': value,
     };
 
 SubmissionResponseModel _$SubmissionResponseModelFromJson(
@@ -45,9 +45,10 @@ SubmissionResponseModel _$SubmissionResponseModelFromJson(
 Map<String, dynamic> _$SubmissionResponseModelToJson(
         SubmissionResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

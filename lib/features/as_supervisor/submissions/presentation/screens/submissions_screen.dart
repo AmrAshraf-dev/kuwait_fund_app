@@ -13,7 +13,6 @@ import 'package:kf_ess_mobile_app/features/requests/data/models/request/requests
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/request_type_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/request_types_cubit/requests_cubit.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_type_cubit/request_types_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/request_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/requests_header_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart';
@@ -35,7 +34,6 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
   final TabCubit _tabCubit = getIt<TabCubit>();
   final SubmissionCubit submissionCubit = getIt<SubmissionCubit>();
   final RequestsCubit _requestCubit = getIt<RequestsCubit>();
-  final RequestTypesCubit _requestTypesCubit = getIt<RequestTypesCubit>();
 
   @override
   void initState() {
@@ -55,7 +53,6 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
       widget: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => submissionCubit),
-          BlocProvider(create: (context) => _requestTypesCubit),
           BlocProvider(create: (context) => _requestCubit),
           BlocProvider(create: (context) => _tabCubit),
         ],
@@ -74,48 +71,6 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
     );
   }
 
-  Widget _buildTabBar(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 27.w),
-      child: BlocBuilder<RequestTypesCubit, RequestTypesState>(
-        builder: (context, state) {
-          if (state is RequestTypesLoading) {
-            ViewsToolbox.showLoading();
-          } else if (state is RequestTypesLoaded) {
-            ViewsToolbox.dismissLoading();
-
-            return BlocBuilder<TabCubit, int>(
-              builder: (context, selectedTabIndex) {
-                return TabBar(
-                  padding: EdgeInsets.zero,
-                  labelPadding: EdgeInsetsDirectional.only(end: 10.w),
-                  indicatorColor: Colors.transparent,
-                  onTap: (int value) {
-                    _tabCubit.changeTab(value);
-                    if (value == 0) {
-                      _requestCubit.getRequests(
-                        requestsModel: RequestsRequestModel(),
-                      );
-                      return;
-                    }
-                    _requestCubit.getRequests(
-                      requestsModel: RequestsRequestModel(
-                          requestTypeID: state.requestTypes[value - 1].id),
-                    );
-                  },
-                  controller: _tabController,
-                  isScrollable: true,
-                  tabs:
-                      _buildTabs(context, selectedTabIndex, state.requestTypes),
-                );
-              },
-            );
-          }
-          return Container();
-        },
-      ),
-    );
-  }
 
   List<Widget> _buildTabs(BuildContext context, int selectedIndex,
       List<RequestTypeEntity> requestTypes) {
