@@ -91,4 +91,9 @@ class ApiConstants {
   static var getAllLeaveRequestsWaiting = 'Leave/GetAllLeaveRequestsWaiting';
   static var approveLeaveRequest = 'Leave/ApproveLeaveRequest';
   static var rejectLeaveRequest = 'Leave/RejectLeaveRequest';
+
+  //profile
+  static var getProfileInfo = 'Profile/GetEmployeeProfile';
+  static var getAddressDetails = 'Profile/GetEmployeeAddressDetails';
+  static var getFamilyData = 'Profile/GetEmployeeFamilyList';
 }

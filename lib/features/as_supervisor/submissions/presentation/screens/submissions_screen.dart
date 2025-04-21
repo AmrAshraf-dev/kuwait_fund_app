@@ -12,7 +12,7 @@ import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/requests/data/models/request/requests_request_model.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/request_type_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/request_types_cubit/requests_cubit.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_type_cubit/request_types_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/request_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/requests_header_widget.dart';

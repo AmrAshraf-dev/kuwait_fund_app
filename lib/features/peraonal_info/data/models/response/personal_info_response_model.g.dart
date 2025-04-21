@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_response_model.dart';
+part of 'personal_info_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) => ProfileModel(
+PersonalInfoModel _$PersonalInfoModelFromJson(Map<String, dynamic> json) =>
+    PersonalInfoModel(
       employeeNumber: json['employeeNumber'] as String?,
       name: json['name'] as String?,
       designationName: json['designationName'] as String?,
@@ -24,7 +25,7 @@ ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) => ProfileModel(
       attachmentInfo: json['attachmentInfo'] as String?,
     );
 
-Map<String, dynamic> _$ProfileModelToJson(ProfileModel instance) =>
+Map<String, dynamic> _$PersonalInfoModelToJson(PersonalInfoModel instance) =>
     <String, dynamic>{
       'employeeNumber': instance.employeeNumber,
       'name': instance.name,
@@ -43,20 +44,20 @@ Map<String, dynamic> _$ProfileModelToJson(ProfileModel instance) =>
       'attachmentInfo': instance.attachmentInfo,
     };
 
-ProfileResponseModel _$ProfileResponseModelFromJson(
+PersonalInfoResponseModel _$PersonalInfoResponseModelFromJson(
         Map<String, dynamic> json) =>
-    ProfileResponseModel(
+    PersonalInfoResponseModel(
       code: (json['code'] as num?)?.toInt(),
       data: json['data'] == null
           ? null
-          : ProfileModel.fromJson(json['data'] as Map<String, dynamic>),
+          : PersonalInfoModel.fromJson(json['data'] as Map<String, dynamic>),
       message: json['message'] as String?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
       hasMorePages: json['hasMorePages'] as bool?,
     );
 
-Map<String, dynamic> _$ProfileResponseModelToJson(
-        ProfileResponseModel instance) =>
+Map<String, dynamic> _$PersonalInfoResponseModelToJson(
+        PersonalInfoResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
       'code': instance.code,

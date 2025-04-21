@@ -36,13 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final HomeCubit homeCubit = getIt<HomeCubit>();
   @override
   void initState() {
-    print('TOKEN : ${LocalData.getUser()?.tokenInfo.token ?? ''}');
-    //
     super.initState();
-
     print('TOKEN : ${LocalData.getUser()?.tokenInfo.token ?? ''}');
- 
- 
   }
 
   @override

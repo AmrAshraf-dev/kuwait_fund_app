@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../shared/entity/base_entity.dart';
-import '../../../domain/entities/profile_entity.dart';
+import '../../../domain/entities/personal_info_entity.dart';
 
-part 'profile_response_model.g.dart';
+part 'personal_info_response_model.g.dart';
 
-/// Model that transforms the Profile data from the API to the
+/// Model that transforms the PeraonalInfo data from the API to the
 /// application entity
 
 /*
@@ -14,8 +14,8 @@ part 'profile_response_model.g.dart';
   */
 
 @JsonSerializable()
-class ProfileModel extends ProfileEntity {
-  ProfileModel({
+class PersonalInfoModel extends PersonalInfoEntity {
+  PersonalInfoModel({
     super.employeeNumber,
     super.name,
     super.designationName,
@@ -33,15 +33,15 @@ class ProfileModel extends ProfileEntity {
     super.attachmentInfo,
   });
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$ProfileModelFromJson(json);
+  factory PersonalInfoModel.fromJson(Map<String, dynamic> json) =>
+      _$PersonalInfoModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ProfileModelToJson(this);
+  Map<String, dynamic> toJson() => _$PersonalInfoModelToJson(this);
 }
 
 @JsonSerializable()
-class ProfileResponseModel extends BaseEntity<ProfileModel> {
-  const ProfileResponseModel({
+class PersonalInfoResponseModel extends BaseEntity<PersonalInfoModel> {
+  const PersonalInfoResponseModel({
     super.code,
     super.data,
     super.message,
@@ -49,8 +49,8 @@ class ProfileResponseModel extends BaseEntity<ProfileModel> {
     super.hasMorePages,
   });
 
-  factory ProfileResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$ProfileResponseModelFromJson(json);
+  factory PersonalInfoResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$PersonalInfoResponseModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ProfileResponseModelToJson(this);
+  Map<String, dynamic> toJson() => _$PersonalInfoResponseModelToJson(this);
 }

@@ -18,8 +18,11 @@ import '../../models/request/requests_request_model.dart';
 import '../../models/response/requests_response_model.dart';
 
 abstract class RequestsRemoteDataSource {
+  
   Future<CustomResponseType<RequestsResponseModel>> getRequests(
       {required RequestsRequestModel requestsRequestModel});
+
+
   Future<CustomResponseType<RequestTypeResponseModel>> getRequestTypes();
 
   Future<CustomResponseType<AnnualDetailsResponseModel>>

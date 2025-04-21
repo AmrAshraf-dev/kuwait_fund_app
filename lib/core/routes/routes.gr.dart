@@ -77,7 +77,7 @@ import 'package:kf_ess_mobile_app/features/notifications/presentation/screens/no
     as _i35;
 import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_screen.dart'
     as _i36;
-import 'package:kf_ess_mobile_app/features/peraonal_info/presentation/screens/peraonal_info_screen.dart'
+import 'package:kf_ess_mobile_app/features/peraonal_info/presentation/screens/personal_info_screen.dart'
     as _i38;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/add_family_screen.dart'
     as _i3;
