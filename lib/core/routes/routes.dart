@@ -257,12 +257,12 @@ class AppRouter extends RootStackRouter {
                   path: AppRoutesConstants.adminHome,
                   maintainState: true),
               AutoRoute(
-                  page: AdminDirectorMissionRoute.page,
+                  page: DirectorDeptAssignmentRoute.page,
                   path: AppRoutesConstants.adminDirectorMission,
                   maintainState: true),
               AutoRoute(
-                  page: AdminDeptMissionRoute.page,
-                  path: AppRoutesConstants.adminDeptMission,
+                  page: DirectorDeptMissionRoute.page,
+                  path: AppRoutesConstants.directorDeptAssignment,
                   maintainState: true),
               AutoRoute(
                   maintainState: true,

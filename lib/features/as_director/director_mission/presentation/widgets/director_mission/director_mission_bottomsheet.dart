@@ -1,14 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_mission/data/models/request/director_mission_details_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_mission/domain/entities/director_mission_details_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_mission/presentation/cubits/director_mission_cubit.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_mission/presentation/widgets/director_mission/director_mission_selectable_days_chips_widget.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/data/models/request/director_mission_details_request_model.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_mission_details_entity.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/cubits/director_mission_cubit.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/widgets/director_mission/director_mission_selectable_days_chips_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
@@ -83,7 +84,7 @@ class DirectorMissionsBottomSheetState extends State<DirectorMissionsBottomSheet
       children: [
         20.verticalSpace,
         AppText(
-          text: DateFormat("MMMM yyyy").format(selectedDate),
+          text: DateFormat("MMMM yyyy", context.locale.languageCode).format(selectedDate),
           style: AppTextStyle.bold_21,
         ),
         16.verticalSpace,
@@ -92,24 +93,27 @@ class DirectorMissionsBottomSheetState extends State<DirectorMissionsBottomSheet
   }
 
   Widget _buildSelectableDaysChips() {
-    return DirectorMissionSelectableDaysChips(
-      selectedDate: selectedDate,
-      calendarDirectorMissionDates: widget.calendarDirectorMissionDates,
-      onDaySelected: (day) {
-        setState(() {
-          selectedDate = DateFormat("dd/MM/yyyy").parse(day);
-          selectedHostName = null;
-        });
-     
-        widget.directorMissionCubit.getDirecatorsMissionsDetailsList(
-          DirectorMissionDetailsRequestModel(
-      asDate: DateFormat("yyyy-MM-dd").format(
-                                          DateFormat("dd/MM/yyyy").parse(day)),
-      empID:  int.parse(widget.selectedDirector?.employeeId ?? "0"),
-     ),
-          showNewBottomSheet: false,
-        );
-      },
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: DirectorMissionSelectableDaysChips(
+        selectedDate: selectedDate,
+        calendarDirectorMissionDates: widget.calendarDirectorMissionDates,
+        onDaySelected: (day) {
+          setState(() {
+            selectedDate = DateFormat("dd/MM/yyyy").parse(day);
+            selectedHostName = null;
+          });
+       
+          widget.directorMissionCubit.getDirecatorsMissionsDetailsList(
+            DirectorMissionDetailsRequestModel(
+        asDate: DateFormat("yyyy-MM-dd").format(
+                                            DateFormat("dd/MM/yyyy").parse(day)),
+        empID:  int.parse(widget.selectedDirector?.employeeId ?? "0"),
+       ),
+            showNewBottomSheet: false,
+          );
+        },
+      ),
     );
   }
 
@@ -120,12 +124,8 @@ class DirectorMissionsBottomSheetState extends State<DirectorMissionsBottomSheet
       backgroundColor: Colors.transparent,
       onPressed: () {
 
-                                                      final router = getIt<AppRouter>();
-
-if (router.canPop()) {
-  router.back(); // or router.back();
-}
-      },
+   CustomMainRouter.pop( );
+       },
 
       textColor: Palette.primaryColor,
       text: context.tr("close"),
@@ -205,15 +205,15 @@ class DirectorMissionsDetailsListView extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   decoration: BoxDecoration(
-                    color: visit.leave_type == "Red"
-                        ? Colors.red
-                        : Palette.blue_3542B9,
+                    color: visit.leave_type == "Blue"
+                        ? Palette.blue_3542B9 
+                        : Colors.red,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: AppText(
-                    text: visit.leave_type == "Red"
-                        ? context.tr("official_visit")
-                        : context.tr("private_visit"),
+                    text: visit.leave_type == "Blue"
+                        ? context.tr("mission")
+                        : context.tr("leave"),
                     style: AppTextStyle.semiBold_12,
                     textColor: Colors.white,
                   ),
@@ -232,7 +232,7 @@ class DirectorMissionsDetailsListView extends StatelessWidget {
                   style: AppTextStyle.regular_14,
                   textColor: Colors.black,
                   text:
-                      "${context.tr("number_of_delegation")}: ${visit.missionCount}",
+                      "${context.tr("number_of_missions")}: ${visit.missionCount}",
                 ),
                 AppText(
                   style: AppTextStyle.regular_14,

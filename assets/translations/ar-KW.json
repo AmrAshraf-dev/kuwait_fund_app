@@ -1,7 +1,12 @@
 {
-
+"employees_name": "اسم الموظف",
+"mission_count": "عدد المهمات",
+  "dept_name": "اسم القسم",
+  "dept_assignment": "اجازات القسم",
+  "number_of_missions": "عدد المهمات",
+"no_missions/leaves_logs": "لا توجد سجلات مهمات/إجازات",
   "please_select_extend_date": "يرجى اختيار تاريخ التمديد",
-  "pdf_jpg_png": "PDF، JPG، JPEG، PNG",
+  "pdf_jpg_png": "PDF، JPG، PNG",
 "supported_file_types": "أنواع الملفات المدعومة",
   "max_file_size_1mb": "حجم الملف الأقصى 1 ميغابايت",
 "committedAmount": "الملتزم به",

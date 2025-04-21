@@ -117,4 +117,6 @@ class AppRoutesConstants {
   static var aboutScreenItemDetails = '/aboutItemDetailsScreen';
 
   static var extendLeaveDetails = 'extendLeaveDetailsScreen';
+
+  static var directorDeptAssignment = 'directorDeptAssignmentScreen';
 }

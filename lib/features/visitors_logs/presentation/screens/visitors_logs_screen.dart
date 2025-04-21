@@ -8,6 +8,7 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/legend_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_request_model.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
@@ -137,30 +138,6 @@ class LegendWidget extends StatelessWidget {
   }
 }
 
-class LegendItem extends StatelessWidget {
-  final Color color;
-  final String labelKey;
 
-  const LegendItem({required this.color, required this.labelKey, Key? key})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          height: 20.h,
-          width: 20.h,
-          decoration: BoxDecoration(color: color, shape: BoxShape.rectangle),
-        ),
-        10.horizontalSpace,
-        AppText(
-          text: context.tr(labelKey),
-          style: AppTextStyle.medium_18,
-        ),
-      ],
-    );
-  }
-}
 
 

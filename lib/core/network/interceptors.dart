@@ -64,10 +64,10 @@ class AuthInterceptor extends Interceptor {
       // Handle 401 (Unauthorized)
       if (err.response?.statusCode == 401) {
 
-        bool refreshTokenResult = await  _reLogin();
+        bool isTokenRefreshed = await  _reLogin();
        // bool refreshTokenResult = await _handleRefreshToken(err);
 
-        if (refreshTokenResult) {
+        if (isTokenRefreshed) {
           handler.resolve(await _retryRequest(err));
           return;
         } else {

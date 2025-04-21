@@ -1,5 +1,5 @@
 class ApiConstants {
-  static String baseUrl = "https://mpwpayment.diyarme.com/ESSAPI/api/";
+  static String baseUrl = "https://kf-exapp-test.kuwait-fund.org/essapi/api/";
   static String loan = "General/GetLoans";
 
   static var profile = "General/GetProfile";
@@ -99,5 +99,13 @@ class ApiConstants {
       'Missions/GetManagementCalenderData';
 
   static var getDirectorMissionsDetails =
-      'Missions/GetManagmentAttendaceDate'; 
+      'Missions/GetManagmentAttendaceDate';
+
+  static var readDepartments = 'Missions/ReadDepartments';
+
+  static var getDeptCalenderData =
+      'Missions/GetOperationEmpsCalenderData';
+
+  static var getTotalMissionByDepartmentDashboard =
+      'Missions/GetTotalMissionByDepartmentDashboard'; 
 }
