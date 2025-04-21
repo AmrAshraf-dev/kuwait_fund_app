@@ -16,6 +16,6 @@ VisitorsLogsDetailsRequestModel _$VisitorsLogsDetailsRequestModelFromJson(
 Map<String, dynamic> _$VisitorsLogsDetailsRequestModelToJson(
         VisitorsLogsDetailsRequestModel instance) =>
     <String, dynamic>{
-      'hostName': instance.hostName,
-      'date': instance.date,
+      if (instance.hostName case final value?) 'hostName': value,
+      if (instance.date case final value?) 'date': value,
     };

@@ -17,9 +17,9 @@ InstitutionGrantsModel _$InstitutionGrantsModelFromJson(
 Map<String, dynamic> _$InstitutionGrantsModelToJson(
         InstitutionGrantsModel instance) =>
     <String, dynamic>{
-      'instituteName': instance.instituteName,
-      'numberOfGrants': instance.numberOfGrants,
-      'valueOfGrants': instance.valueOfGrants,
+      if (instance.instituteName case final value?) 'instituteName': value,
+      if (instance.numberOfGrants case final value?) 'numberOfGrants': value,
+      if (instance.valueOfGrants case final value?) 'valueOfGrants': value,
     };
 
 InstitutionsGrantsResponseModel _$InstitutionsGrantsResponseModelFromJson(
@@ -38,9 +38,10 @@ InstitutionsGrantsResponseModel _$InstitutionsGrantsResponseModelFromJson(
 Map<String, dynamic> _$InstitutionsGrantsResponseModelToJson(
         InstitutionsGrantsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

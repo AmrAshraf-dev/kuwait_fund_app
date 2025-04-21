@@ -16,8 +16,8 @@ InsuranceProgramsModel _$InsuranceProgramsModelFromJson(
 Map<String, dynamic> _$InsuranceProgramsModelToJson(
         InsuranceProgramsModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
+      if (instance.id case final value?) 'id': value,
+      if (instance.name case final value?) 'name': value,
     };
 
 InsuranceProgramsResponseModel _$InsuranceProgramsResponseModelFromJson(
@@ -36,9 +36,10 @@ InsuranceProgramsResponseModel _$InsuranceProgramsResponseModelFromJson(
 Map<String, dynamic> _$InsuranceProgramsResponseModelToJson(
         InsuranceProgramsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

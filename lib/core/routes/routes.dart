@@ -45,8 +45,8 @@ class AppRouter extends RootStackRouter {
                     ),
                     AutoRoute(
                       maintainState: true,
-                      page: AnnualLeaveRequestDetailsRoute.page,
-                      path: AppRoutesConstants.annualLeaveRequestDetails,
+                      page: ExtendLeaveDetailsRoute.page,
+                      path: AppRoutesConstants.extendLeaveDetails,
                       //  meta: <String, dynamic>{'hideBottomNav': true},
                     ),
                     AutoRoute(
@@ -248,7 +248,7 @@ class AppRouter extends RootStackRouter {
             maintainState: true),
 
         AutoRoute(
-            page: AdminNavigationMainRoute.page,
+            page: DirectorNavigationMainRoute.page,
             path: AppRoutesConstants.adminNavigation,
             maintainState: true,
             children: <AutoRoute>[
@@ -316,18 +316,17 @@ class AppRouter extends RootStackRouter {
                       path: AppRoutesConstants.createRequest,
                       //  meta: <String, dynamic>{'hideBottomNav': true},
                     ),
-                    AutoRoute(
-                      page: AnnualLeaveRequestDetailsRoute.page,
-                      path: AppRoutesConstants.annualLeaveRequestDetails,
+                     AutoRoute(
                       maintainState: true,
-
+                      page: ExtendLeaveDetailsRoute.page,
+                      path: AppRoutesConstants.extendLeaveDetails,
                       //  meta: <String, dynamic>{'hideBottomNav': true},
                     ),
-                    AutoRoute(
-                      page: TrainingRequestDetailsRoute.page,
-                      path: AppRoutesConstants.trainingRequestDetails,
-                      maintainState: true,
-                    )
+                    // AutoRoute(
+                    //   page: TrainingRequestDetailsRoute.page,
+                    //   path: AppRoutesConstants.trainingRequestDetails,
+                    //   maintainState: true,
+                    // )
                   ]),
               AutoRoute(path: 'tab3', page: EmptyRouterRoute3.page, children: [
                 AutoRoute(

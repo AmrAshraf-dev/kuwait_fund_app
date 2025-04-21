@@ -22,9 +22,13 @@ CreateInsuranceRequestModel _$CreateInsuranceRequestModelFromJson(
 Map<String, dynamic> _$CreateInsuranceRequestModelToJson(
         CreateInsuranceRequestModel instance) =>
     <String, dynamic>{
-      'familyMembers': instance.familyMembers,
-      'beneficiaries': instance.beneficiaries,
-      'programSubscribedId': instance.programSubscribedId,
-      'startDate': instance.startDate,
-      'insuranceCompanyID': instance.insuranceCompanyID,
+      if (instance.familyMembers?.map((e) => e.toJson()).toList()
+          case final value?)
+        'familyMembers': value,
+      if (instance.beneficiaries case final value?) 'beneficiaries': value,
+      if (instance.programSubscribedId case final value?)
+        'programSubscribedId': value,
+      if (instance.startDate case final value?) 'startDate': value,
+      if (instance.insuranceCompanyID case final value?)
+        'insuranceCompanyID': value,
     };

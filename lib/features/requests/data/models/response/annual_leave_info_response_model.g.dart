@@ -20,12 +20,12 @@ AnnualDetailsInfoModel _$AnnualDetailsInfoModelFromJson(
 Map<String, dynamic> _$AnnualDetailsInfoModelToJson(
         AnnualDetailsInfoModel instance) =>
     <String, dynamic>{
-      'leaveStatus': instance.leaveStatus,
-      'leaveStatusCode': instance.leaveStatusCode,
-      'leaveType': instance.leaveType,
-      'requestDate': instance.requestDate,
-      'leaveStartDate': instance.leaveStartDate,
-      'leaveEndDate': instance.leaveEndDate,
+      if (instance.leaveStatus case final value?) 'leaveStatus': value,
+      if (instance.leaveStatusCode case final value?) 'leaveStatusCode': value,
+      if (instance.leaveType case final value?) 'leaveType': value,
+      if (instance.requestDate case final value?) 'requestDate': value,
+      if (instance.leaveStartDate case final value?) 'leaveStartDate': value,
+      if (instance.leaveEndDate case final value?) 'leaveEndDate': value,
     };
 
 AnnualDetailsInfoResponseModel _$AnnualDetailsInfoResponseModelFromJson(
@@ -44,9 +44,9 @@ AnnualDetailsInfoResponseModel _$AnnualDetailsInfoResponseModelFromJson(
 Map<String, dynamic> _$AnnualDetailsInfoResponseModelToJson(
         AnnualDetailsInfoResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

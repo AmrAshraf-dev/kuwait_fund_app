@@ -18,10 +18,8 @@ import '../../models/request/requests_request_model.dart';
 import '../../models/response/requests_response_model.dart';
 
 abstract class RequestsRemoteDataSource {
-  
   Future<CustomResponseType<RequestsResponseModel>> getRequests(
       {required RequestsRequestModel requestsRequestModel});
-
 
   Future<CustomResponseType<RequestTypeResponseModel>> getRequestTypes();
 
@@ -51,12 +49,7 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
       {required RequestsRequestModel requestsRequestModel}) async {
     ({dynamic response, bool success}) result = await networkHelper.get(
       path: ApiConstants.getUserRequests,
-      //     queryParams: <String, String>{
-      //   if (requestsRequestModel.requestTypeID == null)
-      //     "requestTypeID": "0" // Get all requests
-      //   else
-      //     "requestTypeID": requestsRequestModel.requestTypeID!,
-      // }
+      queryParams: requestsRequestModel.toJson(),
     );
 
     if (result.success) {
@@ -122,14 +115,14 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
       {required ExtendLeaveRequestModel extendLeaveRequestModel}) async {
     ({dynamic response, bool success}) result = await networkHelper
         .post(path: ApiConstants.extendLeave, queryParams: <String, dynamic>{
-      "leaveRequestId": extendLeaveRequestModel.leaveRequestId ?? '100',
-      "extendDate": extendLeaveRequestModel.extendDate ?? '8/5/2025',
+      "leaveRequestId": extendLeaveRequestModel.leaveRequestId,
+      "extendDate": extendLeaveRequestModel.extendDate,
     });
 
-    if (result.success) {
+    if (result.success && result.response["code"] != 404) {
       return right(ExtendLeaveResponseModel.fromJson(result.response));
     } else {
-      return left(ServerFailure(message: result.response as String));
+      return left(ServerFailure(message: result.response["data"] as String));
     }
   }
 
@@ -140,10 +133,10 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
         path: ApiConstants.deleteLeave,
         queryParams: deleteLeaveRequestModel.toJson());
 
-    if (result.success) {
+    if (result.success && result.response["code"] != 404) {
       return right(DeleteLeaveResponseModel.fromJson(result.response));
     } else {
-      return left(ServerFailure(message: result.response as String));
+      return left(ServerFailure(message: result.response["data"] as String));
     }
   }
 }

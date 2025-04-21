@@ -85,7 +85,7 @@ buildWhen: (previous, current) {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
          20.verticalSpace,
-            CalendarContent(
+            VisitorsLogsCalenderWidget(
               visitorsLogsCubit: visitorsLogsCubit,
               focusedDay: _focusedDay,    
                onFocusedDayChanged: (day) => setState((){            

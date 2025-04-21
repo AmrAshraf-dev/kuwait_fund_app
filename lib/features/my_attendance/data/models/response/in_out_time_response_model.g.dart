@@ -14,6 +14,6 @@ InOutTimeModel _$InOutTimeModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$InOutTimeModelToJson(InOutTimeModel instance) =>
     <String, dynamic>{
-      'inTime': instance.inTime,
-      'outTime': instance.outTime,
+      if (instance.inTime case final value?) 'inTime': value,
+      if (instance.outTime case final value?) 'outTime': value,
     };

@@ -22,16 +22,19 @@ RequestsModel _$RequestsModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$RequestsModelToJson(RequestsModel instance) =>
     <String, dynamic>{
-      'leaveID': instance.leaveID,
-      'requestDate': instance.requestDate,
-      'leaveStatus': instance.leaveStatus,
-      'leaveStartDate': instance.leaveStartDate,
-      'leaveEndDate': instance.leaveEndDate,
-      'leaveType': instance.leaveType,
-      'leaveExtendDate': instance.leaveExtendDate,
-      'leaveExtendedFlag': instance.leaveExtendedFlag,
-      'showExtendButton': instance.showExtendButton,
-      'showCancelButton': instance.showCancelButton,
+      if (instance.leaveID case final value?) 'leaveID': value,
+      if (instance.requestDate case final value?) 'requestDate': value,
+      if (instance.leaveStatus case final value?) 'leaveStatus': value,
+      if (instance.leaveStartDate case final value?) 'leaveStartDate': value,
+      if (instance.leaveEndDate case final value?) 'leaveEndDate': value,
+      if (instance.leaveType case final value?) 'leaveType': value,
+      if (instance.leaveExtendDate case final value?) 'leaveExtendDate': value,
+      if (instance.leaveExtendedFlag case final value?)
+        'leaveExtendedFlag': value,
+      if (instance.showExtendButton case final value?)
+        'showExtendButton': value,
+      if (instance.showCancelButton case final value?)
+        'showCancelButton': value,
     };
 
 RequestsResponseModel _$RequestsResponseModelFromJson(
@@ -49,9 +52,10 @@ RequestsResponseModel _$RequestsResponseModelFromJson(
 Map<String, dynamic> _$RequestsResponseModelToJson(
         RequestsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

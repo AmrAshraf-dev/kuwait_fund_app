@@ -1,0 +1,21 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'admin_director_mission_request_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+AdminDirectorMissionRequestModel _$AdminDirectorMissionRequestModelFromJson(
+        Map<String, dynamic> json) =>
+    AdminDirectorMissionRequestModel(
+      email: json['email'] as String?,
+      lang: json['lang'] as String?,
+    );
+
+Map<String, dynamic> _$AdminDirectorMissionRequestModelToJson(
+        AdminDirectorMissionRequestModel instance) =>
+    <String, dynamic>{
+      if (instance.email case final value?) 'email': value,
+      if (instance.lang case final value?) 'lang': value,
+    };

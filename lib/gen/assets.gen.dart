@@ -100,25 +100,25 @@ class $AssetsPngGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-    appLogo,
-    certificate,
-    failure,
-    icLauncher,
-    loanAgreement,
-    paci,
-    paciPhone,
-    slide1,
-    slide2,
-    slide3,
-    splash,
-    success,
-    warning,
-    watermark,
-    watermark2,
-    watermark3,
-    watermark4,
-    watermark5,
-  ];
+        appLogo,
+        certificate,
+        failure,
+        icLauncher,
+        loanAgreement,
+        paci,
+        paciPhone,
+        slide1,
+        slide2,
+        slide3,
+        splash,
+        success,
+        warning,
+        watermark,
+        watermark2,
+        watermark3,
+        watermark4,
+        watermark5
+      ];
 }
 
 class $AssetsPublicGen {
@@ -368,75 +368,75 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-    about,
-    address,
-    advertisements,
-    annualLeave,
-    appVersion,
-    arrowDown,
-    arrowTarget,
-    bank,
-    blackCalander,
-    calander,
-    calendar,
-    calendarEye,
-    chatbot,
-    checkMark,
-    clock,
-    contactus,
-    createAnnualRequest,
-    createEmergencyRequest,
-    createInsuranceRequest,
-    createSickLeaveRequest,
-    createTrainingRequest,
-    dateOutlineBadged,
-    dateIcon,
-    delete,
-    deptMission,
-    directorMission,
-    documents,
-    drawer,
-    drawerAbout,
-    drawerAr,
-    drawerContactus,
-    drawerOperation,
-    emergencyLeave,
-    enableSmartLogin,
-    family,
-    female,
-    filterIcon,
-    home,
-    insurance,
-    language,
-    loan,
-    logout,
-    male,
-    more,
-    myAttendance,
-    noInternet,
-    notification,
-    notificationDate,
-    notificationUser,
-    operation,
-    pdf,
-    pepole,
-    person,
-    personalInfo,
-    profile,
-    qualification,
-    questionMark,
-    refresh,
-    requests,
-    sickLeave,
-    submissions,
-    survey,
-    timer,
-    trainingRequest,
-    userCircleIcon,
-    verified,
-    work,
-    world,
-  ];
+        about,
+        address,
+        advertisements,
+        annualLeave,
+        appVersion,
+        arrowDown,
+        arrowTarget,
+        bank,
+        blackCalander,
+        calander,
+        calendar,
+        calendarEye,
+        chatbot,
+        checkMark,
+        clock,
+        contactus,
+        createAnnualRequest,
+        createEmergencyRequest,
+        createInsuranceRequest,
+        createSickLeaveRequest,
+        createTrainingRequest,
+        dateOutlineBadged,
+        dateIcon,
+        delete,
+        deptMission,
+        directorMission,
+        documents,
+        drawer,
+        drawerAbout,
+        drawerAr,
+        drawerContactus,
+        drawerOperation,
+        emergencyLeave,
+        enableSmartLogin,
+        family,
+        female,
+        filterIcon,
+        home,
+        insurance,
+        language,
+        loan,
+        logout,
+        male,
+        more,
+        myAttendance,
+        noInternet,
+        notification,
+        notificationDate,
+        notificationUser,
+        operation,
+        pdf,
+        pepole,
+        person,
+        personalInfo,
+        profile,
+        qualification,
+        questionMark,
+        refresh,
+        requests,
+        sickLeave,
+        submissions,
+        survey,
+        timer,
+        trainingRequest,
+        userCircleIcon,
+        verified,
+        work,
+        world
+      ];
 }
 
 class $AssetsTranslationsGen {
@@ -468,7 +468,11 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  });
 
   final String _assetName;
 
@@ -528,8 +532,15 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   String get path => _assetName;
@@ -538,11 +549,17 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = false;
+  const SvgGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  }) : _isVecFormat = false;
 
-  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = true;
+  const SvgGenImage.vec(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  }) : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -596,8 +613,7 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      colorFilter:
-          colorFilter ??
+      colorFilter: colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,

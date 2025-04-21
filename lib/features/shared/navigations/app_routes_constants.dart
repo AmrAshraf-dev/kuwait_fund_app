@@ -115,4 +115,6 @@ class AppRoutesConstants {
   static const String surveyRoute = '/surveyScreen';
 
   static var aboutScreenItemDetails = '/aboutItemDetailsScreen';
+
+  static var extendLeaveDetails = 'extendLeaveDetailsScreen';
 }

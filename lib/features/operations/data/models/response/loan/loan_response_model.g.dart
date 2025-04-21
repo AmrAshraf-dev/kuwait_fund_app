@@ -19,11 +19,12 @@ LoanResponseModel _$LoanResponseModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$LoanResponseModelToJson(LoanResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };
 
 _$LoanModelImpl _$$LoanModelImplFromJson(Map<String, dynamic> json) =>
@@ -37,5 +38,5 @@ _$LoanModelImpl _$$LoanModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$LoanModelImplToJson(_$LoanModelImpl instance) =>
     <String, dynamic>{
       'divisionName': instance.divisionName,
-      'loanCountries': instance.loanCountries,
+      'loanCountries': instance.loanCountries.map((e) => e.toJson()).toList(),
     };

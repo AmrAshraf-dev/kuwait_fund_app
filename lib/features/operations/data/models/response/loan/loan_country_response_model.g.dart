@@ -20,6 +20,6 @@ _$LoanCountryModelImpl _$$LoanCountryModelImplFromJson(
 Map<String, dynamic> _$$LoanCountryModelImplToJson(
         _$LoanCountryModelImpl instance) =>
     <String, dynamic>{
-      'countryName': instance.countryName,
-      'loanSectors': instance.loanSectors,
+      if (instance.countryName case final value?) 'countryName': value,
+      'loanSectors': instance.loanSectors.map((e) => e?.toJson()).toList(),
     };

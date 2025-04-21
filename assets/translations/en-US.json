@@ -1,4 +1,13 @@
 {
+  "please_select_extend_date": "Please select extend date",
+  "pdf_jpg_png": "PDF, JPG, JPEG, PNG",
+  "supported_file_types": "Supported file types",
+  "max_file_size_1mb": "Max file size 1MB",
+  "committedAmount": "Committed",
+"paidUpAmount": "Paid",
+  "choose_date": "Choose Date",
+"extended_date": "Extended Date",
+  "director_name": "Director Name",
   "continue": "Continue",
 "authenticate_to_login": "Authenticate to login",
   "authentication_failed_please_login_again": "Authentication failed, please login again",
@@ -47,7 +56,7 @@
   "project_director": "Project Director",
   "on_mission": "On Mission",
   "on_leave": "On Leave",
-  "mission/leave_calendar": "Mission/Leave Calendar",
+  "mission/leave_calendar_for_directors": "Mission/Leave Calendar for Directors",
   "managers_on_mission": "Managers on Mission",
   "managers_on_leave": "Managers on Leave",
   "department_on_mission": "Department on Mission",
@@ -779,10 +788,11 @@
   "leaveType": "Leave type",
   "selectedDate": "Selected date",
   "extendDialog": "Are you sure you want this extension ?",
-  "deleteDialog": "Are you sure you want to delete ?",
+  "deleteDialog": "Are you sure you want to cancel this request?",
   "remove": "remove",
   "request_approved_successfully": "Request approved successfully",
   "request_rejected_successfully": "Request rejected successfully",
   "request_extended_successfully": "Request extended successfully",
-  "request_deleted_successfully": "Request deleted successfully"
+  "request_canceled_successfully": "Request canceled successfully",
+  "cancel_request": "Cancel request"
 }

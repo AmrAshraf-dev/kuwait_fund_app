@@ -17,7 +17,7 @@ ForgetPassRequestModel _$ForgetPassRequestModelFromJson(
 Map<String, dynamic> _$ForgetPassRequestModelToJson(
         ForgetPassRequestModel instance) =>
     <String, dynamic>{
-      'userName': instance.userName,
-      'otp': instance.otp,
-      'password': instance.password,
+      if (instance.userName case final value?) 'userName': value,
+      if (instance.otp case final value?) 'otp': value,
+      if (instance.password case final value?) 'password': value,
     };

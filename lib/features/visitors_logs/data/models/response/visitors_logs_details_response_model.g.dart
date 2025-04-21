@@ -24,8 +24,8 @@ Map<String, dynamic> _$VisitorsLogsDetailsModelToJson(
       'visitType': instance.visitType,
       'remarks': instance.remarks,
       'visitDate': instance.visitDate,
-      'visitTime': instance.visitTime,
-      'visitorsCount': instance.visitorsCount,
+      if (instance.visitTime case final value?) 'visitTime': value,
+      if (instance.visitorsCount case final value?) 'visitorsCount': value,
     };
 
 VisitorsLogsDetailsResponseModel _$VisitorsLogsDetailsResponseModelFromJson(
@@ -44,9 +44,10 @@ VisitorsLogsDetailsResponseModel _$VisitorsLogsDetailsResponseModelFromJson(
 Map<String, dynamic> _$VisitorsLogsDetailsResponseModelToJson(
         VisitorsLogsDetailsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

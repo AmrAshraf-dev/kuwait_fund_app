@@ -33,7 +33,7 @@ class ContributionsDataTable extends StatelessWidget {
                 width: 90,
                 child: Center(
                   child: Text(
-                    context.tr("number_of_grants"),
+                    context.tr("committedAmount"),
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white),
                   ),
@@ -42,7 +42,7 @@ class ContributionsDataTable extends StatelessWidget {
           DataColumn(
               headingRowAlignment: MainAxisAlignment.center,
               label: Text(
-                context.tr("value"),
+                context.tr("paidUpAmount"),
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.white),
               )),
@@ -52,10 +52,10 @@ class ContributionsDataTable extends StatelessWidget {
               (data) => DataRow(
                 cells: [
                   DataCell(
-                    Text(data.committedAmount ?? "",
+                    Text(data.foundationName ?? "",
                         textAlign: TextAlign.start),
                   ),
-                  DataCell(Center(child: Text(data.foundationName.toString()))),
+                  DataCell(Center(child: Text(data.committedAmount.toString()))),
                   DataCell(Text(data.paidUpAmount.toString())),
                 ],
               ),

@@ -14,8 +14,8 @@ CertificatesModel _$CertificatesModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$CertificatesModelToJson(CertificatesModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
+      if (instance.id case final value?) 'id': value,
+      if (instance.name case final value?) 'name': value,
     };
 
 CertificatesResponseModel _$CertificatesResponseModelFromJson(
@@ -33,9 +33,10 @@ CertificatesResponseModel _$CertificatesResponseModelFromJson(
 Map<String, dynamic> _$CertificatesResponseModelToJson(
         CertificatesResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

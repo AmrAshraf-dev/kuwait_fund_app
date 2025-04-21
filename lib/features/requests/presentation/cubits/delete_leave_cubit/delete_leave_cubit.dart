@@ -20,6 +20,7 @@ class DeleteLeaveCubit extends Cubit<DeleteLeaveState> {
 
   Future<void> getDeleteLeave(
       {required DeleteLeaveRequestModel deleteLeaveRequestModel}) async {
+        await Future.delayed(const Duration(milliseconds: 100));
     emit(DeleteLeaveLoadingState());
 
     final CustomResponseType<BaseEntity<CreateDeleteLeaveEntity>>

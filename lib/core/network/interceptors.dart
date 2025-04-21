@@ -9,13 +9,17 @@ import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/services/device_service.dart';
+import 'package:kf_ess_mobile_app/features/auth/data/models/request/auth_request_model.dart';
+import 'package:kf_ess_mobile_app/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/firebase/firebase_service.dart';
 import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class AuthInterceptor extends Interceptor {
   final Dio _dio = getIt<Dio>();
+    final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
 
   static const int _maxLineWidth = 90;
   static final _prettyDioLogger = PrettyDioLogger(
@@ -59,7 +63,9 @@ class AuthInterceptor extends Interceptor {
 
       // Handle 401 (Unauthorized)
       if (err.response?.statusCode == 401) {
-        bool refreshTokenResult = await _handleRefreshToken(err);
+
+        bool refreshTokenResult = await  _reLogin();
+       // bool refreshTokenResult = await _handleRefreshToken(err);
 
         if (refreshTokenResult) {
           handler.resolve(await _retryRequest(err));
@@ -137,7 +143,34 @@ class AuthInterceptor extends Interceptor {
         pingFailed;
   }
 
+
+
+      _reLogin() async {
+          final AuthCubit authCubit = getIt<AuthCubit>();
+
+    // Retrieve saved credentials from local storage
+        String? savedUserName = await securedStorageData.getUsername();
+        String? savedPassword = await securedStorageData.getPassword();
+
+      if (savedUserName != null && savedPassword != null) {
+         bool result = await   authCubit.getAuth(
+            authModel: AuthRequestModel(
+              userId: savedUserName,
+              password: savedPassword,
+            ),
+          );
+         return result;
+
+}
+else {
+        return false;
+      }
+      }
+
+
+
   Future<bool> _handleRefreshToken(DioException err) async {
+
     return false;
     // try {
     //   Dio dio = Dio();

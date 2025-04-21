@@ -17,9 +17,9 @@ KFBoardOfDirectorsModel _$KFBoardOfDirectorsModelFromJson(
 Map<String, dynamic> _$KFBoardOfDirectorsModelToJson(
         KFBoardOfDirectorsModel instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'role': instance.role,
-      'imageUrl': instance.imageUrl,
+      if (instance.name case final value?) 'name': value,
+      if (instance.role case final value?) 'role': value,
+      if (instance.imageUrl case final value?) 'imageUrl': value,
     };
 
 KFBoardOfDirectorsResponseModel _$KFBoardOfDirectorsResponseModelFromJson(
@@ -38,9 +38,10 @@ KFBoardOfDirectorsResponseModel _$KFBoardOfDirectorsResponseModelFromJson(
 Map<String, dynamic> _$KFBoardOfDirectorsResponseModelToJson(
         KFBoardOfDirectorsResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
+        'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

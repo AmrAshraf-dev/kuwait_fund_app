@@ -16,6 +16,6 @@ RejectLeaveRequestModel _$RejectLeaveRequestModelFromJson(
 Map<String, dynamic> _$RejectLeaveRequestModelToJson(
         RejectLeaveRequestModel instance) =>
     <String, dynamic>{
-      'leaveRequestID': instance.leaveRequestID,
-      'rejectReason': instance.rejectReason,
+      if (instance.leaveRequestID case final value?) 'leaveRequestID': value,
+      if (instance.rejectReason case final value?) 'rejectReason': value,
     };

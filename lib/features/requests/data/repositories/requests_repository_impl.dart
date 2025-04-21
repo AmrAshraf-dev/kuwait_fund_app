@@ -25,10 +25,11 @@ class RequestsRepositoryImp implements RequestsRepository {
   final RequestsRemoteDataSource requestsRemoteDataSource;
 
   @override
-  Future<CustomResponseType<BaseEntity<List<RequestsModel>>>> getRequests(
-      {required RequestsRequestModel requestsParams}) async {
+  Future<CustomResponseType<BaseEntity<List<RequestsModel>>>>
+      getRequests() async {
     return await requestsRemoteDataSource.getRequests(
-        requestsRequestModel: requestsParams);
+      requestsRequestModel: RequestsRequestModel(),
+    );
   }
 
   @override

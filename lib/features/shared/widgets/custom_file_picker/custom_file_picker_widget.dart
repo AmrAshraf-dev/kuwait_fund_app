@@ -61,8 +61,8 @@ class GenericFilePicker extends StatelessWidget {
                     backgroundColor: Palette.primaryColor,
                     onPressed: () {
                       filePickerCubit.pickFile(
-                        filetype: FileType.custom,
-                        allowedExtensions: ['jpg', 'png', 'jpeg'],
+                         filetype: FileType.image,
+                       // allowedExtensions: ['jpg', 'png', 'jpeg'],
                       );
                       CustomMainRouter.pop();
                     },
@@ -80,6 +80,7 @@ class GenericFilePicker extends StatelessWidget {
                       );
                       CustomMainRouter.pop();
                     },
+                    
                     customChild: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -89,9 +90,10 @@ class GenericFilePicker extends StatelessWidget {
                           color: Palette.blue_002A69,
                         ),
                         5.horizontalSpace,
+
                         AppText(
                           text: buttonTitle ?? context.tr("attach_file"),
-                          style: AppTextStyle.medium_16,
+                          style: AppTextStyle.semiBold_20,
                          )
                       ],
                     ),

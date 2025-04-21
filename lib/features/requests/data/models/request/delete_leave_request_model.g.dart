@@ -15,5 +15,5 @@ DeleteLeaveRequestModel _$DeleteLeaveRequestModelFromJson(
 Map<String, dynamic> _$DeleteLeaveRequestModelToJson(
         DeleteLeaveRequestModel instance) =>
     <String, dynamic>{
-      'leaveRequestID': instance.leaveRequestID,
+      if (instance.leaveRequestID case final value?) 'leaveRequestID': value,
     };

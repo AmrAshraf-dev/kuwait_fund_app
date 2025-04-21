@@ -92,7 +92,9 @@ class _AuthScreenState extends State<AuthScreen> {
               password: savedPassword,
             ),
           );
-        } else {
+        }
+        
+         else {
           if(mounted){
           ViewsToolbox.showErrorAwesomeSnackBar(context,
             "no_saved_credentials_please_login_first".tr());
@@ -193,7 +195,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       context, userInfo.errorMsg ?? "error");
                                 } else if (userInfo.isDirector ?? false) {
                                   CustomMainRouter.push(
-                                      AdminNavigationMainRoute());
+                                      DirectorNavigationMainRoute());
                                 }
                                 
                                 else if (userInfo.isSupervisor ?? false) {

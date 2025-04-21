@@ -17,6 +17,6 @@ AttendanceDataModel _$AttendanceDataModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$AttendanceDataModelToJson(
         AttendanceDataModel instance) =>
     <String, dynamic>{
-      'attendanceDate': instance.attendanceDate,
-      'inOutInfo': instance.inOutInfo,
+      if (instance.attendanceDate case final value?) 'attendanceDate': value,
+      'inOutInfo': instance.inOutInfo.map((e) => e.toJson()).toList(),
     };

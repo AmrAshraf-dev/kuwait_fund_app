@@ -15,5 +15,5 @@ ApproveLeaveRequestModel _$ApproveLeaveRequestModelFromJson(
 Map<String, dynamic> _$ApproveLeaveRequestModelToJson(
         ApproveLeaveRequestModel instance) =>
     <String, dynamic>{
-      'leaveRequestID': instance.leaveRequestID,
+      if (instance.leaveRequestID case final value?) 'leaveRequestID': value,
     };

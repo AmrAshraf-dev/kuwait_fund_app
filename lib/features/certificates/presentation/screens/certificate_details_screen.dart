@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/certificates/presentation/cubits/certificates_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
@@ -94,18 +93,18 @@ class CertificateDetailsScreen extends StatelessWidget {
               22.verticalSpace,
 
               // cancel button
-              CustomElevatedButton(
-                  width: 200.w,
-                  height: 50.h,
-                  backgroundColor: Palette.transparntColor,
-                  onPressed: () {
-                    CustomMainRouter.pop();
-                  },
-                  customChild: AppText(
-                    text: context.tr("cancel"),
-                    textColor: Palette.blue_5490EB,
-                    fontSize: 18.sp,
-                  )),
+              // CustomElevatedButton(
+              //     width: 200.w,
+              //     height: 50.h,
+              //     backgroundColor: Palette.transparntColor,
+              //     onPressed: () {
+              //      d
+              //     },
+              //     customChild: AppText(
+              //       text: context.tr("cancel"),
+              //       textColor: Palette.blue_5490EB,
+              //       fontSize: 18.sp,
+              //     )),
 
               40.verticalSpace
             ],
