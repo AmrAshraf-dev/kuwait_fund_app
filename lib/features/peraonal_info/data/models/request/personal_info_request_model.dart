@@ -1,7 +1,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'peraonal_info_request_model.g.dart';
+part 'personal_info_request_model.g.dart';
 
 
   /*
