@@ -1,5 +1,7 @@
 {
 
+  "Deleted": "canceled",
+"ServerFailureError": "Server Failure Error",
   "employees_name":  "Employees Name",
 "mission_count":  "Mission Counter",
   "dept_name": "Department Name",

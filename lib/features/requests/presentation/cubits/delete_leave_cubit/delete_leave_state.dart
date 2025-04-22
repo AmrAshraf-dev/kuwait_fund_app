@@ -14,7 +14,7 @@ final class DeleteLeaveEmptyState extends DeleteLeaveState {}
 
 final class DeleteLeaveReadyState extends DeleteLeaveState {
   DeleteLeaveReadyState(this.response);
-  BaseEntity<CreateDeleteLeaveEntity> response;
+  String response;
 }
 
 abstract class DeleteLeaveState {}

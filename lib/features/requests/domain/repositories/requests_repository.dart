@@ -37,7 +37,7 @@ abstract class RequestsRepository {
       createExtendLeaveRequest(
           {required ExtendLeaveRequestModel extendLeaveRequestParams});
 
-  Future<CustomResponseType<BaseEntity<CreateDeleteLeaveEntity>>>
+  Future<CustomResponseType<String>>
       createDeleteLeaveRequest(
           {required DeleteLeaveRequestModel deleteLeaveRequestParams});
 }

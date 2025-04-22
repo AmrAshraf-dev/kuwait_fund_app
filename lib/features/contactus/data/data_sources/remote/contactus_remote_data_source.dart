@@ -25,10 +25,10 @@ class ContactusDataSourceImpl implements ContactusRemoteDataSource {
     ({dynamic response, bool success}) result =
         await networkHelper.get(path: ApiConstants.contactInformation);
 
-    if (result.success) {
+    if (result.success && result.response["data"] != null) {
       return right(ContactusResponseModel.fromJson(result.response));
     } else {
-      return left(ServerFailure(message: result.response as String));
+      return left(ServerFailure(message:result.response["errors"]  ));
     }
   }
 
@@ -37,10 +37,10 @@ class ContactusDataSourceImpl implements ContactusRemoteDataSource {
     ({dynamic response, bool success}) result =
         await networkHelper.get(path: ApiConstants.mapCoordinates);
 
-    if (result.success) {
+    if (result.success && result.response["data"] != null ) {
       return right(ContactusResponseModel.fromJson(result.response));
     } else {
-      return left(ServerFailure(message: result.response as String));
+      return left(ServerFailure(message: result.response["errors"]));
     }
   }
 
@@ -49,10 +49,10 @@ class ContactusDataSourceImpl implements ContactusRemoteDataSource {
     ({dynamic response, bool success}) result =
         await networkHelper.get(path: ApiConstants.telephoneFax);
 
-    if (result.success) {
+    if (result.success && result.response["data"] != null) {
       return right(ContactusResponseModel.fromJson(result.response));
     } else {
-      return left(ServerFailure(message: result.response as String));
+      return left(ServerFailure(message: result.response["errors"]   ));
     }
   }
 }

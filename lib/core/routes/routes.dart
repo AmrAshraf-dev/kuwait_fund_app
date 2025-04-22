@@ -226,6 +226,13 @@ class AppRouter extends RootStackRouter {
           page: AdsDetailsRoute.page,
           path: AppRoutesConstants.adsDetailsScreen,
         ),
+
+         AutoRoute(
+                      page: VisitorsLogsRoute.page,
+                      path: AppRoutesConstants.visitorsLogsMoreMenu,
+                      maintainState: true,
+                    ),
+
         AutoRoute(
           page: ContactUsRoute.page,
           path: AppRoutesConstants.contactUsScreen,

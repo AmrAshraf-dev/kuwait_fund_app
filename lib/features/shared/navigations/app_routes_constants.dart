@@ -78,6 +78,7 @@ class AppRoutesConstants {
       'trainingSubmissionDetailsScreen';
 
   static const String visitorsLogs = 'visitorsLogsScreen';
+  static const String visitorsLogsMoreMenu = '/visitorsLogsScreen';
 
   static const String requests = 'requestsScreen';
 

@@ -9,6 +9,7 @@ import 'package:kf_ess_mobile_app/features/requests/data/models/response/annual_
 import 'package:kf_ess_mobile_app/features/requests/data/models/response/delete_leave_request_response_model.dart';
 import 'package:kf_ess_mobile_app/features/requests/data/models/response/extend_leave_response_model.dart';
 import 'package:kf_ess_mobile_app/features/requests/data/models/response/request_type_response_model.dart';
+import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';
@@ -34,7 +35,7 @@ abstract class RequestsRemoteDataSource {
   Future<CustomResponseType<ExtendLeaveResponseModel>> extendLeave(
       {required ExtendLeaveRequestModel extendLeaveRequestModel});
 
-  Future<CustomResponseType<DeleteLeaveResponseModel>> deleteLeave(
+  Future<CustomResponseType<String>> deleteLeave(
       {required DeleteLeaveRequestModel deleteLeaveRequestModel});
 }
 
@@ -126,14 +127,14 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
   }
 
   @override
-  Future<CustomResponseType<DeleteLeaveResponseModel>> deleteLeave(
+  Future<CustomResponseType<String>> deleteLeave(
       {required DeleteLeaveRequestModel deleteLeaveRequestModel}) async {
     ({dynamic response, bool success}) result = await networkHelper.post(
         path: ApiConstants.deleteLeave,
         queryParams: deleteLeaveRequestModel.toJson());
 
     if (result.success && result.response["code"]!=404) {
-      return right(DeleteLeaveResponseModel.fromJson(result.response));
+      return right(result .response["data"]);
     } else {
       return left(ServerFailure(message: result.response["data"] as String));
     }

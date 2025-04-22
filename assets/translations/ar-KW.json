@@ -1,4 +1,6 @@
 {
+"Deleted": "تم الالغاء",
+  "ServerFailureError": "خطأ في الخادم",
 "employees_name": "اسم الموظف",
 "mission_count": "عدد المهمات",
   "dept_name": "اسم القسم",
@@ -143,7 +145,7 @@
   "start_time": "وقت البداية",
   "end_time": "وقت النهاية",
   "you_training_request_submitted_successfully": "تم تقديم طلب التدريب بنجاح",
-  "emergency_date": "تاريخ الطوارئ",
+  "emergency_date": "تاريخ الطارئ",
   "view_my_attandance": "عرض حضوري",
   "maximum_number_of_days_you_can_request": "الحد الأقصى لعدد الأيام التي يمكنك طلبها هو",
   "available_days": "الأيام المتاحة",

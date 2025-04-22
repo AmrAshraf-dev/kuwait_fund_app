@@ -153,10 +153,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (state is HomeLoadingState) {
                     ViewsToolbox.showLoading();
                   }
-                  if (state is HomeErrorState) {
+                else  if (state is HomeErrorState) {
                     ViewsToolbox.dismissLoading();
                     ViewsToolbox.showErrorAwesomeSnackBar(
                         context, state.message!);
+                  }
+                  else if ( state is HomeReadyState) {
+                    ViewsToolbox.dismissLoading();
                   }
                 },
                 builder: (context, state) {
@@ -181,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         HalfCircleChartWidget(
                           leaveUsed: int.parse(
-                              state.response.data?.leaveBalance ?? "0"),
+                              state.response.data?.shortSickDays ?? "0"),
                           totalLeave: -1,
                           color: Color(0xFFEDA18C),
                           title: context.tr('sick_leave'),

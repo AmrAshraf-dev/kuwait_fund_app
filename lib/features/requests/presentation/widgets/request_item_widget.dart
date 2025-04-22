@@ -125,13 +125,22 @@ class _RequestItemWidgetState extends State<RequestItemWidget> {
                                 if (state is DeleteLeaveLoadingState) {
                                   ViewsToolbox.showLoading();
                                 } else if (state is DeleteLeaveReadyState) {
+                                ViewsToolbox.dismissLoading();
+
                                   // To refresh requests again after deleting
                                  widget.requestsCubit.getRequests();
 
                                   ViewsToolbox.dismissLoading();
                                   ViewsToolbox.showMessageBottomsheet(
+                                    actionsData: CustomElevatedButton(
+                                      width: 300.w,
+                                      text: context.tr("continue"),
+                                      onPressed: () {
+                                        CustomMainRouter.back();
+                                      },
+                                    ),
                                     context: context,
-                                    closeOnlyPopup: true,
+                                   // closeOnlyPopup: true,
                                     status: ConfirmationPopupStatus.success,
                                     message: context
                                         .tr("request_canceled_successfully"),

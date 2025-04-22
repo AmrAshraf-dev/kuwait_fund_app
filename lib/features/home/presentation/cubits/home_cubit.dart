@@ -27,6 +27,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getLeaveDashboard(
       ) async {
+
+        await Future.delayed(const Duration(seconds: 1));
     emit(HomeLoadingState());
 
     final CustomResponseType<BaseEntity<HomeEntity>> eitherPackagesOrFailure =

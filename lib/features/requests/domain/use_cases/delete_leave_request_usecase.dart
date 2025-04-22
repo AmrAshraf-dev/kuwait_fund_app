@@ -10,13 +10,13 @@ import '../../../../../core/network/base_handling.dart';
 @injectable
 class GetDeleteLeaveUseCase
     implements
-        UseCase<BaseEntity<CreateDeleteLeaveEntity>, DeleteLeaveRequestModel> {
+        UseCase<String, DeleteLeaveRequestModel> {
   GetDeleteLeaveUseCase({required this.requestsRepository});
 
   final RequestsRepository requestsRepository;
 
   @override
-  Future<CustomResponseType<BaseEntity<CreateDeleteLeaveEntity>>> call(
+  Future<CustomResponseType<String>> call(
     DeleteLeaveRequestModel params,
   ) {
     return requestsRepository.createDeleteLeaveRequest(
