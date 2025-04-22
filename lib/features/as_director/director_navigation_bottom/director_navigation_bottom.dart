@@ -21,8 +21,8 @@ class DirectorNavigationMainScreen extends StatefulWidget {
 class _DirectorNavigationMainScreenState extends State<DirectorNavigationMainScreen> {
   List<String> screensTitles = <String>[
     "home",
-    "director_mission",
     "dept_mission",
+    "dept_assignment",
     "more",
   ];
 
@@ -36,8 +36,8 @@ class _DirectorNavigationMainScreenState extends State<DirectorNavigationMainScr
               resizeToAvoidBottomInset: false,
               routes: <PageRouteInfo>[
                 const AdminHomeRoute(),
-                const AdminDirectorMissionRoute(),
-                const AdminDeptMissionRoute(),
+                const DirectorDeptMissionRoute(),
+                const DirectorDeptAssignmentRoute(),
                 const MoreRoute()
               ],
               bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
@@ -112,7 +112,7 @@ class _DirectorNavigationMainScreenState extends State<DirectorNavigationMainScr
                           padding: EdgeInsets.only(bottom: 9.h, top: 18.h),
                           child: Assets.svg.directorMission
                               .svg(color: Colors.white)),
-                      label: context.tr('director_mission'),
+                      label: context.tr('dept_mission'),
                     ),
                     BottomNavigationBarItem(
                       icon: Padding(
@@ -120,44 +120,16 @@ class _DirectorNavigationMainScreenState extends State<DirectorNavigationMainScr
                             bottom: 9.h,
                             top: 18.h,
                           ),
-                          child: Badge(
-                              padding: EdgeInsets.all(3),
-                              backgroundColor: Palette.red_FF0606,
-                              label: SizedBox(
-                                height: 15.h,
-                                width: 15.w,
-                                child: Center(
-                                  child: AppText(
-                                    text: '3',
-                                    style: AppTextStyle.bold_12,
-                                    textColor: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              child: Assets.svg.deptMission.svg())),
+                          child: Assets.svg.deptMission.svg()),
                       activeIcon: Padding(
                         padding: EdgeInsets.only(
                           bottom: 9.h,
                           top: 18.h,
                         ),
-                        child: Badge(
-                            padding: EdgeInsets.all(3),
-                            backgroundColor: Palette.red_FF0606,
-                            label: SizedBox(
-                              height: 15.h,
-                              width: 15.w,
-                              child: Center(
-                                child: AppText(
-                                  text: '3',
-                                  style: AppTextStyle.bold_12,
-                                  textColor: Colors.white,
-                                ),
-                              ),
-                            ),
-                            child: Assets.svg.deptMission
-                                .svg(color: Colors.white)),
+                        child: Assets.svg.deptMission
+                                .svg(color: Colors.white, ),
                       ),
-                      label: context.tr('dept_mission'),
+                      label: context.tr('dept_assignment'),
                     ),
                     BottomNavigationBarItem(
                       icon: Padding(

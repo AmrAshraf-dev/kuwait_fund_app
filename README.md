@@ -1,54 +1,82 @@
-<<<<<<< HEAD
 # kf_ess_mobile_app
 
 A new Flutter project.
 
+## Introduction
+
+TODO: Provide a short introduction to the project, including its objectives and motivation.
+
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Follow these steps to set up and run the project:
 
-A few resources to get you started if this is your first Flutter project:
+1. **Installation**  
+   - Ensure you have Flutter installed. Refer to the [Flutter installation guide](https://docs.flutter.dev/get-started/install).
+   - Clone this repository:  
+     ```bash
+     git clone <repository-url>
+     cd kf_ess_mobile_app
+     ```
 
+2. **Dependencies**  
+   - Install project dependencies:  
+     ```bash
+     flutter pub get
+     ```
+
+3. **Build Runner**  
+   - Generate necessary files:  
+     ```bash
+     dart run build_runner build --delete-conflicting-outputs
+     ```
+
+4. **Native Splash Screen**  
+   - Create the splash screen:  
+     ```bash
+     dart run flutter_native_splash:create --path=flutter_native_splash.yaml
+     ```
+
+5. **Mason Templates**  
+   - Add and use Mason templates:  
+     ```bash
+     mason remove clean_module
+     mason add clean_module --git-url https://github.com/heshesh2010/bricks-diyar/ --git-path clean_module
+     mason make clean_module --name loanRequest --hasLocalData false --hasRemoteData true --state_management cubit --areCommentsOn true --addTemplateCode true
+     ```
+
+## Build and Test
+
+TODO: Provide instructions for building and testing the project.
+
+## Contribute
+
+Contributions are welcome! Follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a new branch:  
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes:  
+   ```bash
+   git commit -m "Add your message here"
+   ```
+4. Push to the branch:  
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request.
+
+## Resources
+
+- [Flutter Documentation](https://docs.flutter.dev/)
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## TODO Sections
 
-dart run build_runner build --delete-conflicting-outputs 
-
-
-mason remove clean_module
-mason add clean_module --git-url https://github.com/heshesh2010/bricks-diyar/ --git-path clean_module
-
-# mason add clean_module --git-url https://github.com/heshesh2010/bricks-diyar --git-path clean_module --git-ref test_sub_folder
+- Replace placeholders with project-specific details.
+- Add API references, latest releases, and testing instructions.
 
 
-
-
-mason make clean_module --name loanRequest --hasLocalData false --hasRemoteData true --state_management cubit --areCommentsOn true --addTemplateCode true
-
-dart run flutter_native_splash:create --path=/Users/heshamelnemr/Desktop/FlutterProjects/kf_ess_mobile_app/flutter_native_splash.yaml
-=======
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
-
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
-
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
->>>>>>> b445908289b8dac132f091deedaeaac3a65489cf
+to build new apk  build apk --split-per-abi

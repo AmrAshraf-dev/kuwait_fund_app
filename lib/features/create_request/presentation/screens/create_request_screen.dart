@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
@@ -37,14 +38,14 @@ class _CreateRequestScreenState extends State<CreateRequestScreen> {
           child: Column(
             children: [
               MoreItemWidget(
-                  text: context.tr("annual_request"),
-                  svgIcon: Assets.svg.createAnnualRequest.path,
+                  text: context.tr("annual_leave"),
+                  svgIcon: annualLeave,
                   onTap: () {
                     CustomMainRouter.push(CreateAnnualLeaveRequestRoute());
                   }),
               MoreItemWidget(
                   text: context.tr("sick_leave"),
-                  svgIcon: Assets.svg.createSickLeaveRequest.path,
+                  svgIcon: sickLeave,
                   onTap: () {
                     CustomMainRouter.push(CreateSickLeaveRequestRoute());
                   }),

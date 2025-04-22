@@ -29,6 +29,7 @@ class CertificatesCubit extends Cubit<CertificatesState> {
   }
 
   Future<void> getCertificates() async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(CertificatesLoadingState());
 
     final CustomResponseType<BaseEntity<List<CertificatesEntity>>>

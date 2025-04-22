@@ -22,19 +22,26 @@ class OperationsLoanTabPage extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: SingleChildScrollView(
-          child: BlocBuilder<LoanCubit, LoanState>(
-            builder: (context, state) {
+          child: BlocConsumer<LoanCubit, LoanState>(
+
+          listener:  (context, state) {
               if (state is LoanLoadingState) {
                 ViewsToolbox.showLoading();
               }
               if (state is LoanErrorState) {
                 ViewsToolbox.dismissLoading();
-                return AppText(
-                  text: state.message,
+                ViewsToolbox.showErrorAwesomeSnackBar(
+                context,
+                state.message!,
                 );
-              } else if (state is LoanReadyState) {
+              }
+              else if (state is LoanReadyState) {
                 ViewsToolbox.dismissLoading();
-
+              }
+            },
+            builder: (context, state) {
+               if (state is LoanReadyState) {
+ 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: state.response.data!

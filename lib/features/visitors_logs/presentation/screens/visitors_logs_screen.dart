@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/legend_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_request_model.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
@@ -48,6 +52,17 @@ class _VisitorsLogsScreenState extends State<VisitorsLogsScreen> {
                 if(state is VisitorsLogsCanNotViewState){
                   ViewsToolbox.dismissLoading();
                   ViewsToolbox.showMessageBottomsheet(
+                    actionsData: 
+
+                    CustomElevatedButton(
+                        width: 300.w,
+                        text: context.tr("continue"),
+                        onPressed: () {
+                       CustomMainRouter.back();  
+                        }),
+
+                     
+                    
                     context: context,
                     status: ConfirmationPopupStatus.failure,
                     message: tr("you_can_not_view_visitors_logs"),
@@ -137,30 +152,6 @@ class LegendWidget extends StatelessWidget {
   }
 }
 
-class LegendItem extends StatelessWidget {
-  final Color color;
-  final String labelKey;
 
-  const LegendItem({required this.color, required this.labelKey, Key? key})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          height: 20.h,
-          width: 20.h,
-          decoration: BoxDecoration(color: color, shape: BoxShape.rectangle),
-        ),
-        10.horizontalSpace,
-        AppText(
-          text: context.tr(labelKey),
-          style: AppTextStyle.medium_18,
-        ),
-      ],
-    );
-  }
-}
 
 

@@ -18,62 +18,56 @@ class _RecentUpdatesSectionState extends State<RecentUpdatesSection> {
     return Column(
       children: [
         // title
-        Padding(
-          padding: EdgeInsetsDirectional.only(start: 32.w, end: 22.w),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              AppText(
-                text: context.tr("recent_updates"),
-                style: AppTextStyle.bold_18,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            AppText(
+              text: context.tr("recent_updates"),
+              style: AppTextStyle.bold_18,
+            ),
+            InkWell(
+              onTap: () {},
+              child: AppText(
+                text: context.tr("view_all"),
+                style: AppTextStyle.medium_14,
+                textColor: Palette.blue_002A69,
               ),
-              InkWell(
-                onTap: () {},
-                child: AppText(
-                  text: context.tr("view_all"),
-                  style: AppTextStyle.medium_14,
-                  textColor: Palette.blue_002A69,
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
         16.verticalSpace,
-        Padding(
-          padding: EdgeInsetsDirectional.only(start: 25.0.w),
-          child: SizedBox(
-            height: 140.h,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              children: [
-                RecentUpdateCardItem(
-                  title: context.tr("annual_vacation_request"),
-                  subtitle:
-                      "${context.tr("your_request_has_been_approved_on")} 22 Dec 2021",
-                  day: "22",
-                  month: "Dec",
-                  year: "2021",
-                  onClick: () {},
-                ),
-                RecentUpdateCardItem(
-                  title: context.tr("annual_leave"),
-                  subtitle: context.tr("annual_leave"),
-                  day: "23",
-                  month: "Dec",
-                  year: "2021",
-                  onClick: () {},
-                ),
-                RecentUpdateCardItem(
-                  title: context.tr("annual_leave"),
-                  subtitle: context.tr("annual_leave"),
-                  day: "23",
-                  month: "Dec",
-                  year: "2021",
-                  onClick: () {},
-                ),
-              ],
-            ),
+        SizedBox(
+          height: 140.h,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            children: [
+              RecentUpdateCardItem(
+                title: context.tr("annual_vacation_request"),
+                subtitle:
+                    "${context.tr("your_request_has_been_approved_on")} 22 Dec 2021",
+                day: "22",
+                month: "Dec",
+                year: "2021",
+                onClick: () {},
+              ),
+              RecentUpdateCardItem(
+                title: context.tr("annual_leave"),
+                subtitle: context.tr("annual_leave"),
+                day: "23",
+                month: "Dec",
+                year: "2021",
+                onClick: () {},
+              ),
+              RecentUpdateCardItem(
+                title: context.tr("annual_leave"),
+                subtitle: context.tr("annual_leave"),
+                day: "23",
+                month: "Dec",
+                year: "2021",
+                onClick: () {},
+              ),
+            ],
           ),
         )
       ],

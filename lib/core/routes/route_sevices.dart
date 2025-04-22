@@ -22,6 +22,16 @@ class CustomMainRouter {
     appRouter.push(route).then(then ?? (Object? value) {});
   }
 
+
+
+  static void back() {
+                                                                         final router = getIt<AppRouter>();
+
+if (router.canPop()) {
+  router.back(); // or router.back();
+}
+  }
+
   static void pushAndPopUntil(PageRouteInfo route) {
     appRouter.pushAndPopUntil(route,
         predicate: (Route<dynamic> route) => false);

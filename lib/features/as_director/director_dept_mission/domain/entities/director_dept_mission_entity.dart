@@ -4,15 +4,22 @@
 
 
 
-/// Entity that contains the data of the AdminDeptMission.
-class AdminDeptMissionEntity extends Equatable{
+/// Entity that contains the data of the AdminDirectorMission.
+class DeptEntity extends Equatable{
 
- final String? var1;
+ final String? departmentCode;
 
- final  String? var2;
-  /// Entity that contains the data of the AdminDeptMission.
-   AdminDeptMissionEntity(
-    {required this.var1, required this.var2}
+ final  String? name;
+
+  final  String? id;
+ final  String? director_name;
+
+  /// Entity that contains the data of the AdminDirectorMission.
+   DeptEntity(
+    {required this. departmentCode, 
+    required this.name,
+    required this.id,
+    required this.director_name,}
    );
 
   /*
@@ -21,9 +28,9 @@ class AdminDeptMissionEntity extends Equatable{
 
   @override
   List<Object?> get props => [
-  /*
-  List your entity attributes here 
-  */
+  
+    id,
+   
   ];
 
 

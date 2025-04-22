@@ -18,6 +18,7 @@ class LeaveBalanceCubit extends Cubit<LeaveBalanceState> {
   //void changeTab(int index) => emit(RequestTypesChanged(index));
 
   Future<void> getLeaveBalanceData() async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(LeaveBalanceLoading());
     final result = await getLeaveBalanceUseCase();
     result.fold(

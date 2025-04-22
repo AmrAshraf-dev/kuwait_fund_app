@@ -23,7 +23,7 @@ class DeleteLeaveCubit extends Cubit<DeleteLeaveState> {
         await Future.delayed(const Duration(milliseconds: 100));
     emit(DeleteLeaveLoadingState());
 
-    final CustomResponseType<BaseEntity<CreateDeleteLeaveEntity>>
+    final CustomResponseType<String>
         eitherPackagesOrFailure =
         await getDeleteLeaveUseCase(deleteLeaveRequestModel);
 
@@ -32,15 +32,10 @@ class DeleteLeaveCubit extends Cubit<DeleteLeaveState> {
       emit(DeleteLeaveErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<CreateDeleteLeaveEntity> response) {
-      //emit(DeleteLeaveReadyState(response));
-      if (response.code != 404) {
-        emit(DeleteLeaveReadyState(response));
-      } else {
-        emit(DeleteLeaveErrorState(
-          message: response.message ?? "Error",
-        ));
-      }
+    }, (String response) {
+
+      emit(DeleteLeaveReadyState(response));
+    
     });
   }
 }

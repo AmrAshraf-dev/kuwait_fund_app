@@ -15,6 +15,7 @@ class GenerateCertificatesCubit extends Cubit<GenerateCertificatesState> {
       : super(GenerateCertificatesInitialState());
 
   void generateCertificate(String statmentType) async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(GenerateCertificatesLoadingState());
     final CustomResponseType<BaseEntity<String>> eitherPackagesOrFailure =
         await generateCertificateUserCase(statmentType);
@@ -25,6 +26,12 @@ class GenerateCertificatesCubit extends Cubit<GenerateCertificatesState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<String> response) {
+      if(response.data == null) {
+        emit(GenerateCertificatesErrorState(
+          message: "No data found",
+        ));
+        return;
+      }
       emit(GenerateCertificatesReadyState(response));
     });
   }

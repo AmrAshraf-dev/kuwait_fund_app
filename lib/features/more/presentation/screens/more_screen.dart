@@ -80,10 +80,10 @@ class _MoreScreenState extends State<MoreScreen> {
                 }),
             (LocalData.getUser()?.userInfo.isDirector ?? false)
                 ? MoreItemWidget(
-                    text: context.tr("director_mission"),
+                    text: context.tr("dept_mission"),
                     svgIcon: Assets.svg.directorMission.path,
                     onTap: () {
-                      CustomMainRouter.push(VisitorsLogsRoute());//TODO: change route
+                      CustomMainRouter.push(DirectorDeptMissionRoute());
                     })
                 : MoreItemWidget(
                     text: context.tr("visitors_logs"),
@@ -93,10 +93,10 @@ class _MoreScreenState extends State<MoreScreen> {
                     }),
            (  LocalData.getUser()?.userInfo.isDirector??false)
                 ? MoreItemWidget(
-                    text: context.tr("dept_mission"),
+                    text: context.tr("dept_assignment"),
                     svgIcon: Assets.svg.deptMission.path,
                     onTap: () {
-                      CustomMainRouter.push(SurveyRoute());
+                      CustomMainRouter.push(DirectorDeptAssignmentRoute());
                     })
                 : MoreItemWidget(
                     text: context.tr("survey"),

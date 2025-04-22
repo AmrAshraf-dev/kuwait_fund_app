@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/my_attendance/domain/entities/my_attendance_entity.dart';
@@ -12,6 +13,8 @@ import 'package:kf_ess_mobile_app/features/my_attendance/presentation/cubits/my_
 import 'package:kf_ess_mobile_app/features/my_attendance/presentation/widgets/attendance_log_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/my_attendance/presentation/widgets/sick_leave_chart_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
@@ -36,14 +39,34 @@ class _MyAttendanceScreenState extends State<MyAttendanceScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => myAttendanceCubit,
-      child: BlocBuilder<MyAttendanceCubit, MyAttendanceState>(
-        builder: (context, state) {
+      child: BlocConsumer<MyAttendanceCubit, MyAttendanceState>(
+        listener: (context, state) {
           if (state is MyAttendanceLoadingState) {
             ViewsToolbox.showLoading();
           } else if (state is MyAttendanceErrorState) {
             ViewsToolbox.dismissLoading();
-            ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
+ViewsToolbox.showMessageBottomsheet(
+                    actionsData: 
+
+                    CustomElevatedButton(
+                        width: 300.w,
+                        text: context.tr("continue"),
+                        onPressed: () {
+                       CustomMainRouter.back();  
+                        }),
+
+                     
+                    
+                    context: context,
+                    status: ConfirmationPopupStatus.failure,
+                    message: tr("noDataFound"),
+                  );
           } else if (state is MyAttendanceReadyState) {
+            ViewsToolbox.dismissLoading();
+          }
+        },
+        builder: (context, state) {
+          if (state is MyAttendanceReadyState) {
             ViewsToolbox.dismissLoading();
             final MyAttendanceEntity attendance = state.response.data!;
             return MasterWidget(
