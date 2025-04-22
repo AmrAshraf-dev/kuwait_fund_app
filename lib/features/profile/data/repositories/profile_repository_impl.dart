@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/address_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/address_entity.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/family_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/qualifications_response_model.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../shared/entity/base_entity.dart';
@@ -32,10 +32,19 @@ class ProfileRepositoryImp implements ProfileRepository {
   }
 
   @override
-  Future<CustomResponseType<BaseEntity<List<FamilyEntity>>>> getFamily() async {
-    final response = await profileRemoteDataSource.getFamily();
-    return response.map((familyResponse) => BaseEntity());
+  Future<CustomResponseType<BaseEntity<List<FamilyModel>>>> getFamily() async {
+    return await profileRemoteDataSource.getFamily();
   }
-  
-  
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<QualificationsModel>>>>
+      getQualifications() async {
+    return await profileRemoteDataSource.getQualifications();
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<ExperiencesModel>>>>
+      getExperiences() async {
+    return await profileRemoteDataSource.getExperiences();
+  }
 }

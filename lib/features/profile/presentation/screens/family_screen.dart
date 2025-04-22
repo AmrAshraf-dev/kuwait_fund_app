@@ -7,7 +7,7 @@ import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/family_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/family_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/add_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/data_with_edit_card.dart';
@@ -30,7 +30,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
   }
 
   final FamilyCubit _familyCubit = getIt<FamilyCubit>();
-  List<FamilyEntity>? familyEntity;
+  List<FamilyModel>? familyEntity;
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
@@ -69,12 +69,12 @@ class _FamilyScreenState extends State<FamilyScreen> {
                     return ListView.separated(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: 3,
+                      itemCount: state.response.data?.length ?? 0,
                       separatorBuilder: (context, index) => 10.verticalSpace,
                       itemBuilder: (context, index) {
                         return DataWithEditCard(
-                          title: familyEntity?[index].name ?? '',
-                          subTitle: familyEntity?[index].relation ??
+                          title: state.response.data?[index].name ?? '',
+                          subTitle: state.response.data?[index].relation ??
                               '', //context.tr("spouse"),
                           icon: index == 1
                               ? Assets.svg.female.svg()
@@ -86,15 +86,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
                       },
                     );
                   }
-                  return Center(
-                    child: Text(
-                      context.tr("noData"),
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  );
+                  return Container();
                 },
               ),
             ],

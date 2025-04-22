@@ -91,14 +91,13 @@ class ApiConstants {
   static var getAllLeaveRequestsWaiting = 'Leave/GetAllLeaveRequestsWaiting';
   static var approveLeaveRequest = 'Leave/ApproveLeaveRequest';
   static var rejectLeaveRequest = 'Leave/RejectLeaveRequest';
-
+  static var getDirectorMissionsDetails = 'Missions/GetManagmentAttendaceDate';
+  static var getAllManagement = 'Missions/GetAllManagement';
+  static var getManagementCalenderData = 'Missions/GetManagementCalenderData';
   //profile
   static var getProfileInfo = 'Profile/GetEmployeeProfile';
   static var getAddressDetails = 'Profile/GetEmployeeAddressDetails';
   static var getFamilyData = 'Profile/GetEmployeeFamilyList';
-
-  static var getAllManagement = 'Missions/GetAllManagement';
-  static var getManagementCalenderData = 'Missions/GetManagementCalenderData';
-
-  static var getDirectorMissionsDetails = 'Missions/GetManagmentAttendaceDate';
+  static var getQualificationsData = 'Profile/GetEmployeeQualificationsList';
+  static var getExperiencesData = 'Profile/GetPreviousEmploymentList';
 }

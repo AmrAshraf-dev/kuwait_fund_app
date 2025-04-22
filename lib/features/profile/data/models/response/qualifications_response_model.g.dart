@@ -1,37 +1,40 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'family_response_model.dart';
+part of 'qualifications_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-FamilyModel _$FamilyModelFromJson(Map<String, dynamic> json) => FamilyModel(
+QualificationsModel _$QualificationsModelFromJson(Map<String, dynamic> json) =>
+    QualificationsModel(
       id: json['id'] as String?,
-      name: json['name'] as String?,
-      relation: json['relation'] as String?,
+      educationName: json['educationName'] as String?,
+      graduationDate: json['graduationDate'] as String?,
     );
 
-Map<String, dynamic> _$FamilyModelToJson(FamilyModel instance) =>
+Map<String, dynamic> _$QualificationsModelToJson(
+        QualificationsModel instance) =>
     <String, dynamic>{
       if (instance.id case final value?) 'id': value,
-      if (instance.name case final value?) 'name': value,
-      if (instance.relation case final value?) 'relation': value,
+      if (instance.educationName case final value?) 'educationName': value,
+      if (instance.graduationDate case final value?) 'graduationDate': value,
     };
 
-FamilyResponseModel _$FamilyResponseModelFromJson(Map<String, dynamic> json) =>
-    FamilyResponseModel(
+QualificationsResponseModel _$QualificationsResponseModelFromJson(
+        Map<String, dynamic> json) =>
+    QualificationsResponseModel(
       code: (json['code'] as num?)?.toInt(),
       data: (json['data'] as List<dynamic>?)
-          ?.map((e) => FamilyModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => QualificationsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       message: json['message'] as String?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
       hasMorePages: json['hasMorePages'] as bool?,
     );
 
-Map<String, dynamic> _$FamilyResponseModelToJson(
-        FamilyResponseModel instance) =>
+Map<String, dynamic> _$QualificationsResponseModelToJson(
+        QualificationsResponseModel instance) =>
     <String, dynamic>{
       if (instance.message case final value?) 'message': value,
       if (instance.code case final value?) 'code': value,
