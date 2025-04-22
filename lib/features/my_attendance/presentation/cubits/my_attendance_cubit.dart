@@ -18,6 +18,7 @@ class MyAttendanceCubit extends Cubit<MyAttendanceState> {
   }
 
   Future<void> getMyAttendance() async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(MyAttendanceLoadingState());
 
     final CustomResponseType<BaseEntity<MyAttendanceEntity>>
@@ -29,6 +30,12 @@ class MyAttendanceCubit extends Cubit<MyAttendanceState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<MyAttendanceEntity> response) {
+      if (response.data == null) {
+        emit(MyAttendanceErrorState(
+          message: "No data found",
+        ));
+        return;
+      }
       emit(MyAttendanceReadyState(response));
     });
   }

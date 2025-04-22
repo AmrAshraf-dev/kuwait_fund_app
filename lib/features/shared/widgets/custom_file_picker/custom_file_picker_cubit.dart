@@ -41,7 +41,7 @@ class FilePickerCubit extends Cubit<FilePickerState> {
 
   Future<void> pickCamera({
     FileType filetype = FileType.custom,
-    List<String> allowedExtensions = const <String>['jpg', 'jpeg', 'png'],
+    List<String> allowedExtensions = const <String>['jpg', 'png'],
     bool allowMultiple = false,
   }) async {
     final XFile? pickedImage =

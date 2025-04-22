@@ -21,7 +21,7 @@ class AuthCubit extends Cubit<AuthState> {
     final CustomResponseType<BaseEntity<AuthEntity>> eitherPackagesOrFailure =
         await getAuthUseCase(authModel);
 
-    eitherPackagesOrFailure.fold((Failure failure) {
+   return  eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
       emit(AuthErrorState(
         message: massage.mapFailureToMessage(failure),
@@ -36,6 +36,5 @@ class AuthCubit extends Cubit<AuthState> {
         return false;
       }
     });
-    return false;
   }
 }

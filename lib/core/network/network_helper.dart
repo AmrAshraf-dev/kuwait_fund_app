@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -29,6 +31,13 @@ class NetworkHelper {
   );
 
   NetworkHelper(this.dio) {
+      dio.httpClientAdapter = IOHttpClientAdapter(
+      createHttpClient: () {
+        final client = HttpClient();
+        client.badCertificateCallback = (cert, host, port) => true;
+        return client;
+      },
+    );
     dio.interceptors.clear();
     dio.interceptors.addAll(<Interceptor>[
       AuthInterceptor(),
@@ -90,10 +99,10 @@ class NetworkHelper {
         ),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 && response.data["code"]!=404) {
         return (response: response.data, success: true);
       } else {
-        return (response: response.data['data']['message'], success: false);
+        return (response: response.data['message'], success: false);
       }
     } on DioException catch (e) {
       NetError netError = ExceptionHandle.handleException(e);

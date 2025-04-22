@@ -1,6 +1,15 @@
 {
+
+  "Deleted": "canceled",
+"ServerFailureError": "Server Failure Error",
+  "employees_name":  "Employees Name",
+"mission_count":  "Mission Counter",
+  "dept_name": "Department Name",
+  "dept_assignment":  "Dept. Assignment",
+  "number_of_missions": "Number of Missions",
+  "no_missions/leaves_logs": "No Missions/Leaves Logs",
   "please_select_extend_date": "Please select extend date",
-  "pdf_jpg_png": "PDF, JPG, JPEG, PNG",
+  "pdf_jpg_png": "PDF, JPG, PNG",
   "supported_file_types": "Supported file types",
   "max_file_size_1mb": "Max file size 1MB",
   "committedAmount": "Committed",

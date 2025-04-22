@@ -18,13 +18,13 @@ import 'package:kf_ess_mobile_app/features/about/presentation/screens/about_scre
 import 'package:kf_ess_mobile_app/features/about/presentation/screens/about_screen_details.dart'
     as _i1;
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/screens/create_annual_leave_request_screen.dart'
-    as _i17;
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/screens/admin_dept_mission_screen.dart'
+    as _i15;
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/presentation/screens/director_dept_assignment_screen.dart'
+    as _i20;
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/screens/director_dept_mission_screen.dart'
+    as _i21;
+import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/screens/director_home_screen.dart'
     as _i7;
-import 'package:kf_ess_mobile_app/features/as_director/director_director_mission/presentation/screens/director_director_mission_screen.dart'
-    as _i8;
-import 'package:kf_ess_mobile_app/features/as_director/director_mission/presentation/screens/director_home_screen.dart'
-    as _i9;
 import 'package:kf_ess_mobile_app/features/as_director/director_navigation_bottom/director_navigation_bottom.dart'
     as _i22;
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/screens/submissions_screen.dart'
@@ -32,21 +32,21 @@ import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentatio
 import 'package:kf_ess_mobile_app/features/as_supervisor/supervisor_navigation_bottom/supervisor_navigation_bottom.dart'
     as _i46;
 import 'package:kf_ess_mobile_app/features/auth/presentation/screens/auth_screen.dart'
-    as _i13;
+    as _i11;
 import 'package:kf_ess_mobile_app/features/certificates/presentation/screens/certificate_details_screen.dart'
-    as _i14;
+    as _i12;
 import 'package:kf_ess_mobile_app/features/certificates/presentation/screens/certificates_screen.dart'
-    as _i15;
+    as _i13;
 import 'package:kf_ess_mobile_app/features/contactus/presentation/screens/contactus_screen.dart'
-    as _i16;
+    as _i14;
 import 'package:kf_ess_mobile_app/features/create_request/presentation/screens/create_request_screen.dart'
-    as _i19;
+    as _i17;
 import 'package:kf_ess_mobile_app/features/create_request/presentation/screens/create_sick_leave_request_screen.dart'
-    as _i20;
-import 'package:kf_ess_mobile_app/features/create_request/presentation/screens/create_training_request_screen.dart'
-    as _i21;
-import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/screens/create_emergency_leave_request_screen.dart'
     as _i18;
+import 'package:kf_ess_mobile_app/features/create_request/presentation/screens/create_training_request_screen.dart'
+    as _i19;
+import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/screens/create_emergency_leave_request_screen.dart'
+    as _i16;
 import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/forget_pass_screen.dart'
     as _i29;
 import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/forget_pass_verify_otp_screen.dart'
@@ -60,9 +60,9 @@ import 'package:kf_ess_mobile_app/features/home/presentation/screens/home_screen
 import 'package:kf_ess_mobile_app/features/more/domain/entities/ads_entity.dart'
     as _i53;
 import 'package:kf_ess_mobile_app/features/more/presentation/screens/ads_details_screen.dart'
-    as _i10;
+    as _i8;
 import 'package:kf_ess_mobile_app/features/more/presentation/screens/ads_screen.dart'
-    as _i11;
+    as _i9;
 import 'package:kf_ess_mobile_app/features/more/presentation/screens/more_screen.dart'
     as _i32;
 import 'package:kf_ess_mobile_app/features/my_attendance/presentation/screens/my_attendance_screen.dart'
@@ -104,7 +104,7 @@ import 'package:kf_ess_mobile_app/features/profile/presentation/screens/work_scr
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart'
     as _i54;
 import 'package:kf_ess_mobile_app/features/requests/presentation/screens/annual_leave_request_details_screen.dart'
-    as _i12;
+    as _i10;
 import 'package:kf_ess_mobile_app/features/requests/presentation/screens/extend_leave_request_details_screen.dart'
     as _i27;
 import 'package:kf_ess_mobile_app/features/requests/presentation/screens/requests_screen.dart'
@@ -252,39 +252,7 @@ class AddressRoute extends _i51.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.AdminDeptMissionScreen]
-class AdminDeptMissionRoute extends _i51.PageRouteInfo<void> {
-  const AdminDeptMissionRoute({List<_i51.PageRouteInfo>? children})
-    : super(AdminDeptMissionRoute.name, initialChildren: children);
-
-  static const String name = 'AdminDeptMissionRoute';
-
-  static _i51.PageInfo page = _i51.PageInfo(
-    name,
-    builder: (data) {
-      return const _i7.AdminDeptMissionScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i8.AdminDirectorMissionScreen]
-class AdminDirectorMissionRoute extends _i51.PageRouteInfo<void> {
-  const AdminDirectorMissionRoute({List<_i51.PageRouteInfo>? children})
-    : super(AdminDirectorMissionRoute.name, initialChildren: children);
-
-  static const String name = 'AdminDirectorMissionRoute';
-
-  static _i51.PageInfo page = _i51.PageInfo(
-    name,
-    builder: (data) {
-      return const _i8.AdminDirectorMissionScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i9.AdminHomeScreen]
+/// [_i7.AdminHomeScreen]
 class AdminHomeRoute extends _i51.PageRouteInfo<void> {
   const AdminHomeRoute({List<_i51.PageRouteInfo>? children})
     : super(AdminHomeRoute.name, initialChildren: children);
@@ -294,13 +262,13 @@ class AdminHomeRoute extends _i51.PageRouteInfo<void> {
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      return const _i9.AdminHomeScreen();
+      return const _i7.AdminHomeScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i10.AdsDetailsScreen]
+/// [_i8.AdsDetailsScreen]
 class AdsDetailsRoute extends _i51.PageRouteInfo<AdsDetailsRouteArgs> {
   AdsDetailsRoute({
     _i52.Key? key,
@@ -318,7 +286,7 @@ class AdsDetailsRoute extends _i51.PageRouteInfo<AdsDetailsRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<AdsDetailsRouteArgs>();
-      return _i10.AdsDetailsScreen(key: args.key, adItem: args.adItem);
+      return _i8.AdsDetailsScreen(key: args.key, adItem: args.adItem);
     },
   );
 }
@@ -337,7 +305,7 @@ class AdsDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i11.AdsScreen]
+/// [_i9.AdsScreen]
 class AdsRoute extends _i51.PageRouteInfo<void> {
   const AdsRoute({List<_i51.PageRouteInfo>? children})
     : super(AdsRoute.name, initialChildren: children);
@@ -347,13 +315,13 @@ class AdsRoute extends _i51.PageRouteInfo<void> {
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      return const _i11.AdsScreen();
+      return const _i9.AdsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i12.AnnualLeaveRequestDetailsScreen]
+/// [_i10.AnnualLeaveRequestDetailsScreen]
 class AnnualLeaveRequestDetailsRoute
     extends _i51.PageRouteInfo<AnnualLeaveRequestDetailsRouteArgs> {
   AnnualLeaveRequestDetailsRoute({
@@ -379,7 +347,7 @@ class AnnualLeaveRequestDetailsRoute
       final args = data.argsAs<AnnualLeaveRequestDetailsRouteArgs>(
         orElse: () => const AnnualLeaveRequestDetailsRouteArgs(),
       );
-      return _i12.AnnualLeaveRequestDetailsScreen(
+      return _i10.AnnualLeaveRequestDetailsScreen(
         key: args.key,
         requestID: args.requestID,
         requestsEntity: args.requestsEntity,
@@ -408,7 +376,7 @@ class AnnualLeaveRequestDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i13.AuthScreen]
+/// [_i11.AuthScreen]
 class AuthRoute extends _i51.PageRouteInfo<void> {
   const AuthRoute({List<_i51.PageRouteInfo>? children})
     : super(AuthRoute.name, initialChildren: children);
@@ -418,13 +386,13 @@ class AuthRoute extends _i51.PageRouteInfo<void> {
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      return const _i13.AuthScreen();
+      return const _i11.AuthScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i14.CertificateDetailsScreen]
+/// [_i12.CertificateDetailsScreen]
 class CertificateDetailsRoute
     extends _i51.PageRouteInfo<CertificateDetailsRouteArgs> {
   CertificateDetailsRoute({
@@ -446,7 +414,7 @@ class CertificateDetailsRoute
     name,
     builder: (data) {
       final args = data.argsAs<CertificateDetailsRouteArgs>();
-      return _i14.CertificateDetailsScreen(
+      return _i12.CertificateDetailsScreen(
         key: args.key,
         certificatePdf: args.certificatePdf,
       );
@@ -468,7 +436,7 @@ class CertificateDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i15.CertificatesScreen]
+/// [_i13.CertificatesScreen]
 class CertificatesRoute extends _i51.PageRouteInfo<void> {
   const CertificatesRoute({List<_i51.PageRouteInfo>? children})
     : super(CertificatesRoute.name, initialChildren: children);
@@ -478,13 +446,13 @@ class CertificatesRoute extends _i51.PageRouteInfo<void> {
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      return const _i15.CertificatesScreen();
+      return const _i13.CertificatesScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i16.ContactUsScreen]
+/// [_i14.ContactUsScreen]
 class ContactUsRoute extends _i51.PageRouteInfo<void> {
   const ContactUsRoute({List<_i51.PageRouteInfo>? children})
     : super(ContactUsRoute.name, initialChildren: children);
@@ -494,13 +462,13 @@ class ContactUsRoute extends _i51.PageRouteInfo<void> {
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      return const _i16.ContactUsScreen();
+      return const _i14.ContactUsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i17.CreateAnnualLeaveRequestScreen]
+/// [_i15.CreateAnnualLeaveRequestScreen]
 class CreateAnnualLeaveRequestRoute
     extends _i51.PageRouteInfo<CreateAnnualLeaveRequestRouteArgs> {
   CreateAnnualLeaveRequestRoute({
@@ -520,7 +488,7 @@ class CreateAnnualLeaveRequestRoute
       final args = data.argsAs<CreateAnnualLeaveRequestRouteArgs>(
         orElse: () => const CreateAnnualLeaveRequestRouteArgs(),
       );
-      return _i17.CreateAnnualLeaveRequestScreen(key: args.key);
+      return _i15.CreateAnnualLeaveRequestScreen(key: args.key);
     },
   );
 }
@@ -537,7 +505,7 @@ class CreateAnnualLeaveRequestRouteArgs {
 }
 
 /// generated route for
-/// [_i18.CreateEmergencyLeaveRequestScreen]
+/// [_i16.CreateEmergencyLeaveRequestScreen]
 class CreateEmergencyLeaveRequestRoute
     extends _i51.PageRouteInfo<CreateEmergencyLeaveRequestRouteArgs> {
   CreateEmergencyLeaveRequestRoute({
@@ -557,7 +525,7 @@ class CreateEmergencyLeaveRequestRoute
       final args = data.argsAs<CreateEmergencyLeaveRequestRouteArgs>(
         orElse: () => const CreateEmergencyLeaveRequestRouteArgs(),
       );
-      return _i18.CreateEmergencyLeaveRequestScreen(key: args.key);
+      return _i16.CreateEmergencyLeaveRequestScreen(key: args.key);
     },
   );
 }
@@ -574,7 +542,7 @@ class CreateEmergencyLeaveRequestRouteArgs {
 }
 
 /// generated route for
-/// [_i19.CreateRequestScreen]
+/// [_i17.CreateRequestScreen]
 class CreateRequestRoute extends _i51.PageRouteInfo<void> {
   const CreateRequestRoute({List<_i51.PageRouteInfo>? children})
     : super(CreateRequestRoute.name, initialChildren: children);
@@ -584,13 +552,13 @@ class CreateRequestRoute extends _i51.PageRouteInfo<void> {
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      return const _i19.CreateRequestScreen();
+      return const _i17.CreateRequestScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i20.CreateSickLeaveRequestScreen]
+/// [_i18.CreateSickLeaveRequestScreen]
 class CreateSickLeaveRequestRoute extends _i51.PageRouteInfo<void> {
   const CreateSickLeaveRequestRoute({List<_i51.PageRouteInfo>? children})
     : super(CreateSickLeaveRequestRoute.name, initialChildren: children);
@@ -600,13 +568,13 @@ class CreateSickLeaveRequestRoute extends _i51.PageRouteInfo<void> {
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      return const _i20.CreateSickLeaveRequestScreen();
+      return const _i18.CreateSickLeaveRequestScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i21.CreateTrainingRequestScreen]
+/// [_i19.CreateTrainingRequestScreen]
 class CreateTrainingRequestRoute extends _i51.PageRouteInfo<void> {
   const CreateTrainingRequestRoute({List<_i51.PageRouteInfo>? children})
     : super(CreateTrainingRequestRoute.name, initialChildren: children);
@@ -616,7 +584,39 @@ class CreateTrainingRequestRoute extends _i51.PageRouteInfo<void> {
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      return const _i21.CreateTrainingRequestScreen();
+      return const _i19.CreateTrainingRequestScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i20.DirectorDeptAssignmentScreen]
+class DirectorDeptAssignmentRoute extends _i51.PageRouteInfo<void> {
+  const DirectorDeptAssignmentRoute({List<_i51.PageRouteInfo>? children})
+    : super(DirectorDeptAssignmentRoute.name, initialChildren: children);
+
+  static const String name = 'DirectorDeptAssignmentRoute';
+
+  static _i51.PageInfo page = _i51.PageInfo(
+    name,
+    builder: (data) {
+      return const _i20.DirectorDeptAssignmentScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i21.DirectorDeptMissionScreen]
+class DirectorDeptMissionRoute extends _i51.PageRouteInfo<void> {
+  const DirectorDeptMissionRoute({List<_i51.PageRouteInfo>? children})
+    : super(DirectorDeptMissionRoute.name, initialChildren: children);
+
+  static const String name = 'DirectorDeptMissionRoute';
+
+  static _i51.PageInfo page = _i51.PageInfo(
+    name,
+    builder: (data) {
+      return const _i21.DirectorDeptMissionScreen();
     },
   );
 }

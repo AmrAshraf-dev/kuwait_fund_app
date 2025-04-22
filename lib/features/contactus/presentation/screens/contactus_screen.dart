@@ -5,12 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/contactus/domain/entities/contactus_entity.dart';
 import 'package:kf_ess_mobile_app/features/contactus/presentation/cubits/contactus_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 
@@ -140,16 +143,25 @@ class _ContactUsScreenState extends State<ContactUsScreen>
           Flexible(
               child: BlocProvider(
                   create: (context) => _contactusCubit,
-                  child: BlocBuilder<ContactusCubit, ContactusState>(
-                    builder: (context, state) {
+                  child: BlocConsumer<ContactusCubit, ContactusState>(
+                    listener: (context, state) {
                       if (state is ContactusLoadingState) {
                         ViewsToolbox.showLoading();
                       } else if (state is ContactusErrorState) {
                         ViewsToolbox.dismissLoading();
-                        ViewsToolbox.showErrorAwesomeSnackBar(
-                            context, state.message!);
+                        ViewsToolbox.showMessageBottomsheet(
+                          
+                          context: 
+                            context,message:  state.message??"general-error".tr() ,
+                            status:  ConfirmationPopupStatus.failure,);
                       } else if (state is ContactusReadyState) {
                         ViewsToolbox.dismissLoading();
+                      }
+                    },
+                    builder: (context, state) {
+                    
+                       if (state is ContactusReadyState) {
+                     
 
                         return TabBarView(
                           physics: NeverScrollableScrollPhysics(),

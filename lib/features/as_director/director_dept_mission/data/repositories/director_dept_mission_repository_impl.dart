@@ -1,26 +1,37 @@
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/data/models/request/dept_calendar_data_request_model.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/data/models/response/dept_calendar_data_response_model.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/data/models/response/dept_response_model.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_calendar_data_entity.dart';
 
 import '../../../../../core/network/base_handling.dart';
 import '../../../../shared/entity/base_entity.dart';
 import '../../domain/repositories/director_dept_mission_repository.dart';
 import '../data_sources/remote/director_dept_mission_remote_data_source.dart';
-import '../models/request/admin_dept_mission_request_model.dart';
-import '../models/response/admin_dept_mission_response_model.dart';
+ 
 
-@Injectable(as: AdminDeptMissionRepository)
-class AdminDeptMissionRepositoryImp implements AdminDeptMissionRepository {
-  AdminDeptMissionRepositoryImp({
-    required this.adminDeptMissionRemoteDataSource,
+@Injectable(as: DirectorDeptMissionRepository)
+class DirectorDeptMissionRepositoryImp
+    implements DirectorDeptMissionRepository {
+  DirectorDeptMissionRepositoryImp({
+    required this.directorDeptMissionRemoteDataSource,
   });
 
-  final AdminDeptMissionRemoteDataSource adminDeptMissionRemoteDataSource;
+  final DirectorDeptMissionRemoteDataSource
+      directorDeptMissionRemoteDataSource;
 
   @override
-  Future<CustomResponseType<BaseEntity<AdminDeptMissionModel>>>
-      getAdminDeptMission(
-          {required AdminDeptMissionRequestModel
-              adminDeptMissionParams}) async {
-    return await adminDeptMissionRemoteDataSource.getAdminDeptMission(
-        adminDeptMissionRequestModel: adminDeptMissionParams);
+  Future<CustomResponseType<BaseEntity<List<DeptModel>>>>
+      getAllDepts(
+          ) async {
+    return await directorDeptMissionRemoteDataSource.getAllDepts(
+        );
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<DeptCalendarDataModel>>>> getDeptCalenderData({required DeptCalenderDataRequestModel deptCalenderDataRequestModel}) {
+    return directorDeptMissionRemoteDataSource.getDeptCalenderData(
+      deptCalenderDataRequestModel: deptCalenderDataRequestModel,
+    );
   }
 }

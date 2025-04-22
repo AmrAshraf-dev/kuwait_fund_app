@@ -1,4 +1,5 @@
 class ApiConstants {
+  //static String baseUrl = "https://62.215.251.137/essapi/api/";
   static String baseUrl = "https://mpwpayment.diyarme.com/ESSAPI/api/";
   static String loan = "General/GetLoans";
 
@@ -94,6 +95,13 @@ class ApiConstants {
   static var getDirectorMissionsDetails = 'Missions/GetManagmentAttendaceDate';
   static var getAllManagement = 'Missions/GetAllManagement';
   static var getManagementCalenderData = 'Missions/GetManagementCalenderData';
+  static var readDepartments = 'Missions/ReadDepartments';
+
+  static var getDeptCalenderData = 'Missions/GetOperationEmpsCalenderData';
+
+  static var getTotalMissionByDepartmentDashboard =
+      'Missions/GetTotalMissionByDepartmentDashboard';
+
   //profile
   static var getProfileInfo = 'Profile/GetEmployeeProfile';
   static var getAddressDetails = 'Profile/GetEmployeeAddressDetails';

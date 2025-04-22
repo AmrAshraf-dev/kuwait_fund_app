@@ -70,7 +70,7 @@ class _CreateRequestSectionState extends State<CreateRequestSection> {
                 ),
                 CreateRequestCardItem(
                   title: context.tr("sick_leave"),
-                  svgIcon: emergencyLeave,
+                  svgIcon: sickLeave,
                   onClick: () {
                     CustomMainRouter.push(CreateSickLeaveRequestRoute());
                   },

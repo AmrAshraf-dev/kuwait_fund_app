@@ -28,7 +28,7 @@ class RequestsRepositoryImp implements RequestsRepository {
   Future<CustomResponseType<BaseEntity<List<RequestsModel>>>>
       getRequests() async {
     return await requestsRemoteDataSource.getRequests(
-      requestsRequestModel: RequestsRequestModel(),
+  
     );
   }
 
@@ -64,7 +64,7 @@ class RequestsRepositoryImp implements RequestsRepository {
   }
 
   @override
-  Future<CustomResponseType<BaseEntity<CreateDeleteLeaveEntity>>>
+  Future<CustomResponseType<String>>
       createDeleteLeaveRequest(
           {required DeleteLeaveRequestModel deleteLeaveRequestParams}) async {
     return await requestsRemoteDataSource.deleteLeave(

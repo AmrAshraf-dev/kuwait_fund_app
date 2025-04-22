@@ -18,18 +18,18 @@ dependencies:
   # security
   encrypt: ^5.0.3
   flutter_dotenv: ^5.2.1
-  pointycastle: ^3.7.0
+  pointycastle: ^4.0.0
   local_auth: ^2.3.0
   
   # tools
   file_picker: ^10.1.2
   url_launcher: ^6.3.0
-  share_plus: ^10.1.4
+  share_plus: ^11.0.0
   path_provider: ^2.1.4
-  flutter_pdfview: ^1.3.3
+  flutter_pdfview: ^1.4.0+1
   cached_network_image: ^3.4.1
   image_picker: ^1.1.2
-  device_info_plus: ^11.2.1
+  device_info_plus: #^11.4.0
 
 
   # network
@@ -37,7 +37,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   dart_ping: ^9.0.1
   dart_ping_ios: ^4.0.2
-  connectivity_plus: ^6.1.3
+  connectivity_plus: ^6.1.4
   http: ^1.3.0
  
   
@@ -106,7 +106,7 @@ dependencies:
   flutter_calendar_carousel: ^2.4.4
 
   # webview
-  webview_flutter: ^4.10.0
+  webview_flutter: ^4.11.0
 
   # localization
   intl: ^0.20.0
@@ -138,8 +138,8 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 dependency_overrides:
-  analyzer: 7.3.0
   intl: ^0.20.0
+  pointycastle: ^4.0.0
   flutter_gen_core:
     git:
       url: https://github.com/FlutterGen/flutter_gen.git

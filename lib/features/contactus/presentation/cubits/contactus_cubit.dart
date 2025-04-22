@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_map_coordinates_usecase.dart';
 import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_telephone_fax_usecase.dart';
@@ -23,69 +24,61 @@ class ContactusCubit extends Cubit<ContactusState> {
     required this.getTelephoneFaxUseCase,
   }) : super(ContactusInitialState()) {
     getContactInformation();
-    getMapCoordinates();
-    getTelephoneFax();
   }
 
-  Future<void> _fetchData(
-    Future<CustomResponseType<BaseEntity<ContactusEntity>>> Function() useCase,
-    Function(ContactusEntity) updateCallback,
-  ) async {
+  Future<void> _fetchAllData() async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(ContactusLoadingState(contactusEntity: state.contactusEntity));
 
-    final eitherResult = await useCase();
+    final List<Either<Failure, BaseEntity<ContactusEntity>>> results = await Future.wait([
+      getContactusUseCase.call(),
+      getCoordinatesUseCase.call(),
+      getTelephoneFaxUseCase.call(),
+    ]);
 
-    eitherResult.fold(
-      (failure) {
-        final massage = FailureToMassage();
-        emit(ContactusErrorState(
-          message: massage.mapFailureToMessage(failure),
-          contactusEntity: state.contactusEntity,
-        ));
-      },
-      (response) {
-        final updatedEntity = updateCallback(response.data!);
-        emit(ContactusReadyState(contactusEntity: updatedEntity));
-      },
-    );
+    List<String> failureMessages = [];
+    ContactusEntity? updatedEntity = state.contactusEntity;
+
+    for (var result in results) {
+      result.fold(
+        (failure) {
+          final massage = FailureToMassage();
+          failureMessages.add(massage.mapFailureToMessage(failure));
+        },
+        (response) {
+          updatedEntity = updatedEntity?.copyWith(
+                operationsEmail: response.data?.operationsEmail ?? updatedEntity?.operationsEmail,
+                webmasterEmail: response.data?.webmasterEmail ?? updatedEntity?.webmasterEmail,
+                fax: response.data?.fax ?? updatedEntity?.fax,
+                telephoneNumber: response.data?.telephoneNumber ?? updatedEntity?.telephoneNumber,
+                address: response.data?.address ?? updatedEntity?.address,
+                latitude: response.data?.latitude ?? updatedEntity?.latitude,
+                longitude: response.data?.longitude ?? updatedEntity?.longitude,
+              ) ??
+              response.data;
+        },
+      );
+    }
+
+    if (failureMessages.isNotEmpty) {
+      emit(ContactusErrorState(
+        message: failureMessages.first,
+        contactusEntity: state.contactusEntity,
+      ));
+    } else {
+      emit(ContactusReadyState(contactusEntity: updatedEntity!));
+    }
   }
 
   Future<void> getContactInformation() async {
-    await _fetchData(
-      getContactusUseCase.call,
-      (newData) =>
-          state.contactusEntity?.copyWith(
-            operationsEmail: newData.operationsEmail,
-            webmasterEmail: newData.webmasterEmail,
-            fax: newData.fax,
-            telephoneNumber: newData.telephoneNumber,
-            address: newData.address,
-          ) ??
-          newData,
-    );
+    await _fetchAllData();
   }
 
   Future<void> getMapCoordinates() async {
-    await _fetchData(
-      getCoordinatesUseCase.call,
-      (newData) =>
-          state.contactusEntity?.copyWith(
-            latitude: newData.latitude,
-            longitude: newData.longitude,
-          ) ??
-          newData,
-    );
+    // No longer needed as all calls are handled in _fetchAllData
   }
 
   Future<void> getTelephoneFax() async {
-    await _fetchData(
-      getTelephoneFaxUseCase.call,
-      (newData) =>
-          state.contactusEntity?.copyWith(
-            fax: newData.fax,
-            telephoneNumber: newData.telephoneNumber,
-          ) ??
-          newData,
-    );
+    // No longer needed as all calls are handled in _fetchAllData
   }
 }

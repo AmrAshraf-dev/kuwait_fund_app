@@ -155,21 +155,28 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                                 ],
                               )))),
                   350.verticalSpace,
-                  BlocBuilder<GenerateCertificatesCubit,
+                  BlocConsumer<GenerateCertificatesCubit,
                       GenerateCertificatesState>(
-                    builder: (context, state) {
+
+                        listener:   (context, state) {
                       if (state is GenerateCertificatesLoadingState) {
                         ViewsToolbox.showLoading();
                       } else if (state is GenerateCertificatesErrorState) {
                         ViewsToolbox.dismissLoading();
                         ViewsToolbox.showErrorAwesomeSnackBar(
-                            context, context.tr(state.message!));
+                            context, context.tr("can't_generate_certificate"));
                       } else if (state is GenerateCertificatesReadyState) {
                         ViewsToolbox.dismissLoading();
                         if (state.response.data == null) {
                           ViewsToolbox.showErrorAwesomeSnackBar(context,
                               context.tr("can't_generate_certificate"));
-                        }
+                        }}
+
+                        },
+                    builder: (context, state) {
+                      if (state is GenerateCertificatesReadyState) {
+                        ViewsToolbox.dismissLoading();
+                        
                         CustomMainRouter.push(CertificateDetailsRoute(
                             certificatePdf: state.response.data!));
                       }
