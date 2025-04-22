@@ -27,21 +27,25 @@ PersonalInfoModel _$PersonalInfoModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PersonalInfoModelToJson(PersonalInfoModel instance) =>
     <String, dynamic>{
-      'employeeNumber': instance.employeeNumber,
-      'name': instance.name,
-      'designationName': instance.designationName,
-      'email': instance.email,
-      'phone1': instance.phone1,
-      'phone2': instance.phone2,
-      'civilID': instance.civilID,
-      'recidancyExpiryDate': instance.recidancyExpiryDate,
-      'nationalityName': instance.nationalityName,
-      'passportExpiryDate': instance.passportExpiryDate,
-      'contractTypeName': instance.contractTypeName,
-      'contactStartDate': instance.contactStartDate,
-      'contactEndDate': instance.contactEndDate,
-      'joiningDate': instance.joiningDate,
-      'attachmentInfo': instance.attachmentInfo,
+      if (instance.employeeNumber case final value?) 'employeeNumber': value,
+      if (instance.name case final value?) 'name': value,
+      if (instance.designationName case final value?) 'designationName': value,
+      if (instance.email case final value?) 'email': value,
+      if (instance.phone1 case final value?) 'phone1': value,
+      if (instance.phone2 case final value?) 'phone2': value,
+      if (instance.civilID case final value?) 'civilID': value,
+      if (instance.recidancyExpiryDate case final value?)
+        'recidancyExpiryDate': value,
+      if (instance.nationalityName case final value?) 'nationalityName': value,
+      if (instance.passportExpiryDate case final value?)
+        'passportExpiryDate': value,
+      if (instance.contractTypeName case final value?)
+        'contractTypeName': value,
+      if (instance.contactStartDate case final value?)
+        'contactStartDate': value,
+      if (instance.contactEndDate case final value?) 'contactEndDate': value,
+      if (instance.joiningDate case final value?) 'joiningDate': value,
+      if (instance.attachmentInfo case final value?) 'attachmentInfo': value,
     };
 
 PersonalInfoResponseModel _$PersonalInfoResponseModelFromJson(
@@ -59,9 +63,9 @@ PersonalInfoResponseModel _$PersonalInfoResponseModelFromJson(
 Map<String, dynamic> _$PersonalInfoResponseModelToJson(
         PersonalInfoResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

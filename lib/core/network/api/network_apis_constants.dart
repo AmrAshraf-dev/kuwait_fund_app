@@ -104,9 +104,7 @@ class ApiConstants {
 
   static var getDirectorMissionsDetails =
       'Missions/GetManagmentAttendaceDate';
-  static var getManagementCalenderData = 'Missions/GetManagementCalenderData';
 
-  static var getDirectorMissionsDetails = 'Missions/GetManagmentAttendaceDate';
 
   static var readDepartments = 'Missions/ReadDepartments';
 
