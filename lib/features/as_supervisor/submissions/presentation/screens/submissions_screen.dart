@@ -9,11 +9,8 @@ import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/enti
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submission_cubit.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/request/requests_request_model.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/request_type_entity.dart';
-import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/request_types_cubit/requests_cubit.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/request_item_widget.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/requests_header_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -45,10 +42,8 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
   Widget build(BuildContext context) {
     return MasterWidget(
       hasScroll: false,
-              isBackEnabled: false,
-
+      isBackEnabled: false,
       screenTitle: context.tr("submissions"),
-
       appBarHeight: 90.h,
       widget: MultiBlocProvider(
         providers: [
@@ -70,7 +65,6 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
       ),
     );
   }
-
 
   List<Widget> _buildTabs(BuildContext context, int selectedIndex,
       List<RequestTypeEntity> requestTypes) {

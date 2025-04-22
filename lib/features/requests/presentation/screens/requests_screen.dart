@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-   import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-  import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/request_types_cubit/requests_cubit.dart';
- import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/request_item_widget.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/request_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/requests_header_widget.dart';
- import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 
 @RoutePage()
@@ -36,7 +36,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
       screenTitle: context.tr("my_requests"),
       appBarHeight: 90.h,
       widget: BlocProvider(
-        create:  (context) => _requestCubit..getRequests(),
+        create: (context) => _requestCubit..getRequests(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,19 +64,20 @@ class _RequestsScreenState extends State<RequestsScreen> {
                         ),
                       );
                     } else if (state is RequestsReadyState) {
-                   List<RequestsEntity>   requestsList = state.response.data ?? [];
+                      List<RequestsEntity> requestsList =
+                          state.response.data ?? [];
                       ViewsToolbox.dismissLoading();
                       return ListView.builder(
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      itemCount: requestsList.length,
-      itemBuilder: (context, index) {
-        return RequestItemWidget(
-          request: requestsList[index],
-          requestsCubit:_requestCubit,
-         );
-      },
-    );
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: requestsList.length,
+                        itemBuilder: (context, index) {
+                          return RequestItemWidget(
+                            request: requestsList[index],
+                            requestsCubit: _requestCubit,
+                          );
+                        },
+                      );
                     }
                     return Container();
                   },
@@ -87,5 +88,3 @@ class _RequestsScreenState extends State<RequestsScreen> {
     );
   }
 }
-
- 

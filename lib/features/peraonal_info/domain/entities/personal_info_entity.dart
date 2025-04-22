@@ -1,7 +1,7 @@
 import "package:equatable/equatable.dart";
 
 /// Entity that contains the data of the Profile.
-class ProfileEntity extends Equatable {
+class PersonalInfoEntity extends Equatable {
   final String? employeeNumber;
   final String? name;
   final String? designationName;
@@ -19,7 +19,7 @@ class ProfileEntity extends Equatable {
   final String? attachmentInfo;
 
   /// Entity that contains the data of the Profile.
-  const ProfileEntity(
+  PersonalInfoEntity(
       {this.employeeNumber,
       this.name,
       this.designationName,

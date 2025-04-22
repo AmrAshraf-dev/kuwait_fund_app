@@ -7,23 +7,18 @@ import 'package:injectable/injectable.dart';
 import '../../../shared/entity/base_entity.dart';
 import '../../../../core/network/base_handling.dart';
 
-
-
-
 @injectable
-class GetProfileUseCase implements UseCase<BaseEntity<ProfileEntity>, ProfileRequestModel> {
-    GetProfileUseCase ({required this.profileRepository});
+class GetProfileUseCase implements UseCaseNoParam<BaseEntity<ProfileEntity> //ProfileRequestModel
+> {
+  GetProfileUseCase({required this.profileRepository});
 
   final ProfileRepository profileRepository;
 
-
   @override
   Future<CustomResponseType<BaseEntity<ProfileEntity>>> call(
-    ProfileRequestModel params,
-  ) {
-    
-    
-    return profileRepository.getProfile(profileParams: params);
-    
+      //ProfileRequestModel params,
+      ) {
+    return profileRepository.getProfile(//profileParams: params
+        );
   }
 }
