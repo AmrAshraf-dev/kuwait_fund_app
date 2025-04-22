@@ -20,15 +20,15 @@ AddressModel _$AddressModelFromJson(Map<String, dynamic> json) => AddressModel(
 
 Map<String, dynamic> _$AddressModelToJson(AddressModel instance) =>
     <String, dynamic>{
-      'city': instance.city,
-      'block': instance.block,
-      'street': instance.street,
-      'avenue': instance.avenue,
-      'building': instance.building,
-      'apartmentNumber': instance.apartmentNumber,
-      'phone1': instance.phone1,
-      'phone2': instance.phone2,
-      'attachmentInfo': instance.attachmentInfo,
+      if (instance.city case final value?) 'city': value,
+      if (instance.block case final value?) 'block': value,
+      if (instance.street case final value?) 'street': value,
+      if (instance.avenue case final value?) 'avenue': value,
+      if (instance.building case final value?) 'building': value,
+      if (instance.apartmentNumber case final value?) 'apartmentNumber': value,
+      if (instance.phone1 case final value?) 'phone1': value,
+      if (instance.phone2 case final value?) 'phone2': value,
+      if (instance.attachmentInfo case final value?) 'attachmentInfo': value,
     };
 
 AddressResponseModel _$AddressResponseModelFromJson(
@@ -46,9 +46,9 @@ AddressResponseModel _$AddressResponseModelFromJson(
 Map<String, dynamic> _$AddressResponseModelToJson(
         AddressResponseModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'data': instance.data,
-      'totalRecords': instance.totalRecords,
-      'hasMorePages': instance.hasMorePages,
+      if (instance.message case final value?) 'message': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
+      if (instance.totalRecords case final value?) 'totalRecords': value,
+      if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };
