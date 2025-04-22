@@ -55,8 +55,8 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RequestsHeaderWidget(),
-            20.verticalSpace,
+            // RequestsHeaderWidget(),
+            // 20.verticalSpace,
             // _buildTabBar(context),
             //10.verticalSpace,
             _buildTabViews(),
@@ -97,14 +97,18 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
   }
 
   Widget _buildTabViews() {
-    return BlocBuilder<SubmissionCubit, SubmissionState>(
-      builder: (context, state) {
-        if (state is SubmissionLoadingState) {
+    return BlocConsumer<SubmissionCubit, SubmissionState>(
+
+      listener: (context, state) {
+            if (state is SubmissionLoadingState) {
           ViewsToolbox.showLoading();
         } else if (state is SubmissionErrorState) {
           ViewsToolbox.dismissLoading();
           ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
-        } else if (state is SubmissionEmptyState) {
+        } 
+      },
+      builder: (context, state) {
+     if (state is SubmissionEmptyState) {
           ViewsToolbox.dismissLoading();
           return Expanded(
             child: Center(
@@ -116,15 +120,14 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
           );
         } else if (state is SubmissionReadyState) {
           ViewsToolbox.dismissLoading();
+      List<SubmissionEntity>? submissionList=   state.response.data;
           return Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: List.generate(_tabController.length, (index) {
-                return SubmissionsListViewWidget(
-                  submissionList: state.response.data ?? [],
-                );
-              }),
-            ),
+            child: ListView.builder(
+      itemCount: submissionList?.length??0,
+      itemBuilder: (context, index) {
+        return SubmissionItemWidget(submissionsEntity: submissionList![index]);
+      },
+    )
           );
         }
         return Container();
@@ -132,19 +135,4 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
     );
   }
 }
-
-class SubmissionsListViewWidget extends StatelessWidget {
-  final List<SubmissionEntity> submissionList;
-
-  const SubmissionsListViewWidget({super.key, required this.submissionList});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: submissionList.length,
-      itemBuilder: (context, index) {
-        return SubmissionItemWidget(submissionsEntity: submissionList[index]);
-      },
-    );
-  }
-}
+ 

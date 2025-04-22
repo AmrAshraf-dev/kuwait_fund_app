@@ -1,4 +1,7 @@
 {
+
+
+  "otp_sent_successfully": "تم إرسال رمز التحقق بنجاح",
 "Deleted": "تم الالغاء",
   "ServerFailureError": "خطأ في الخادم",
 "employees_name": "اسم الموظف",
@@ -664,7 +667,7 @@
   "findACardToScan": "العثور على بطاقة عمل",
   "notes": "ملاحظات",
   "requestSentSuccessfully": "تم ارسال الطلب بنجاح",
-  "sorryNoInternet": "افا .. انقطع الاتصال  تأكد من الإنترنت",
+  "sorryNoInternet": " .. انقطع الاتصال  تأكد من الإنترنت",
   "detailsAdded": "تم الحفظ في تطبيق جهات الاتصال",
   "employeesRating": "تقيم العمال",
   "dailyVisits": "زيارات يومية",
@@ -743,7 +746,7 @@
   "bankDetails": "تفاصيل البنك",
   "family": "العائلة",
   "qualification": "المؤهل",
-  "workExperience": "خبرة في العمل",
+  "workExperience": "الخبرة العملية",
   "uploadedDocuments": "المستندات المرفوعة",
   "editProfile": "تعديل الملف الشخصي",
   "jobTitle": "المسمى الوظيفي",

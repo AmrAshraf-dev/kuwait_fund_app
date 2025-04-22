@@ -25,7 +25,7 @@ class AppRoutesConstants {
   static const String annualLeaveRequestDetails =
       'annualLeaveRequestDetailsScreen';
 
-  static const String createRequest = 'createRequestScreen';
+  static const String createRequest = '/createRequestScreen';
 
   static const String trainingRequestDetails = 'trainingRequestDetailsScreen';
 

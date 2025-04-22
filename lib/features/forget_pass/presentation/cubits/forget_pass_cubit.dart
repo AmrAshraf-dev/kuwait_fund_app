@@ -24,7 +24,7 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
       : super(ForgetPassInitialState());
 
   Future<void> getForgetPass(
-      {required ForgetPassRequestModel forgetPassModel}) async {
+      {required ForgetPassRequestModel forgetPassModel , required bool withNavigation }) async {
     emit(ForgetPassLoadingState());
 
     // sets the user name to be used in verify otp screen.
@@ -35,13 +35,14 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
       emit(ForgetPassErrorState(
+        withNavigation: withNavigation,
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<bool> response) {
       if (response.data ?? false) {
-        emit(ForgetPassReadyState(response));
+        emit(ForgetPassReadyState(response, withNavigation:  withNavigation));
       } else {
-        emit(ForgetPassErrorState(message: response.message));
+        emit(ForgetPassErrorState(message: response.message , withNavigation: withNavigation));
       }
     });
   }
@@ -53,14 +54,14 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
-      emit(ForgetPassErrorState(
+      emit(ForgetPassVerifyOTPErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<bool> response) {
       if (response.data ?? false) {
-        emit(ForgetPassReadyState(response));
+        emit(ForgetPassVerifyOTPReadyState(response ));
       } else {
-        emit(ForgetPassErrorState(message: response.message));
+        emit(ForgetPassVerifyOTPErrorState(message: response.message));
       }
     });
   }
@@ -72,14 +73,14 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
-      emit(ForgetPassErrorState(
+      emit(ChangePassErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<bool> response) {
       if (response.data??false) {
-        emit(ForgetPassReadyState(BaseEntity(data: true)));
+        emit(ChangePasswordReadyState(BaseEntity(data: true)));
       } else {
-        emit(ForgetPassErrorState(message: response.message));
+        emit(ChangePassErrorState(message: response.message));
       }
     });
   }

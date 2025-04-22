@@ -21,6 +21,13 @@ class AppRouter extends RootStackRouter {
           maintainState: true,
         ),
 
+         AutoRoute(
+                      maintainState: false,
+                      page: CreateRequestRoute.page,
+                      path: AppRoutesConstants.createRequest,
+                      //  meta: <String, dynamic>{'hideBottomNav': true},
+                    ),
+
         CustomRoute(
             page: NavigationMainRoute.page,
             path: AppRoutesConstants.mainNavigation,
@@ -49,12 +56,12 @@ class AppRouter extends RootStackRouter {
                       path: AppRoutesConstants.extendLeaveDetails,
                       //  meta: <String, dynamic>{'hideBottomNav': true},
                     ),
-                    AutoRoute(
-                      maintainState: false,
-                      page: CreateRequestRoute.page,
-                      path: AppRoutesConstants.createRequest,
-                      //  meta: <String, dynamic>{'hideBottomNav': true},
-                    ),
+                    // AutoRoute(
+                    //   maintainState: false,
+                    //   page: CreateRequestRoute.page,
+                    //   path: AppRoutesConstants.createRequest,
+                    //   //  meta: <String, dynamic>{'hideBottomNav': true},
+                    // ),
                     // AutoRoute(
                     //   maintainState: true,
                     //   page: TrainingRequestDetailsRoute.page,
@@ -317,12 +324,7 @@ class AppRouter extends RootStackRouter {
 
                         //  meta: <String, dynamic>{'hideBottomNav': true},
                         ),
-                    AutoRoute(
-                      maintainState: true,
-                      page: CreateRequestRoute.page,
-                      path: AppRoutesConstants.createRequest,
-                      //  meta: <String, dynamic>{'hideBottomNav': true},
-                    ),
+                   
                      AutoRoute(
                       maintainState: true,
                       page: ExtendLeaveDetailsRoute.page,

@@ -17,6 +17,7 @@ class RequestsCubit extends Cubit<RequestsState> {
 
   Future<void> getRequests(
      ) async {
+      await Future.delayed(const Duration(milliseconds: 100));
     emit(RequestsLoadingState());
 
     final CustomResponseType<BaseEntity<List<RequestsEntity>>>

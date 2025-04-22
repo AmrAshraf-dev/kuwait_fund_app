@@ -107,7 +107,7 @@ class _RequestItemWidgetState extends State<RequestItemWidget> {
                Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                           if ((widget.request.showExtendButton ?? false))
+                           if (!(widget.request.showExtendButton ?? false)) //TODO
                           CustomElevatedButton(
                             onPressed: () {
                               CustomMainRouter.push(

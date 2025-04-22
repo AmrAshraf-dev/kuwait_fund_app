@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +32,32 @@ class ForgetPassVerifyOtpScreen extends StatefulWidget {
 class _ForgetPassVerifyOtpScreenState extends State<ForgetPassVerifyOtpScreen> {
   final ForgetPassCubit forgetPassCubit = getIt<ForgetPassCubit>();
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+  late int _timerSeconds;
+  late Timer _timer;
+
   @override
   void initState() {
     super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timerSeconds = 60;
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_timerSeconds > 0) {
+        setState(() {
+          _timerSeconds--;
+        });
+      } else {
+        timer.cancel();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -95,6 +120,7 @@ class _ForgetPassVerifyOtpScreenState extends State<ForgetPassVerifyOtpScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     TextFieldWidget(
+                                      maxLength: 5,
                                       labelAboveField: context.tr("enter_otp"),
                                       keyName: "otp",
                                       textInputAction: TextInputAction.done,
@@ -114,11 +140,55 @@ class _ForgetPassVerifyOtpScreenState extends State<ForgetPassVerifyOtpScreen> {
                                           textColor: Palette.gery_6C6D6F,
                                         ),
                                         5.horizontalSpace,
-                                        AppText(
-                                          text: context.tr("resend_otp"),
-                                          style: AppTextStyle.medium_16,
-                                          textColor: Palette.blue_5490EB,
-                                        ),
+                                        if (_timerSeconds == 0)
+                                          BlocListener<ForgetPassCubit,
+                                              ForgetPassState>(
+                                            listener: (context, state) {
+                                              if (state
+                                                  is ForgetPassLoadingState) {
+                                                ViewsToolbox.showLoading();
+                                              } else if (state
+                                                  is ForgetPassErrorState) {
+                                                ViewsToolbox.dismissLoading();
+                                                ViewsToolbox
+                                                    .showErrorAwesomeSnackBar(
+                                                        context,
+                                                        state.message!);
+                                              } else if (state
+                                                  is ForgetPassReadyState) {
+                                                ViewsToolbox.dismissLoading();
+                                                ViewsToolbox
+                                                    .showSuccessAwesomeSnackBar(
+                                                        context,
+                                                        context.tr(
+                                                            "otp_sent_successfully"));
+                                              }
+                                            },
+                                            child: InkWell(
+                                              onTap: () {
+                                                forgetPassCubit.getForgetPass(
+                                                  withNavigation: false,
+                                                  forgetPassModel:
+                                                      ForgetPassRequestModel(
+                                                    userName: forgetPassCubit
+                                                        .userName,
+                                                  ),
+                                                );
+                                                _startTimer();
+                                              },
+                                              child: AppText(
+                                                text: context.tr("resend_otp"),
+                                                style: AppTextStyle.medium_16,
+                                                textColor: Palette.blue_5490EB,
+                                              ),
+                                            ),
+                                          )
+                                        else
+                                          AppText(
+                                            text: "${_timerSeconds}s",
+                                            style: AppTextStyle.medium_16,
+                                            textColor: Palette.gery_6C6D6F,
+                                          ),
                                       ],
                                     ),
                                     130.verticalSpace,
@@ -132,13 +202,13 @@ class _ForgetPassVerifyOtpScreenState extends State<ForgetPassVerifyOtpScreen> {
                                           if (state is ForgetPassLoadingState) {
                                             ViewsToolbox.showLoading();
                                           } else if (state
-                                              is ForgetPassErrorState) {
+                                              is ForgetPassVerifyOTPErrorState) {
                                             ViewsToolbox.dismissLoading();
                                             ViewsToolbox
                                                 .showErrorAwesomeSnackBar(
                                                     context, state.message!);
                                           } else if (state
-                                              is ForgetPassReadyState) {
+                                              is ForgetPassVerifyOTPReadyState) {
                                             ViewsToolbox.dismissLoading();
                                             CustomMainRouter.push(
                                                 ResetPassRoute());

@@ -5,7 +5,7 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/pdf_bottomsheet_widget/pdf_bottom_sheet.dart';
 
-class TrainingRequestDetailsRowWidget extends StatelessWidget {
+class  RequestDetailsRowWidget extends StatelessWidget {
   final String title;
   final String? subtitle;
   final String? status;
@@ -13,7 +13,7 @@ class TrainingRequestDetailsRowWidget extends StatelessWidget {
   final bool isLast;
   final bool isFirst;
 
-  const TrainingRequestDetailsRowWidget(
+  const  RequestDetailsRowWidget(
       {super.key,
       required this.title,
       this.subtitle,

@@ -12,8 +12,8 @@ import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
  import 'package:kf_ess_mobile_app/features/requests/data/models/request/extend_leave_request_model.dart';
 import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart';
 import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/extend_leave_cubit/extend_leave_cubit.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/request_details_row_widget%20copy.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/training_request_details_row_widget.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/custom_request_details_row_widget.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/widgets/request_details_row_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
  import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -114,27 +114,27 @@ class _ExtendLeaveDetailsScreenState extends State<ExtendLeaveDetailsScreen> {
                   crossAxisAlignment:  CrossAxisAlignment.start,
                   children: [
                    20.verticalSpace,
-                          TrainingRequestDetailsRowWidget(
+                           RequestDetailsRowWidget(
                           title:  context.tr("requestType") ,
                           subtitle:widget.requestsEntity?.leaveType
                         ),
-                         TrainingRequestDetailsRowWidget(
+                         RequestDetailsRowWidget(
                           title: context.tr("submission_date") ,
                           subtitle: widget.requestsEntity?.requestDate,
                         ),
-                         TrainingRequestDetailsRowWidget(
+                         RequestDetailsRowWidget(
                            title:  context.tr("from_date") ,
                           subtitle: widget.requestsEntity?.leaveStartDate,
                         ),
-                         TrainingRequestDetailsRowWidget(
+                         RequestDetailsRowWidget(
                            title:  context.tr("to_date") ,
                             subtitle: widget.requestsEntity?.leaveEndDate,
                         ),
-                         TrainingRequestDetailsRowWidget(
+                         RequestDetailsRowWidget(
                            title: context.tr("approval_status") ,
                           subtitle:context.tr( widget.requestsEntity?.leaveStatus??""),
                         ),
-                         RequestDetailsRowWidget(
+                         CustomRequestDetailsRowWidget(
                           isLast: true,
                            title: context.tr("extended_date") ,
                           subtitle:_selectedDate ==null? null:
@@ -146,6 +146,7 @@ class _ExtendLeaveDetailsScreenState extends State<ExtendLeaveDetailsScreen> {
                                   Duration(days: 1),
                                 ));
                                 },
+                               
                         ),
                 
                 20.verticalSpace,
@@ -166,7 +167,7 @@ class _ExtendLeaveDetailsScreenState extends State<ExtendLeaveDetailsScreen> {
                       status: ConfirmationPopupStatus.success,
                       continueButtonCallback: () {
                         if(LocalData.getUser()?.userInfo.isSupervisor == true){
-                          CustomMainRouter.push(NavigationMainRoute());
+                          CustomMainRouter.push(SupervisorNavigationMainRoute());
                         }
                         else{
                           CustomMainRouter.push(NavigationMainRoute());

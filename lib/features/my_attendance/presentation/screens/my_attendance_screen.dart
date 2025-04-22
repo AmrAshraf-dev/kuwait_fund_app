@@ -66,9 +66,8 @@ ViewsToolbox.showMessageBottomsheet(
           }
         },
         builder: (context, state) {
-          if (state is MyAttendanceReadyState) {
-            ViewsToolbox.dismissLoading();
-            final MyAttendanceEntity attendance = state.response.data!;
+        
+            final MyAttendanceEntity? attendance =state is MyAttendanceReadyState ? state.response.data!:null;
             return MasterWidget(
                       isBackEnabled: true,
 
@@ -84,7 +83,7 @@ ViewsToolbox.showMessageBottomsheet(
                         SickLeaveChart(
                           height: 140.h,
                           width: 110.w,
-                          timerString: attendance.availableHours ?? "",
+                          timerString: attendance?.availableHours ?? "0:00",
                           color: Colors.blueAccent,
                           title:
                               context.tr('available_leave_hours_untile_today'),
@@ -99,7 +98,7 @@ ViewsToolbox.showMessageBottomsheet(
                         SickLeaveChart(
                           height: 130.h,
                           width: 110.w,
-                          timerString: attendance.usedHours ?? "",
+                          timerString: attendance?.usedHours ?? "0:00",
                           color: Color(0xFFEDA18C),
                           title: context.tr('total_hours_of_leave_used'),
                         ),
@@ -113,7 +112,7 @@ ViewsToolbox.showMessageBottomsheet(
                         SickLeaveChart(
                             height: 130.h,
                             width: 110.w,
-                            timerString: attendance.delayHours ?? "",
+                            timerString: attendance?.delayHours ?? "0:00",
                             title: context.tr('total_hours_of_delay'),
                             color: Palette.orange_FB5923),
                       ],
@@ -156,8 +155,9 @@ ViewsToolbox.showMessageBottomsheet(
                         ),
                       ),
                       10.verticalSpace,
+                      if(attendance?.attendanceData!=null)
                       Column(
-                        children: attendance.attendanceData
+                        children: attendance!.attendanceData
                             .map((e) => AttendanceLogCardItem(
                                   date: e.attendanceDate ?? "",
                                   enterListTimes: e.inOutInfo
@@ -171,8 +171,8 @@ ViewsToolbox.showMessageBottomsheet(
                       )
                     ]));
           }
-          return Container();
-        },
+        
+        
       ),
     );
   }

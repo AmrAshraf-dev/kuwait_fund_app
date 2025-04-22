@@ -45,15 +45,18 @@ class _RequestsScreenState extends State<RequestsScreen> {
             20.verticalSpace,
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 27.w),
-                child: BlocBuilder<RequestsCubit, RequestsState>(
-                  builder: (context, state) {
-                    if (state is RequestsLoadingState) {
+                child: BlocConsumer<RequestsCubit, RequestsState>(
+                  listener: (context, state) {
+                        if (state is RequestsLoadingState) {
                       ViewsToolbox.showLoading();
                     } else if (state is RequestsErrorState) {
                       ViewsToolbox.dismissLoading();
                       ViewsToolbox.showErrorAwesomeSnackBar(
                           context, state.message!);
-                    } else if (state is RequestsEmptyState) {
+                    } 
+                  },
+                  builder: (context, state) {
+                 if (state is RequestsEmptyState) {
                       ViewsToolbox.dismissLoading();
                       return Expanded(
                         child: Center(
