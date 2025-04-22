@@ -28,7 +28,7 @@ class RequestsRepositoryImp implements RequestsRepository {
   Future<CustomResponseType<BaseEntity<List<RequestsModel>>>>
       getRequests() async {
     return await requestsRemoteDataSource.getRequests(
-      requestsRequestModel: RequestsRequestModel(),
+  
     );
   }
 
