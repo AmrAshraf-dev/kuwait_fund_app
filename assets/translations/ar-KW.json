@@ -1,5 +1,9 @@
 {
 
+  "editSpouseData": "تعديل بيانات الزوج/الزوجة",
+  "editChildData": "تعديل بيانات الطفل",
+  "marriageDate": "تاريخ الزواج",
+  "myAddress": "عنواني",
 
   "please_select_to_date_first": "يرجى اختيار تاريخ النهاية أولاً",
 "exit_date": "تاريخ الخروج",
@@ -775,6 +779,7 @@
   "civilIDNumber": "رقم الهوية المدنية",
   "myQualification": "مؤهلي",
   "addQualification": "اضافة مؤهل",
+  "phone": "رقم الجوال",
   "degree": "الدرجة",
   "fieldOfStudy": "مجال الدراسة",
   "editFamily": "تعديل العائلة",
