@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/core/network/base_handling.dart';
 import 'package:kf_ess_mobile_app/error/failure.dart';
+import 'package:kf_ess_mobile_app/features/annual_leave_request/domain/entities/annual_leave_request_entity.dart';
 import 'package:kf_ess_mobile_app/features/annual_leave_request/domain/use_cases/get_annual_leave_balance_usecase.dart';
 import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
@@ -18,7 +19,7 @@ class AnnualLeaveBalanceCubit extends Cubit<LeaveBalanceState> {
   Future<void> getAnnualLeaveBalance() async {
     emit(LeaveBalanceLoadingState());
 
-    final CustomResponseType<BaseEntity<dynamic>> eitherPackagesOrFailure =
+    final CustomResponseType<BaseEntity<AnnualLeaveRequestEntity>> eitherPackagesOrFailure =
         await getAnnualLeaveBalanceUseCase();
 
     eitherPackagesOrFailure.fold((Failure failure) {
@@ -26,7 +27,7 @@ class AnnualLeaveBalanceCubit extends Cubit<LeaveBalanceState> {
       emit(LeaveBalanceErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<dynamic> response) {
+    }, (BaseEntity<AnnualLeaveRequestEntity> response) {
       emit(LeaveBalanceReadyState(response));
     });
   }

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/annual_leave_request/data/models/response/leave_balance_response_model.dart';
+import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';
@@ -10,20 +10,19 @@ import '../../models/request/emergency_leave_request_request_model.dart';
 import '../../models/response/emergency_leave_request_response_model.dart';
 
 abstract class EmergencyLeaveRequestRemoteDataSource {
-  Future<CustomResponseType<EmergencyLeaveRequestResponseModel>>
+  Future<CustomResponseType<String>>
       createEmergencyLeaveRequest(
           {required EmergencyLeaveRequestRequestModel
               emergencyLeaveRequestRequestModel});
 
-  Future<CustomResponseType<LeaveBalanceResponseModel>>
-      getEmergencyAvailableDays();
+  
 
-  Future<CustomResponseType<LeaveBalanceResponseModel>>
-      getEmergencyLeaveBalance();
-
+  Future<CustomResponseType<EmergencyLeaveRequestResponseModel>>
+      getEmergencyLeaveScreen();
 
 
-    Future<CustomResponseType<int>>  getEmergencyEligibleDays();
+
+ 
 }
 
 @Injectable(as: EmergencyLeaveRequestRemoteDataSource)
@@ -33,7 +32,7 @@ class EmergencyLeaveRequestDataSourceImpl
   final NetworkHelper networkHelper;
 
   @override
-  Future<CustomResponseType<EmergencyLeaveRequestResponseModel>>
+  Future<CustomResponseType<String>>
       createEmergencyLeaveRequest(
           {required EmergencyLeaveRequestRequestModel
               emergencyLeaveRequestRequestModel}) async {
@@ -46,50 +45,25 @@ class EmergencyLeaveRequestDataSourceImpl
 
     if (result.success) {
       return right(
-          EmergencyLeaveRequestResponseModel.fromJson(result.response));
+         result.response["data"]);
     } else {
       return left(ServerFailure(message: result.response as String));
     }
   }
 
+
   @override
-  Future<CustomResponseType<LeaveBalanceResponseModel>>
-      getEmergencyAvailableDays() async {
+  Future<CustomResponseType<EmergencyLeaveRequestResponseModel>>
+      getEmergencyLeaveScreen() async {
     ({dynamic response, bool success}) result = await networkHelper.get(
-      path: ApiConstants.getEmergencyAvailableDays,
+      path: ApiConstants.getEmergencyLeaveScreen,
     );
 
     if (result.success) {
-      return right(LeaveBalanceResponseModel.fromJson(result.response));
-    } else {
-      return left(ServerFailure(message: result.response as String));
-    }
-  }
-
-  @override
-  Future<CustomResponseType<LeaveBalanceResponseModel>>
-      getEmergencyLeaveBalance() async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
-      path: ApiConstants.getEmergencyLeaveBalance,
-    );
-
-    if (result.success) {
-      return right(LeaveBalanceResponseModel.fromJson(result.response));
+      return right(EmergencyLeaveRequestResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));
     }
   }
   
-  @override
-  Future<CustomResponseType<int>> getEmergencyEligibleDays() async {
-      ({dynamic response, bool success}) result = await networkHelper.get(
-      path: ApiConstants.getEmergencyEligibleDays,
-    );
-
-    if (result.success && result.response["data"] !=null) {
-      return right(result.response["data"]);
-    } else {
-      return left(ServerFailure(message: result.response as String));
-    }
-  }
 }

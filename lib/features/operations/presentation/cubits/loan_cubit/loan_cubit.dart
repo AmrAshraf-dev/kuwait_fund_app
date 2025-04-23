@@ -16,6 +16,7 @@ class LoanCubit extends Cubit<LoanState> {
   }
 
   Future<void> getLoan() async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(LoanLoadingState());
 
     final CustomResponseType<BaseEntity<List<LoanEntity>>>

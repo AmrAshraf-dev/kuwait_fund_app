@@ -39,10 +39,20 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
   late DateTime selectedDate;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     selectedDate = widget.selectedDate;
+
+     WidgetsBinding.instance.addPostFrameCallback((_) async {
+        widget.visitorsLogsCubit.getHostsList(
+          DateFormat("yyyy-MM-dd").format(selectedDate)
+          );
+    });
+
+   
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -173,12 +183,12 @@ class VisitorsLogsDetailsListView extends StatelessWidget {
   final VisitorsLogsCubit visitorsLogsCubit;
   final VisitorsLogsHostsEntity? selectedHostName;
 
-  const VisitorsLogsDetailsListView({
+    VisitorsLogsDetailsListView({
     super.key,
     required this.visitorsLogsCubit,
     required this.selectedHostName,
   });
-
+List<VisitorsLogsDetailsEntity> visitorsLogsDetailsList = [];
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<VisitorsLogsCubit, VisitorsLogsState>(
@@ -194,21 +204,30 @@ class VisitorsLogsDetailsListView extends StatelessWidget {
           );
         } else if (state is VisitorsLogsDetailsReadyState) {
           ViewsToolbox.dismissLoading();
+          visitorsLogsDetailsList = state.response.data ?? [];
         }
       },
+
+      buildWhen: (previous, current) => 
+          current is VisitorsLogsDetailsReadyState  ,
       builder: (context, state) {
-        if (state is VisitorsLogsDetailsReadyState) {
+     
           return ListView.builder(
-            itemCount: state.response.data?.length ?? 0,
+            itemCount: ((state is VisitorsLogsDetailsReadyState)?
+               ( state.response.data?.length ?? 0)
+                : visitorsLogsDetailsList.length),
+
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              final visit = state.response.data![index];
+              final visit =   
+                  (state is VisitorsLogsDetailsReadyState)
+                      ? state.response.data![index]
+                      : visitorsLogsDetailsList[index];
               return _buildVisitTile(visit, context);
             },
           );
-        }
-        return Container();
-      },
+      }
+       
     );
   }
 

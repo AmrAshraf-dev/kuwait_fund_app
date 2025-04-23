@@ -29,7 +29,8 @@ class _CreateSickLeaveRequestScreenState
   final CreateSickLeaveRequestCubit createSickLeaveRequestCubit =
       getIt<CreateSickLeaveRequestCubit>();
   final FilePickerCubit filePickerCubit = getIt<FilePickerCubit>();
-  final LeaveBalanceCubit leaveBalanceCubit = getIt<LeaveBalanceCubit>();
+  // final LeaveBalanceCubit leaveBalanceCubit = getIt<LeaveBalanceCubit>();
+ 
   String? _selectedFile;
 
   @override
@@ -42,7 +43,7 @@ class _CreateSickLeaveRequestScreenState
       widget: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => createSickLeaveRequestCubit),
-          BlocProvider(create: (context) => leaveBalanceCubit),
+     //     BlocProvider(create: (context) => leaveBalanceCubit),
           BlocProvider(create: (context) => filePickerCubit),
         ],
         child: Padding(
@@ -60,7 +61,9 @@ class _CreateSickLeaveRequestScreenState
                 })  
               ),
               40.verticalSpace,
-              LeaveBalanceSection(leaveBalanceCubit: leaveBalanceCubit),
+              LeaveBalanceSection(
+                //leaveBalanceCubit: leaveBalanceCubit
+                ),
               120.verticalSpace,
               SubmitButton(
                 selectedFile: _selectedFile,
@@ -75,31 +78,15 @@ class _CreateSickLeaveRequestScreenState
 }
 
 class LeaveBalanceSection extends StatelessWidget {
-  final LeaveBalanceCubit leaveBalanceCubit;
-
-  const LeaveBalanceSection({super.key, required this.leaveBalanceCubit});
+ 
+  const LeaveBalanceSection({super.key });
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LeaveBalanceCubit, LeaveBalanceState>(
-      listener: (context, state) {
-        if (state is LeaveBalanceErrorState) {
-          ViewsToolbox.dismissLoading();
-          ViewsToolbox.showErrorAwesomeSnackBar(context, state.message);
-        }
-      },
-      builder: (context, state) {
-        if (state is LeaveBalanceLoading) {
-          ViewsToolbox.showLoading();
-        } else if (state is LeaveBalanceReadyState) {
-          ViewsToolbox.dismissLoading();
-          return _LeaveBalanceDetails(days: state.leaveBalance.data ?? '');
-        }
-        return Container();
-      },
-    );
-  }
+    return _LeaveBalanceDetails(days:"0");
 }
+}
+
 
 class _LeaveBalanceDetails extends StatelessWidget {
   final String days;

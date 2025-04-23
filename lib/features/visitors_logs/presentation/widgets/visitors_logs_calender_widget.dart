@@ -104,13 +104,18 @@ if(state.showNewBottomSheet){
               return;
             }
             selectedCalendarDay = selectedDay;
+
+       
+
+
             widget.visitorsLogsCubit.getVisitorLogsDetails(
               VisitorsLogsDetailsRequestModel(
                 date:  DateFormat("yyyy-MM-dd").format(selectedDay)
                  
               ),
               showNewBottomSheet: true
-            );
+            ); 
+      
          
           },
           selectedDayPredicate: (day) {

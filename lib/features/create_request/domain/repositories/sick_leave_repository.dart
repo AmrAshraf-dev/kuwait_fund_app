@@ -13,5 +13,5 @@ abstract class SickLeaveRequestRepository {
   Future<CustomResponseType<BaseEntity<String>>> createSickLeaveRequest(
       sickLeaveRequestModel);
 
-  Future<CustomResponseType<LeaveBalanceEntity>> getLeaveBalance();
+  // Future<CustomResponseType<LeaveBalanceEntity>> getLeaveBalance();
 }

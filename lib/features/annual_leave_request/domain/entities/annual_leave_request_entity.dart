@@ -7,12 +7,12 @@
 /// Entity that contains the data of the AnnualLeaveRequest.
 class AnnualLeaveRequestEntity extends Equatable{
 
- final String? var1;
+ final String? availableBalance;
 
- final  String? var2;
+ final  bool ? displayExitDate;
   /// Entity that contains the data of the AnnualLeaveRequest.
    AnnualLeaveRequestEntity(
-    {required this.var1, required this.var2}
+    {required this.availableBalance, required this.displayExitDate}
    );
 
   /*

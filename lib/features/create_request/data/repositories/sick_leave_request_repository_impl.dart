@@ -21,8 +21,8 @@ class SickLeaveRequestRepositoryImp implements SickLeaveRequestRepository {
         .createSickLeaveRequest(sickLeaveRequestModel);
   }
 
-  @override
-  Future<CustomResponseType<LeaveBalanceModel>> getLeaveBalance() async {
-    return await sickLeaveRequestRemoteDataSource.getLeaveBalance();
-  }
+  // @override
+  // Future<CustomResponseType<LeaveBalanceModel>> getLeaveBalance() async {
+  //   return await sickLeaveRequestRemoteDataSource.getLeaveBalance();
+  // }
 }

@@ -8,13 +8,13 @@ import "../repositories/annual_leave_request_repository.dart";
 
 @injectable
 class AnnualLeaveRequestUseCase
-    implements UseCase<BaseEntity<String>, AnnualLeaveRequestRequestModel> {
+    implements UseCase< String , AnnualLeaveRequestRequestModel> {
   AnnualLeaveRequestUseCase({required this.annualLeaveRequestRepository});
 
   final AnnualLeaveRequestRepository annualLeaveRequestRepository;
 
   @override
-  Future<CustomResponseType<BaseEntity<String>>> call(
+  Future<CustomResponseType< String> > call(
     AnnualLeaveRequestRequestModel annualLeaveRequestModel,
   ) {
     return annualLeaveRequestRepository.createAnnualLeaveRequest(

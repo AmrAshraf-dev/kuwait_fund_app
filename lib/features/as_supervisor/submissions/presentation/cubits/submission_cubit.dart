@@ -18,6 +18,7 @@ class SubmissionCubit extends Cubit<SubmissionState> {
   }
 
   Future<void> getSubmissions() async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(SubmissionLoadingState());
 
     final CustomResponseType<BaseEntity<List<SubmissionEntity>>>

@@ -12,7 +12,7 @@ final class LeaveBalanceLoadingState extends LeaveBalanceState {}
 
 final class LeaveBalanceReadyState extends LeaveBalanceState {
   LeaveBalanceReadyState(this.response);
-  BaseEntity<dynamic> response;
+  BaseEntity<AnnualLeaveRequestEntity> response;
 }
 
 abstract class LeaveBalanceState {}

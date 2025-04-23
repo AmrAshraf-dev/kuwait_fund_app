@@ -30,7 +30,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   final FocusNode confirmPasswordFocusNode = FocusNode();
   final ForgetPassCubit forgetPassCubit = getIt<ForgetPassCubit>();
-
+bool _isPasswordObscured = true;
   @override
   void initState() {
     super.initState();
@@ -96,6 +96,19 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   PasswordFieldWidget(
+                                      suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _isPasswordObscured
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _isPasswordObscured = !_isPasswordObscured;
+                                        });
+                                      },
+                                    ),
+                                    obscureText:  _isPasswordObscured,
                                     validator: FormBuilderValidators.compose([
                                       FormBuilderValidators.required(),
                                       FormBuilderValidators.password(
@@ -112,6 +125,19 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                                   ),
                                   20.verticalSpace,
                                   PasswordFieldWidget(
+                                      suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _isPasswordObscured
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _isPasswordObscured = !_isPasswordObscured;
+                                        });
+                                      },
+                                    ),
+                                    obscureText:  _isPasswordObscured,
                                     validator: FormBuilderValidators.compose([
                                       FormBuilderValidators.required(),
                                       FormBuilderValidators.password(
@@ -145,11 +171,11 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                               listener: (context, state) {
                                 if (state is ForgetPassLoadingState) {
                                   ViewsToolbox.showLoading();
-                                } else if (state is ForgetPassErrorState) {
+                                } else if (state is ChangePassErrorState) {
                                   ViewsToolbox.dismissLoading();
                                   ViewsToolbox.showErrorAwesomeSnackBar(
                                       context, state.message!);
-                                } else if (state is ForgetPassReadyState) {
+                                } else if (state is ChangePasswordReadyState) {
                                   ViewsToolbox.dismissLoading();
                                   CustomMainRouter.push(PasswordChangedRoute());
                                 }

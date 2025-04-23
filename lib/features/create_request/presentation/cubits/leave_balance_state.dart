@@ -1,18 +1,18 @@
-part of 'leave_balance_cubit.dart';
+// part of 'leave_balance_cubit.dart';
 
-abstract class LeaveBalanceState {}
+// abstract class LeaveBalanceState {}
 
-class LeaveBalanceInitial extends LeaveBalanceState {}
+// class LeaveBalanceInitial extends LeaveBalanceState {}
 
-class LeaveBalanceLoading extends LeaveBalanceState {}
+// class LeaveBalanceLoading extends LeaveBalanceState {}
 
-class LeaveBalanceReadyState extends LeaveBalanceState {
-  final LeaveBalanceEntity leaveBalance;
-  LeaveBalanceReadyState({required this.leaveBalance});
-}
+// class LeaveBalanceReadyState extends LeaveBalanceState {
+//   final LeaveBalanceEntity leaveBalance;
+//   LeaveBalanceReadyState({required this.leaveBalance});
+// }
 
-class LeaveBalanceErrorState extends LeaveBalanceState {
-  final String message;
+// class LeaveBalanceErrorState extends LeaveBalanceState {
+//   final String message;
 
-  LeaveBalanceErrorState({required this.message});
-}
+//   LeaveBalanceErrorState({required this.message});
+// }

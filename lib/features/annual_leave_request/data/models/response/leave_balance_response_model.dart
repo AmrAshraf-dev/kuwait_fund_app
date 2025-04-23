@@ -1,20 +1,28 @@
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../../../shared/entity/base_entity.dart';
+import 'package:kf_ess_mobile_app/features/annual_leave_request/domain/entities/annual_leave_request_entity.dart';
+  import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
 part 'leave_balance_response_model.g.dart';
 
-/// Model that transforms the LeaveBalance data from the API to the
-/// application entity
+@JsonSerializable()
+class AnnualLeaveScreenInfoModel extends  AnnualLeaveRequestEntity {
 
-/*
-  The model is responsible for converting the data into a format that the rest of the application can use. 
-  This could involve deserializing JSON from an API into objects, or mapping database rows to objects.
-  */
+
+    AnnualLeaveScreenInfoModel({
+     required super.availableBalance,
+     required super.displayExitDate,
+  
+  });
+ 
+  factory AnnualLeaveScreenInfoModel.fromJson(Map<String, dynamic> json) =>
+      _$AnnualLeaveScreenInfoModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AnnualLeaveScreenInfoModelToJson(this);
+}
 
 @JsonSerializable()
-class LeaveBalanceResponseModel extends BaseEntity<dynamic> {
-  const LeaveBalanceResponseModel({
+class AnnualLeaveScreenInfoResponseModel extends BaseEntity<  AnnualLeaveScreenInfoModel> {
+  const AnnualLeaveScreenInfoResponseModel({
     super.code,
     super.data,
     super.message,
@@ -22,8 +30,8 @@ class LeaveBalanceResponseModel extends BaseEntity<dynamic> {
     super.hasMorePages,
   });
 
-  factory LeaveBalanceResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$LeaveBalanceResponseModelFromJson(json);
+  factory AnnualLeaveScreenInfoResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$AnnualLeaveScreenInfoResponseModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LeaveBalanceResponseModelToJson(this);
+  Map<String, dynamic> toJson() => _$AnnualLeaveScreenInfoResponseModelToJson(this);
 }

@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/core/utility/theme.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -27,12 +28,14 @@ class CustomSingleRangeDatePicker extends StatefulWidget {
     this.consumedDays,
     this.totalDays,
     this.icon,
+    this.isFirstDayRequired = false,
   });
   final String? hintText;
   final String keyNameFrom;
   final DateTime? firstDate;
   final DateTime? initialDate;
   final DateTime? lastDate;
+  final bool  isFirstDayRequired;
   //final TextEditingController controller;
   final String? Function(String?)? validator;
   final GlobalKey<FormBuilderState> customFormKey;
@@ -80,6 +83,11 @@ class _CustomSingleRangeDatePickerState
             enableBorder: true,
             onTap: () async {
               if (!(widget.disableField ?? false)) {
+                  if(widget.isFirstDayRequired && widget.firstDate==null){
+                  ViewsToolbox.showErrorAwesomeSnackBar(context, 
+                  "please_select_to_date_first".tr());
+                  return;
+                }
                 _selectDate(context);
               }
             },
@@ -95,7 +103,13 @@ class _CustomSingleRangeDatePickerState
             iconPath: widget.icon ?? Assets.svg.dateIcon.path,
             //  iconColor: Palette.primaryColor,
             onIconPressed: () async {
+              
               if (!widget.disableField!) {
+                if(widget.isFirstDayRequired && widget.firstDate==null){
+                  ViewsToolbox.showErrorAwesomeSnackBar(context, 
+                  "please_select_to_date_first".tr());
+                  return;
+                }
                 _selectDate(context);
               }
             },

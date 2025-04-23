@@ -118,42 +118,18 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
                       label: context.tr('requests'),
                     ),
                     BottomNavigationBarItem(
-                      icon: Badge(
-                          padding: EdgeInsets.all(3),
-                          backgroundColor: Palette.red_FF0606,
-                          label: SizedBox(
-                            height: 15.h,
-                            width: 15.w,
-                            child: Center(
-                              child: AppText(
-                                text: '3',
-                                textColor: Colors.white,
-                              ),
-                            ),
-                          ),
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 9.h, top: 18.h),
                           child: Assets.svg.submissions.svg()),
-                      activeIcon: Padding(
+                       activeIcon: Padding(
                           padding: EdgeInsets.only(
                             bottom: 9.h,
                             top: 18.h,
                           ),
-                          child: Badge(
-                            padding: EdgeInsets.all(3),
-                            backgroundColor: Palette.red_FF0606,
-                            label: SizedBox(
-                              height: 15.h,
-                              width: 15.w,
-                              child: Center(
-                                child: AppText(
-                                  text: '3',
-                                  style: AppTextStyle.bold_12,
-                                  textColor: Colors.white,
-                                ),
-                              ),
-                            ),
-                            child:
-                                Assets.svg.submissions.svg(color: Colors.white),
-                          )),
+                          child:  Assets.svg.submissions.svg(color: Colors.white),
+                         
+                               
+                           ),
                       label: context.tr('submissions'),
                     ),
                     // BottomNavigationBarItem(

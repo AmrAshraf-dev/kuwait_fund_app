@@ -43,6 +43,9 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
   final void Function(bool, DateTimeRange? pickedRange) onDoneCallback;
   final RangeDatePickerCubit rangeDatePickerCubit =
       getIt<RangeDatePickerCubit>();
+
+      DateTime? _selectedFromDate ;
+      DateTime? _selectedToDate ;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -143,18 +146,11 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
                     // Update the consumed days in the cubit
                     rangeDatePickerCubit.updateConsumedDays(selectedDays);
 
-                    if (fromDateController != null) {
-                      fromDateController?.text =
-                          DateFormat("dd/MM/yyyy", "en").format(value.start);
-                      customFormKey?.currentState!.fields["from"]!.didChange(
-                          DateFormat("dd/MM/yyyy", "en").format(value.start));
-                    }
-                    if (toDateController != null) {
-                      toDateController?.text =
-                          DateFormat("dd/MM/yyyy", "en").format(value.end);
-                      customFormKey?.currentState!.fields["to"]!.didChange(
-                          DateFormat("dd/MM/yyyy", "en").format(value.end));
-                    }
+
+
+                    _selectedFromDate = value.start;
+                    _selectedToDate = value.end;
+                  
                   }
                 },
               ),
@@ -176,6 +172,25 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
                     return;
                   } else {
                     onDoneCallback(state.errorMessage == null, selectedRange);
+
+                      if (fromDateController != null) fromDateController?.text = "";
+                  if (toDateController != null) toDateController?.text = "";
+
+                  
+                   if (fromDateController != null && _selectedFromDate != null) {
+                      fromDateController?.text =
+                          DateFormat("dd/MM/yyyy", "en").format(_selectedFromDate!);
+                      customFormKey?.currentState!.fields["from"]!.didChange(
+                          DateFormat("dd/MM/yyyy", "en").format(_selectedFromDate!));
+                      
+                    }
+                    if (toDateController != null && _selectedToDate != null) {
+                      toDateController?.text =
+                          DateFormat("dd/MM/yyyy", "en").format( _selectedToDate!);
+
+                      customFormKey?.currentState!.fields["to"]!.didChange(
+                          DateFormat("dd/MM/yyyy", "en").format(_selectedToDate!));
+                    }
                   }
                 },
                 text: context.tr("done"),
@@ -183,8 +198,7 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
               CustomElevatedButton(
                 backgroundColor: Palette.transparntColor,
                 onPressed: () {
-                  if (fromDateController != null) fromDateController?.text = "";
-                  if (toDateController != null) toDateController?.text = "";
+                
                   Navigator.pop(context);
                 },
                 text: context.tr("cancel"),

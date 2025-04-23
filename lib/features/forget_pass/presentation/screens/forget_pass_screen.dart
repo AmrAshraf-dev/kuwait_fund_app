@@ -120,8 +120,10 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
                                     context, state.message!);
                               } else if (state is ForgetPassReadyState) {
                                 ViewsToolbox.dismissLoading();
-                                CustomMainRouter.push(
+                                                                if(state.withNavigation) {
+                                                                  CustomMainRouter.push(
                                     ForgetPassVerifyOtpRoute());
+                                                                }
                               }
                             },
                             child: CustomElevatedButton(
@@ -130,6 +132,7 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
                                 if (_formKey.currentState?.saveAndValidate() ??
                                     false) {
                                   forgetPassCubit.getForgetPass(
+                                    withNavigation: true,
                                       forgetPassModel: ForgetPassRequestModel(
                                     userName: _formKey.currentState
                                         ?.fields["userName"]?.value,

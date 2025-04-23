@@ -41,7 +41,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final FocusNode passwordFocusNode = FocusNode();
   final LocalAuthentication localAuth = LocalAuthentication();
     final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
-
+bool _isPasswordObscured = true;
   bool isBiometricAvailable = true;
   final AuthCubit authCubit = getIt<AuthCubit>();
   @override
@@ -219,10 +219,23 @@ class _AuthScreenState extends State<AuthScreen> {
                                   ),
                                   18.verticalSpace,
                                   PasswordFieldWidget(
+                                    obscureText:  _isPasswordObscured,
                                     labelAboveField: context.tr("password"),
                                     keyName: "password",
                                     validator: FormBuilderValidators.required(),
                                     focusNode: passwordFocusNode,
+                                      suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _isPasswordObscured
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _isPasswordObscured = !_isPasswordObscured;
+                                        });
+                                      },
+                                    ),
                                   ),
                                   46.verticalSpace,
                                   Center(
