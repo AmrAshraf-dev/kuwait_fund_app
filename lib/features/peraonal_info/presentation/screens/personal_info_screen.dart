@@ -55,6 +55,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
             if (state is PersonalInfoLoadingState) {
               ViewsToolbox.showLoading();
             } else if (state is PersonalInfoReadyState) {
+              ViewsToolbox.dismissLoading();
               personalInfoEntity = state.response.data;
 
               return Column(
@@ -216,13 +217,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                 ],
               );
             }
-            return const Center(
-              child: AppText(
-                text: "No Data",
-                style: AppTextStyle.regular_14,
-                textColor: Colors.black,
-              ),
-            );
+            return Container();
           }),
         ),
       ),

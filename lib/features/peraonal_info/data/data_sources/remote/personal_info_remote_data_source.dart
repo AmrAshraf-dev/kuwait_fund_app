@@ -17,16 +17,15 @@ class PersonalInfoDataSourceImpl implements PersonalInfoRemoteDataSource {
   final NetworkHelper networkHelper;
 
   @override
-  Future<CustomResponseType<PersonalInfoResponseModel>> getPeraonalInfo() async {
-    ({dynamic response, bool success}) result = await networkHelper
-        .post(path: ApiConstants.profile);
+  Future<CustomResponseType<PersonalInfoResponseModel>>
+      getPeraonalInfo() async {
+    ({dynamic response, bool success}) result =
+        await networkHelper.get(path: ApiConstants.getProfileInfo);
 
     if (result.success) {
-   
       return right(PersonalInfoResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));
     }
   }
-  
 }

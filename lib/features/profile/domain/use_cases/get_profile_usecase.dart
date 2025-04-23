@@ -1,5 +1,4 @@
 import "../../../../core/domain/usecase/base_usecase.dart";
-import "../../data/models/request/profile_request_model.dart";
 import "../entities/profile_entity.dart";
 import "../repositories/profile_repository.dart";
 
