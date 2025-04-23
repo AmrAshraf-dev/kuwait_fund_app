@@ -1,8 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
@@ -17,7 +19,11 @@ import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class FamilyScreen extends StatefulWidget {
-  const FamilyScreen({super.key});
+  String? id;
+  FamilyScreen({
+    super.key,
+    this.id,
+  });
 
   @override
   State<FamilyScreen> createState() => _FamilyScreenState();
@@ -73,14 +79,17 @@ class _FamilyScreenState extends State<FamilyScreen> {
                       separatorBuilder: (context, index) => 10.verticalSpace,
                       itemBuilder: (context, index) {
                         return DataWithEditCard(
-                          title: state.response.data?[index].name ?? '',
-                          subTitle: state.response.data?[index].relation ??
+                          title: familyEntity?[index].name ?? '',
+                          subTitle: familyEntity?[index].relation ??
                               '', //context.tr("spouse"),
                           icon: index == 1
                               ? Assets.svg.female.svg()
                               : Assets.svg.male.svg(),
                           onPressed: () {
-                            CustomMainRouter.push(EditFamilyRoute());
+                            familyEntity?[index].relation == 'S'
+                                ? CustomMainRouter.push(EditSpouseDataRoute(
+                                    id: familyEntity?[index].id))
+                                : CustomMainRouter.push(EditChildDataRoute());
                           },
                         );
                       },

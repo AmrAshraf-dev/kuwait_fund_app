@@ -108,4 +108,6 @@ class ApiConstants {
   static var getFamilyData = 'Profile/GetEmployeeFamilyList';
   static var getQualificationsData = 'Profile/GetEmployeeQualificationsList';
   static var getExperiencesData = 'Profile/GetPreviousEmploymentList';
+  static var getSpouseData = 'Profile/GetSpouseInfo';
+  static var getChildData = 'Profile/GetChildInfo';
 }

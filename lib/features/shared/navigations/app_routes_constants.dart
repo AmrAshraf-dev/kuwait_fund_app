@@ -98,7 +98,9 @@ class AppRoutesConstants {
 
   static const String familyScreen = '/familyScreen';
 
-  static const String editFamilyScreen = '/editFamilyScreen';
+  static const String editSpouseDataScreen = '/editSpouseDataScreen';
+
+  static const String editChildDataScreen = '/editChildDataScreen';
 
   static const String addFamilyScreen = '/addFamilyScreen';
 

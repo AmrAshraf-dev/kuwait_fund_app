@@ -115,8 +115,13 @@ class AppRouter extends RootStackRouter {
           maintainState: true,
         ),
         AutoRoute(
-          page: EditFamilyRoute.page,
-          path: AppRoutesConstants.editFamilyScreen,
+          page: EditSpouseDataRoute.page,
+          path: AppRoutesConstants.editSpouseDataScreen,
+          maintainState: true,
+        ),
+        AutoRoute(
+          page: EditChildDataRoute.page,
+          path: AppRoutesConstants.editChildDataScreen,
           maintainState: true,
         ),
         AutoRoute(
@@ -227,11 +232,11 @@ class AppRouter extends RootStackRouter {
           path: AppRoutesConstants.adsDetailsScreen,
         ),
 
-         AutoRoute(
-                      page: VisitorsLogsRoute.page,
-                      path: AppRoutesConstants.visitorsLogsMoreMenu,
-                      maintainState: true,
-                    ),
+        AutoRoute(
+          page: VisitorsLogsRoute.page,
+          path: AppRoutesConstants.visitorsLogsMoreMenu,
+          maintainState: true,
+        ),
 
         AutoRoute(
           page: ContactUsRoute.page,
@@ -323,7 +328,7 @@ class AppRouter extends RootStackRouter {
                       path: AppRoutesConstants.createRequest,
                       //  meta: <String, dynamic>{'hideBottomNav': true},
                     ),
-                     AutoRoute(
+                    AutoRoute(
                       maintainState: true,
                       page: ExtendLeaveDetailsRoute.page,
                       path: AppRoutesConstants.extendLeaveDetails,
