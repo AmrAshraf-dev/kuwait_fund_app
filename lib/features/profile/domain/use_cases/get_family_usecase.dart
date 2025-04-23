@@ -1,4 +1,4 @@
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/family_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/domain/repositories/profile_repository.dart';
 
 import "../../../../core/domain/usecase/base_usecase.dart";
@@ -8,13 +8,13 @@ import '../../../../core/network/base_handling.dart';
 
 @injectable
 class GetFamilyUseCase
-    implements UseCaseNoParam<BaseEntity<List<FamilyEntity>>> {
+    implements UseCaseNoParam<BaseEntity<List<FamilyModel>>> {
   GetFamilyUseCase({required this.addFamilyRepository});
 
   final ProfileRepository addFamilyRepository;
 
   @override
-  Future<CustomResponseType<BaseEntity<List<FamilyEntity>>>> call() {
+  Future<CustomResponseType<BaseEntity<List<FamilyModel>>>> call() {
     return addFamilyRepository.getFamily();
   }
 }

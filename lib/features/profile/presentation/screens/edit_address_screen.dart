@@ -1,11 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/address_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/address_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
 
@@ -27,100 +32,142 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
     super.initState();
   }
 
+  final AddressCubit _addressCubit = getIt<AddressCubit>();
+  MyAddressEntity? addressEntity;
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
         isBackEnabled: true,
         screenTitle: context.tr("address"),
-        widget: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: FormBuilder(
-                  key: _formKey,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        30.verticalSpace,
-                        TextFieldWidget(
-                          labelAboveField: context.tr("government"),
-                          keyName: "government",
-                          validator: FormBuilderValidators.required(),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        20.verticalSpace,
-                        TextFieldWidget(
-                          labelAboveField: context.tr("street"),
-                          keyName: "street",
-                          validator: FormBuilderValidators.required(),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        20.verticalSpace,
-                        TextFieldWidget(
-                          labelAboveField: context.tr("block"),
-                          keyName: "block",
-                          validator: FormBuilderValidators.required(),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        20.verticalSpace,
-                        TextFieldWidget(
-                          labelAboveField: context.tr("buildingNumber"),
-                          keyName: "buildingNumber",
-                          validator: FormBuilderValidators.required(),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        20.verticalSpace,
-                        TextFieldWidget(
-                          labelAboveField: context.tr("floor"),
-                          keyName: "floor",
-                          validator: FormBuilderValidators.required(),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        20.verticalSpace,
-                        TextFieldWidget(
-                          labelAboveField: context.tr("flat"),
-                          keyName: "flat",
-                          validator: FormBuilderValidators.required(),
-                          textInputAction: TextInputAction.next,
-                        ),
-                        40.verticalSpace,
-                      ],
-                    ),
+        widget: MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => _addressCubit..getAddress()),
+          ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: FormBuilder(
+                    key: _formKey,
+                    child: BlocConsumer<AddressCubit, AddressState>(
+                        listener: (context, state) {
+                      if (state is AddressErrorState) {
+                        ViewsToolbox.dismissLoading();
+                        ViewsToolbox.showErrorAwesomeSnackBar(
+                            context, state.message!);
+                      }
+                    }, builder: (context, state) {
+                      if (state is AddressLoadingState) {
+                        ViewsToolbox.showLoading();
+                      } else if (state is AddressReadyState) {
+                        addressEntity = state.response.data;
+                        ViewsToolbox.dismissLoading();
+                        return Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              30.verticalSpace,
+                              IgnorePointer(
+                                child: TextFieldWidget(
+                                  labelAboveField: context.tr("government"),
+                                  keyName: "government",
+                                  initalValue: addressEntity?.avenue ?? '',
+                                  validator: FormBuilderValidators.required(),
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                              20.verticalSpace,
+                              IgnorePointer(
+                                child: TextFieldWidget(
+                                  labelAboveField: context.tr("street"),
+                                  keyName:
+                                      addressEntity?.street ?? '', //"street",
+                                  validator: FormBuilderValidators.required(),
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                              20.verticalSpace,
+                              IgnorePointer(
+                                child: TextFieldWidget(
+                                  labelAboveField: context.tr("block"),
+                                  keyName: "block",
+                                  initalValue: addressEntity?.block ?? '',
+                                  validator: FormBuilderValidators.required(),
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                              20.verticalSpace,
+                              IgnorePointer(
+                                child: TextFieldWidget(
+                                  labelAboveField: context.tr("buildingNumber"),
+                                  keyName: "buildingNumber",
+                                  initalValue: addressEntity?.building ?? '',
+                                  validator: FormBuilderValidators.required(),
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                              20.verticalSpace,
+                              IgnorePointer(
+                                child: TextFieldWidget(
+                                  labelAboveField: context.tr("floor"),
+                                  keyName: "floor",
+                                  initalValue:
+                                      addressEntity?.apartmentNumber ?? '',
+                                  validator: FormBuilderValidators.required(),
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                              20.verticalSpace,
+                              IgnorePointer(
+                                child: TextFieldWidget(
+                                  labelAboveField: context.tr("flat"),
+                                  keyName: "flat",
+                                  initalValue:
+                                      addressEntity?.apartmentNumber ?? '',
+                                  validator: FormBuilderValidators.required(),
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                              40.verticalSpace,
+                            ],
+                          ),
+                        );
+                      }
+                      return Container();
+                    }),
                   ),
                 ),
-              ),
-              33.verticalSpace,
-              CustomElevatedButton(
-                text: context.tr("submit"),
-                onPressed: () {
-                  if (_formKey.currentState!.saveAndValidate()) {
-                    print(_formKey.currentState!.value);
-                    CustomMainRouter.push(ThankYouRoute(
-                      subtitle: context.tr(
-                          "submitted_successfully_waiting_administrator"),
-                    ));
-                  }
-                },
-              ),
-              20.verticalSpace,
-            ],
+                33.verticalSpace,
+                CustomElevatedButton(
+                  text: context.tr("submit"),
+                  onPressed: () {
+                    if (_formKey.currentState!.saveAndValidate()) {
+                      print(_formKey.currentState!.value);
+                      CustomMainRouter.push(ThankYouRoute(
+                        subtitle: context
+                            .tr("submitted_successfully_waiting_administrator"),
+                      ));
+                    }
+                  },
+                ),
+                20.verticalSpace,
+              ],
+            ),
           ),
         ));
-
   }
 }

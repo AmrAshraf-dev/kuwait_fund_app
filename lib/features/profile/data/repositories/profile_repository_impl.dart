@@ -1,8 +1,13 @@
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/spouse_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/address_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/address_entity.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/family_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/qualifications_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/child_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/spouse_entity.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../shared/entity/base_entity.dart';
@@ -32,10 +37,33 @@ class ProfileRepositoryImp implements ProfileRepository {
   }
 
   @override
-  Future<CustomResponseType<BaseEntity<List<FamilyEntity>>>> getFamily() async {
-    final response = await profileRemoteDataSource.getFamily();
-    return response.map((familyResponse) => BaseEntity());
+  Future<CustomResponseType<BaseEntity<List<FamilyModel>>>> getFamily() async {
+    return await profileRemoteDataSource.getFamily();
   }
-  
-  
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<QualificationsModel>>>>
+      getQualifications() async {
+    return await profileRemoteDataSource.getQualifications();
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<ExperiencesModel>>>>
+      getExperiences() async {
+    return await profileRemoteDataSource.getExperiences();
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<SpouseEntity>>> getSpouse(
+      {required SpouseRequestModel spouseParams}) async {
+    return await profileRemoteDataSource.getSpouse(
+        spouseRequestModel: spouseParams);
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<ChildModel>>> getChild(
+      {required ChildRequestModel childParams}) async {
+    return await profileRemoteDataSource.getChild(
+        childRequestModel: childParams);
+  }
 }

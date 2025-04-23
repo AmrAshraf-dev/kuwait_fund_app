@@ -1,38 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'family_response_model.dart';
+part of 'child_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-FamilyModel _$FamilyModelFromJson(Map<String, dynamic> json) => FamilyModel(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
-      relation: json['relation'] as String?,
-    );
+ChildModel _$ChildModelFromJson(Map<String, dynamic> json) => ChildModel();
 
-Map<String, dynamic> _$FamilyModelToJson(FamilyModel instance) =>
+Map<String, dynamic> _$ChildModelToJson(ChildModel instance) =>
     <String, dynamic>{};
 
-FamilyResponseModel _$FamilyResponseModelFromJson(Map<String, dynamic> json) =>
-    FamilyResponseModel(
+ChildResponseModel _$ChildResponseModelFromJson(Map<String, dynamic> json) =>
+    ChildResponseModel(
       code: (json['code'] as num?)?.toInt(),
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => FamilyModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      data: json['data'] == null
+          ? null
+          : ChildModel.fromJson(json['data'] as Map<String, dynamic>),
       message: json['message'] as String?,
       totalRecords: (json['totalRecords'] as num?)?.toInt(),
       hasMorePages: json['hasMorePages'] as bool?,
     );
 
-Map<String, dynamic> _$FamilyResponseModelToJson(
-        FamilyResponseModel instance) =>
+Map<String, dynamic> _$ChildResponseModelToJson(ChildResponseModel instance) =>
     <String, dynamic>{
       if (instance.message case final value?) 'message': value,
       if (instance.code case final value?) 'code': value,
-      if (instance.data?.map((e) => e.toJson()).toList() case final value?)
-        'data': value,
+      if (instance.data?.toJson() case final value?) 'data': value,
       if (instance.totalRecords case final value?) 'totalRecords': value,
       if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };

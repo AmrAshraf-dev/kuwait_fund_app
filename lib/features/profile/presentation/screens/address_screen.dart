@@ -38,7 +38,7 @@ class _AddressScreenState extends State<AddressScreen> {
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-      screenTitle: context.tr("personalInfo"),
+      screenTitle: context.tr("myAddress"),
       isBackEnabled: true,
       widget: MultiBlocProvider(
         providers: [
@@ -109,14 +109,15 @@ class _AddressScreenState extends State<AddressScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Align(
-                                alignment: AlignmentDirectional.topEnd,
-                                child: EditButton(
-                                  onPressed: () {
-                                    CustomMainRouter.push(EditAddressRoute());
-                                  },
-                                ),
-                              ),
+                              // Align(
+                              //   alignment: AlignmentDirectional.topEnd,
+                              //   child: EditButton(
+                              //     onPressed: () {
+                              //       CustomMainRouter.push(EditAddressRoute());
+                              //     },
+                              //   ),
+                              // ),
+                              20.verticalSpace,
                               PersonalInfoItemWidget(
                                   title: context.tr("government"),
                                   body: addressEntity?.avenue ??

@@ -14,6 +14,7 @@ class PersonalInfoRepositoryImp implements PersonalInfoRepository {
 
   final PersonalInfoRemoteDataSource personalInfoRemoteDataSource;
 
+  @override
   Future<CustomResponseType<BaseEntity<PersonalInfoModel>>>
       getPersonalInfo() async {
     return await personalInfoRemoteDataSource.getPeraonalInfo();

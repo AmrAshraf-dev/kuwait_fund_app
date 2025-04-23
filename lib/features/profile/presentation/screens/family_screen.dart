@@ -1,13 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/family_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/family_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/add_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/data_with_edit_card.dart';
@@ -17,7 +19,11 @@ import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class FamilyScreen extends StatefulWidget {
-  const FamilyScreen({super.key});
+  String? id;
+  FamilyScreen({
+    super.key,
+    this.id,
+  });
 
   @override
   State<FamilyScreen> createState() => _FamilyScreenState();
@@ -30,7 +36,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
   }
 
   final FamilyCubit _familyCubit = getIt<FamilyCubit>();
-  List<FamilyEntity>? familyEntity;
+  List<FamilyModel>? familyEntity;
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
@@ -69,7 +75,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
                     return ListView.separated(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: 3,
+                      itemCount: state.response.data?.length ?? 0,
                       separatorBuilder: (context, index) => 10.verticalSpace,
                       itemBuilder: (context, index) {
                         return DataWithEditCard(
@@ -80,21 +86,16 @@ class _FamilyScreenState extends State<FamilyScreen> {
                               ? Assets.svg.female.svg()
                               : Assets.svg.male.svg(),
                           onPressed: () {
-                            CustomMainRouter.push(EditFamilyRoute());
+                            familyEntity?[index].relation == 'S'
+                                ? CustomMainRouter.push(EditSpouseDataRoute(
+                                    id: familyEntity?[index].id))
+                                : CustomMainRouter.push(EditChildDataRoute());
                           },
                         );
                       },
                     );
                   }
-                  return Center(
-                    child: Text(
-                      context.tr("noData"),
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  );
+                  return Container();
                 },
               ),
             ],

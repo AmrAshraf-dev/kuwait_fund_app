@@ -165,12 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ],
                           );
                         }
-                        return const Center(
-                          child: AppText(
-                            text: "No Data",
-                            style: AppTextStyle.medium_18,
-                          ),
-                        );
+                        return Container();
                       },
                     ),
                   ),
