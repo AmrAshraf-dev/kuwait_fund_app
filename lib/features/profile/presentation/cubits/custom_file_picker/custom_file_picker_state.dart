@@ -1,20 +1,20 @@
 part of 'custom_file_picker_cubit.dart';
 
-abstract class FilePickerState {}
+abstract class FilePickerFamilyState {}
 
-final class FilePickerInitialState extends FilePickerState {}
+final class FilePickerFamilyInitialState extends FilePickerFamilyState {}
 
-final class FilePickerLoadingState extends FilePickerState {}
+final class FilePickerFamilyLoadingState extends FilePickerFamilyState {}
 
-final class FilePickerEmptyState extends FilePickerState {}
+final class FilePickerFamilyEmptyState extends FilePickerFamilyState {}
 
-final class FilePickerReadyState extends FilePickerState {
+final class FilePickerFamilyReadyState extends FilePickerFamilyState {
   List<XFile> xFile;
-  FilePickerReadyState(this.xFile);
+  FilePickerFamilyReadyState(this.xFile);
 }
 
-class FilePickerErrorState extends FilePickerState {
+class FilePickerFamilyErrorState extends FilePickerFamilyState {
   final String message;
 
-  FilePickerErrorState({required this.message});
+  FilePickerFamilyErrorState({required this.message});
 }

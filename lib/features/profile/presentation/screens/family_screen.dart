@@ -89,7 +89,8 @@ class _FamilyScreenState extends State<FamilyScreen> {
                             familyEntity?[index].relation == 'S'
                                 ? CustomMainRouter.push(EditSpouseDataRoute(
                                     id: familyEntity?[index].id))
-                                : CustomMainRouter.push(EditChildDataRoute());
+                                : CustomMainRouter.push(EditChildDataRoute(
+                                    id: familyEntity?[index].id));
                           },
                         );
                       },

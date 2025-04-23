@@ -5,15 +5,15 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
 class DataWithEditCard extends StatefulWidget {
-  const DataWithEditCard({super.key ,
-    required this.onPressed ,
-    required this.title,
-    required this.subTitle,
-    this.subTitle2,
-    required this.icon,
-    this.withArrow,
-    this.withEdit
-  });
+  const DataWithEditCard(
+      {super.key,
+      required this.onPressed,
+      required this.title,
+      required this.subTitle,
+      this.subTitle2,
+      required this.icon,
+      this.withArrow,
+      this.withEdit});
 
   final Function() onPressed;
   final String title;
@@ -49,14 +49,14 @@ class _DataWithEditCardState extends State<DataWithEditCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            InkWell(
-              onTap: widget.onPressed,
-              child: AppText(
-                text: widget.withEdit ?? true ? context.tr("edit") : "",
-                style: AppTextStyle.medium_14,
-                textColor: Palette.blue_5490EB,
-              ),
-            ),
+            // InkWell(
+            //   onTap: widget.onPressed,
+            //   child: AppText(
+            //     text: widget.withEdit ?? true ? context.tr("edit") : "",
+            //     style: AppTextStyle.medium_14,
+            //     textColor: Palette.blue_5490EB,
+            //   ),
+            // ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -77,7 +77,7 @@ class _DataWithEditCardState extends State<DataWithEditCard> {
                       text: widget.subTitle,
                       style: AppTextStyle.regular_14,
                     ),
-                    if(widget.subTitle2 != null) ...[
+                    if (widget.subTitle2 != null) ...[
                       AppText(
                         text: widget.subTitle2,
                         style: AppTextStyle.regular_14,
@@ -85,16 +85,16 @@ class _DataWithEditCardState extends State<DataWithEditCard> {
                     ]
                   ],
                 ),
-                if(widget.withArrow ?? false) ...[
+                if (widget.withArrow ?? false) ...[
                   Spacer(),
-                  Padding(
-                    padding: EdgeInsets.only(top: 17.w),
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Palette.gery_DADADA,
-                      size: 20.sp,
-                    ),
-                  )
+                  //  Padding(
+                  //   padding: EdgeInsets.only(top: 17.w),
+                  //   child: Icon(
+                  //     Icons.arrow_forward_ios,
+                  //     color: Palette.gery_DADADA,
+                  //     size: 20.sp,
+                  //   ),
+                  // )
                 ]
               ],
             ),

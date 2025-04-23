@@ -10,13 +10,15 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/features/create_request/presentation/widgets/sick_leave_file_picker_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/spouse_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/domain/entities/spouse_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/spouse_cubit.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/file_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
@@ -44,7 +46,8 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
   }
 
   final SpouseCubit _spouseCubit = getIt<SpouseCubit>();
-  final FilePickerCubit filePickerCubit = getIt<FilePickerCubit>();
+  final FilePickerFamilyCubit filePickerFamilyCubit =
+      getIt<FilePickerFamilyCubit>();
   String? _selectedFile;
   SpouseEntity? spouseEntity;
   @override
@@ -57,7 +60,7 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
             BlocProvider(
                 create: (context) => _spouseCubit
                   ..getSpouse(spouseModel: SpouseRequestModel(id: widget.id))),
-            BlocProvider(create: (context) => filePickerCubit),
+            BlocProvider(create: (context) => filePickerFamilyCubit),
           ],
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -155,12 +158,13 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                                     : null,
                               ),
                               40.verticalSpace,
-                              // FilePickerSection(
-                              //     filePickerCubit: filePickerCubit,
-                              //     onFileSelected: (filePath) => setState(() {
-                              //           _selectedFile = filePath;
-                              //         })),
-                              // 40.verticalSpace,
+                              FilePicker(
+                                  filePickerFamilyCubit: filePickerFamilyCubit,
+                                  onFileSelected: (filePath) => setState(() {
+                                        _selectedFile = filePath;
+                                      })),
+
+                              40.verticalSpace,
                             ],
                           ),
                         );

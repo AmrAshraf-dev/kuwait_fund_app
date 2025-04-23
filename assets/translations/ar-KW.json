@@ -30,6 +30,7 @@
 "authentication_failed_please_login_again":  "فشلت المصادقة، يرجى تسجيل الدخول مرة أخرى",
   "no_saved_credentials_please_login_first": "لا توجد بيانات اعتماد محفوظة، يرجى تسجيل الدخول أولاً",
   "please_attach_medical_report_file": "يرجى إرفاق ملف التقرير الطبي",
+  "please_attach_file": "يرجي ارفاق الملف",
   "attach_medical_report_file": "إرفاق ملف التقرير الطبي",
   "no_visitors_logs": "لا توجد سجلات زوار",
   "you_can_not_view_visitors_logs": "لا يمكنك عرض سجلات الزوار",
