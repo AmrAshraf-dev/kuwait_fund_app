@@ -49,14 +49,14 @@ class _DataWithEditCardState extends State<DataWithEditCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            // InkWell(
-            //   onTap: widget.onPressed,
-            //   child: AppText(
-            //     text: widget.withEdit ?? true ? context.tr("edit") : "",
-            //     style: AppTextStyle.medium_14,
-            //     textColor: Palette.blue_5490EB,
-            //   ),
-            // ),
+            InkWell(
+              onTap: widget.onPressed,
+              child: AppText(
+                text: widget.withEdit ?? true ? context.tr("edit") : "",
+                style: AppTextStyle.medium_14,
+                textColor: Palette.blue_5490EB,
+              ),
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

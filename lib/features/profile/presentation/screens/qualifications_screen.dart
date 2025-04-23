@@ -79,6 +79,7 @@ class _QualificationsScreenState extends State<QualificationsScreen> {
                         subTitle: qualificationsEntity?[index].graduationDate ??
                             '', //"March, 2015",
                         withArrow: true,
+                        withEdit: false,
                         icon: Assets.svg.qualification.svg(),
                         onPressed: () {
                           CustomMainRouter.push(AddQualificationRoute());
