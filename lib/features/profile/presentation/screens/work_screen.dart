@@ -47,11 +47,11 @@ class _WorkScreenState extends State<WorkScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AddButtonWidget(
-                  onPressed: () {
-                    CustomMainRouter.push(AddWorkRoute());
-                  },
-                  title: context.tr("addWorkExperience")),
+              // AddButtonWidget(
+              //     onPressed: () {
+              //       CustomMainRouter.push(AddWorkRoute());
+              //     },
+              //     title: context.tr("addWorkExperience")),
               14.verticalSpace,
               BlocConsumer<ExperiencesCubit, ExperiencesState>(
                   listener: (context, state) {
@@ -85,7 +85,7 @@ class _WorkScreenState extends State<WorkScreen> {
                         onPressed: () {
                           CustomMainRouter.push(AddWorkRoute());
                         },
-                      ); 
+                      );
                     },
                   );
                 }

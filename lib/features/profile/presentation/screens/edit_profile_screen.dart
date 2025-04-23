@@ -30,6 +30,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   final ProfileCubit _profileCubit = getIt<ProfileCubit>();
   ProfileEntity? profileEntity;
+
+  bool _showWidget = false;
+
+  void _toggleWidget() {
+    setState(() {
+      _showWidget = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
@@ -110,19 +119,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     '', //'+966 123456789',
                               ),
                               20.verticalSpace,
-                              TextFieldWidget(
-                                labelAboveField: context.tr("phoneNumber"),
-                                keyName: "phoneNumber",
-                                validator: FormBuilderValidators.required(),
-                                textInputAction: TextInputAction.next,
-                                initalValue: profileEntity?.phone2 ??
-                                    '', //'+966 1236655442',
-                              ),
+                              if (_showWidget)
+                                TextFieldWidget(
+                                  labelAboveField: context.tr("phoneNumber"),
+                                  keyName: "phoneNumber",
+                                  validator: FormBuilderValidators.required(),
+                                  textInputAction: TextInputAction.next,
+                                  initalValue: profileEntity?.phone2 ??
+                                      '', //'+966 1236655442',
+                                ),
                               20.verticalSpace,
-                              AppText(
-                                text: context.tr("addNumber"),
-                                style: AppTextStyle.medium_14,
-                                textColor: Palette.blue_5490EB,
+                              GestureDetector(
+                                onTap: _toggleWidget,
+                                child: AppText(
+                                  text: context.tr("addNumber"),
+                                  style: AppTextStyle.medium_14,
+                                  textColor: Palette.blue_5490EB,
+                                ),
                               ),
                               30.verticalSpace,
                               IgnorePointer(

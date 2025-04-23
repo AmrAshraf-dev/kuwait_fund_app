@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/child_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -19,7 +22,11 @@ import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class EditChildDataScreen extends StatefulWidget {
-  const EditChildDataScreen({super.key});
+  String? id;
+  EditChildDataScreen({
+    Key? key,
+    this.id,
+  }) : super(key: key);
 
   @override
   State<EditChildDataScreen> createState() => _EditChildDataScreenState();
@@ -42,7 +49,9 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
         screenTitle: context.tr("editChildData"),
         widget: MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => _childCubit..getChild()),
+            BlocProvider(
+                create: (context) => _childCubit
+                  ..getChild(childModel: ChildRequestModel(id: widget.id))),
           ],
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -84,17 +93,18 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
                               30.verticalSpace,
                               TextFieldWidget(
                                 labelAboveField: context.tr("name"),
-                                keyName: childEntity?.name ?? '', //"name",
+                                keyName: "name",
                                 validator: FormBuilderValidators.required(),
                                 textInputAction: TextInputAction.next,
+                                initalValue: childEntity?.name ?? '',
                               ),
                               20.verticalSpace,
                               TextFieldWidget(
                                 labelAboveField: context.tr("civilIDNumber"),
-                                keyName: childEntity?.civilID ??
-                                    '', //"civilIDNumber",
+                                keyName: "civilIDNumber",
                                 validator: FormBuilderValidators.required(),
                                 textInputAction: TextInputAction.next,
+                                initalValue: childEntity?.civilID ?? '',
                               ),
                               20.verticalSpace,
                               // CustomSingleRangeDatePicker(
@@ -107,8 +117,11 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
                               CustomSingleRangeDatePicker(
                                 fromLabelAboveField: context.tr("birthDate"),
                                 customFormKey: _formKey,
-                                keyNameFrom:
-                                    childEntity?.birthDate ?? '', //"birthDate",
+                                keyNameFrom: "birthDate",
+                                initialDate: childEntity?.birthDate != null
+                                    ? DateFormat('dd/MM/yyyy')
+                                        .parse(childEntity!.birthDate!)
+                                    : null,
                               ),
                               40.verticalSpace,
                             ],

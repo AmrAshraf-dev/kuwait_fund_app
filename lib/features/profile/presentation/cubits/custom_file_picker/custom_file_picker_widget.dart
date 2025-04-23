@@ -7,22 +7,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/extensions/size_extensions.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
-import 'package:share_plus/share_plus.dart';
 
-class GenericFilePicker extends StatelessWidget {
-  const GenericFilePicker({
+class GenericFileFamilyPicker extends StatelessWidget {
+  const GenericFileFamilyPicker({
     super.key,
-    required this.filePickerCubit,
+    required this.filePickerFamilyCubit,
     this.isFromCamera = false,
     this.isFromGallery = false,
     this.isFromFile = false,
     this.buttonTitle,
     this.keyName = 'file',
   });
-  final FilePickerCubit filePickerCubit;
+  final FilePickerFamilyCubit filePickerFamilyCubit;
   final bool isFromCamera;
   final bool isFromGallery;
   final bool isFromFile;
@@ -31,12 +30,12 @@ class GenericFilePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FilePickerCubit, FilePickerState>(
-      bloc: filePickerCubit,
-      builder: (BuildContext context, FilePickerState state) {
+    return BlocBuilder<FilePickerFamilyCubit, FilePickerFamilyState>(
+      bloc: filePickerFamilyCubit,
+      builder: (BuildContext context, FilePickerFamilyState state) {
         return FormBuilderField<String>(
           name: keyName,
-          initialValue: state is FilePickerReadyState
+          initialValue: state is FilePickerFamilyReadyState
               ? state.xFile.isNotEmpty
                   ? state.xFile.first.path
                   : ''
@@ -50,7 +49,7 @@ class GenericFilePicker extends StatelessWidget {
                   CustomElevatedButton(
                     backgroundColor: Palette.primaryColor,
                     onPressed: () {
-                      filePickerCubit.pickCamera();
+                      filePickerFamilyCubit.pickCamera();
                       CustomMainRouter.pop();
                     },
                     text: context.tr('takePhoto'),
@@ -60,9 +59,9 @@ class GenericFilePicker extends StatelessWidget {
                   CustomElevatedButton(
                     backgroundColor: Palette.primaryColor,
                     onPressed: () {
-                      filePickerCubit.pickFile(
-                         filetype: FileType.image,
-                       // allowedExtensions: ['jpg', 'png', 'jpeg'],
+                      filePickerFamilyCubit.pickFile(
+                        filetype: FileType.image,
+                        // allowedExtensions: ['jpg', 'png', 'jpeg'],
                       );
                       CustomMainRouter.pop();
                     },
@@ -72,15 +71,14 @@ class GenericFilePicker extends StatelessWidget {
                 if (isFromFile)
                   CustomElevatedButton(
                     showBorder: true,
-                     backgroundColor: Palette.primaryColor,
+                    backgroundColor: Palette.primaryColor,
                     onPressed: () {
-                      filePickerCubit.pickFile(
+                      filePickerFamilyCubit.pickFile(
                         filetype: FileType.custom,
                         allowedExtensions: ['pdf'],
                       );
                       CustomMainRouter.pop();
                     },
-                    
                     customChild: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -90,11 +88,10 @@ class GenericFilePicker extends StatelessWidget {
                           color: Palette.blue_002A69,
                         ),
                         5.horizontalSpace,
-
                         AppText(
                           text: buttonTitle ?? context.tr("attach_file"),
                           style: AppTextStyle.semiBold_20,
-                         )
+                        )
                       ],
                     ),
                   ),

@@ -657,18 +657,41 @@ class EditAddressRoute extends _i52.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i24.EditChildDataScreen]
-class EditChildDataRoute extends _i52.PageRouteInfo<void> {
-  const EditChildDataRoute({List<_i52.PageRouteInfo>? children})
-    : super(EditChildDataRoute.name, initialChildren: children);
+class EditChildDataRoute extends _i52.PageRouteInfo<EditChildDataRouteArgs> {
+  EditChildDataRoute({
+    _i53.Key? key,
+    String? id,
+    List<_i52.PageRouteInfo>? children,
+  }) : super(
+         EditChildDataRoute.name,
+         args: EditChildDataRouteArgs(key: key, id: id),
+         initialChildren: children,
+       );
 
   static const String name = 'EditChildDataRoute';
 
   static _i52.PageInfo page = _i52.PageInfo(
     name,
     builder: (data) {
-      return const _i24.EditChildDataScreen();
+      final args = data.argsAs<EditChildDataRouteArgs>(
+        orElse: () => const EditChildDataRouteArgs(),
+      );
+      return _i24.EditChildDataScreen(key: args.key, id: args.id);
     },
   );
+}
+
+class EditChildDataRouteArgs {
+  const EditChildDataRouteArgs({this.key, this.id});
+
+  final _i53.Key? key;
+
+  final String? id;
+
+  @override
+  String toString() {
+    return 'EditChildDataRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
