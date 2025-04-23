@@ -12,7 +12,7 @@ abstract class SickLeaveRequestRemoteDataSource {
   Future<CustomResponseType<BaseEntity<String>>> createSickLeaveRequest(
       sickLeaveRequestModel);
 
-  Future<CustomResponseType<LeaveBalanceModel>> getLeaveBalance();
+  // Future<CustomResponseType<LeaveBalanceModel>> getLeaveBalance();
 }
 
 @Injectable(as: SickLeaveRequestRemoteDataSource)
@@ -35,16 +35,16 @@ class SickLeaveRequestDataSourceImp
     }
   }
 
-  @override
-  Future<Either<Failure, LeaveBalanceModel>> getLeaveBalance() async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
-      path: ApiConstants.getMyLeaveBalance,
-    );
+  // @override
+  // Future<Either<Failure, LeaveBalanceModel>> getLeaveBalance() async {
+  //   ({dynamic response, bool success}) result = await networkHelper.get(
+  //     path: ApiConstants.getMyLeaveBalance,
+  //   );
 
-    if (result.success) {
-      return right(LeaveBalanceModel.fromJson(result.response));
-    } else {
-      return left(ServerFailure(message: result.response as String));
-    }
-  }
+  //   if (result.success) {
+  //     return right(LeaveBalanceModel.fromJson(result.response));
+  //   } else {
+  //     return left(ServerFailure(message: result.response as String));
+  //   }
+  // }
 }

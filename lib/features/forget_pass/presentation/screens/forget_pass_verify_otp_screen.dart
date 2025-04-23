@@ -120,7 +120,7 @@ class _ForgetPassVerifyOtpScreenState extends State<ForgetPassVerifyOtpScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     TextFieldWidget(
-                                      maxLength: 5,
+                                      maxLength: 6,
                                       labelAboveField: context.tr("enter_otp"),
                                       keyName: "otp",
                                       textInputAction: TextInputAction.done,

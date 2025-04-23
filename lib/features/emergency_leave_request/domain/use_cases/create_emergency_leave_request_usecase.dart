@@ -10,7 +10,7 @@ import "../repositories/emergency_leave_request_repository.dart";
 @injectable
 class CreateEmergencyLeaveRequestUseCase
     implements
-        UseCase<BaseEntity<String>,
+        UseCase<String,
             EmergencyLeaveRequestRequestModel> {
   CreateEmergencyLeaveRequestUseCase(
       {required this.emergencyLeaveRequestRepository});
@@ -18,7 +18,7 @@ class CreateEmergencyLeaveRequestUseCase
   final EmergencyLeaveRequestRepository emergencyLeaveRequestRepository;
 
   @override
-  Future<CustomResponseType<BaseEntity<String>>> call(
+  Future<CustomResponseType<String>> call(
     EmergencyLeaveRequestRequestModel params,
   ) {
     return emergencyLeaveRequestRepository.createEmergencyLeaveRequest(

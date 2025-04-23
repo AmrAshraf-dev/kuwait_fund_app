@@ -21,17 +21,17 @@ abstract class RequestsRepository {
 
   Future<CustomResponseType<BaseEntity<List<RequestsEntity>>>> getRequests();
 
-  Future<CustomResponseType<BaseEntity<List<RequestTypeEntity>>>>
-      getRequestTypes();
-  Future<CustomResponseType<BaseEntity<List<AnnualLeaveDetailsEntity>>>>
-      getAnnualLeaveDetailsHistoryList({
-    required AnnualLeaveDetailsRequestModel annualLeaveDetailsParams,
-  });
+  // Future<CustomResponseType<BaseEntity<List<RequestTypeEntity>>>>
+  //     getRequestTypes();
+  // Future<CustomResponseType<BaseEntity<List<AnnualLeaveDetailsEntity>>>>
+  //     getAnnualLeaveDetailsHistoryList({
+  //   required AnnualLeaveDetailsRequestModel annualLeaveDetailsParams,
+  // });
 
-  Future<CustomResponseType<BaseEntity<AnnualLeaveInfoEntity>>>
-      getAnnualLeaveInfo({
-    required AnnualLeaveInfoRequestModel annualLeaveInfoParams,
-  });
+  // Future<CustomResponseType<BaseEntity<AnnualLeaveInfoEntity>>>
+  //     getAnnualLeaveInfo({
+  //   required AnnualLeaveInfoRequestModel annualLeaveInfoParams,
+  // });
 
   Future<CustomResponseType<BaseEntity<CreateExtendLeaveEntity>>>
       createExtendLeaveRequest(

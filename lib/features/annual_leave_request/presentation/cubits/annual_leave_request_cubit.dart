@@ -3,8 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
-import "../../../shared/entity/base_entity.dart";
-import '../../data/models/request/annual_leave_request_request_model.dart';
+ import '../../data/models/request/annual_leave_request_request_model.dart';
 import '../../domain/use_cases/annual_leave_request_usecase.dart';
 
 part 'annual_leave_request_state.dart';
@@ -19,7 +18,7 @@ class AnnualLeaveRequestCubit extends Cubit<AnnualLeaveRequestState> {
       AnnualLeaveRequestRequestModel annualLeaveRequestModel) async {
     emit(AnnualLeaveRequestLoadingState());
 
-    final CustomResponseType<BaseEntity<String>> eitherPackagesOrFailure =
+    final CustomResponseType< String > eitherPackagesOrFailure =
         await annualLeaveRequestUseCase(annualLeaveRequestModel);
 
     eitherPackagesOrFailure.fold((Failure failure) {
@@ -27,7 +26,7 @@ class AnnualLeaveRequestCubit extends Cubit<AnnualLeaveRequestState> {
       emit(AnnualLeaveRequestErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<String> response) {
+    }, ( String  response) {
       emit(AnnualLeaveRequestReadyState(response));
     });
   }

@@ -32,28 +32,28 @@ class RequestsRepositoryImp implements RequestsRepository {
     );
   }
 
-  @override
-  Future<CustomResponseType<BaseEntity<List<RequestTypeModel>>>>
-      getRequestTypes() async {
-    return await requestsRemoteDataSource.getRequestTypes();
-  }
+  // @override
+  // Future<CustomResponseType<BaseEntity<List<RequestTypeModel>>>>
+  //     getRequestTypes() async {
+  //   return await requestsRemoteDataSource.getRequestTypes();
+  // }
 
-  @override
-  Future<CustomResponseType<BaseEntity<List<AnnualDetailsModel>>>>
-      getAnnualLeaveDetailsHistoryList(
-          {required AnnualLeaveDetailsRequestModel
-              annualLeaveDetailsParams}) async {
-    return await requestsRemoteDataSource.getAnnualLeaveDetailsHistoryList(
-        annualLeaveDetailsRequestModel: annualLeaveDetailsParams);
-  }
+  // @override
+  // Future<CustomResponseType<BaseEntity<List<AnnualDetailsModel>>>>
+  //     getAnnualLeaveDetailsHistoryList(
+  //         {required AnnualLeaveDetailsRequestModel
+  //             annualLeaveDetailsParams}) async {
+  //   return await requestsRemoteDataSource.getAnnualLeaveDetailsHistoryList(
+  //       annualLeaveDetailsRequestModel: annualLeaveDetailsParams);
+  // }
 
-  @override
-  Future<CustomResponseType<BaseEntity<AnnualDetailsInfoModel>>>
-      getAnnualLeaveInfo(
-          {required AnnualLeaveInfoRequestModel annualLeaveInfoParams}) async {
-    return await requestsRemoteDataSource.getAnnualLeaveInfoRemote(
-        annualLeaveInfoRequestModel: annualLeaveInfoParams);
-  }
+  // @override
+  // Future<CustomResponseType<BaseEntity<AnnualDetailsInfoModel>>>
+  //     getAnnualLeaveInfo(
+  //         {required AnnualLeaveInfoRequestModel annualLeaveInfoParams}) async {
+  //   return await requestsRemoteDataSource.getAnnualLeaveInfoRemote(
+  //       annualLeaveInfoRequestModel: annualLeaveInfoParams);
+  // }
 
   @override
   Future<CustomResponseType<BaseEntity<ExtendLeaveModel>>>

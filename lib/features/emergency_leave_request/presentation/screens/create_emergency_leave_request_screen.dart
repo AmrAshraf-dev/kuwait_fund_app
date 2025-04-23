@@ -12,7 +12,6 @@ import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/emergency_leave_request/data/models/request/emergency_leave_request_request_model.dart';
-import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/cubits/emergency_leave_balance_cubit/emergency_leave_balance_cubit.dart';
 import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/cubits/emergency_leave_request_cubit.dart';
 import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/cubits/emergency_remining_balance_cubit/emergency_remining_balance_cubit.dart';
 import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/widgets/emergency_leave_available_days_widget.dart';
@@ -42,15 +41,12 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
         isBackEnabled: true,
         widget: MultiBlocProvider(
           providers: [
-            BlocProvider<EmergencyLeaveBalanceCubit>(
-              create: (context) => getIt<EmergencyLeaveBalanceCubit>()
-                ..getEmergencyLeaveBalance(),
-            ),
+       
             BlocProvider<EmergencyReminingLeaveBalanceCubit>(
               create: (context) => reminingLeaveBalanceCubit,
             ),
             BlocProvider<EmergencyLeaveRequestCubit>(
-              create: (context) => emergencyLeaveRequestCubit..getEmergencyEligibleDays(),
+              create: (context) => emergencyLeaveRequestCubit..getEmergencyLeaveScreen(),
             ),
             
           ],
@@ -92,23 +88,23 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                                     context.tr("emergency_date"),
                               ),
                               20.verticalSpace,
-                              BlocConsumer<EmergencyLeaveRequestCubit, EmergencyLeaveRequestState>(
+                              BlocConsumer<EmergencyLeaveRequestCubit, EmergencyLeaveScreenState>(
                                 listener: (context, state) {
-                                    if (state is EmergencyEligibleDaysLoadingState) {
+                                    if (state is EmergencyLeaveScreenLoadingState) {
                                     ViewsToolbox.showLoading();
                                   }
 
-                               else   if (state is EmergencyEligibleDaysErrorState) {
+                               else   if (state is EmergencyLeaveScreenErrorState) {
                                     ViewsToolbox.dismissLoading();
                                     ViewsToolbox.showErrorAwesomeSnackBar(
                                         context, state.message!);
                                   }
                                 },
-                                builder: (context, state) {
+                                builder: (context, emergencyLeaveState) {
                                 
                                  
-                                      if (state
-                                          is EmergencyEligibleDaysReadyState) {
+                                      if (emergencyLeaveState
+                                          is EmergencyLeaveScreenReadyState) {
                                          return Column(
                                     children: [
                                       CustomDropDownField<int>(
@@ -128,7 +124,7 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                                                   selectedDays:
                                                     selectedDays!);
                                         },
-                                        items: List<int>.generate(state.response, (index) => index + 1) // Generate list dynamically
+                                        items: List<int>.generate(emergencyLeaveState.response.data?.allowedDays??0, (index) => index + 1) // Generate list dynamically
                                             .map((int item) {
                                           return DropdownMenuItem<int>(
                                             value: item,
@@ -162,35 +158,15 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                                           ),
                                           2.horizontalSpace,
                                           AppText(
-                                            text: state.response
-                                            
-                                                .toString(),
+                                            text: emergencyLeaveState.response.data?.allowedDays .toString(),
                                             style: AppTextStyle.bold_14,
                                           ),
                                         ],
                                       ),
-                                    ],
-                                  );
-                                      }
-                                         return Container();
-                                    
-                                }
-                                
-                              ),
-                              15.verticalSpace,
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    20.verticalSpace,
-                    BlocBuilder<EmergencyLeaveBalanceCubit,
-                        EmergencyLeaveBalanceState>(
-                      builder: (context, leaveBalanceState) {
-                        if (leaveBalanceState
-                            is EmergencyLeaveBalanceReadyState) {
-                          ViewsToolbox.dismissLoading();
-                          return BlocBuilder<EmergencyReminingLeaveBalanceCubit,
+
+                                          20.verticalSpace,
+                   
+                           BlocBuilder<EmergencyReminingLeaveBalanceCubit,
                               EmergencyReminingLeaveBalanceState>(
                             builder: (context, state) {
                               if (state.showDetails) {
@@ -219,19 +195,39 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                                         title: context.tr(
                                             "remaining_days_after_vacation"),
                                         days: calculateRemainingDays(
-                                            leaveBalanceState.response.data,
+                                            emergencyLeaveState.response.data?.availableDays??0,
                                             state.selectedDays),
                                       ),
                                     ));
                               }
-                              return Container();
-                            },
-                          );
-                        } else {
-                          return Container();
-                        }
-                      },
+                              else {
+                                return Container();
+                              }
+                            }),
+                                    ],
+                                  );
+                                      }
+                                         return Container();
+                                    
+                                }
+                                
+                              ),
+                              15.verticalSpace,
+
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
+                
+
+                            
+                              
+                           
+                          
+                        
+                      
+                    
                     30.verticalSpace,
                     EmergencyLeaveAvailableDaysWidget(),
                     26.verticalSpace,
@@ -259,7 +255,7 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                     ),
                     20.verticalSpace,
                     BlocConsumer<EmergencyLeaveRequestCubit,
-                        EmergencyLeaveRequestState>(listener: (context, state) {
+                        EmergencyLeaveScreenState>(listener: (context, state) {
                       if (state is EmergencyLeaveRequestErrorState) {
                         ViewsToolbox.dismissLoading();
 

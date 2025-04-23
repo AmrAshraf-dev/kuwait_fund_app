@@ -346,7 +346,6 @@ class CustomDropDownModel<T> extends Equatable {
   final T value;
 
   @override
-  // TODO: implement props
   List<Object?> get props => <Object?>[
         text,
         value,

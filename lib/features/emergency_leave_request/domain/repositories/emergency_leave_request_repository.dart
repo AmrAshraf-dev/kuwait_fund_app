@@ -1,3 +1,5 @@
+import "package:kf_ess_mobile_app/features/annual_leave_request/domain/entities/emergency_leave_entity.dart";
+
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
 import "../../data/models/request/emergency_leave_request_request_model.dart";
@@ -9,14 +11,12 @@ abstract class EmergencyLeaveRequestRepository {
   abstracting the data layer from the business logic layer. 
   */
 
-  Future<CustomResponseType<BaseEntity<String>>>
+  Future<CustomResponseType<String>>
       createEmergencyLeaveRequest({
     required EmergencyLeaveRequestRequestModel emergencyLeaveRequestParams,
   });
 
-  Future<CustomResponseType<BaseEntity<dynamic>>> getEmergencyLeaveBalance();
+  Future<CustomResponseType<BaseEntity<EmergencyLeaveEntity>>> getEmergencyLeaveScreen();
 
-  Future<CustomResponseType<BaseEntity<dynamic>>> getEmergencyAvailableDays();
-
-  Future<CustomResponseType<int>> getEmergencyEligibleDays() ;
+ 
 }

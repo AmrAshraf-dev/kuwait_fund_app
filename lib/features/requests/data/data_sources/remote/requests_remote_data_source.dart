@@ -21,16 +21,16 @@ import '../../models/response/requests_response_model.dart';
 abstract class RequestsRemoteDataSource {
   Future<CustomResponseType<RequestsResponseModel>> getRequests(
      );
-  Future<CustomResponseType<RequestTypeResponseModel>> getRequestTypes();
+  // Future<CustomResponseType<RequestTypeResponseModel>> getRequestTypes();
 
-  Future<CustomResponseType<AnnualDetailsResponseModel>>
-      getAnnualLeaveDetailsHistoryList(
-          {required AnnualLeaveDetailsRequestModel
-              annualLeaveDetailsRequestModel});
+  // Future<CustomResponseType<AnnualDetailsResponseModel>>
+  //     getAnnualLeaveDetailsHistoryList(
+  //         {required AnnualLeaveDetailsRequestModel
+  //             annualLeaveDetailsRequestModel});
 
-  Future<CustomResponseType<AnnualDetailsInfoResponseModel>>
-      getAnnualLeaveInfoRemote(
-          {required AnnualLeaveInfoRequestModel annualLeaveInfoRequestModel});
+  // Future<CustomResponseType<AnnualDetailsInfoResponseModel>>
+  //     getAnnualLeaveInfoRemote(
+  //         {required AnnualLeaveInfoRequestModel annualLeaveInfoRequestModel});
 
   Future<CustomResponseType<ExtendLeaveResponseModel>> extendLeave(
       {required ExtendLeaveRequestModel extendLeaveRequestModel});
@@ -72,43 +72,43 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
     }
   }
 
-  @override
-  Future<CustomResponseType<AnnualDetailsResponseModel>>
-      getAnnualLeaveDetailsHistoryList(
-          {required AnnualLeaveDetailsRequestModel
-              annualLeaveDetailsRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
-        path: ApiConstants.getLeaveRequestHistory,
-        queryParams: <String, dynamic>{
-          "startDate": annualLeaveDetailsRequestModel.startDate ?? '',
-          "endDate": annualLeaveDetailsRequestModel.endDate ?? '',
-        });
+  // @override
+  // Future<CustomResponseType<AnnualDetailsResponseModel>>
+  //     getAnnualLeaveDetailsHistoryList(
+  //         {required AnnualLeaveDetailsRequestModel
+  //             annualLeaveDetailsRequestModel}) async {
+  //   ({dynamic response, bool success}) result = await networkHelper.get(
+  //       path: ApiConstants.getLeaveRequestHistory,
+  //       queryParams: <String, dynamic>{
+  //         "startDate": annualLeaveDetailsRequestModel.startDate ?? '',
+  //         "endDate": annualLeaveDetailsRequestModel.endDate ?? '',
+  //       });
 
-    if (result.success) {
-      return right(AnnualDetailsResponseModel.fromJson(result.response));
-    } else {
-      return left(ServerFailure(message: result.response as String));
-    }
-  }
+  //   if (result.success) {
+  //     return right(AnnualDetailsResponseModel.fromJson(result.response));
+  //   } else {
+  //     return left(ServerFailure(message: result.response as String));
+  //   }
+  // }
 
-  @override
-  Future<CustomResponseType<AnnualDetailsInfoResponseModel>>
-      getAnnualLeaveInfoRemote(
-          {required AnnualLeaveInfoRequestModel
-              annualLeaveInfoRequestModel}) async {
-    ({dynamic response, bool success}) result = await networkHelper.get(
-        path: ApiConstants.getLeaveRequestInfo,
-        queryParams: <String, dynamic>{
-          "leaveRequestID":
-              annualLeaveInfoRequestModel.leaveRequestID ?? '1000',
-        });
+  // @override
+  // Future<CustomResponseType<AnnualDetailsInfoResponseModel>>
+  //     getAnnualLeaveInfoRemote(
+  //         {required AnnualLeaveInfoRequestModel
+  //             annualLeaveInfoRequestModel}) async {
+  //   ({dynamic response, bool success}) result = await networkHelper.get(
+  //       path: ApiConstants.getLeaveRequestInfo,
+  //       queryParams: <String, dynamic>{
+  //         "leaveRequestID":
+  //             annualLeaveInfoRequestModel.leaveRequestID ?? '1000',
+  //       });
 
-    if (result.success) {
-      return right(AnnualDetailsInfoResponseModel.fromJson(result.response));
-    } else {
-      return left(ServerFailure(message: result.response as String));
-    }
-  }
+  //   if (result.success) {
+  //     return right(AnnualDetailsInfoResponseModel.fromJson(result.response));
+  //   } else {
+  //     return left(ServerFailure(message: result.response as String));
+  //   }
+  // }
 
   @override
   Future<CustomResponseType<ExtendLeaveResponseModel>> extendLeave(

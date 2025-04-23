@@ -18,7 +18,7 @@ class EmergencyLeaveRequestRepositoryImp
       emergencyLeaveRequestRemoteDataSource;
 
   @override
-  Future<CustomResponseType<BaseEntity<String>>>
+  Future<CustomResponseType<String>>
       createEmergencyLeaveRequest(
           {required EmergencyLeaveRequestRequestModel
               emergencyLeaveRequestParams}) async {
@@ -27,23 +27,13 @@ class EmergencyLeaveRequestRepositoryImp
             emergencyLeaveRequestRequestModel: emergencyLeaveRequestParams);
   }
 
+ 
   @override
-  Future<CustomResponseType<BaseEntity<dynamic>>>
-      getEmergencyAvailableDays() async {
+  Future<CustomResponseType<BaseEntity<EmergencyLeaveRequestModel>>>
+      getEmergencyLeaveScreen() async {
     return await emergencyLeaveRequestRemoteDataSource
-        .getEmergencyAvailableDays();
-  }
-
-  @override
-  Future<CustomResponseType<BaseEntity<dynamic>>>
-      getEmergencyLeaveBalance() async {
-    return await emergencyLeaveRequestRemoteDataSource
-        .getEmergencyLeaveBalance();
+        .getEmergencyLeaveScreen();
   }
   
-  @override
-  Future<CustomResponseType<int>> getEmergencyEligibleDays() async {
-    return await emergencyLeaveRequestRemoteDataSource
-        .getEmergencyEligibleDays();
-  }
+  
 }

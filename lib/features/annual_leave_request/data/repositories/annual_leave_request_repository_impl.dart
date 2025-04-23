@@ -1,9 +1,10 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/approve_leave_request_model.dart';
-
+import 'package:kf_ess_mobile_app/features/annual_leave_request/data/models/response/leave_balance_response_model.dart';
+import 'package:kf_ess_mobile_app/features/annual_leave_request/domain/entities/annual_leave_request_entity.dart';
+import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+ 
 import '../../../../core/network/base_handling.dart';
-import '../../../shared/entity/base_entity.dart';
-import '../../domain/repositories/annual_leave_request_repository.dart';
+ import '../../domain/repositories/annual_leave_request_repository.dart';
 import '../data_sources/remote/annual_leave_request_remote_data_source.dart';
 import '../models/request/annual_leave_request_request_model.dart';
 
@@ -16,7 +17,7 @@ class AnnualLeaveRequestRepositoryImp implements AnnualLeaveRequestRepository {
   final AnnualLeaveRequestRemoteDataSource annualLeaveRequestRemoteDataSource;
 
   @override
-  Future<CustomResponseType<BaseEntity<String>>> createAnnualLeaveRequest(
+  Future<CustomResponseType< String >> createAnnualLeaveRequest(
       {required AnnualLeaveRequestRequestModel
           annualLeaveRequestRequestModel}) async {
     return annualLeaveRequestRemoteDataSource.createAnnualLeaveRequest(
@@ -24,7 +25,7 @@ class AnnualLeaveRequestRepositoryImp implements AnnualLeaveRequestRepository {
   }
 
   @override
-  Future<CustomResponseType<BaseEntity<dynamic>>>
+  Future<CustomResponseType<BaseEntity<AnnualLeaveRequestEntity>>>
       getAnnualLeaveBalance() async {
     return annualLeaveRequestRemoteDataSource.getAnnualLeaveBalance();
   }

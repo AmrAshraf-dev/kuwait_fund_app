@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+ import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
@@ -13,22 +13,35 @@ import 'package:kf_ess_mobile_app/features/annual_leave_request/data/models/requ
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_balance_cubit/annual_leave_balance_cubit.dart';
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_remining_balance_cubit/annual_leave_remining_balance_cubit.dart';
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_request_cubit.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+ import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+ import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/custom_date_picker_range.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 
 @RoutePage()
-class CreateAnnualLeaveRequestScreen extends StatelessWidget {
+class CreateAnnualLeaveRequestScreen extends StatefulWidget {
   CreateAnnualLeaveRequestScreen({super.key});
+
+  @override
+  State<CreateAnnualLeaveRequestScreen> createState() => _CreateAnnualLeaveRequestScreenState();
+}
+
+class _CreateAnnualLeaveRequestScreenState extends State<CreateAnnualLeaveRequestScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+
   final AnnualLeaveRequestCubit annualLeaveRequestCubit =
       getIt<AnnualLeaveRequestCubit>();
+
   final AnnualLeaveBalanceCubit leaveBalanceCubit =
       getIt<AnnualLeaveBalanceCubit>();
+
   final AnnualLeaveReminingLeaveBalanceCubit reminingLeaveBalanceCubit =
       getIt<AnnualLeaveReminingLeaveBalanceCubit>();
+
+        DateTime? _selectedDate;
+
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
@@ -83,22 +96,48 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                               key: _formKey,
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 20.h),
-                                child: CustomDatePickerRange(
-                                  labelTitle: context.tr("annual_leave_days"),
-                                  consumedDays: 0,
-                                  totalDays: int.parse(
-                                      leaveBalanceState.response.data ?? "0"),
-                                  keyNameFrom: "from",
-                                  keyNameTo: "to",
-                                  customFormKey: _formKey,
-                                  fromLabelAboveField: context.tr("from_date"),
-                                  toLabelAboveField: context.tr("to_date"),
-                                  onDoneCallback: (bool isSelectedRangeValid,
-                                      DateTimeRange? pickedRange) {
-                                    CustomMainRouter.pop();
-                                    reminingLeaveBalanceCubit.updateFormState(
-                                        showDetails: isSelectedRangeValid);
-                                  },
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+
+                               
+
+                                    CustomDatePickerRange(
+                                      labelTitle: context.tr("annual_leave_days"),
+                                      consumedDays: 0,
+                                      totalDays: int.parse(
+                                          leaveBalanceState.response.data?.availableBalance ?? "0"),
+                                      keyNameFrom: "from",
+                                      keyNameTo: "to",
+                                      customFormKey: _formKey,
+                                      fromLabelAboveField: context.tr("from_date"),
+                                      toLabelAboveField: context.tr("to_date"),
+                                      onDoneCallback: (bool isSelectedRangeValid,
+                                          DateTimeRange? pickedRange) {
+                                        
+                                        CustomMainRouter.pop();
+                                        reminingLeaveBalanceCubit.updateFormState(
+                                            showDetails: isSelectedRangeValid);
+                                                setState(() {
+                                              
+                                            });
+                                      },
+                                    ),
+                                    20.verticalSpace,
+if(!(leaveBalanceState.response.data?.displayExitDate??false))
+      Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: CustomSingleRangeDatePicker(
+          isFirstDayRequired: true,
+          initialDate: (_formKey.currentState?.fields["to"]!=null?  (DateFormat("dd/MM/yyyy").parse(_formKey.currentState?.fields["to"]?.value??"")): null),
+                          fromLabelAboveField: context.tr("exit_date"),
+                          customFormKey: _formKey,
+                          keyNameFrom: "exit_date",
+                          firstDate: (_formKey.currentState?.fields["to"]!=null?  (DateFormat("dd/MM/yyyy").parse(_formKey.currentState?.fields["to"]?.value??"")): null),
+                        ),
+      ),
+
+                                  ],
                                 ),
                               ),
                             ),
@@ -150,12 +189,13 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                                         days: _calculateRemainingDays(
                                             leaveBalance: int.parse(
                                                 leaveBalanceState
-                                                        .response.data ??
+                                                        .response.data?.availableBalance ??
                                                     "0"),
                                             from: _formKey.currentState!
                                                 .fields["from"]!.value,
                                             to: _formKey.currentState!
                                                 .fields["to"]!.value),
+                                                
                                       ),
                                       5.verticalSpace,
                                     ]);
@@ -170,13 +210,13 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                                     child: LeaveDaysRowItemWidget(
                                       title: context.tr("available_days"),
                                       days:
-                                          leaveBalanceState.response.data ?? "",
+                                          leaveBalanceState.response.data?.availableBalance ?? "",
                                     ));
                               }
                             }),
                           ),
 
-                          120.verticalSpace,
+                          60.verticalSpace,
                           BlocConsumer<AnnualLeaveRequestCubit,
                               AnnualLeaveRequestState>(
                             listener: (context, state) {
@@ -214,6 +254,10 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
                                         endDate: DateFormat("yyyy-MM-dd").format(
                                           DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["to"]!.value),
                                         ),
+                                        exitDate: 
+                                         DateFormat("yyyy-MM-dd").format(DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["exit_date"]!.value),
+                                         )
+                                          
                                       ));
                                     }
                                   },
@@ -243,32 +287,3 @@ class CreateAnnualLeaveRequestScreen extends StatelessWidget {
     return toDate.difference(fromDate).inDays;
   }
 }
-
-// class ApprovalTimeline extends StatelessWidget {
-//   const ApprovalTimeline({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         10.verticalSpace,
-//         TimeLineCard(
-//           name: "Ahmed Al-Rashid",
-//           position: "Supervisor",
-//           status: "Approved",
-//           date: "22/Oct/2024",
-//           isFirst: true,
-//           isLast: false,
-//         ),
-//         TimeLineCard(
-//           name: "Ahmed Al-Rashid",
-//           position: "Supervisor",
-//           status: "Approved",
-//           date: "22/Oct/2024",
-//           isFirst: false,
-//           isLast: true,
-//         ),
-//       ],
-//     );
-//   }
-// }

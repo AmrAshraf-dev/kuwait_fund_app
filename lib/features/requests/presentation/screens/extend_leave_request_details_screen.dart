@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
+import 'package:kf_ess_mobile_app/core/helper/date_helper.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
@@ -42,40 +43,8 @@ class _ExtendLeaveDetailsScreenState extends State<ExtendLeaveDetailsScreen> {
   }
 
   DateTime? _selectedDate;
-  final TextEditingController _dateController = TextEditingController();
+ 
 
-  Future<void> _selectDate(BuildContext context, {required DateTime firstDate}) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: firstDate,
-      firstDate:firstDate, // Disable past dates
-      lastDate: DateTime(2100),
-      builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(
-              primary: Palette.primaryColor, // Header background color
-              onPrimary: Colors.white, // Header text color
-              onSurface: Colors.black, // Body text color
-            ),
-            textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(
-                foregroundColor: Palette.primaryColor, // Button text color
-              ),
-            ),
-          ),
-          child: child!,
-        );
-      },
-    );
-
-    if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-        _dateController.text = DateFormat('dd/MM/yyyy').format(picked);
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +110,13 @@ class _ExtendLeaveDetailsScreenState extends State<ExtendLeaveDetailsScreen> {
                              DateFormat('dd/MM/yyyy')
                                 .format(_selectedDate!),
                                 chooseDateCallback: () {
-                                _selectDate(context,
+                             DateHelper.selectDate(
+                              onSelectedDay: (DateTime selectedDate){
+                                setState(() {
+                                  _selectedDate = selectedDate;
+                                });
+                              },
+                               context,
                                 firstDate: DateFormat('dd-MMMM-yyyy').parse( widget.requestsEntity?.leaveEndDate ?? '').add(
                                   Duration(days: 1),
                                 ));

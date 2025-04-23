@@ -33,17 +33,17 @@ class ApiConstants {
 
   static var getUserRequests = "Request/GetUserRequests";
 
-  static var getAnnualLeaveBalance = "Leave/GetAnnualLeaveBalance";
+  static var getAnnualLeaveBalance = "UrgentLeave/GetAnnualLeaveRequestScreenInfo"; // to delete 
 
   static var createAnnualLeaveRequest =
-      "Leave/CreateEmployeeAnnualLeaveRequest";
+      "UrgentLeave/CreateEmployeeAnnualLeaveRequest";
 
   static var getEmergencyAvailableDays =
-      "Leave/GetEmergencyLeaveBalanceRemaining";
+      "Leave/GetEmergencyLeaveBalanceRemaining"; // to delete
 
-  static var getEmergencyLeaveBalance = "Leave/GetEmergencyEligibleDays";
+  static var getEmergencyLeaveScreen = "EmergencyLeave/GetEmergencyLeaveScreen";  
 
-  static var createEmergencyLeaveRequest = "Leave/CreateEmergencyLeave";
+  static var createEmergencyLeaveRequest = "EmergencyLeave/CreateEmergencyLeave";
 
   static var getCertificates = "Certificate/GetCertificates";
 
@@ -72,26 +72,25 @@ class ApiConstants {
 
   static var getRequestTypes = "Request/GetRequestType";
 
-  static var getLeaveDashboard = "Leave/GetLeaveDashboard";
+  static var getLeaveDashboard = "UrgentLeave/GetLeaveDashboard";
 
-  static var getEmergencyEligibleDays = "Leave/GetEmergencyEligibleDays";
+  static var getEmergencyEligibleDays = "EmergencyLeave/GetEmergencyLeaveScreen";
+  
   static var getManagementVisitorsCalendar =
       'VisitorsLog/GetManagementVisitorsCalender';
   static var getManagementVisitorsCalendarDetails =
       'VisitorsLog/GetManagementVisitorsDetails';
-  static var getLeaveRequestHistory = 'Leave/GetLeaveRequestHistory';
-  static var getLeaveRequestInfo = 'Leave/GetLeaveRequestInfo';
 
   static var getHosts = 'VisitorsLog/GetHosts';
 
   static var getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';
-  static var createSickLeaveRequest = 'Leave/CreateSickLeaveRequest';
-  static var getMyLeaveBalance = 'Leave/GetLeaveBalance';
-  static var extendLeave = 'Leave/ExtendLeave';
-  static var deleteLeave = 'Leave/DeleteLeaveRequest';
-  static var getAllLeaveRequestsWaiting = 'Leave/GetAllLeaveRequestsWaiting';
-  static var approveLeaveRequest = 'Leave/ApproveLeaveRequest';
-  static var rejectLeaveRequest = 'Leave/RejectLeaveRequest';
+  static var createSickLeaveRequest = 'SickLeave/CreateSickLeaveRequest';
+  static var getMyLeaveBalance = 'Leave/GetLeaveBalance'; // delete and show 0 
+  static var extendLeave = 'UrgentLeave/ExtendLeave';
+  static var deleteLeave = 'UrgentLeave/DeleteLeaveRequest';
+  static var getAllLeaveRequestsWaiting = 'Approval/GetAllLeaveRequestsWaiting';
+  static var approveLeaveRequest = 'Approval/ApproveLeaveRequest';
+  static var rejectLeaveRequest = 'Approval/RejectLeaveRequest';
 
   //profile
   static var getProfileInfo = 'Profile/GetEmployeeProfile';

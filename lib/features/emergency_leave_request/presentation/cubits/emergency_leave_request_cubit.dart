@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/emergency_leave_request/domain/use_cases/get_emergency_eligible_days_usecase.dart';
+import 'package:kf_ess_mobile_app/features/annual_leave_request/domain/entities/emergency_leave_entity.dart';
+import 'package:kf_ess_mobile_app/features/emergency_leave_request/domain/use_cases/get_emergency_leave_screen_usecase.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
@@ -11,11 +12,11 @@ import '../../data/models/request/emergency_leave_request_request_model.dart';
 part 'emergency_leave_request_state.dart';
 
 @injectable
-class EmergencyLeaveRequestCubit extends Cubit<EmergencyLeaveRequestState> {
+class EmergencyLeaveRequestCubit extends Cubit<EmergencyLeaveScreenState> {
   final CreateEmergencyLeaveRequestUseCase createEmergencyLeaveRequestUseCase;
 
-  final GetEmergencyEligibleDaysUseCase getEmergencyEligibleDaysUseCase;
-  EmergencyLeaveRequestCubit({required this.createEmergencyLeaveRequestUseCase ,required this.getEmergencyEligibleDaysUseCase})
+  final GetEmergencyLeaveScreenUsecase getEmergencyLeaveScreenUsecase;
+  EmergencyLeaveRequestCubit({required this.createEmergencyLeaveRequestUseCase ,required this.getEmergencyLeaveScreenUsecase})
       : super(EmergencyLeaveRequestInitialState());
 
   Future<void> createEmergencyLeaveRequest(
@@ -23,7 +24,7 @@ class EmergencyLeaveRequestCubit extends Cubit<EmergencyLeaveRequestState> {
           emergencyLeaveRequestModel}) async {
     emit(EmergencyLeaveRequestLoadingState());
 
-    final CustomResponseType<BaseEntity<String>>
+    final CustomResponseType<String>
         eitherPackagesOrFailure =
         await createEmergencyLeaveRequestUseCase(emergencyLeaveRequestModel);
 
@@ -32,25 +33,25 @@ class EmergencyLeaveRequestCubit extends Cubit<EmergencyLeaveRequestState> {
       emit(EmergencyLeaveRequestErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<String> response) {
+    }, (String response) {
       emit(EmergencyLeaveRequestReadyState(response));
     });
   }
 
-  getEmergencyEligibleDays() async {
-    emit(EmergencyEligibleDaysLoadingState());
+  getEmergencyLeaveScreen() async {
+    emit(EmergencyLeaveScreenLoadingState());
 
-    final CustomResponseType<int>
+    final CustomResponseType< BaseEntity< EmergencyLeaveEntity>>
         eitherPackagesOrFailure =
-        await getEmergencyEligibleDaysUseCase();
+        await getEmergencyLeaveScreenUsecase();
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
-      emit(EmergencyEligibleDaysErrorState(
+      emit(EmergencyLeaveScreenErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (int response) {
-      emit(EmergencyEligibleDaysReadyState(response));
+    }, (BaseEntity< EmergencyLeaveEntity> response) {
+      emit(EmergencyLeaveScreenReadyState(response));
     });
   }
 }

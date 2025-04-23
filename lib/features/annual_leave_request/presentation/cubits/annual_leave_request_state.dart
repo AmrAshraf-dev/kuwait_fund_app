@@ -12,7 +12,7 @@ final class AnnualLeaveRequestLoadingState extends AnnualLeaveRequestState {}
 
 final class AnnualLeaveRequestReadyState extends AnnualLeaveRequestState {
   AnnualLeaveRequestReadyState(this.response);
-  BaseEntity<String> response;
+   String  response;
 }
 
 abstract class AnnualLeaveRequestState {}

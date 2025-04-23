@@ -1,23 +1,34 @@
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../../../shared/entity/base_entity.dart';
-import '../../../domain/entities/emergency_leave_request_entity.dart';
+import 'package:kf_ess_mobile_app/features/annual_leave_request/domain/entities/emergency_leave_entity.dart';
+ import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
 part 'emergency_leave_request_response_model.g.dart';
 
-/// Model that transforms the EmergencyLeaveRequest data from the API to the
-/// application entity
-
-/*
-  The model is responsible for converting the data into a format that the rest of the application can use. 
-  This could involve deserializing JSON from an API into objects, or mapping database rows to objects.
-  */
+@JsonSerializable()
+class EmergencyLeaveRequestModel extends EmergencyLeaveEntity {
 
 
+    EmergencyLeaveRequestModel({
+     required super.allowedDays,
+     required super.availableDays,
+     required super.availableHours,
+      required super.availableMinutes,
+      required super.canTakeLeaveFlg,
+      required super.emergencyLabel,
+      required super.emergencyLabelDays,
+      required super.emergencyString,
+      required super.isEmergencyLeave,
+    
+  });
+ 
+  factory EmergencyLeaveRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$EmergencyLeaveRequestModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EmergencyLeaveRequestModelToJson(this);
+}
 
 @JsonSerializable()
-class EmergencyLeaveRequestResponseModel
-    extends BaseEntity<String> {
+class EmergencyLeaveRequestResponseModel extends BaseEntity<  EmergencyLeaveRequestModel> {
   const EmergencyLeaveRequestResponseModel({
     super.code,
     super.data,
@@ -26,10 +37,8 @@ class EmergencyLeaveRequestResponseModel
     super.hasMorePages,
   });
 
-  factory EmergencyLeaveRequestResponseModel.fromJson(
-          Map<String, dynamic> json) =>
+  factory EmergencyLeaveRequestResponseModel.fromJson(Map<String, dynamic> json) =>
       _$EmergencyLeaveRequestResponseModelFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$EmergencyLeaveRequestResponseModelToJson(this);
+  Map<String, dynamic> toJson() => _$EmergencyLeaveRequestResponseModelToJson(this);
 }

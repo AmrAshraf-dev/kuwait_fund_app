@@ -1,4 +1,6 @@
 {
+"please_select_to_date_first" : "Please select to date first",
+  "exit_date": "Exit Date",
 "otp_sent_successfully": "OTP sent successfully",
   "Deleted": "canceled",
 "ServerFailureError": "Server Failure Error",

@@ -1,31 +1,31 @@
 part of 'emergency_leave_request_cubit.dart';
 
-class EmergencyLeaveRequestErrorState extends EmergencyLeaveRequestState {
+class EmergencyLeaveRequestErrorState extends EmergencyLeaveScreenState {
   final String? message;
 
   EmergencyLeaveRequestErrorState({this.message});
 }
 
-final class EmergencyLeaveRequestInitialState extends EmergencyLeaveRequestState {}
+final class EmergencyLeaveRequestInitialState extends EmergencyLeaveScreenState {}
 
-final class EmergencyLeaveRequestLoadingState extends EmergencyLeaveRequestState {}
+final class EmergencyLeaveRequestLoadingState extends EmergencyLeaveScreenState {}
 
-final class EmergencyLeaveRequestReadyState extends EmergencyLeaveRequestState {
+final class EmergencyLeaveRequestReadyState extends EmergencyLeaveScreenState {
   EmergencyLeaveRequestReadyState(this.response);
-    BaseEntity<String> response;
+    String response;
 
 }
 
-final class EmergencyEligibleDaysReadyState extends EmergencyLeaveRequestState {
-  EmergencyEligibleDaysReadyState(this.response);
-  int response;
+final class EmergencyLeaveScreenReadyState extends EmergencyLeaveScreenState {
+  EmergencyLeaveScreenReadyState(this.response);
+  BaseEntity<EmergencyLeaveEntity> response;
 }
 
-final class EmergencyEligibleDaysLoadingState
-    extends EmergencyLeaveRequestState {}
-final class EmergencyEligibleDaysErrorState extends EmergencyLeaveRequestState {
+final class EmergencyLeaveScreenLoadingState
+    extends EmergencyLeaveScreenState {}
+final class EmergencyLeaveScreenErrorState extends EmergencyLeaveScreenState {
   final String? message;
 
-  EmergencyEligibleDaysErrorState({this.message});
+  EmergencyLeaveScreenErrorState({this.message});
 }
-abstract class EmergencyLeaveRequestState {}
+abstract class EmergencyLeaveScreenState {}

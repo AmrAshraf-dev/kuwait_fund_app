@@ -1,6 +1,8 @@
 {
 
 
+  "please_select_to_date_first": "يرجى اختيار تاريخ النهاية أولاً",
+"exit_date": "تاريخ الخروج",
   "otp_sent_successfully": "تم إرسال رمز التحقق بنجاح",
 "Deleted": "تم الالغاء",
   "ServerFailureError": "خطأ في الخادم",
