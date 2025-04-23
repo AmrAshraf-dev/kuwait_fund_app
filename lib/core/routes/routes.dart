@@ -121,11 +121,7 @@ class AppRouter extends RootStackRouter {
           path: AppRoutesConstants.familyScreen,
           maintainState: true,
         ),
-        AutoRoute(
-          page: EditFamilyRoute.page,
-          path: AppRoutesConstants.editFamilyScreen,
-          maintainState: true,
-        ),
+       
         AutoRoute(
           page: AddFamilyRoute.page,
           path: AppRoutesConstants.addFamilyScreen,

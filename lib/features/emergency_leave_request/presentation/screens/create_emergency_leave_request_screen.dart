@@ -229,7 +229,9 @@ class CreateEmergencyLeaveRequestScreen extends StatelessWidget {
                       
                     
                     30.verticalSpace,
-                    EmergencyLeaveAvailableDaysWidget(),
+                    EmergencyLeaveAvailableDaysWidget(
+                      emergencyLeaveRequestCubit:emergencyLeaveRequestCubit
+                    ),
                     26.verticalSpace,
                     InkWell(
                       onTap: () {
