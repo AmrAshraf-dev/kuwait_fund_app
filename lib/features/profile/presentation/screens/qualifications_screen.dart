@@ -48,11 +48,11 @@ class _QualificationsScreenState extends State<QualificationsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AddButtonWidget(
-                  onPressed: () {
-                    CustomMainRouter.push(AddQualificationRoute());
-                  },
-                  title: context.tr("addQualification")),
+              // AddButtonWidget(
+              //     onPressed: () {
+              //       CustomMainRouter.push(AddQualificationRoute());
+              //     },
+              //     title: context.tr("addQualification")),
               14.verticalSpace,
               BlocConsumer<QualificationsCubit, QualificationsState>(
                   listener: (context, state) {

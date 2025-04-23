@@ -7,46 +7,47 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kf_ess_mobile_app/core/extensions/size_extensions.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/create_request/presentation/widgets/sick_leave_file_picker_button_widget.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/family_file_picker_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:path/path.dart' as path;
 
-class FilePickerSection extends StatelessWidget {
-  final FilePickerCubit filePickerCubit;
+class FilePicker extends StatelessWidget {
+  final FilePickerFamilyCubit filePickerFamilyCubit;
   final ValueChanged<String?> onFileSelected;
-   const FilePickerSection({
+  const FilePicker({
     super.key,
-    required this.filePickerCubit,
+    required this.filePickerFamilyCubit,
     required this.onFileSelected,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-       decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(25.r),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3),
-        ),
-      ],
-    ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BlocConsumer<FilePickerCubit, FilePickerState>(
+            BlocConsumer<FilePickerFamilyCubit, FilePickerFamilyState>(
               listener: (context, state) {
-                if (state is FilePickerReadyState) {
+                if (state is FilePickerFamilyReadyState) {
                   onFileSelected(
                       state.xFile.isNotEmpty ? state.xFile.first.path : null);
-                } else if (state is FilePickerErrorState) {
+                } else if (state is FilePickerFamilyErrorState) {
                   onFileSelected(null);
                   ViewsToolbox.showAwesomeSnackBar(
                     context,
@@ -56,24 +57,25 @@ class FilePickerSection extends StatelessWidget {
                 }
               },
               builder: (context, state) {
-                if (state is FilePickerReadyState) {
+                if (state is FilePickerFamilyReadyState) {
                   return _SelectedFilePreview(
-                      state: state.xFile, filePickerCubit: filePickerCubit);
-                } else if (state is FilePickerInitialState) {
-                  return FilePickerButton(filePickerCubit: filePickerCubit);
+                      state: state.xFile,
+                      filePickerFamilyCubit: filePickerFamilyCubit);
+                } else if (state is FilePickerFamilyInitialState) {
+                  return FilePickerFamilyButton(
+                      filePickerFamilyCubit: filePickerFamilyCubit);
                 } else {
-                  return FilePickerButton(filePickerCubit: filePickerCubit);
+                  return FilePickerFamilyButton(
+                      filePickerFamilyCubit: filePickerFamilyCubit);
                 }
               },
             ),
-                        10.verticalSpace,
-
-             AppText(
+            10.verticalSpace,
+            AppText(
               text: context.tr("max_file_size_1mb"),
               style: AppTextStyle.regular_12,
               textColor: Palette.black,
             ),
-           
             10.verticalSpace,
             Row(
               children: [
@@ -81,7 +83,7 @@ class FilePickerSection extends StatelessWidget {
                   text: context.tr("supported_file_types"),
                   style: AppTextStyle.regular_12,
                   textColor: Palette.black,
-                ), 
+                ),
                 5.horizontalSpace,
                 AppText(
                   text: context.tr("pdf_jpg_png"),
@@ -90,7 +92,6 @@ class FilePickerSection extends StatelessWidget {
                 ),
               ],
             ),
-             
           ],
         ),
       ),
@@ -100,12 +101,12 @@ class FilePickerSection extends StatelessWidget {
 
 class _SelectedFilePreview extends StatelessWidget {
   final List<XFile> state;
-  final FilePickerCubit filePickerCubit;
+  final FilePickerFamilyCubit filePickerFamilyCubit;
 
   const _SelectedFilePreview({
     super.key,
     required this.state,
-    required this.filePickerCubit,
+    required this.filePickerFamilyCubit,
   });
 
   @override
@@ -137,7 +138,7 @@ class _SelectedFilePreview extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () => filePickerCubit.clear(),
+              onTap: () => filePickerFamilyCubit.clear(),
               child: Icon(Icons.close,
                   color: Palette.redBackgroundTheme, size: 25.sp),
             ),
@@ -159,4 +160,3 @@ class _SelectedFilePreview extends StatelessWidget {
     return path.extension(filePath).replaceFirst(".", "");
   }
 }
-

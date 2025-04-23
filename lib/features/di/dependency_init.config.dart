@@ -340,6 +340,8 @@ import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/address_c
     as _i626;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/child_cubit.dart'
     as _i583;
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart'
+    as _i488;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/experiences_cubit.dart'
     as _i989;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/family_cubit.dart'
@@ -448,6 +450,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i768.FilePickerCubit>(() => _i768.FilePickerCubit());
   gh.factory<_i777.LocationCubit>(() => _i777.LocationCubit());
   gh.factory<_i735.PDFCubit>(() => _i735.PDFCubit());
+  gh.factory<_i488.FilePickerFamilyCubit>(() => _i488.FilePickerFamilyCubit());
   gh.singleton<_i402.DeviceService>(() => _i402.DeviceService());
   await gh.singletonAsync<_i460.SharedPreferences>(
     () => registerModule.prefs,

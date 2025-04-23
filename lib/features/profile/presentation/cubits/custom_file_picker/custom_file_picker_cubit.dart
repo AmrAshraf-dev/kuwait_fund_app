@@ -6,13 +6,13 @@ import 'package:injectable/injectable.dart';
 part 'custom_file_picker_state.dart';
 
 @injectable
-class FilePickerCubit extends Cubit<FilePickerState> {
-  FilePickerCubit() : super(FilePickerInitialState());
+class FilePickerFamilyCubit extends Cubit<FilePickerFamilyState> {
+  FilePickerFamilyCubit() : super(FilePickerFamilyInitialState());
   static const maxSizeInBytes = 1048576; // 1MB
 
   Future<void> pickFile({
     FileType filetype = FileType.custom,
-    List<String>? allowedExtensions ,
+    List<String>? allowedExtensions,
     bool allowMultiple = false,
   }) async {
     final FilePickerResult? pickedImage = await FilePicker.platform.pickFiles(
@@ -30,12 +30,13 @@ class FilePickerCubit extends Cubit<FilePickerState> {
 
       if (files.length != pickedImage.files.length) {
         // Emit an empty state if any file exceeds the size limit
-        emit(FilePickerErrorState(message: 'File size exceeds 1 MB limit.'));
+        emit(FilePickerFamilyErrorState(
+            message: 'File size exceeds 1 MB limit.'));
       } else {
-        emit(FilePickerReadyState(files));
+        emit(FilePickerFamilyReadyState(files));
       }
     } else {
-      emit(FilePickerInitialState());
+      emit(FilePickerFamilyInitialState());
     }
   }
 
@@ -50,16 +51,17 @@ class FilePickerCubit extends Cubit<FilePickerState> {
     if (pickedImage != null) {
       final fileSize = await pickedImage.length();
       if (fileSize > maxSizeInBytes) {
-        emit(FilePickerErrorState(message: 'File size exceeds 1 MB limit.'));
+        emit(FilePickerFamilyErrorState(
+            message: 'File size exceeds 1 MB limit.'));
       } else {
-        emit(FilePickerReadyState([pickedImage]));
+        emit(FilePickerFamilyReadyState([pickedImage]));
       }
     } else {
-      emit(FilePickerInitialState());
+      emit(FilePickerFamilyInitialState());
     }
   }
 
   void clear() {
-    emit(FilePickerInitialState());
+    emit(FilePickerFamilyInitialState());
   }
 }
