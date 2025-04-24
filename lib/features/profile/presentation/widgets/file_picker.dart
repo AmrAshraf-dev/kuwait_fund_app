@@ -10,7 +10,6 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/family_file_picker_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:path/path.dart' as path;
 
 class FilePicker extends StatelessWidget {

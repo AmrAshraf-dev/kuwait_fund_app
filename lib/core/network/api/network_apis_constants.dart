@@ -1,5 +1,5 @@
 class ApiConstants {
-   //static String baseUrl = "https://62.215.251.137/essapi/api/";
+  //static String baseUrl = "https://62.215.251.137/essapi/api/";
   static String baseUrl = "https://mpwpayment.diyarme.com/ESSAPI/api/";
   //static String baseUrl = "http://192.168.13.75/essapi/api/";
   static String loan = "General/GetLoans";
@@ -28,11 +28,10 @@ class ApiConstants {
 
   static String contactInformation = "General/GetContactUsInformation";
 
- 
- 
   static String getUserRequests = "Request/GetUserRequests";
 
-  static String getAnnualLeaveBalance = "UrgentLeave/GetAnnualLeaveRequestScreenInfo"; // to delete 
+  static String getAnnualLeaveBalance =
+      "UrgentLeave/GetAnnualLeaveRequestScreenInfo"; // to delete
 
   static String createAnnualLeaveRequest =
       "UrgentLeave/CreateEmployeeAnnualLeaveRequest";
@@ -40,9 +39,11 @@ class ApiConstants {
   static String getEmergencyAvailableDays =
       "Leave/GetEmergencyLeaveBalanceRemaining"; // to delete
 
-  static String getEmergencyLeaveScreen = "EmergencyLeave/GetEmergencyLeaveScreen";  
+  static String getEmergencyLeaveScreen =
+      "EmergencyLeave/GetEmergencyLeaveScreen";
 
-  static String createEmergencyLeaveRequest = "EmergencyLeave/CreateEmergencyLeave";
+  static String createEmergencyLeaveRequest =
+      "EmergencyLeave/CreateEmergencyLeave";
 
   static String getCertificates = "Certificate/GetCertificates";
 
@@ -52,7 +53,8 @@ class ApiConstants {
 
   static String createPersonalLoanRequest = "Loan/SubmitPersonalLoanRequest";
 
-  static String getQrCertificates = "Certificate/GeneratePersonalStatmentWithQR";
+  static String getQrCertificates =
+      "Certificate/GeneratePersonalStatmentWithQR";
 
   static String getSubmissions = "Request/GetEmployeeRequestsByType";
 
@@ -64,7 +66,8 @@ class ApiConstants {
 
   static String getSubscribers = "Insurance/GetInsuranceSubscribersList";
 
-  static String createInsuranceRequest = "Insurance/SubmitMedicalInsuranceRequest";
+  static String createInsuranceRequest =
+      "Insurance/SubmitMedicalInsuranceRequest";
   static String unsubscribeInsurance = "Insurance/CancelMedicalInsurance";
 
   static String getAttendanceDetails = "Attendance/GetAttendanceDetails";
@@ -73,8 +76,9 @@ class ApiConstants {
 
   static String getLeaveDashboard = "UrgentLeave/GetLeaveDashboard";
 
-  static String getEmergencyEligibleDays = "EmergencyLeave/GetEmergencyLeaveScreen";
-  
+  static String getEmergencyEligibleDays =
+      "EmergencyLeave/GetEmergencyLeaveScreen";
+
   static String getManagementVisitorsCalendar =
       'VisitorsLog/GetManagementVisitorsCalender';
   static String getManagementVisitorsCalendarDetails =
@@ -84,15 +88,17 @@ class ApiConstants {
 
   static String getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';
   static String createSickLeaveRequest = 'SickLeave/CreateSickLeaveRequest';
-  static String getMyLeaveBalance = 'Leave/GetLeaveBalance'; // delete and show 0 
+  static String getMyLeaveBalance =
+      'Leave/GetLeaveBalance'; // delete and show 0
   static String extendLeave = 'UrgentLeave/ExtendLeave';
   static String deleteLeave = 'UrgentLeave/DeleteLeaveRequest';
-  static String getAllLeaveRequestsWaiting = 'Approval/GetAllLeaveRequestsWaiting';
+  static String getAllLeaveRequestsWaiting =
+      'Approval/GetAllLeaveRequestsWaiting';
   static String approveLeaveRequest = 'Approval/ApproveLeaveRequest';
   static String rejectLeaveRequest = 'Approval/RejectLeaveRequest';
 
   //profile
- 
+
   static String getAllManagement = 'Missions/GetAllManagement';
   static String getManagementCalenderData =
       'Missions/GetManagementCalenderData';
@@ -100,22 +106,20 @@ class ApiConstants {
   static String getDirectorMissionsDetails =
       'Missions/GetManagmentAttendaceDate';
 
-
   static String readDepartments = 'Missions/ReadDepartments';
 
-  static String getDeptCalenderData =
-      'Missions/GetOperationEmpsCalenderData';
+  //profile
+  static var getProfileInfo = 'Profile/GetEmployeeProfile';
+  static var getAddressDetails = 'Profile/GetEmployeeAddressDetails';
+  static var getFamilyData = 'Profile/GetEmployeeFamilyList';
+  static var getQualificationsData = 'Profile/GetEmployeeQualificationsList';
+  static var getExperiencesData = 'Profile/GetPreviousEmploymentList';
+  static var getSpouseData = 'Profile/GetSpouseInfo';
+  static var getChildData = 'Profile/GetChildInfo';
+  static var editProfile = 'Profile/UpdateEmployeeProfile';
+  static var editSpouse = 'Profile/SubmitSpouseModificationRequest';
+  static String getDeptCalenderData = 'Missions/GetOperationEmpsCalenderData';
 
   static String getTotalMissionByDepartmentDashboard =
-      'Missions/GetTotalMissionByDepartmentDashboard'; 
-
-        //profile
-  static String getProfileInfo = 'Profile/GetEmployeeProfile';
-  static String getAddressDetails = 'Profile/GetEmployeeAddressDetails';
-  static String getFamilyData = 'Profile/GetEmployeeFamilyList';
-  static String getQualificationsData = 'Profile/GetEmployeeQualificationsList';
-  static String getExperiencesData = 'Profile/GetPreviousEmploymentList';
-  static String getSpouseData = 'Profile/GetSpouseInfo';
-  static String getChildData = 'Profile/GetChildInfo';
-
+      'Missions/GetTotalMissionByDepartmentDashboard';
 }

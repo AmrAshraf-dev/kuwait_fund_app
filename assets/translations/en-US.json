@@ -1,9 +1,9 @@
 {
-"--Select--": "--Select--",
-  "please_select_today" : "Please select today as start day",
-"please_select_to_date_first" : "Please select to date first",
+  "--Select--": "--Select--",
+  "please_select_today": "Please select today as start day",
+  "please_select_to_date_first": "Please select to date first",
   "exit_date": "Exit Date",
-"otp_sent_successfully": "OTP sent successfully",
+  "otp_sent_successfully": "OTP sent successfully",
   "Deleted": "canceled",
   "ServerFailureError": "Server Failure Error",
   "employees_name": "Employees Name",
@@ -812,5 +812,14 @@
   "request_rejected_successfully": "Request rejected successfully",
   "request_extended_successfully": "Request extended successfully",
   "request_canceled_successfully": "Request canceled successfully",
-  "cancel_request": "Cancel request"
+  "cancel_request": "Cancel request",
+  "maritalStatus": "Marital Status",
+  "married": "Married",
+  "single": "Single",
+  "divorced": "Divorced",
+  "male": "male",
+  "female": "female",
+  "disabilityDate": "Disability Date",
+  "gender": "gender",
+  "disabilityType": "Disability Type"
 }

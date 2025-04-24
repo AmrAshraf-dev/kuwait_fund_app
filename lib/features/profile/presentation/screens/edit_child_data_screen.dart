@@ -1,4 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/file_picker.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:path/path.dart' as path;
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -12,20 +18,39 @@ import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_child_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/child_cubit.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_child_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class EditChildDataScreen extends StatefulWidget {
   String? id;
+  String? name;
+  String? civilId;
+  String? birthDate;
+  String? gender;
+  String? disabilityDate;
+  String? disabilityType;
+  String? fileExtension;
+  String? bytes;
   EditChildDataScreen({
     Key? key,
     this.id,
+    this.name,
+    this.civilId,
+    this.birthDate,
+    this.gender,
+    this.disabilityDate,
+    this.disabilityType,
+    this.fileExtension,
+    this.bytes,
   }) : super(key: key);
 
   @override
@@ -40,7 +65,22 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
     super.initState();
   }
 
+  String? _selectedGenderStatus;
+  late List<String> _genderStatuses = _genderStatuses = [
+    context.tr('male'),
+    context.tr('female'),
+  ];
+  String? _selectedDisabilityStatus;
+  late List<String> _genderDisabilityStatuses = _genderDisabilityStatuses = [
+    'type1',
+    'type2',
+    'type3',
+  ];
+  String? _selectedFile;
   final ChildCubit _childCubit = getIt<ChildCubit>();
+  final EditChildCubit _editChildCubit = getIt<EditChildCubit>();
+  final FilePickerFamilyCubit filePickerFamilyCubit =
+      getIt<FilePickerFamilyCubit>();
   ChildModel? childEntity;
   @override
   Widget build(BuildContext context) {
@@ -52,6 +92,8 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
             BlocProvider(
                 create: (context) => _childCubit
                   ..getChild(childModel: ChildRequestModel(id: widget.id))),
+            BlocProvider(create: (context) => _editChildCubit),
+            BlocProvider(create: (context) => filePickerFamilyCubit),
           ],
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -106,13 +148,14 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
                                 textInputAction: TextInputAction.next,
                                 initalValue: childEntity?.civilID ?? '',
                               ),
-                              20.verticalSpace,
+                              //  20.verticalSpace,
                               // CustomSingleRangeDatePicker(
                               //   fromLabelAboveField:
                               //       context.tr("residencyExpiryDate"),
                               //   customFormKey: _formKey,
                               //   keyNameFrom: "residencyExpiry",
                               // ),
+
                               20.verticalSpace,
                               CustomSingleRangeDatePicker(
                                 fromLabelAboveField: context.tr("birthDate"),
@@ -124,6 +167,99 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
                                     : null,
                               ),
                               40.verticalSpace,
+                              //?GENDER
+                              DropdownButtonFormField<String>(
+                                value: _selectedGenderStatus,
+                                decoration: InputDecoration(
+                                  labelText: context.tr('gender'),
+                                  labelStyle: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 14),
+                                ),
+                                icon: Icon(Icons.keyboard_arrow_down_rounded,
+                                    color: Colors.grey),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black),
+                                dropdownColor: Colors.white,
+                                items: _genderStatuses.map((String status) {
+                                  return DropdownMenuItem<String>(
+                                    value: status,
+                                    child: AppText(
+                                      text: status[0].toUpperCase() +
+                                          status.substring(1),
+                                      //  style: TextStyle(fontSize: 16),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    _selectedGenderStatus = newValue;
+                                  });
+                                },
+                              ),
+                              20.verticalSpace,
+                              //?DISABILITY datepicker
+                              CustomSingleRangeDatePicker(
+                                fromLabelAboveField:
+                                    context.tr("disabilityDate"),
+                                customFormKey: _formKey,
+                                keyNameFrom: "disabilityDate",
+                                initialDate:
+                                    childEntity?.childDisabilityDate != null
+                                        ? DateFormat('dd/MM/yyyy').parse(
+                                            childEntity!.childDisabilityDate!)
+                                        : null,
+                              ),
+                              40.verticalSpace,
+                              //?Disability type
+                              DropdownButtonFormField<String>(
+                                value: _selectedDisabilityStatus,
+                                decoration: InputDecoration(
+                                  labelText: context.tr('disabilityType'),
+                                  labelStyle: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 14),
+                                ),
+                                icon: Icon(Icons.keyboard_arrow_down_rounded,
+                                    color: Colors.grey),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black),
+                                dropdownColor: Colors.white,
+                                items: _genderDisabilityStatuses
+                                    .map((String status) {
+                                  return DropdownMenuItem<String>(
+                                    value: status,
+                                    child: AppText(
+                                      text: status[0].toUpperCase() +
+                                          status.substring(1),
+                                      //  style: TextStyle(fontSize: 16),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    _selectedDisabilityStatus = newValue;
+                                  });
+                                },
+                              ),
+                              20.verticalSpace,
+                              FilePicker(
+                                  filePickerFamilyCubit: filePickerFamilyCubit,
+                                  onFileSelected: (filePath) => setState(() {
+                                        _selectedFile = filePath;
+                                      })),
+
+                              40.verticalSpace,
                             ],
                           ),
                         );
@@ -133,16 +269,44 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
                   ),
                 ),
                 120.verticalSpace,
-                CustomElevatedButton(
-                  text: context.tr("submit"),
-                  onPressed: () {
-                    if (_formKey.currentState!.saveAndValidate()) {
-                      print(_formKey.currentState!.value);
-                      CustomMainRouter.push(ThankYouRoute(
-                        subtitle: context
-                            .tr("submitted_successfully_waiting_administrator"),
-                      ));
+                BlocConsumer<EditChildCubit, EditChildState>(
+                  listener: (context, state) {
+                    if (state is EditChildErrorState) {
+                      ViewsToolbox.dismissLoading();
+                      ViewsToolbox.showErrorAwesomeSnackBar(
+                          context, state.message!);
+                    } else if (state is EditChildLoadingState) {
+                      ViewsToolbox.showLoading();
+                    } else if (state is EditChildReadyState) {
+                      ViewsToolbox.dismissLoading();
                     }
+                  },
+                  builder: (context, state) {
+                    return CustomElevatedButton(
+                      text: context.tr("submit"),
+                      onPressed: () async {
+                        if (_formKey.currentState!.saveAndValidate()) {
+                          print(_formKey.currentState!.value);
+                          _editChildCubit.editChild(EditChildRequestModel(
+                            childId: int.parse(childEntity?.id ?? '0'),
+                            childArabicName: childEntity?.name,
+                            childEnglishName: childEntity?.name,
+                            childCivilId: childEntity?.civilID,
+                            childBirthDate: childEntity?.birthDate != null
+                                ? DateFormat('yyyy-MM-dd').format(
+                                    DateFormat('dd/MM/yyyy')
+                                        .parse(childEntity!.birthDate!))
+                                : null,
+                            fileExtention: _getFileExtension(_selectedFile!),
+                            bytes: await _getFileBytes(XFile(_selectedFile!)),
+                          ));
+                          CustomMainRouter.push(ThankYouRoute(
+                            subtitle: context.tr(
+                                "submitted_successfully_waiting_administrator"),
+                          ));
+                        }
+                      },
+                    );
                   },
                 ),
                 20.verticalSpace,
@@ -150,5 +314,14 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
             ),
           ),
         ));
+  }
+
+  String _getFileExtension(String filePath) {
+    return path.extension(filePath).replaceFirst(".", "");
+  }
+
+  Future<String> _getFileBytes(XFile value) async {
+    final bytes = await value.readAsBytes();
+    return base64Encode(bytes);
   }
 }
