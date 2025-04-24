@@ -16,7 +16,8 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 class ThankYouScreen extends StatefulWidget {
   final String? title;
   final String? subtitle;
-  const ThankYouScreen({super.key, this.title, this.subtitle});
+  final Function? onContinueCallback;
+  const ThankYouScreen({super.key, this.title, this.subtitle, this.onContinueCallback});
 
   @override
   State<ThankYouScreen> createState() => _ThankYouScreenState();
@@ -78,7 +79,12 @@ class _ThankYouScreenState extends State<ThankYouScreen> {
                                 textStyle: AppTextStyle.medium_20,
                                 text: context.tr("ok_thank_you"),
                                 onPressed: () {
-                                  CustomMainRouter.push(NavigationMainRoute());
+                                  if(widget.onContinueCallback != null) {
+                                    widget.onContinueCallback!();
+                                  }
+                                  else {
+                                   CustomMainRouter.push(NavigationMainRoute());
+                                  }
                                 })
                           ],
                         ),

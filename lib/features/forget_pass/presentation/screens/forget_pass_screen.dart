@@ -93,8 +93,15 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
                         TextFieldWidget(
                           labelAboveField: context.tr("username"),
                           keyName: "userName",
-                          maxLength: 10,
-                          validator: FormBuilderValidators.required(),
+                          maxLength: 15,
+                          validator:      FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                      FormBuilderValidators.password(
+                                        maxLength: 15,
+                                        minLength: 3,
+                                       
+                                      )
+                                    ]),
                           textInputAction: TextInputAction.done,
                         ),
                       ],

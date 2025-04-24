@@ -15,23 +15,25 @@ class NoDataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        200.heightBox,
-        SvgPicture.asset(
-          'assets/svg/no-data-icon.svg',
-          width: 80.w,
-          colorFilter:
-              const ColorFilter.mode(Palette.primaryColor, BlendMode.srcIn),
-        ),
-        40.heightBox,
-        AppText(
-          text: context.tr("noDataFound"),
-          style: AppTextStyle.semiBold_18,
-          textColor: AppTheme.inDarkMode(context,
-              dark: Palette.white, light: Palette.black),
-        )
-      ],
+    return Center(
+      child: Column(
+        children: <Widget>[
+          200.heightBox,
+          SvgPicture.asset(
+            'assets/svg/no-data-icon.svg',
+            width: 80.w,
+            colorFilter:
+                const ColorFilter.mode(Palette.primaryColor, BlendMode.srcIn),
+          ),
+          40.heightBox,
+          AppText(
+            text: context.tr("noDataFound"),
+            style: AppTextStyle.semiBold_18,
+            textColor: AppTheme.inDarkMode(context,
+                dark: Palette.white, light: Palette.black),
+          )
+        ],
+      ),
     );
   }
 }

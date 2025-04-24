@@ -110,7 +110,7 @@ class _NavigationMainScreenState extends State<NavigationMainScreen> {
                             requests,
                             color: Colors.white,
                           )),
-                      label: context.tr('requests'),
+                      label: context.tr('my_requests'),
                     ),
                     // BottomNavigationBarItem(
                     //   icon: Padding(

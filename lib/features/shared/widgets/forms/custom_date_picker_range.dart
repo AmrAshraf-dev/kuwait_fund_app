@@ -12,13 +12,15 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_label.dart'
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 class CustomDatePickerRange extends StatefulWidget {
-  const CustomDatePickerRange({
+    CustomDatePickerRange({
     super.key,
     this.hintText,
     this.firstDate,
     this.initialDate,
     this.lastDate,
-    this.disableField = false,
+    this.isMustSelectToday=false,
+    this.fromDisableField = false,
+    this.toDisabledField = false,
     this.initNull = false,
     required this.keyNameFrom,
     required this.keyNameTo,
@@ -31,6 +33,7 @@ class CustomDatePickerRange extends StatefulWidget {
     this.consumedDays,
     this.totalDays,
     required this.onDoneCallback,
+    this.selectedRange,
   });
   final String? hintText;
   final String keyNameFrom;
@@ -38,10 +41,11 @@ class CustomDatePickerRange extends StatefulWidget {
   final DateTime? firstDate;
   final DateTime? initialDate;
   final DateTime? lastDate;
-  //final TextEditingController controller;
+   //final TextEditingController controller;
   final String? Function(String?)? validator;
   final GlobalKey<FormBuilderState> customFormKey;
-  final bool? disableField;
+  final bool? fromDisableField;
+  final bool? toDisabledField;
   final bool? initNull;
   final Function(String?)? onChanged;
   final String? fromLabelAboveField;
@@ -50,6 +54,9 @@ class CustomDatePickerRange extends StatefulWidget {
   final int? consumedDays;
   final int? totalDays;
   final void Function(bool, DateTimeRange? pickedRange) onDoneCallback;
+  final DateTimeRange? selectedRange ;
+  
+  bool  isMustSelectToday ;
 
   @override
   State<CustomDatePickerRange> createState() => _CustomDatePickerRangeState();
@@ -58,6 +65,22 @@ class CustomDatePickerRange extends StatefulWidget {
 class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
   final TextEditingController _fromDateController = TextEditingController();
   final TextEditingController _toDateController = TextEditingController();
+
+
+  @override
+  void initState() {
+    if (widget.initNull == true) {
+      _fromDateController.text = "";
+      _toDateController.text = "";
+    } else {
+      if (widget.initialDate != null) {
+        _fromDateController.text =
+            DateFormat("dd/MM/yyyy", "en").format(widget.initialDate!);
+         
+      }
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -85,7 +108,7 @@ class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
                   : null,
               enableBorder: true,
               onTap: () async {
-                if (!(widget.disableField ?? false)) {
+                if (!(widget.fromDisableField ?? false)) {
                   _selectFullScreenDate(
                       onDoneCallback: widget.onDoneCallback,
                       widget: widget,
@@ -98,15 +121,15 @@ class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
               disableEditingTextFiled: true,
               onChanged: widget.onChanged,
               borderColor: Palette.borderColorFill,
-              fromDateTimePicker: !(widget.disableField ?? false),
-              backgroundColor: widget.disableField ?? false
+              fromDateTimePicker: !(widget.fromDisableField ?? false),
+              backgroundColor: widget.fromDisableField ?? false
                   ? Palette.borderColorFill
                   : Palette.semiBlack,
               marginWidth: 0,
               iconPath: Assets.svg.dateIcon.path,
               //  iconColor: Palette.primaryColor,
               onIconPressed: () async {
-                if (!widget.disableField!) {
+                if (!widget.fromDisableField!) {
                   _selectFullScreenDate(
                       onDoneCallback: widget.onDoneCallback,
                       widget: widget,
@@ -136,13 +159,13 @@ class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
                   //   height: 56.h,
                   fieldName: widget.keyNameTo,
                   hintText: widget.hintText ?? "",
-                  initialValue: widget.initialDate != null
-                      ? DateFormat("dd/MM/yyyy", "en")
-                          .format(widget.initialDate!)
-                      : null,
+                  // initialValue: widget.initialDate != null
+                  //     ? DateFormat("dd/MM/yyyy", "en")
+                  //         .format(widget.initialDate!)
+                  //     : null,
                   enableBorder: true,
                   onTap: () async {
-                    if (!(widget.disableField ?? false)) {
+                    if (!(widget.toDisabledField ?? false)) {
                       _selectFullScreenDate(
                           onDoneCallback: widget.onDoneCallback,
                           widget: widget,
@@ -155,15 +178,15 @@ class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
                   disableEditingTextFiled: true,
                   onChanged: widget.onChanged,
                   borderColor: Palette.borderColorFill,
-                  fromDateTimePicker: !(widget.disableField ?? false),
-                  backgroundColor: widget.disableField ?? false
+                  fromDateTimePicker: !(widget.toDisabledField ?? false),
+                  backgroundColor: widget.toDisabledField ?? false
                       ? Palette.borderColorFill
                       : Palette.semiBlack,
                   marginWidth: 0,
                   iconPath: Assets.svg.dateIcon.path,
                   //  iconColor: Palette.primaryColor,
                   onIconPressed: () async {
-                    if (!widget.disableField!) {
+                    if (!widget.toDisabledField!) {
                       _selectFullScreenDate(
                           onDoneCallback: widget.onDoneCallback,
                           widget: widget,
@@ -192,6 +215,8 @@ class _CustomDatePickerRangeState extends State<CustomDatePickerRange> {
         height: 1.sh - 100,
         context: context,
         widget: RangeDatePickerBottomsheetWidget(
+          isMustSelectToday: widget.isMustSelectToday,
+          selectedRange:  widget.selectedRange,
             customFormKey: widget.customFormKey,
             initNull: widget.initNull,
             firstDate: widget.firstDate,

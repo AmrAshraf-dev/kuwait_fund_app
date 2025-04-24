@@ -19,15 +19,7 @@ class ContactusRepositoryImp implements ContactusRepository {
     return await contactusRemoteDataSource.getContactus();
   }
 
-  @override
-  Future<CustomResponseType<BaseEntity<ContactusModel>>>
-      getMapCoordinates() async {
-    return await contactusRemoteDataSource.getMapCoordinates();
-  }
+ 
 
-  @override
-  Future<CustomResponseType<BaseEntity<ContactusModel>>>
-      getTelephoneFax() async {
-    return await contactusRemoteDataSource.getTelephoneFax();
-  }
+ 
 }

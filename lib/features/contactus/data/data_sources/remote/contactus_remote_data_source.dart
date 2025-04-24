@@ -10,9 +10,7 @@ import '../../models/response/contactus_response_model.dart';
 abstract class ContactusRemoteDataSource {
   Future<CustomResponseType<ContactusResponseModel>> getContactus();
 
-  Future<CustomResponseType<ContactusResponseModel>> getMapCoordinates();
-
-  Future<CustomResponseType<ContactusResponseModel>> getTelephoneFax();
+ 
 }
 
 @Injectable(as: ContactusRemoteDataSource)
@@ -32,27 +30,4 @@ class ContactusDataSourceImpl implements ContactusRemoteDataSource {
     }
   }
 
-  @override
-  Future<CustomResponseType<ContactusResponseModel>> getMapCoordinates() async {
-    ({dynamic response, bool success}) result =
-        await networkHelper.get(path: ApiConstants.mapCoordinates);
-
-    if (result.success && result.response["data"] != null ) {
-      return right(ContactusResponseModel.fromJson(result.response));
-    } else {
-      return left(ServerFailure(message: result.response["errors"]));
-    }
-  }
-
-  @override
-  Future<CustomResponseType<ContactusResponseModel>> getTelephoneFax() async {
-    ({dynamic response, bool success}) result =
-        await networkHelper.get(path: ApiConstants.telephoneFax);
-
-    if (result.success && result.response["data"] != null) {
-      return right(ContactusResponseModel.fromJson(result.response));
-    } else {
-      return left(ServerFailure(message: result.response["errors"]   ));
-    }
-  }
 }

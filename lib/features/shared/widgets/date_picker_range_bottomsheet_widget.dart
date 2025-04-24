@@ -25,6 +25,7 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
     this.customFormKey,
     this.selectedRange,
     this.isReadOnly = false,
+    this.isMustSelectToday = false,
     required this.onDoneCallback,
   });
 
@@ -35,6 +36,7 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
   final String? labelTitle;
   final DateTime? initialDate;
   final bool? initNull;
+  final bool isMustSelectToday;
   final DateTime? firstDate;
   final DateTime? lastDate;
   final GlobalKey<FormBuilderState>? customFormKey;
@@ -131,17 +133,32 @@ class RangeDatePickerBottomsheetWidget extends StatelessWidget {
                         value.end.difference(value.start).inDays;
 
                     if (totalDays != null && selectedDays > totalDays!) {
-                      fromDateController?.text = "";
-                      toDateController?.text = "";
-                      customFormKey?.currentState!.fields["from"]!
-                          .didChange("");
-                      customFormKey?.currentState!.fields["to"]!.didChange("");
+                      // fromDateController?.text = "";
+                      // toDateController?.text = "";
+                      // customFormKey?.currentState!.fields["from"]!
+                      //     .didChange("");
+                      // customFormKey?.currentState!.fields["to"]!.didChange("");
                       // Show a message if the selected range exceeds totalDays
                       rangeDatePickerCubit.emitErrorMessage(
                           context.tr("selected_days_exceeds_available_days"));
 
                       return; // Prevent further processing
                     }
+                    else if(isMustSelectToday){
+                      if (value.start.isAfter(DateTime.now())) {
+                        // fromDateController?.text = "";
+                        // toDateController?.text = "";
+                        // customFormKey?.currentState!.fields["from"]!
+                        //     .didChange("");
+                        // customFormKey?.currentState!.fields["to"]!.didChange("");
+                        // Show a message if the selected range exceeds totalDays
+                        rangeDatePickerCubit.emitErrorMessage(
+                            context.tr("please_select_today"));
+
+                        return; // Prevent further processing
+                      }
+                    }
+                     
 
                     // Update the consumed days in the cubit
                     rangeDatePickerCubit.updateConsumedDays(selectedDays);

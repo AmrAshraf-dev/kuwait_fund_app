@@ -101,7 +101,7 @@ class DirectorMissionsBottomSheetState extends State<DirectorMissionsBottomSheet
             selectedDate = DateFormat("dd/MM/yyyy").parse(day);
             selectedHostName = null;
           });
-       
+            
           widget.directorMissionCubit.getDirecatorsMissionsDetailsList(
             DirectorMissionDetailsRequestModel(
         asDate: DateFormat("yyyy-MM-dd").format(

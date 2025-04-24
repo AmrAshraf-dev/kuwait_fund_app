@@ -139,10 +139,6 @@ import 'package:kf_ess_mobile_app/features/contactus/domain/repositories/contact
     as _i15;
 import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_contactus_usecase.dart'
     as _i587;
-import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_map_coordinates_usecase.dart'
-    as _i355;
-import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_telephone_fax_usecase.dart'
-    as _i198;
 import 'package:kf_ess_mobile_app/features/contactus/presentation/cubits/contactus_cubit.dart'
     as _i713;
 import 'package:kf_ess_mobile_app/features/create_request/data/data_sources/remote/sick_leave_request_remote_data_source.dart'
@@ -634,10 +630,6 @@ Future<_i174.GetIt> $initGetIt(
       loanRequestRemoteDataSource: gh<_i449.LoanRequestRemoteDataSource>()));
   gh.factory<_i587.GetContactusUseCase>(() => _i587.GetContactusUseCase(
       contactusRepository: gh<_i15.ContactusRepository>()));
-  gh.factory<_i355.GetCoordinatesUseCase>(() => _i355.GetCoordinatesUseCase(
-      contactusRepository: gh<_i15.ContactusRepository>()));
-  gh.factory<_i198.GetTelephoneFaxUseCase>(() => _i198.GetTelephoneFaxUseCase(
-      contactusRepository: gh<_i15.ContactusRepository>()));
   gh.factory<_i33.GetOldSubmissionsUseCase>(() => _i33.GetOldSubmissionsUseCase(
       submissionsRepository: gh<_i188.SubmissionsRepository>()));
   gh.factory<_i20.GetSubmissionUseCase>(() => _i20.GetSubmissionUseCase(
@@ -689,6 +681,8 @@ Future<_i174.GetIt> $initGetIt(
       getDeleteLeaveUseCase: gh<_i582.GetDeleteLeaveUseCase>()));
   gh.factory<_i1009.GetExperiencesUseCase>(() => _i1009.GetExperiencesUseCase(
       addExperiencesRepository: gh<_i246.ProfileRepository>()));
+  gh.factory<_i713.ContactusCubit>(() => _i713.ContactusCubit(
+      getContactusUseCase: gh<_i587.GetContactusUseCase>()));
   gh.factory<_i910.CountriesGrantsCubit>(() => _i910.CountriesGrantsCubit(
       getCountriesGrantsUseCase: gh<_i243.GetCountriesGrantsUseCase>()));
   gh.factory<_i362.GetNotificationsUseCase>(() => _i362.GetNotificationsUseCase(
@@ -799,11 +793,6 @@ Future<_i174.GetIt> $initGetIt(
           ));
   gh.factory<_i791.NotificationsCubit>(() => _i791.NotificationsCubit(
       getNotificationsUseCase: gh<_i362.GetNotificationsUseCase>()));
-  gh.factory<_i713.ContactusCubit>(() => _i713.ContactusCubit(
-        getContactusUseCase: gh<_i587.GetContactusUseCase>(),
-        getCoordinatesUseCase: gh<_i355.GetCoordinatesUseCase>(),
-        getTelephoneFaxUseCase: gh<_i198.GetTelephoneFaxUseCase>(),
-      ));
   gh.factory<_i705.EditProfileRequestUseCase>(() =>
       _i705.EditProfileRequestUseCase(
           editProfileRequestRepository: gh<_i246.ProfileRepository>()));

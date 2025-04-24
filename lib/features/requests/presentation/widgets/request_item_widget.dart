@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,7 @@ class _RequestItemWidgetState extends State<RequestItemWidget> {
         BlocProvider(create: (context) => extendLeaveCubit),
       ],
       child: Container(
-          height: widget.request.leaveStatus == 'Pending' ? 190.h : 150.h,
+          height: 190.h,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -105,20 +106,27 @@ class _RequestItemWidgetState extends State<RequestItemWidget> {
                             ),
                 15.verticalSpace,
                Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                           if (!(widget.request.showExtendButton ?? false)) //TODO
+                           if ((widget.request.showExtendButton ?? false)) 
                           CustomElevatedButton(
                             onPressed: () {
-                              CustomMainRouter.push(
-                                 ExtendLeaveDetailsRoute(
-                                      requestsEntity: widget.request));
+
+                              CustomMainRouter.push(   
+                              ExtendLeaveDetailsRoute(
+                                      requestsEntity: widget.request)
+                                
+                          );
+ 
+                   
+ 
                             },
                             text: context.tr("extend"),
                             width: 100.w,
                             height: 40.h,
                             backgroundColor: Palette.greenBackgroundTheme,
                           ),
+                          10.horizontalSpace,
                           if (widget.request.showCancelButton ?? false)
                             BlocConsumer<DeleteLeaveCubit, DeleteLeaveState>(
                               listener: (context, state) {
@@ -154,19 +162,20 @@ class _RequestItemWidgetState extends State<RequestItemWidget> {
                               builder: (context, state) {
                                 return CustomElevatedButton(
                                   onPressed: () async {
-                                    final result =
-                                        await showConfirmationDialog(
-                                            context: context,
-                                            title: context.tr('cancel'),
-                                            content:
-                                                context.tr('deleteDialog'),
-                                            yesText: context.tr('cancel_request'),
-                                            noText: context.tr('back'),
-                                            yesColor: Palette.red_FF0606 ,
-                                            noColor: Palette.primaryColor);
-                                    if (result ?? false) {
-                                      // User confirmed
-                                    }
+
+                                    ViewsToolbox.showMessageBottomsheetConfirmation(
+                                      context,
+                                     message: context.tr("deleteDialog"),
+                                     onConfirm: () {
+                                      Navigator.pop(context);
+                                          deleteLeaveCubit.getDeleteLeave(
+                      deleteLeaveRequestModel: DeleteLeaveRequestModel(
+                    leaveRequestID:int.parse(widget.request.leaveID??"0")  ,
+                  ));
+                                     },
+                                  
+                                    );
+                                    
                                   },
                                   text: context.tr("cancel"),
                                   width: 100.w,
@@ -196,46 +205,7 @@ class _RequestItemWidgetState extends State<RequestItemWidget> {
         return Palette.grey_7B7B7B;
     }
   }
-
-  Future<bool?> showConfirmationDialog({
-    required BuildContext context,
-    required String title,
-    required String content,
-    String yesText = 'Yes',
-    String noText = 'No',
-    Color? yesColor,
-    Color? noColor,
-  }) async {
-    return await showDialog<bool>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(content),
-          actions: [
-               TextButton(
-                child: Text(
-                  yesText,
-                  style: TextStyle(color: yesColor),
-                ),
-                onPressed: () {
-                  CustomMainRouter.pop();
-                  deleteLeaveCubit.getDeleteLeave(
-                      deleteLeaveRequestModel: DeleteLeaveRequestModel(
-                    leaveRequestID:int.parse(widget.request.leaveID??"0")  ,
-                  ));
-                }),
-            TextButton(
-              child: Text(
-                noText,
-                style: TextStyle(color: noColor),
-              ),
-              onPressed: () => Navigator.of(context).pop(true),
-            ),
-         
-          ],
-        );
-      },
-    );
-  }
+ 
+    
+  
 }

@@ -16,10 +16,8 @@ part 'dept_response_model.g.dart';
 @JsonSerializable()
 class DeptModel extends DeptEntity {
   DeptModel({
-    required super. id,
     required super.     name,
     required super.departmentCode,
-    required super.director_name,
     
   });
 

@@ -54,14 +54,14 @@ EmployeeAddressModel _$EmployeeAddressModelFromJson(
 Map<String, dynamic> _$EmployeeAddressModelToJson(
         EmployeeAddressModel instance) =>
     <String, dynamic>{
+      if (instance.phone1 case final value?) 'phone1': value,
+      if (instance.phone2 case final value?) 'phone2': value,
       if (instance.city case final value?) 'city': value,
       if (instance.block case final value?) 'block': value,
       if (instance.street case final value?) 'street': value,
       if (instance.avenue case final value?) 'avenue': value,
       if (instance.building case final value?) 'building': value,
       if (instance.apartmentNumber case final value?) 'apartmentNumber': value,
-      if (instance.phone1 case final value?) 'phone1': value,
-      if (instance.phone2 case final value?) 'phone2': value,
       if (instance.attachmentInfo case final value?) 'attachmentInfo': value,
     };
 

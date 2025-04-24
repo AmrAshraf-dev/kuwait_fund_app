@@ -256,7 +256,7 @@ class _CustomDropDownFieldState<T> extends State<CustomDropDownField<T>> {
                                   : Colors.white,
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
-                          labelText: widget.labelText,
+                          labelText: context.tr("--Select--"),
                           labelStyle: TextStyle(
                             fontSize: 16.sp,
                             color: AppTheme.isDarkMode(context)

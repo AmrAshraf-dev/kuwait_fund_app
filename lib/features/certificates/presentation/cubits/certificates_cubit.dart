@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/features/certificates/domain/use_cases/generate_certificates_usecase.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:file_picker/file_picker.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
@@ -52,17 +53,52 @@ class CertificatesCubit extends Cubit<CertificatesState> {
       final String path = '$dir/temp_shared.pdf';
       final File file = File(path);
       await file.writeAsBytes(pdfBytes, flush: true);
-      Share.shareXFiles([XFile(file.path)], text: 'Certificate');
+      SharePlus.instance.share(ShareParams(
+        files:
+        [XFile(file.path)], text: 'Certificate'
+      ));
     } catch (e) {
       print('Error sharing PDF: $e');
     }
   }
 
-  Future<void> downloadBase64Pdf(String certificateBase64Pdf) async {
-    final List<int> pdfBytes = base64Decode(certificateBase64Pdf);
-    final String dir = (await getApplicationDocumentsDirectory()).path;
-    final String path = '$dir/temp_base64.pdf';
-    final File file = File(path);
-    await file.writeAsBytes(pdfBytes, flush: true);
+  // Future<void> downloadBase64Pdf(String certificateBase64Pdf) async {
+  //   try {
+  //     final List<int> pdfBytes = base64Decode(certificateBase64Pdf);
+  //     final String dir = (await getApplicationDocumentsDirectory()).path;
+  //     final String path = '$dir/temp_base64.pdf';
+
+  //     // Ensure the directory exists
+  //     final Directory directory = Directory(dir);
+  //     if (!directory.existsSync()) {
+  //       await directory.create(recursive: true);
+  //     }
+
+  //     final File file = File(path);
+  //     await file.writeAsBytes(pdfBytes, flush: true);
+  //     print('PDF downloaded successfully to $path');
+  //   } catch (e) {
+  //     print('Error downloading PDF: $e');
+  //   }
+  // }
+
+  Future<void> saveBase64PdfToFolder(String certificateBase64Pdf) async {
+    try {
+      final List<int> pdfBytes = base64Decode(certificateBase64Pdf);
+
+      // Open file picker to select a folder
+      final String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+
+      if (selectedDirectory != null) {
+        final String path = '$selectedDirectory/certificate.pdf';
+        final File file = File(path);
+        await file.writeAsBytes(pdfBytes, flush: true);
+        print('PDF saved successfully to $path');
+      } else {
+        print('No folder selected.');
+      }
+    } catch (e) {
+      print('Error saving PDF: $e');
+    }
   }
 }

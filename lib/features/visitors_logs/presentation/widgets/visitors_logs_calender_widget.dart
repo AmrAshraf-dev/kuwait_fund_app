@@ -85,6 +85,7 @@ if(state.showNewBottomSheet){
           ],
         ),
         child: TableCalendar(
+          
           availableGestures: AvailableGestures.horizontalSwipe,
           firstDay: DateTime.utc(2020, 1, 1),
           lastDay: DateTime.utc(2045, 12, 31),
@@ -125,7 +126,7 @@ if(state.showNewBottomSheet){
                 .toList()
                 .contains(DateFormat("dd/MM/yyyy").format(day));
           },
-          startingDayOfWeek: StartingDayOfWeek.monday,
+          startingDayOfWeek: StartingDayOfWeek.sunday,
           calendarFormat: CalendarFormat.month,
           daysOfWeekStyle: DaysOfWeekStyle(
             weekdayStyle: TextStyle(color: Colors.indigo.shade300),
@@ -143,7 +144,7 @@ if(state.showNewBottomSheet){
             ),
           ),
           calendarStyle: CalendarStyle(
-            todayDecoration: BoxDecoration(color: Colors.transparent),
+            todayDecoration: BoxDecoration(color: Colors.grey),
             outsideDaysVisible: true,
           ),
           calendarBuilders: CalendarBuilders(

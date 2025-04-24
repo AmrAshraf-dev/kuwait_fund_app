@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
  import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
   import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/approve_leave_request_model.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submission_entity.dart';
@@ -142,7 +143,12 @@ class _SubmissionItemWidgetState extends State<SubmissionItemWidget> {
                                 ViewsToolbox.dismissLoading();
                                 ViewsToolbox.showMessageBottomsheet(
                                   context: context,
-                                  closeOnlyPopup: true,
+                                             actionsData:   CustomElevatedButton(
+                    width: 300.w,
+                       text: context.tr("continue"),
+                      onPressed: () {
+                       CustomMainRouter.back();  
+                   }), 
                                   status: ConfirmationPopupStatus.success,
                                   message: context
                                       .tr("request_approved_successfully"),
@@ -160,27 +166,22 @@ class _SubmissionItemWidgetState extends State<SubmissionItemWidget> {
                                   height: 35.h,
                                   backgroundColor: Palette.green_5CAC00,
                                   onPressed: () async {
-                                    // ViewsToolbox.showMessageBottomsheet(
-                                    //   context: context,
-                                    //   status: ConfirmationPopupStatus.success,
-                                    //   message: context
-                                    //       .tr("request_submitted_successfully"),
-                                    // );
-                                    // Usage:
-                                    final result =
-                                        await showConfirmationDialog(
-                                            context: context,
-                                            title: context
-                                                .tr('approveRequest'),
-                                            content: context
-                                                .tr('approveConfirmation'),
-                                            yesText: context.tr('approve'),
-                                            noText: context.tr('cancel'),
-                                            yesColor: Palette.green_5CAC00,
-                                            noColor: Palette.red_FF0606);
-                                    if (result ?? false) {
-                                      // User confirmed
-                                    }
+
+                                          ViewsToolbox.showMessageBottomsheetConfirmation(
+                                      context,
+                                     message: context.tr("approveConfirmation"),
+                                     onConfirm: () {
+                                      Navigator.pop(context);
+             
+                  approveLeaveRequestCubit
+                      .createApproveLeaveRequest(ApproveLeaveRequestModel(
+                    leaveRequestID: widget.submissionsEntity.id,
+                  ));
+                                     },
+                                  
+                                    );
+                                    
+                                
                                   },
                                   customChild: AppText(
                                     text: context.tr("approve"),
@@ -205,7 +206,13 @@ class _SubmissionItemWidgetState extends State<SubmissionItemWidget> {
                                 ViewsToolbox.dismissLoading();
                                 ViewsToolbox.showMessageBottomsheet(
                                   context: context,
-                                  closeOnlyPopup: true,
+                               
+                                actionsData:   CustomElevatedButton(
+                    width: 300.w,
+                       text: context.tr("continue"),
+                      onPressed: () {
+                       CustomMainRouter.back();  
+                   }),          
                                   status: ConfirmationPopupStatus.success,
                                   message: context
                                       .tr("request_rejected_successfully"),
@@ -219,6 +226,7 @@ class _SubmissionItemWidgetState extends State<SubmissionItemWidget> {
                                   onPressed: ()  {
                                     ViewsToolbox.showBottomSheet(
                                          context: context,
+
                                          customWidget:
                                              RejectionReasonBottomSheet(
                                           submissionsEntity:
@@ -244,45 +252,6 @@ class _SubmissionItemWidgetState extends State<SubmissionItemWidget> {
       ),
     );
   }
-
-  Future<bool?> showConfirmationDialog({
-    required BuildContext context,
-    required String title,
-    required String content,
-    String yesText = 'Yes',
-    String noText = 'No',
-    Color? yesColor,
-    Color? noColor,
-  }) async {
-    return await showDialog<bool>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(content),
-          actions: [
-            TextButton(
-              child: Text(
-                noText,
-                style: TextStyle(color: noColor),
-              ),
-              onPressed: () => Navigator.of(context).pop(true),
-            ),
-            TextButton(
-                child: Text(
-                  yesText,
-                  style: TextStyle(color: yesColor),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                  approveLeaveRequestCubit
-                      .createApproveLeaveRequest(ApproveLeaveRequestModel(
-                    leaveRequestID: widget.submissionsEntity.id,
-                  ));
-                }),
-          ],
-        );
-      },
-    );
-  }
+ 
+   
 }

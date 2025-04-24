@@ -164,8 +164,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         HalfCircleChartWidget(
-                          leaveUsed: int.parse(
-                              state.response.data?.leaveBalance ?? "0"),
+                          leaveUsed:  
+                              state.response.data?.leaveBalance ?? "-" ,
                           totalLeave: -1,
                           color: Colors.blueAccent,
                           title: context.tr('annual_leave'),
@@ -178,8 +178,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         HalfCircleChartWidget(
-                          leaveUsed: int.parse(
-                              state.response.data?.shortSickDays ?? "0"),
+                          leaveUsed: 
+                              state.response.data?.shortSickDays ?? "-",
                           totalLeave: -1,
                           color: Color(0xFFEDA18C),
                           title: context.tr('sick_leave'),
@@ -192,8 +192,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         HalfCircleChartWidget(
-                            leaveUsed: int.parse(
-                                state.response.data?.leavDaysTaken ?? "0"),
+                            leaveUsed: 
+                                state.response.data?.leavDaysTaken ?? "-" ,
                             totalLeave: -1,
                             title: context.tr('vacations_used'),
                             color: Color(0xFFFBD823)),
@@ -213,7 +213,10 @@ class _HomeScreenState extends State<HomeScreen> {
               24.verticalSpace,
               SliderSection(),
               17.verticalSpace,
-              RecentUpdatesSection(),
+              Padding(
+          padding: EdgeInsetsDirectional.only(start: 32.w, end: 22.w),
+                child: RecentUpdatesSection(),
+              ),
               60.verticalSpace,
             ],
           )),

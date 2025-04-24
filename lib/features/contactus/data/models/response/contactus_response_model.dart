@@ -1,5 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:kf_ess_mobile_app/features/contactus/data/models/response/address_response_model.dart';
+import 'package:kf_ess_mobile_app/features/contactus/data/models/response/contact_info_response_model.dart';
+import 'package:kf_ess_mobile_app/features/contactus/data/models/response/map_coordinates_response_model.dart';
+import 'package:kf_ess_mobile_app/features/contactus/data/models/response/telephone_and_fax_repsonse_model.dart';
 
 import '../../../../shared/entity/base_entity.dart';
 import '../../../domain/entities/contactus_entity.dart';
@@ -17,14 +20,11 @@ part 'contactus_response_model.g.dart';
 @JsonSerializable()
 class ContactusModel extends ContactusEntity {
   const ContactusModel({
-    required super.address,
-    required super.fax,
-    required super.latitude,
-    required super.longitude,
-    required super.operationsEmail,
-    required super.telephoneNumber,
-    required super.webmasterEmail,
-  });
+       required super.telephoneAndFax,
+      required super.contactInfo,
+      required super.mapCoordinates
+    
+   });
 
   factory ContactusModel.fromJson(Map<String, dynamic> json) =>
       _$ContactusModelFromJson(json);
