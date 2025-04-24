@@ -134,14 +134,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       '', //'+966 1236655442',
                                 ),
                               20.verticalSpace,
-                              GestureDetector(
-                                onTap: _toggleWidget,
-                                child: AppText(
-                                  text: context.tr("addNumber"),
-                                  style: AppTextStyle.medium_14,
-                                  textColor: Palette.blue_5490EB,
-                                ),
-                              ),
+                              _showWidget
+                                  ? Container()
+                                  : GestureDetector(
+                                      onTap: _toggleWidget,
+                                      child: AppText(
+                                        text: context.tr("addNumber"),
+                                        style: AppTextStyle.medium_14,
+                                        textColor: Palette.blue_5490EB,
+                                      ),
+                                    ),
                               30.verticalSpace,
                               IgnorePointer(
                                 child: TextFieldWidget(
@@ -194,13 +196,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             print(_formKey.currentState!.value);
                             _editProfileCubit
                                 .createEditProfile(ProfileRequestModel(
-                              mobile: profileEntity?.phone1,
-                              nameArabic: profileEntity?.name,
-                              nameEnglish: profileEntity?.name,
-                              passportExpiryDate:
-                                  profileEntity?.recidancyExpiryDate,
-                              recidancyExpiryDate:
-                                  profileEntity?.recidancyExpiryDate,
+                              mobile: profileEntity?.mobile,
                             ));
                             CustomMainRouter.push(ThankYouRoute(
                               subtitle: context.tr(

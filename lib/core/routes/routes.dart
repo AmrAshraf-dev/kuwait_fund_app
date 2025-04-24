@@ -16,12 +16,6 @@ class AppRouter extends RootStackRouter {
             initial: true),
 
         AutoRoute(
-            page: EditSpouseDataRoute.page,
-            path: AppRoutesConstants.editFamilySpouseData,
-            maintainState: true,
-            initial: false),
-
-        AutoRoute(
           page: AboutItemDetailsRoute.page,
           path: AppRoutesConstants.aboutScreenItemDetails,
           maintainState: true,

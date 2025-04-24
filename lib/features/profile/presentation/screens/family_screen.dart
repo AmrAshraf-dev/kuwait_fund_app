@@ -54,7 +54,9 @@ class _FamilyScreenState extends State<FamilyScreen> {
             children: [
               AddButtonWidget(
                   onPressed: () {
-                    CustomMainRouter.push(AddFamilyRoute());
+                    CustomMainRouter.push(AddFamilyRoute(
+                      id: familyEntity!.map((value) => value.id).join(','),
+                    ));
                   },
                   title: context.tr("addFamilyMember")),
               14.verticalSpace,

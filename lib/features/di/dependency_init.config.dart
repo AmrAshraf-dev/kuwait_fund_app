@@ -306,6 +306,8 @@ import 'package:kf_ess_mobile_app/features/profile/data/repositories/profile_rep
     as _i249;
 import 'package:kf_ess_mobile_app/features/profile/domain/repositories/profile_repository.dart'
     as _i246;
+import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/edit_child_usecase.dart'
+    as _i304;
 import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/edit_profile_usecase.dart'
     as _i705;
 import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/edit_spouse_usecase.dart'
@@ -330,6 +332,8 @@ import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/child_cub
     as _i583;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart'
     as _i488;
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_child_cubit.dart'
+    as _i493;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_profile_cubit.dart'
     as _i791;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_spouse_cubit.dart'
@@ -624,6 +628,8 @@ Future<_i174.GetIt> $initGetIt(
           editSpouseRequestRepository: gh<_i246.ProfileRepository>()));
   gh.factory<_i232.AuthCubit>(
       () => _i232.AuthCubit(getAuthUseCase: gh<_i464.GetAuthUseCase>()));
+  gh.factory<_i304.EditChildRequestUseCase>(() => _i304.EditChildRequestUseCase(
+      editChildRequestRepository: gh<_i246.ProfileRepository>()));
   gh.factory<_i49.ApproveLeaveRequestCubit>(() => _i49.ApproveLeaveRequestCubit(
       approveLeaveRequestUseCase: gh<_i559.ApproveLeaveRequestUseCase>()));
   gh.factory<_i815.LoanRequestRepository>(() => _i632.LoanRequestRepositoryImp(
@@ -685,6 +691,8 @@ Future<_i174.GetIt> $initGetIt(
       getContactusUseCase: gh<_i587.GetContactusUseCase>()));
   gh.factory<_i910.CountriesGrantsCubit>(() => _i910.CountriesGrantsCubit(
       getCountriesGrantsUseCase: gh<_i243.GetCountriesGrantsUseCase>()));
+  gh.factory<_i493.EditChildCubit>(() => _i493.EditChildCubit(
+      editChildUseCase: gh<_i304.EditChildRequestUseCase>()));
   gh.factory<_i362.GetNotificationsUseCase>(() => _i362.GetNotificationsUseCase(
       notificationsRepository: gh<_i218.NotificationsRepository>()));
   gh.factory<_i739.CreateInsuranceRequestUseCase>(() =>

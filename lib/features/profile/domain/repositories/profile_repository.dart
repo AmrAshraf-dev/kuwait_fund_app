@@ -1,4 +1,5 @@
 import "package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart";
+import "package:kf_ess_mobile_app/features/profile/data/models/request/edit_child_request_model.dart";
 import "package:kf_ess_mobile_app/features/profile/data/models/request/edit_spouse_request_model.dart";
 import "package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart";
 import "package:kf_ess_mobile_app/features/profile/data/models/request/spouse_request_model.dart";
@@ -42,5 +43,9 @@ abstract class ProfileRepository {
   });
   Future<CustomResponseType<BaseEntity<String>>> editSpouse({
     required EditSpouseRequestModel editSpouseRequestModel,
+  });
+
+  Future<CustomResponseType<BaseEntity<String>>> editChild({
+    required EditChildRequestModel editChildRequestModel,
   });
 }

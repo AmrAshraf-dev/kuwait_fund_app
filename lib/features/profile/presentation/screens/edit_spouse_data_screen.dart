@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:auto_route/auto_route.dart';
@@ -22,7 +23,6 @@ import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_spou
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/spouse_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/file_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
 import 'package:share_plus/share_plus.dart';
@@ -32,9 +32,25 @@ import '../../../shared/widgets/master_widget.dart';
 @RoutePage()
 class EditSpouseDataScreen extends StatefulWidget {
   String? id;
+  String? name;
+  String? civilID;
+  String? birthDate;
+  String? maritalStatus;
+  String? maritalDate;
+  String? fileExtention;
+  String? bytes;
+  String? selectedStatus;
   EditSpouseDataScreen({
     super.key,
     this.id,
+    this.name,
+    this.civilID,
+    this.birthDate,
+    this.maritalStatus,
+    this.maritalDate,
+    this.fileExtention,
+    this.bytes,
+    this.selectedStatus,
   });
 
   @override
@@ -44,15 +60,22 @@ class EditSpouseDataScreen extends StatefulWidget {
 class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
+  final SpouseCubit _spouseCubit = getIt<SpouseCubit>();
+  final EditSpouseCubit _editSpouseCubit = getIt<EditSpouseCubit>();
+  final FilePickerFamilyCubit filePickerFamilyCubit =
+      getIt<FilePickerFamilyCubit>();
+  //selectedStatus;
+  late List<String> _statuses = _statuses = [
+    context.tr('married'),
+    context.tr('divorced'),
+    context.tr('single'),
+  ];
+
   @override
   void initState() {
     super.initState();
   }
 
-  final SpouseCubit _spouseCubit = getIt<SpouseCubit>();
-  final EditSpouseCubit _editSpouseCubit = getIt<EditSpouseCubit>();
-  final FilePickerFamilyCubit filePickerFamilyCubit =
-      getIt<FilePickerFamilyCubit>();
   String? _selectedFile;
   SpouseEntity? spouseEntity;
   @override
@@ -143,30 +166,46 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                                     : null,
                               ),
                               40.verticalSpace,
-                              // CustomDropDownField(
-                              //   keyName:
-                              //       'married', // spouseEntity?.statusLabel ?? '',
-                              //   labelText:
-                              //       'status', //spouseEntity?.statusLabel ?? '',
-                              //   items: [],
-                              //   //  ['married', 'single']
-                              //   //     .map((e) => DropdownMenuItem(
-                              //   //           value: e,
-                              //   //           child: Text(e),
-                              //   //         ))
-                              //   //     .toList(),
-                              //   validator: FormBuilderValidators.required(),
-                              //   initialValue: spouseEntity?.status ??
-                              //       '', //context.tr('married'),
-                              // ),
+                              DropdownButtonFormField<String>(
+                                value: widget.selectedStatus,
+                                decoration: InputDecoration(
+                                  labelText: context.tr('maritalStatus'),
+                                  labelStyle: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 14),
+                                ),
+                                icon: Icon(Icons.keyboard_arrow_down_rounded,
+                                    color: Colors.grey),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black),
+                                dropdownColor: Colors.white,
+                                items: _statuses.map((String status) {
+                                  return DropdownMenuItem<String>(
+                                    value: status,
+                                    child: AppText(
+                                      text: status[0].toUpperCase() +
+                                          status.substring(1),
+                                      //  style: TextStyle(fontSize: 16),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    widget.selectedStatus = newValue;
+                                  });
+                                },
+                              ),
 
                               20.verticalSpace,
                               CustomSingleRangeDatePicker(
                                 fromLabelAboveField: context.tr("marriageDate"),
                                 customFormKey: _formKey,
-                                keyNameFrom: spouseEntity?.statusDate ??
-                                    '', //"birthDate",
-
+                                keyNameFrom: "marriageDate",
                                 initialDate: spouseEntity?.statusDate != null
                                     ? DateFormat('dd/MM/yyyy')
                                         .parse(spouseEntity!.statusDate!)
@@ -212,9 +251,18 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                             spouseArabicName: spouseEntity?.name,
                             spouseEnglishName: spouseEntity?.name,
                             spouseCivilID: spouseEntity?.civilID,
-                            spouserBirthDate: spouseEntity?.birthDate,
-                            spouseStatus: spouseEntity?.status,
-                            spouseStatusDate: spouseEntity?.statusDate,
+                            spouserBirthDate: spouseEntity?.birthDate != null
+                                ? DateFormat('yyyy-MM-dd').format(
+                                    DateFormat('dd/MM/yyyy')
+                                        .parse(spouseEntity!.birthDate!))
+                                : null,
+                            spouseStatus:
+                                widget.selectedStatus, //spouseEntity?.status,
+                            spouseStatusDate: spouseEntity?.statusDate != null
+                                ? DateFormat('yyyy-MM-dd').format(
+                                    DateFormat('dd/MM/yyyy')
+                                        .parse(spouseEntity!.statusDate!))
+                                : null,
                             fileExtention: _getFileExtension(_selectedFile!),
                             bytes: await _getFileBytes(XFile(_selectedFile!)),
                           ));
