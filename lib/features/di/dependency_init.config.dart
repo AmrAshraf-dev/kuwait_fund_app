@@ -139,10 +139,6 @@ import 'package:kf_ess_mobile_app/features/contactus/domain/repositories/contact
     as _i15;
 import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_contactus_usecase.dart'
     as _i587;
-import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_map_coordinates_usecase.dart'
-    as _i355;
-import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_telephone_fax_usecase.dart'
-    as _i198;
 import 'package:kf_ess_mobile_app/features/contactus/presentation/cubits/contactus_cubit.dart'
     as _i713;
 import 'package:kf_ess_mobile_app/features/create_request/data/data_sources/remote/sick_leave_request_remote_data_source.dart'
@@ -432,7 +428,7 @@ Future<_i174.GetIt> $initGetIt(
       () => _i885.SelectedFamilyMembersCubit());
   gh.factory<_i763.EmergencyReminingLeaveBalanceCubit>(
       () => _i763.EmergencyReminingLeaveBalanceCubit());
-  gh.factory<_i488.FilePickerCubit>(() => _i488.FilePickerCubit());
+  gh.factory<_i488.FilePickerFamilyCubit>(() => _i488.FilePickerFamilyCubit());
   gh.singleton<_i402.DeviceService>(() => _i402.DeviceService());
   await gh.singletonAsync<_i460.SharedPreferences>(
     () => registerModule.prefs,
@@ -621,11 +617,7 @@ Future<_i174.GetIt> $initGetIt(
       approveLeaveRequestUseCase: gh<_i559.ApproveLeaveRequestUseCase>()));
   gh.factory<_i815.LoanRequestRepository>(() => _i632.LoanRequestRepositoryImp(
       loanRequestRemoteDataSource: gh<_i449.LoanRequestRemoteDataSource>()));
-  gh.factory<_i355.GetCoordinatesUseCase>(() => _i355.GetCoordinatesUseCase(
-      contactusRepository: gh<_i15.ContactusRepository>()));
   gh.factory<_i587.GetContactusUseCase>(() => _i587.GetContactusUseCase(
-      contactusRepository: gh<_i15.ContactusRepository>()));
-  gh.factory<_i198.GetTelephoneFaxUseCase>(() => _i198.GetTelephoneFaxUseCase(
       contactusRepository: gh<_i15.ContactusRepository>()));
   gh.factory<_i33.GetOldSubmissionsUseCase>(() => _i33.GetOldSubmissionsUseCase(
       submissionsRepository: gh<_i188.SubmissionsRepository>()));
@@ -678,6 +670,8 @@ Future<_i174.GetIt> $initGetIt(
       getDeleteLeaveUseCase: gh<_i582.GetDeleteLeaveUseCase>()));
   gh.factory<_i1009.GetExperiencesUseCase>(() => _i1009.GetExperiencesUseCase(
       addExperiencesRepository: gh<_i246.ProfileRepository>()));
+  gh.factory<_i713.ContactusCubit>(() => _i713.ContactusCubit(
+      getContactusUseCase: gh<_i587.GetContactusUseCase>()));
   gh.factory<_i910.CountriesGrantsCubit>(() => _i910.CountriesGrantsCubit(
       getCountriesGrantsUseCase: gh<_i243.GetCountriesGrantsUseCase>()));
   gh.factory<_i362.GetNotificationsUseCase>(() => _i362.GetNotificationsUseCase(
@@ -786,11 +780,6 @@ Future<_i174.GetIt> $initGetIt(
           ));
   gh.factory<_i791.NotificationsCubit>(() => _i791.NotificationsCubit(
       getNotificationsUseCase: gh<_i362.GetNotificationsUseCase>()));
-  gh.factory<_i713.ContactusCubit>(() => _i713.ContactusCubit(
-        getContactusUseCase: gh<_i587.GetContactusUseCase>(),
-        getCoordinatesUseCase: gh<_i355.GetCoordinatesUseCase>(),
-        getTelephoneFaxUseCase: gh<_i198.GetTelephoneFaxUseCase>(),
-      ));
   gh.factory<_i359.AnnualLeaveRequestCubit>(() => _i359.AnnualLeaveRequestCubit(
       annualLeaveRequestUseCase: gh<_i610.AnnualLeaveRequestUseCase>()));
   gh.factory<_i456.GetAddressUseCase>(() => _i456.GetAddressUseCase(

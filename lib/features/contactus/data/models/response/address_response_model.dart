@@ -14,12 +14,8 @@ part 'address_response_model.g.dart';
 @JsonSerializable()
 class AddressModel extends AddressEntity {
   const AddressModel({
-    required super.line1,
-    required super.line2,
-    required super.line3,
-    required super.line4,
-    required super.line5,
-    required super.line6,
+    required super.text,
+   
   });
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>

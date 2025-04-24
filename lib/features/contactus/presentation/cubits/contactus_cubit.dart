@@ -15,13 +15,11 @@ part 'contactus_state.dart';
 @injectable
 class ContactusCubit extends Cubit<ContactusState> {
   final GetContactusUseCase getContactusUseCase;
-  final GetCoordinatesUseCase getCoordinatesUseCase;
-  final GetTelephoneFaxUseCase getTelephoneFaxUseCase;
+ 
 
   ContactusCubit({
     required this.getContactusUseCase,
-    required this.getCoordinatesUseCase,
-    required this.getTelephoneFaxUseCase,
+ 
   }) : super(ContactusInitialState()) {
     getContactInformation();
   }
@@ -32,8 +30,7 @@ class ContactusCubit extends Cubit<ContactusState> {
 
     final List<Either<Failure, BaseEntity<ContactusEntity>>> results = await Future.wait([
       getContactusUseCase.call(),
-      getCoordinatesUseCase.call(),
-      getTelephoneFaxUseCase.call(),
+    
     ]);
 
     List<String> failureMessages = [];
@@ -46,16 +43,7 @@ class ContactusCubit extends Cubit<ContactusState> {
           failureMessages.add(massage.mapFailureToMessage(failure));
         },
         (response) {
-          updatedEntity = updatedEntity?.copyWith(
-                operationsEmail: response.data?.operationsEmail ?? updatedEntity?.operationsEmail,
-                webmasterEmail: response.data?.webmasterEmail ?? updatedEntity?.webmasterEmail,
-                fax: response.data?.fax ?? updatedEntity?.fax,
-                telephoneNumber: response.data?.telephoneNumber ?? updatedEntity?.telephoneNumber,
-                address: response.data?.address ?? updatedEntity?.address,
-                latitude: response.data?.latitude ?? updatedEntity?.latitude,
-                longitude: response.data?.longitude ?? updatedEntity?.longitude,
-              ) ??
-              response.data;
+          updatedEntity =  response.data;
         },
       );
     }

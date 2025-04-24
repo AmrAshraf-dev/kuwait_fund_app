@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/contactus/domain/entities/contactus_entity.dart';
 import 'package:kf_ess_mobile_app/features/contactus/presentation/cubits/contactus_cubit.dart';
@@ -34,7 +32,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -112,27 +110,27 @@ class _ContactUsScreenState extends State<ContactUsScreen>
                               textColor: Palette.blue_002A6A,
                             ))),
                       ),
-                      ConstrainedBox(
-                        constraints: BoxConstraints(minHeight: 37.h),
-                        child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10.w),
-                            decoration: BoxDecoration(
-                              color: selectedIndex == 2
-                                  ? Palette.yellow_FBD823
-                                  : Palette.white,
-                              border: Border.all(
-                                  color: selectedIndex == 2
-                                      ? Palette.yellow_FBD823
-                                      : Palette.gery_DADADA),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                                child: AppText(
-                              text: context.tr("telephone_fax"),
-                              style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
-                            ))),
-                      ),
+                      // ConstrainedBox(
+                      //   constraints: BoxConstraints(minHeight: 37.h),
+                      //   child: Container(
+                      //       padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      //       decoration: BoxDecoration(
+                      //         color: selectedIndex == 2
+                      //             ? Palette.yellow_FBD823
+                      //             : Palette.white,
+                      //         border: Border.all(
+                      //             color: selectedIndex == 2
+                      //                 ? Palette.yellow_FBD823
+                      //                 : Palette.gery_DADADA),
+                      //         borderRadius: BorderRadius.circular(10),
+                      //       ),
+                      //       child: Center(
+                      //           child: AppText(
+                      //         text: context.tr("telephone_fax"),
+                      //         style: AppTextStyle.semiBold_13,
+                      //         textColor: Palette.blue_002A6A,
+                      //       ))),
+                      // ),
                     ],
                   ),
                 );
@@ -170,8 +168,8 @@ class _ContactUsScreenState extends State<ContactUsScreen>
                             ContactInfoWidget(
                                 contactusEntity: state.contactusEntity),
                             MapWidget(contactusEntity: state.contactusEntity),
-                            TelephoneFaxWidget(
-                                contactusEntity: state.contactusEntity),
+                            // TelephoneFaxWidget(
+                            //     contactusEntity: state.contactusEntity),
                           ],
                         );
                       }
@@ -204,7 +202,7 @@ class ContactInfoWidget extends StatelessWidget {
             style: AppTextStyle.regular_18,
           ),
           AppText(
-            text: contactusEntity?.operationsEmail,
+            text: contactusEntity?.contactInfo?.operationsEmail??"",
             style: AppTextStyle.regular_18,
             textColor: Palette.blue_3B72C5,
           ),
@@ -214,19 +212,37 @@ class ContactInfoWidget extends StatelessWidget {
             style: AppTextStyle.regular_18,
           ),
           AppText(
-            text: contactusEntity?.webmasterEmail,
+            text: contactusEntity?.contactInfo?.webmasterEmail??"",
             style: AppTextStyle.regular_18,
             textColor: Palette.blue_3B72C5,
           ),
           30.verticalSpace,
+
+ MainTitleWidget(
+            title: context.tr('telephone'),
+          ),
+           
+            20.verticalSpace,
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: AppText(
+                text: contactusEntity?.telephoneAndFax?.telephoneNumber,
+                style: AppTextStyle.regular_18,
+              ),
+            ),
+                      30.verticalSpace,
+
           MainTitleWidget(
             title: context.tr('address'),
           ),
           10.verticalSpace,
           AppText(
-            maxLines: 6,
+            maxLines: contactusEntity?.contactInfo?.address?.length??0,
             text:
-                "${contactusEntity?.address?.line1}\n${contactusEntity?.address?.line2}\n${contactusEntity?.address?.line3}\n${contactusEntity?.address?.line4}\n${contactusEntity?.address?.line5}\n${contactusEntity?.address?.line6}",
+                 contactusEntity?.contactInfo?.address?.map(
+                  (e) => e.text, 
+                ).join(", ") ??"",
+                 
             style: AppTextStyle.regular_14,
           ),
         ],
@@ -245,17 +261,17 @@ class MapWidget extends StatelessWidget {
       myLocationButtonEnabled: true,
       initialCameraPosition: CameraPosition(
         target: LatLng(
-            double.parse(contactusEntity?.latitude ?? "29.37120141748113"),
-            (double.parse(contactusEntity?.longitude ?? "47.98199412585341"))),
+            double.parse(contactusEntity?.mapCoordinates?.latitude ?? "29.37120141748113"),
+            (double.parse(contactusEntity?.mapCoordinates?.longitude ?? "47.98199412585341"))),
         zoom: 15,
       ),
       markers: <Marker>{
         Marker(
           markerId: MarkerId('customLocation'),
           position: LatLng(
-              double.parse(contactusEntity?.latitude ?? "29.37120141748113"),
+              double.parse(contactusEntity?.mapCoordinates?.latitude ?? "29.37120141748113"),
               (double.parse(
-                  contactusEntity?.longitude ?? "47.98199412585341"))),
+                  contactusEntity?.mapCoordinates?.longitude ?? "47.98199412585341"))),
           icon: BitmapDescriptor.defaultMarker,
         ),
       },
@@ -286,23 +302,23 @@ class TelephoneFaxWidget extends StatelessWidget {
             Directionality(
               textDirection: TextDirection.ltr,
               child: AppText(
-                text: contactusEntity?.telephoneNumber,
+                text: contactusEntity?.telephoneAndFax?.telephoneNumber,
                 style: AppTextStyle.regular_18,
               ),
             ),
-            20.verticalSpace,
-            AppText(
-              text: context.tr("fax"),
-              style: AppTextStyle.regular_18,
-            ),
-            20.verticalSpace,
-            Directionality(
-              textDirection: TextDirection.ltr,
-              child: AppText(
-                text: contactusEntity?.fax,
-                style: AppTextStyle.regular_18,
-              ),
-            ),
+            // 20.verticalSpace,
+            // AppText(
+            //   text: context.tr("fax"),
+            //   style: AppTextStyle.regular_18,
+            // ),
+            // 20.verticalSpace,
+            // Directionality(
+            //   textDirection: TextDirection.ltr,
+            //   child: AppText(
+            //     text: contactusEntity?.fax,
+            //     style: AppTextStyle.regular_18,
+            //   ),
+            // ),
           ],
         ));
   }

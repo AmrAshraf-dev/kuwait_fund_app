@@ -57,11 +57,14 @@ class CreateRequestCardItem extends StatelessWidget {
                     ),
                   ),
                   9.verticalSpace,
-                  AppText(
-                    maxLines: 2,
-                    text: title,
-                    style: AppTextStyle.bold_15,
-                    textColor: Palette.blue_083983,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    child: AppText(
+                      maxLines: 2,
+                      text: title,
+                      style: AppTextStyle.bold_15,
+                      textColor: Palette.blue_083983,
+                    ),
                   ),
                   Spacer(),
                   Icon(

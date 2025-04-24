@@ -68,6 +68,7 @@ class _DataWithEditCardState extends State<DataWithEditCard> {
                     SizedBox(
                       width: 205.w,
                       child: AppText(
+                        maxLines: 2,
                         text: widget.title,
                         style: AppTextStyle.bold_14,
                       ),

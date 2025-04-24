@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
 class HalfCircleChartWidget extends StatefulWidget {
-  final int leaveUsed;
+  final String leaveUsed;
   final int totalLeave;
   final Color color;
   final String title;
@@ -89,7 +89,7 @@ class _HalfCircleChartWidgetState extends State<HalfCircleChartWidget>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppText(
-                      text: "${widget.leaveUsed}",
+                      text: widget.leaveUsed ,
                       style: AppTextStyle.bold_16,
                       textColor: widget.color,
                     ),

@@ -7,17 +7,13 @@ part of 'dept_response_model.dart';
 // **************************************************************************
 
 DeptModel _$DeptModelFromJson(Map<String, dynamic> json) => DeptModel(
-      id: json['id'] as String?,
       name: json['name'] as String?,
       departmentCode: json['departmentCode'] as String?,
-      director_name: json['director_name'] as String?,
     );
 
 Map<String, dynamic> _$DeptModelToJson(DeptModel instance) => <String, dynamic>{
       if (instance.departmentCode case final value?) 'departmentCode': value,
       if (instance.name case final value?) 'name': value,
-      if (instance.id case final value?) 'id': value,
-      if (instance.director_name case final value?) 'director_name': value,
     };
 
 DeptResponseModel _$DeptResponseModelFromJson(Map<String, dynamic> json) =>

@@ -8,26 +8,28 @@ part of 'contactus_response_model.dart';
 
 ContactusModel _$ContactusModelFromJson(Map<String, dynamic> json) =>
     ContactusModel(
-      address: json['address'] == null
+      telephoneAndFax: json['telephoneAndFax'] == null
           ? null
-          : AddressModel.fromJson(json['address'] as Map<String, dynamic>),
-      fax: json['fax'] as String?,
-      latitude: json['latitude'] as String?,
-      longitude: json['longitude'] as String?,
-      operationsEmail: json['operationsEmail'] as String?,
-      telephoneNumber: json['telephoneNumber'] as String?,
-      webmasterEmail: json['webmasterEmail'] as String?,
+          : TelephoneAndFaxModel.fromJson(
+              json['telephoneAndFax'] as Map<String, dynamic>),
+      contactInfo: json['contactInfo'] == null
+          ? null
+          : ContactInfoModel.fromJson(
+              json['contactInfo'] as Map<String, dynamic>),
+      mapCoordinates: json['mapCoordinates'] == null
+          ? null
+          : MapCoordinatesModel.fromJson(
+              json['mapCoordinates'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ContactusModelToJson(ContactusModel instance) =>
     <String, dynamic>{
-      if (instance.operationsEmail case final value?) 'operationsEmail': value,
-      if (instance.webmasterEmail case final value?) 'webmasterEmail': value,
-      if (instance.fax case final value?) 'fax': value,
-      if (instance.telephoneNumber case final value?) 'telephoneNumber': value,
-      if (instance.address?.toJson() case final value?) 'address': value,
-      if (instance.latitude case final value?) 'latitude': value,
-      if (instance.longitude case final value?) 'longitude': value,
+      if (instance.contactInfo?.toJson() case final value?)
+        'contactInfo': value,
+      if (instance.mapCoordinates?.toJson() case final value?)
+        'mapCoordinates': value,
+      if (instance.telephoneAndFax?.toJson() case final value?)
+        'telephoneAndFax': value,
     };
 
 ContactusResponseModel _$ContactusResponseModelFromJson(

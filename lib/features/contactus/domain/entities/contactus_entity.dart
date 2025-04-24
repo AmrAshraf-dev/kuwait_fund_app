@@ -1,25 +1,21 @@
 import "package:equatable/equatable.dart";
-import "package:kf_ess_mobile_app/features/contactus/data/models/response/address_response_model.dart";
-
+ import "package:kf_ess_mobile_app/features/contactus/data/models/response/contact_info_response_model.dart";
+import "package:kf_ess_mobile_app/features/contactus/data/models/response/map_coordinates_response_model.dart";
+import "package:kf_ess_mobile_app/features/contactus/data/models/response/telephone_and_fax_repsonse_model.dart";
+ 
 /// Entity that contains the data of the Contactus.
 class ContactusEntity extends Equatable {
-  final String? operationsEmail;
-  final String? webmasterEmail;
-  final String? fax;
-  final String? telephoneNumber;
-  final AddressModel? address;
-  final String? latitude;
-  final String? longitude;
+final ContactInfoModel? contactInfo;
+final MapCoordinatesModel? mapCoordinates;
+ final TelephoneAndFaxModel? telephoneAndFax;
+
 
   /// Entity that contains the data of the Contactus.
   const ContactusEntity({
-    required this.operationsEmail,
-    required this.webmasterEmail,
-    required this.fax,
-    required this.telephoneNumber,
-    required this.address,
-    required this.latitude,
-    required this.longitude,
+    required this.mapCoordinates,
+ required this.contactInfo,
+ required this.telephoneAndFax,
+     
   });
 
   /*
@@ -33,22 +29,5 @@ class ContactusEntity extends Equatable {
   */
       ];
 
-  copyWith(
-      {operationsEmail,
-      webmasterEmail,
-      fax,
-      telephoneNumber,
-      address,
-      latitude,
-      longitude}) {
-    return ContactusEntity(
-      operationsEmail: operationsEmail ?? this.operationsEmail,
-      webmasterEmail: webmasterEmail ?? this.webmasterEmail,
-      fax: fax ?? this.fax,
-      telephoneNumber: telephoneNumber ?? this.telephoneNumber,
-      address: address ?? this.address,
-      latitude: latitude ?? this.latitude,
-      longitude: longitude ?? this.longitude,
-    );
-  }
+ 
 }

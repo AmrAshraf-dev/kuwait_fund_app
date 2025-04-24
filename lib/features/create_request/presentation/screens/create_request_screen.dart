@@ -43,17 +43,18 @@ class _CreateRequestScreenState extends State<CreateRequestScreen> {
                   onTap: () {
                     CustomMainRouter.push(CreateAnnualLeaveRequestRoute());
                   }),
-              MoreItemWidget(
-                  text: context.tr("sick_leave"),
-                  svgIcon: sickLeave,
-                  onTap: () {
-                    CustomMainRouter.push(CreateSickLeaveRequestRoute());
-                  }),
+             
               MoreItemWidget(
                   text: context.tr("emergency_leave"),
                   svgIcon: Assets.svg.createEmergencyRequest.path,
                   onTap: () {
                     CustomMainRouter.push(CreateEmergencyLeaveRequestRoute());
+                  }),
+                   MoreItemWidget(
+                  text: context.tr("sick_leave"),
+                  svgIcon: sickLeave,
+                  onTap: () {
+                    CustomMainRouter.push(CreateSickLeaveRequestRoute());
                   }),
               //   MoreItemWidget(
               //       text: context.tr("loan_request"),

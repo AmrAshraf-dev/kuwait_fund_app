@@ -15,6 +15,14 @@ class AppRouter extends RootStackRouter {
             maintainState: true,
             initial: true),
 
+ AutoRoute(
+            page: EditSpouseDataRoute.page,
+            path: AppRoutesConstants.editFamilySpouseData,
+            maintainState: true,
+            initial: false),
+
+
+
         AutoRoute(
           page: AboutItemDetailsRoute.page,
           path: AppRoutesConstants.aboutScreenItemDetails,
@@ -28,12 +36,27 @@ class AppRouter extends RootStackRouter {
                       //  meta: <String, dynamic>{'hideBottomNav': true},
                     ),
 
+
+                      AutoRoute(
+                      maintainState: false,
+                      page: ExtendLeaveDetailsRoute.page,
+                      path: AppRoutesConstants.extendLeaveDetails,
+                      //  meta: <String, dynamic>{'hideBottomNav': true},
+                    ),
+
+
         CustomRoute(
             page: NavigationMainRoute.page,
             path: AppRoutesConstants.mainNavigation,
             transitionsBuilder: TransitionsBuilders.fadeIn,
             maintainState: true,
             children: <AutoRoute>[
+              AutoRoute(
+                page: RequestsRoute.page,
+                path: AppRoutesConstants.requests, 
+                maintainState: false,
+                 
+              ),
               CustomRoute(
                 page: HomeRoute.page,
                 path: AppRoutesConstants.home,
@@ -43,19 +66,15 @@ class AppRouter extends RootStackRouter {
               AutoRoute(
                   path: 'tab1',
                   page: EmptyRouterRoute.page,
-                  maintainState: true,
+                  maintainState: false,
                   children: [
-                    AutoRoute(
-                      page: RequestsRoute.page,
-                      path: '',
-                      //  meta: <String, dynamic>{'hideBottomNav': true},
-                    ),
-                    AutoRoute(
-                      maintainState: true,
-                      page: ExtendLeaveDetailsRoute.page,
-                      path: AppRoutesConstants.extendLeaveDetails,
-                      //  meta: <String, dynamic>{'hideBottomNav': true},
-                    ),
+                 
+                    // AutoRoute(
+                    //   maintainState: false,
+                    //   page: ExtendLeaveDetailsRoute.page,
+                    //   path: AppRoutesConstants.extendLeaveDetails,
+                    //   //  meta: <String, dynamic>{'hideBottomNav': true},
+                    // ),
                     // AutoRoute(
                     //   maintainState: false,
                     //   page: CreateRequestRoute.page,
@@ -196,10 +215,10 @@ class AppRouter extends RootStackRouter {
           page: MyAttendanceRoute.page,
           path: AppRoutesConstants.myAttendance,
         ),
-        AutoRoute(
-          page: CreateTrainingRequestRoute.page,
-          path: AppRoutesConstants.createTrainingRequest,
-        ),
+        // AutoRoute(
+        //   page: CreateTrainingRequestRoute.page,
+        //   path: AppRoutesConstants.createTrainingRequest,
+        // ),
 
         AutoRoute(
           page: CertificatesRoute.page,
@@ -304,6 +323,13 @@ class AppRouter extends RootStackRouter {
             path: AppRoutesConstants.supervisorNavigation,
             maintainState: true,
             children: <AutoRoute>[
+               AutoRoute(
+                        page: RequestsRoute.page,
+                        path: AppRoutesConstants.requests,
+                        maintainState: false
+
+                        //  meta: <String, dynamic>{'hideBottomNav': true},
+                        ),
               AutoRoute(
                   page: HomeRoute.page,
                   path: AppRoutesConstants.home,
@@ -316,17 +342,17 @@ class AppRouter extends RootStackRouter {
                     AutoRoute(
                         page: RequestsRoute.page,
                         path: AppRoutesConstants.requests,
-                        maintainState: true
+                        maintainState: false
 
                         //  meta: <String, dynamic>{'hideBottomNav': true},
                         ),
                    
-                     AutoRoute(
-                      maintainState: true,
-                      page: ExtendLeaveDetailsRoute.page,
-                      path: AppRoutesConstants.extendLeaveDetails,
-                      //  meta: <String, dynamic>{'hideBottomNav': true},
-                    ),
+                    //  AutoRoute(
+                    //   maintainState: true,
+                    //   page: ExtendLeaveDetailsRoute.page,
+                    //   path: AppRoutesConstants.extendLeaveDetails,
+                    //   //  meta: <String, dynamic>{'hideBottomNav': true},
+                    // ),
                     // AutoRoute(
                     //   page: TrainingRequestDetailsRoute.page,
                     //   path: AppRoutesConstants.trainingRequestDetails,

@@ -58,6 +58,7 @@ class RejectionReasonBottomSheet extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10.w),
                           child: TextAreaFieldWidget(
+                            maxLength: 250,
                             labelAboveField: context.tr("remarks"),
                             keyName: "reason_for_rejection",
                             validator: FormBuilderValidators.required(),

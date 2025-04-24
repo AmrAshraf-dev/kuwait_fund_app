@@ -14,6 +14,7 @@ import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cub
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_remining_balance_cubit/annual_leave_remining_balance_cubit.dart';
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_request_cubit.dart';
  import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
  import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/custom_date_picker_range.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
@@ -103,6 +104,9 @@ class _CreateAnnualLeaveRequestScreenState extends State<CreateAnnualLeaveReques
                                
 
                                     CustomDatePickerRange(
+                                      isMustSelectToday: true,
+                                    initialDate: DateTime.now(),
+                                      fromDisableField: true,
                                       labelTitle: context.tr("annual_leave_days"),
                                       consumedDays: 0,
                                       totalDays: int.parse(
@@ -124,7 +128,7 @@ class _CreateAnnualLeaveRequestScreenState extends State<CreateAnnualLeaveReques
                                       },
                                     ),
                                     20.verticalSpace,
-if(!(leaveBalanceState.response.data?.displayExitDate??false))
+if((leaveBalanceState.response.data?.displayExitDate??false))
       Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: CustomSingleRangeDatePicker(
@@ -230,7 +234,33 @@ if(!(leaveBalanceState.response.data?.displayExitDate??false))
                             builder: (context, state) {
                               if (state is AnnualLeaveRequestReadyState) {
                                 ViewsToolbox.dismissLoading();
-                                CustomMainRouter.push(ThankYouRoute(
+                                CustomMainRouter.push(
+                                   
+                                  ThankYouRoute(
+                                    onContinueCallback: () {
+
+                                     if(LocalData.getUser()?.userInfo.isSupervisor == true){
+
+                                       CustomMainRouter.navigate(
+  SupervisorNavigationMainRoute(
+                        children: <PageRouteInfo>[
+                          RequestsRoute(),
+                        ],
+                      ),
+                    );
+                    
+                         } 
+                         else{
+
+                        
+ CustomMainRouter.navigate(
+  NavigationMainRoute(
+                        children: <PageRouteInfo>[
+                          RequestsRoute(),
+                        ],
+                      ),
+                    ); }
+                                     },
                                   title: context
                                       .tr("request_submitted_successfully"),
                                   subtitle: context.tr(
@@ -242,6 +272,8 @@ if(!(leaveBalanceState.response.data?.displayExitDate??false))
                               }
                               return CustomElevatedButton(
                                   onPressed: () {
+
+                              
                                     if (_formKey.currentState!
                                         .saveAndValidate()) {
                                       annualLeaveRequestCubit
@@ -255,8 +287,10 @@ if(!(leaveBalanceState.response.data?.displayExitDate??false))
                                           DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["to"]!.value),
                                         ),
                                         exitDate: 
-                                         DateFormat("yyyy-MM-dd").format(DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["exit_date"]!.value),
-                                         )
+                                  _formKey.currentState!.fields["exit_date"]?.value!=null?    
+                                     DateFormat("yyyy-MM-dd").format(DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["exit_date"]!.value)):null
+                                  
+                               
                                           
                                       ));
                                     }

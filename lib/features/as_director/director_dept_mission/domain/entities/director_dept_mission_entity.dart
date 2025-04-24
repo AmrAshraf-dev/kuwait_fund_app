@@ -11,15 +11,13 @@ class DeptEntity extends Equatable{
 
  final  String? name;
 
-  final  String? id;
- final  String? director_name;
-
+ 
   /// Entity that contains the data of the AdminDirectorMission.
    DeptEntity(
     {required this. departmentCode, 
     required this.name,
-    required this.id,
-    required this.director_name,}
+    
+   }
    );
 
   /*
@@ -29,7 +27,7 @@ class DeptEntity extends Equatable{
   @override
   List<Object?> get props => [
   
-    id,
+    departmentCode,
    
   ];
 

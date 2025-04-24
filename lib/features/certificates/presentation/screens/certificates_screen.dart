@@ -185,7 +185,7 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                             if (_formKey.currentState!.saveAndValidate()) {
                               generateCertificatesCubit.generateCertificate(
                                   _formKey.currentState!
-                                      .fields["certificateType"]!.value.name);
+                                      .fields["certificateType"]!.value.id);
                             }
                           },
                           text: context.tr("submit"));
