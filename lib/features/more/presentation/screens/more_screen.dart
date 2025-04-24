@@ -164,7 +164,10 @@ class _MoreScreenState extends State<MoreScreen> {
                 width: 290.w,
                 child: AppText(
                     maxLines: 2,
-                    text: context.tr("all_rights_reserved"),
+                    text: 
+                    
+               
+                    context.tr("all_rights_reserved").replaceAll('rightsYear', DateTime.now().year.toString()),
                     style: AppTextStyle.medium_12,
                     textAlign: TextAlign.center,
                     textColor: Palette.grey_8C8181),

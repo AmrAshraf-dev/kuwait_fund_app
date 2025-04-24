@@ -28,10 +28,10 @@ class SickLeaveRequestDataSourceImp
         path: ApiConstants.createSickLeaveRequest,
         data: sickLeaveRequestModel.toJson());
 
-    if (result.success) {
-      return right(BaseEntity<String>(data: result.response["data"] as String));
+    if (result.success &&result.response["code"]==200 ) {
+      return right(BaseEntity<String>(data: result.response["data"]));
     } else {
-      return left(ServerFailure(message: result.response as String));
+      return left(ServerFailure(message: result.response["message"]));
     }
   }
 

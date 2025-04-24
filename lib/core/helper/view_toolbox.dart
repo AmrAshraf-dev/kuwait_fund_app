@@ -40,6 +40,45 @@ class ViewsToolbox {
   }
 
 
+
+  static void showMessageBottomsheetConfirmation(BuildContext context, 
+  
+                                    {required String message,
+                                    required Function() onConfirm}) {
+        ViewsToolbox.showMessageBottomsheet(context: context,
+                                    status:  ConfirmationPopupStatus.warning,
+                                    message: message,
+                                    actionsData: Column(
+                                      children: [
+                                      CustomElevatedButton(
+                            height: 60.h,
+                            text: context.tr("submit"),
+                            onPressed: () {
+                        onConfirm();
+
+                             
+                            },
+                          ),
+                                        22.verticalSpace,
+                          Center(
+                            child: CustomElevatedButton(
+                                height: 50.h,
+                                backgroundColor: Palette.transparntColor,
+                                onPressed: () {
+                                    Navigator.pop(context);
+                                },
+                                customChild: AppText(
+                                  text: context.tr("cancel"),
+                                  textColor: Palette.blue_5490EB,
+                                  fontSize: 18.sp,
+                                )),
+                          ),
+                                      ],
+                                    )
+                                    );
+  }
+
+
   static void showMessageBottomsheet(
       {required BuildContext context,
       required ConfirmationPopupStatus status,

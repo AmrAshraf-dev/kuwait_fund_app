@@ -44,11 +44,11 @@ class AuthInterceptor extends Interceptor {
   ) async {
     try {
       // Check connectivity
-      if (await _isNetworkUnavailable(err)) {
-        ViewsToolbox.dismissLoading();
-        handler.reject(err);
-        return;
-      }
+      // if (await _isNetworkUnavailable(err)) {
+      //   ViewsToolbox.dismissLoading();
+      //   handler.reject(err);
+      //   return;
+      // }
       if (err.type == DioExceptionType.unknown) {
         ViewsToolbox.dismissLoading();
         handler.reject(err);

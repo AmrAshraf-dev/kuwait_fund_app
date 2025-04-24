@@ -16,6 +16,7 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/no_data_widget.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
@@ -45,28 +46,31 @@ class _MyAttendanceScreenState extends State<MyAttendanceScreen> {
             ViewsToolbox.showLoading();
           } else if (state is MyAttendanceErrorState) {
             ViewsToolbox.dismissLoading();
-ViewsToolbox.showMessageBottomsheet(
-                    actionsData: 
-
-                    CustomElevatedButton(
-                        width: 300.w,
-                        text: context.tr("continue"),
-                        onPressed: () {
-                       CustomMainRouter.back();  
-                        }),
-
-                     
-                    
-                    context: context,
-                    status: ConfirmationPopupStatus.failure,
-                    message: tr("noDataFound"),
-                  );
+            // ViewsToolbox.showMessageBottomsheet(
+            //         actionsData: 
+            //         CustomElevatedButton(
+            //             width: 300.w,
+            //             text: context.tr("continue"),
+            //             onPressed: () {
+            //            CustomMainRouter.back();  
+            //             }),          
+            //         context: context,
+            //         status: ConfirmationPopupStatus.failure,
+            //         message: tr("noDataFound"),
+            //       );
           } else if (state is MyAttendanceReadyState) {
             ViewsToolbox.dismissLoading();
           }
         },
         builder: (context, state) {
         
+
+
+
+
+
+
+
             final MyAttendanceEntity? attendance =state is MyAttendanceReadyState ? state.response.data!:null;
             return MasterWidget(
                       isBackEnabled: true,
@@ -154,7 +158,11 @@ ViewsToolbox.showMessageBottomsheet(
                           ],
                         ),
                       ),
+                        state is MyAttendanceErrorState?
+    NoDataWidget():Container(),
                       10.verticalSpace,
+                      
+ 
                       if(attendance?.attendanceData!=null)
                       Column(
                         children: attendance!.attendanceData

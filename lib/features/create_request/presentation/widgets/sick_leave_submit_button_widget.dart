@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:auto_route/auto_route.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:easy_localization/easy_localization.dart';
@@ -40,6 +42,30 @@ class SubmitButton extends StatelessWidget {
         } else if (state is CreateSickLeaveRequestReadyState) {
           ViewsToolbox.dismissLoading();
           CustomMainRouter.push(ThankYouRoute(
+                      onContinueCallback: () {
+
+                                     if(LocalData.getUser()?.userInfo.isSupervisor == true){
+
+                                       CustomMainRouter.navigate(
+  SupervisorNavigationMainRoute(
+                        children: <PageRouteInfo>[
+                          RequestsRoute(),
+                        ],
+                      ),
+                    );
+                    
+                         } 
+                         else{
+
+                        
+ CustomMainRouter.navigate(
+  NavigationMainRoute(
+                        children: <PageRouteInfo>[
+                          RequestsRoute(),
+                        ],
+                      ),
+                    ); }
+                                     },
             title: context.tr("request_submitted_successfully"),
             subtitle: context
                 .tr("your_sick_leave_request_has_been_submitted_successfully"),

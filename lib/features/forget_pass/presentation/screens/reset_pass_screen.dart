@@ -109,11 +109,13 @@ bool _isPasswordObscured = true;
                                       },
                                     ),
                                     obscureText:  _isPasswordObscured,
+                                                                        maxLength: 15,
+
                                     validator: FormBuilderValidators.compose([
                                       FormBuilderValidators.required(),
                                       FormBuilderValidators.password(
-                                        maxLength: 12,
-                                        minLength: 8,
+                                        maxLength: 15,
+                                        minLength: 3,
                                         minNumberCount: 1,
                                         minSpecialCharCount: 1,
                                         minUppercaseCount: 1,
@@ -138,11 +140,12 @@ bool _isPasswordObscured = true;
                                       },
                                     ),
                                     obscureText:  _isPasswordObscured,
+                                    maxLength: 15,
                                     validator: FormBuilderValidators.compose([
                                       FormBuilderValidators.required(),
                                       FormBuilderValidators.password(
-                                        maxLength: 12,
-                                        minLength: 8,
+                                        maxLength: 15,
+                                        minLength: 3,
                                         minNumberCount: 1,
                                         minSpecialCharCount: 1,
                                         minUppercaseCount: 1,

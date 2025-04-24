@@ -111,7 +111,7 @@ if(state.showNewBottomSheet){
                     asDate:  DateFormat("yyyy-MM-dd").format(selectedDay),
                      empID:  int.parse(widget.selectedDirector?.employeeId ?? "0"),
                   ),
-                  showNewBottomSheet: false
+                  showNewBottomSheet: true
                 );
              
               },

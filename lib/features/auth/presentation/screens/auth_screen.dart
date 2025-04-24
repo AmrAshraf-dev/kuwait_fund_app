@@ -212,17 +212,35 @@ bool _isPasswordObscured = true;
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   TextFieldWidget(
+                                    maxLength: 15,   
                                     labelAboveField: context.tr("username"),
                                     keyName: "userName",
-                                    validator: FormBuilderValidators.required(),
+                                  validator:
+                                  FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                      FormBuilderValidators.password(
+                                        maxLength: 15,
+                                        minLength: 3,
+                                       
+                                      )
+                                    ]),
                                     textInputAction: TextInputAction.next,
                                   ),
                                   18.verticalSpace,
                                   PasswordFieldWidget(
+                                                                        maxLength: 15,
+
                                     obscureText:  _isPasswordObscured,
                                     labelAboveField: context.tr("password"),
                                     keyName: "password",
-                                    validator: FormBuilderValidators.required(),
+                                    validator:      FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                      FormBuilderValidators.password(
+                                        maxLength: 15,
+                                        minLength: 3,
+                                       
+                                      )
+                                    ]),
                                     focusNode: passwordFocusNode,
                                       suffixIcon: IconButton(
                                       icon: Icon(

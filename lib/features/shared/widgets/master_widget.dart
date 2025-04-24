@@ -214,10 +214,10 @@ if (router.canPop()) {
                                                   BorderRadius.circular(10.r),
                                             ),
                                             child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
+                                              padding:  EdgeInsets.only(left:LanguageHelper.isAr(context)?0:8
+                                                  .w, ),
                                               child: Icon(
-                                                size: 20,
+                                                 size: 20.sp,
                                                 LanguageHelper.isAr(context)
                                                     ? Icons.arrow_forward_ios
                                                     : Icons.arrow_back_ios,

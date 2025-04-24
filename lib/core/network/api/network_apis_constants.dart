@@ -1,122 +1,121 @@
 class ApiConstants {
-  //static String baseUrl = "https://62.215.251.137/essapi/api/";
+   //static String baseUrl = "https://62.215.251.137/essapi/api/";
   static String baseUrl = "https://mpwpayment.diyarme.com/ESSAPI/api/";
+  //static String baseUrl = "http://192.168.13.75/essapi/api/";
   static String loan = "General/GetLoans";
 
-  static var profile = "General/GetProfile";
+  static String profile = "General/GetProfile";
 
-  static var countriesGrants = "General/GetTAGrantCountries";
+  static String countriesGrants = "General/GetTAGrantCountries";
 
-  static var institutionsGrants = "General/GetTAGrantInstitutions";
+  static String institutionsGrants = "General/GetTAGrantInstitutions";
 
-  static var contributions = "General/GetContribution";
+  static String contributions = "General/GetContribution";
 
-  static var auth = "Auth/Login";
+  static String auth = "Auth/Login";
 
-  static var generateOTP = "ChangePassword/GenerateOTP";
+  static String generateOTP = "ChangePassword/GenerateOTP";
 
-  static var verifyOTP = "ChangePassword/VerifyOTP";
+  static String verifyOTP = "ChangePassword/VerifyOTP";
 
-  static var changePassword = "ChangePassword/ChangePassword";
+  static String changePassword = "ChangePassword/ChangePassword";
 
-  static var getGeneralInformation = "General/GetGeneralInformation";
+  static String getGeneralInformation = "General/GetGeneralInformation";
 
-  static var getKFManagment = "General/GetAllKFManagement";
+  static String getKFManagment = "General/GetAllKFManagement";
 
-  static var getKFBoardOfDirectors = "General/GetAllKFBoardOfDirectors";
+  static String getKFBoardOfDirectors = "General/GetAllKFBoardOfDirectors";
 
-  static var contactInformation = "General/GetContactInformation";
+  static String contactInformation = "General/GetContactUsInformation";
 
-  static var mapCoordinates = "General/GetMapCoordinates";
+ 
+ 
+  static String getUserRequests = "Request/GetUserRequests";
 
-  static var telephoneFax = "General/GetTelephoneNumberAndFax";
+  static String getAnnualLeaveBalance = "UrgentLeave/GetAnnualLeaveRequestScreenInfo"; // to delete 
 
-  static var getUserRequests = "Request/GetUserRequests";
-
-  static var getAnnualLeaveBalance = "UrgentLeave/GetAnnualLeaveRequestScreenInfo"; // to delete 
-
-  static var createAnnualLeaveRequest =
+  static String createAnnualLeaveRequest =
       "UrgentLeave/CreateEmployeeAnnualLeaveRequest";
 
-  static var getEmergencyAvailableDays =
+  static String getEmergencyAvailableDays =
       "Leave/GetEmergencyLeaveBalanceRemaining"; // to delete
 
-  static var getEmergencyLeaveScreen = "EmergencyLeave/GetEmergencyLeaveScreen";  
+  static String getEmergencyLeaveScreen = "EmergencyLeave/GetEmergencyLeaveScreen";  
 
-  static var createEmergencyLeaveRequest = "EmergencyLeave/CreateEmergencyLeave";
+  static String createEmergencyLeaveRequest = "EmergencyLeave/CreateEmergencyLeave";
 
-  static var getCertificates = "Certificate/GetCertificates";
+  static String getCertificates = "Certificate/GetCertificates";
 
-  static var getPersonalLoanMasterInfo = "Loan/GetPersonalLoanMasterInfo";
+  static String getPersonalLoanMasterInfo = "Loan/GetPersonalLoanMasterInfo";
 
-  static var getLoanReasons = "Loan/GetPersonalLoanReasonsList";
+  static String getLoanReasons = "Loan/GetPersonalLoanReasonsList";
 
-  static var createPersonalLoanRequest = "Loan/SubmitPersonalLoanRequest";
+  static String createPersonalLoanRequest = "Loan/SubmitPersonalLoanRequest";
 
-  static var getQrCertificates = "Certificate/GeneratePersonalStatmentWithQR";
+  static String getQrCertificates = "Certificate/GeneratePersonalStatmentWithQR";
 
-  static var getSubmissions = "Request/GetEmployeeRequestsByType";
+  static String getSubmissions = "Request/GetEmployeeRequestsByType";
 
-  static var getInsuranceMasterInfo = "Insurance/GetInsuranceMasterInfo";
+  static String getInsuranceMasterInfo = "Insurance/GetInsuranceMasterInfo";
 
-  static var getInsurancePrograms = "Insurance/GetInsuranceProgramsList";
+  static String getInsurancePrograms = "Insurance/GetInsuranceProgramsList";
 
-  static var getFamilyMembers = "Insurance/GetEmployeeFamilyMembersInfo";
+  static String getFamilyMembers = "Insurance/GetEmployeeFamilyMembersInfo";
 
-  static var getSubscribers = "Insurance/GetInsuranceSubscribersList";
+  static String getSubscribers = "Insurance/GetInsuranceSubscribersList";
 
-  static var createInsuranceRequest = "Insurance/SubmitMedicalInsuranceRequest";
-  static var unsubscribeInsurance = "Insurance/CancelMedicalInsurance";
+  static String createInsuranceRequest = "Insurance/SubmitMedicalInsuranceRequest";
+  static String unsubscribeInsurance = "Insurance/CancelMedicalInsurance";
 
-  static var getAttendanceDetails = "Attendance/GetAttendanceDetails";
+  static String getAttendanceDetails = "Attendance/GetAttendanceDetails";
 
-  static var getRequestTypes = "Request/GetRequestType";
+  static String getRequestTypes = "Request/GetRequestType";
 
-  static var getLeaveDashboard = "UrgentLeave/GetLeaveDashboard";
+  static String getLeaveDashboard = "UrgentLeave/GetLeaveDashboard";
 
-  static var getEmergencyEligibleDays = "EmergencyLeave/GetEmergencyLeaveScreen";
+  static String getEmergencyEligibleDays = "EmergencyLeave/GetEmergencyLeaveScreen";
   
-  static var getManagementVisitorsCalendar =
+  static String getManagementVisitorsCalendar =
       'VisitorsLog/GetManagementVisitorsCalender';
-  static var getManagementVisitorsCalendarDetails =
+  static String getManagementVisitorsCalendarDetails =
       'VisitorsLog/GetManagementVisitorsDetails';
 
-  static var getHosts = 'VisitorsLog/GetHosts';
+  static String getHosts = 'VisitorsLog/GetHosts';
 
-  static var getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';
-  static var createSickLeaveRequest = 'SickLeave/CreateSickLeaveRequest';
-  static var getMyLeaveBalance = 'Leave/GetLeaveBalance'; // delete and show 0 
-  static var extendLeave = 'UrgentLeave/ExtendLeave';
-  static var deleteLeave = 'UrgentLeave/DeleteLeaveRequest';
-  static var getAllLeaveRequestsWaiting = 'Approval/GetAllLeaveRequestsWaiting';
-  static var approveLeaveRequest = 'Approval/ApproveLeaveRequest';
-  static var rejectLeaveRequest = 'Approval/RejectLeaveRequest';
+  static String getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';
+  static String createSickLeaveRequest = 'SickLeave/CreateSickLeaveRequest';
+  static String getMyLeaveBalance = 'Leave/GetLeaveBalance'; // delete and show 0 
+  static String extendLeave = 'UrgentLeave/ExtendLeave';
+  static String deleteLeave = 'UrgentLeave/DeleteLeaveRequest';
+  static String getAllLeaveRequestsWaiting = 'Approval/GetAllLeaveRequestsWaiting';
+  static String approveLeaveRequest = 'Approval/ApproveLeaveRequest';
+  static String rejectLeaveRequest = 'Approval/RejectLeaveRequest';
 
   //profile
  
-  static var getAllManagement = 'Missions/GetAllManagement';
-  static var getManagementCalenderData =
+  static String getAllManagement = 'Missions/GetAllManagement';
+  static String getManagementCalenderData =
       'Missions/GetManagementCalenderData';
 
-  static var getDirectorMissionsDetails =
+  static String getDirectorMissionsDetails =
       'Missions/GetManagmentAttendaceDate';
 
 
-  static var readDepartments = 'Missions/ReadDepartments';
+  static String readDepartments = 'Missions/ReadDepartments';
 
-  static var getDeptCalenderData =
+  static String getDeptCalenderData =
       'Missions/GetOperationEmpsCalenderData';
 
-  static var getTotalMissionByDepartmentDashboard =
+  static String getTotalMissionByDepartmentDashboard =
       'Missions/GetTotalMissionByDepartmentDashboard'; 
 
         //profile
-  static var getProfileInfo = 'Profile/GetEmployeeProfile';
-  static var getAddressDetails = 'Profile/GetEmployeeAddressDetails';
-  static var getFamilyData = 'Profile/GetEmployeeFamilyList';
-  static var getQualificationsData = 'Profile/GetEmployeeQualificationsList';
-  static var getExperiencesData = 'Profile/GetPreviousEmploymentList';
-  static var getSpouseData = 'Profile/GetSpouseInfo';
-  static var getChildData = 'Profile/GetChildInfo';
+  static String getProfileInfo = 'Profile/GetEmployeeProfile';
+  static String getAddressDetails = 'Profile/GetEmployeeAddressDetails';
+  static String getFamilyData = 'Profile/GetEmployeeFamilyList';
+  static String getQualificationsData = 'Profile/GetEmployeeQualificationsList';
+  static String getExperiencesData = 'Profile/GetPreviousEmploymentList';
+  static String getSpouseData = 'Profile/GetSpouseInfo';
+  static String getChildData = 'Profile/GetChildInfo';
 
 }

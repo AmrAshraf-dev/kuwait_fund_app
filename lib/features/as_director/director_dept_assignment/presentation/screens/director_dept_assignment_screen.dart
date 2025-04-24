@@ -12,8 +12,7 @@ import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/presentation/widgets/dept_assignment_name_dropmenu_widget.dart';
  import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/cubits/director_dept_mission_cubit.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/widgets/dept_mission_widgets/dept_name_dropmenu_widget.dart';
-  import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+   import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
  import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
@@ -145,6 +144,7 @@ class _DirectorDeptAssignmentScreenState
                         child: Column(
                           crossAxisAlignment:  CrossAxisAlignment.start,
                           children: [
+
                             Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -155,10 +155,12 @@ class _DirectorDeptAssignmentScreenState
                                 borderRadius: BorderRadius.circular(20.r),
                               ),
                               child: Column(
+                                crossAxisAlignment:  CrossAxisAlignment.center,
+                                mainAxisAlignment:  MainAxisAlignment.center,
                                 children: [
                                   20.verticalSpace,
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Column(
@@ -243,11 +245,12 @@ class _DirectorDeptAssignmentScreenState
                                             ),
                                           ),
                                         ],
-                                      )
+                                      ),
                                     ],
                                   ),
                                 
-                                    
+                                                                    20.verticalSpace,
+                                
                                 ],
                               ),
                             ),

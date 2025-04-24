@@ -10,6 +10,5 @@ abstract class ContactusRepository {
   */
 
   Future<CustomResponseType<BaseEntity<ContactusEntity>>> getContactus();
-  Future<CustomResponseType<BaseEntity<ContactusEntity>>> getMapCoordinates();
-  Future<CustomResponseType<BaseEntity<ContactusEntity>>> getTelephoneFax();
+  
 }

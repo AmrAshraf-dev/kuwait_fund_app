@@ -80,7 +80,7 @@ getDirecatorsMissionsDetailsList(DirectorMissionDetailsRequestModel directorMiss
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<List<DirectorMissionDetailsEntity>> response) {
-      emit(DirectorMissionDetailsReadyState(response, showNewBottomSheet: true));
+      emit(DirectorMissionDetailsReadyState(response, showNewBottomSheet: showNewBottomSheet));
     });
 }
 

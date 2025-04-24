@@ -35,7 +35,7 @@ class CertificateDetailsScreen extends StatelessWidget {
             children: [
               22.verticalSpace,
               SizedBox(
-                height: 400,
+                height: 500.h,
                 width: 1.sw,
                 child: PdfViewWidget(pdfPath: certificatePdf),
               ),
@@ -48,8 +48,9 @@ class CertificateDetailsScreen extends StatelessWidget {
                       width: 130.w,
                       height: 50.h,
                       backgroundColor: Palette.yellow_FBD823,
-                      onPressed: () {
-                        certificatesCubit.downloadBase64Pdf(certificatePdf);
+                      onPressed: () async {
+                       await certificatesCubit.saveBase64PdfToFolder(certificatePdf);
+                   
                         ViewsToolbox.showSuccessAwesomeSnackBar(
                             context, context.tr("downloaded"));
                       },
