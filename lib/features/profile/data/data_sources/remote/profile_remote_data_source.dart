@@ -1,9 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_child_request_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_spouse_request_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/spouse_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/address_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/edit_child_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/edit_profile_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/edit_spouse_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/qualifications_response_model.dart';
@@ -28,6 +34,13 @@ abstract class ProfileRemoteDataSource {
       {required SpouseRequestModel spouseRequestModel});
   Future<CustomResponseType<ChildResponseModel>> getChild(
       {required ChildRequestModel childRequestModel});
+  Future<CustomResponseType<EditProfileResponseModel>> editProfile(
+      {required ProfileRequestModel profileRequestModel});
+  Future<CustomResponseType<EditSpouseResponseModel>> editSpouse(
+      {required EditSpouseRequestModel editSpouseRequestModel});
+
+  Future<CustomResponseType<EditChildResponseModel>> editChild(
+      {required EditChildRequestModel editChildRequestModel});
 }
 
 @Injectable(as: ProfileRemoteDataSource)
@@ -122,6 +135,51 @@ class ProfileDataSourceImpl implements ProfileRemoteDataSource {
 
     if (result.success) {
       return right(ChildResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+
+  @override
+  Future<CustomResponseType<EditProfileResponseModel>> editProfile(
+      {ProfileRequestModel? profileRequestModel}) async {
+    ({dynamic response, bool success}) result =
+        await networkHelper.post(path: ApiConstants.editProfile, data: {
+      profileRequestModel: profileRequestModel?.toJson(),
+    });
+
+    if (result.success) {
+      return right(EditProfileResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+
+  @override
+  Future<CustomResponseType<EditSpouseResponseModel>> editSpouse(
+      {EditSpouseRequestModel? editSpouseRequestModel}) async {
+    ({dynamic response, bool success}) result =
+        await networkHelper.post(path: ApiConstants.editSpouse, data: {
+      editSpouseRequestModel: editSpouseRequestModel?.toJson(),
+    });
+
+    if (result.success) {
+      return right(EditSpouseResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+
+  @override
+  Future<CustomResponseType<EditChildResponseModel>> editChild(
+      {EditChildRequestModel? editChildRequestModel}) async {
+    ({dynamic response, bool success}) result =
+        await networkHelper.post(path: ApiConstants.editSpouse, data: {
+      editChildRequestModel: editChildRequestModel?.toJson(),
+    });
+
+    if (result.success) {
+      return right(EditChildResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));
     }

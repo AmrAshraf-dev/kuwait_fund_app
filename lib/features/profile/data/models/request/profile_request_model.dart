@@ -13,12 +13,21 @@ part 'profile_request_model.g.dart';
 
 @JsonSerializable()
 class ProfileRequestModel {
-  ProfileRequestModel({required this.email, required this.lang});
+  ProfileRequestModel({
+    this.nameArabic,
+    this.nameEnglish,
+    this.mobile,
+    this.recidancyExpiryDate,
+    this.passportExpiryDate,
+  });
 
   factory ProfileRequestModel.fromJson(Map<String, dynamic> json) =>
       _$ProfileRequestModelFromJson(json);
-  final String? email;
-  final String? lang;
+  final String? nameArabic;
+  final String? nameEnglish;
+  final String? mobile;
+  final String? recidancyExpiryDate;
+  final String? passportExpiryDate;
 
   Map<String, dynamic> toJson() => _$ProfileRequestModelToJson(this);
 }

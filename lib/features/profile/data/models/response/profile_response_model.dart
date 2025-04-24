@@ -15,7 +15,7 @@ part 'profile_response_model.g.dart';
 
 @JsonSerializable()
 class ProfileModel extends ProfileEntity {
-  ProfileModel({
+  const ProfileModel({
     super.employeeNumber,
     super.name,
     super.designationName,
@@ -26,17 +26,33 @@ class ProfileModel extends ProfileEntity {
     super.recidancyExpiryDate,
     super.nationalityName,
     super.passportExpiryDate,
-    super.contractTypeName,
-    super.contactStartDate,
-    super.contactEndDate,
-    super.joiningDate,
-    super.attachmentInfo,
+    super.mobile,
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) =>
       _$ProfileModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileModelToJson(this);
+}
+
+@JsonSerializable()
+class EmployeeAddressModel extends ProfileEntity {
+  const EmployeeAddressModel({
+    super.apartmentNumber,
+    super.building,
+    super.street,
+    super.city,
+    super.block,
+    super.avenue,
+    super.attachmentInfo,
+    super.phone1,
+    super.phone2,
+  });
+
+  factory EmployeeAddressModel.fromJson(Map<String, dynamic> json) =>
+      _$EmployeeAddressModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EmployeeAddressModelToJson(this);
 }
 
 @JsonSerializable()

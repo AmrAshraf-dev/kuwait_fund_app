@@ -9,6 +9,7 @@ import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/peraonal_info/domain/entities/personal_info_entity.dart';
 import 'package:kf_ess_mobile_app/features/peraonal_info/presentation/cubits/personal_info_cubit.dart';
 import 'package:kf_ess_mobile_app/features/peraonal_info/presentation/widget/EditButton.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/personal_info_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
@@ -32,6 +33,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
 
   final PersonalInfoCubit _personalInfoCubit = getIt<PersonalInfoCubit>();
   PersonalInfoEntity? personalInfoEntity;
+
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
@@ -160,7 +162,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                     ),
                   ),
                   25.verticalSpace,
-                  MainTitleWidget(title: context.tr("contractDetails")),
+                  MainTitleWidget(title: context.tr("myAddress")),
                   12.verticalSpace,
                   SizedBox(
                     width: 1.sw,
@@ -176,37 +178,86 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.w, vertical: 13.h),
-                        child: Column(
+                        child:
+                            // Column(
+                            //   crossAxisAlignment: CrossAxisAlignment.start,
+                            //   children: [
+                            //     PersonalInfoItem(
+                            //         title: context.tr("contractType"),
+                            //         body: personalInfoEntity?.contractTypeName ??
+                            //             '', //"Work",
+                            //         withDivider: false),
+                            //     8.verticalSpace,
+                            //     PersonalInfoItem(
+                            //         title: context.tr("jobTitle"),
+                            //         body: personalInfoEntity?.designationName ??
+                            //             '', //"Project Manager",
+                            //         withDivider: false),
+                            //     8.verticalSpace,
+                            //     PersonalInfoItem(
+                            //         title: context.tr("contractStartDate"),
+                            //         body: personalInfoEntity?.contactStartDate ??
+                            //             '', //"12/3/2022",
+                            //         withDivider: false),
+                            //     8.verticalSpace,
+                            //     PersonalInfoItem(
+                            //         title: context.tr("contractEndDate"),
+                            //         body: personalInfoEntity?.contactEndDate ??
+                            //             '', //"12/3/2030",
+                            //         withDivider: false),
+                            //     8.verticalSpace,
+                            //     PersonalInfoItem(
+                            //         title: context.tr("joiningDate"),
+                            //         body: personalInfoEntity?.joiningDate ??
+                            //             '', //"12/3/2030",
+                            //         withDivider: false),
+                            //   ],
+                            // ),
+                            Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            PersonalInfoItem(
-                                title: context.tr("contractType"),
-                                body: personalInfoEntity?.contractTypeName ??
-                                    '', //"Work",
+                            // Align(
+                            //   alignment: AlignmentDirectional.topEnd,
+                            //   child: EditButton(
+                            //     onPressed: () {
+                            //       CustomMainRouter.push(EditAddressRoute());
+                            //     },
+                            //   ),
+                            // ),
+                            20.verticalSpace,
+                            PersonalInfoItemWidget(
+                                title: context.tr("government"),
+                                body: personalInfoEntity?.avenue ??
+                                    '', //"Farwaniya",
                                 withDivider: false),
-                            8.verticalSpace,
-                            PersonalInfoItem(
-                                title: context.tr("jobTitle"),
-                                body: personalInfoEntity?.designationName ??
-                                    '', //"Project Manager",
+                            12.verticalSpace,
+                            PersonalInfoItemWidget(
+                                title: context.tr("street"),
+                                body: personalInfoEntity?.street ??
+                                    '', //"Ahmad Riyad Abdel",
                                 withDivider: false),
-                            8.verticalSpace,
-                            PersonalInfoItem(
-                                title: context.tr("contractStartDate"),
-                                body: personalInfoEntity?.contactStartDate ??
-                                    '', //"12/3/2022",
+                            12.verticalSpace,
+                            PersonalInfoItemWidget(
+                                title: context.tr("block"),
+                                body: personalInfoEntity?.block ?? '', //"12",
                                 withDivider: false),
-                            8.verticalSpace,
-                            PersonalInfoItem(
-                                title: context.tr("contractEndDate"),
-                                body: personalInfoEntity?.contactEndDate ??
-                                    '', //"12/3/2030",
+                            12.verticalSpace,
+                            PersonalInfoItemWidget(
+                                title: context.tr("buildingNumber"),
+                                body:
+                                    personalInfoEntity?.building ?? '', //"230",
                                 withDivider: false),
-                            8.verticalSpace,
-                            PersonalInfoItem(
-                                title: context.tr("joiningDate"),
-                                body: personalInfoEntity?.joiningDate ??
-                                    '', //"12/3/2030",
+                            12.verticalSpace,
+                            PersonalInfoItemWidget(
+                                title: context.tr("floor"),
+                                body: personalInfoEntity?.apartmentNumber ??
+                                    '', //"1",
+                                withDivider: false),
+                            12.verticalSpace,
+                            PersonalInfoItemWidget(
+                                title: context.tr("flat"),
+                                body: personalInfoEntity?.apartmentNumber ??
+                                    '', //"13",
                                 withDivider: false),
                           ],
                         ),

@@ -29,6 +29,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final ProfileCubit _profileCubit = getIt<ProfileCubit>();
   ProfileEntity? profileEntity;
+
   @override
   void initState() {
     super.initState();
@@ -179,12 +180,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onTap: () {
                   CustomMainRouter.push(PersonalInfoRoute());
                 }),
-            ProfileItemWidget(
-                text: context.tr("address"),
-                svgIcon: addressIcon,
-                onTap: () {
-                  CustomMainRouter.push(AddressRoute());
-                }),
+            // ProfileItemWidget(
+            //     text: context.tr("address"),
+            //     svgIcon: addressIcon,
+            //     onTap: () {
+            //       CustomMainRouter.push(AddressRoute());
+            //     }),
             // ProfileItemWidget(
             //     text: context.tr("bankDetails"),
             //     svgIcon: bankIcon,
