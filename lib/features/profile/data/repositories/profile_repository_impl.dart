@@ -1,5 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_spouse_request_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/spouse_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/address_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart';
@@ -65,5 +67,19 @@ class ProfileRepositoryImp implements ProfileRepository {
       {required ChildRequestModel childParams}) async {
     return await profileRemoteDataSource.getChild(
         childRequestModel: childParams);
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<String>>> editProfile(
+      {required ProfileRequestModel profileRequestModel}) async {
+    return await profileRemoteDataSource.editProfile(
+        profileRequestModel: profileRequestModel);
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<String>>> editSpouse(
+      {required EditSpouseRequestModel editSpouseRequestModel}) async {
+    return await profileRemoteDataSource.editSpouse(
+        editSpouseRequestModel: editSpouseRequestModel);
   }
 }

@@ -21,12 +21,12 @@ class AppRouter extends RootStackRouter {
           maintainState: true,
         ),
 
-         AutoRoute(
-                      maintainState: false,
-                      page: CreateRequestRoute.page,
-                      path: AppRoutesConstants.createRequest,
-                      //  meta: <String, dynamic>{'hideBottomNav': true},
-                    ),
+        AutoRoute(
+          maintainState: false,
+          page: CreateRequestRoute.page,
+          path: AppRoutesConstants.createRequest,
+          //  meta: <String, dynamic>{'hideBottomNav': true},
+        ),
 
         CustomRoute(
             page: NavigationMainRoute.page,
@@ -102,6 +102,16 @@ class AppRouter extends RootStackRouter {
           maintainState: true,
         ),
         AutoRoute(
+          page: EditSpouseDataRoute.page,
+          path: AppRoutesConstants.editSpouseDataScreen,
+          maintainState: true,
+        ),
+        AutoRoute(
+          page: EditChildDataRoute.page,
+          path: AppRoutesConstants.editChildDataScreen,
+          maintainState: true,
+        ),
+        AutoRoute(
           page: PersonalInfoRoute.page,
           path: AppRoutesConstants.personalInfo,
           maintainState: true,
@@ -121,7 +131,7 @@ class AppRouter extends RootStackRouter {
           path: AppRoutesConstants.familyScreen,
           maintainState: true,
         ),
-       
+
         AutoRoute(
           page: AddFamilyRoute.page,
           path: AppRoutesConstants.addFamilyScreen,
@@ -230,11 +240,11 @@ class AppRouter extends RootStackRouter {
           path: AppRoutesConstants.adsDetailsScreen,
         ),
 
-         AutoRoute(
-                      page: VisitorsLogsRoute.page,
-                      path: AppRoutesConstants.visitorsLogsMoreMenu,
-                      maintainState: true,
-                    ),
+        AutoRoute(
+          page: VisitorsLogsRoute.page,
+          path: AppRoutesConstants.visitorsLogsMoreMenu,
+          maintainState: true,
+        ),
 
         AutoRoute(
           page: ContactUsRoute.page,
@@ -320,8 +330,8 @@ class AppRouter extends RootStackRouter {
 
                         //  meta: <String, dynamic>{'hideBottomNav': true},
                         ),
-                   
-                     AutoRoute(
+
+                    AutoRoute(
                       maintainState: true,
                       page: ExtendLeaveDetailsRoute.page,
                       path: AppRoutesConstants.extendLeaveDetails,

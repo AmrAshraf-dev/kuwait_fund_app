@@ -33,7 +33,8 @@ class ApiConstants {
 
   static var getUserRequests = "Request/GetUserRequests";
 
-  static var getAnnualLeaveBalance = "UrgentLeave/GetAnnualLeaveRequestScreenInfo"; // to delete 
+  static var getAnnualLeaveBalance =
+      "UrgentLeave/GetAnnualLeaveRequestScreenInfo"; // to delete
 
   static var createAnnualLeaveRequest =
       "UrgentLeave/CreateEmployeeAnnualLeaveRequest";
@@ -41,9 +42,10 @@ class ApiConstants {
   static var getEmergencyAvailableDays =
       "Leave/GetEmergencyLeaveBalanceRemaining"; // to delete
 
-  static var getEmergencyLeaveScreen = "EmergencyLeave/GetEmergencyLeaveScreen";  
+  static var getEmergencyLeaveScreen = "EmergencyLeave/GetEmergencyLeaveScreen";
 
-  static var createEmergencyLeaveRequest = "EmergencyLeave/CreateEmergencyLeave";
+  static var createEmergencyLeaveRequest =
+      "EmergencyLeave/CreateEmergencyLeave";
 
   static var getCertificates = "Certificate/GetCertificates";
 
@@ -74,8 +76,9 @@ class ApiConstants {
 
   static var getLeaveDashboard = "UrgentLeave/GetLeaveDashboard";
 
-  static var getEmergencyEligibleDays = "EmergencyLeave/GetEmergencyLeaveScreen";
-  
+  static var getEmergencyEligibleDays =
+      "EmergencyLeave/GetEmergencyLeaveScreen";
+
   static var getManagementVisitorsCalendar =
       'VisitorsLog/GetManagementVisitorsCalender';
   static var getManagementVisitorsCalendarDetails =
@@ -85,7 +88,7 @@ class ApiConstants {
 
   static var getCanViewVisitorsLogs = 'VisitorsLog/CanViewVisitorsLog';
   static var createSickLeaveRequest = 'SickLeave/CreateSickLeaveRequest';
-  static var getMyLeaveBalance = 'Leave/GetLeaveBalance'; // delete and show 0 
+  static var getMyLeaveBalance = 'Leave/GetLeaveBalance'; // delete and show 0
   static var extendLeave = 'UrgentLeave/ExtendLeave';
   static var deleteLeave = 'UrgentLeave/DeleteLeaveRequest';
   static var getAllLeaveRequestsWaiting = 'Approval/GetAllLeaveRequestsWaiting';
@@ -93,24 +96,20 @@ class ApiConstants {
   static var rejectLeaveRequest = 'Approval/RejectLeaveRequest';
 
   //profile
- 
+
   static var getAllManagement = 'Missions/GetAllManagement';
-  static var getManagementCalenderData =
-      'Missions/GetManagementCalenderData';
+  static var getManagementCalenderData = 'Missions/GetManagementCalenderData';
 
-  static var getDirectorMissionsDetails =
-      'Missions/GetManagmentAttendaceDate';
-
+  static var getDirectorMissionsDetails = 'Missions/GetManagmentAttendaceDate';
 
   static var readDepartments = 'Missions/ReadDepartments';
 
-  static var getDeptCalenderData =
-      'Missions/GetOperationEmpsCalenderData';
+  static var getDeptCalenderData = 'Missions/GetOperationEmpsCalenderData';
 
   static var getTotalMissionByDepartmentDashboard =
-      'Missions/GetTotalMissionByDepartmentDashboard'; 
+      'Missions/GetTotalMissionByDepartmentDashboard';
 
-        //profile
+  //profile
   static var getProfileInfo = 'Profile/GetEmployeeProfile';
   static var getAddressDetails = 'Profile/GetEmployeeAddressDetails';
   static var getFamilyData = 'Profile/GetEmployeeFamilyList';
@@ -118,5 +117,6 @@ class ApiConstants {
   static var getExperiencesData = 'Profile/GetPreviousEmploymentList';
   static var getSpouseData = 'Profile/GetSpouseInfo';
   static var getChildData = 'Profile/GetChildInfo';
-
+  static var editProfile = 'Profile/UpdateEmployeeProfile';
+  static var editSpouse = 'Profile/SubmitSpouseModificationRequest';
 }

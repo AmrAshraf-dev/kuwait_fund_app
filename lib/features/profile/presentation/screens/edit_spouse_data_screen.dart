@@ -1,4 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+import 'package:path/path.dart' as path;
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -11,17 +14,18 @@ import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_spouse_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/spouse_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/domain/entities/spouse_entity.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_spouse_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/spouse_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/file_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 
@@ -46,6 +50,7 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
   }
 
   final SpouseCubit _spouseCubit = getIt<SpouseCubit>();
+  final EditSpouseCubit _editSpouseCubit = getIt<EditSpouseCubit>();
   final FilePickerFamilyCubit filePickerFamilyCubit =
       getIt<FilePickerFamilyCubit>();
   String? _selectedFile;
@@ -61,6 +66,7 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                 create: (context) => _spouseCubit
                   ..getSpouse(spouseModel: SpouseRequestModel(id: widget.id))),
             BlocProvider(create: (context) => filePickerFamilyCubit),
+            BlocProvider(create: (context) => _editSpouseCubit),
           ],
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -137,14 +143,23 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                                     : null,
                               ),
                               40.verticalSpace,
-                              CustomDropDownField(
-                                keyName: spouseEntity?.statusLabel ?? '',
-                                labelText: spouseEntity?.statusLabel ?? '',
-                                items: [],
-                                validator: FormBuilderValidators.required(),
-                                initialValue: spouseEntity?.status ??
-                                    '', //context.tr('married'),
-                              ),
+                              // CustomDropDownField(
+                              //   keyName:
+                              //       'married', // spouseEntity?.statusLabel ?? '',
+                              //   labelText:
+                              //       'status', //spouseEntity?.statusLabel ?? '',
+                              //   items: [],
+                              //   //  ['married', 'single']
+                              //   //     .map((e) => DropdownMenuItem(
+                              //   //           value: e,
+                              //   //           child: Text(e),
+                              //   //         ))
+                              //   //     .toList(),
+                              //   validator: FormBuilderValidators.required(),
+                              //   initialValue: spouseEntity?.status ??
+                              //       '', //context.tr('married'),
+                              // ),
+
                               20.verticalSpace,
                               CustomSingleRangeDatePicker(
                                 fromLabelAboveField: context.tr("marriageDate"),
@@ -174,16 +189,42 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                   ),
                 ),
                 120.verticalSpace,
-                CustomElevatedButton(
-                  text: context.tr("submit"),
-                  onPressed: () {
-                    if (_formKey.currentState!.saveAndValidate()) {
-                      print(_formKey.currentState!.value);
-                      CustomMainRouter.push(ThankYouRoute(
-                        subtitle: context
-                            .tr("submitted_successfully_waiting_administrator"),
-                      ));
+                BlocConsumer<EditSpouseCubit, EditSpouseState>(
+                  listener: (context, state) {
+                    if (state is EditSpouseErrorState) {
+                      ViewsToolbox.dismissLoading();
+                      ViewsToolbox.showErrorAwesomeSnackBar(
+                          context, state.message!);
+                    } else if (state is EditSpouseLoadingState) {
+                      ViewsToolbox.showLoading();
+                    } else if (state is EditSpouseReadyState) {
+                      ViewsToolbox.dismissLoading();
                     }
+                  },
+                  builder: (context, state) {
+                    return CustomElevatedButton(
+                      text: context.tr("submit"),
+                      onPressed: () async {
+                        if (_formKey.currentState!.saveAndValidate()) {
+                          print(_formKey.currentState!.value);
+                          _editSpouseCubit.editSpouse(EditSpouseRequestModel(
+                            spouseId: int.parse(spouseEntity?.id ?? '0'),
+                            spouseArabicName: spouseEntity?.name,
+                            spouseEnglishName: spouseEntity?.name,
+                            spouseCivilID: spouseEntity?.civilID,
+                            spouserBirthDate: spouseEntity?.birthDate,
+                            spouseStatus: spouseEntity?.status,
+                            spouseStatusDate: spouseEntity?.statusDate,
+                            fileExtention: _getFileExtension(_selectedFile!),
+                            bytes: await _getFileBytes(XFile(_selectedFile!)),
+                          ));
+                          CustomMainRouter.push(ThankYouRoute(
+                            subtitle: context.tr(
+                                "submitted_successfully_waiting_administrator"),
+                          ));
+                        }
+                      },
+                    );
                   },
                 ),
                 20.verticalSpace,
@@ -191,5 +232,14 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
             ),
           ),
         ));
+  }
+
+  String _getFileExtension(String filePath) {
+    return path.extension(filePath).replaceFirst(".", "");
+  }
+
+  Future<String> _getFileBytes(XFile value) async {
+    final bytes = await value.readAsBytes();
+    return base64Encode(bytes);
   }
 }

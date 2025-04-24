@@ -85,6 +85,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
                           icon: index == 1
                               ? Assets.svg.female.svg()
                               : Assets.svg.male.svg(),
+                          withEdit: true,
                           onPressed: () {
                             familyEntity?[index].relation == 'S'
                                 ? CustomMainRouter.push(EditSpouseDataRoute(

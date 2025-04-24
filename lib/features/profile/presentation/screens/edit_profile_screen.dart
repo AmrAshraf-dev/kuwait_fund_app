@@ -10,7 +10,9 @@ import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/domain/entities/profile_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_profile_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -29,6 +31,7 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   final ProfileCubit _profileCubit = getIt<ProfileCubit>();
+  final EditProfileCubit _editProfileCubit = getIt<EditProfileCubit>();
   ProfileEntity? profileEntity;
 
   bool _showWidget = false;
@@ -47,6 +50,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         widget: MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => _profileCubit..getProfile()),
+            BlocProvider(create: (context) => _editProfileCubit),
           ],
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
@@ -119,6 +123,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     '', //'+966 123456789',
                               ),
                               20.verticalSpace,
+
                               if (_showWidget)
                                 TextFieldWidget(
                                   labelAboveField: context.tr("phoneNumber"),
@@ -170,18 +175,43 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                     ),
                     80.verticalSpace,
-                    CustomElevatedButton(
-                      text: context.tr("submit"),
-                      onPressed: () {
-                        if (_formKey.currentState!.saveAndValidate()) {
-                          print(_formKey.currentState!.value);
-                          CustomMainRouter.push(ThankYouRoute(
-                            subtitle: context.tr(
-                                "submitted_successfully_waiting_administrator"),
-                          ));
-                        }
-                      },
-                    ),
+                    BlocConsumer<EditProfileCubit, EditProfileState>(
+                        listener: (context, state) {
+                      if (state is EditProfileErrorState) {
+                        ViewsToolbox.dismissLoading();
+                        ViewsToolbox.showErrorAwesomeSnackBar(
+                            context, state.message!);
+                      } else if (state is EditProfileLoadingState) {
+                        ViewsToolbox.showLoading();
+                      } else if (state is EditProfileReadyState) {
+                        ViewsToolbox.dismissLoading();
+                      }
+                    }, builder: (context, state) {
+                      return CustomElevatedButton(
+                        text: context.tr("submit"),
+                        onPressed: () {
+                          if (_formKey.currentState!.saveAndValidate()) {
+                            print(_formKey.currentState!.value);
+                            _editProfileCubit
+                                .createEditProfile(ProfileRequestModel(
+                              mobile: profileEntity?.phone1,
+                              nameArabic: profileEntity?.name,
+                              nameEnglish: profileEntity?.name,
+                              passportExpiryDate:
+                                  profileEntity?.recidancyExpiryDate,
+                              recidancyExpiryDate:
+                                  profileEntity?.recidancyExpiryDate,
+                            ));
+                            CustomMainRouter.push(ThankYouRoute(
+                              subtitle: context.tr(
+                                  "submitted_successfully_waiting_administrator"),
+                            ));
+                          }
+                        },
+                      );
+
+                      //return Container();
+                    }),
                     20.verticalSpace,
                   ],
                 );

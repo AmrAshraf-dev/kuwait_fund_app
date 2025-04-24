@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:kf_ess_mobile_app/features/peraonal_info/domain/entities/personal_info_entity.dart';
 
 import '../../../../shared/entity/base_entity.dart';
-import '../../../domain/entities/personal_info_entity.dart';
 
 part 'personal_info_response_model.g.dart';
 
-/// Model that transforms the PeraonalInfo data from the API to the
+/// Model that transforms the Profile data from the API to the
 /// application entity
 
 /*
@@ -15,7 +15,7 @@ part 'personal_info_response_model.g.dart';
 
 @JsonSerializable()
 class PersonalInfoModel extends PersonalInfoEntity {
-  PersonalInfoModel({
+  const PersonalInfoModel({
     super.employeeNumber,
     super.name,
     super.designationName,
@@ -26,17 +26,33 @@ class PersonalInfoModel extends PersonalInfoEntity {
     super.recidancyExpiryDate,
     super.nationalityName,
     super.passportExpiryDate,
-    super.contractTypeName,
-    super.contactStartDate,
-    super.contactEndDate,
-    super.joiningDate,
-    super.attachmentInfo,
+    super.mobile,
   });
 
   factory PersonalInfoModel.fromJson(Map<String, dynamic> json) =>
       _$PersonalInfoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$PersonalInfoModelToJson(this);
+}
+
+@JsonSerializable()
+class EmployeeAddressModel extends PersonalInfoEntity {
+  const EmployeeAddressModel({
+    super.apartmentNumber,
+    super.building,
+    super.street,
+    super.city,
+    super.block,
+    super.avenue,
+    super.attachmentInfo,
+    super.phone1,
+    super.phone2,
+  });
+
+  factory EmployeeAddressModel.fromJson(Map<String, dynamic> json) =>
+      _$EmployeeAddressModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EmployeeAddressModelToJson(this);
 }
 
 @JsonSerializable()
