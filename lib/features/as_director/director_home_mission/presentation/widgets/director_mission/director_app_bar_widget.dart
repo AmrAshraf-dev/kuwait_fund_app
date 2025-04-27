@@ -65,35 +65,28 @@ class DirectorAppBarWidget extends StatelessWidget {
         ),
         Row(
           children: [
-            Container(
-                height: 38.h,
-                width: 38.w,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: SvgPicture.asset(chatbot),
-                )),
+            InkWell(
+              onTap: () {
+                                          CustomMainRouter.push(ChatBotRoute());
+
+              },
+              child: Container(
+                  height: 38.h,
+                  width: 38.w,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: SvgPicture.asset(chatbot),
+                  )),
+            ),
             17.horizontalSpace,
             InkWell(
               onTap: () => CustomMainRouter.push(NotificationsRoute()),
-              child: Badge(
-                padding: EdgeInsets.all(1),
-                backgroundColor: Palette.red_FF0606,
-                label: SizedBox(
-                  height: 15.h,
-                  width: 15.w,
-                  child: Center(
-                    child: AppText(
-                      text: '3',
-                      style: AppTextStyle.bold_12,
-                      textColor: Colors.white,
-                    ),
-                  ),
-                ),
-                child: Container(
+              child: 
+              Container(
                     height: 38.h,
                     width: 38.w,
                     decoration: BoxDecoration(
@@ -104,7 +97,33 @@ class DirectorAppBarWidget extends StatelessWidget {
                       padding: const EdgeInsets.all(3.0),
                       child: SvgPicture.asset(notification),
                     )),
-              ),
+              // Badge(
+              //   padding: EdgeInsets.all(1),
+              //   backgroundColor: Palette.red_FF0606,
+              //   label: SizedBox(
+              //     height: 15.h,
+              //     width: 15.w,
+              //     child: Center(
+              //       child: AppText(
+              //         text: '3',
+              //         style: AppTextStyle.bold_12,
+              //         textColor: Colors.white,
+              //       ),
+              //     ),
+              //   ),
+              //   child: Container(
+              //       height: 38.h,
+              //       width: 38.w,
+              //       decoration: BoxDecoration(
+              //         color: Colors.white,
+              //         borderRadius: BorderRadius.circular(10.r),
+              //       ),
+              //       child: Padding(
+              //         padding: const EdgeInsets.all(3.0),
+              //         child: SvgPicture.asset(notification),
+                  //   )
+                     //),
+            //  ),
             ),
           ],
         )

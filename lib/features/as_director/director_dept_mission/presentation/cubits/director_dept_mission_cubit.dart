@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/data/models/request/dept_calendar_data_request_model.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/data/models/request/director_dept_mission_details_request_model.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_calendar_data_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_details_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/use_cases/get_all_depts_usecase%20copy.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_mission_details_entity.dart';
-
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/use_cases/get_dept_calendar_data_usecase.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/use_cases/get_director_dept_missions_details_usecase.dart';
+ 
 import "../../../../../core/network/base_handling.dart";
 import '../../../../../error/failure.dart';
 import "../../../../shared/entity/base_entity.dart";
@@ -18,11 +19,14 @@ part 'director_dept_mission_state.dart';
 class  DirectorDeptMissionCubit extends Cubit<DirectorDeptMissionState> {
   final GetAllDeptsUsecase  getAllDeptsUsecase;
   final GetDeptCalenderDataUseCase getDeptCalenderDataUseCase;
+  final GetDirectorDeptMissionsDetailsUseCase getDirectorDeptMissionsDetailsUseCase;
   DirectorDeptMissionCubit({required this.getAllDeptsUsecase,
+    required this.getDirectorDeptMissionsDetailsUseCase,
   required this.getDeptCalenderDataUseCase})
       : super(DirectorDeptMissionInitialState());
 
   Future<void> getAllDepts () async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(DirectorDeptMissionLoadingState());
 
     final CustomResponseType<BaseEntity<List<DeptEntity>>>
@@ -31,7 +35,7 @@ class  DirectorDeptMissionCubit extends Cubit<DirectorDeptMissionState> {
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
-      emit(DirectorDeptMissionErrorState(
+      emit(DirectorDeptDropMenuMissionErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<List<DeptEntity>> response) {
@@ -51,13 +55,36 @@ await Future.delayed(const Duration(milliseconds: 100));
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
-      emit(DirectorDeptMissionErrorState(
+      emit(DirectorDeptCalendarMissionErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<List<DirectorDeptCalendarDataEntity>> response) {
       emit(DirectorDeptMissionReadyState(response));
     });
   }
+
+
+
+getDirecatorsDeptMissionsDetailsList(DirectorDeptMissionDetailsRequestModel directorMissionDetailsRequestModel, {required bool showNewBottomSheet}) async  
+
+
+{
+
+    emit(DirectorDeptMissionLoadingState());
+
+    final CustomResponseType<BaseEntity<List<DirectorDeptMissionDetailsEntity>>>
+        eitherPackagesOrFailure = await getDirectorDeptMissionsDetailsUseCase(directorMissionDetailsRequestModel);
+
+    eitherPackagesOrFailure.fold((Failure failure) {
+      final FailureToMassage massage = FailureToMassage();
+      emit(DirectorDeptMissionErrorState(
+        message: massage.mapFailureToMessage(failure),
+      ));
+    }, (BaseEntity<List<DirectorDeptMissionDetailsEntity>> response) {
+      emit(DirectorDeptMissionDetailsReadyState(response, showNewBottomSheet: showNewBottomSheet));
+    });
+}
+
 
 
 }

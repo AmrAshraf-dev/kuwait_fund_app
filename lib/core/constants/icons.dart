@@ -34,6 +34,9 @@ const String loan = '${iconDir}loan.svg';
 const String advertisements = '${iconDir}advertisements.svg';
 const String survey = '${iconDir}survey.svg';
 const String enableSmartLogin = '${iconDir}enable_smart_login.svg';
+const String pdf = '${iconDir}pdf.svg';
+
+
 
 const String logout = '${iconDir}logout.svg';
 const String language = '${iconDir}language.svg';

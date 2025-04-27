@@ -13,6 +13,7 @@ import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_r
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/family_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/add_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/data_with_edit_card.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
@@ -54,7 +55,9 @@ class _FamilyScreenState extends State<FamilyScreen> {
             children: [
               AddButtonWidget(
                   onPressed: () {
-                    CustomMainRouter.push(AddFamilyRoute(
+                    
+                    CustomMainRouter.push(
+                      AddFamilyRoute(
                       id: familyEntity!.map((value) => value.id).join(','),
                     ));
                   },
@@ -64,14 +67,37 @@ class _FamilyScreenState extends State<FamilyScreen> {
                 listener: (context, state) {
                   if (state is FamilyErrorState) {
                     ViewsToolbox.dismissLoading();
-                    ViewsToolbox.showErrorAwesomeSnackBar(
-                        context, state.message!);
+              
+                  }
+                  else if (state is FamilyEmptyState) {
+                    ViewsToolbox.dismissLoading();
                   }
                 },
                 builder: (context, state) {
                   if (state is FamilyLoadingState) {
                     ViewsToolbox.showLoading();
-                  } else if (state is FamilyReadyState) {
+                  }    else if (state is FamilyErrorState) {
+                           return Center(
+                             child: AppText(
+                                text:context.tr(state.message?? "someThingWentWrong") ,
+                                style: AppTextStyle.regular_14,
+                               
+                             ),
+                           );
+                          
+                        }
+                        else if(state is FamilyEmptyState){
+                          return Center(
+                             child: AppText(
+                                text:context.tr("noDataFound") ,
+                                style: AppTextStyle.regular_14,
+                               
+                             ),
+                           );
+                        }
+                  
+                  
+                  else if (state is FamilyReadyState) {
                     familyEntity = state.response.data ?? [];
                     ViewsToolbox.dismissLoading();
                     return ListView.separated(

@@ -3,8 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/core/network/base_handling.dart';
 import 'package:kf_ess_mobile_app/error/failure.dart';
 import 'package:kf_ess_mobile_app/features/create_request/data/models/request/sick_leave_request_model.dart';
-import 'package:kf_ess_mobile_app/features/create_request/domain/entities/sick_leave_entity.dart';
-import 'package:kf_ess_mobile_app/features/create_request/domain/use_cases/create_sick_leave_usecase.dart';
+ import 'package:kf_ess_mobile_app/features/create_request/domain/use_cases/create_sick_leave_usecase.dart';
 import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
 
 part 'sick_leave_request_state.dart';

@@ -35,13 +35,13 @@ class _DirectorNameDropdownState extends State<DirectorNameDropdown> {
       padding: EdgeInsets.all(4),
       child: BlocConsumer<DirectorMissionCubit, DirectorMissionState>(
         listener: (context, state) {
-         if (state is DirectorMissionErrorState) {
+         if (state is DirectorMissionListErrorState) {
             ViewsToolbox.dismissLoading();
-            ViewsToolbox.showMessageBottomsheet(
-              context: context,
-              status: ConfirmationPopupStatus.failure,
-              message: tr("general-error"),
-            );
+            // ViewsToolbox.showMessageBottomsheet(
+            //   context: context,
+            //   status: ConfirmationPopupStatus.failure,
+            //   message: tr("general-error"),
+            // );
           } else if (state is DirectorMissionLoadingState) {
             ViewsToolbox.showLoading();
           } else if (state is DirectorsListReadyState) {

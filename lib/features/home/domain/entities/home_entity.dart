@@ -11,7 +11,7 @@ class HomeEntity {
   final DateTime? requestStartDate;
   final DateTime? requestEndDate;
   final DateTime? requestExtendDate;
-  final String? leaveBalance;
+  final String? annualLeaveBalance;
   final String? shortSickDays;
   final String? leavDaysTaken;
   final String? leaveRequestsCount;
@@ -33,7 +33,7 @@ class HomeEntity {
     this.requestStartDate,
     this.requestEndDate,
     this.requestExtendDate,
-    this.leaveBalance,
+    this.annualLeaveBalance,
     this.shortSickDays,
     this.leavDaysTaken,
     this.leaveRequestsCount,

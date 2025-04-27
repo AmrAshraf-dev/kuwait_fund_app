@@ -8,12 +8,14 @@ class OperationsLoanItem extends StatelessWidget {
   String? countryName;
   List<String> sectorNames;
   List<String> amounts;
+  List<String> numbers;
 
   OperationsLoanItem({
     super.key,
     this.countryName,
     required this.sectorNames,
     required this.amounts,
+    required this.numbers,
   });
 
   @override
@@ -25,14 +27,23 @@ class OperationsLoanItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppText(
-                  text: context.tr(countryName!),
-                  style: AppTextStyle.semiBold_18,
+                SizedBox(
+                                              width: 120.w,
+
+                  child: AppText(
+                    text: context.tr(countryName!),
+                    style: AppTextStyle.semiBold_18,
+                  ),
                 ),
                 AppText(
-                  text: context.tr(amounts.first),
+                  text: context.tr("count"),
                   style: AppTextStyle.regular_18,
                 ),
+                  AppText(
+                  text: context.tr("kd(million)"),
+                  style: AppTextStyle.regular_18,
+                ),
+                
               ],
             ),
             Divider(
@@ -47,17 +58,29 @@ class OperationsLoanItem extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppText(
-                            text: context.tr(sectorNames[index]),
-                            style: AppTextStyle.semiBold_16,
+                          SizedBox(
+                            width: 120.w,
+                            child: AppText(
+                              text: context.tr(sectorNames[index]),
+                              style: AppTextStyle.semiBold_16,
+                              textColor: Colors.black,
+                            ),
                           ),
-                          AppText(
-                            text: context.tr(amounts[index]),
-                            style: AppTextStyle.regular_16,
+                          SizedBox(
+                            width: 100.w,
+                            child: AppText(
+                              text: context.tr(numbers[index]),
+                              style: AppTextStyle.regular_16,
+                              textAlign: TextAlign.center, // Center-align the text
+                            ),
                           ),
-                          AppText(
-                            text: '39,587 KD',
-                            style: AppTextStyle.regular_16,
+                          SizedBox(
+                                                        width: 100.w,
+
+                            child: AppText(
+                              text: amounts[index],
+                              style: AppTextStyle.regular_16,
+                            ),
                           ),
                         ],
                       ),

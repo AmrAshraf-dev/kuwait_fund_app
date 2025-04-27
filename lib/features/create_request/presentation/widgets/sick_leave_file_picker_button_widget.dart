@@ -22,13 +22,13 @@ class  FilePickerButton extends StatelessWidget {
       backgroundColor: Palette.transparntColor,
       onPressed: () {
         ViewsToolbox.showBottomSheet(
-          height: 400.h,
+          height: 330.h,
           context: context,
           widget: GenericFilePicker(
             filePickerCubit: filePickerCubit,
             keyName: 'file',
             buttonTitle: context.tr("attach_medical_report_file"),
-            isFromCamera: true,
+            isFromCamera: false,
             isFromGallery: true,
             isFromFile: true,
           ),

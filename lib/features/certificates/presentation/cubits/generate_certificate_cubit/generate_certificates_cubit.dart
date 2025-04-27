@@ -28,7 +28,7 @@ class GenerateCertificatesCubit extends Cubit<GenerateCertificatesState> {
     }, (BaseEntity<String> response) {
       if(response.data == null) {
         emit(GenerateCertificatesErrorState(
-          message: "No data found",
+          message: "noDataFound",
         ));
         return;
       }

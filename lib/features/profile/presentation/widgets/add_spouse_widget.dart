@@ -91,7 +91,7 @@ class _AddSpouseWidgetState extends State<AddSpouseWidget> {
                   if (state is SpouseErrorState) {
                     ViewsToolbox.dismissLoading();
                     ViewsToolbox.showErrorAwesomeSnackBar(
-                        context, state.message!);
+                        context, context.tr(state.message!));
                   }
                 }, builder: (context, state) {
                   if (state is SpouseLoadingState) {

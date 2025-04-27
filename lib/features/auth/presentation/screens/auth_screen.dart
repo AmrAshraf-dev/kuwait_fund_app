@@ -19,6 +19,7 @@ import 'package:kf_ess_mobile_app/features/auth/data/models/request/auth_request
 import 'package:kf_ess_mobile_app/features/auth/data/models/response/user_info_model.dart';
 import 'package:kf_ess_mobile_app/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/auth_screens_app_bar_widget.dart';
@@ -185,7 +186,7 @@ bool _isPasswordObscured = true;
                               } else if (state is AuthErrorState) {
                                 ViewsToolbox.dismissLoading();
                                 ViewsToolbox.showErrorAwesomeSnackBar(
-                                    context, state.message!);
+                                    context, context.tr(state.message!));
                               } else if (state is AuthReadyState) {
                                 UserInfoModel userInfo =
                                     state.response.data!.userInfo;
@@ -260,7 +261,7 @@ bool _isPasswordObscured = true;
                                     child: 
                                     Row(
                                       children: [
-                                        if(isBiometricAvailable)
+                                        if(isBiometricAvailable && LocalData.getSmartLogin())
  Flexible(
   flex: 1,
    child: CustomElevatedButton(

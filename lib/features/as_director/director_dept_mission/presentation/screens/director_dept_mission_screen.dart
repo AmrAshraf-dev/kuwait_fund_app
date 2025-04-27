@@ -77,13 +77,17 @@ class _DirectorDeptMissionScreenState extends State<DirectorDeptMissionScreen> {
               selectedDept: selectedDept,
                onFocusedDayChanged: (day) => setState((){            
                   _focusedDay = day;
-          //  directorMissionCubit.getManagementCalenderData(
-          //               ManagementCalenderDataRequestModel(
-          //                 empID:int.parse(selectedDirector?.employeeId ?? "0") ,
-          //                 month: int.parse(_focusedDay.month.toString().padLeft(2, '0')),
-          //                 year: int.parse(_focusedDay.year.toString()),
-          //               ),
-          //             );
+           directorDeptMissionCubit.getDeptCalenderData(
+
+              DeptCalenderDataRequestModel(
+                            deptCode: selectedDept?.departmentCode?? "0",
+                            month: int.parse(_focusedDay.month.toString().padLeft(2, '0')),
+                            year: int.parse(_focusedDay.year.toString()),
+                          ),
+
+
+                      
+                      );
  
                } ),
             ),

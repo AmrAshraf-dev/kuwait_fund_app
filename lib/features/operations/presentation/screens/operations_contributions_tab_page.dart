@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,8 +25,10 @@ class OperationsContributionsTabPage extends StatelessWidget {
             }
             if (state is ContributionsErrorState) {
               ViewsToolbox.dismissLoading();
-              return AppText(
-                text: state.message,
+              return Center(
+                child: AppText(
+                  text: context.tr(state.message??"someThingWentWrong"),
+                ),
               );
             } else if (state is ContributionsReadyState) {
               ViewsToolbox.dismissLoading();

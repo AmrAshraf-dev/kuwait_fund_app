@@ -39,6 +39,7 @@ class EmergencyLeaveRequestCubit extends Cubit<EmergencyLeaveScreenState> {
   }
 
   getEmergencyLeaveScreen() async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(EmergencyLeaveScreenLoadingState());
 
     final CustomResponseType< BaseEntity< EmergencyLeaveEntity>>

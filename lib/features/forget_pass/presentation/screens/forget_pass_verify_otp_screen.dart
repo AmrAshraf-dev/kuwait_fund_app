@@ -120,7 +120,7 @@ class _ForgetPassVerifyOtpScreenState extends State<ForgetPassVerifyOtpScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     TextFieldWidget(
-                                      maxLength: 6,
+                                      maxLength: 5,
                                       labelAboveField: context.tr("enter_otp"),
                                       keyName: "otp",
                                       textInputAction: TextInputAction.done,
@@ -153,7 +153,7 @@ class _ForgetPassVerifyOtpScreenState extends State<ForgetPassVerifyOtpScreen> {
                                                 ViewsToolbox
                                                     .showErrorAwesomeSnackBar(
                                                         context,
-                                                        state.message!);
+                                                        context.tr(state.message!));
                                               } else if (state
                                                   is ForgetPassReadyState) {
                                                 ViewsToolbox.dismissLoading();
@@ -206,7 +206,7 @@ class _ForgetPassVerifyOtpScreenState extends State<ForgetPassVerifyOtpScreen> {
                                             ViewsToolbox.dismissLoading();
                                             ViewsToolbox
                                                 .showErrorAwesomeSnackBar(
-                                                    context, state.message!);
+                                                    context, context.tr(state.message!));
                                           } else if (state
                                               is ForgetPassVerifyOTPReadyState) {
                                             ViewsToolbox.dismissLoading();

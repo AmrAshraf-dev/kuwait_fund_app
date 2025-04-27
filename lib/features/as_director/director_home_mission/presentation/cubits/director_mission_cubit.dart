@@ -36,7 +36,7 @@ final GetDirectorMissionsDetailsUseCase getDirectorMissionsDetailsUseCase;
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
-      emit(DirectorMissionErrorState(
+      emit(DirectorMissionListErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<List<DirectorEntity>> response) {

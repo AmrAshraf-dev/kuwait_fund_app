@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/features/forget_pass/domain/use_cases/change_password_usecase.dart';
 import 'package:kf_ess_mobile_app/features/forget_pass/domain/use_cases/verify_otp_usecase.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
@@ -78,6 +79,7 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
       ));
     }, (BaseEntity<bool> response) {
       if (response.data??false) {
+        LocalData.clearAllData();
         emit(ChangePasswordReadyState(BaseEntity(data: true)));
       } else {
         emit(ChangePassErrorState(message: response.message));

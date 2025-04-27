@@ -49,6 +49,7 @@ class MoreItemWidget extends StatelessWidget {
                   10.horizontalSpace,
                   AppText(
                     text: text,
+                    maxLines: 2,
                     //    textLimit: 23,
                     substringForDots: 1,
                     style: AppTextStyle.medium_14,
@@ -58,6 +59,7 @@ class MoreItemWidget extends StatelessWidget {
                   const Spacer(),
                   if (leadingText != null)
                     AppText(
+                      maxLines: 2,
                       text: leadingText!,
                       style: AppTextStyle.medium_14,
                       textAlign: TextAlign.center,

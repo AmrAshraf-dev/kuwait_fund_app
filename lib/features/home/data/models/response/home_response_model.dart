@@ -20,7 +20,7 @@ class HomeModel extends HomeEntity {
     required super.availableExceseBalance,
     required super.emergencyBalance,
     required super.emergencyTransffered,
-    required super.leaveBalance,
+    required super.annualLeaveBalance,
     required super.leaveRequestsCount,
     required super.leaveStatus,
     required super.leaveStatusCode,

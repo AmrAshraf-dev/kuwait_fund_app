@@ -5,8 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
+import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
+import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
+ 
 import '../../features/shared/data/local_data.dart';
 import 'exception/exception_handle.dart';
 import 'interceptors.dart';
@@ -21,15 +22,15 @@ enum Method {
 @injectable
 class NetworkHelper {
   static const int _maxLineWidth = 90;
-  static final _prettyDioLogger = PrettyDioLogger(
-    requestHeader: true,
-    requestBody: true,
-    // responseBody: BuildConfig.instance.environment == Environment.DEVELOPMENT,
-    responseHeader: false,
-    error: true,
-    maxWidth: _maxLineWidth,
+  static final _prettyDioLogger = TalkerDioLogger(
+     settings: const TalkerDioLoggerSettings(
+          printRequestHeaders: true,
+          printResponseMessage: true,
+          printResponseTime: true,
+          
+        ),
+    
   );
-
   NetworkHelper(this.dio) {
       dio.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
@@ -40,7 +41,7 @@ class NetworkHelper {
     );
     dio.interceptors.clear();
     dio.interceptors.addAll(<Interceptor>[
-      AuthInterceptor(),
+      AuthInterceptor(dio),
       if (kDebugMode) _prettyDioLogger,
     ]);
 
@@ -99,10 +100,14 @@ class NetworkHelper {
         ),
       );
 
-      if (response.statusCode == 200 && response.data["code"]!=404) {
+      if (response.statusCode == 200 && response.data["code"]!=404 && response.data["code"]!=500 && response.data["code"]!=5006
+          &&(response.statusCode == 200 &&response.data["data"]!=null)) {
         return (response: response.data, success: true);
       } else {
-        return (response: response.data['message'], success: false);
+        return (response:response.data["code"]==500 ?"someThingWentWrong":
+          response.data["code"]==200? "noDataFound":
+        
+         response.data['message'] ?? "someThingWentWrong", success: false);
       }
     } on DioException catch (e) {
       NetError netError = ExceptionHandle.handleException(e);
@@ -149,12 +154,20 @@ class NetworkHelper {
         ),
       );
 
-      if (response.statusCode == 200 ||
+      if ((response.statusCode == 200 ||
           response.statusCode == 201 ||
-          response.statusCode == 202) {
+          response.statusCode == 202)
+
+          && (response.data["code"]!=404 && response.data["code"]!=500 && response.data["code"]!=5006)
+          &&(response.statusCode == 200 &&response.data["data"]!=null)
+          ) {
         return (response: response.data, success: true);
       } else {
-        return (response: response.data['data']['message'], success: false);
+             return (response:response.data["code"]==500 ?"someThingWentWrong":
+        response.data["code"]==200? "noDataFound":
+        
+         response.data['message'] ?? "someThingWentWrong", success: false);
+      
       }
     } on DioException catch (e) {
       NetError netError = ExceptionHandle.handleException(e);

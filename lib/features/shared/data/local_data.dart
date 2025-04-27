@@ -10,10 +10,15 @@ class LocalData {
   static final SharedPreferences sharedPreferences = getIt<SharedPreferences>();
 
   static void clearAllData() {
-    sharedPreferences.clear();
+    //sharedPreferences.clear();
     // CustomMainRouter.push(const LoginRoute());
+clearUserData();
   }
 
+static void clearUserData() {
+    sharedPreferences.remove("userInfo");
+    sharedPreferences.remove("refreshToken");
+  }
   static void clearProfilePhoto() {
     sharedPreferences.setString("profilePhoto", "");
   }
@@ -34,19 +39,19 @@ class LocalData {
     return sharedPreferences.getString("LangCode");
   }
 
-  static String? getProfilePhoto() {
-    return sharedPreferences.getString("profilePhoto");
-  }
+  // static String? getProfilePhoto() {
+  //   return sharedPreferences.getString("profilePhoto");
+  // }
 
-  static String? getRefreshToken() {
-    return sharedPreferences.getString("refreshToken");
-  }
+  // static String? getRefreshToken() {
+  //   return sharedPreferences.getString("refreshToken");
+  // }
 
   // set and get user email
-  static String? getUserEmail() {
-    final String? userEmail = sharedPreferences.getString("userEmail");
-    return userEmail;
-  }
+  // static String? getUserEmail() {
+  //   final String? userEmail = sharedPreferences.getString("userEmail");
+  //   return userEmail;
+  // }
 
   static Future<void>? setAppAndroidVersion(String androidVersion) async {
     await sharedPreferences.setString("androidVersion", androidVersion);
@@ -64,17 +69,17 @@ class LocalData {
     await sharedPreferences.setString("LangCode", langCode);
   }
 
-  static void setProfilePhoto(Uint8List bytes) {
-    sharedPreferences.setString("profilePhoto", base64Encode(bytes));
-  }
+  // static void setProfilePhoto(Uint8List bytes) {
+  //   sharedPreferences.setString("profilePhoto", base64Encode(bytes));
+  // }
 
-  static void setRefreshToken(String refreshToken) {
-    sharedPreferences.setString("refreshToken", refreshToken);
-  }
+  // static void setRefreshToken(String refreshToken) {
+  //   sharedPreferences.setString("refreshToken", refreshToken);
+  // }
 
-  static Future<void>? setUserEmail(String userEmail) async {
-    await sharedPreferences.setString("userEmail", userEmail);
-  }
+  // static Future<void>? setUserEmail(String userEmail) async {
+  //   await sharedPreferences.setString("userEmail", userEmail);
+  // }
 
   bool? getBool(String key) {
     return sharedPreferences.getBool(key);
@@ -106,5 +111,13 @@ class LocalData {
   static clearAuthTokens() {
     sharedPreferences.remove("userInfo");
     sharedPreferences.remove("refreshToken");
+  }
+
+  static void setSmartLogin(bool bool) {
+    sharedPreferences.setBool("smartLoginToggle", bool);
+  }
+
+  static bool getSmartLogin() {
+    return sharedPreferences.getBool("smartLoginToggle") ?? true;
   }
 }

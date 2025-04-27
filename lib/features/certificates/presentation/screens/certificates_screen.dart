@@ -32,6 +32,8 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
   final CertificatesCubit certificatesCubit = getIt<CertificatesCubit>();
   final GenerateCertificatesCubit generateCertificatesCubit =
       getIt<GenerateCertificatesCubit>();
+
+      List<CertificatesEntity> certificatesList = [];
   @override
   void initState() {
     super.initState();
@@ -90,11 +92,24 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                                               else if (state is CertificatesLoadingState) {
                                       ViewsToolbox.showLoading();
                                     } 
+
+                                    else if (state
+                                                  is CertificatesReadyState) {
+                                                ViewsToolbox.dismissLoading();
+                                                if (state.response.data == null) {
+                                                  ViewsToolbox.showErrorAwesomeSnackBar(
+                                                      context,
+                                                      context.tr(
+                                                          "noDataFound"));
+                                                } else {
+                                                  certificatesList =
+                                                      state.response.data!;
+                                                }
+                                              }
                                             },
                                       builder: (context, state) {
-                                   if (state
-                                        is CertificatesReadyState) {
-                                      ViewsToolbox.dismissLoading();
+
+                                 
 
                                       return CustomDropDownField<
                                           CertificatesEntity>(
@@ -109,9 +124,7 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                                           CertificatesEntity?
                                               newSelectedService,
                                         ) {},
-                                        items: state.response.data == null
-                                            ? []
-                                            : state.response.data!
+                                        items:   certificatesList
                                                 .map((CertificatesEntity item) {
                                                 return DropdownMenuItem<
                                                     CertificatesEntity>(
@@ -123,10 +136,7 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                                                   ),
                                                 );
                                               }).toList(),
-                                        itemsSearchable: state.response.data ==
-                                                null
-                                            ? []
-                                            : state.response.data!
+                                        itemsSearchable:certificatesList
                                                 .map(
                                                   (CertificatesEntity item) =>
                                                       <String,
@@ -142,8 +152,7 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                                           context,
                                         ),
                                       );
-                                    }
-                                    return Container();
+                                    
                                   }),
                                   20.verticalSpace,
                                   AppText(
@@ -164,12 +173,12 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                       } else if (state is GenerateCertificatesErrorState) {
                         ViewsToolbox.dismissLoading();
                         ViewsToolbox.showErrorAwesomeSnackBar(
-                            context, context.tr("can't_generate_certificate"));
+                            context, context.tr(state.message!));
                       } else if (state is GenerateCertificatesReadyState) {
                         ViewsToolbox.dismissLoading();
                         if (state.response.data == null) {
-                          ViewsToolbox.showErrorAwesomeSnackBar(context,
-                              context.tr("can't_generate_certificate"));
+                           ViewsToolbox.showErrorAwesomeSnackBar(
+                            context, context.tr("noDataFound"));
                         }}
 
                         },

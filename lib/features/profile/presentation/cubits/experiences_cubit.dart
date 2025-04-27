@@ -13,9 +13,7 @@ part 'experiences_state.dart';
 class ExperiencesCubit extends Cubit<ExperiencesState> {
   final GetExperiencesUseCase getExperiencesUseCase;
   ExperiencesCubit({required this.getExperiencesUseCase})
-      : super(ExperiencesInitialState()) {
-    getExperiences();
-  }
+      : super(ExperiencesInitialState());
 
   Future<void> getExperiences() async {
     await Future.delayed(const Duration(milliseconds: 100));

@@ -1,7 +1,7 @@
 class ApiConstants {
   //static String baseUrl = "https://62.215.251.137/essapi/api/";
-  static String baseUrl = "https://mpwpayment.diyarme.com/ESSAPI/api/";
-  //static String baseUrl = "http://192.168.13.75/essapi/api/";
+//static String baseUrl = "https://mpwpayment.diyarme.com/essapi/api/";
+  static String baseUrl = "https://kf-exapp-test.kuwait-fund.org/essapi/api/";
   static String loan = "General/GetLoans";
 
   static String profile = "General/GetProfile";
@@ -109,17 +109,20 @@ class ApiConstants {
   static String readDepartments = 'Missions/ReadDepartments';
 
   //profile
-  static var getProfileInfo = 'Profile/GetEmployeeProfile';
-  static var getAddressDetails = 'Profile/GetEmployeeAddressDetails';
-  static var getFamilyData = 'Profile/GetEmployeeFamilyList';
-  static var getQualificationsData = 'Profile/GetEmployeeQualificationsList';
-  static var getExperiencesData = 'Profile/GetPreviousEmploymentList';
-  static var getSpouseData = 'Profile/GetSpouseInfo';
-  static var getChildData = 'Profile/GetChildInfo';
-  static var editProfile = 'Profile/UpdateEmployeeProfile';
-  static var editSpouse = 'Profile/SubmitSpouseModificationRequest';
+  static String getProfileInfo = 'Profile/GetEmployeeProfile';
+  static String getAddressDetails = 'Profile/GetEmployeeAddressDetails';
+  static String getFamilyData = 'Profile/GetEmployeeFamilyList';
+  static String getQualificationsData = 'Profile/GetEmployeeQualificationsList';
+  static String getExperiencesData = 'Profile/GetPreviousEmploymentList';
+  static String getSpouseData = 'Profile/GetSpouseInfo';
+  static String getChildData = 'Profile/GetChildInfo';
+  static String editProfile = 'Profile/UpdateEmployeeProfile';
+  static String editSpouse = 'Profile/SubmitSpouseModificationRequest';
   static String getDeptCalenderData = 'Missions/GetOperationEmpsCalenderData';
 
   static String getTotalMissionByDepartmentDashboard =
       'Missions/GetTotalMissionByDepartmentDashboard';
+
+  static String getDirectorDeptMissionsDetails =
+      'Missions/GetOperationEmpsAttendaceDate';
 }

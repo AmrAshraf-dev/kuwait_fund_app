@@ -6,11 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
+import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/experiences_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/add_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/data_with_edit_card.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
@@ -57,13 +59,37 @@ class _WorkScreenState extends State<WorkScreen> {
                   listener: (context, state) {
                 if (state is ExperiencesErrorState) {
                   ViewsToolbox.dismissLoading();
-                  ViewsToolbox.showErrorAwesomeSnackBar(
-                      context, state.message!);
+                  
                 }
               }, builder: (context, state) {
                 if (state is ExperiencesLoadingState) {
                   ViewsToolbox.showLoading();
-                } else if (state is ExperiencesReadyState) {
+                }
+                  else if ( state is ExperiencesErrorState){
+
+                  ViewsToolbox.dismissLoading();
+                  return Center(
+                    child: AppText(
+                      text: context.tr(state.message!),
+                      style: AppTextStyle.medium_14,
+                     ),
+                  );
+                }
+                
+                
+                 else if ( state is ExperiencesEmptyState){
+
+                  ViewsToolbox.dismissLoading();
+                  return Center(
+                    child: AppText(
+                      text: context.tr("noDataFound"),
+                      style: AppTextStyle.medium_14,
+                     ),
+                  );
+                }
+                
+                
+                 else if (state is ExperiencesReadyState) {
                   experiencesEntity = state.response.data ?? [];
                   ViewsToolbox.dismissLoading();
                   return ListView.separated(

@@ -5,6 +5,10 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      <application
         android:label="kf_ess_mobile_app"
+        android:allowBackup="false"
+         android:fullBackupContent="false"
+         android:dataExtractionRules ="@xml/data_extraction_rules"
+        android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
@@ -34,6 +38,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+             <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB0BzkyUG5WUm4eCXACEgmTQsLfnK6SBO8" /> 
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

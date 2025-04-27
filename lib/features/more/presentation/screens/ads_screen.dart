@@ -36,12 +36,12 @@ class _AdsScreenState extends State<AdsScreen> {
       imageUrl: slide2Image,
       date: '22 - Aug - 2024',
     ),
-    AdsEntity(
-      id: 3,
-      description: "ads_details",
-      imageUrl: slide3Image,
-      date: '22 - Aug - 2024',
-    ),
+    // AdsEntity(
+    //   id: 3,
+    //   description: "ads_details",
+    //   imageUrl: slide2Image,
+    //   date: '22 - Aug - 2024',
+    // ),
   ];
 
   @override
@@ -89,7 +89,7 @@ class AdsCard extends StatelessWidget {
           6.verticalSpace,
           InkWell(
             onTap: () {
-              CustomMainRouter.push(AdsDetailsRoute(adItem: item));
+          //    CustomMainRouter.push(AdsDetailsRoute(adItem: item));
             },
             child: Stack(
               children: [
@@ -97,7 +97,7 @@ class AdsCard extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(22.0.r)),
                     child: Image.asset(
                       item.imageUrl,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                     )),
                 Align(
                   alignment: LanguageHelper.isAr(context)
@@ -115,6 +115,7 @@ class AdsCard extends StatelessWidget {
                               SizedBox(
                                 width: 140.w,
                                 child: AppText(
+                                  maxLines: 2,
                                   text: context.tr(item.title!),
                                   style: AppTextStyle.bold_20,
                                   textColor: item.id == 1
@@ -135,24 +136,24 @@ class AdsCard extends StatelessWidget {
                               ),
                           ],
                         ),
-                        if (item.id != 3)
-                          Container(
-                            width: 30.w,
-                            height: 30.w,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(10.r),
-                              color: item.id == 1
-                                  ? Palette.yellow_FBD823
-                                  : Palette.blue_002A69,
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: Palette.white,
-                              ),
-                            ),
-                          ),
+                        // if (item.id != 3)
+                        //   Container(
+                        //     width: 30.w,
+                        //     height: 30.w,
+                        //     decoration: BoxDecoration(
+                        //       shape: BoxShape.rectangle,
+                        //       borderRadius: BorderRadius.circular(10.r),
+                        //       color: item.id == 1
+                        //           ? Palette.yellow_FBD823
+                        //           : Palette.blue_002A69,
+                        //     ),
+                            // child: Center(
+                            //   child: Icon(
+                            //     Icons.arrow_forward,
+                            //     color: Palette.white,
+                            //   ),
+                            // ),
+                        //  ),
                       ],
                     ),
                   ),

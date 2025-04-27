@@ -77,14 +77,14 @@ class _NormalNotificationWidgetState extends State<NormalNotificationWidget> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 22.h),
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Palette.gery_DADADA,
-                          size: 20.sp,
-                        ),
-                      )
+                      // Padding(
+                      //   padding: EdgeInsets.only(bottom: 22.h),
+                      //   child: Icon(
+                      //     Icons.arrow_forward_ios,
+                      //     color: Palette.gery_DADADA,
+                      //     size: 20.sp,
+                      //   ),
+                      // )
                     ],
                   ),
                 ],

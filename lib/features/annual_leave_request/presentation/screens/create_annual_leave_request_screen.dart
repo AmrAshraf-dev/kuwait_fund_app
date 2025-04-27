@@ -15,6 +15,7 @@ import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cub
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_request_cubit.dart';
  import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
  import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/custom_date_picker_range.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
@@ -66,11 +67,26 @@ class _CreateAnnualLeaveRequestScreenState extends State<CreateAnnualLeaveReques
             listener: (context, state) {
               if (state is LeaveBalanceErrorState) {
                 ViewsToolbox.dismissLoading();
-                ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
-              }
+               }
             },
             builder: (context, leaveBalanceState) {
-              if (leaveBalanceState is LeaveBalanceReadyState) {
+
+if(leaveBalanceState is LeaveBalanceErrorState ){
+
+  return Center(
+    child: Center(
+      child: AppText(
+        text: context.tr(leaveBalanceState.message!),
+        style: AppTextStyle.medium_18,
+      ),
+    ),
+  );
+}
+
+
+
+
+            else  if (leaveBalanceState is LeaveBalanceReadyState) {
                 ViewsToolbox.dismissLoading();
                 return Padding(
                     padding:
@@ -96,37 +112,66 @@ class _CreateAnnualLeaveRequestScreenState extends State<CreateAnnualLeaveReques
                             child: FormBuilder(
                               key: _formKey,
                               child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 20.h),
+                                padding: EdgeInsets.symmetric(vertical: 20.h, horizontal:  20.w),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
 
-                               
-
-                                    CustomDatePickerRange(
-                                      isMustSelectToday: true,
-                                    initialDate: DateTime.now(),
-                                      fromDisableField: true,
-                                      labelTitle: context.tr("annual_leave_days"),
-                                      consumedDays: 0,
-                                      totalDays: int.parse(
-                                          leaveBalanceState.response.data?.availableBalance ?? "0"),
-                                      keyNameFrom: "from",
-                                      keyNameTo: "to",
-                                      customFormKey: _formKey,
-                                      fromLabelAboveField: context.tr("from_date"),
-                                      toLabelAboveField: context.tr("to_date"),
-                                      onDoneCallback: (bool isSelectedRangeValid,
-                                          DateTimeRange? pickedRange) {
-                                        
-                                        CustomMainRouter.pop();
-                                        reminingLeaveBalanceCubit.updateFormState(
-                                            showDetails: isSelectedRangeValid);
+                                     CustomSingleRangeDatePicker(
+                          consumedDays: 4,
+                          totalDays: 4,
+                          disableField: true,
+                          initialDate: DateTime.now(),
+                          keyNameFrom: "from",
+                          customFormKey: _formKey,
+                          fromLabelAboveField: context.tr("from_date"),
+                        ),
+20.verticalSpace,
+                              CustomSingleRangeDatePicker(
+                          consumedDays: 4,
+                          totalDays: 4,
+                          disableField: false,
+                          firstDate: DateTime.now(),
+                      //    initialDate: DateTime.now(),
+                          lastDate: DateTime.now().add(Duration(days: leaveBalanceState.response.data?.availableBalance != null
+                              ? int.parse(leaveBalanceState.response.data!.availableBalance!)
+                              : 0)), 
+                          keyNameFrom: "to",
+                          customFormKey: _formKey,
+                          fromLabelAboveField: context.tr("to_date"),
+                   onChanged: (p0) {
+                         reminingLeaveBalanceCubit.updateFormState(
+                                            showDetails: true);
                                                 setState(() {
                                               
                                             });
-                                      },
-                                    ),
+                   },
+                        ),
+
+                                    // CustomDatePickerRange(
+                                    //   isMustSelectToday: true,
+                                    // initialDate: DateTime.now(),
+                                    //   fromDisableField: true,
+                                    //   labelTitle: context.tr("annual_leave_days"),
+                                    //   consumedDays: 0,
+                                    //   totalDays: int.parse(
+                                    //       leaveBalanceState.response.data?.availableBalance ?? "0"),
+                                    //   keyNameFrom: "from",
+                                    //   keyNameTo: "to",
+                                    //   customFormKey: _formKey,
+                                    //   fromLabelAboveField: context.tr("from_date"),
+                                    //   toLabelAboveField: context.tr("to_date"),
+                                    //   onDoneCallback: (bool isSelectedRangeValid,
+                                    //       DateTimeRange? pickedRange) {
+                                        
+                                    //     CustomMainRouter.pop();
+                                    //     reminingLeaveBalanceCubit.updateFormState(
+                                    //         showDetails: isSelectedRangeValid);
+                                    //             setState(() {
+                                              
+                                    //         });
+                                    //   },
+                                    // ),
                                     20.verticalSpace,
 if((leaveBalanceState.response.data?.displayExitDate??false))
       Padding(
@@ -228,7 +273,7 @@ if((leaveBalanceState.response.data?.displayExitDate??false))
                                 ViewsToolbox.dismissLoading();
 
                                 ViewsToolbox.showErrorAwesomeSnackBar(
-                                    context, state.message!);
+                                    context, context.tr(state.message!));
                               }
                             },
                             builder: (context, state) {
@@ -239,12 +284,24 @@ if((leaveBalanceState.response.data?.displayExitDate??false))
                                   ThankYouRoute(
                                     onContinueCallback: () {
 
-                                     if(LocalData.getUser()?.userInfo.isSupervisor == true){
+
+if( (LocalData.getUser()?.userInfo.isDirector == true) 
+){
+                                         CustomMainRouter.push(
+                                              RequestsRoute(
+                                                isBackButtonEnabled: true,
+                                              ),);
+
+}
+
+
+
+                            else         if(LocalData.getUser()?.userInfo.isSupervisor == true){
 
                                        CustomMainRouter.navigate(
   SupervisorNavigationMainRoute(
                         children: <PageRouteInfo>[
-                          RequestsRoute(),
+                          RequestsRoute(isBackButtonEnabled:false),
                         ],
                       ),
                     );
@@ -256,7 +313,7 @@ if((leaveBalanceState.response.data?.displayExitDate??false))
  CustomMainRouter.navigate(
   NavigationMainRoute(
                         children: <PageRouteInfo>[
-                          RequestsRoute(),
+                          RequestsRoute(isBackButtonEnabled:false),
                         ],
                       ),
                     ); }

@@ -15,27 +15,16 @@ import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/firebase/firebase_service.dart';
 import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+ 
 class AuthInterceptor extends Interceptor {
-  final Dio _dio = getIt<Dio>();
     final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
+Dio dio;
+  AuthInterceptor(this. dio);
 
-  static const int _maxLineWidth = 90;
-  static final _prettyDioLogger = PrettyDioLogger(
-    requestHeader: true,
-    requestBody: true,
-    responseHeader: false,
-    error: true,
-    maxWidth: _maxLineWidth,
-  );
 
-  AuthInterceptor() {
-    _dio.interceptors.addAll([
-      this,
-      if (kDebugMode) _prettyDioLogger,
-    ]);
-  }
+
+
 
   @override
   Future<void> onError(
@@ -57,7 +46,7 @@ class AuthInterceptor extends Interceptor {
 
       // Handle 429 (Too Many Requests)
       if (err.response?.statusCode == 429) {
-        handler.resolve(await _retryRequest(err));
+        handler.resolve(await _retryRequest(err, dio));
         return;
       }
 
@@ -68,7 +57,7 @@ class AuthInterceptor extends Interceptor {
        // bool refreshTokenResult = await _handleRefreshToken(err);
 
         if (isTokenRefreshed) {
-          handler.resolve(await _retryRequest(err));
+          handler.resolve(await _retryRequest(err, dio));
           return;
         } else {
           ViewsToolbox.dismissLoading();
@@ -103,7 +92,7 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers.addAll({
+     options.headers.addAll({
       "Accept-Language": LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US",
       "Location": Platform.isAndroid ? "AndroidApp" : "IOSApp",
       "DeviceIdentifier": FirebaseMessagingService().token ?? "",
@@ -207,8 +196,8 @@ else {
     // return false;
   }
 
-  Future<Response> _retryRequest(DioException err) async {
+  Future<Response> _retryRequest(DioException err , Dio dio) async {
     final newRequestOptions = err.requestOptions;
-    return await _dio.fetch(newRequestOptions);
+    return await  dio.fetch(newRequestOptions);
   }
 }

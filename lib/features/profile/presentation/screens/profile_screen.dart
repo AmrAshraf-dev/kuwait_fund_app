@@ -50,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 BlocProvider(create: (context) => _profileCubit..getProfile()),
               ],
               child: SizedBox(
-                height: 281.h,
+               
                 width: 364.w,
                 child: Card(
                   color: Palette.white,
@@ -66,13 +66,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       listener: (context, state) {
                         if (state is ProfileErrorState) {
                           ViewsToolbox.dismissLoading();
-                          ViewsToolbox.showErrorAwesomeSnackBar(
-                              context, state.message!);
+                       
                         }
                       },
                       builder: (context, state) {
                         if (state is ProfileLoadingState) {
                           ViewsToolbox.showLoading();
+                        }
+                        
+                          else if (state is ProfileErrorState) {
+                           return Center(
+                             child: AppText(
+                                text:context.tr(state.message?? "someThingWentWrong") ,
+                                style: AppTextStyle.regular_14,
+                               
+                             ),
+                           );
+                          
                         } else if (state is ProfileReadyState) {
                           profileEntity = state.response.data;
                           ViewsToolbox.dismissLoading();

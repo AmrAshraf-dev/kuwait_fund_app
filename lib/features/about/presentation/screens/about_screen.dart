@@ -166,7 +166,7 @@ class GeneralInformationTab extends StatelessWidget {
             ViewsToolbox.showLoading();
           } else if (state is GeneralInformationErrorState) {
             ViewsToolbox.dismissLoading();
-            ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
+            ViewsToolbox.showErrorAwesomeSnackBar(context, context.tr(state.message!));
           } else if (state is GeneralInformationReadyState) {
             ViewsToolbox.dismissLoading();
 
@@ -208,7 +208,7 @@ class FundManagementTab extends StatelessWidget {
             ViewsToolbox.showLoading();
           } else if (state is KFManagmentErrorState) {
             ViewsToolbox.dismissLoading();
-            ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
+            ViewsToolbox.showErrorAwesomeSnackBar(context, context.tr(state.message!));
           } else if (state is KFManagmentReadyState) {
             ViewsToolbox.dismissLoading();
 
@@ -222,7 +222,8 @@ class FundManagementTab extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.w,
                     mainAxisSpacing: 10.h,
-                    childAspectRatio: 1),
+                   // childAspectRatio: 1.0
+                    ),
                 itemCount: state.response.data?.length ?? 0,
                 padding: EdgeInsets.symmetric(horizontal: 18.w),
                 itemBuilder: (context, index) {
@@ -258,7 +259,7 @@ class FundDirectorsTab extends StatelessWidget {
             ViewsToolbox.showLoading();
           } else if (state is KFBoardOfDirectorsErrorState) {
             ViewsToolbox.dismissLoading();
-            ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
+            ViewsToolbox.showErrorAwesomeSnackBar(context, context.tr(state.message!));
           } else if (state is KFBoardOfDirectorsReadyState) {
             ViewsToolbox.dismissLoading();
 

@@ -28,5 +28,9 @@ final class DirectorMissionDetailsReadyState extends DirectorMissionState {
   BaseEntity<List<DirectorMissionDetailsEntity>> response;
   bool showNewBottomSheet;
 }
+final class DirectorMissionListErrorState extends DirectorMissionState {
+  final String? message;
 
+  DirectorMissionListErrorState({this.message});
+}
 abstract class DirectorMissionState {}

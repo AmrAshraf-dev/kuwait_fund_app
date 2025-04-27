@@ -56,7 +56,14 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
+    return  Container(
+      color:  Colors.white,
+      child: SafeArea(
+        bottom: true,
+        child:
+    
+    
+    BlocProvider.value(
       value: widget.visitorsLogsCubit,
       child: Container(
         padding: EdgeInsets.all(16),
@@ -76,15 +83,21 @@ class VisitsBottomSheetState extends State<VisitsBottomSheet> {
             _buildSelectableDaysChips(),
             _buildHostNameDropdown(),
             10.verticalSpace,
-            VisitorsLogsDetailsListView(
+              Flexible(
+              child: SingleChildScrollView(
+                child: VisitorsLogsDetailsListView(
               visitorsLogsCubit: widget.visitorsLogsCubit,
               selectedHostName: selectedHostName,
             ),
+              )
+              ),
             16.verticalSpace,
             _buildCloseButton(context),
           ],
         ),
       ),
+    )
+      )
     );
   }
 
@@ -213,6 +226,7 @@ List<VisitorsLogsDetailsEntity> visitorsLogsDetailsList = [];
       builder: (context, state) {
      
           return ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: ((state is VisitorsLogsDetailsReadyState)?
                ( state.response.data?.length ?? 0)
                 : visitorsLogsDetailsList.length),

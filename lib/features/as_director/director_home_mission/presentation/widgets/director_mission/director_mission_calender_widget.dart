@@ -9,68 +9,65 @@ import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/dom
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/cubits/director_mission_cubit.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/widgets/director_mission/director_mission_bottomsheet.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/widgets/director_mission/director_mission_selected_day_widget.dart';
- import 'package:table_calendar/table_calendar.dart';
+import 'package:table_calendar/table_calendar.dart';
 
- 
 class DirectorMissionsCalenderWidget extends StatefulWidget {
   final DateTime focusedDay;
   final ValueChanged<DateTime> onFocusedDayChanged;
   final DirectorMissionCubit directorMissionCubit;
- final DirectorEntity? selectedDirector;
-    DirectorMissionsCalenderWidget({
+  final DirectorEntity? selectedDirector;
+  const DirectorMissionsCalenderWidget({
     required this.focusedDay,
     required this.onFocusedDayChanged,
     required this.directorMissionCubit,
-      super.key, this.selectedDirector,
-  }) ;
+    super.key,
+    this.selectedDirector,
+  });
 
   @override
-  State<DirectorMissionsCalenderWidget> createState() => _DirectorMissionsCalenderWidgetState();
+  State<DirectorMissionsCalenderWidget> createState() =>
+      _DirectorMissionsCalenderWidgetState();
 }
 
-class _DirectorMissionsCalenderWidgetState extends State<DirectorMissionsCalenderWidget> {
-   List<ManagementCalenderDataEntity> calendarResponse = [];
+class _DirectorMissionsCalenderWidgetState
+    extends State<DirectorMissionsCalenderWidget> {
+  List<ManagementCalenderDataEntity> calendarResponse = [];
 
- DateTime selectedCalendarDay  = DateTime.now();
+  DateTime selectedCalendarDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DirectorMissionCubit, DirectorMissionState>(
-      listener: (context, state) {
-        if (state is DirectorMissionErrorState) {
-          ViewsToolbox.dismissLoading();
-          ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
-        }
-else if  (state is DirectorMissionReadyState){
+        listener: (context, state) {
+          if (state is DirectorMissionErrorState) {
             ViewsToolbox.dismissLoading();
-setState(() {
-    calendarResponse = state.response.data??[];
-});
-}
-
-
-          else if (state is DirectorMissionDetailsReadyState){
-                        ViewsToolbox.dismissLoading();
-if(state.showNewBottomSheet){
-          ViewsToolbox.showBottomSheet(
-                    height: 400.h,
-                    context: context,
-                    customWidget: DirectorMissionsBottomSheet(
-                      selectedDate: selectedCalendarDay,
-                      calendarDirectorMissionDates: 
-                          _getCalendarDirectorMissionDates(calendarResponse),
-                      directorMissionCubit: widget.directorMissionCubit,
-                      directorMissionDetails: state.response.data!,
-                      selectedDirector:  widget.selectedDirector
-                    ),
-                  );
-}
-        }
-      },
-      buildWhen: (previous, current) => current is DirectorMissionDetailsReadyState ,
-      builder: (context, state) {
-      
-
+            ViewsToolbox.showErrorAwesomeSnackBar(
+                context, context.tr(state.message!));
+          } else if (state is DirectorMissionReadyState) {
+            ViewsToolbox.dismissLoading();
+            setState(() {
+              calendarResponse = state.response.data ?? [];
+            });
+          } else if (state is DirectorMissionDetailsReadyState) {
+            ViewsToolbox.dismissLoading();
+            if (state.showNewBottomSheet) {
+              ViewsToolbox.showBottomSheet(
+                height: 400.h,
+                context: context,
+                customWidget: DirectorMissionsBottomSheet(
+                    selectedDate: selectedCalendarDay,
+                    calendarDirectorMissionDates:
+                        _getCalendarDirectorMissionDates(calendarResponse),
+                    directorMissionCubit: widget.directorMissionCubit,
+                    directorMissionDetails: state.response.data!,
+                    selectedDirector: widget.selectedDirector),
+              );
+            }
+          }
+        },
+        buildWhen: (previous, current) =>
+            current is DirectorMissionDetailsReadyState,
+        builder: (context, state) {
           return Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -85,35 +82,48 @@ if(state.showNewBottomSheet){
               ],
             ),
             child: TableCalendar(
-              locale:  context.locale.languageCode,
+              locale: context.locale.languageCode,
               daysOfWeekHeight: 40.h,
               availableGestures: AvailableGestures.horizontalSwipe,
               firstDay: DateTime.utc(2020, 1, 1),
               lastDay: DateTime.utc(2045, 12, 31),
               focusedDay: widget.focusedDay,
               onPageChanged: widget.onFocusedDayChanged,
+              onHeaderTapped: (focusedDay) async {
+                final DateTime? pickedDate = await showDatePicker(
+                  initialDatePickerMode: DatePickerMode.year,
+                  context: context,
+                  initialDate: widget.focusedDay,
+                  firstDate: DateTime.utc(2020, 1, 1),
+                  lastDate: DateTime.utc(2045, 12, 31),
+                );
+                if (pickedDate != null) {
+                  setState(() {
+                    widget.onFocusedDayChanged(pickedDate);
+                  });
+                }
+              },
               onDaySelected: (selectedDay, focusedDay) {
                 // check if the selected day is is not in the calendarResponse list
-                if ( 
-                    calendarResponse.isEmpty ||
+                if (calendarResponse.isEmpty ||
                     !calendarResponse
                         .map((item) => item.asDate)
                         .whereType<String>()
                         .toList()
-                        .contains(DateFormat("dd/MM/yyyy").format(selectedDay))) {
+                        .contains(
+                            DateFormat("dd/MM/yyyy").format(selectedDay))) {
                   ViewsToolbox.showErrorAwesomeSnackBar(
                       context, "no_missions/leaves_logs".tr());
                   return;
                 }
                 selectedCalendarDay = selectedDay;
                 widget.directorMissionCubit.getDirecatorsMissionsDetailsList(
-                  DirectorMissionDetailsRequestModel(
-                    asDate:  DateFormat("yyyy-MM-dd").format(selectedDay),
-                     empID:  int.parse(widget.selectedDirector?.employeeId ?? "0"),
-                  ),
-                  showNewBottomSheet: true
-                );
-             
+                    DirectorMissionDetailsRequestModel(
+                      asDate: DateFormat("yyyy-MM-dd").format(selectedDay),
+                      empID:
+                          int.parse(widget.selectedDirector?.employeeId ?? "0"),
+                    ),
+                    showNewBottomSheet: true);
               },
               selectedDayPredicate: (day) {
                 return calendarResponse
@@ -145,15 +155,13 @@ if(state.showNewBottomSheet){
               ),
               calendarBuilders: CalendarBuilders(
                 selectedBuilder: (context, day, focusedDay) =>
-                     DirectorMissionSelectedDayWidget(calendarResponse: calendarResponse, day: day),
+                    DirectorMissionSelectedDayWidget(
+                        calendarResponse: calendarResponse, day: day),
               ),
             ),
           );
-      
-    
-       
-      }
-      );}
+        });
+  }
 
   Widget _buildChevron(IconData icon) {
     return Container(
@@ -166,15 +174,14 @@ if(state.showNewBottomSheet){
     );
   }
 
- List<String>  _getCalendarDirectorMissionDates(List<ManagementCalenderDataEntity> list) {
-    // This method filters the list of DirectorsMissionEntity objects to get unique dates as string 
+  List<String> _getCalendarDirectorMissionDates(
+      List<ManagementCalenderDataEntity> list) {
+    // This method filters the list of DirectorsMissionEntity objects to get unique dates as string
     return list
         .map((e) => e.asDate)
         .toSet()
         .toList()
-        .map((e) => list.firstWhere((element) => element.asDate  == e).asDate!)
-        .toList(); 
+        .map((e) => list.firstWhere((element) => element.asDate == e).asDate!)
+        .toList();
   }
 }
-
-

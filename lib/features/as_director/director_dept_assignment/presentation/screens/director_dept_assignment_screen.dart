@@ -124,7 +124,7 @@ class _DirectorDeptAssignmentScreenState
                   BlocConsumer<DirectorDeptAssignmentCubit, DirectorDeptAssignmentState>(
                     listener: (context, state) {
                      if( state is DirectorDeptAssignmentErrorState){
-                                ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
+                                ViewsToolbox.showErrorAwesomeSnackBar(context,context.tr(state.message!));
             
                      }
                      else if (state is DirectorDeptAssignmentReadyState){
