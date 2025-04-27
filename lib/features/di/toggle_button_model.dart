@@ -5,18 +5,18 @@ class ToggleModel {
   ToggleModel(this.toggleCubit);
   final ToggleCubit toggleCubit;
   List<String> togglesKeys = <String>[
-    'secureLoginToggle',
     'allNotificationsToggle',
     'darkLookToggle',
     'languageToggle',
-    'actualSystemEnvironmentToggle',
-    'fromTheAgencysStaffToggle',
+    'smartLoginToggle'
   ];
   // Initialize SharedPreferences
   Future<void> init() async {
     // Load initial states from SharedPreferences
     for (var key in togglesKeys) {
-      bool value = LocalData().getBool(key) ?? false;
+      bool value = LocalData().getBool(key) ??
+      (key =="smartLoginToggle" ?true:false);
+     
       toggleCubit.toggle(key, value); // Initialize the cubit with saved values
     }
   }

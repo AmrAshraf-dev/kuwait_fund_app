@@ -39,7 +39,7 @@ class GrantsDataTable extends StatelessWidget {
           DataColumn(
               headingRowAlignment: MainAxisAlignment.center,
               label: Text(
-                context.tr("value"),
+                context.tr("value(kd)"),
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.white),
               )),

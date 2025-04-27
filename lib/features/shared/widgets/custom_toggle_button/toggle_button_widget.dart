@@ -14,12 +14,16 @@ class CustomToggleWidget extends StatelessWidget {
     required this.toggleCubit,
     required this.toggleModel,
     required this.onToggle,
+    required this.enabledTitle,
+    required this.disabledTitle,
   });
 
   final String keyValue;
   final ToggleCubit toggleCubit;
   final ToggleModel toggleModel;
   final Function(bool) onToggle;
+  final String enabledTitle;
+  final String disabledTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class CustomToggleWidget extends StatelessWidget {
                 }
               },
               child: Container(
-                height: 56.h,
+                height: 60.h,
                 padding:
                     const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
                 decoration: BoxDecoration(
@@ -54,7 +58,7 @@ class CustomToggleWidget extends StatelessWidget {
                 ),
                 child: Center(
                   child: AppText(
-                    text: context.tr("english"),
+                    text: enabledTitle,
                     style: AppTextStyle.semiBold_12,
                     textColor: isOn ? Colors.black : Colors.black,
                   ),
@@ -72,7 +76,7 @@ class CustomToggleWidget extends StatelessWidget {
                 }
               },
               child: Container(
-                height: 56.h,
+                height: 60.h,
                 padding:
                     const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
                 decoration: BoxDecoration(
@@ -85,7 +89,7 @@ class CustomToggleWidget extends StatelessWidget {
                 ),
                 child: Center(
                   child: AppText(
-                    text: context.tr("arabic"),
+                    text:  disabledTitle,
                     style: AppTextStyle.semiBold_12,
                     textColor: !isOn ? Colors.black : Colors.black,
                   ),

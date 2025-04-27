@@ -3,8 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../main.dart';
-import '../../data/local_data.dart';
+ import '../../data/local_data.dart';
 
 part 'locale_state.dart';
 
@@ -55,4 +54,6 @@ class LocaleCubit extends Cubit<Locale> {
 
     return locale;
   }
+
+
 }

@@ -12,6 +12,7 @@ import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/home/domain/entities/home_entity.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/cubits/home_cubit.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/create_request_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
@@ -33,20 +34,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final HomeCubit homeCubit = getIt<HomeCubit>();
+  HomeEntity? homeEntity;
   @override
   void initState() {
     super.initState();
-    print('TOKEN : ${LocalData.getUser()?.tokenInfo.token ?? ''}');
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => homeCubit..getLeaveDashboard(),
+    return BlocProvider.value(
+      value:  context.read<HomeCubit>(),
       child: MasterWidget(
-                isBackEnabled: false,
-
+          isBackEnabled: false,
           waterMarkImage: waterMarkImage3,
           appBarHeight: 260.h,
           appBarBody: Column(
@@ -96,113 +95,93 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Row(
                     children: [
-                      Container(
-                          height: 38.h,
-                          width: 38.w,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10.r),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: SvgPicture.asset(chatbot),
-                          )),
+                      InkWell(
+                        onTap: () {
+                          CustomMainRouter.push(ChatBotRoute());
+                        },
+                        child: Container(
+                            height: 38.h,
+                            width: 38.w,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10.r),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: SvgPicture.asset(chatbot),
+                            )),
+                      ),
                       17.horizontalSpace,
                       InkWell(
                         onTap: () =>
                             CustomMainRouter.push(NotificationsRoute()),
-                        child: Badge(
-                          padding: EdgeInsets.all(1),
-                          backgroundColor: Palette.red_FF0606,
-                          label: SizedBox(
-                            height: 20.h,
-                            width: 20.w,
-                            child: Center(
-                              child: AppText(
-                                text: '3',
-                                style: AppTextStyle.bold_12,
-                                textColor: Colors.white,
-                              ),
+                        child: Container(
+                            height: 38.h,
+                            width: 38.w,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10.r),
                             ),
-                          ),
-                          child: Container(
-                              height: 38.h,
-                              width: 38.w,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(3.0),
-                                child: SvgPicture.asset(notification),
-                              )),
-                        ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: SvgPicture.asset(notification),
+                            )),
                       ),
                     ],
                   )
                 ],
               ),
               20.verticalSpace,
-              BlocConsumer<HomeCubit, HomeState>(
-                listener: (context, state) {
-                  if (state is HomeLoadingState) {
-                    ViewsToolbox.showLoading();
-                  }
-                else  if (state is HomeErrorState) {
-                    ViewsToolbox.dismissLoading();
-                    ViewsToolbox.showErrorAwesomeSnackBar(
-                        context, state.message!);
-                  }
-                  else if ( state is HomeReadyState) {
-                    ViewsToolbox.dismissLoading();
-                  }
-                },
-                builder: (context, state) {
-                  if (state is HomeReadyState) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        HalfCircleChartWidget(
-                          leaveUsed:  
-                              state.response.data?.leaveBalance ?? "-" ,
-                          totalLeave: -1,
-                          color: Colors.blueAccent,
-                          title: context.tr('annual_leave'),
-                        ),
-                        SizedBox(
-                          height: 100.h,
-                          child: VerticalDivider(
-                            color: Palette.blue_3B72C5,
-                            thickness: 0.2,
-                          ),
-                        ),
-                        HalfCircleChartWidget(
-                          leaveUsed: 
-                              state.response.data?.shortSickDays ?? "-",
-                          totalLeave: -1,
-                          color: Color(0xFFEDA18C),
-                          title: context.tr('sick_leave'),
-                        ),
-                        SizedBox(
-                          height: 100.h,
-                          child: VerticalDivider(
-                            color: Palette.blue_3B72C5,
-                            thickness: 0.2,
-                          ),
-                        ),
-                        HalfCircleChartWidget(
-                            leaveUsed: 
-                                state.response.data?.leavDaysTaken ?? "-" ,
-                            totalLeave: -1,
-                            title: context.tr('vacations_used'),
-                            color: Color(0xFFFBD823)),
-                      ],
-                    );
-                  } else
-                    return Container();
-                },
-              ),
+              BlocConsumer<HomeCubit, HomeState>(listener: (context, state) {
+                if (state is HomeLoadingState) {
+                  ViewsToolbox.showLoading();
+                } else if (state is HomeErrorState) {
+                  ViewsToolbox.dismissLoading();
+                  ViewsToolbox.showErrorAwesomeSnackBar(
+                      context, context.tr(state.message!));
+                } else if (state is HomeReadyState) {
+                  ViewsToolbox.dismissLoading();
+                  homeEntity = state.response.data!;
+                }
+              }, builder: (context, state) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    HalfCircleChartWidget(
+                      leaveUsed: homeEntity?.annualLeaveBalance ?? "-",
+                      totalLeave: -1,
+                      color: Colors.blueAccent,
+                      title: context.tr('annual_leave'),
+                    ),
+                    SizedBox(
+                      height: 100.h,
+                      child: VerticalDivider(
+                        color: Palette.blue_3B72C5,
+                        thickness: 0.2,
+                      ),
+                    ),
+                    HalfCircleChartWidget(
+                      leaveUsed: homeEntity?.shortSickDays ?? "-",
+                      totalLeave: -1,
+                      color: Color(0xFFEDA18C),
+                      title: context.tr('sick_leave'),
+                    ),
+                    SizedBox(
+                      height: 100.h,
+                      child: VerticalDivider(
+                        color: Palette.blue_3B72C5,
+                        thickness: 0.2,
+                      ),
+                    ),
+                    HalfCircleChartWidget(
+                        leaveUsed: homeEntity?.leavDaysTaken ?? "-",
+                        totalLeave: -1,
+                        title: context.tr('vacations_used'),
+                        color: Color(0xFFFBD823)),
+                  ],
+                );
+              }),
             ],
           ),
           widget: Column(
@@ -214,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SliderSection(),
               17.verticalSpace,
               Padding(
-          padding: EdgeInsetsDirectional.only(start: 32.w, end: 22.w),
+                padding: EdgeInsetsDirectional.only(start: 32.w, end: 22.w),
                 child: RecentUpdatesSection(),
               ),
               60.verticalSpace,

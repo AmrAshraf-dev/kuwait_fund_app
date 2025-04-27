@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
@@ -68,7 +67,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 }),
             MoreItemWidget(
                 text: context.tr("certificates"),
-                svgIcon: loan,
+                svgIcon: pdf,
                 onTap: () {
                   CustomMainRouter.push(CertificatesRoute());
                 }),
@@ -78,36 +77,78 @@ class _MoreScreenState extends State<MoreScreen> {
                 onTap: () {
                   CustomMainRouter.push(AdsRoute());
                 }),
-            (LocalData.getUser()?.userInfo.isDirector ?? false)
-                ? MoreItemWidget(
-                    text: context.tr("dept_mission"),
-                    svgIcon: Assets.svg.directorMission.path,
-                    onTap: () {
-                      CustomMainRouter.push(DirectorDeptMissionRoute());
-                    })
-                : MoreItemWidget(
+                  MoreItemWidget(
                     text: context.tr("visitors_logs"),
                     svgIcon: loan,
                     onTap: () {
                       CustomMainRouter.push(VisitorsLogsRoute());
                     }),
-           (  LocalData.getUser()?.userInfo.isDirector??false)
-                ? MoreItemWidget(
-                    text: context.tr("dept_assignment"),
-                    svgIcon: Assets.svg.deptMission.path,
+                    if ( (LocalData.getUser()?.userInfo.isSupervisor ?? false)
+                   && (LocalData.getUser()?.userInfo.isDirector ?? false))
+                    
+                        MoreItemWidget(
+                    text: context.tr("submissions"),
+                    svgIcon: Assets.svg.submissions.path,
                     onTap: () {
-                      CustomMainRouter.push(DirectorDeptAssignmentRoute());
-                    })
-                : MoreItemWidget(
+                      CustomMainRouter.push(
+                        SubmissionsRoute(
+                        isBackButtonEnabled: true,
+                      ));
+                    }),
+
+
+     if ( 
+                        (LocalData.getUser()?.userInfo.isDirector ?? false)
+     )
+                        MoreItemWidget(
+                    text: context.tr("my_requests"),
+                    svgIcon: Assets.svg.requests.path,
+                    onTap: () {
+                      CustomMainRouter.push(RequestsRoute(isBackButtonEnabled:true));
+                    }),
+
+
+     if (
+                        (LocalData.getUser()?.userInfo.isDirector ?? false) )
+                        MoreItemWidget(
+                    text: context.tr("create_request"),
+                    svgIcon: Assets.svg.annualLeave.path,
+                    onTap: () {
+                      CustomMainRouter.push(CreateRequestRoute());
+                    }),
+
+
+
+          // if(  (LocalData.getUser()?.userInfo.isDirector ?? false))
+          //        MoreItemWidget(
+          //           text: context.tr("dept_mission"),
+          //           svgIcon: Assets.svg.directorMission.path,
+          //           onTap: () {
+
+
+          //             CustomMainRouter.navigate(DirectorNavigationMainRoute(
+          //               children: [DirectorDeptMissionRoute()])
+
+          //             );
+                        
+                        
+          //           }),
+             
+          //  (  LocalData.getUser()?.userInfo.isDirector??false)
+          //       ? MoreItemWidget(
+          //           text: context.tr("dept_assignment"),
+          //           svgIcon: Assets.svg.deptMission.path,
+          //           onTap: () {
+          //             CustomMainRouter.push(DirectorDeptAssignmentRoute());
+          //           })
+          //       :
+                 MoreItemWidget(
                     text: context.tr("survey"),
                     svgIcon: survey,
                     onTap: () {
                       CustomMainRouter.push(SurveyRoute());
                     }),
-            MoreItemWidget(
-                text: context.tr("enable_smart_login"),
-                svgIcon: enableSmartLogin,
-                onTap: () {}),
+         
             23.verticalSpace,
             MainTitleWidget(title: context.tr("general_information")),
             5.verticalSpace,
@@ -132,6 +173,22 @@ class _MoreScreenState extends State<MoreScreen> {
             23.verticalSpace,
             MainTitleWidget(title: context.tr("other_settings")),
             5.verticalSpace,
+
+               MoreItemWidget(
+                text: context.tr("enable_smart_login"),
+                svgIcon: enableSmartLogin,
+                onTap: () {},
+                  toggleButton: CustomToggleWidget(
+                keyValue: "smartLoginToggle",
+                toggleCubit: toggleCubit,
+                toggleModel: toggleModel,
+                enabledTitle:  context.tr("enable"),
+                disabledTitle: context.tr("disable"),
+                onToggle: (bool isEnable) {
+                  LocalData.setSmartLogin(isEnable);
+                 },
+              ),),
+
             MoreItemWidget(
               text: context.tr("language"),
               svgIcon: language,
@@ -140,6 +197,8 @@ class _MoreScreenState extends State<MoreScreen> {
                 keyValue: "languageToggle",
                 toggleCubit: toggleCubit,
                 toggleModel: toggleModel,
+                enabledTitle:  context.tr("english"),
+                disabledTitle: context.tr("arabic"),
                 onToggle: (bool isEnable) {
                   localeCubit.toggleLocale(context, isEnable);
                 },

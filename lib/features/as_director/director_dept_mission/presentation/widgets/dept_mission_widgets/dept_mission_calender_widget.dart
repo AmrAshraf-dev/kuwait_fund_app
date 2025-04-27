@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/data/models/request/director_dept_mission_details_request_model.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_calendar_data_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/cubits/director_dept_mission_cubit.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/widgets/dept_mission_widgets/dept_mission_bottomsheet.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/widgets/dept_mission_widgets/director_mission_selected_day_widget.dart';
  import 'package:table_calendar/table_calendar.dart';
 
@@ -36,9 +38,10 @@ class _DeptMissionsCalenderWidgetState extends State<DeptMissionsCalenderWidget>
   Widget build(BuildContext context) {
     return BlocConsumer<DirectorDeptMissionCubit, DirectorDeptMissionState>(
       listener: (context, state) {
-        if (state is DirectorDeptMissionErrorState) {
+        if (state is DirectorDeptCalendarMissionErrorState) {
+          
           ViewsToolbox.dismissLoading();
-          ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
+          ViewsToolbox.showErrorAwesomeSnackBar(context,context.tr(state.message!) );
         }
 else if  (state is DirectorDeptMissionReadyState){
             ViewsToolbox.dismissLoading();
@@ -47,25 +50,24 @@ setState(() {
 });
 }
 
-//TODO:
-//           else if (state is DirectorDeptMissionDetailsReadyState){
-//                         ViewsToolbox.dismissLoading();
-// if(state.showNewBottomSheet){
-//           ViewsToolbox.showBottomSheet(
-//                     height: 400.h,
-//                     context: context,
-//                     customWidget: DeptMissionsBottomSheet(
-//                       selectedDate: selectedCalendarDay,
-//                       calendarDirectorMissionDates: 
-//                           _getCalendarDeptMissionDates(calendarResponse),
-//                       directorDeptMissionCubit: widget.directorDeptMissionCubit,
-//                       directorMissionDetails: state.response.data!,
-//                       selectedDept:  widget.selectedDept
-//                     ),
-//                   );
-// }
-//         }
-      }, //TODO
+           else if (state is DirectorDeptMissionDetailsReadyState){
+                        ViewsToolbox.dismissLoading();
+if(state.showNewBottomSheet){
+          ViewsToolbox.showBottomSheet(
+                    height: 400.h,
+                    context: context,
+                    customWidget: DeptMissionsBottomSheet(
+                      selectedDate: selectedCalendarDay,
+                      calendarDirectorMissionDates: 
+                          _getCalendarDeptMissionDates(calendarResponse),
+                      directorDeptMissionCubit: widget.directorDeptMissionCubit,
+                      directorDeptMissionDetails: state.response.data!,
+                      selectedDept:  widget.selectedDept
+                    ),
+                  );
+}
+        }
+      }, 
       buildWhen: (previous, current) => current is DirectorDeptMissionDetailsReadyState ,
       builder: (context, state) {
       
@@ -91,6 +93,20 @@ setState(() {
               lastDay: DateTime.utc(2045, 12, 31),
               focusedDay: widget.focusedDay,
               onPageChanged: widget.onFocusedDayChanged,
+                            onHeaderTapped: (focusedDay) async {
+                final DateTime? pickedDate = await showDatePicker(
+                  initialDatePickerMode:  DatePickerMode.year,
+                  context: context,
+                  initialDate: widget.focusedDay,
+                  firstDate: DateTime.utc(2020, 1, 1),
+                  lastDate: DateTime.utc(2045, 12, 31),
+                );
+                if (pickedDate != null) {
+                  setState(() {
+                    widget.onFocusedDayChanged(pickedDate);
+                  });
+                }
+              },
               onDaySelected: (selectedDay, focusedDay) {
                 // check if the selected day is is not in the calendarResponse list
                 if ( 
@@ -105,13 +121,13 @@ setState(() {
                   return;
                 }
                 selectedCalendarDay = selectedDay;
-                // widget.directorDeptMissionCubit.getDirecatorsMissionsDetailsList(
-                //   DirectorMissionDetailsRequestModel(
-                //     asDate:  DateFormat("yyyy-MM-dd").format(selectedDay),
-                //      empID:  int.parse(widget.selectedDirector?.employeeId ?? "0"),
-                //   ),
-                //   showNewBottomSheet: false
-                // );
+                widget.directorDeptMissionCubit.getDirecatorsDeptMissionsDetailsList(
+                  DirectorDeptMissionDetailsRequestModel(
+                    asDate:  DateFormat("yyyy-MM-dd").format(selectedDay),
+                     deptCode: widget.selectedDept?.departmentCode
+                  ),
+                  showNewBottomSheet: true
+                );
              
               },
               selectedDayPredicate: (day) {

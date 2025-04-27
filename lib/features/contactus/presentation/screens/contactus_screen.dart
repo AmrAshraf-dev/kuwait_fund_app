@@ -241,7 +241,7 @@ class ContactInfoWidget extends StatelessWidget {
             text:
                  contactusEntity?.contactInfo?.address?.map(
                   (e) => e.text, 
-                ).join(", ") ??"",
+                ).join("\n") ??"",
                  
             style: AppTextStyle.regular_14,
           ),

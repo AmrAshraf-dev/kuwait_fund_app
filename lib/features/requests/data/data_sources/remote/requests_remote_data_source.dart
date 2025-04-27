@@ -122,7 +122,7 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
     if (result.success && result.response["code"]!=404) {
       return right(ExtendLeaveResponseModel.fromJson(result.response));
     } else {
-      return left(ServerFailure(message: result.response["data"] as String));
+      return left(ServerFailure(message: result.response));
     }
   }
 
@@ -136,7 +136,7 @@ class RequestsDataSourceImpl implements RequestsRemoteDataSource {
     if (result.success && result.response["code"]!=404) {
       return right(result .response["data"]);
     } else {
-      return left(ServerFailure(message: result.response["data"] as String));
+      return left(ServerFailure(message: result.response as String));
     }
   }
 }

@@ -51,12 +51,23 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
               listener: (context, state) {
             if (state is PersonalInfoErrorState) {
               ViewsToolbox.dismissLoading();
-              ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
             }
           }, builder: (context, state) {
             if (state is PersonalInfoLoadingState) {
               ViewsToolbox.showLoading();
-            } else if (state is PersonalInfoReadyState) {
+            }else if (state is PersonalInfoErrorState) {
+                           return Center(
+                             child: AppText(
+                                text:context.tr(state.message?? "someThingWentWrong") ,
+                                style: AppTextStyle.regular_14,
+                               
+                             ),
+                           );
+                          
+                        }
+            
+            
+             else if (state is PersonalInfoReadyState) {
               ViewsToolbox.dismissLoading();
               personalInfoEntity = state.response.data;
 

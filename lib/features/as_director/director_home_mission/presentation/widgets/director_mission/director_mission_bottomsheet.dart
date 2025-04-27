@@ -45,32 +45,45 @@ class DirectorMissionsBottomSheetState extends State<DirectorMissionsBottomSheet
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: widget.directorMissionCubit,
-      child: Container(
-        padding: EdgeInsets.all(16),
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(35.r),
-            topRight: Radius.circular(35.r),
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildHeader(),
-            _buildSelectableDaysChips(),
-             10.verticalSpace,
-            DirectorMissionsDetailsListView(
-              directorMissionCubit: widget.directorMissionCubit,
-              selectedHostName: selectedHostName,
+    return Container(
+      color:  Colors.white,
+      child: SafeArea(
+        bottom: true,
+        child: BlocProvider.value(
+          value: widget.directorMissionCubit,
+          child: Container(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.8,
             ),
-            16.verticalSpace,
-            _buildCloseButton(context),
-          ],
+            padding: EdgeInsets.all(16),
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(35.r),
+                topRight: Radius.circular(35.r),
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildHeader(),
+                _buildSelectableDaysChips(),
+                10.verticalSpace,
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: DirectorMissionsDetailsListView(
+                      directorMissionCubit: widget.directorMissionCubit,
+                      selectedHostName: selectedHostName,
+                    ),
+                  ),
+                ),
+                16.verticalSpace,
+                _buildCloseButton(context),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -152,7 +165,13 @@ class DirectorMissionsDetailsListView extends StatelessWidget {
             context: context,
             status: ConfirmationPopupStatus.failure,
             message: state.message,
-            closeOnlyPopup: true
+                             actionsData: CustomElevatedButton(
+                    width: 300.w,
+                       text: context.tr("continue"),
+                       
+                      onPressed: () {
+                       CustomMainRouter.back();  
+                   }), 
           );
         } else if (state is DirectorMissionDetailsReadyState) {
           ViewsToolbox.dismissLoading();
@@ -161,6 +180,7 @@ class DirectorMissionsDetailsListView extends StatelessWidget {
       builder: (context, state) {
         if (state is DirectorMissionDetailsReadyState) {
           return ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: state.response.data?.length ?? 0,
             shrinkWrap: true,
             itemBuilder: (context, index) {

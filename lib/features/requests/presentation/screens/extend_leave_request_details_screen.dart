@@ -154,7 +154,7 @@ class _ExtendLeaveDetailsScreenState extends State<ExtendLeaveDetailsScreen> {
                     ViewsToolbox.dismissLoading();
                 
                     ViewsToolbox.showErrorAwesomeSnackBar(
-                        context, state.message!);
+                        context, context.tr(state.message!));
                   }
                 },
                 builder: (context, state) {

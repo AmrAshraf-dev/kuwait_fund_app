@@ -11,7 +11,7 @@ HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => HomeModel(
       availableExceseBalance: json['availableExceseBalance'] as String?,
       emergencyBalance: json['emergencyBalance'] as String?,
       emergencyTransffered: json['emergencyTransffered'] as String?,
-      leaveBalance: json['leaveBalance'] as String?,
+      annualLeaveBalance: json['annualLeaveBalance'] as String?,
       leaveRequestsCount: json['leaveRequestsCount'] as String?,
       leaveStatus: json['leaveStatus'] as String?,
       leaveStatusCode: json['leaveStatusCode'] as String?,
@@ -50,7 +50,8 @@ Map<String, dynamic> _$HomeModelToJson(HomeModel instance) => <String, dynamic>{
         'requestEndDate': value,
       if (instance.requestExtendDate?.toIso8601String() case final value?)
         'requestExtendDate': value,
-      if (instance.leaveBalance case final value?) 'leaveBalance': value,
+      if (instance.annualLeaveBalance case final value?)
+        'annualLeaveBalance': value,
       if (instance.shortSickDays case final value?) 'shortSickDays': value,
       if (instance.leavDaysTaken case final value?) 'leavDaysTaken': value,
       if (instance.leaveRequestsCount case final value?)

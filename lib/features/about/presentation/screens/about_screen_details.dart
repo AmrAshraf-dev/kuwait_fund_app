@@ -16,10 +16,18 @@ class AboutItemDetailsScreen extends StatelessWidget {
         screenTitle: title,
       isBackEnabled: true,
 
-        widget: Center(
-          child: AppText(
-            text: details,
-            textAlign: TextAlign.justify,
+        widget: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Center(
+            
+            child: SingleChildScrollView(
+              child: AppText(
+             
+                maxLines: 100,
+                text: details,
+                textAlign: TextAlign. justify,
+              ),
+            ),
           ),
         ));
   }

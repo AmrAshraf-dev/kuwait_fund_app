@@ -19,12 +19,12 @@ class NoDataWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           200.heightBox,
-          SvgPicture.asset(
-            'assets/svg/no-data-icon.svg',
-            width: 80.w,
-            colorFilter:
-                const ColorFilter.mode(Palette.primaryColor, BlendMode.srcIn),
-          ),
+          // SvgPicture.asset(
+          //   'assets/svg/no-data-icon.svg',
+          //   width: 80.w,
+          //   colorFilter:
+          //       const ColorFilter.mode(Palette.primaryColor, BlendMode.srcIn),
+          // ),
           40.heightBox,
           AppText(
             text: context.tr("noDataFound"),

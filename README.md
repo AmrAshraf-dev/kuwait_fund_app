@@ -79,4 +79,4 @@ Contributions are welcome! Follow these steps to contribute:
 - Add API references, latest releases, and testing instructions.
 
 
-to build new apk  build apk --split-per-abi
+flutter build apk --split-per-abi

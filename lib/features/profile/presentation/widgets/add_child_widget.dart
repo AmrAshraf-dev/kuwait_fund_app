@@ -97,7 +97,7 @@ class _AddChildWidgetState extends State<AddChildWidget> {
                   if (state is ChildErrorState) {
                     ViewsToolbox.dismissLoading();
                     ViewsToolbox.showErrorAwesomeSnackBar(
-                        context, state.message!);
+                        context, context.tr(state.message!));
                   }
                 }, builder: (context, state) {
                   if (state is ChildLoadingState) {

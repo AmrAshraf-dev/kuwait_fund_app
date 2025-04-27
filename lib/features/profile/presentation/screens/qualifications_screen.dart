@@ -11,6 +11,7 @@ import 'package:kf_ess_mobile_app/features/profile/data/models/response/qualific
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/qualifications_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/add_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/data_with_edit_card.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
@@ -64,7 +65,30 @@ class _QualificationsScreenState extends State<QualificationsScreen> {
               }, builder: (context, state) {
                 if (state is QualificationsLoadingState) {
                   ViewsToolbox.showLoading();
-                } else if (state is QualificationsReadyState) {
+                } else   if (state is QualificationsErrorState) {
+                 return Center(
+                    child: AppText(
+                      text: state.message ?? "",
+                      style: AppTextStyle.medium_14,
+                    ),
+                  );
+                }
+
+                
+                
+                  else if (state is QualificationsEmptyState) {
+                  ViewsToolbox.dismissLoading();
+                  return Center(
+                    child: AppText(
+                      text: context.tr("noDataFound"),
+                      style: AppTextStyle.medium_14,
+                    ),
+                  );
+                }
+                
+                
+                
+                else if (state is QualificationsReadyState) {
                   qualificationsEntity = state.response.data ?? [];
                   ViewsToolbox.dismissLoading();
                   return ListView.separated(

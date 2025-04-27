@@ -38,7 +38,7 @@ class _VisitorsLogsCalenderWidgetState extends State<VisitorsLogsCalenderWidget>
       listener: (context, state) {
         if (state is VisitorsLogsErrorState) {
           ViewsToolbox.dismissLoading();
-          ViewsToolbox.showErrorAwesomeSnackBar(context, state.message!);
+          ViewsToolbox.showErrorAwesomeSnackBar(context, context.tr(state.message!));
         }
 else if  (state is VisitorsLogsReadyState){
             ViewsToolbox.dismissLoading();
@@ -91,6 +91,20 @@ if(state.showNewBottomSheet){
           lastDay: DateTime.utc(2045, 12, 31),
           focusedDay: widget.focusedDay,
           onPageChanged: widget.onFocusedDayChanged,
+                        onHeaderTapped: (focusedDay) async {
+                final DateTime? pickedDate = await showDatePicker(
+                  initialDatePickerMode:  DatePickerMode.year,
+                  context: context,
+                  initialDate: widget.focusedDay,
+                  firstDate: DateTime.utc(2020, 1, 1),
+                  lastDate: DateTime.utc(2045, 12, 31),
+                );
+                if (pickedDate != null) {
+                  setState(() {
+                    widget.onFocusedDayChanged(pickedDate);
+                  });
+                }
+              },
           onDaySelected: (selectedDay, focusedDay) {
             // check if the selected day is is not in the calendarResponse list
             if ( 

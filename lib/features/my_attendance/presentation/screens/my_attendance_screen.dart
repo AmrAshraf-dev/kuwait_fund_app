@@ -143,18 +143,18 @@ class _MyAttendanceScreenState extends State<MyAttendanceScreen> {
                           children: [
                             MainTitleWidget(
                                 title: context.tr('attendance_logs')),
-                            Container(
-                              height: 42.h,
-                              width: 42.h,
-                              decoration: BoxDecoration(
-                                color: Palette.yellow_FBD823,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Assets.svg.filterIcon.svg(),
-                              ),
-                            ),
+                            // Container(
+                            //   height: 42.h,
+                            //   width: 42.h,
+                            //   decoration: BoxDecoration(
+                            //     color: Palette.yellow_FBD823,
+                            //     borderRadius: BorderRadius.circular(10),
+                            //   ),
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.all(8.0),
+                            //     child: Assets.svg.filterIcon.svg(),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

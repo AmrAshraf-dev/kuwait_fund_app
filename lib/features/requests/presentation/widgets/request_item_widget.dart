@@ -156,7 +156,7 @@ class _RequestItemWidgetState extends State<RequestItemWidget> {
                                 } else if (state is DeleteLeaveErrorState) {
                                   ViewsToolbox.dismissLoading();
                                   ViewsToolbox.showErrorAwesomeSnackBar(
-                                      context, state.message!);
+                                      context, context.tr(state.message!));
                                 }
                               },
                               builder: (context, state) {

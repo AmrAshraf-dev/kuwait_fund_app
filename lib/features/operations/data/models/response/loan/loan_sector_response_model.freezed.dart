@@ -20,7 +20,7 @@ LoanSectorModel _$LoanSectorModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoanSectorModel {
-  @JsonKey(name: 'sector_name', defaultValue: "")
+  @JsonKey(name: 'sectorName', defaultValue: "")
   String get sectorName => throw _privateConstructorUsedError;
   @JsonKey(name: 'number')
   String get number => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $LoanSectorModelCopyWith<$Res> {
       _$LoanSectorModelCopyWithImpl<$Res, LoanSectorModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'sector_name', defaultValue: "") String sectorName,
+      {@JsonKey(name: 'sectorName', defaultValue: "") String sectorName,
       @JsonKey(name: 'number') String number,
       @JsonKey(name: 'amount') String amount});
 }
@@ -94,7 +94,7 @@ abstract class _$$LoanSectorModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'sector_name', defaultValue: "") String sectorName,
+      {@JsonKey(name: 'sectorName', defaultValue: "") String sectorName,
       @JsonKey(name: 'number') String number,
       @JsonKey(name: 'amount') String amount});
 }
@@ -137,7 +137,7 @@ class __$$LoanSectorModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LoanSectorModelImpl extends _LoanSectorModel {
   const _$LoanSectorModelImpl(
-      {@JsonKey(name: 'sector_name', defaultValue: "") required this.sectorName,
+      {@JsonKey(name: 'sectorName', defaultValue: "") required this.sectorName,
       @JsonKey(name: 'number') required this.number,
       @JsonKey(name: 'amount') required this.amount})
       : super._();
@@ -146,7 +146,7 @@ class _$LoanSectorModelImpl extends _LoanSectorModel {
       _$$LoanSectorModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'sector_name', defaultValue: "")
+  @JsonKey(name: 'sectorName', defaultValue: "")
   final String sectorName;
   @override
   @JsonKey(name: 'number')
@@ -194,7 +194,7 @@ class _$LoanSectorModelImpl extends _LoanSectorModel {
 
 abstract class _LoanSectorModel extends LoanSectorModel {
   const factory _LoanSectorModel(
-          {@JsonKey(name: 'sector_name', defaultValue: "")
+          {@JsonKey(name: 'sectorName', defaultValue: "")
           required final String sectorName,
           @JsonKey(name: 'number') required final String number,
           @JsonKey(name: 'amount') required final String amount}) =
@@ -205,7 +205,7 @@ abstract class _LoanSectorModel extends LoanSectorModel {
       _$LoanSectorModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'sector_name', defaultValue: "")
+  @JsonKey(name: 'sectorName', defaultValue: "")
   String get sectorName;
   @override
   @JsonKey(name: 'number')

@@ -158,7 +158,7 @@ class _SubmissionItemWidgetState extends State<SubmissionItemWidget> {
                                 ViewsToolbox.dismissLoading();
                             
                                 ViewsToolbox.showErrorAwesomeSnackBar(
-                                    context, state.message!);
+                                    context, context.tr(state.message!));
                               }
                             }, builder: (context, state) {
                               return CustomElevatedButton(
@@ -200,7 +200,7 @@ class _SubmissionItemWidgetState extends State<SubmissionItemWidget> {
                                 ViewsToolbox.dismissLoading();
                             
                                 ViewsToolbox.showErrorAwesomeSnackBar(
-                                    context, state.message!);
+                                    context, context.tr(state.message!));
                               } else if (state
                                   is RejectLeaveRequestReadyState) {
                                 ViewsToolbox.dismissLoading();

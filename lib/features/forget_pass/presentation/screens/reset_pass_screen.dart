@@ -177,7 +177,7 @@ bool _isPasswordObscured = true;
                                 } else if (state is ChangePassErrorState) {
                                   ViewsToolbox.dismissLoading();
                                   ViewsToolbox.showErrorAwesomeSnackBar(
-                                      context, state.message!);
+                                      context, context.tr(state.message!));
                                 } else if (state is ChangePasswordReadyState) {
                                   ViewsToolbox.dismissLoading();
                                   CustomMainRouter.push(PasswordChangedRoute());

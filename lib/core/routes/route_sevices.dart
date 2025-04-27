@@ -19,7 +19,7 @@ class CustomMainRouter {
   }
   static void push(PageRouteInfo route,
       {FutureOr<dynamic> Function(Object?)? then}) {
-    appRouter.push(route).then(then ?? (Object? value) {});
+    appRouter.push(route);
   }
 
 

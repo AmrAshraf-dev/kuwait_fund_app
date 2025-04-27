@@ -82,7 +82,7 @@ class AppRoutesConstants {
 
   static const String requests = 'requestsScreen';
 
-  static const String profile = 'profileScreen';
+  static const String profile = '/profileScreen';
 
   static const String editProfile = '/editProfileScreen';
 
@@ -124,4 +124,10 @@ class AppRoutesConstants {
   static var directorDeptAssignment = 'directorDeptAssignmentScreen';
 
   static var editFamilySpouseData = '/editFamilySpouseDataScreen';
+
+  static var chatBot = '/chatBotScreen';
+
+  static var submissionsDirector = '/submissionsDirectorScreen';
+
+  static var requestsDirector = '/requestsDirectorScreen';
 }

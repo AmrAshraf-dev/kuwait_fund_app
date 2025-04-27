@@ -1,6 +1,5 @@
 import 'package:injectable/injectable.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/data/models/request/director_mission_details_request_model.dart';
-import "package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_entity.dart";
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_mission_details_entity.dart';
 
 import "../../../../../core/domain/usecase/base_usecase.dart";

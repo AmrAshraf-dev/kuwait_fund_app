@@ -35,7 +35,7 @@ class AnnualLeaveRequestDataSourceImpl
         data: annualLeaveRequestRequestModel.toJson());
 
     if (result.success) {
-      return right(   result.response["data"]["returnMsg"]);
+      return right(result.response.toString());
     } else {
       return left(ServerFailure(message: result.response as String));
     }

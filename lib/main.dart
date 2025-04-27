@@ -69,6 +69,8 @@ void main() async {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp
   ]);
+
+   HttpOverrides.global = MyHttpOverrides();
   runApp(
     EasyLocalization(
       path: 'assets/translations',
@@ -149,5 +151,14 @@ class _MyAppState extends State<MyApp> {
 
   void updateState() {
     setState(() {});
+  }
+}
+
+
+ class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }

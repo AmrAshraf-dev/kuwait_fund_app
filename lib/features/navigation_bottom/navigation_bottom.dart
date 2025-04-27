@@ -1,11 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/home/presentation/cubits/home_cubit.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
 
 @RoutePage()
 class NavigationMainScreen extends StatefulWidget {
@@ -16,33 +20,56 @@ class NavigationMainScreen extends StatefulWidget {
 }
 
 class _NavigationMainScreenState extends State<NavigationMainScreen> {
+
+    final HomeCubit homeCubit = getIt<HomeCubit>();
+  final RequestsCubit  requestCubit = getIt<RequestsCubit>();
+
+
   List<String> screensTitles = <String>[
     "home",
     "requests",
-   // "insurance",
+    // "insurance",
     "more",
   ];
 
+    @override
+  void initState() {
+    super.initState();
+    homeCubit.getLeaveDashboard(); 
+    requestCubit.getRequests();    
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-        canPop: false,
-        child: Stack(
-          children: <Widget>[
-            AutoTabsScaffold(
-              resizeToAvoidBottomInset: false,
-              routes: <PageRouteInfo>[
-                const HomeRoute(),
-                const RequestsRoute(),
-              //  const InsuranceRoute(),
-                const MoreRoute()
-              ],
-              bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
-                return buildBottomBar(tabsRouter);
-              },
-            ),
-          ],
-        ));
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeCubit>.value(
+          value: homeCubit,
+        ),
+        BlocProvider<RequestsCubit>.value(
+          value: requestCubit,
+        ),
+      ],
+       child: PopScope(
+          canPop: false,
+          child: Stack(
+            children: <Widget>[
+              AutoTabsScaffold(
+                resizeToAvoidBottomInset: false,
+                routes: <PageRouteInfo>[
+                  const HomeRoute(),
+                  RequestsRoute(isBackButtonEnabled: false),
+                  //  const InsuranceRoute(),
+                  const MoreRoute()
+                ],
+                bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
+                  return buildBottomBar(tabsRouter);
+                },
+              ),
+            ],
+          )),
+    );
   }
 
   Widget buildBottomBar(TabsRouter tabsRouter) {

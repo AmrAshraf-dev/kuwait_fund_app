@@ -24,13 +24,17 @@ class FundProfileItem extends StatelessWidget {
             fadeInDuration: const Duration(milliseconds: 400),
             imageUrl: imageUrl,
             width: 100.w,
-            height: 100.h,
+            height: 95.h,
+            errorListener: (value) {
+              // Handle error here
+              print('Error loading image: $value');
+            },
             placeholder: (context, url) =>
                 Center(child: CircularProgressIndicator()),
             errorWidget: (context, url, error) => Image.asset(
               'assets/png/default_profile.png', // Path to your default image
               width: 100.w,
-              height: 100.h,
+              height: 95.h,
               fit: BoxFit.cover,
             ),
           ),

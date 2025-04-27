@@ -71,7 +71,7 @@ class DivisionItem extends StatelessWidget {
         headerPadding:
             const EdgeInsetsDirectional.only(start: 20, top: 20, bottom: 20),
         customText: SizedBox(
-            width: 240.w,
+            width: 230.w,
             child: MainTitleWidget(title: loanEntity.divisionName)),
         children: [
           Container(
@@ -91,6 +91,8 @@ class DivisionItem extends StatelessWidget {
             child: Column(
                 children: loanEntity.loanCountries
                     .map((e) => OperationsLoanItem(
+                      numbers: e.loanSectors
+                          .map((e) => e?.number ?? "").toList(),
                           countryName: e.countryName,
                           sectorNames: e.loanSectors
                               .map((e) => e?.sectorName ?? "")

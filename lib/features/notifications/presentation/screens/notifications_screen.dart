@@ -16,11 +16,14 @@ class NotificationsScreen extends StatelessWidget {
   final List<NotificationsEntity> allNotifications = List.generate(
     40,
     (int index) => NotificationsEntity(
-      type: index == 0
-          ? NotificationTypeEnum.withResponse
-          : index == 1
-              ? NotificationTypeEnum.loan
-              : NotificationTypeEnum.normal,
+      type:
+      //  index == 0
+      //     ? NotificationTypeEnum.withResponse
+      //     :
+      //      index == 1
+      //         ? NotificationTypeEnum.loan
+      //         :
+               NotificationTypeEnum.normal,
       date: "22 - Aug - 2024",
       title: "Profile information updated",
       description: "Your Profile information has been updated",
