@@ -1,10 +1,7 @@
 {
-
-
-
-"enable" : "تفعيل",
-  "disable" : "تعطيل",
-  "count" : "عدد",
+  "enable": "تفعيل",
+  "disable": "تعطيل",
+  "count": "عدد",
   "chat_bot": "المساعد الشخصي",
   "--Select--": "--اختر--",
   "editSpouseData": "تعديل بيانات الزوج/الزوجة",
@@ -831,5 +828,7 @@
   "female": "أنثي",
   "disabilityDate": "تاريخ الإعاقة",
   "gender": "النوع",
-  "disabilityType": "نوع الاعاقة"
+  "disabilityType": "نوع الاعاقة",
+  "arabicName": "الاسم بالعربية",
+  "englishName": "الاسم بالانجليزية"
 }

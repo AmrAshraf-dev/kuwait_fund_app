@@ -27,6 +27,7 @@ class AddChildWidget extends StatefulWidget {
   String? disabilityType;
   String? fileExtension;
   String? bytes;
+  String? selectedFile;
   AddChildWidget({
     Key? key,
     this.id,
@@ -38,6 +39,7 @@ class AddChildWidget extends StatefulWidget {
     this.disabilityType,
     this.fileExtension,
     this.bytes,
+    this.selectedFile,
   }) : super(key: key);
 
   @override
@@ -57,7 +59,7 @@ class _AddChildWidgetState extends State<AddChildWidget> {
     'type2',
     'type3',
   ];
-  String? _selectedFile;
+
   final ChildCubit _childCubit = getIt<ChildCubit>();
 
   final FilePickerFamilyCubit filePickerFamilyCubit =
@@ -67,9 +69,9 @@ class _AddChildWidgetState extends State<AddChildWidget> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (context) => _childCubit
-              ..getChild(childModel: ChildRequestModel(id: widget.id))),
+        // BlocProvider(
+        //     create: (context) => _childCubit
+        //       ..getChild(childModel: ChildRequestModel(id: widget.id))),
         // BlocProvider(create: (context) => _editChildCubit),
         BlocProvider(create: (context) => filePickerFamilyCubit),
       ],
@@ -92,153 +94,174 @@ class _AddChildWidgetState extends State<AddChildWidget> {
               ),
               child: FormBuilder(
                 key: _formKey,
-                child: BlocConsumer<ChildCubit, ChildState>(
-                    listener: (context, state) {
-                  if (state is ChildErrorState) {
-                    ViewsToolbox.dismissLoading();
-                    ViewsToolbox.showErrorAwesomeSnackBar(
-                        context, context.tr(state.message!));
-                  }
-                }, builder: (context, state) {
-                  if (state is ChildLoadingState) {
-                    ViewsToolbox.showLoading();
-                  } else if (state is ChildReadyState) {
-                    childEntity = state.response.data;
-                    ViewsToolbox.dismissLoading();
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          30.verticalSpace,
-                          TextFieldWidget(
-                            labelAboveField: context.tr("name"),
-                            keyName: "name",
-                            validator: FormBuilderValidators.required(),
-                            textInputAction: TextInputAction.next,
-                            initalValue: childEntity?.name ?? '',
-                          ),
-                          20.verticalSpace,
-                          TextFieldWidget(
-                            labelAboveField: context.tr("civilIDNumber"),
-                            keyName: "civilIDNumber",
-                            validator: FormBuilderValidators.required(),
-                            textInputAction: TextInputAction.next,
-                            initalValue: childEntity?.civilID ?? '',
-                          ),
-                          //  20.verticalSpace,
-                          // CustomSingleRangeDatePicker(
-                          //   fromLabelAboveField:
-                          //       context.tr("residencyExpiryDate"),
-                          //   customFormKey: _formKey,
-                          //   keyNameFrom: "residencyExpiry",
-                          // ),
-
-                          20.verticalSpace,
-                          CustomSingleRangeDatePicker(
-                            fromLabelAboveField: context.tr("birthDate"),
-                            customFormKey: _formKey,
-                            keyNameFrom: "birthDate",
-                            initialDate: childEntity?.birthDate != null
-                                ? DateFormat('dd/MM/yyyy')
-                                    .parse(childEntity!.birthDate!)
-                                : null,
-                          ),
-                          40.verticalSpace,
-                          //?GENDER
-                          DropdownButtonFormField<String>(
-                            value: _selectedGenderStatus,
-                            decoration: InputDecoration(
-                              labelText: context.tr('gender'),
-                              labelStyle: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w500),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 14),
-                            ),
-                            icon: Icon(Icons.keyboard_arrow_down_rounded,
-                                color: Colors.grey),
-                            style: TextStyle(fontSize: 16, color: Colors.black),
-                            dropdownColor: Colors.white,
-                            items: _genderStatuses.map((String status) {
-                              return DropdownMenuItem<String>(
-                                value: status,
-                                child: AppText(
-                                  text: status[0].toUpperCase() +
-                                      status.substring(1),
-                                  //  style: TextStyle(fontSize: 16),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                _selectedGenderStatus = newValue;
-                              });
-                            },
-                          ),
-                          20.verticalSpace,
-                          //?DISABILITY datepicker
-                          CustomSingleRangeDatePicker(
-                            fromLabelAboveField: context.tr("disabilityDate"),
-                            customFormKey: _formKey,
-                            keyNameFrom: "disabilityDate",
-                            initialDate: childEntity?.childDisabilityDate !=
-                                    null
-                                ? DateFormat('dd/MM/yyyy')
-                                    .parse(childEntity!.childDisabilityDate!)
-                                : null,
-                          ),
-                          40.verticalSpace,
-                          //?Disability type
-                          DropdownButtonFormField<String>(
-                            value: _selectedDisabilityStatus,
-                            decoration: InputDecoration(
-                              labelText: context.tr('disabilityType'),
-                              labelStyle: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w500),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 14),
-                            ),
-                            icon: Icon(Icons.keyboard_arrow_down_rounded,
-                                color: Colors.grey),
-                            style: TextStyle(fontSize: 16, color: Colors.black),
-                            dropdownColor: Colors.white,
-                            items:
-                                _genderDisabilityStatuses.map((String status) {
-                              return DropdownMenuItem<String>(
-                                value: status,
-                                child: AppText(
-                                  text: status[0].toUpperCase() +
-                                      status.substring(1),
-                                  //  style: TextStyle(fontSize: 16),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                _selectedDisabilityStatus = newValue;
-                              });
-                            },
-                          ),
-                          20.verticalSpace,
-                          FilePicker(
-                              filePickerFamilyCubit: filePickerFamilyCubit,
-                              onFileSelected: (filePath) => setState(() {
-                                    _selectedFile = filePath;
-                                  })),
-
-                          40.verticalSpace,
-                        ],
+                child:
+                    //  BlocConsumer<ChildCubit, ChildState>(
+                    //     listener: (context, state) {
+                    //   if (state is ChildErrorState) {
+                    //     ViewsToolbox.dismissLoading();
+                    //     ViewsToolbox.showErrorAwesomeSnackBar(
+                    //         context, context.tr(state.message!));
+                    //   }
+                    // }, builder: (context, state) {
+                    //   if (state is ChildLoadingState) {
+                    //     ViewsToolbox.showLoading();
+                    //   } else if (state is ChildReadyState) {
+                    //     childEntity = state.response.data;
+                    //     ViewsToolbox.dismissLoading();
+                    //     return
+                    Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      30.verticalSpace,
+                      TextFieldWidget(
+                        labelAboveField: context.tr("name"),
+                        keyName: "name",
+                        validator: FormBuilderValidators.required(),
+                        textInputAction: TextInputAction.next,
+                        // initalValue: childEntity?.name ?? '',
+                        onChanged: (value) {
+                          setState(() {
+                            widget.name = value;
+                          });
+                        },
                       ),
-                    );
-                  }
-                  return Container();
-                }),
+                      20.verticalSpace,
+                      TextFieldWidget(
+                        labelAboveField: context.tr("civilIDNumber"),
+                        keyName: "civilIDNumber",
+                        validator: FormBuilderValidators.required(),
+                        textInputAction: TextInputAction.next,
+                        //  initalValue: childEntity?.civilID ?? '',
+                        onChanged: (value) {
+                          setState(() {
+                            widget.civilId = value;
+                          });
+                        },
+                      ),
+                      //  20.verticalSpace,
+                      // CustomSingleRangeDatePicker(
+                      //   fromLabelAboveField:
+                      //       context.tr("residencyExpiryDate"),
+                      //   customFormKey: _formKey,
+                      //   keyNameFrom: "residencyExpiry",
+                      // ),
+
+                      20.verticalSpace,
+                      CustomSingleRangeDatePicker(
+                        fromLabelAboveField: context.tr("birthDate"),
+                        customFormKey: _formKey,
+                        keyNameFrom: "birthDate",
+                        //   initialDate: childEntity?.birthDate != null
+                        //       ? DateFormat('dd/MM/yyyy')
+                        //           .parse(childEntity!.birthDate!)
+                        //       : null,
+                        onChanged: (value) {
+                          setState(() {
+                            widget.birthDate = value;
+                          });
+                        },
+                      ),
+                      40.verticalSpace,
+                      //?GENDER
+                      DropdownButtonFormField<String>(
+                        value: _selectedGenderStatus,
+                        decoration: InputDecoration(
+                          labelText: context.tr('gender'),
+                          labelStyle: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 14),
+                        ),
+                        icon: Icon(Icons.keyboard_arrow_down_rounded,
+                            color: Colors.grey),
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        dropdownColor: Colors.white,
+                        items: _genderStatuses.map((String status) {
+                          return DropdownMenuItem<String>(
+                            value: status,
+                            child: AppText(
+                              text:
+                                  status[0].toUpperCase() + status.substring(1),
+                              //  style: TextStyle(fontSize: 16),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedGenderStatus = newValue;
+                          });
+                        },
+                      ),
+                      20.verticalSpace,
+                      //?DISABILITY datepicker
+                      CustomSingleRangeDatePicker(
+                        fromLabelAboveField: context.tr("disabilityDate"),
+                        customFormKey: _formKey,
+                        keyNameFrom: "disabilityDate",
+                        // initialDate: childEntity?.childDisabilityDate !=
+                        //         null
+                        //     ? DateFormat('dd/MM/yyyy')
+                        //         .parse(childEntity!.childDisabilityDate!)
+                        //     : null,
+                        onChanged: (value) {
+                          setState(() {
+                            widget.disabilityDate = value;
+                          });
+                        },
+                      ),
+                      40.verticalSpace,
+                      //?Disability type
+                      DropdownButtonFormField<String>(
+                        value: _selectedDisabilityStatus,
+                        decoration: InputDecoration(
+                          labelText: context.tr('disabilityType'),
+                          labelStyle: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 14),
+                        ),
+                        icon: Icon(Icons.keyboard_arrow_down_rounded,
+                            color: Colors.grey),
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        dropdownColor: Colors.white,
+                        items: _genderDisabilityStatuses.map((String status) {
+                          return DropdownMenuItem<String>(
+                            value: status,
+                            child: AppText(
+                              text:
+                                  status[0].toUpperCase() + status.substring(1),
+                              //  style: TextStyle(fontSize: 16),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedDisabilityStatus = newValue;
+                          });
+                        },
+                      ),
+                      20.verticalSpace,
+                      FilePicker(
+                          filePickerFamilyCubit: filePickerFamilyCubit,
+                          onFileSelected: (filePath) => setState(() {
+                                widget.selectedFile = filePath;
+                              })),
+
+                      40.verticalSpace,
+                    ],
+                  ),
+                ),
+                //   }
+                //   return Container();
+                // }),
               ),
             ),
             20.verticalSpace,

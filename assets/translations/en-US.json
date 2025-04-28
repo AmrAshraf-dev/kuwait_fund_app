@@ -1,8 +1,7 @@
 {
-
-"enable" : "Enable",
-  "disable" : "Disable",
-  "count" : "Count", 
+  "enable": "Enable",
+  "disable": "Disable",
+  "count": "Count",
   "chat_bot": "Chat Bot",
   "--Select--": "--Select--",
   "please_select_today": "Please select today as start day",
@@ -827,5 +826,7 @@
   "female": "female",
   "disabilityDate": "Disability Date",
   "gender": "gender",
-  "disabilityType": "Disability Type"
+  "disabilityType": "Disability Type",
+  "arabicName": "Arabic Name",
+  "englishName": "English Name"
 }

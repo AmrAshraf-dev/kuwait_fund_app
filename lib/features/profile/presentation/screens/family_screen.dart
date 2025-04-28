@@ -55,11 +55,9 @@ class _FamilyScreenState extends State<FamilyScreen> {
             children: [
               AddButtonWidget(
                   onPressed: () {
-                    
-                    CustomMainRouter.push(
-                      AddFamilyRoute(
-                      id: familyEntity!.map((value) => value.id).join(','),
-                    ));
+                    CustomMainRouter.push(AddFamilyRoute(
+                        //id: familyEntity!.map((value) => value.id).join(','),
+                        ));
                   },
                   title: context.tr("addFamilyMember")),
               14.verticalSpace,
@@ -67,37 +65,28 @@ class _FamilyScreenState extends State<FamilyScreen> {
                 listener: (context, state) {
                   if (state is FamilyErrorState) {
                     ViewsToolbox.dismissLoading();
-              
-                  }
-                  else if (state is FamilyEmptyState) {
+                  } else if (state is FamilyEmptyState) {
                     ViewsToolbox.dismissLoading();
                   }
                 },
                 builder: (context, state) {
                   if (state is FamilyLoadingState) {
                     ViewsToolbox.showLoading();
-                  }    else if (state is FamilyErrorState) {
-                           return Center(
-                             child: AppText(
-                                text:context.tr(state.message?? "someThingWentWrong") ,
-                                style: AppTextStyle.regular_14,
-                               
-                             ),
-                           );
-                          
-                        }
-                        else if(state is FamilyEmptyState){
-                          return Center(
-                             child: AppText(
-                                text:context.tr("noDataFound") ,
-                                style: AppTextStyle.regular_14,
-                               
-                             ),
-                           );
-                        }
-                  
-                  
-                  else if (state is FamilyReadyState) {
+                  } else if (state is FamilyErrorState) {
+                    return Center(
+                      child: AppText(
+                        text: context.tr(state.message ?? "someThingWentWrong"),
+                        style: AppTextStyle.regular_14,
+                      ),
+                    );
+                  } else if (state is FamilyEmptyState) {
+                    return Center(
+                      child: AppText(
+                        text: context.tr("noDataFound"),
+                        style: AppTextStyle.regular_14,
+                      ),
+                    );
+                  } else if (state is FamilyReadyState) {
                     familyEntity = state.response.data ?? [];
                     ViewsToolbox.dismissLoading();
                     return ListView.separated(
