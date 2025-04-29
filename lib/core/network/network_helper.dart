@@ -156,8 +156,7 @@ class NetworkHelper {
       if ((response.statusCode == 200 ||
           response.statusCode == 201 ||
           response.statusCode == 202)
-
-          && (response.data["code"]!=404 && response.data["code"]!=500 && response.data["code"]!=5006)
+           && (response.data["code"]!=404 && response.data["code"]!=500 && response.data["code"]!=5006)
           &&(response.statusCode == 200 &&response.data["data"]!=null)
           ) {
         return (response: response.data, success: true);

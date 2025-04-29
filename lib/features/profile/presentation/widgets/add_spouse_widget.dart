@@ -14,6 +14,7 @@ import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_fi
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/spouse_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/file_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
 
@@ -49,8 +50,8 @@ class AddSpouseWidget extends StatefulWidget {
 class _AddSpouseWidgetState extends State<AddSpouseWidget> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   final SpouseCubit _spouseCubit = getIt<SpouseCubit>();
-  final FilePickerFamilyCubit filePickerFamilyCubit =
-      getIt<FilePickerFamilyCubit>();
+  final FilePickerCubit filePickerFamilyCubit =
+      getIt<FilePickerCubit>();
   late List<String> _statuses = _statuses = [
     context.tr('married'),
     context.tr('divorced'),
@@ -207,11 +208,11 @@ class _AddSpouseWidgetState extends State<AddSpouseWidget> {
                           },
                         ),
                         40.verticalSpace,
-                        FilePicker(
-                            filePickerFamilyCubit: filePickerFamilyCubit,
-                            onFileSelected: (filePath) => setState(() {
-                                  widget.selectedSpouseFile = filePath;
-                                })),
+                        // FilePicker(
+                        //     filePickerFamilyCubit: filePickerFamilyCubit,
+                        //     onFileSelected: (filePath) => setState(() {
+                        //           widget.selectedSpouseFile = filePath;
+                        //         })),
 
                         40.verticalSpace,
                       ],

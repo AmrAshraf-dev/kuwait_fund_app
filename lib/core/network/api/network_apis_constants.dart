@@ -125,4 +125,6 @@ class ApiConstants {
 
   static String getDirectorDeptMissionsDetails =
       'Missions/GetOperationEmpsAttendaceDate';
+
+  static var editChild = 'Profile/SubmitChildModificationRequest';
 }

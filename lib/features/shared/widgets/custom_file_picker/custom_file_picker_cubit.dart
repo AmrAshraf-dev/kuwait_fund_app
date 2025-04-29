@@ -30,7 +30,7 @@ class FilePickerCubit extends Cubit<FilePickerState> {
 
       if (files.length != pickedImage.files.length) {
         // Emit an empty state if any file exceeds the size limit
-        emit(FilePickerErrorState(message: 'File size exceeds 1 MB limit.'));
+        emit(FilePickerErrorState(message: 'file_size_exceeds_1MB_limit'));
       } else {
         emit(FilePickerReadyState(files));
       }
@@ -49,8 +49,8 @@ class FilePickerCubit extends Cubit<FilePickerState> {
 
     if (pickedImage != null) {
       final fileSize = await pickedImage.length();
-      if (fileSize > maxSizeInBytes) {
-        emit(FilePickerErrorState(message: 'File size exceeds 1 MB limit.'));
+      if (fileSize > maxSizeInBytes) { 
+        emit(FilePickerErrorState(message: 'file_size_exceeds_1MB_limit'));
       } else {
         emit(FilePickerReadyState([pickedImage]));
       }

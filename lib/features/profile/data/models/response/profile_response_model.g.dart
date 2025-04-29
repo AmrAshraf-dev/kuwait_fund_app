@@ -62,25 +62,3 @@ Map<String, dynamic> _$EmployeeAddressModelToJson(
       if (instance.building case final value?) 'building': value,
       if (instance.apartmentNumber case final value?) 'apartmentNumber': value,
     };
-
-ProfileResponseModel _$ProfileResponseModelFromJson(
-        Map<String, dynamic> json) =>
-    ProfileResponseModel(
-      code: (json['code'] as num?)?.toInt(),
-      data: json['data'] == null
-          ? null
-          : ProfileModel.fromJson(json['data'] as Map<String, dynamic>),
-      message: json['message'] as String?,
-      totalRecords: (json['totalRecords'] as num?)?.toInt(),
-      hasMorePages: json['hasMorePages'] as bool?,
-    );
-
-Map<String, dynamic> _$ProfileResponseModelToJson(
-        ProfileResponseModel instance) =>
-    <String, dynamic>{
-      if (instance.message case final value?) 'message': value,
-      if (instance.code case final value?) 'code': value,
-      if (instance.data?.toJson() case final value?) 'data': value,
-      if (instance.totalRecords case final value?) 'totalRecords': value,
-      if (instance.hasMorePages case final value?) 'hasMorePages': value,
-    };

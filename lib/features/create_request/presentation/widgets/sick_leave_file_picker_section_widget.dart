@@ -60,9 +60,11 @@ class FilePickerSection extends StatelessWidget {
                   return _SelectedFilePreview(
                       state: state.xFile, filePickerCubit: filePickerCubit);
                 } else if (state is FilePickerInitialState) {
-                  return FilePickerButton(filePickerCubit: filePickerCubit);
+                  return FilePickerButton(filePickerCubit: filePickerCubit,
+                      title:  context.tr("attach_medical_report_file"));
                 } else {
-                  return FilePickerButton(filePickerCubit: filePickerCubit);
+                  return FilePickerButton(filePickerCubit: filePickerCubit,
+                  title:  context.tr("attach_medical_report_file"),);
                 }
               },
             ),

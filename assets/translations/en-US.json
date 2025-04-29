@@ -1,7 +1,7 @@
 {
 "alert" : "Alert",
 "please_select_date":  "Please select date",
- 
+ "file_size_exceeds_1MB_limit": "File size exceeds 1MB limit",
 "thank_you_for_participating": "Thank you for participating",
   "nameArabic" : "Name in Arabic",
   "nameEnglish" : "Name in English",
