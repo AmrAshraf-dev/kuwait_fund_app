@@ -13,8 +13,6 @@ class ProfileEntity extends Equatable {
   final String? nationalityName;
   final String? passportExpiryDate;
   final String? passportNumber;
-
-
   final String? phone1;
   final String? phone2;
 

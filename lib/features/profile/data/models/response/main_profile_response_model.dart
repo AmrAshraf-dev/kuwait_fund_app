@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:kf_ess_mobile_app/features/contactus/domain/entities/address_entity.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/profile_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/address_entity.dart';
+ import 'package:kf_ess_mobile_app/features/profile/domain/entities/address_entity.dart';
 import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart';
 
 import '../../../../shared/entity/base_entity.dart';

@@ -10,8 +10,7 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
-import 'package:share_plus/share_plus.dart';
-
+ 
 class GenericFilePicker extends StatelessWidget {
   const GenericFilePicker({
     super.key,

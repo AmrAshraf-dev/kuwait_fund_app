@@ -1,24 +1,18 @@
 {
-
-
-
-
-
-
-
-"alert" : "تنبيه",
-   "please_select_date": "يرجى اختيار التاريخ",
-"thank_you_for_participating": "شكراً لمشاركتك",
-"nameArabic" : "الاسم بالعربي",
-"nameEnglish" :  "الاسم بالإنجليزية",
-  "april" :  "أبريل",
-"march" :  "مارس",
-"days_count": "عدد الأيام",
-"out": "خروج",
-"in": "دخول",
-"enable" : "تفعيل",
-  "disable" : "تعطيل",
-  "count" : "عدد",
+  "file_size_exceeds_1MB_limit": "حجم الملف يتجاوز الحد المسموح به 1 ميغابايت",
+  "alert": "تنبيه",
+  "please_select_date": "يرجى اختيار التاريخ",
+  "thank_you_for_participating": "شكراً لمشاركتك",
+  "nameArabic": "الاسم بالعربي",
+  "nameEnglish": "الاسم بالإنجليزية",
+  "april": "أبريل",
+  "march": "مارس",
+  "days_count": "عدد الأيام",
+  "out": "خروج",
+  "in": "دخول",
+  "enable": "تفعيل",
+  "disable": "تعطيل",
+  "count": "عدد",
   "chat_bot": "المساعد الشخصي",
   "--Select--": "--اختر--",
   "editSpouseData": "تعديل بيانات الزوج/الزوجة",
@@ -134,7 +128,7 @@
   "central_asian_european_countries": "دول آسيا الوسطى وأوروبا",
   "note_all_amount_are_in_kuwaiti_dinar": "ملاحظة: جميع المبالغ بالدينار الكويتي وبالمليون",
   "fund_operations_expansion": "توسعت عمليات الصندوق في التسعينيات والسنوات اللاحقة لتشمل، بالإضافة إلى الدول العربية والأفريقية ودول جنوب آسيا والمحيط الهادئ، دول آسيا الوسطى وأوروبا وأمريكا اللاتينية ومنطقة البحر الكاريبي، مما أدى إلى زيادة قيمة القروض الملتزم بها من قبل الصندوق.",
-  "contributions":  "المساهمات",
+  "contributions": "المساهمات",
   "grants/institutions": "المنح/المؤسسات",
   "grants/countries": "المنح/الدول",
   "loans": "القروض",
@@ -245,7 +239,6 @@
   "annual_vacation_request": "طلب إجازة طارئة",
   "your_request_has_been_approved_on": "تم تقديم طلب الإجازة الطارئة(عرضي) الخاص بك بنجاح",
   "your_request_has_been_approved_on2": "تم تقديم طلب الإجازة الطارئة(اعتيادية) الخاص بك بنجاح",
-
   "recent_updates": "التحديثات الأخيرة",
   "hi": "مرحبا",
   "good_morning": "صباح الخير",
@@ -868,5 +861,9 @@
   "breakfast": "الإفطار",
   "lunch": "الغداء",
   "dinner": "العشاء",
-  "snack": "وجبة خفيفة"
+  "snack": "وجبة خفيفة",
+  "please_enter_valid_arabic_name": "الرجاء إدخال اسم عربي صحيح",
+  "no_files_selected": "لا يوجد ملف",
+  "please_upload_file": "يرجي ارفاق ملف",
+  "please_choose_item": "الرجاء اختيار عنصر"
 }

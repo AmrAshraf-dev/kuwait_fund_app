@@ -15,27 +15,29 @@ import 'package:path/path.dart' as path;
 class FilePickerSection extends StatelessWidget {
   final FilePickerCubit filePickerCubit;
   final ValueChanged<String?> onFileSelected;
-   const FilePickerSection({
+  final String title;
+  const FilePickerSection({
     super.key,
     required this.filePickerCubit,
     required this.onFileSelected,
+    required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-       decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(25.r),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3),
-        ),
-      ],
-    ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -50,8 +52,7 @@ class FilePickerSection extends StatelessWidget {
                   onFileSelected(null);
                   ViewsToolbox.showErrorAwesomeSnackBar(
                     context,
-                context.tr(state.message)    ,
-                   
+                    context.tr(state.message),
                   );
                 }
               },
@@ -60,20 +61,24 @@ class FilePickerSection extends StatelessWidget {
                   return _SelectedFilePreview(
                       state: state.xFile, filePickerCubit: filePickerCubit);
                 } else if (state is FilePickerInitialState) {
-                  return FilePickerButton(filePickerCubit: filePickerCubit);
+                  return FilePickerButton(
+                    filePickerCubit: filePickerCubit,
+                    title: title, //context.tr("attach_medical_report_file")
+                  );
                 } else {
-                  return FilePickerButton(filePickerCubit: filePickerCubit);
+                  return FilePickerButton(
+                    filePickerCubit: filePickerCubit,
+                    title: title, //context.tr("attach_medical_report_file"),
+                  );
                 }
               },
             ),
-                        10.verticalSpace,
-
-             AppText(
+            10.verticalSpace,
+            AppText(
               text: context.tr("max_file_size_1mb"),
               style: AppTextStyle.regular_12,
               textColor: Palette.black,
             ),
-           
             10.verticalSpace,
             Row(
               children: [
@@ -81,7 +86,7 @@ class FilePickerSection extends StatelessWidget {
                   text: context.tr("supported_file_types"),
                   style: AppTextStyle.regular_12,
                   textColor: Palette.black,
-                ), 
+                ),
                 5.horizontalSpace,
                 AppText(
                   text: context.tr("pdf_jpg_png"),
@@ -90,7 +95,6 @@ class FilePickerSection extends StatelessWidget {
                 ),
               ],
             ),
-             
           ],
         ),
       ),
@@ -159,4 +163,3 @@ class _SelectedFilePreview extends StatelessWidget {
     return path.extension(filePath).replaceFirst(".", "");
   }
 }
-

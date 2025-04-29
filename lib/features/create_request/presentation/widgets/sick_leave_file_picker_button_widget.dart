@@ -11,8 +11,8 @@ import '../../../shared/widgets/app_text.dart';
 
 class  FilePickerButton extends StatelessWidget {
   final FilePickerCubit filePickerCubit;
-
-  const  FilePickerButton({required this.filePickerCubit});
+final String title;
+  const  FilePickerButton({required this.filePickerCubit, required this.title, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class  FilePickerButton extends StatelessWidget {
           widget: GenericFilePicker(
             filePickerCubit: filePickerCubit,
             keyName: 'file',
-            buttonTitle: context.tr("attach_medical_report_file"),
+            buttonTitle:title,
             isFromCamera: false,
             isFromGallery: true,
             isFromFile: true,
@@ -41,7 +41,7 @@ class  FilePickerButton extends StatelessWidget {
           Icon(Icons.attach_file_outlined, color: Palette.blue_002A69),
           5.horizontalSpace,
           AppText(
-            text: context.tr("attach_medical_report_file"),
+            text:title  ,
             style: AppTextStyle.medium_16,
             textColor: Palette.black,
           ),

@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'package:kf_ess_mobile_app/features/create_request/presentation/widgets/sick_leave_file_picker_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/file_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:auto_route/auto_route.dart';
@@ -79,8 +81,7 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
   String? _selectedFile;
   final ChildCubit _childCubit = getIt<ChildCubit>();
   final EditChildCubit _editChildCubit = getIt<EditChildCubit>();
-  final FilePickerFamilyCubit filePickerFamilyCubit =
-      getIt<FilePickerFamilyCubit>();
+  final FilePickerCubit filePickerFamilyCubit = getIt<FilePickerCubit>();
   ChildModel? childEntity;
   @override
   Widget build(BuildContext context) {
@@ -253,8 +254,9 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
                                 },
                               ),
                               20.verticalSpace,
-                              FilePicker(
-                                  filePickerFamilyCubit: filePickerFamilyCubit,
+                              FilePickerSection(
+                                  title: context.tr("attach_file"),
+                                  filePickerCubit: filePickerFamilyCubit,
                                   onFileSelected: (filePath) => setState(() {
                                         _selectedFile = filePath;
                                       })),

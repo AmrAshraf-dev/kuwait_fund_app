@@ -322,8 +322,6 @@ import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/address_c
     as _i626;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/child_cubit.dart'
     as _i583;
-import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart'
-    as _i488;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_child_cubit.dart'
     as _i493;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_profile_cubit.dart'
@@ -426,7 +424,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i885.SelectedFamilyMembersCubit());
   gh.factory<_i52.LoanAmountCalculatorCubit>(
       () => _i52.LoanAmountCalculatorCubit());
-  gh.factory<_i488.FilePickerFamilyCubit>(() => _i488.FilePickerFamilyCubit());
   gh.factory<_i94.RangeDatePickerCubit>(() => _i94.RangeDatePickerCubit());
   gh.factory<_i360.TabCubit>(() => _i360.TabCubit());
   gh.factory<_i749.DatePickerCubit>(() => _i749.DatePickerCubit());
