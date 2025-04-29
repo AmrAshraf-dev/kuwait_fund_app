@@ -35,15 +35,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeEntity? homeEntity;
-  @override
-  void initState() {
-    super.initState();
-  }
+     final HomeCubit homeCubit = getIt<HomeCubit>();
+
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value:  context.read<HomeCubit>(),
+      value:  homeCubit..getLeaveDashboard(),
       child: MasterWidget(
           isBackEnabled: false,
           waterMarkImage: waterMarkImage3,
@@ -103,12 +101,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 38.h,
                             width: 38.w,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                           color: Palette.yellow_FBD823,
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
-                              child: SvgPicture.asset(chatbot),
+                              child: SvgPicture.asset(chatbot,
+                              color: Colors.white,),
                             )),
                       ),
                       17.horizontalSpace,
@@ -119,12 +118,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 38.h,
                             width: 38.w,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Palette.yellow_FBD823,
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(3.0),
-                              child: SvgPicture.asset(notification),
+                              child: SvgPicture.asset(notification,
+                              color: Colors.white,),
                             )),
                       ),
                     ],
@@ -178,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         leaveUsed: homeEntity?.leavDaysTaken ?? "-",
                         totalLeave: -1,
                         title: context.tr('vacations_used'),
-                        color: Color(0xFFFBD823)),
+                        color: Palette.yellow_yellow_FBD823),
                   ],
                 );
               }),

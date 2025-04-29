@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 class VisitorsLogsHostsEntity  extends Equatable{
 
   
-  final String id;
-  final String name;
+  final String? id;
+  final String? name;
 
   VisitorsLogsHostsEntity({
     required this.id,

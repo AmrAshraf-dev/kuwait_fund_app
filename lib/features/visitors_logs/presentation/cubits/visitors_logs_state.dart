@@ -16,7 +16,8 @@ final class VisitorsLogsReadyState extends VisitorsLogsState {
 }
 
 final class VisitorsLogsHostsReadyState extends VisitorsLogsState {
-  VisitorsLogsHostsReadyState(this.response);
+  VisitorsLogsHostsReadyState(this.response , this.showNewBottomSheet);
+  final bool showNewBottomSheet;
 
   BaseEntity<List<VisitorsLogsHostsEntity>> response;
 }

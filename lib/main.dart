@@ -120,7 +120,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      minTextAdapt: false,
+      minTextAdapt: true,
       designSize: const Size(393, 852),
       useInheritedMediaQuery: true,
       builder: (BuildContext context, Widget? child) {

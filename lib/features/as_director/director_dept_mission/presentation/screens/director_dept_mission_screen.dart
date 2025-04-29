@@ -28,22 +28,18 @@ class _DirectorDeptMissionScreenState extends State<DirectorDeptMissionScreen> {
     final DirectorDeptMissionCubit  directorDeptMissionCubit = getIt<DirectorDeptMissionCubit>();
   DeptEntity? selectedDept;
   DateTime _focusedDay = DateTime.now();
-  
-  @override
-  void initState() {
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-          create: (context) => directorDeptMissionCubit..getAllDepts()
-          ..getDeptCalenderData(
-             DeptCalenderDataRequestModel(
-              deptCode: "0", // default value 
-             month:int.parse(_focusedDay.month.toString().padLeft(2, '0')) ,year: int.parse(_focusedDay.year.toString())    
-              )
-          ),
+          create: (context) => directorDeptMissionCubit..getAllDepts(),
+          // ..getDeptCalenderData(
+          //    DeptCalenderDataRequestModel(
+          //     deptCode: "0", // default value 
+          //    month:int.parse(_focusedDay.month.toString().padLeft(2, '0')) ,year: int.parse(_focusedDay.year.toString())    
+          //     )
+          // ),
       child: MasterWidget(
           screenTitle: context.tr("dept_mission"),
           isBackEnabled: false,
@@ -52,10 +48,12 @@ class _DirectorDeptMissionScreenState extends State<DirectorDeptMissionScreen> {
             Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: DeptNameDropdown(
+                                            initialValue: selectedDept,
+
                        onDeptSelected: (selectedDeptValue) {
-                    setState(() {
+                
                       selectedDept = selectedDeptValue;
-                    });
+                   
                         directorDeptMissionCubit.getDeptCalenderData(
                           DeptCalenderDataRequestModel(
                             deptCode: selectedDept?.departmentCode?? "0",
@@ -101,9 +99,9 @@ class _DirectorDeptMissionScreenState extends State<DirectorDeptMissionScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
 
-                                    LegendItem(color: Palette.blue_3542B9, labelKey: "mission"),
+                                    LegendItem(color: Palette.red_FF0606, labelKey: "mission"),
                                     10.horizontalSpace,
-                                    LegendItem(color: Colors.red, labelKey: "leave"),
+                                    LegendItem(color: Palette.blue_3542B9, labelKey: "leave"),
 
                       
                         // Row(

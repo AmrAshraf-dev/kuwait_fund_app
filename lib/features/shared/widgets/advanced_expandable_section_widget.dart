@@ -103,7 +103,7 @@ class _AdvancedExpandableSectionState extends State<AdvancedExpandableSection> {
                         widget._isExpanded
                             ? Icons.keyboard_arrow_up
                             : Icons.keyboard_arrow_down,
-                        color: Palette.black,
+                        color: Palette.white,
                       ),
                     ),
                   ),

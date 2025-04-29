@@ -21,10 +21,9 @@ enum Method {
 
 @injectable
 class NetworkHelper {
-  static const int _maxLineWidth = 90;
-  static final _prettyDioLogger = TalkerDioLogger(
+   static final _prettyDioLogger = TalkerDioLogger(
      settings: const TalkerDioLoggerSettings(
-          printRequestHeaders: true,
+           printRequestHeaders: true,
           printResponseMessage: true,
           printResponseTime: true,
           
@@ -68,8 +67,8 @@ class NetworkHelper {
         data: data,
         options: Options(
           headers: tmpHeaders,
-          receiveTimeout: const Duration(seconds: 60),
-          sendTimeout: const Duration(seconds: 60),
+          receiveTimeout: const Duration(seconds: 30),
+          sendTimeout: const Duration(seconds: 30),
         ),
       );
       return response;
@@ -95,8 +94,8 @@ class NetworkHelper {
           ?..removeWhere((String key, value) => value == null),
         options: Options(
           headers: headers,
-          receiveTimeout: const Duration(seconds: 60),
-          sendTimeout: const Duration(seconds: 60),
+          receiveTimeout: const Duration(seconds: 30),
+          sendTimeout: const Duration(seconds: 30),
         ),
       );
 
@@ -149,8 +148,8 @@ class NetworkHelper {
           ?..removeWhere((String key, value) => value == null),
         options: Options(
           headers: headers,
-          receiveTimeout: const Duration(seconds: 60),
-          sendTimeout: const Duration(seconds: 60),
+          receiveTimeout: const Duration(seconds: 30),
+          sendTimeout: const Duration(seconds: 30),
         ),
       );
 
@@ -198,8 +197,8 @@ class NetworkHelper {
         data: data,
         options: Options(
           headers: headers,
-          receiveTimeout: const Duration(seconds: 60),
-          sendTimeout: const Duration(seconds: 60),
+          receiveTimeout: const Duration(seconds: 30),
+          sendTimeout: const Duration(seconds: 30),
         ),
       );
       return response;

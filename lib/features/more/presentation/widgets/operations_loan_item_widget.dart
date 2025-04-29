@@ -24,27 +24,35 @@ class OperationsLoanItem extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                                              width: 120.w,
-
-                  child: AppText(
-                    text: context.tr(countryName!),
-                    style: AppTextStyle.semiBold_18,
+            Container(
+              color:  Palette.primaryColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                                                width: 120.w,
+              
+                    child: AppText(
+                      text: context.tr(countryName??"-"),
+                      style: AppTextStyle.semiBold_16,
+                      textColor: Colors.white,
+                    ),
                   ),
-                ),
-                AppText(
-                  text: context.tr("count"),
-                  style: AppTextStyle.regular_18,
-                ),
                   AppText(
-                  text: context.tr("kd(million)"),
-                  style: AppTextStyle.regular_18,
-                ),
-                
-              ],
+                    text: context.tr("count"),
+                    style: AppTextStyle.regular_18,
+                                          textColor: Colors.white,
+
+                  ),
+                    AppText(
+                    text: context.tr("kd(million)"),
+                    style: AppTextStyle.regular_18,
+                                          textColor: Colors.white,
+
+                  ),
+                  
+                ],
+              ),
             ),
             Divider(
               color: Palette.gery_DADADA,
@@ -62,15 +70,17 @@ class OperationsLoanItem extends StatelessWidget {
                             width: 120.w,
                             child: AppText(
                               text: context.tr(sectorNames[index]),
-                              style: AppTextStyle.semiBold_16,
+                              style: AppTextStyle.regular_13,
                               textColor: Colors.black,
+                                                            textAlign: TextAlign.start, // Center-align the text
+
                             ),
                           ),
                           SizedBox(
                             width: 100.w,
                             child: AppText(
                               text: context.tr(numbers[index]),
-                              style: AppTextStyle.regular_16,
+                              style: AppTextStyle.regular_13,
                               textAlign: TextAlign.center, // Center-align the text
                             ),
                           ),
@@ -79,7 +89,9 @@ class OperationsLoanItem extends StatelessWidget {
 
                             child: AppText(
                               text: amounts[index],
-                              style: AppTextStyle.regular_16,
+                              style: AppTextStyle.regular_13,
+                                                            textAlign: TextAlign.center, // Center-align the text
+
                             ),
                           ),
                         ],

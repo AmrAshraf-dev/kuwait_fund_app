@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ToggleCubit extends Cubit<Map<String, bool>> {
+
+
+ class ToggleCubit extends Cubit<Map<String, bool>> {
   ToggleCubit() : super(<String, bool>{});
 
   // Toggle the value of a specific toggle identified by its key

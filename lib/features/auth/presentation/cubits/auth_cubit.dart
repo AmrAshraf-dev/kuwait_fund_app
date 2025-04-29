@@ -32,7 +32,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthReadyState(response));
         return true;
       } else {
-        emit(AuthErrorState(message: response.message));
+        emit(AuthErrorState(message: "wrong_user_password"));
         return false;
       }
     });

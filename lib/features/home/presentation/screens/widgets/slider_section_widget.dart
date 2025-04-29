@@ -1,5 +1,5 @@
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
@@ -54,40 +54,44 @@ class _SliderSectionState extends State<SliderSection> {
                             : Alignment.topLeft,
                         child: Padding(
                           padding: const EdgeInsetsDirectional.all(20.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 150.w,
-                                child: AppText(
-                                  maxLines: 2,
-                                  text: context.tr(
-                                      "tips_to_achieve_better_productivity"),
-                                  style: AppTextStyle.bold_22,
-                                  textColor: _current == 0 || _current == 2
-                                      ? Palette.white
-                                      : Palette.blue_002A69,
-                                ),
-                              ),
-                              Container(
-                                width: 30.w,
-                                height: 30.w,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: BorderRadius.circular(10.r),
-                                  color: _current == 0 || _current == 2
-                                      ? Colors.yellow
-                                      : Palette.black,
-                                ),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.arrow_forward,
-                                    color: Palette.white,
+                          child: Directionality(
+                            textDirection:  TextDirection.ltr,
+                                
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 150.w,
+                                  child: AppText(
+                                    maxLines: 2,
+                                    text: context.tr(
+                                        "tips_to_achieve_better_productivity"),
+                                    style: AppTextStyle.bold_22,
+                                    textColor: _current == 0 || _current == 2
+                                        ? Palette.white
+                                        : Palette.blue_002A69,
                                   ),
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  width: 30.w,
+                                  height: 30.w,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.rectangle,
+                                    borderRadius: BorderRadius.circular(10.r),
+                                    color: _current == 0 || _current == 2
+                                        ? Colors.yellow
+                                        : Palette.black,
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.arrow_forward,
+                                      color: Palette.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

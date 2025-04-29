@@ -6,6 +6,7 @@ import 'package:kf_ess_mobile_app/features/notifications/domain/entities/notific
 import 'package:kf_ess_mobile_app/features/notifications/presentation/widgets/loan_notification_widget.dart';
 import 'package:kf_ess_mobile_app/features/notifications/presentation/widgets/normal_notification_widget.dart';
 import 'package:kf_ess_mobile_app/features/notifications/presentation/widgets/response_notification_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/no_data_widget.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 
@@ -37,13 +38,16 @@ class NotificationsScreen extends StatelessWidget {
               isBackEnabled: true,
 
       screenTitle: context.tr("notification"),
-      widget: ListView.builder(
-        cacheExtent: 1000,
-        itemCount: allNotifications.length,
-        itemBuilder: (context, index) {
-          return NotificationItemWidget(notification: allNotifications[index]);
-        },
-      ),
+      widget: NoDataWidget()
+      
+      
+      // ListView.builder(
+      //   cacheExtent: 1000,
+      //   itemCount: allNotifications.length,
+      //   itemBuilder: (context, index) {
+      //     return NotificationItemWidget(notification: allNotifications[index]);
+      //   },
+      // ),
     );
   }
 }

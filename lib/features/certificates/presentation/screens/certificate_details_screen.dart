@@ -59,10 +59,11 @@ class CertificateDetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.download,
-                              color: Palette.black, size: 25.sp),
+                              color: Palette.white, size: 25.sp),
                           5.horizontalSpace,
                           AppText(
                             fontSize: 14.sp,
+                            textColor:  Palette.white,
                             text: context.tr("download"),
                           )
                         ],

@@ -11,8 +11,8 @@
 		<key>NSLocationAlwaysAndWhenInUsageDescription</key>
 		<string>Always and in usage permissions</string>
 		<key>NSFaceIDUsageDescription</key>
-<string>  Enable this option to use Face ID for authentication.</string>
-	 		<key>NSLocationAlwaysUsageDescription</key>
+		<string>Enable this option to use Face ID for authentication.</string>
+		<key>NSLocationAlwaysUsageDescription</key>
 		<string>always permissions</string>
 		<key>NSLocationUsageDescription</key>
 		<string>location permissions</string>

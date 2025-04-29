@@ -12,7 +12,7 @@ final class ProfileLoadingState extends ProfileState {}
 
 final class ProfileReadyState extends ProfileState {
   ProfileReadyState(this.response);
-  BaseEntity<ProfileEntity> response;
+  BaseEntity<MainProfileEntity> response;
 }
 
 abstract class ProfileState {}

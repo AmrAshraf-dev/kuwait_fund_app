@@ -292,16 +292,6 @@ import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/instit
     as _i756;
 import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/loan_cubit/loan_cubit.dart'
     as _i474;
-import 'package:kf_ess_mobile_app/features/peraonal_info/data/data_sources/remote/personal_info_remote_data_source.dart'
-    as _i887;
-import 'package:kf_ess_mobile_app/features/peraonal_info/data/repositories/personal_info_repository_impl.dart'
-    as _i1007;
-import 'package:kf_ess_mobile_app/features/peraonal_info/domain/repositories/personal_info_repository.dart'
-    as _i589;
-import 'package:kf_ess_mobile_app/features/peraonal_info/domain/use_cases/get_personal_info_usecase.dart'
-    as _i215;
-import 'package:kf_ess_mobile_app/features/peraonal_info/presentation/cubits/personal_info_cubit.dart'
-    as _i698;
 import 'package:kf_ess_mobile_app/features/profile/data/data_sources/remote/profile_remote_data_source.dart'
     as _i710;
 import 'package:kf_ess_mobile_app/features/profile/data/repositories/profile_repository_impl.dart'
@@ -519,8 +509,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i706.SickLeaveRequestDataSourceImp(gh<_i675.NetworkHelper>()));
   gh.factory<_i960.DirectorDeptAssignmentRemoteDataSource>(() =>
       _i960.DirectorDeptAssignmentDataSourceImpl(gh<_i675.NetworkHelper>()));
-  gh.factory<_i887.PersonalInfoRemoteDataSource>(
-      () => _i887.PersonalInfoDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i849.DirectorDeptAssignmentRepository>(() =>
       _i482.DirectorDeptAssignmentRepositoryImp(
           directorDeptAssignmentRemoteDataSource:
@@ -621,10 +609,6 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i246.ProfileRepository>(() => _i249.ProfileRepositoryImp(
       profileRemoteDataSource: gh<_i710.ProfileRemoteDataSource>()));
-  gh.factory<_i589.PersonalInfoRepository>(() =>
-      _i1007.PersonalInfoRepositoryImp(
-          personalInfoRemoteDataSource:
-              gh<_i887.PersonalInfoRemoteDataSource>()));
   gh.factory<_i429.EditSpouseRequestUseCase>(() =>
       _i429.EditSpouseRequestUseCase(
           editSpouseRequestRepository: gh<_i246.ProfileRepository>()));
@@ -677,8 +661,6 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i723.AnnualLeaveRequestRepository>()));
   gh.factory<_i292.GetSurveyUseCase>(() =>
       _i292.GetSurveyUseCase(surveyRepository: gh<_i307.SurveyRepository>()));
-  gh.factory<_i215.GetPersonalInfoUseCase>(() => _i215.GetPersonalInfoUseCase(
-      personalInfoRepository: gh<_i589.PersonalInfoRepository>()));
   gh.factory<_i24.SickLeaveRequestRepository>(() =>
       _i697.SickLeaveRequestRepositoryImp(
           sickLeaveRequestRemoteDataSource:
@@ -811,8 +793,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i793.GetPersonalLoanMasterInfoUseCase>(() =>
       _i793.GetPersonalLoanMasterInfoUseCase(
           gh<_i815.LoanRequestRepository>()));
-  gh.factory<_i698.PersonalInfoCubit>(() => _i698.PersonalInfoCubit(
-      getPersonalInfoUseCase: gh<_i215.GetPersonalInfoUseCase>()));
   gh.factory<_i695.SpouseCubit>(
       () => _i695.SpouseCubit(getSpouseUseCase: gh<_i520.GetSpouseUseCase>()));
   gh.factory<_i992.LoanRequestCubit>(() => _i992.LoanRequestCubit(

@@ -60,14 +60,14 @@ class AttendanceLogCardItem extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.login,
-                              color: Palette.primaryColor,
+                              color: Palette.green,
                               size: 20.sp,
                             ),
                             5.horizontalSpace,
                             AppText(
-                              text: context.tr("entrance"),
+                              text: context.tr("in"),
                               style: AppTextStyle.bold_16,
-                              textColor: Palette.black,
+                              textColor: Palette.green,
                             ),
                           ],
                         ),
@@ -81,15 +81,15 @@ class AttendanceLogCardItem extends StatelessWidget {
                               quarterTurns: 2,
                               child: Icon(
                                 Icons.logout,
-                                color: Palette.primaryColor,
+                                color: Palette.red_FF0606,
                                 size: 20.sp,
                               ),
                             ),
                             5.horizontalSpace,
                             AppText(
-                              text: context.tr("exit"),
+                              text: context.tr("out"),
                               style: AppTextStyle.bold_16,
-                              textColor: Palette.black,
+                              textColor: Palette.red_FF0606,
                             ),
                           ],
                         ),

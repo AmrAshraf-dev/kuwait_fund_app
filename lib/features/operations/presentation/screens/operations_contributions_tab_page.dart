@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/contributions_cubit/contributions_cubit.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/widgets/institutions_grants_datatable_widget%20copy.dart';
+import 'package:kf_ess_mobile_app/features/operations/presentation/widgets/contributions_datatable_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
 class OperationsContributionsTabPage extends StatelessWidget {

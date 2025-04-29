@@ -12,6 +12,7 @@ import 'package:kf_ess_mobile_app/features/profile/data/models/response/edit_pro
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/edit_spouse_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/main_profile_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/qualifications_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/spouse_response_model.dart';
 
@@ -19,10 +20,9 @@ import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';
 import '../../../../../core/network/network_helper.dart';
 import '../../../../../error/failure.dart';
-import '../../models/response/profile_response_model.dart';
-
+ 
 abstract class ProfileRemoteDataSource {
-  Future<CustomResponseType<ProfileResponseModel>> getProfile(
+  Future<CustomResponseType<MainProfileResponseModel>> getProfile(
       /*{required ProfileRequestModel profileRequestModel}*/);
 
   Future<CustomResponseType<AddressResponseModel>> getAddress();
@@ -49,15 +49,15 @@ class ProfileDataSourceImpl implements ProfileRemoteDataSource {
   final NetworkHelper networkHelper;
 
   @override
-  Future<CustomResponseType<ProfileResponseModel>> getProfile(
+  Future<CustomResponseType<MainProfileResponseModel>> getProfile(
       /*{ProfileRequestModel? profileRequestModel}*/) async {
     ({dynamic response, bool success}) result =
         await networkHelper.get(path: ApiConstants.getProfileInfo);
 
     if (result.success) {
-      return right(ProfileResponseModel.fromJson(result.response));
+      return right(MainProfileResponseModel.fromJson(result.response));
     } else {
-      return left(ServerFailure(message: result.response as String));
+      return left(ServerFailure(message: result.response ));
     }
   }
 

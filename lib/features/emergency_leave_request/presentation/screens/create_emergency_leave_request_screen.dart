@@ -106,18 +106,17 @@ class _CreateEmergencyLeaveRequestScreenState
                             ViewsToolbox.showErrorAwesomeSnackBar(
                                 context, context.tr(state.message!));
                           } else if (state is EmergencyLeaveScreenReadyState) {
+                            
                             ViewsToolbox.dismissLoading();
                             setState(() {
                               emergencyLeaveEntity = state.response.data!;
                             });
                           }
                         }, builder: (context, emergencyLeaveState) {
-                          if (emergencyLeaveState
-                              is EmergencyLeaveScreenReadyState) {
+                        
                             return Column(
                               children: [
-                                if (emergencyLeaveState
-                                        .response.data?.canTakeLeaveFlg ??
+                                if (emergencyLeaveEntity?.canTakeLeaveFlg ??
                                     false)
                                   Column(
                                     children: [
@@ -138,8 +137,8 @@ class _CreateEmergencyLeaveRequestScreenState
                                                   selectedDays: selectedDays!);
                                         },
                                         items: List<int>.generate(
-                                                emergencyLeaveState.response
-                                                        .data?.allowedDays ??
+                                              emergencyLeaveEntity
+                                                       ?.allowedDays ??
                                                     0,
                                                 (index) =>
                                                     index +
@@ -177,9 +176,8 @@ class _CreateEmergencyLeaveRequestScreenState
                                           ),
                                           2.horizontalSpace,
                                           AppText(
-                                            text: emergencyLeaveState
-                                                .response.data?.allowedDays
-                                                .toString(),
+                                            text: (emergencyLeaveEntity?.allowedDays??"-").toString(),
+                                                
                                             style: AppTextStyle.bold_14,
                                           ),
                                         ],
@@ -187,10 +185,9 @@ class _CreateEmergencyLeaveRequestScreenState
                                     ],
                                   ),
                               ],
-                            );
-                          }
-                          return Container();
-                        }),
+                            
+                          
+                                );})
                       ],
                     ),
                   ),

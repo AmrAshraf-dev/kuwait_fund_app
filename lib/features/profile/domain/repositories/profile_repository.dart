@@ -8,6 +8,7 @@ import "package:kf_ess_mobile_app/features/profile/data/models/response/experien
 import "package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart";
 import "package:kf_ess_mobile_app/features/profile/data/models/response/qualifications_response_model.dart";
 import "package:kf_ess_mobile_app/features/profile/domain/entities/address_entity.dart";
+import "package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart";
 import "package:kf_ess_mobile_app/features/profile/domain/entities/spouse_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
@@ -20,10 +21,8 @@ abstract class ProfileRepository {
   A repository is a collection of data operations. It is responsible for 
   abstracting the data layer from the business logic layer. 
   */
-  Future<CustomResponseType<BaseEntity<ProfileEntity>>> getProfile(
-      //  {
-      // required ProfileRequestModel profileParams,
-      //}
+  Future<CustomResponseType<BaseEntity<MainProfileEntity>>> getProfile(
+    
       );
   Future<CustomResponseType<BaseEntity<MyAddressEntity>>> getAddress();
   Future<CustomResponseType<BaseEntity<List<FamilyModel>>>> getFamily();

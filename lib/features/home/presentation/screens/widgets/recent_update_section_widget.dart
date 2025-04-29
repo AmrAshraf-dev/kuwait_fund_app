@@ -42,31 +42,24 @@ class _RecentUpdatesSectionState extends State<RecentUpdatesSection> {
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             children: [
-              RecentUpdateCardItem(
+             RecentUpdateCardItem(
                 title: context.tr("annual_vacation_request"),
                 subtitle:
-                    "${context.tr("your_request_has_been_approved_on")} 22 Dec 2021",
-                day: "22",
-                month: "Dec",
-                year: "2021",
+                    context.tr("your_request_has_been_approved_on"),
+                day: "02",
+                month:context.tr("april") ,
+                year: "2025",
                 onClick: () {},
               ),
               RecentUpdateCardItem(
-                title: context.tr("annual_leave"),
-                subtitle: context.tr("annual_leave"),
-                day: "23",
-                month: "Dec",
-                year: "2021",
+                title: context.tr("emergency_leave"),
+                subtitle: context.tr("your_request_has_been_approved_on2"),
+                day: "10",
+                month: context.tr("march"),
+                year: "2025",
                 onClick: () {},
               ),
-              RecentUpdateCardItem(
-                title: context.tr("annual_leave"),
-                subtitle: context.tr("annual_leave"),
-                day: "23",
-                month: "Dec",
-                year: "2021",
-                onClick: () {},
-              ),
+             
             ],
           ),
         )

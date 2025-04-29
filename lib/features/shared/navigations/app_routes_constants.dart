@@ -130,4 +130,8 @@ class AppRoutesConstants {
   static var submissionsDirector = '/submissionsDirectorScreen';
 
   static var requestsDirector = '/requestsDirectorScreen';
+
+  static var directorDeptMissionRoute = 'directorDeptMissionScreen';
+
+  static var directorDeptAssignmentNavigation = '/directorDeptAssignmentNavigationScreen';
 }

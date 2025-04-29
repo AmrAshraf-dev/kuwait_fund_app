@@ -9,6 +9,7 @@ import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart';
 import 'package:kf_ess_mobile_app/features/profile/domain/entities/profile_entity.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/profile_item_widget.dart';
@@ -28,7 +29,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final ProfileCubit _profileCubit = getIt<ProfileCubit>();
-  ProfileEntity? profileEntity;
+  MainProfileEntity? profileEntity;
 
   @override
   void initState() {
@@ -117,37 +118,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               7.verticalSpace,
                               AppText(
-                                text: profileEntity?.name ??
+                                text: profileEntity?.profile?.nameArabic ??
+                                    '', //"Ahmad Riyad Abdel",
+                                style: AppTextStyle.bold_16,
+                              ),
+                                 AppText(
+                                text: profileEntity?.profile?.nameEnglish ??
                                     '', //"Ahmad Riyad Abdel",
                                 style: AppTextStyle.bold_16,
                               ),
                               AppText(
-                                text: profileEntity?.designationName ??
+                                text: profileEntity?.profile?.designationName ??
                                     '', //"Project Manager",
                                 style: AppTextStyle.regular_14,
                               ),
                               AppText(
-                                text: profileEntity?.employeeNumber ??
+                                text: profileEntity?.profile?.employeeNumber ??
                                     '', //"Employee No. 876887",
                                 style: AppTextStyle.regular_14,
                               ),
                               7.verticalSpace,
                               AppText(
-                                text: profileEntity?.email ??
+                                text: profileEntity?.profile?.email ??
                                     '', //"ahmed@domainname.com",
                                 style: AppTextStyle.regular_14,
                                 textColor: Palette.grey_525252,
                               ),
                               7.verticalSpace,
                               AppText(
-                                text: profileEntity?.phone1 ??
-                                    '', //"+965 54365478, +965 87654322",
+                                text: profileEntity?.profile?.phone1 ??
+                                    '',   
                                 style: AppTextStyle.regular_14,
                                 textColor: Palette.grey_525252,
                               ),
                               AppText(
-                                text: profileEntity?.phone2 ??
-                                    '', //"+965 54365478, +965 87654322",
+                                text: profileEntity?.profile?.phone2 ??
+                                    '',  
                                 style: AppTextStyle.regular_14,
                                 textColor: Palette.grey_525252,
                               ),
@@ -188,7 +194,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 text: context.tr("personalInfo"),
                 svgIcon: personalInfoIcon,
                 onTap: () {
-                  CustomMainRouter.push(PersonalInfoRoute());
+                  CustomMainRouter.push(PersonalInfoRoute(
+                    personalInfoEntity: profileEntity!,
+                  ));
                 }),
             // ProfileItemWidget(
             //     text: context.tr("address"),

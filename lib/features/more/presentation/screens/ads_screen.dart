@@ -1,11 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/constants/images.dart';
 import 'package:kf_ess_mobile_app/core/helper/language_helper.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
+ 
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/more/domain/entities/ads_entity.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -103,58 +102,61 @@ class AdsCard extends StatelessWidget {
                   alignment: LanguageHelper.isAr(context)
                       ? Alignment.topLeft
                       : Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          children: [
-                            if (item.title != null)
-                              SizedBox(
-                                width: 140.w,
-                                child: AppText(
-                                  maxLines: 2,
-                                  text: context.tr(item.title!),
-                                  style: AppTextStyle.bold_20,
-                                  textColor: item.id == 1
-                                      ? Palette.white
-                                      : Palette.black,
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            children: [
+                              if (item.title != null)
+                                SizedBox(
+                                  width: 140.w,
+                                  child: AppText(
+                                    maxLines: 2,
+                                    text: context.tr(item.title!),
+                                    style: AppTextStyle.bold_20,
+                                    textColor: item.id == 1
+                                        ? Palette.white
+                                        : Palette.black,
+                                  ),
                                 ),
-                              ),
-                            if (item.subTitle != null)
-                              SizedBox(
-                                width: 140.w,
-                                child: AppText(
-                                  text: context.tr(item.subTitle!),
-                                  style: AppTextStyle.regular_18,
-                                  textColor: item.id == 1
-                                      ? Palette.white
-                                      : Palette.black,
+                              if (item.subTitle != null)
+                                SizedBox(
+                                  width: 140.w,
+                                  child: AppText(
+                                    text: context.tr(item.subTitle!),
+                                    style: AppTextStyle.regular_18,
+                                    textColor: item.id == 1
+                                        ? Palette.white
+                                        : Palette.black,
+                                  ),
                                 ),
-                              ),
-                          ],
-                        ),
-                        // if (item.id != 3)
-                        //   Container(
-                        //     width: 30.w,
-                        //     height: 30.w,
-                        //     decoration: BoxDecoration(
-                        //       shape: BoxShape.rectangle,
-                        //       borderRadius: BorderRadius.circular(10.r),
-                        //       color: item.id == 1
-                        //           ? Palette.yellow_FBD823
-                        //           : Palette.blue_002A69,
-                        //     ),
-                            // child: Center(
-                            //   child: Icon(
-                            //     Icons.arrow_forward,
-                            //     color: Palette.white,
-                            //   ),
-                            // ),
-                        //  ),
-                      ],
+                            ],
+                          ),
+                          // if (item.id != 3)
+                          //   Container(
+                          //     width: 30.w,
+                          //     height: 30.w,
+                          //     decoration: BoxDecoration(
+                          //       shape: BoxShape.rectangle,
+                          //       borderRadius: BorderRadius.circular(10.r),
+                          //       color: item.id == 1
+                          //           ? Palette.yellow_FBD823
+                          //           : Palette.blue_002A69,
+                          //     ),
+                              // child: Center(
+                              //   child: Icon(
+                              //     Icons.arrow_forward,
+                              //     color: Palette.white,
+                              //   ),
+                              // ),
+                          //  ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

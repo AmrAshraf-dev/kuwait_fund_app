@@ -15,6 +15,7 @@ VisitorsLogsDetailsModel _$VisitorsLogsDetailsModelFromJson(
       visitTime: json['visitTime'] as String?,
       visitorName: json['visitorName'] as String,
       visitorsCount: json['visitorsCount'] as String?,
+      visitTypeName: json['visitTypeName'] as String?,
     );
 
 Map<String, dynamic> _$VisitorsLogsDetailsModelToJson(
@@ -26,6 +27,7 @@ Map<String, dynamic> _$VisitorsLogsDetailsModelToJson(
       'visitDate': instance.visitDate,
       if (instance.visitTime case final value?) 'visitTime': value,
       if (instance.visitorsCount case final value?) 'visitorsCount': value,
+      if (instance.visitTypeName case final value?) 'visitTypeName': value,
     };
 
 VisitorsLogsDetailsResponseModel _$VisitorsLogsDetailsResponseModelFromJson(

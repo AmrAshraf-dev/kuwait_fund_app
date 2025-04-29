@@ -16,8 +16,10 @@ part 'profile_response_model.g.dart';
 @JsonSerializable()
 class ProfileModel extends ProfileEntity {
   const ProfileModel({
+    super.passportNumber,
     super.employeeNumber,
-    super.name,
+    super.nameArabic,
+    super.nameEnglish,
     super.designationName,
     super.email,
     super.phone1,
@@ -36,7 +38,7 @@ class ProfileModel extends ProfileEntity {
 }
 
 @JsonSerializable()
-class EmployeeAddressModel extends ProfileEntity {
+class EmployeeAddressModel extends EmployeeAddressEntity {
   const EmployeeAddressModel({
     super.apartmentNumber,
     super.building,
@@ -44,9 +46,7 @@ class EmployeeAddressModel extends ProfileEntity {
     super.city,
     super.block,
     super.avenue,
-    super.attachmentInfo,
-    super.phone1,
-    super.phone2,
+   
   });
 
   factory EmployeeAddressModel.fromJson(Map<String, dynamic> json) =>

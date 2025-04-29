@@ -147,7 +147,8 @@ class _SubmissionItemWidgetState extends State<SubmissionItemWidget> {
                     width: 300.w,
                        text: context.tr("continue"),
                       onPressed: () {
-                       CustomMainRouter.back();  
+                        // issue
+                     Navigator.pop(context); 
                    }), 
                                   status: ConfirmationPopupStatus.success,
                                   message: context

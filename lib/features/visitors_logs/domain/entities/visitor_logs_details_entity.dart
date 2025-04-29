@@ -5,6 +5,7 @@ class VisitorsLogsDetailsEntity {
   final String visitDate;
   final String? visitTime;
   final String? visitorsCount;
+  final String? visitTypeName;
 
   VisitorsLogsDetailsEntity({
     required this.visitorName,
@@ -13,6 +14,7 @@ class VisitorsLogsDetailsEntity {
     required this.visitDate,
     required this.visitTime,
     required this.visitorsCount,
+    this.visitTypeName,
 
   });
 }

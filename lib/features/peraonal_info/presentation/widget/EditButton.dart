@@ -23,7 +23,7 @@ class _EditButtonState extends State<EditButton> {
       textStyle: AppTextStyle.regular_14,
       removeWidth: true,
       radius: 16.r,
-      textColor: Palette.black,
+      textColor: Palette.white,
       onPressed: () {
         widget.onPressed();
       },

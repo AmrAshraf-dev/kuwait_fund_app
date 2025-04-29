@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
@@ -32,6 +33,7 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
 
   Future<void> getVisitorsLogs(
       {required VisitorsLogsRequestModel visitorsLogsModel}) async {
+    await Future.delayed(const Duration(milliseconds: 100));
     emit(VisitorsLogsLoadingState());
 
     final CustomResponseType<BaseEntity<List<VisitorsLogsEntity>>>
@@ -50,12 +52,12 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
   //
 
   Future<void> getHostsList(
-      String currentDate) async {
+      String calendarPressedDate,  {required showNewBottomSheet} ) async {
     emit(VisitorsLogsLoadingState());
 
     final CustomResponseType<BaseEntity<List<VisitorsLogsHostsEntity>>>
         eitherPackagesOrFailure =
-        await getVisitorLogsHostsUseCase(currentDate);
+        await getVisitorLogsHostsUseCase(calendarPressedDate);
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
@@ -63,7 +65,31 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<List<VisitorsLogsHostsEntity>> response) async {
-      emit(VisitorsLogsHostsReadyState(response));
+      if( response.data?.isEmpty == true|| response.data == null){
+        emit(VisitorsLogsErrorState(
+          message: "no_visitors_logs",
+        ));
+      }else{
+      emit(VisitorsLogsHostsReadyState(response,showNewBottomSheet  ));
+      }
+    });
+  }
+
+ getVisitorLogsDetails(visitorLogsDetailsRequestModel,{required bool showNewBottomSheet}) async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    emit(VisitorsLogsLoadingState());
+
+    final CustomResponseType<BaseEntity<List<VisitorsLogsDetailsEntity>>>
+        eitherPackagesOrFailure =
+        await getVisitorLogsDetailsUseCase(visitorLogsDetailsRequestModel);
+
+    eitherPackagesOrFailure.fold((Failure failure) {
+      final FailureToMassage massage = FailureToMassage();
+      emit(VisitorsLogsErrorState(
+        message: massage.mapFailureToMessage(failure),
+      ));
+    }, (BaseEntity<List<VisitorsLogsDetailsEntity>> response) {
+      emit(VisitorsLogsDetailsReadyState(response,  showNewBottomSheet));
     });
   }
 
@@ -81,6 +107,7 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (bool canView) {
+      ViewsToolbox.dismissLoading();
       if(canView){
         emit(VisitorsLogsCanViewState());
         
@@ -91,23 +118,7 @@ class VisitorsLogsCubit extends Cubit<VisitorsLogsState> {
     });
   }
 
-  getVisitorLogsDetails(visitorLogsDetailsRequestModel,{required bool showNewBottomSheet}) async {
-    await Future.delayed(const Duration(milliseconds: 100));
-    emit(VisitorsLogsLoadingState());
-
-    final CustomResponseType<BaseEntity<List<VisitorsLogsDetailsEntity>>>
-        eitherPackagesOrFailure =
-        await getVisitorLogsDetailsUseCase(visitorLogsDetailsRequestModel);
-
-    eitherPackagesOrFailure.fold((Failure failure) {
-      final FailureToMassage massage = FailureToMassage();
-      emit(VisitorsLogsErrorState(
-        message: massage.mapFailureToMessage(failure),
-      ));
-    }, (BaseEntity<List<VisitorsLogsDetailsEntity>> response) {
-      emit(VisitorsLogsDetailsReadyState(response,  showNewBottomSheet));
-    });
-  }
+ 
 
  
 }

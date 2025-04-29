@@ -31,7 +31,7 @@ class SickLeaveRequestDataSourceImp
     if (result.success &&result.response["code"]==200 ) {
       return right(BaseEntity<String>(data: result.response["data"]));
     } else {
-      return left(ServerFailure(message: result.response["message"]));
+      return left(ServerFailure(message: result.response));
     }
   }
 

@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/extensions/date_extensions.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
@@ -144,8 +145,8 @@ class _RequestItemWidgetState extends State<RequestItemWidget> {
                                       width: 300.w,
                                       text: context.tr("continue"),
                                       onPressed: () {
-                                        CustomMainRouter.back();
-                                      },
+                                      Navigator.pop(getIt<AppRouter>().navigatorKey.currentContext!);
+                                       },
                                     ),
                                     context: context,
                                    // closeOnlyPopup: true,
@@ -164,14 +165,15 @@ class _RequestItemWidgetState extends State<RequestItemWidget> {
                                   onPressed: () async {
 
                                     ViewsToolbox.showMessageBottomsheetConfirmation(
-                                      context,
+                                       getIt<AppRouter>().navigatorKey.currentContext! ,
                                      message: context.tr("deleteDialog"),
                                      onConfirm: () {
-                                      Navigator.pop(context);
-                                          deleteLeaveCubit.getDeleteLeave(
+                                                     deleteLeaveCubit.getDeleteLeave(
                       deleteLeaveRequestModel: DeleteLeaveRequestModel(
                     leaveRequestID:int.parse(widget.request.leaveID??"0")  ,
                   ));
+                                      Navigator.pop(getIt<AppRouter>().navigatorKey.currentContext!);
+                           
                                      },
                                   
                                     );
