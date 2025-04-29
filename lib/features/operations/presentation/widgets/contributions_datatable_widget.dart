@@ -14,8 +14,8 @@ class ContributionsDataTable extends StatelessWidget {
     return SingleChildScrollView(
       child: DataTable(
         columnSpacing: 10.0,
-        headingRowHeight: 30,
-        dataRowMinHeight: 50,
+        headingRowHeight: 30.h,
+        dataRowMinHeight: 50.h,
         dataRowMaxHeight: 100.h,
         headingRowColor: WidgetStateProperty.resolveWith<Color>(
             (states) => Palette.primaryColor),

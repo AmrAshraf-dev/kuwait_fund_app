@@ -129,7 +129,7 @@ class _MasterWidgetState extends State<MasterWidget> {
                       top: 0,
                       bottom: 0,
                       right: 0,
-                      left: 1.sw / 2.5,
+                      left:    1.sw / 2.5,
                       child: Image.asset(
                         fit: BoxFit.fill,
                         widget.waterMarkImage!,
@@ -221,7 +221,7 @@ if (router.canPop()) {
                                                 LanguageHelper.isAr(context)
                                                     ? Icons.arrow_forward_ios
                                                     : Icons.arrow_back_ios,
-                                                color: Colors.black,
+                                                color: Colors.white,
                                               ),
                                             ),
                                           ),

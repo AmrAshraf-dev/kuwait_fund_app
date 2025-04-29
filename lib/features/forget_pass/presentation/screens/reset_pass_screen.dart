@@ -75,7 +75,7 @@ bool _isPasswordObscured = true;
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                              color: Color(0xfffbd823),
+                              color: Palette.darkOrange_E09948,
                               width: 7.0.w,
                             ))),
                             child: AppText(

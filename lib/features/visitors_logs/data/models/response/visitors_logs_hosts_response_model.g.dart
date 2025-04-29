@@ -9,15 +9,15 @@ part of 'visitors_logs_hosts_response_model.dart';
 VisitorsLogsHostsModel _$VisitorsLogsHostsModelFromJson(
         Map<String, dynamic> json) =>
     VisitorsLogsHostsModel(
-      id: json['id'] as String,
-      name: json['name'] as String,
+      id: json['id'] as String?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$VisitorsLogsHostsModelToJson(
         VisitorsLogsHostsModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
+      if (instance.id case final value?) 'id': value,
+      if (instance.name case final value?) 'name': value,
     };
 
 VisitorsLogsHostsResponseModel _$VisitorsLogsHostsResponseModelFromJson(

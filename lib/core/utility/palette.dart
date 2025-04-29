@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Palette {
   static const Color scaffold = Color(0xFFF0F2F5);
-  static const Color primaryColor = Color(0xFF002A6A);
+  static const Color primaryColor = Color(0xFF1F3870);
   static const Color gery_6C6D6F = Color(0xFF6C6D6F);
   static const Color black_2A2A2A = Color(0xFF2A2A2A);
   static const Color blue_002A69 = Color(0xFF002A69);
@@ -33,7 +33,8 @@ class Palette {
   static const Color gray_C6C6C6 = Color(0xFFC6C6C6);
   static const Color gray_C8C2C2 = Color(0xFFC8C2C2);
 
-  static const Color yellow_FBD823 = Color(0xFFFBD823);
+  static const Color yellow_FBD823 = Color(0xFFF59AF94);
+  static const Color yellow_yellow_FBD823 = Color(0xFFFFBD823);
 
   static const Color darkBlue = Color(0xFF1D2C49);
   static const Color lightBlue = Color(0xFF16AEE0);
@@ -239,4 +240,6 @@ class Palette {
     end: Alignment.bottomCenter,
     colors: <Color>[Colors.transparent, Colors.black26],
   );
+
+  static var darkOrange_E09948 = Color(0xFFE09948);
 }

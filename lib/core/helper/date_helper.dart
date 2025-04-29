@@ -4,14 +4,14 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
  
 class DateHelper {
   
-  static  Future<void>  selectDate(BuildContext context, {required DateTime firstDate , required
-  Function (DateTime selectedDay)
+  static  Future<void>  selectDate(BuildContext context, {  DateTime? firstDate, DateTime? lastDate, required
+  Function (DateTime? selectedDay)
    onSelectedDay}) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: firstDate,
-      firstDate:firstDate, // Disable past dates
-      lastDate: DateTime(2100),
+      firstDate:firstDate?? DateTime(2020), // Disable past dates
+      lastDate: lastDate ?? DateTime(2040),
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(

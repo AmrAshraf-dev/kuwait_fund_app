@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kf_ess_mobile_app/core/helper/language_helper.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/pdf_bottomsheet_widget/pdf_bottom_sheet.dart';
@@ -12,6 +13,7 @@ class  RequestDetailsRowWidget extends StatelessWidget {
   final String? pdfUrl;
   final bool isLast;
   final bool isFirst;
+  final bool isLTR;
 
   const  RequestDetailsRowWidget(
       {super.key,
@@ -20,7 +22,8 @@ class  RequestDetailsRowWidget extends StatelessWidget {
       this.status,
       this.pdfUrl,
       this.isFirst = false,
-      this.isLast = false});
+      this.isLast = false,
+      this.isLTR = false});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,11 @@ class  RequestDetailsRowWidget extends StatelessWidget {
           SizedBox(
             height: 5.h,
           ),
-          AppText(text: subtitle, style: AppTextStyle.medium_14),
+          Directionality(
+            textDirection: isLTR ? TextDirection.ltr :
+            
+            LanguageHelper.isAr(context)? TextDirection.rtl : TextDirection.ltr,
+            child: AppText(text: subtitle, style: AppTextStyle.medium_14)),
           if (!isLast)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w),

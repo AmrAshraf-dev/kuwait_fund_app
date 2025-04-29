@@ -9,6 +9,7 @@ import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/dat
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/cubits/director_dept_mission_cubit.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/widgets/dept_mission_widgets/dept_mission_selectable_days_chips_widget.dart';
  import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_mission_details_entity.dart';
  import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/widgets/director_mission/director_mission_selectable_days_chips_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -48,7 +49,12 @@ class DeptMissionsBottomSheetState extends State<DeptMissionsBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return 
-    
+    ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(35.r),
+          topRight: Radius.circular(35.r),
+        ),
+        child:
     Container(
       color:  Colors.white,
       child: SafeArea(
@@ -56,16 +62,14 @@ class DeptMissionsBottomSheetState extends State<DeptMissionsBottomSheet> {
         child:
         BlocProvider.value(
       value: widget.directorDeptMissionCubit,
-      child: Container(
+      child: 
+      
+      Container(
+          constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.8,
+            ),
         padding: EdgeInsets.all(16),
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(35.r),
-            topRight: Radius.circular(35.r),
-          ),
-        ),
+       
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,6 +81,7 @@ class DeptMissionsBottomSheetState extends State<DeptMissionsBottomSheet> {
               child: SingleChildScrollView(
                 child:DeptMissionsDetailsListView(
                selectedHostName: selectedHostName,
+               directorDeptMissionDetails: widget.directorDeptMissionDetails,
             ),
               ),
                ),
@@ -87,7 +92,7 @@ class DeptMissionsBottomSheetState extends State<DeptMissionsBottomSheet> {
       ),
         )
       )
-    );
+    ));
   }
 
   Widget _buildHeader() {
@@ -107,7 +112,7 @@ class DeptMissionsBottomSheetState extends State<DeptMissionsBottomSheet> {
   Widget _buildSelectableDaysChips() {
     return Directionality(
       textDirection: TextDirection.ltr,
-      child: DirectorMissionSelectableDaysChips(
+      child: DirectorDeptMissionSelectableDaysChips(
         selectedDate: selectedDate,
         calendarDirectorMissionDates: widget.calendarDirectorMissionDates,
         onDaySelected: (day) {
@@ -136,7 +141,7 @@ class DeptMissionsBottomSheetState extends State<DeptMissionsBottomSheet> {
       backgroundColor: Colors.transparent,
       onPressed: () {
 
-   CustomMainRouter.pop( );
+   Navigator.of(context).pop();
        },
 
       textColor: Palette.primaryColor,
@@ -147,10 +152,11 @@ class DeptMissionsBottomSheetState extends State<DeptMissionsBottomSheet> {
 
 class DeptMissionsDetailsListView extends StatelessWidget {
    final DirectorMissionDetailsEntity? selectedHostName;
-
-  const DeptMissionsDetailsListView({
+    List<DirectorDeptMissionDetailsEntity> directorDeptMissionDetails;
+    DeptMissionsDetailsListView({
     super.key,
      required this.selectedHostName,
+    required this.directorDeptMissionDetails,
   });
 
   @override
@@ -164,26 +170,51 @@ class DeptMissionsDetailsListView extends StatelessWidget {
             context: context,
             status: ConfirmationPopupStatus.failure,
             message: context.tr(state.message!) ,
-            closeOnlyPopup: true
+                            actionsData: CustomElevatedButton(
+                    width: 300.w,
+                       text: context.tr("continue"),
+                       
+                      onPressed: () {
+                                          Navigator.pop(context);
+  
+                   }), 
           );
         } else if (state is DirectorDeptMissionDetailsReadyState) {
           ViewsToolbox.dismissLoading();
+          directorDeptMissionDetails = state.response.data ?? [];
         }
       },
+
+           buildWhen: (previous, current) => 
+          current is DirectorDeptMissionDetailsReadyState  ,
+
       builder: (context, state) {
-        if (state is DirectorDeptMissionDetailsReadyState) {
-          return ListView.builder(
+
+ return state is DirectorDeptMissionDetailsReadyState?
+   ( state.response.data?.length ?? 0)==0?
+                Center(
+                  child: AppText(
+                    text: context.tr("noDataFound"),
+                    style: AppTextStyle.regular_14,
+                  ),
+                )
+                :
+
+
+
+
+       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
 
-            itemCount: state.response.data?.length ?? 0,
+            itemCount: directorDeptMissionDetails.length  ,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              final visit = state.response.data![index];
+              final visit =directorDeptMissionDetails [index];
               return _buildMissionDeptDetailsTile(visit, context);
-            },
-          );
-        }
-        return Container();
+            } ) :   SizedBox();
+          
+        
+       
       },
     );
   }
@@ -214,16 +245,17 @@ class DeptMissionsDetailsListView extends StatelessWidget {
                   text: visit.employee_name,
                   style: AppTextStyle.bold_14,
                 ),
+               
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   decoration: BoxDecoration(
-                    color: visit.leave_type == "Blue"
-                        ? Palette.blue_3542B9 
-                        : Colors.red,
+                    color: visit.leave_type == "Red"
+                        ?  Colors.red
+                        :  Palette.blue_3542B9,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: AppText(
-                    text: visit.leave_type == "Blue"
+                    text: visit.leave_type == "Red"
                         ? context.tr("mission")
                         : context.tr("leave"),
                     style: AppTextStyle.semiBold_12,
@@ -235,22 +267,39 @@ class DeptMissionsDetailsListView extends StatelessWidget {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                    AppText(
+                      maxLines: 3,
+                                      text: visit.leave_type_name,
+                                      style: AppTextStyle.bold_14,
+                                                        textColor: Colors.black,
+
+                                    ),
+                5.verticalSpace,
                 AppText(
                   style: AppTextStyle.regular_14,
                   textColor: Colors.black,
                   text: "${visit.from_date} - ${visit.to_date}",
                 ),
+                if(visit.leave_type == "Red")
                 AppText(
                   style: AppTextStyle.regular_14,
                   textColor: Colors.black,
                   text:
-                      "${context.tr("number_of_missions")}: ${visit.missionCount}",
+                      "${context.tr("number_of_missions")}: ${(visit.missionCount?.isEmpty??true)?"-":visit.missionCount}",  
                 ),
+                if(visit.leave_type == "Red")
                 AppText(
                   style: AppTextStyle.regular_14,
                   textColor: Colors.black,
-                  text: "${context.tr("location")}: ${visit.location}",
+                  text: "${context.tr("location")}: ${(visit.location?.isEmpty??true)?"-":visit.location}",  
                 ),
+//  if(visit.leave_type != "Red")
+//  AppText(
+//   maxLines: 3,
+//                   style: AppTextStyle.regular_14,
+//                   textColor: Colors.black,
+//                   text:  visit.evant_name,
+//                 ),
               ],
             ),
           ),

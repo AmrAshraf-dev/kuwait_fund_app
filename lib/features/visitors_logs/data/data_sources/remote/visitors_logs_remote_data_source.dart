@@ -88,8 +88,7 @@ class VisitorsLogsDataSourceImpl implements VisitorsLogsRemoteDataSource {
         path: ApiConstants.getManagementVisitorsCalendarDetails,
         queryParams: <String, dynamic>{
           "date": visitorsLogsDetailsRequestModel.date ?? "",
-          if (visitorsLogsDetailsRequestModel.hostName != null)
-            "hostName": visitorsLogsDetailsRequestModel.hostName ?? "",
+            "hostName": visitorsLogsDetailsRequestModel.hostName ?? ""
          });
 
     if (result.success) {

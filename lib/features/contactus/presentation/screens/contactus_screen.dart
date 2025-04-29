@@ -85,7 +85,11 @@ class _ContactUsScreenState extends State<ContactUsScreen>
                                 child: AppText(
                               text: context.tr("contact_info"),
                               style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
+                              textColor: selectedIndex == 0
+                                  ? Palette.white
+                                  : Palette.blue_002A6A,
+                              
+                               
                             ))),
                       ),
                       ConstrainedBox(
@@ -107,7 +111,9 @@ class _ContactUsScreenState extends State<ContactUsScreen>
                                 child: AppText(
                               text: context.tr("map"),
                               style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
+                              textColor: selectedIndex == 1
+                                  ? Palette.white
+                                  : Palette.blue_002A6A,
                             ))),
                       ),
                       // ConstrainedBox(

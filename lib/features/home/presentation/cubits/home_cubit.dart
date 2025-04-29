@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/features/home/domain/use_cases/get_leave_dashboard_usecase.dart';
 
 import "../../../../core/network/base_handling.dart";
@@ -41,6 +42,7 @@ class HomeCubit extends Cubit<HomeState> {
         message: massage.mapFailureToMessage(failure),
       ));
     }, (BaseEntity<HomeEntity> response) {
+      ViewsToolbox.dismissLoading();
       emit(HomeReadyState(response));
     });
   }

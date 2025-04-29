@@ -750,7 +750,7 @@ class ViewsToolbox {
         dismissDirection: DismissDirection.startToEnd,
         backgroundColor: Colors.transparent,
         behavior: SnackBarBehavior.floating,
-        duration: const Duration(milliseconds: 2500),
+        duration: const Duration(seconds: 5),
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         content: AwesomeSnackbarContent(
           messageTextStyle: TextStyle(
@@ -769,7 +769,7 @@ class ViewsToolbox {
     );
   }
 
-  static void showLoading({bool allowClicking = false}) {
+  static Future<void> showLoading({bool allowClicking = false}) async {
     EasyLoading.instance
       ..loadingStyle = EasyLoadingStyle.custom
       ..indicatorSize = 60.w
@@ -794,33 +794,20 @@ class ViewsToolbox {
       ..dismissOnTap = allowClicking
       ..boxShadow = <BoxShadow>[]
       ..indicatorType = EasyLoadingIndicatorType.circle;
+
     EasyLoading.show(
       status: getIt<AppRouter>()
           .navigatorKey
           .currentContext!
           .tr("loadingTextDialog"),
     );
-    // CustomLoading(gif).start(
-    //   Constant.navigatorKey.currentContext!,
-    //   // overlayColor: Palette.greyBackgroundTheme.withOpacity(0.2),
-    //   overlayColor: Colors.transparent,
-    // );
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   showDialog(
-    //     context: navigatorKey.currentContext!,
-    //     barrierDismissible: false,
-    //     builder: (BuildContext context) {
-    //       return Container(
-    //         child: Center(
-    //           child: Image.asset(
-    //             "assets/images/hawi.gif",
-    //             width: 190.w,
-    //           ),
-    //         ),
-    //       );
-    //     },
-    //   );
-    // });
+
+    // Force dismiss after 30 seconds
+   await  Future.delayed(const Duration(seconds: 30), () {
+      if (EasyLoading.isShow) {
+        EasyLoading.dismiss();
+      }
+    });
   }
 
   static void showSuccessAwesomeSnackBar(
@@ -833,7 +820,7 @@ class ViewsToolbox {
         dismissDirection: DismissDirection.startToEnd,
         behavior: SnackBarBehavior.fixed,
         backgroundColor: Colors.transparent,
-        duration: const Duration(milliseconds: 2500),
+        duration: const Duration(seconds: 3),
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         content: AwesomeSnackbarContent(
           title: "",
@@ -856,7 +843,7 @@ class ViewsToolbox {
         dismissDirection: DismissDirection.startToEnd,
         behavior: SnackBarBehavior.fixed,
         backgroundColor: Colors.transparent,
-        duration: const Duration(milliseconds: 2500),
+        duration: const Duration(seconds: 4),
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         content: AwesomeSnackbarContent(
           title: "",

@@ -57,7 +57,9 @@ class _DirectorMissionsCalenderWidgetState
                 customWidget: DirectorMissionsBottomSheet(
                     selectedDate: selectedCalendarDay,
                     calendarDirectorMissionDates:
-                        _getCalendarDirectorMissionDates(calendarResponse),
+                        _getCalendarDirectorMissionDates(calendarResponse
+                       
+                          ),
                     directorMissionCubit: widget.directorMissionCubit,
                     directorMissionDetails: state.response.data!,
                     selectedDirector: widget.selectedDirector),
@@ -84,6 +86,7 @@ class _DirectorMissionsCalenderWidgetState
             child: TableCalendar(
               locale: context.locale.languageCode,
               daysOfWeekHeight: 40.h,
+              
               availableGestures: AvailableGestures.horizontalSwipe,
               firstDay: DateTime.utc(2020, 1, 1),
               lastDay: DateTime.utc(2045, 12, 31),
@@ -132,11 +135,17 @@ class _DirectorMissionsCalenderWidgetState
                     .toList()
                     .contains(DateFormat("dd/MM/yyyy").format(day));
               },
-              startingDayOfWeek: StartingDayOfWeek.monday,
+              startingDayOfWeek: StartingDayOfWeek.sunday,
               calendarFormat: CalendarFormat.month,
               daysOfWeekStyle: DaysOfWeekStyle(
-                weekdayStyle: TextStyle(color: Colors.indigo.shade300),
-                weekendStyle: TextStyle(color: Colors.indigo.shade300),
+
+                weekdayStyle: TextStyle(color: Colors.indigo.shade300,
+                fontSize: 12.sp,
+                fontStyle:  FontStyle.normal,),
+                weekendStyle: TextStyle(color: Colors.indigo.shade300,
+              
+                  fontSize: 12.sp,
+                fontStyle:  FontStyle.normal,),
               ),
               headerStyle: HeaderStyle(
                 titleCentered: true,
@@ -151,7 +160,7 @@ class _DirectorMissionsCalenderWidgetState
               ),
               calendarStyle: CalendarStyle(
                 todayDecoration: BoxDecoration(color: Colors.transparent),
-                outsideDaysVisible: true,
+                outsideDaysVisible: false,
               ),
               calendarBuilders: CalendarBuilders(
                 selectedBuilder: (context, day, focusedDay) =>
@@ -176,12 +185,18 @@ class _DirectorMissionsCalenderWidgetState
 
   List<String> _getCalendarDirectorMissionDates(
       List<ManagementCalenderDataEntity> list) {
-    // This method filters the list of DirectorsMissionEntity objects to get unique dates as string
+    // This method filters the list of DirectorsMissionEntity objects to get unique dates as strings, removes duplicates, and sorts them.
     return list
-        .map((e) => e.asDate)
-        .toSet()
+        .map((item) => item.asDate)
+        .whereType<String>()
+        .toSet() // Remove duplicates
         .toList()
-        .map((e) => list.firstWhere((element) => element.asDate == e).asDate!)
-        .toList();
+      ..sort((a, b) {
+        final dateA = DateFormat("dd/MM/yyyy").parse(a);
+        final dateB = DateFormat("dd/MM/yyyy").parse(b);
+        return dateA.compareTo(dateB);
+      });
   }
+
+ 
 }

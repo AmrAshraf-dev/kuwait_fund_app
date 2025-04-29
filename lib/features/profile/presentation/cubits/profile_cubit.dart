@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
@@ -18,7 +19,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> getProfile(/*{ProfileRequestModel? profileModel}*/) async {
     emit(ProfileLoadingState());
 
-    final CustomResponseType<BaseEntity<ProfileEntity>>
+    final CustomResponseType<BaseEntity<MainProfileEntity>>
         eitherPackagesOrFailure = await getProfileUseCase(/*profileModel!*/);
 
     eitherPackagesOrFailure.fold((Failure failure) {
@@ -26,7 +27,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ProfileErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<ProfileEntity> response) {
+    }, (BaseEntity<MainProfileEntity> response) {
       emit(ProfileReadyState(response));
     });
   }

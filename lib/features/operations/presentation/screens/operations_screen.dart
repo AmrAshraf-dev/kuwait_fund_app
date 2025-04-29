@@ -78,7 +78,9 @@ class _OperationsScreenState extends State<OperationsScreen>
                                 child: AppText(
                               text: context.tr("loans"),
                               style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
+                              textColor: selectedIndex == 0? Palette.white:
+                              
+                              Palette.blue_002A6A,
                             ))),
                       ),
                       ConstrainedBox(
@@ -100,7 +102,9 @@ class _OperationsScreenState extends State<OperationsScreen>
                                 child: AppText(
                               text: context.tr("grants/countries"),
                               style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
+                              textColor: selectedIndex == 1? Palette.white:
+                              
+                              Palette.blue_002A6A,
                             ))),
                       ),
                       ConstrainedBox(
@@ -122,7 +126,9 @@ class _OperationsScreenState extends State<OperationsScreen>
                                 child: AppText(
                               text: context.tr("grants/institutions"),
                               style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
+                              textColor: selectedIndex == 2? Palette.white:
+                              
+                              Palette.blue_002A6A,
                             ))),
                       ),
                       ConstrainedBox(
@@ -142,9 +148,11 @@ class _OperationsScreenState extends State<OperationsScreen>
                             ),
                             child: Center(
                                 child: AppText(
-                              text: context.tr("contrabutions"),
+                              text: context.tr("contributions"),
                               style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
+                              textColor: selectedIndex == 3? Palette.white:
+                              
+                              Palette.blue_002A6A,
                             ))),
                       ),
                     ],

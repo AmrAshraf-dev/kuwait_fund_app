@@ -48,7 +48,7 @@ class AuthAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               : context.tr("arabic"),
           onPressed: () {
             debugPrint("Toggling locale...");
-            _localeCubit.toggleLocale(context, LanguageHelper.isAr(context));
+            _localeCubit.toggleLocale(context, !LanguageHelper.isEN(context));
           },
         ),
       ],

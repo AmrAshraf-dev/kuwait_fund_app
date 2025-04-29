@@ -13,10 +13,10 @@ class InstitutionsGrantsDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: DataTable(
-        columnSpacing: 10.0,
-        headingRowHeight: 30,
-        dataRowMinHeight: 50,
-        dataRowMaxHeight: 100.h,
+          columnSpacing: 5.0,
+        headingRowHeight: 30.h,
+        dataRowMinHeight: 50.h,
+        dataRowMaxHeight: 120.h,
         headingRowColor: WidgetStateProperty.resolveWith<Color>(
             (states) => Palette.primaryColor),
         columns: [
@@ -33,7 +33,7 @@ class InstitutionsGrantsDataTable extends StatelessWidget {
                 width: 90,
                 child: Center(
                   child: Text(
-                    context.tr("number_of_grants"),
+                    context.tr("count"),
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white),
                   ),
@@ -52,7 +52,12 @@ class InstitutionsGrantsDataTable extends StatelessWidget {
               (data) => DataRow(
                 cells: [
                   DataCell(
-                    Text(data.instituteName ?? "", textAlign: TextAlign.start),
+                    
+                    Text(data.instituteName ?? "", textAlign: TextAlign.start,
+                    style:   TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                    ),),
                   ),
                   DataCell(Center(child: Text(data.numberOfGrants.toString()))),
                   DataCell(Text(data.valueOfGrants.toString())),

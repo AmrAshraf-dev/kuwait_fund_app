@@ -8,9 +8,7 @@ import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/enti
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submission_cubit.dart';
 import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
- import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+ import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 
 @RoutePage()
@@ -25,23 +23,22 @@ class SubmissionsScreen extends StatefulWidget {
 class _SubmissionsScreenState extends State<SubmissionsScreen>
     with TickerProviderStateMixin {
 
-  final TabCubit _tabCubit = getIt<TabCubit>();
+  final SubmissionCubit submissionCubit = getIt<SubmissionCubit>();
+
  
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return MasterWidget(
+    return 
+     
+    MasterWidget(
       hasScroll: false,
       isBackEnabled: widget.isBackButtonEnabled,
       screenTitle: context.tr("submissions"),
       appBarHeight: 90.h,
       widget: MultiBlocProvider(
         providers: [
-            BlocProvider(create: (context) => _tabCubit),
+            BlocProvider(create: (context) => submissionCubit ..getSubmissions()),
         ],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -54,8 +51,11 @@ class _SubmissionsScreenState extends State<SubmissionsScreen>
             _buildTabViews(),
           ],
         ),
-      ),
-    );
+      ));
+       
+          
+      
+    
   }
 
   

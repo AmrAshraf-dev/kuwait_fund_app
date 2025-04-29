@@ -81,7 +81,9 @@ class _AboutScreenState extends State<AboutScreen>
                                 child: AppText(
                               text: context.tr("general_information"),
                               style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
+                              textColor: selectedIndex == 0? Palette.white:
+                              
+                              Palette.blue_002A6A,
                             ))),
                       ),
                       ConstrainedBox(
@@ -103,7 +105,8 @@ class _AboutScreenState extends State<AboutScreen>
                                 child: AppText(
                               text: context.tr("fundManagement"),
                               style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
+                              textColor: selectedIndex == 1? Palette.white:
+                              Palette.blue_002A6A,
                             ))),
                       ),
                       ConstrainedBox(
@@ -125,7 +128,9 @@ class _AboutScreenState extends State<AboutScreen>
                                 child: AppText(
                               text: context.tr("fundBoardOfDirectors"),
                               style: AppTextStyle.semiBold_13,
-                              textColor: Palette.blue_002A6A,
+                              textColor: selectedIndex == 2? Palette.white:
+                              
+                              Palette.blue_002A6A,
                             ))),
                       ),
                     ],
@@ -160,14 +165,17 @@ class GeneralInformationTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => _generalInformationCubit,
-      child: BlocBuilder<GeneralInformationCubit, GeneralInformationState>(
+      child: BlocConsumer<GeneralInformationCubit, GeneralInformationState>(
+        listener: (context, state) {
+            if (state is GeneralInformationErrorState) {
+            ViewsToolbox.dismissLoading();
+            ViewsToolbox.showErrorAwesomeSnackBar(context, context.tr(state.message!));
+          }
+        },
         builder: (context, state) {
           if (state is GeneralInformationLoadingState) {
             ViewsToolbox.showLoading();
-          } else if (state is GeneralInformationErrorState) {
-            ViewsToolbox.dismissLoading();
-            ViewsToolbox.showErrorAwesomeSnackBar(context, context.tr(state.message!));
-          } else if (state is GeneralInformationReadyState) {
+          }  else if (state is GeneralInformationReadyState) {
             ViewsToolbox.dismissLoading();
 
             return Padding(

@@ -74,12 +74,13 @@ class DirectorAppBarWidget extends StatelessWidget {
                   height: 38.h,
                   width: 38.w,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                           color: Palette.yellow_FBD823,
                     borderRadius: BorderRadius.circular(10.r),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: SvgPicture.asset(chatbot),
+                    child: SvgPicture.asset(chatbot,
+                    color:  Colors.white,),
                   )),
             ),
             17.horizontalSpace,
@@ -90,12 +91,13 @@ class DirectorAppBarWidget extends StatelessWidget {
                     height: 38.h,
                     width: 38.w,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                           color: Palette.yellow_FBD823,
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(3.0),
-                      child: SvgPicture.asset(notification),
+                      child: SvgPicture.asset(notification,
+                        color:  Colors.white,),
                     )),
               // Badge(
               //   padding: EdgeInsets.all(1),

@@ -10,7 +10,7 @@ part 'locale_state.dart';
 @singleton
 class LocaleCubit extends Cubit<Locale> {
   LocaleCubit()
-      : super(Locale(LocalData.getLangCode() ?? "en")); // Default locale
+      : super(Locale(LocalData.getLangCode() ?? "ar")); // Default locale
 
   // Method to access the current locale without context
   Locale getCurrentLocale() {
@@ -26,14 +26,17 @@ class LocaleCubit extends Cubit<Locale> {
   //   MyApp.of(context).updateState(); // Force app rebuild
   // }
 
-  void toggleLocale(BuildContext context, bool isArabic) {
+  void toggleLocale(BuildContext context, bool isEnglish) {
     Locale newLocale;
-    if (isArabic) {
+    if (isEnglish) {
       newLocale = const Locale("en", "US"); // English locale
       LocalData.setLangCode("en");
+      LocalData.setBool("languageToggle", true);
     } else {
       newLocale = const Locale("ar", "KW"); // Arabic locale
       LocalData.setLangCode("ar");
+       LocalData.setBool("languageToggle", false);
+
     }
     context.setLocale(newLocale); // Update EasyLocalization context
     emit(newLocale); // Emit the new locale

@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
  
-class DirectorMissionSelectableDaysChips  extends StatelessWidget {
+class DirectorDeptMissionSelectableDaysChips  extends StatelessWidget {
   final DateTime selectedDate;
   final List<String> calendarDirectorMissionDates;
   final Function(String) onDaySelected;
 
-  const DirectorMissionSelectableDaysChips({
+  const DirectorDeptMissionSelectableDaysChips({
     super.key,
     required this.selectedDate,
     required this.calendarDirectorMissionDates,

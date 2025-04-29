@@ -8,14 +8,14 @@ import 'package:kf_ess_mobile_app/features/profile/data/models/response/address_
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/data/models/response/main_profile_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/qualifications_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/domain/entities/spouse_entity.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../shared/entity/base_entity.dart';
 import '../../domain/repositories/profile_repository.dart';
-import '../models/response/profile_response_model.dart';
-import '../../../profile/data/data_sources/remote/profile_remote_data_source.dart';
+ import '../../../profile/data/data_sources/remote/profile_remote_data_source.dart';
 
 @Injectable(as: ProfileRepository)
 class ProfileRepositoryImp implements ProfileRepository {
@@ -26,10 +26,10 @@ class ProfileRepositoryImp implements ProfileRepository {
   final ProfileRemoteDataSource profileRemoteDataSource;
 
   @override
-  Future<CustomResponseType<BaseEntity<ProfileModel>>> getProfile(
-      /*{required ProfileRequestModel profileParams}*/) async {
+  Future<CustomResponseType<BaseEntity<MainProfileModel>>> getProfile(
+    ) async {
     return await profileRemoteDataSource.getProfile(
-        //profileRequestModel: profileParams
+    
         );
   }
 

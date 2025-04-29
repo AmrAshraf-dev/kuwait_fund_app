@@ -48,10 +48,10 @@ class FilePickerSection extends StatelessWidget {
                       state.xFile.isNotEmpty ? state.xFile.first.path : null);
                 } else if (state is FilePickerErrorState) {
                   onFileSelected(null);
-                  ViewsToolbox.showAwesomeSnackBar(
+                  ViewsToolbox.showErrorAwesomeSnackBar(
                     context,
-                    state.message,
-                    isError: true,
+                context.tr(state.message)    ,
+                   
                   );
                 }
               },

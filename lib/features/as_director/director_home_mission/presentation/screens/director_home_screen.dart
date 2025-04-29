@@ -31,22 +31,19 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   final DirectorMissionCubit directorMissionCubit = getIt<DirectorMissionCubit>();
   DirectorEntity? selectedDirector;
   DateTime _focusedDay = DateTime.now();
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => directorMissionCubit..getDirectorsList()..getManagementCalenderData(
-             ManagementCalenderDataRequestModel(
-              empID: 0, // default value 
-             month:int.parse(_focusedDay.month.toString().padLeft(2, '0')) ,year: int.parse(_focusedDay.year.toString())    
-             )
-          ),
+          create: (context) => directorMissionCubit..getDirectorsList()
+          // ..getManagementCalenderData(
+          //    ManagementCalenderDataRequestModel(
+          //     empID: 0, // default value 
+          //    month:int.parse(_focusedDay.month.toString().padLeft(2, '0')) ,year: int.parse(_focusedDay.year.toString())    
+          //    )
+          // ),
         ),
       ],
       child: MasterWidget(
@@ -109,11 +106,13 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: DirectorNameDropdown(
-                      directorMissionCubit: directorMissionCubit ,
+                      initialValue: selectedDirector,
                       onDirectorSelected: (selectedDirectorValue) {
-                    setState(() {
+                  
                       selectedDirector = selectedDirectorValue;
-                    });
+               
+
+              
                         directorMissionCubit.getManagementCalenderData(
                           ManagementCalenderDataRequestModel(
                             empID:int.parse(selectedDirectorValue?.employeeId ?? "0") ,
@@ -133,9 +132,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               directorMissionCubit: directorMissionCubit,
               focusedDay: _focusedDay,    
               selectedDirector: selectedDirector,
-               onFocusedDayChanged: (day) => setState((){            
+               onFocusedDayChanged: (day) => 
+               setState((){            
                   _focusedDay = day;
-           directorMissionCubit.getManagementCalenderData(
+                  directorMissionCubit.getManagementCalenderData(
                         ManagementCalenderDataRequestModel(
                           empID:int.parse(selectedDirector?.employeeId ?? "0") ,
                           month: int.parse(_focusedDay.month.toString().padLeft(2, '0')),
@@ -155,9 +155,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
 
-                                    LegendItem(color: Palette.blue_3542B9, labelKey: "mission"),
+                                    LegendItem(color: Palette.redBackgroundTheme, labelKey: "mission"),
                                     10.horizontalSpace,
-                                    LegendItem(color: Colors.red, labelKey: "leave"),
+                                    LegendItem(color: Palette.blue_3542B9 , labelKey: "leave"),
 
                       
                         // Row(

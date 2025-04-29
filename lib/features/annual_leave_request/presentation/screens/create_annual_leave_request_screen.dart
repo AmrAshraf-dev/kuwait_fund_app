@@ -132,6 +132,12 @@ if(leaveBalanceState is LeaveBalanceErrorState ){
                           totalDays: 4,
                           disableField: false,
                           firstDate: DateTime.now(),
+                          validator: (p0) {
+                            if (p0 == null) {
+                              return context.tr("please_select_date");
+                            }
+                            return null;
+                          },
                       //    initialDate: DateTime.now(),
                           lastDate: DateTime.now().add(Duration(days: leaveBalanceState.response.data?.availableBalance != null
                               ? int.parse(leaveBalanceState.response.data!.availableBalance!)
@@ -173,17 +179,19 @@ if(leaveBalanceState is LeaveBalanceErrorState ){
                                     //   },
                                     // ),
                                     20.verticalSpace,
-if((leaveBalanceState.response.data?.displayExitDate??false))
+if( (leaveBalanceState.response.data?.displayExitDate??false))
       Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: CustomSingleRangeDatePicker(
-          isFirstDayRequired: true,
-          initialDate: (_formKey.currentState?.fields["to"]!=null?  (DateFormat("dd/MM/yyyy").parse(_formKey.currentState?.fields["to"]?.value??"")): null),
+          isFirstDayRequired: false,
+ 
+                          
+ 
                           fromLabelAboveField: context.tr("exit_date"),
                           customFormKey: _formKey,
                           keyNameFrom: "exit_date",
-                          firstDate: (_formKey.currentState?.fields["to"]!=null?  (DateFormat("dd/MM/yyyy").parse(_formKey.currentState?.fields["to"]?.value??"")): null),
-                        ),
+                          lastDate: DateTime.now())
+                   
       ),
 
                                   ],
@@ -331,8 +339,8 @@ if( (LocalData.getUser()?.userInfo.isDirector == true)
                                   onPressed: () {
 
                               
-                                    if (_formKey.currentState!
-                                        .saveAndValidate()) {
+                                    if (_formKey.currentState!.saveAndValidate()) {
+                                      if(_formKey.currentState!.isValid){
                                       annualLeaveRequestCubit
                                           .createAnnualLeaveRequest(
                                               AnnualLeaveRequestRequestModel(
@@ -344,12 +352,13 @@ if( (LocalData.getUser()?.userInfo.isDirector == true)
                                           DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["to"]!.value),
                                         ),
                                         exitDate: 
-                                  _formKey.currentState!.fields["exit_date"]?.value!=null?    
+                                  _formKey.currentState?.fields["exit_date"]?.value!=null?    
                                      DateFormat("yyyy-MM-dd").format(DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["exit_date"]!.value)):null
                                   
                                
                                           
                                       ));
+                                    }
                                     }
                                   },
                                   text: context.tr("submit"));

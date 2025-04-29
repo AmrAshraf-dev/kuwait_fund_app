@@ -37,14 +37,14 @@ class MoreItemWidget extends StatelessWidget {
             splashColor: Palette.primaryColor.withOpacity(0.15),
             onTap: onTap,
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(5.0),
               child: Row(
                 children: <Widget>[
                   SvgPicture.asset(
                     svgIcon,
-                    width: 25.w,
-                    height: 25.h,
-                         color: Palette.primaryColor,
+                    width: 42.w,
+                    height: 42.h,
+                      //   color: Palette.primaryColor,
                   ),
                   10.horizontalSpace,
                   AppText(
@@ -58,17 +58,23 @@ class MoreItemWidget extends StatelessWidget {
                   ),
                   const Spacer(),
                   if (leadingText != null)
-                    AppText(
-                      maxLines: 2,
-                      text: leadingText!,
-                      style: AppTextStyle.medium_14,
-                      textAlign: TextAlign.center,
-                      textColor: Palette.black,
+                    Padding(
+                      padding:   EdgeInsets.symmetric(horizontal: 10.w),
+                      child: AppText(
+                        maxLines: 2,
+                        text: leadingText!,
+                        style: AppTextStyle.medium_14,
+                        textAlign: TextAlign.center,
+                        textColor: Palette.black,
+                      ),
                     ),
                   if (leadingText == null && toggleButton == null)
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: Palette.gery_DADADA,
+                    Padding(
+                      padding:   EdgeInsets.symmetric(horizontal: 10.w),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Palette.gery_DADADA,
+                      ),
                     ),
                   if (toggleButton != null) toggleButton!,
                 ],

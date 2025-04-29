@@ -3,22 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_entity.dart';
+ import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/cubits/director_mission_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
- 
+  
  
 class DirectorNameDropdown extends StatefulWidget {
-  final DirectorMissionCubit directorMissionCubit;
-  final DirectorEntity? initialValue;
+     DirectorEntity? initialValue;
   final ValueChanged<DirectorEntity?> onDirectorSelected;
-
-    DirectorNameDropdown({
-    required this.directorMissionCubit,
-    required this.onDirectorSelected,
-    Key? key,
+     DirectorNameDropdown({
+     required this.onDirectorSelected,
+     Key? key,
     this.initialValue,
   }) : super(key: key);
 
@@ -47,6 +43,16 @@ class _DirectorNameDropdownState extends State<DirectorNameDropdown> {
           } else if (state is DirectorsListReadyState) {
             ViewsToolbox.dismissLoading();
               directorsListResponse = state.response.data ?? [];
+                setState(() {
+            if (directorsListResponse.isNotEmpty) {
+              // setting first list item as default item to show in dropdown
+              widget.initialValue = directorsListResponse.first;
+                widget.onDirectorSelected(
+                directorsListResponse.first,
+              );
+           
+            }
+          });       
           }
           
         },

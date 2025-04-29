@@ -88,14 +88,17 @@ class _ExtendLeaveDetailsScreenState extends State<ExtendLeaveDetailsScreen> {
                           subtitle:widget.requestsEntity?.leaveType
                         ),
                          RequestDetailsRowWidget(
+                          isLTR: true,
                           title: context.tr("submission_date") ,
                           subtitle: widget.requestsEntity?.requestDate,
                         ),
                          RequestDetailsRowWidget(
+                          isLTR:  true,
                            title:  context.tr("from_date") ,
                           subtitle: widget.requestsEntity?.leaveStartDate,
                         ),
                          RequestDetailsRowWidget(
+                          isLTR: true,
                            title:  context.tr("to_date") ,
                             subtitle: widget.requestsEntity?.leaveEndDate,
                         ),
@@ -111,15 +114,20 @@ class _ExtendLeaveDetailsScreenState extends State<ExtendLeaveDetailsScreen> {
                                 .format(_selectedDate!),
                                 chooseDateCallback: () {
                              DateHelper.selectDate(
-                              onSelectedDay: (DateTime selectedDate){
+                                 firstDate: DateFormat('dd-MMMM-yyyy').parse( widget.requestsEntity?.leaveEndDate ?? '').add(
+                                  Duration(days: 1),
+                                ),
+                              onSelectedDay: (DateTime? selectedDate){
                                 setState(() {
                                   _selectedDate = selectedDate;
                                 });
                               },
-                               context,
-                                firstDate: DateFormat('dd-MMMM-yyyy').parse( widget.requestsEntity?.leaveEndDate ?? '').add(
-                                  Duration(days: 1),
-                                ));
+                               context
+                             );
+
+                                // firstDate: DateFormat('dd-MMMM-yyyy').parse( widget.requestsEntity?.leaveEndDate ?? '').add(
+                                //   Duration(days: 1),
+                                // ));
                                 },
                                
                         ),

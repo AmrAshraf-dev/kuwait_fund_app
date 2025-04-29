@@ -1,21 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
- import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
+import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
- import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/data/models/request/director_dept_assignment_request_model.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/data/models/request/director_dept_assignment_request_model.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/presentation/cubits/director_dept_assignment_cubit.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/cubits/director_dept_mission_cubit.dart';
- import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
- import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
- 
- 
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
+
 class DeptAssignmentNameDropmenuWidget extends StatefulWidget {
-    DeptEntity? initialValue;
+  DeptEntity? initialValue;
   final ValueChanged<DeptEntity?> onDeptSelected;
-final DirectorDeptAssignmentCubit directorDeptAssignmentCubit ;
-    DeptAssignmentNameDropmenuWidget({
+  final DirectorDeptAssignmentCubit directorDeptAssignmentCubit;
+  DeptAssignmentNameDropmenuWidget({
     required this.onDeptSelected,
     required this.directorDeptAssignmentCubit,
     Key? key,
@@ -23,11 +22,13 @@ final DirectorDeptAssignmentCubit directorDeptAssignmentCubit ;
   }) : super(key: key);
 
   @override
-  State<DeptAssignmentNameDropmenuWidget> createState() => _DeptAssignmentNameDropmenuWidgetState();
+  State<DeptAssignmentNameDropmenuWidget> createState() =>
+      _DeptAssignmentNameDropmenuWidgetState();
 }
 
-class _DeptAssignmentNameDropmenuWidgetState extends State<DeptAssignmentNameDropmenuWidget> {
-   List<DeptEntity>  deptsListResponse  = <DeptEntity>[];
+class _DeptAssignmentNameDropmenuWidgetState
+    extends State<DeptAssignmentNameDropmenuWidget> {
+  List<DeptEntity> deptsListResponse = <DeptEntity>[];
 
   @override
   Widget build(BuildContext context) {
@@ -35,59 +36,56 @@ class _DeptAssignmentNameDropmenuWidgetState extends State<DeptAssignmentNameDro
       padding: EdgeInsets.all(4),
       child: BlocConsumer<DirectorDeptMissionCubit, DirectorDeptMissionState>(
         listener: (context, state) {
-         if (state is DirectorDeptDropMenuMissionErrorState) {
+          if (state is DirectorDeptDropMenuMissionErrorState) {
             ViewsToolbox.dismissLoading();
             // ViewsToolbox.showMessageBottomsheet(
             //   context: context,
             //               closeOnlyPopup: true,
-                  
+
             //   status: ConfirmationPopupStatus.failure,
             //   message: tr("general-error"),
             // );
-          } 
-          
-          else if (state is DirectorDeptMissionLoadingState) {
+          } else if (state is DirectorDeptMissionLoadingState) {
             ViewsToolbox.showLoading();
           } else if (state is DirectorDeptsListReadyState) {
             ViewsToolbox.dismissLoading();
-              deptsListResponse = state.response.data ?? [];
-          }
-          setState(() {
-            if(deptsListResponse.isNotEmpty){
-            widget.initialValue = deptsListResponse.first;
+            deptsListResponse = state.response.data ?? [];
+               setState(() {
+            if (deptsListResponse.isNotEmpty) {
+              widget.initialValue = deptsListResponse.first;
             }
           });
-          if(deptsListResponse.isNotEmpty){
-   widget.directorDeptAssignmentCubit.getDirectorDeptAssignment(
-                          DirectorDeptAssignmentRequestModel(
-                            deptCode: deptsListResponse.first.departmentCode ?? "0",
-                          ),
-                        );
+          if (deptsListResponse.isNotEmpty) {
+            widget.directorDeptAssignmentCubit.getDirectorDeptAssignment(
+              DirectorDeptAssignmentRequestModel(
+                deptCode: deptsListResponse.first.departmentCode ?? "0",
+              ),
+            );
           }
-        
-          
+          }
+       
         },
         builder: (context, state) {
-             return CustomDropDownField<DeptEntity>(
-              keyName: "deptName",
-              labelText: context.tr("dept_name"),
-              disableSearch: true,
-              disableFiled: false,
-              onChanged: widget.onDeptSelected,
-            initialValue:  widget.initialValue,
-              items: deptsListResponse.map((item) {
-                return DropdownMenuItem<DeptEntity>(
-                  value: item,
-                  child: AppText(
-                    text: item.name,
-                    style: AppTextStyle.regular_16,
-                  ),
-                );
-              }).toList(),
-              validator: (value) =>
-                  AppValidator.validatorRequired(value, context),
-            );
-         },
+          return CustomDropDownField<DeptEntity>(
+            keyName: "deptName",
+            labelText: context.tr("dept_name"),
+            disableSearch: true,
+            disableFiled: false,
+            onChanged: widget.onDeptSelected,
+            initialValue: widget.initialValue,
+            items: deptsListResponse.map((item) {
+              return DropdownMenuItem<DeptEntity>(
+                value: item,
+                child: AppText(
+                  text: item.name,
+                  style: AppTextStyle.regular_16,
+                ),
+              );
+            }).toList(),
+            validator: (value) =>
+                AppValidator.validatorRequired(value, context),
+          );
+        },
       ),
     );
   }

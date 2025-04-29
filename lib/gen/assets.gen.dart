@@ -35,6 +35,14 @@ class $AssetsPdfGen {
 class $AssetsPngGen {
   const $AssetsPngGen();
 
+  /// File path: assets/png/android12.png
+  AssetGenImage get android12 =>
+      const AssetGenImage('assets/png/android12.png');
+
+  /// File path: assets/png/android13.png
+  AssetGenImage get android13 =>
+      const AssetGenImage('assets/png/android13.png');
+
   /// File path: assets/png/app_logo.png
   AssetGenImage get appLogo => const AssetGenImage('assets/png/app_logo.png');
 
@@ -104,6 +112,8 @@ class $AssetsPngGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        android12,
+        android13,
         appLogo,
         certificate,
         defaultProfile,
@@ -153,6 +163,10 @@ class $AssetsSvgGen {
   SvgGenImage get annualLeave =>
       const SvgGenImage('assets/svg/annual_leave.svg');
 
+  /// File path: assets/svg/annual_leave_view_all.svg
+  SvgGenImage get annualLeaveViewAll =>
+      const SvgGenImage('assets/svg/annual_leave_view_all.svg');
+
   /// File path: assets/svg/app_version.svg
   SvgGenImage get appVersion => const SvgGenImage('assets/svg/app_version.svg');
 
@@ -180,6 +194,10 @@ class $AssetsSvgGen {
   SvgGenImage get calendarEye =>
       const SvgGenImage('assets/svg/calendar_eye.svg');
 
+  /// File path: assets/svg/certificates.svg
+  SvgGenImage get certificates =>
+      const SvgGenImage('assets/svg/certificates.svg');
+
   /// File path: assets/svg/chatbot.svg
   SvgGenImage get chatbot => const SvgGenImage('assets/svg/chatbot.svg');
 
@@ -192,6 +210,14 @@ class $AssetsSvgGen {
   /// File path: assets/svg/contactus.svg
   SvgGenImage get contactus => const SvgGenImage('assets/svg/contactus.svg');
 
+  /// File path: assets/svg/createEmergencyRequestViewAll.svg
+  SvgGenImage get createEmergencyRequestViewAll =>
+      const SvgGenImage('assets/svg/createEmergencyRequestViewAll.svg');
+
+  /// File path: assets/svg/createSickLeaveRequestViewAll.svg
+  SvgGenImage get createSickLeaveRequestViewAll =>
+      const SvgGenImage('assets/svg/createSickLeaveRequestViewAll.svg');
+
   /// File path: assets/svg/create_annual_request.svg
   SvgGenImage get createAnnualRequest =>
       const SvgGenImage('assets/svg/create_annual_request.svg');
@@ -203,6 +229,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/create_insurance_request.svg
   SvgGenImage get createInsuranceRequest =>
       const SvgGenImage('assets/svg/create_insurance_request.svg');
+
+  /// File path: assets/svg/create_requests_more_menu.svg
+  SvgGenImage get createRequestsMoreMenu =>
+      const SvgGenImage('assets/svg/create_requests_more_menu.svg');
 
   /// File path: assets/svg/create_sick_leave_request.svg
   SvgGenImage get createSickLeaveRequest =>
@@ -293,8 +323,16 @@ class $AssetsSvgGen {
   SvgGenImage get myAttendance =>
       const SvgGenImage('assets/svg/my_attendance.svg');
 
+  /// File path: assets/svg/my_requests_more_menu.svg
+  SvgGenImage get myRequestsMoreMenu =>
+      const SvgGenImage('assets/svg/my_requests_more_menu.svg');
+
   /// File path: assets/svg/no-internet.svg
   SvgGenImage get noInternet => const SvgGenImage('assets/svg/no-internet.svg');
+
+  /// File path: assets/svg/notification copy.svg
+  SvgGenImage get notificationCopy =>
+      const SvgGenImage('assets/svg/notification copy.svg');
 
   /// File path: assets/svg/notification.svg
   SvgGenImage get notification =>
@@ -348,6 +386,10 @@ class $AssetsSvgGen {
   SvgGenImage get submissions =>
       const SvgGenImage('assets/svg/submissions.svg');
 
+  /// File path: assets/svg/submssions_more_menu.svg
+  SvgGenImage get submssionsMoreMenu =>
+      const SvgGenImage('assets/svg/submssions_more_menu.svg');
+
   /// File path: assets/svg/survey.svg
   SvgGenImage get survey => const SvgGenImage('assets/svg/survey.svg');
 
@@ -365,6 +407,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/verified.svg
   SvgGenImage get verified => const SvgGenImage('assets/svg/verified.svg');
 
+  /// File path: assets/svg/visitorlogs.svg
+  SvgGenImage get visitorlogs =>
+      const SvgGenImage('assets/svg/visitorlogs.svg');
+
   /// File path: assets/svg/work.svg
   SvgGenImage get work => const SvgGenImage('assets/svg/work.svg');
 
@@ -377,6 +423,7 @@ class $AssetsSvgGen {
         address,
         advertisements,
         annualLeave,
+        annualLeaveViewAll,
         appVersion,
         arrowDown,
         arrowTarget,
@@ -385,13 +432,17 @@ class $AssetsSvgGen {
         calander,
         calendar,
         calendarEye,
+        certificates,
         chatbot,
         checkMark,
         clock,
         contactus,
+        createEmergencyRequestViewAll,
+        createSickLeaveRequestViewAll,
         createAnnualRequest,
         createEmergencyRequest,
         createInsuranceRequest,
+        createRequestsMoreMenu,
         createSickLeaveRequest,
         createTrainingRequest,
         dateOutlineBadged,
@@ -418,7 +469,9 @@ class $AssetsSvgGen {
         male,
         more,
         myAttendance,
+        myRequestsMoreMenu,
         noInternet,
+        notificationCopy,
         notification,
         notificationDate,
         notificationUser,
@@ -434,11 +487,13 @@ class $AssetsSvgGen {
         requests,
         sickLeave,
         submissions,
+        submssionsMoreMenu,
         survey,
         timer,
         trainingRequest,
         userCircleIcon,
         verified,
+        visitorlogs,
         work,
         world
       ];

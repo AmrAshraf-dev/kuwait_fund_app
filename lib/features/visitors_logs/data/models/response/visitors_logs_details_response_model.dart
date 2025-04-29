@@ -22,6 +22,7 @@ class VisitorsLogsDetailsModel extends VisitorsLogsDetailsEntity {
     required super.visitTime,
     required super.visitorName,
     required super.visitorsCount,
+    required super.visitTypeName,
   });
 
   factory VisitorsLogsDetailsModel.fromJson(Map<String, dynamic> json) =>

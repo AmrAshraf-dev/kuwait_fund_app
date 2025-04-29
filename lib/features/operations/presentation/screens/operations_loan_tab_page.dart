@@ -72,35 +72,54 @@ class DivisionItem extends StatelessWidget {
             const EdgeInsetsDirectional.only(start: 20, top: 20, bottom: 20),
         customText: SizedBox(
             width: 230.w,
-            child: MainTitleWidget(title: loanEntity.divisionName)),
+            child: MainTitleWidget(title: loanEntity.divisionName,
+            fontStyle: AppTextStyle.bold_16,)),
         children: [
           Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.r),
-              boxShadow: [
-                BoxShadow(
-                  color: Palette.grey_7B7B7B.withOpacity(0.3),
-                  spreadRadius: 0,
-                  blurRadius: 10,
-                  offset: Offset(0, 2), // changes position of shadow
-                ),
-              ],
-              border: Border.all(color: Palette.gery_DADADA),
-            ),
+            // decoration: BoxDecoration(
+            //   color: Colors.white,
+            //   borderRadius: BorderRadius.circular(10.r),
+            //   boxShadow: [
+            //     BoxShadow(
+            //       color: Palette.grey_7B7B7B.withOpacity(0.3),
+            //       spreadRadius: 0,
+            //       blurRadius: 10,
+            //       offset: Offset(0, 2), // changes position of shadow
+            //     ),
+            //   ],
+            //   border: Border.all(color: Palette.gery_DADADA),
+            // ),
             child: Column(
                 children: loanEntity.loanCountries
-                    .map((e) => OperationsLoanItem(
-                      numbers: e.loanSectors
-                          .map((e) => e?.number ?? "").toList(),
-                          countryName: e.countryName,
-                          sectorNames: e.loanSectors
-                              .map((e) => e?.sectorName ?? "")
-                              .toList(),
-                          amounts: e.loanSectors
-                              .map((e) => e?.amount ?? "")
-                              .toList(),
-                        ))
+                    .map((e) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.r),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Palette.grey_7B7B7B.withOpacity(0.3),
+                              spreadRadius: 0,
+                              blurRadius: 10,
+                              offset: Offset(0, 2), // changes position of shadow
+                            ),
+                          ],
+                          border: Border.all(color: Palette.gery_DADADA),
+                        ),
+                        child: OperationsLoanItem(
+                          numbers: e.loanSectors
+                              .map((e) => e?.number ?? "").toList(),
+                              countryName: e.countryName,
+                              sectorNames: e.loanSectors
+                                  .map((e) => e?.sectorName ?? "")
+                                  .toList(),
+                              amounts: e.loanSectors
+                                  .map((e) => e?.amount ?? "")
+                                  .toList(),
+                            ),
+                      ),
+                    ))
                     .toList()),
           ),
         ]);

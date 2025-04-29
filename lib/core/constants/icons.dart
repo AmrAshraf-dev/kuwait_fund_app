@@ -23,6 +23,8 @@ const String insurance = '${iconDir}insurance.svg';
 const String more = '${iconDir}more.svg';
 
 const String annualLeave = '${iconDir}annual_leave.svg';
+const String annualLeaveViewAll = '${iconDir}annual_leave_view_all.svg';
+
 const String emergencyLeave = '${iconDir}emergency_leave.svg';
 const String sickLeave = '${iconDir}sick_leave.svg';
 const String trainingRequest = '${iconDir}training_request.svg';

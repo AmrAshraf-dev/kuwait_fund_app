@@ -24,6 +24,7 @@ class DirectorDeptMissionDetailsModel extends DirectorDeptMissionDetailsEntity {
     required super.leave_type,
     required super.to_date,
     required super.missionCount,
+    required super.leave_type_name
     
 
   });

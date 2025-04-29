@@ -33,7 +33,8 @@ class LeaveDaysRowItemWidget extends StatelessWidget {
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: AppText(text: days, style: AppTextStyle.bold_14),
+                  child: AppText(text: days, style: AppTextStyle.bold_14,
+                  textColor:  Colors.white,),
                 ),
               )),
         ],

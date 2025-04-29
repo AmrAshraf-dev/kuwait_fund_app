@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/screens/requests_screen.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 @RoutePage()
@@ -18,7 +19,12 @@ class DirectorNavigationMainScreen extends StatefulWidget {
       _DirectorNavigationMainScreenState();
 }
 
-class _DirectorNavigationMainScreenState extends State<DirectorNavigationMainScreen> {
+class _DirectorNavigationMainScreenState
+    extends State<DirectorNavigationMainScreen> {
+
+ 
+
+    
   List<String> screensTitles = <String>[
     "home",
     "dept_mission",
@@ -36,9 +42,11 @@ class _DirectorNavigationMainScreenState extends State<DirectorNavigationMainScr
               resizeToAvoidBottomInset: false,
               routes: <PageRouteInfo>[
                 const AdminHomeRoute(),
-                const DirectorDeptMissionRoute(),
-                const DirectorDeptAssignmentRoute(),
-                const MoreRoute()
+              const  DirectorDeptMissionRoute(),
+          const  DirectorDeptAssignmentRoute(),
+        
+  
+              MoreRoute(),
               ],
               bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
                 return buildBottomBar(tabsRouter);
@@ -126,8 +134,9 @@ class _DirectorNavigationMainScreenState extends State<DirectorNavigationMainScr
                           bottom: 9.h,
                           top: 18.h,
                         ),
-                        child: Assets.svg.deptMission
-                                .svg(color: Colors.white, ),
+                        child: Assets.svg.deptMission.svg(
+                          color: Colors.white,
+                        ),
                       ),
                       label: context.tr('dept_assignment'),
                     ),

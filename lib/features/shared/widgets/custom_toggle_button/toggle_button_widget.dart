@@ -32,71 +32,74 @@ class CustomToggleWidget extends StatelessWidget {
       builder: (BuildContext context, Map<String, bool> state) {
         final bool isOn = toggleCubit.getValue(keyValue);
 
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // "On" Button
-            GestureDetector(
-              onTap: () {
-                if (!isOn) {
-                  toggleModel.setValue(keyValue, true);
-                  onToggle(true);
-                }
-              },
-              child: Container(
-                height: 60.h,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-                decoration: BoxDecoration(
-                  color: isOn ? Palette.yellow_FBD823 : Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                    color: isOn ? Colors.transparent : Palette.gray_C6C6C6,
-                    width: 1,
+        return Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // "On" Button
+              GestureDetector(
+                onTap: () {
+                  if (!isOn) {
+                    toggleModel.setValue(keyValue, true);
+                    onToggle(true);
+                  }
+                },
+                child: Container(
+                  height: 60.h,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: isOn ? Palette.yellow_FBD823 : Colors.white,
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: isOn ? Colors.transparent : Palette.gray_C6C6C6,
+                      width: 1,
+                    ),
                   ),
-                ),
-                child: Center(
-                  child: AppText(
-                    text: enabledTitle,
-                    style: AppTextStyle.semiBold_12,
-                    textColor: isOn ? Colors.black : Colors.black,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 8),
-
-            // "Off" Button
-            GestureDetector(
-              onTap: () {
-                if (isOn) {
-                  toggleModel.setValue(keyValue, false);
-                  onToggle(false);
-                }
-              },
-              child: Container(
-                height: 60.h,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-                decoration: BoxDecoration(
-                  color: !isOn ? Palette.yellow_FBD823 : Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                    color: !isOn ? Colors.transparent : Palette.gray_C6C6C6,
-                    width: 1,
-                  ),
-                ),
-                child: Center(
-                  child: AppText(
-                    text:  disabledTitle,
-                    style: AppTextStyle.semiBold_12,
-                    textColor: !isOn ? Colors.black : Colors.black,
+                  child: Center(
+                    child: AppText(
+                      text: enabledTitle,
+                      style: AppTextStyle.semiBold_12,
+                      textColor: isOn ? Colors.white : Colors.black,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(width: 8),
+          
+              // "Off" Button
+              GestureDetector(
+                onTap: () {
+                  if (isOn) {
+                    toggleModel.setValue(keyValue, false);
+                    onToggle(false);
+                  }
+                },
+                child: Container(
+                  height: 60.h,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: !isOn ? Palette.yellow_FBD823 : Colors.white,
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: !isOn ? Colors.transparent : Palette.gray_C6C6C6,
+                      width: 1,
+                    ),
+                  ),
+                  child: Center(
+                    child: AppText(
+                      text:  disabledTitle,
+                      style: AppTextStyle.semiBold_12,
+                      textColor: !isOn ? Colors.white : Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         );
       },
     );

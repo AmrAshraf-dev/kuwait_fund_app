@@ -11,7 +11,7 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.
  
  
 class DeptNameDropdown extends StatefulWidget {
-  final DeptEntity? initialValue;
+    DeptEntity? initialValue;
   final ValueChanged<DeptEntity?> onDeptSelected;
 
     DeptNameDropdown({
@@ -34,8 +34,7 @@ class _DeptNameDropdownState extends State<DeptNameDropdown> {
       child: BlocConsumer<DirectorDeptMissionCubit, DirectorDeptMissionState>(
         listener: (context, state) {
          if (state is DirectorDeptMissionErrorState) {
-          //1
-          //3
+       
             ViewsToolbox.dismissLoading();
             ViewsToolbox.showMessageBottomsheet(
               context: context,
@@ -45,8 +44,21 @@ class _DeptNameDropdownState extends State<DeptNameDropdown> {
           } else if (state is DirectorDeptMissionLoadingState) {
             ViewsToolbox.showLoading();
           } else if (state is DirectorDeptsListReadyState) {
-            ViewsToolbox.dismissLoading();
+            
+
+                 ViewsToolbox.dismissLoading();
               deptsListResponse = state.response.data ?? [];
+                setState(() {
+            if (deptsListResponse.isNotEmpty) {
+              // setting first list item as default item to show in dropdown
+              widget.initialValue = deptsListResponse.first;
+                widget.onDeptSelected(
+                deptsListResponse.first,
+              );
+           
+            }
+          });  
+
           }
           
         },

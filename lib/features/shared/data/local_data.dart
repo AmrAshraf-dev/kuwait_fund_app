@@ -36,7 +36,7 @@ static void clearUserData() {
   }
 
   static String? getLangCode() {
-    return sharedPreferences.getString("LangCode");
+    return sharedPreferences.getString("LangCode") ?? "ar";
   }
 
   // static String? getProfilePhoto() {

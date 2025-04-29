@@ -7,12 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submission_cubit.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/cubits/home_cubit.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+     import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 @RoutePage()
 class SupervisorNavigationMainScreen extends StatefulWidget {
@@ -24,10 +19,7 @@ class SupervisorNavigationMainScreen extends StatefulWidget {
 }
 
 class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
-  final SubmissionCubit submissionCubit = getIt<SubmissionCubit>();
 
-  final HomeCubit homeCubit = getIt<HomeCubit>();
-    final RequestsCubit  requestCubit = getIt<RequestsCubit>();
 
   List<String> screensTitles = <String>[
     "home",
@@ -37,30 +29,11 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
     "more",
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    submissionCubit.getSubmissions();
-      homeCubit.getLeaveDashboard(); 
-          requestCubit.getRequests();    
-
-   }
+ 
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(
-          value: submissionCubit,
-        ),
-        BlocProvider.value(
-          value:  homeCubit,
-        ),
-        BlocProvider.value(
-          value: requestCubit,
-        ),
-      ],
-      child: PopScope(
+    return   PopScope(
           canPop: false,
           child: Stack(
             children: <Widget>[
@@ -78,7 +51,7 @@ class _NavigationMainScreenState extends State<SupervisorNavigationMainScreen> {
                 },
               ),
             ],
-          )),
+          )
     );
   }
 

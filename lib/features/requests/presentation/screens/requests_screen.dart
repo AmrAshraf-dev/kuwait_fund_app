@@ -14,91 +14,90 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
 
 @RoutePage()
 class RequestsScreen extends StatefulWidget {
-  const RequestsScreen({super.key , required this.isBackButtonEnabled });
+  const RequestsScreen({super.key, required this.isBackButtonEnabled});
 
-  final bool isBackButtonEnabled ;
+  final bool isBackButtonEnabled;
 
   @override
   State<RequestsScreen> createState() => _RequestsScreenState();
 }
 
 class _RequestsScreenState extends State<RequestsScreen> {
+    final RequestsCubit  requestCubit = getIt<RequestsCubit>();
 
-  @override
+ @override
   void initState() {
     super.initState();
+    requestCubit.getRequests();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MasterWidget(
-      hasScroll: false,
-      isBackEnabled: widget.isBackButtonEnabled,
-      screenTitle: context.tr("my_requests"),
-      appBarHeight: 90.h,
-      widget: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          RequestsHeaderWidget(),
-          20.verticalSpace,
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 27.w),
-              child: BlocConsumer<RequestsCubit, RequestsState>(
-                listener: (context, state) {
-                      if (state is RequestsLoadingState) {
-                    ViewsToolbox.showLoading();
-                  } else if (state is RequestsErrorState) {
-                    ViewsToolbox.dismissLoading();
-                  }
-                },
-                builder: (context, state) {
-      
-      if(state is RequestsErrorState ){
-          return Center(
-            child: AppText(
-      text: context.tr(state.message!),
-      style: AppTextStyle.medium_18,
-            ),
-          );
-      }
-      
-      
-      
-      
-      
-      
-          else     if (state is RequestsEmptyState) {
-                    ViewsToolbox.dismissLoading();
-                    return Expanded(
-                      child: Center(
-                        child: AppText(
-                          text: context.tr("no_requests"),
-                          style: AppTextStyle.medium_18,
-                        ),
-                      ),
-                    );
-                  } else if (state is RequestsReadyState) {
-                    List<RequestsEntity> requestsList =
-                        state.response.data ?? [];
-                    ViewsToolbox.dismissLoading();
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: requestsList.length,
-                      itemBuilder: (context, index) {
-                        return RequestItemWidget(
-                          request: requestsList[index],
-                          requestsCubit:  context.read<RequestsCubit>(),
-                        );
-                      },
-                    );
-                  }
-                  return Container();
-                },
-              ))
-        ],
-      ),
-    );
+    return  BlocProvider(
+        create:  (context) => requestCubit,
+        
+
+            child: MasterWidget(
+              hasScroll: false,
+              isBackEnabled: widget.isBackButtonEnabled,
+              screenTitle: context.tr("my_requests"),
+              appBarHeight: 90.h,
+              widget: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  RequestsHeaderWidget(),
+                  20.verticalSpace,
+                  Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 27.w),
+                      child: BlocConsumer<RequestsCubit, RequestsState>(
+                        listener: (context, state) {
+                          if (state is RequestsLoadingState) {
+                            ViewsToolbox.showLoading();
+                          } else if (state is RequestsErrorState) {
+                            ViewsToolbox.dismissLoading();
+                          }
+                        },
+                        builder: (context, state) {
+                          if (state is RequestsErrorState) {
+                            return Center(
+                              child: AppText(
+                                text: context.tr(state.message!),
+                                style: AppTextStyle.medium_18,
+                              ),
+                            );
+                          } else if (state is RequestsEmptyState) {
+                            ViewsToolbox.dismissLoading();
+                            return Expanded(
+                              child: Center(
+                                child: AppText(
+                                  text: context.tr("no_requests"),
+                                  style: AppTextStyle.medium_18,
+                                ),
+                              ),
+                            );
+                          } else if (state is RequestsReadyState) {
+                            List<RequestsEntity> requestsList =
+                                state.response.data ?? [];
+                            ViewsToolbox.dismissLoading();
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: requestsList.length,
+                              itemBuilder: (context, index) {
+                                return RequestItemWidget(
+                                  request: requestsList[index],
+                                  requestsCubit: context.read<RequestsCubit>(),
+                                );
+                              },
+                            );
+                          }
+                          return Container();
+                        },
+                      ))
+                ],
+              ),
+            ));
+        
   }
 }

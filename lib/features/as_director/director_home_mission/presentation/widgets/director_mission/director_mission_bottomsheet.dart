@@ -6,6 +6,7 @@ import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/data/models/request/director_mission_details_request_model.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_mission_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/cubits/director_mission_cubit.dart';
 import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/widgets/director_mission/director_mission_selectable_days_chips_widget.dart';
@@ -19,7 +20,7 @@ class DirectorMissionsBottomSheet extends StatefulWidget {
   final List<String> calendarDirectorMissionDates;
   final DirectorMissionCubit directorMissionCubit;
   final List<DirectorMissionDetailsEntity> directorMissionDetails;
-final selectedDirector  ;
+final  DirectorEntity? selectedDirector  ;
   const DirectorMissionsBottomSheet({
     super.key,
     required this.selectedDate,
@@ -45,25 +46,29 @@ class DirectorMissionsBottomSheetState extends State<DirectorMissionsBottomSheet
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return 
+    
+    ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(35.r),
+          topRight: Radius.circular(35.r),
+        ),
+        child:
+    Container(
       color:  Colors.white,
       child: SafeArea(
         bottom: true,
         child: BlocProvider.value(
           value: widget.directorMissionCubit,
-          child: Container(
+          child:
+          
+           
+         Container(
             constraints: BoxConstraints(
               maxHeight: MediaQuery.of(context).size.height * 0.8,
             ),
             padding: EdgeInsets.all(16),
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(35.r),
-                topRight: Radius.circular(35.r),
-              ),
-            ),
+         
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,6 +81,7 @@ class DirectorMissionsBottomSheetState extends State<DirectorMissionsBottomSheet
                     child: DirectorMissionsDetailsListView(
                       directorMissionCubit: widget.directorMissionCubit,
                       selectedHostName: selectedHostName,
+                      directorMissionDetails: widget.directorMissionDetails,
                     ),
                   ),
                 ),
@@ -85,6 +91,7 @@ class DirectorMissionsBottomSheetState extends State<DirectorMissionsBottomSheet
             ),
           ),
         ),
+        )
       ),
     );
   }
@@ -147,11 +154,12 @@ class DirectorMissionsBottomSheetState extends State<DirectorMissionsBottomSheet
 class DirectorMissionsDetailsListView extends StatelessWidget {
   final DirectorMissionCubit directorMissionCubit;
   final DirectorMissionDetailsEntity? selectedHostName;
-
-  const DirectorMissionsDetailsListView({
+    List<DirectorMissionDetailsEntity> directorMissionDetails;
+    DirectorMissionsDetailsListView({
     super.key,
     required this.directorMissionCubit,
     required this.selectedHostName,
+    required this.directorMissionDetails,
   });
 
   @override
@@ -170,26 +178,42 @@ class DirectorMissionsDetailsListView extends StatelessWidget {
                        text: context.tr("continue"),
                        
                       onPressed: () {
-                       CustomMainRouter.back();  
+                                          Navigator.pop(context);
+  
                    }), 
           );
         } else if (state is DirectorMissionDetailsReadyState) {
           ViewsToolbox.dismissLoading();
+                    directorMissionDetails = state.response.data ?? [];
+
         }
       },
+
+        buildWhen: (previous, current) => 
+          current is DirectorMissionDetailsReadyState  ,
+
       builder: (context, state) {
-        if (state is DirectorMissionDetailsReadyState) {
-          return ListView.builder(
+   return state is DirectorMissionDetailsReadyState?
+   ( state.response.data?.length ?? 0)==0?
+                Center(
+                  child: AppText(
+                    text: context.tr("noDataFound"),
+                    style: AppTextStyle.regular_14,
+                  ),
+                )
+                :
+
+
+             ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: state.response.data?.length ?? 0,
+            itemCount: directorMissionDetails.length ,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              final visit = state.response.data![index];
+              final visit = directorMissionDetails[index];
               return _buildMissionDetailsTile(visit, context);
-            },
-          );
-        }
-        return Container();
+            }) : SizedBox();
+           
+       
       },
     );
   }
@@ -223,13 +247,13 @@ class DirectorMissionsDetailsListView extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   decoration: BoxDecoration(
-                    color: visit.leave_type == "Blue"
-                        ? Palette.blue_3542B9 
-                        : Colors.red,
+                    color: visit.leave_type == "Red"
+                        ? Colors.red 
+                        : Palette.blue_3542B9 ,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: AppText(
-                    text: visit.leave_type == "Blue"
+                    text: visit.leave_type == "Red"
                         ? context.tr("mission")
                         : context.tr("leave"),
                     style: AppTextStyle.semiBold_12,
@@ -241,21 +265,28 @@ class DirectorMissionsDetailsListView extends StatelessWidget {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                   AppText(
+                  style: AppTextStyle.regular_14,
+                  textColor: Colors.black,
+                  text: "${visit.leave_type_name} ",
+                ),
                 AppText(
                   style: AppTextStyle.regular_14,
                   textColor: Colors.black,
                   text: "${visit.from_date} - ${visit.to_date}",
                 ),
+                 if(visit.leave_type == "Red")
                 AppText(
                   style: AppTextStyle.regular_14,
                   textColor: Colors.black,
                   text:
-                      "${context.tr("number_of_missions")}: ${visit.missionCount}",
+                      "${context.tr("number_of_missions")}: ${(visit.missionCount?.isEmpty??true)?"-":visit.missionCount}",  
                 ),
+                 if(visit.leave_type == "Red")
                 AppText(
                   style: AppTextStyle.regular_14,
                   textColor: Colors.black,
-                  text: "${context.tr("location")}: ${visit.location}",
+                  text: "${context.tr("location")}: ${(visit.location?.isEmpty??true)?"-":visit.location}",  
                 ),
               ],
             ),

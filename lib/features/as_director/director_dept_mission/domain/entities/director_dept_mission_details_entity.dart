@@ -6,6 +6,7 @@ class DirectorDeptMissionDetailsEntity {
   final String? to_date;
   final String? evant_name;
   final String? missionCount;
+  final String? leave_type_name;
 
   DirectorDeptMissionDetailsEntity({
     this.employee_name,
@@ -15,5 +16,6 @@ class DirectorDeptMissionDetailsEntity {
     this.to_date,
     this.evant_name,
     this.missionCount,
+    this.leave_type_name,
   });
 }

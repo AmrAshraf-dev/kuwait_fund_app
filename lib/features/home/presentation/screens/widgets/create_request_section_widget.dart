@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart' as Assets;
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
@@ -7,6 +8,7 @@ import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/create_request_card_item_widget.dart';
+import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
 class CreateRequestSection extends StatefulWidget {
@@ -33,7 +35,9 @@ class _CreateRequestSectionState extends State<CreateRequestSection> {
               ),
               InkWell(
                 onTap: () {
-                  CustomMainRouter.push(CreateRequestRoute());
+                  CustomMainRouter.push(CreateRequestRoute(
+                   
+                  ));
                 },
                 child: AppText(
                   text: context.tr("view_all"),

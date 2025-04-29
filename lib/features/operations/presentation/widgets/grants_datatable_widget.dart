@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/operations/domain/entities/country_grants_entity.dart';
 
@@ -13,7 +14,9 @@ class GrantsDataTable extends StatelessWidget {
     return SingleChildScrollView(
       child: DataTable(
         columnSpacing: 10.0,
-        headingRowHeight: 30,
+        headingRowHeight: 30.h,
+         dataRowMinHeight: 50.h,
+        dataRowMaxHeight: 100.h,
         headingRowColor: WidgetStateProperty.resolveWith<Color>(
             (states) => Palette.primaryColor),
         columns: [
@@ -30,7 +33,7 @@ class GrantsDataTable extends StatelessWidget {
                 width: 90,
                 child: Center(
                   child: Text(
-                    context.tr("number_of_grants"),
+                    context.tr("count"),
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white),
                   ),

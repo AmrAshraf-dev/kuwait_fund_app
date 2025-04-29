@@ -7,6 +7,7 @@ final String? from_date;
 final String? to_date;
 final String? evant_name;
 final String? missionCount;
+final String? leave_type_name;
 
 
   DirectorMissionDetailsEntity({
@@ -17,6 +18,7 @@ final String? missionCount;
     required this.to_date,
     required this.evant_name,
     required this.missionCount,
+    required this.leave_type_name,
   });
  
 }

@@ -16,6 +16,7 @@ DirectorDeptMissionDetailsModel _$DirectorDeptMissionDetailsModelFromJson(
       leave_type: json['leave_type'] as String?,
       to_date: json['to_date'] as String?,
       missionCount: json['missionCount'] as String?,
+      leave_type_name: json['leave_type_name'] as String?,
     );
 
 Map<String, dynamic> _$DirectorDeptMissionDetailsModelToJson(
@@ -28,6 +29,7 @@ Map<String, dynamic> _$DirectorDeptMissionDetailsModelToJson(
       if (instance.to_date case final value?) 'to_date': value,
       if (instance.evant_name case final value?) 'evant_name': value,
       if (instance.missionCount case final value?) 'missionCount': value,
+      if (instance.leave_type_name case final value?) 'leave_type_name': value,
     };
 
 DirectorDeptMissionDetailsResponseModel
