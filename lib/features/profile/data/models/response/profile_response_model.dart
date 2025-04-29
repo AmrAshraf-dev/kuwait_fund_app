@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../shared/entity/base_entity.dart';
-import '../../../domain/entities/profile_entity.dart';
+ import '../../../domain/entities/profile_entity.dart';
 
 part 'profile_response_model.g.dart';
 
@@ -55,18 +54,4 @@ class EmployeeAddressModel extends EmployeeAddressEntity {
   Map<String, dynamic> toJson() => _$EmployeeAddressModelToJson(this);
 }
 
-@JsonSerializable()
-class ProfileResponseModel extends BaseEntity<ProfileModel> {
-  const ProfileResponseModel({
-    super.code,
-    super.data,
-    super.message,
-    super.totalRecords,
-    super.hasMorePages,
-  });
-
-  factory ProfileResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$ProfileResponseModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProfileResponseModelToJson(this);
-}
+ 

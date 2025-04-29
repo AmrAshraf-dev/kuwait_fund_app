@@ -174,9 +174,7 @@ class ProfileDataSourceImpl implements ProfileRemoteDataSource {
   Future<CustomResponseType<EditChildResponseModel>> editChild(
       {EditChildRequestModel? editChildRequestModel}) async {
     ({dynamic response, bool success}) result =
-        await networkHelper.post(path: ApiConstants.editSpouse, data: {
-      editChildRequestModel: editChildRequestModel?.toJson(),
-    });
+        await networkHelper.post(path: ApiConstants.editChild, data: editChildRequestModel?.toJson());
 
     if (result.success) {
       return right(EditChildResponseModel.fromJson(result.response));

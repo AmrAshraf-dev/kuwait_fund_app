@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -12,8 +12,7 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/profile_entity.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_profile_cubit.dart';
+ import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_profile_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -207,8 +206,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           if (_formKey.currentState!.saveAndValidate()) {
                             print(_formKey.currentState!.value);
                             _editProfileCubit
-                                .createEditProfile(ProfileRequestModel(
+                                .createEditProfile(
+                                  ProfileRequestModel(
                               mobile: profileEntity?.profile?.mobile,
+                               
                             ));
                             CustomMainRouter.push(ThankYouRoute(
                               subtitle: context.tr(

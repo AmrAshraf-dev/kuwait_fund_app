@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'package:kf_ess_mobile_app/features/create_request/presentation/widgets/sick_leave_file_picker_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:auto_route/auto_route.dart';
@@ -62,8 +64,8 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
 
   final SpouseCubit _spouseCubit = getIt<SpouseCubit>();
   final EditSpouseCubit _editSpouseCubit = getIt<EditSpouseCubit>();
-  final FilePickerFamilyCubit filePickerFamilyCubit =
-      getIt<FilePickerFamilyCubit>();
+  final FilePickerCubit filePickerFamilyCubit =
+      getIt<FilePickerCubit>();
   //selectedStatus;
   // late List<String> _statuses = _statuses = [
   //   context.tr('married'),
@@ -215,12 +217,14 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                                     : null,
                               ),
                               40.verticalSpace,
-                              FilePicker(
-                                  filePickerFamilyCubit: filePickerFamilyCubit,
-                                  onFileSelected: (filePath) => setState(() {
-                                        _selectedFile = filePath;
-                                      })),
-
+                              FilePickerSection(
+                filePickerCubit: filePickerFamilyCubit,
+                onFileSelected: (filePath) =>
+                
+                setState(() {
+                  _selectedFile = filePath;
+                })  
+              ),
                               40.verticalSpace,
                             ],
                           ),

@@ -43,6 +43,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
     return MasterWidget(
       screenTitle: context.tr("myFamily"),
       isBackEnabled: true,
+      hasScroll: false,
       widget: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => _familyCubit..getFamily()),
@@ -51,7 +52,9 @@ class _FamilyScreenState extends State<FamilyScreen> {
           padding:
               EdgeInsets.only(left: 15.w, right: 15.w, top: 14.h, bottom: 24.h),
           child: Column(
+            mainAxisSize:  MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment:  MainAxisAlignment.start,
             children: [
               AddButtonWidget(
                   onPressed: () {
@@ -73,17 +76,21 @@ class _FamilyScreenState extends State<FamilyScreen> {
                   if (state is FamilyLoadingState) {
                     ViewsToolbox.showLoading();
                   } else if (state is FamilyErrorState) {
-                    return Center(
-                      child: AppText(
-                        text: context.tr(state.message ?? "someThingWentWrong"),
-                        style: AppTextStyle.regular_14,
+                    return Expanded(
+                      child: Center(
+                        child: AppText(
+                          text: context.tr(state.message ?? "someThingWentWrong"),
+                          style: AppTextStyle.regular_14,
+                        ),
                       ),
                     );
                   } else if (state is FamilyEmptyState) {
-                    return Center(
-                      child: AppText(
-                        text: context.tr("noDataFound"),
-                        style: AppTextStyle.regular_14,
+                    return Expanded(
+                      child: Center(
+                        child: AppText(
+                          text: context.tr("noDataFound"),
+                          style: AppTextStyle.regular_14,
+                        ),
                       ),
                     );
                   } else if (state is FamilyReadyState) {
@@ -91,7 +98,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
                     ViewsToolbox.dismissLoading();
                     return ListView.separated(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       itemCount: state.response.data?.length ?? 0,
                       separatorBuilder: (context, index) => 10.verticalSpace,
                       itemBuilder: (context, index) {
