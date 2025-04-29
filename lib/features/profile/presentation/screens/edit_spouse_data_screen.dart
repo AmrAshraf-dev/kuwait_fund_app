@@ -39,7 +39,7 @@ class EditSpouseDataScreen extends StatefulWidget {
   String? maritalDate;
   String? fileExtention;
   String? bytes;
-  String? selectedStatus;
+  int? selectedStatus;
   EditSpouseDataScreen({
     super.key,
     this.id,
@@ -65,10 +65,15 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
   final FilePickerFamilyCubit filePickerFamilyCubit =
       getIt<FilePickerFamilyCubit>();
   //selectedStatus;
-  late List<String> _statuses = _statuses = [
-    context.tr('married'),
-    context.tr('divorced'),
-    context.tr('single'),
+  // late List<String> _statuses = _statuses = [
+  //   context.tr('married'),
+  //   context.tr('divorced'),
+  //   context.tr('single'),
+  // ];
+  late List<Map<String, dynamic>> _statuses = _statuses = [
+    {'label': context.tr('married'), 'value': 0},
+    {'label': context.tr('divorced'), 'value': 1},
+    {'label': context.tr('single'), 'value': 2},
   ];
 
   @override
@@ -167,7 +172,7 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                               ),
                               40.verticalSpace,
                               DropdownButtonFormField<String>(
-                                value: widget.selectedStatus,
+                                value: widget.selectedStatus?.toString(),
                                 decoration: InputDecoration(
                                   labelText: context.tr('maritalStatus'),
                                   labelStyle: TextStyle(
@@ -184,19 +189,17 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.black),
                                 dropdownColor: Colors.white,
-                                items: _statuses.map((String status) {
+                                items: _statuses.map((status) {
                                   return DropdownMenuItem<String>(
-                                    value: status,
+                                    value: status['value'].toString(),
                                     child: AppText(
-                                      text: status[0].toUpperCase() +
-                                          status.substring(1),
-                                      //  style: TextStyle(fontSize: 16),
+                                      text: status['label'],
                                     ),
                                   );
                                 }).toList(),
                                 onChanged: (String? newValue) {
                                   setState(() {
-                                    widget.selectedStatus = newValue;
+                                    widget.selectedStatus = int.tryParse(newValue ?? '');
                                   });
                                 },
                               ),
@@ -257,7 +260,7 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                                         .parse(spouseEntity!.birthDate!))
                                 : null,
                             spouseStatus:
-                                widget.selectedStatus, //spouseEntity?.status,
+                                widget.selectedStatus ?? null, //spouseEntity?.status,
                             spouseStatusDate: spouseEntity?.statusDate != null
                                 ? DateFormat('yyyy-MM-dd').format(
                                     DateFormat('dd/MM/yyyy')

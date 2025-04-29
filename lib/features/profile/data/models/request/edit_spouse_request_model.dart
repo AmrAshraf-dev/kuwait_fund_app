@@ -29,7 +29,7 @@ class EditSpouseRequestModel {
   final String? spouseEnglishName;
   final String? spouseCivilID;
   final String? spouserBirthDate;
-  final String? spouseStatus;
+  final int? spouseStatus;
   final String? spouseStatusDate;
   final String? fileExtention;
   final String? bytes;

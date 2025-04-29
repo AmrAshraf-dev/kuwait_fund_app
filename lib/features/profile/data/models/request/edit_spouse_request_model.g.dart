@@ -14,7 +14,7 @@ EditSpouseRequestModel _$EditSpouseRequestModelFromJson(
       spouseEnglishName: json['spouseEnglishName'] as String?,
       spouseCivilID: json['spouseCivilID'] as String?,
       spouserBirthDate: json['spouserBirthDate'] as String?,
-      spouseStatus: json['spouseStatus'] as String?,
+      spouseStatus: (json['spouseStatus'] as num?)?.toInt(),
       spouseStatusDate: json['spouseStatusDate'] as String?,
       fileExtention: json['fileExtention'] as String?,
       bytes: json['bytes'] as String?,
