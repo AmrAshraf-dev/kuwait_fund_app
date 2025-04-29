@@ -33,7 +33,8 @@ class SubmitButton extends StatelessWidget {
       listener: (context, state) {
         if (state is CreateSickLeaveRequestErrorState) {
           ViewsToolbox.dismissLoading();
-          ViewsToolbox.showErrorAwesomeSnackBar(context, context.tr(state.message!));
+          ViewsToolbox.showErrorAwesomeSnackBar(
+              context, context.tr(state.message!));
         }
       },
       builder: (context, state) {
@@ -41,41 +42,32 @@ class SubmitButton extends StatelessWidget {
           ViewsToolbox.showLoading();
         } else if (state is CreateSickLeaveRequestReadyState) {
           ViewsToolbox.dismissLoading();
-                                          CustomMainRouter.pop(); // Remove current page from stack
+          CustomMainRouter.pop(); // Remove current page from stack
 
           CustomMainRouter.push(ThankYouRoute(
-                      onContinueCallback: () {
-
-
-if(LocalData.getUser()?.userInfo.isDirector == true){
-
-                                       CustomMainRouter.push(
-                          RequestsRoute(isBackButtonEnabled:true),
-                                       );
-}
-
-                         else            if(LocalData.getUser()?.userInfo.isSupervisor == true){
-
-                                       CustomMainRouter.navigate(
-  SupervisorNavigationMainRoute(
-                        children: <PageRouteInfo>[
-                          RequestsRoute(isBackButtonEnabled:false),
-                        ],
-                      ),
-                    );
-                    
-                         } 
-                         else{
-
-                        
- CustomMainRouter.navigate(
-  NavigationMainRoute(
-                        children: <PageRouteInfo>[
-                          RequestsRoute(isBackButtonEnabled:false),
-                        ],
-                      ),
-                    ); }
-                                     },
+            onContinueCallback: () {
+              if (LocalData.getUser()?.userInfo.isDirector == true) {
+                CustomMainRouter.push(
+                  RequestsRoute(isBackButtonEnabled: true),
+                );
+              } else if (LocalData.getUser()?.userInfo.isSupervisor == true) {
+                CustomMainRouter.navigate(
+                  SupervisorNavigationMainRoute(
+                    children: <PageRouteInfo>[
+                      RequestsRoute(isBackButtonEnabled: false),
+                    ],
+                  ),
+                );
+              } else {
+                CustomMainRouter.navigate(
+                  NavigationMainRoute(
+                    children: <PageRouteInfo>[
+                      RequestsRoute(isBackButtonEnabled: false),
+                    ],
+                  ),
+                );
+              }
+            },
             title: context.tr("request_submitted_successfully"),
             subtitle: context
                 .tr("your_sick_leave_request_has_been_submitted_successfully"),

@@ -27,7 +27,7 @@ class AddSpouseWidget extends StatefulWidget {
   String? fileExtention;
   String? bytes;
   String? selectedStatus;
-
+  String? selectedSpouseFile;
   AddSpouseWidget({
     Key? key,
     this.id,
@@ -39,6 +39,7 @@ class AddSpouseWidget extends StatefulWidget {
     this.fileExtention,
     this.bytes,
     this.selectedStatus,
+    this.selectedSpouseFile,
   }) : super(key: key);
 
   @override
@@ -55,15 +56,15 @@ class _AddSpouseWidgetState extends State<AddSpouseWidget> {
     context.tr('divorced'),
     context.tr('single'),
   ];
-  String? _selectedSpouseFile;
+
   SpouseEntity? spouseEntity;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (context) => _spouseCubit
-              ..getSpouse(spouseModel: SpouseRequestModel(id: widget.id))),
+        // BlocProvider(
+        //     create: (context) => _spouseCubit
+        //       ..getSpouse(spouseModel: SpouseRequestModel(id: widget.id))),
         BlocProvider(create: (context) => filePickerFamilyCubit),
         // BlocProvider(create: (context) => _editSpouseCubit),
       ],
@@ -85,120 +86,141 @@ class _AddSpouseWidgetState extends State<AddSpouseWidget> {
                 ],
               ),
               child: FormBuilder(
-                key: _formKey,
-                child: BlocConsumer<SpouseCubit, SpouseState>(
-                    listener: (context, state) {
-                  if (state is SpouseErrorState) {
-                    ViewsToolbox.dismissLoading();
-                    ViewsToolbox.showErrorAwesomeSnackBar(
-                        context, context.tr(state.message!));
-                  }
-                }, builder: (context, state) {
-                  if (state is SpouseLoadingState) {
-                    ViewsToolbox.showLoading();
-                  } else if (state is SpouseReadyState) {
-                    spouseEntity = state.response.data;
-                    ViewsToolbox.dismissLoading();
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          30.verticalSpace,
-                          TextFieldWidget(
-                            labelAboveField: context.tr("name"),
-                            keyName: "name",
-                            validator: FormBuilderValidators.required(),
-                            textInputAction: TextInputAction.next,
-                            initalValue: spouseEntity?.name ?? '', // "name",
-                          ),
-                          20.verticalSpace,
-                          TextFieldWidget(
-                            labelAboveField: context.tr("civilIDNumber"),
-                            keyName: "civilIDNumber",
-                            validator: FormBuilderValidators.required(),
-                            textInputAction: TextInputAction.next,
-                            initalValue:
-                                spouseEntity?.civilID ?? '', //"civilIDNumber",
-                          ),
-                          20.verticalSpace,
-                          // CustomSingleRangeDatePicker(
-                          //   fromLabelAboveField:
-                          //       context.tr("residencyExpiryDate"),
-                          //   customFormKey: _formKey,
-                          //   keyNameFrom: "residencyExpiry",
-                          // ),
-                          // 20.verticalSpace,
-                          CustomSingleRangeDatePicker(
-                            fromLabelAboveField: context.tr("birthDate"),
-                            customFormKey: _formKey,
-                            keyNameFrom:
-                                spouseEntity?.birthDate ?? '', //"birthDate",
+                  key: _formKey,
+                  child:
+                      //  BlocConsumer<SpouseCubit, SpouseState>(
+                      //     listener: (context, state) {
+                      //   if (state is SpouseErrorState) {
+                      //     ViewsToolbox.dismissLoading();
+                      //     ViewsToolbox.showErrorAwesomeSnackBar(
+                      //         context, context.tr(state.message!));
+                      //   }
+                      // }, builder: (context, state) {
+                      //   if (state is SpouseLoadingState) {
+                      //     ViewsToolbox.showLoading();
+                      //   } else if (state is SpouseReadyState) {
+                      //     spouseEntity = state.response.data;
+                      //     ViewsToolbox.dismissLoading();
+                      //     return
+                      Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        30.verticalSpace,
+                        TextFieldWidget(
+                          labelAboveField: context.tr("name"),
+                          keyName: "name",
+                          validator: FormBuilderValidators.required(),
+                          textInputAction: TextInputAction.next,
+                          // initalValue: spouseEntity?.name ?? '', // "name",
+                          onChanged: (value) {
+                            setState(() {
+                              widget.name = value;
+                            });
+                          },
+                        ),
+                        20.verticalSpace,
+                        TextFieldWidget(
+                          labelAboveField: context.tr("civilIDNumber"),
+                          keyName: "civilIDNumber",
+                          validator: FormBuilderValidators.required(),
+                          textInputAction: TextInputAction.next,
+                          // initalValue:
+                          //     spouseEntity?.civilID ?? '', //"civilIDNumber",
+                          onChanged: (value) {
+                            setState(() {
+                              widget.civilID = value;
+                            });
+                          },
+                        ),
+                        20.verticalSpace,
+                        // CustomSingleRangeDatePicker(
+                        //   fromLabelAboveField:
+                        //       context.tr("residencyExpiryDate"),
+                        //   customFormKey: _formKey,
+                        //   keyNameFrom: "residencyExpiry",
+                        // ),
+                        // 20.verticalSpace,
+                        CustomSingleRangeDatePicker(
+                          fromLabelAboveField: context.tr("birthDate"),
+                          customFormKey: _formKey,
+                          keyNameFrom: "birthDate",
+                          onChanged: (value) {
+                            setState(() {
+                              widget.birthDate = value;
+                            });
+                          },
 
-                            initialDate: spouseEntity?.birthDate != null
-                                ? DateFormat('dd/MM/yyyy')
-                                    .parse(spouseEntity!.birthDate!)
-                                : null,
-                          ),
-                          40.verticalSpace,
-                          DropdownButtonFormField<String>(
-                            value: widget.selectedStatus,
-                            decoration: InputDecoration(
-                              labelText: context.tr('maritalStatus'),
-                              labelStyle: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w500),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 14),
+                          // initialDate: spouseEntity?.birthDate != null
+                          //     ? DateFormat('dd/MM/yyyy')
+                          //         .parse(spouseEntity!.birthDate!)
+                          //     : null,
+                        ),
+                        40.verticalSpace,
+                        DropdownButtonFormField<String>(
+                          value: widget.selectedStatus,
+                          decoration: InputDecoration(
+                            labelText: context.tr('maritalStatus'),
+                            labelStyle: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            icon: Icon(Icons.keyboard_arrow_down_rounded,
-                                color: Colors.grey),
-                            style: TextStyle(fontSize: 16, color: Colors.black),
-                            dropdownColor: Colors.white,
-                            items: _statuses.map((String status) {
-                              return DropdownMenuItem<String>(
-                                value: status,
-                                child: AppText(
-                                  text: status[0].toUpperCase() +
-                                      status.substring(1),
-                                  //  style: TextStyle(fontSize: 16),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                widget.selectedStatus = newValue;
-                              });
-                            },
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 14),
                           ),
+                          icon: Icon(Icons.keyboard_arrow_down_rounded,
+                              color: Colors.grey),
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          dropdownColor: Colors.white,
+                          items: _statuses.map((String status) {
+                            return DropdownMenuItem<String>(
+                              value: status,
+                              child: AppText(
+                                text: status[0].toUpperCase() +
+                                    status.substring(1),
+                                //  style: TextStyle(fontSize: 16),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              widget.selectedStatus = newValue;
+                            });
+                          },
+                        ),
 
-                          20.verticalSpace,
-                          CustomSingleRangeDatePicker(
-                            fromLabelAboveField: context.tr("marriageDate"),
-                            customFormKey: _formKey,
-                            keyNameFrom: "birthDate",
-                            initialDate: spouseEntity?.statusDate != null
-                                ? DateFormat('dd/MM/yyyy')
-                                    .parse(spouseEntity!.statusDate!)
-                                : null,
-                          ),
-                          40.verticalSpace,
-                          FilePicker(
-                              filePickerFamilyCubit: filePickerFamilyCubit,
-                              onFileSelected: (filePath) => setState(() {
-                                    _selectedSpouseFile = filePath;
-                                  })),
+                        20.verticalSpace,
+                        CustomSingleRangeDatePicker(
+                          fromLabelAboveField: context.tr("marriageDate"),
+                          customFormKey: _formKey,
+                          keyNameFrom: "marriageDate",
+                          // initialDate: spouseEntity?.statusDate != null
+                          //     ? DateFormat('dd/MM/yyyy')
+                          //         .parse(spouseEntity!.statusDate!)
+                          //     : null,
+                          onChanged: (value) {
+                            setState(() {
+                              widget.maritalDate = value;
+                            });
+                          },
+                        ),
+                        40.verticalSpace,
+                        FilePicker(
+                            filePickerFamilyCubit: filePickerFamilyCubit,
+                            onFileSelected: (filePath) => setState(() {
+                                  widget.selectedSpouseFile = filePath;
+                                })),
 
-                          40.verticalSpace,
-                        ],
-                      ),
-                    );
-                  }
-                  return Container();
-                }),
-              ),
+                        40.verticalSpace,
+                      ],
+                    ),
+                  )
+                  //}
+                  //   return Container();
+                  // }),
+                  ),
             ),
             20.verticalSpace,
           ],
