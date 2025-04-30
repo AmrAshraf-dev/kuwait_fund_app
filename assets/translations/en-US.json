@@ -864,5 +864,6 @@
   "please_enter_valid_arabic_name": "Please enter valid Arabic name",
   "no_files_selected": "No files selected",
   "please_upload_file": "please upload file",
-  "please_choose_item": "Please choose item"
+  "please_choose_item": "Please choose item",
+  "please_enter_valid_english_name":"Please enter a valid english name"
 }
