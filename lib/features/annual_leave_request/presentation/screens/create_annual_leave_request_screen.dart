@@ -14,10 +14,8 @@ import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cub
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_remining_balance_cubit/annual_leave_remining_balance_cubit.dart';
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_request_cubit.dart';
  import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
  import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/custom_date_picker_range.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
@@ -118,18 +116,16 @@ if(leaveBalanceState is LeaveBalanceErrorState ){
                                   children: [
 
                                      CustomSingleRangeDatePicker(
-                          consumedDays: 4,
-                          totalDays: 4,
+                     
                           disableField: true,
                           initialDate: DateTime.now(),
                           keyNameFrom: "from",
                           customFormKey: _formKey,
                           fromLabelAboveField: context.tr("from_date"),
                         ),
-20.verticalSpace,
+                            20.verticalSpace,
                               CustomSingleRangeDatePicker(
-                          consumedDays: 4,
-                          totalDays: 4,
+                        
                           disableField: false,
                           firstDate: DateTime.now(),
                           validator: (p0) {
@@ -145,7 +141,7 @@ if(leaveBalanceState is LeaveBalanceErrorState ){
                           keyNameFrom: "to",
                           customFormKey: _formKey,
                           fromLabelAboveField: context.tr("to_date"),
-                   onChanged: (p0) {
+                        onChanged: (p0) {
                          reminingLeaveBalanceCubit.updateFormState(
                                             showDetails: true);
                                                 setState(() {
@@ -180,19 +176,12 @@ if(leaveBalanceState is LeaveBalanceErrorState ){
                                     // ),
                                     20.verticalSpace,
 if( (leaveBalanceState.response.data?.displayExitDate??false))
-      Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: CustomSingleRangeDatePicker(
-          isFirstDayRequired: false,
- 
-                          
- 
-                          fromLabelAboveField: context.tr("exit_date"),
-                          customFormKey: _formKey,
-                          keyNameFrom: "exit_date",
-                          lastDate: DateTime.now())
-                   
-      ),
+      CustomSingleRangeDatePicker(
+        isFirstDayRequired: false,
+                        fromLabelAboveField: context.tr("exit_date"),
+                        customFormKey: _formKey,
+                        keyNameFrom: "exit_date",
+                        lastDate: DateTime.now()),
 
                                   ],
                                 ),
@@ -291,40 +280,13 @@ if( (leaveBalanceState.response.data?.displayExitDate??false))
                                    
                                   ThankYouRoute(
                                     onContinueCallback: () {
-
-
-if( (LocalData.getUser()?.userInfo.isDirector == true) 
-){
-                                         CustomMainRouter.push(
-                                              RequestsRoute(
-                                                isBackButtonEnabled: true,
-                                              ),);
-
-}
-
-
-
-                            else         if(LocalData.getUser()?.userInfo.isSupervisor == true){
-
-                                       CustomMainRouter.navigate(
-  SupervisorNavigationMainRoute(
-                        children: <PageRouteInfo>[
-                          RequestsRoute(isBackButtonEnabled:false),
-                        ],
-                      ),
-                    );
-                    
-                         } 
-                         else{
-
-                        
- CustomMainRouter.navigate(
-  NavigationMainRoute(
-                        children: <PageRouteInfo>[
-                          RequestsRoute(isBackButtonEnabled:false),
-                        ],
-                      ),
-                    ); }
+  CustomMainRouter.navigate(
+                  NavigationMainRoute(
+                    children: <PageRouteInfo>[
+                      RequestsRoute(isBackButtonEnabled: false),
+                    ],
+                  ),
+                );
                                      },
                                   title: context
                                       .tr("request_submitted_successfully"),
@@ -384,6 +346,12 @@ if( (LocalData.getUser()?.userInfo.isDirector == true)
   num _calculatePaidDays({required String from, required String to}) {
     final DateTime fromDate =   DateFormat("dd/MM/yyyy").parse(from)  ;
     final DateTime toDate =   DateFormat("dd/MM/yyyy").parse(to);
-    return toDate.difference(fromDate).inDays;
+    return fromDate
+        .difference(toDate)
+        .inDays == 0
+        ? 1
+        : fromDate.difference(toDate).inDays;
+    
+  
   }
 }

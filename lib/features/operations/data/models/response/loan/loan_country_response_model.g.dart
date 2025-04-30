@@ -6,9 +6,8 @@ part of 'loan_country_response_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LoanCountryModelImpl _$$LoanCountryModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LoanCountryModelImpl(
+_LoanCountryModel _$LoanCountryModelFromJson(Map<String, dynamic> json) =>
+    _LoanCountryModel(
       countryName: json['countryName'] as String?,
       loanSectors: (json['loanSectors'] as List<dynamic>)
           .map((e) => e == null
@@ -17,8 +16,7 @@ _$LoanCountryModelImpl _$$LoanCountryModelImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$LoanCountryModelImplToJson(
-        _$LoanCountryModelImpl instance) =>
+Map<String, dynamic> _$LoanCountryModelToJson(_LoanCountryModel instance) =>
     <String, dynamic>{
       if (instance.countryName case final value?) 'countryName': value,
       'loanSectors': instance.loanSectors.map((e) => e?.toJson()).toList(),

@@ -6,6 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kf_ess_mobile_app/core/constants/icons.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
+import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 @RoutePage()
 class NavigationMainScreen extends StatefulWidget {
@@ -18,21 +20,28 @@ class NavigationMainScreen extends StatefulWidget {
 class _NavigationMainScreenState extends State<NavigationMainScreen> {
 
     late final List<PageRouteInfo> routes;
-
-  List<String> screensTitles = <String>[
-    "home",
-    "requests",
-    // "insurance",
-    "more",
-  ];
-
+bool isSupervisor=LocalData.getUser()?.userInfo.isSupervisor == true &&
+          LocalData.getUser()?.userInfo.isDirector != true;
+ late List<String> screensTitles;
   @override
   void initState() {
     super.initState();
+screensTitles = <String>[
+    "home",
+    "requests",
+      if(isSupervisor)
+     "submissions",
+    "more",
+  ];
+
+
     routes = [
       const HomeRoute(),
         RequestsRoute(isBackButtonEnabled: false),
+              if(isSupervisor)
+          SubmissionsRoute(isBackButtonEnabled: false),
       const MoreRoute(),
+
     ];
   }
 
@@ -123,24 +132,21 @@ class _NavigationMainScreenState extends State<NavigationMainScreen> {
                           )),
                       label: context.tr('my_requests'),
                     ),
-                    // BottomNavigationBarItem(
-                    //   icon: Padding(
-                    //       padding: EdgeInsets.only(
-                    //         bottom: 9.h,
-                    //         top: 18.h,
-                    //       ),
-                    //       child: SvgPicture.asset(insurance)),
-                    //   activeIcon: Padding(
-                    //       padding: EdgeInsets.only(
-                    //         bottom: 9.h,
-                    //         top: 18.h,
-                    //       ),
-                    //       child: SvgPicture.asset(
-                    //         insurance,
-                    //         color: Colors.white,
-                    //       )),
-                    //   label: context.tr('insurance'),
-                    // ),
+                if(isSupervisor)
+              BottomNavigationBarItem(
+                      icon: Padding(
+                          padding: EdgeInsets.only(bottom: 9.h, top: 18.h),
+                          child: Assets.svg.submissions.svg()),
+                      activeIcon: Padding(
+                        padding: EdgeInsets.only(
+                          bottom: 9.h,
+                          top: 18.h,
+                        ),
+                        child: Assets.svg.submissions.svg(color: Colors.white),
+                      ),
+                      label: context.tr('submissions'),
+                    ),
+
                     BottomNavigationBarItem(
                       icon: Padding(
                         padding: EdgeInsets.only(bottom: 9.h, top: 18.h),

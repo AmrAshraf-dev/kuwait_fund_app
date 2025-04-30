@@ -16,7 +16,7 @@ part 'loan_response_model.g.dart';
   */
 
 @freezed
-class LoanModel with _$LoanModel {
+abstract class LoanModel with _$LoanModel {
   const LoanModel._();
   const factory LoanModel({
     required String divisionName,

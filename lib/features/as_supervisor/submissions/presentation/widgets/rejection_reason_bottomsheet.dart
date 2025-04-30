@@ -22,89 +22,92 @@ class RejectionReasonBottomSheet extends StatelessWidget {
   TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(35.r),
-              topRight: Radius.circular(35.r),
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        child: Container(
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(35.r),
+                topRight: Radius.circular(35.r),
+              ),
             ),
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 20.h),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom * 0.6, // Reduce height
-                ),
-                child: FormBuilder(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      10.verticalSpace,
-                      AppText(
-                        text: context.tr("reason_for_rejection"),
-                        style: AppTextStyle.bold_22,
-                      ),
-                      10.verticalSpace,
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Palette.white,
-                          borderRadius: BorderRadius.circular(10.r),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 20.h),
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom * 0.6, // Reduce height
+                  ),
+                  child: FormBuilder(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        10.verticalSpace,
+                        AppText(
+                          text: context.tr("reason_for_rejection"),
+                          style: AppTextStyle.bold_22,
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.w),
-                          child: TextAreaFieldWidget(
-                            maxLength: 250,
-                            labelAboveField: context.tr("remarks"),
-                            keyName: "reason_for_rejection",
-                            validator: FormBuilderValidators.required(),
-                            controller: controller,
+                        10.verticalSpace,
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Palette.white,
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10.w),
+                            child: TextAreaFieldWidget(
+                              maxLength: 250,
+                              labelAboveField: context.tr("remarks"),
+                              keyName: "reason_for_rejection",
+                              validator: FormBuilderValidators.required(),
+                              controller: controller,
+                            ),
                           ),
                         ),
-                      ),
-                      50.verticalSpace,
-                      Column(
-                        children: [
-                          CustomElevatedButton(
-                            height: 60.h,
-                            text: context.tr("submit"),
-                            onPressed: () {
-                              if (_formKey.currentState!.saveAndValidate()) {
-                                Navigator.pop(context);
-                                rejectLeaveRequestCubit
-                                    .createRejectLeaveRequest(RejectLeaveRequestModel(
-                                  leaveRequestID: submissionsEntity?.id,
-                                  rejectReson: _formKey.currentState!.fields["reason_for_rejection"]!.value.toString(),
-                                ));
-                              }
-                            },
-                          ),
-                          22.verticalSpace,
-                          Center(
-                            child: CustomElevatedButton(
-                                height: 50.h,
-                                backgroundColor: Palette.transparntColor,
-                                onPressed: () {
-                                    Navigator.pop(context);
-                                },
-                                customChild: AppText(
-                                  text: context.tr("cancel"),
-                                  textColor: Palette.blue_5490EB,
-                                  fontSize: 18.sp,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ],
+                        50.verticalSpace,
+                        Column(
+                          children: [
+                            CustomElevatedButton(
+                              height: 60.h,
+                              text: context.tr("submit"),
+                              onPressed: () {
+                                if (_formKey.currentState!.saveAndValidate()) {
+                                  Navigator.pop(context);
+                                  rejectLeaveRequestCubit
+                                      .createRejectLeaveRequest(RejectLeaveRequestModel(
+                                    leaveRequestID: submissionsEntity?.id,
+                                    rejectReason: _formKey.currentState!.fields["reason_for_rejection"]!.value.toString(),
+                                  ));
+                                }
+                              },
+                            ),
+                            22.verticalSpace,
+                            Center(
+                              child: CustomElevatedButton(
+                                  height: 50.h,
+                                  backgroundColor: Palette.transparntColor,
+                                  onPressed: () {
+                                      Navigator.pop(context);
+                                  },
+                                  customChild: AppText(
+                                    text: context.tr("cancel"),
+                                    textColor: Palette.blue_5490EB,
+                                    fontSize: 18.sp,
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 }

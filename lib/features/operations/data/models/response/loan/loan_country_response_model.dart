@@ -14,7 +14,7 @@ part 'loan_country_response_model.g.dart';
   */
 
 @freezed
-class LoanCountryModel with _$LoanCountryModel {
+abstract class LoanCountryModel with _$LoanCountryModel {
   const LoanCountryModel._();
 
   const factory LoanCountryModel({
@@ -31,4 +31,6 @@ class LoanCountryModel with _$LoanCountryModel {
       loanSectors: loanSectors.map((e) => e!.toEntity()).toList(),
     );
   }
+  
+
 }

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,89 +10,55 @@ part of 'loan_sector_response_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-LoanSectorModel _$LoanSectorModelFromJson(Map<String, dynamic> json) {
-  return _LoanSectorModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$LoanSectorModel {
   @JsonKey(name: 'sectorName', defaultValue: "")
-  String get sectorName => throw _privateConstructorUsedError;
+  String get sectorName;
   @JsonKey(name: 'number')
-  String get number => throw _privateConstructorUsedError;
+  String get number;
   @JsonKey(name: 'amount')
-  String get amount => throw _privateConstructorUsedError;
-
-  /// Serializes this LoanSectorModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get amount;
 
   /// Create a copy of LoanSectorModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $LoanSectorModelCopyWith<LoanSectorModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LoanSectorModelCopyWith<$Res> {
-  factory $LoanSectorModelCopyWith(
-          LoanSectorModel value, $Res Function(LoanSectorModel) then) =
-      _$LoanSectorModelCopyWithImpl<$Res, LoanSectorModel>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'sectorName', defaultValue: "") String sectorName,
-      @JsonKey(name: 'number') String number,
-      @JsonKey(name: 'amount') String amount});
-}
-
-/// @nodoc
-class _$LoanSectorModelCopyWithImpl<$Res, $Val extends LoanSectorModel>
-    implements $LoanSectorModelCopyWith<$Res> {
-  _$LoanSectorModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of LoanSectorModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $LoanSectorModelCopyWith<LoanSectorModel> get copyWith =>
+      _$LoanSectorModelCopyWithImpl<LoanSectorModel>(
+          this as LoanSectorModel, _$identity);
+
+  /// Serializes this LoanSectorModel to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? sectorName = null,
-    Object? number = null,
-    Object? amount = null,
-  }) {
-    return _then(_value.copyWith(
-      sectorName: null == sectorName
-          ? _value.sectorName
-          : sectorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      number: null == number
-          ? _value.number
-          : number // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LoanSectorModel &&
+            (identical(other.sectorName, sectorName) ||
+                other.sectorName == sectorName) &&
+            (identical(other.number, number) || other.number == number) &&
+            (identical(other.amount, amount) || other.amount == amount));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, sectorName, number, amount);
+
+  @override
+  String toString() {
+    return 'LoanSectorModel(sectorName: $sectorName, number: $number, amount: $amount)';
   }
 }
 
 /// @nodoc
-abstract class _$$LoanSectorModelImplCopyWith<$Res>
-    implements $LoanSectorModelCopyWith<$Res> {
-  factory _$$LoanSectorModelImplCopyWith(_$LoanSectorModelImpl value,
-          $Res Function(_$LoanSectorModelImpl) then) =
-      __$$LoanSectorModelImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $LoanSectorModelCopyWith<$Res> {
+  factory $LoanSectorModelCopyWith(
+          LoanSectorModel value, $Res Function(LoanSectorModel) _then) =
+      _$LoanSectorModelCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'sectorName', defaultValue: "") String sectorName,
@@ -100,12 +67,12 @@ abstract class _$$LoanSectorModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$LoanSectorModelImplCopyWithImpl<$Res>
-    extends _$LoanSectorModelCopyWithImpl<$Res, _$LoanSectorModelImpl>
-    implements _$$LoanSectorModelImplCopyWith<$Res> {
-  __$$LoanSectorModelImplCopyWithImpl(
-      _$LoanSectorModelImpl _value, $Res Function(_$LoanSectorModelImpl) _then)
-      : super(_value, _then);
+class _$LoanSectorModelCopyWithImpl<$Res>
+    implements $LoanSectorModelCopyWith<$Res> {
+  _$LoanSectorModelCopyWithImpl(this._self, this._then);
+
+  final LoanSectorModel _self;
+  final $Res Function(LoanSectorModel) _then;
 
   /// Create a copy of LoanSectorModel
   /// with the given fields replaced by the non-null parameter values.
@@ -116,17 +83,17 @@ class __$$LoanSectorModelImplCopyWithImpl<$Res>
     Object? number = null,
     Object? amount = null,
   }) {
-    return _then(_$LoanSectorModelImpl(
+    return _then(_self.copyWith(
       sectorName: null == sectorName
-          ? _value.sectorName
+          ? _self.sectorName
           : sectorName // ignore: cast_nullable_to_non_nullable
               as String,
       number: null == number
-          ? _value.number
+          ? _self.number
           : number // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
-          ? _value.amount
+          ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -135,15 +102,14 @@ class __$$LoanSectorModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoanSectorModelImpl extends _LoanSectorModel {
-  const _$LoanSectorModelImpl(
+class _LoanSectorModel extends LoanSectorModel {
+  const _LoanSectorModel(
       {@JsonKey(name: 'sectorName', defaultValue: "") required this.sectorName,
       @JsonKey(name: 'number') required this.number,
       @JsonKey(name: 'amount') required this.amount})
       : super._();
-
-  factory _$LoanSectorModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LoanSectorModelImplFromJson(json);
+  factory _LoanSectorModel.fromJson(Map<String, dynamic> json) =>
+      _$LoanSectorModelFromJson(json);
 
   @override
   @JsonKey(name: 'sectorName', defaultValue: "")
@@ -155,16 +121,26 @@ class _$LoanSectorModelImpl extends _LoanSectorModel {
   @JsonKey(name: 'amount')
   final String amount;
 
+  /// Create a copy of LoanSectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'LoanSectorModel(sectorName: $sectorName, number: $number, amount: $amount)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LoanSectorModelCopyWith<_LoanSectorModel> get copyWith =>
+      __$LoanSectorModelCopyWithImpl<_LoanSectorModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$LoanSectorModelToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoanSectorModelImpl &&
+            other is _LoanSectorModel &&
             (identical(other.sectorName, sectorName) ||
                 other.sectorName == sectorName) &&
             (identical(other.number, number) || other.number == number) &&
@@ -175,49 +151,58 @@ class _$LoanSectorModelImpl extends _LoanSectorModel {
   @override
   int get hashCode => Object.hash(runtimeType, sectorName, number, amount);
 
-  /// Create a copy of LoanSectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$LoanSectorModelImplCopyWith<_$LoanSectorModelImpl> get copyWith =>
-      __$$LoanSectorModelImplCopyWithImpl<_$LoanSectorModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoanSectorModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'LoanSectorModel(sectorName: $sectorName, number: $number, amount: $amount)';
   }
 }
 
-abstract class _LoanSectorModel extends LoanSectorModel {
-  const factory _LoanSectorModel(
-          {@JsonKey(name: 'sectorName', defaultValue: "")
-          required final String sectorName,
-          @JsonKey(name: 'number') required final String number,
-          @JsonKey(name: 'amount') required final String amount}) =
-      _$LoanSectorModelImpl;
-  const _LoanSectorModel._() : super._();
+/// @nodoc
+abstract mixin class _$LoanSectorModelCopyWith<$Res>
+    implements $LoanSectorModelCopyWith<$Res> {
+  factory _$LoanSectorModelCopyWith(
+          _LoanSectorModel value, $Res Function(_LoanSectorModel) _then) =
+      __$LoanSectorModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'sectorName', defaultValue: "") String sectorName,
+      @JsonKey(name: 'number') String number,
+      @JsonKey(name: 'amount') String amount});
+}
 
-  factory _LoanSectorModel.fromJson(Map<String, dynamic> json) =
-      _$LoanSectorModelImpl.fromJson;
+/// @nodoc
+class __$LoanSectorModelCopyWithImpl<$Res>
+    implements _$LoanSectorModelCopyWith<$Res> {
+  __$LoanSectorModelCopyWithImpl(this._self, this._then);
 
-  @override
-  @JsonKey(name: 'sectorName', defaultValue: "")
-  String get sectorName;
-  @override
-  @JsonKey(name: 'number')
-  String get number;
-  @override
-  @JsonKey(name: 'amount')
-  String get amount;
+  final _LoanSectorModel _self;
+  final $Res Function(_LoanSectorModel) _then;
 
   /// Create a copy of LoanSectorModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoanSectorModelImplCopyWith<_$LoanSectorModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? sectorName = null,
+    Object? number = null,
+    Object? amount = null,
+  }) {
+    return _then(_LoanSectorModel(
+      sectorName: null == sectorName
+          ? _self.sectorName
+          : sectorName // ignore: cast_nullable_to_non_nullable
+              as String,
+      number: null == number
+          ? _self.number
+          : number // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: null == amount
+          ? _self.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
+
+// dart format on

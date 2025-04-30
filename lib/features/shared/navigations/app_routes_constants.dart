@@ -111,7 +111,6 @@ class AppRoutesConstants {
   static const String workScreen = '/workScreen';
 
   static const String addWorkScreen = '/addWorkScreen';
-  static const String adminDirectorMission = 'adminDirectorMissionScreen';
 
   static const String adminDeptMission = 'adminDeptMissionScreen';
 
@@ -121,7 +120,7 @@ class AppRoutesConstants {
 
   static var extendLeaveDetails = '/extendLeaveDetailsScreen';
 
-  static var directorDeptAssignment = 'directorDeptAssignmentScreen';
+  static var directorDeptAssignment = '/directorDeptAssignmentScreen';
 
   static var editFamilySpouseData = '/editFamilySpouseDataScreen';
 
@@ -131,7 +130,11 @@ class AppRoutesConstants {
 
   static var requestsDirector = '/requestsDirectorScreen';
 
-  static var directorDeptMissionRoute = 'directorDeptMissionScreen';
+  static var directorDeptMissionRoute = '/directorDeptMissionScreen';
 
   static var directorDeptAssignmentNavigation = '/directorDeptAssignmentNavigationScreen';
+
+  static var directorMission = '/directorMissionScreen';
+
+  static var submissionsSupervisor = 'submissionsSupervisorScreen';
 }

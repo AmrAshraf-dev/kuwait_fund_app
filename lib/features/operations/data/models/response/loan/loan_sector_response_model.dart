@@ -5,7 +5,7 @@ part 'loan_sector_response_model.freezed.dart';
 part 'loan_sector_response_model.g.dart';
 
 @freezed
-class LoanSectorModel with _$LoanSectorModel {
+abstract class LoanSectorModel with _$LoanSectorModel {
   const LoanSectorModel._();
 
   const factory LoanSectorModel({

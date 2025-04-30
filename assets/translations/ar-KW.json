@@ -1,4 +1,6 @@
 {
+
+  "directorMissions":  "مهمات المدراء",
   "file_size_exceeds_1MB_limit": "حجم الملف يتجاوز الحد المسموح به 1 ميغابايت",
   "alert": "تنبيه",
   "please_select_date": "يرجى اختيار التاريخ",
