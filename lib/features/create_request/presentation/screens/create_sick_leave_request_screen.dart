@@ -30,7 +30,7 @@ class _CreateSickLeaveRequestScreenState
       getIt<CreateSickLeaveRequestCubit>();
   final FilePickerCubit filePickerCubit = getIt<FilePickerCubit>();
   // final LeaveBalanceCubit leaveBalanceCubit = getIt<LeaveBalanceCubit>();
- 
+
   String? _selectedFile;
 
   @override
@@ -43,7 +43,7 @@ class _CreateSickLeaveRequestScreenState
       widget: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => createSickLeaveRequestCubit),
-     //     BlocProvider(create: (context) => leaveBalanceCubit),
+          //     BlocProvider(create: (context) => leaveBalanceCubit),
           BlocProvider(create: (context) => filePickerCubit),
         ],
         child: Padding(
@@ -53,18 +53,15 @@ class _CreateSickLeaveRequestScreenState
             children: [
               40.verticalSpace,
               FilePickerSection(
-                
-                filePickerCubit: filePickerCubit,
-                onFileSelected: (filePath) =>
-                
-                setState(() {
-                  _selectedFile = filePath;
-                })  
-              ),
+                  title: context.tr("attach_medical_report_file"),
+                  filePickerCubit: filePickerCubit,
+                  onFileSelected: (filePath) => setState(() {
+                        _selectedFile = filePath;
+                      })),
               40.verticalSpace,
               LeaveBalanceSection(
-                //leaveBalanceCubit: leaveBalanceCubit
-                ),
+                  //leaveBalanceCubit: leaveBalanceCubit
+                  ),
               120.verticalSpace,
               SubmitButton(
                 selectedFile: _selectedFile,
@@ -79,15 +76,13 @@ class _CreateSickLeaveRequestScreenState
 }
 
 class LeaveBalanceSection extends StatelessWidget {
- 
-  const LeaveBalanceSection({super.key });
+  const LeaveBalanceSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _LeaveBalanceDetails(days:"0");
+    return _LeaveBalanceDetails(days: "0");
+  }
 }
-}
-
 
 class _LeaveBalanceDetails extends StatelessWidget {
   final String days;
@@ -98,17 +93,17 @@ class _LeaveBalanceDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(25.r),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3),
-        ),
-      ],
-    ),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
         decoration: BoxDecoration(
@@ -123,13 +118,9 @@ class _LeaveBalanceDetails extends StatelessWidget {
               title: context.tr("available_days"),
               days: days,
             ),
-           
           ],
         ),
       ),
     );
   }
-
-  
 }
-

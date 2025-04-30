@@ -81,8 +81,7 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
   String? _selectedFile;
   final ChildCubit _childCubit = getIt<ChildCubit>();
   final EditChildCubit _editChildCubit = getIt<EditChildCubit>();
-  final FilePickerCubit filePickerFamilyCubit =
-      getIt<FilePickerCubit>();
+  final FilePickerCubit filePickerFamilyCubit = getIt<FilePickerCubit>();
   ChildModel? childEntity;
   @override
   Widget build(BuildContext context) {
@@ -255,14 +254,12 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
                                 },
                               ),
                               20.verticalSpace,
-                                               FilePickerSection(
-                filePickerCubit: filePickerFamilyCubit,
-                onFileSelected: (filePath) =>
-                
-                setState(() {
-                  _selectedFile = filePath;
-                })  
-              ),
+                              FilePickerSection(
+                                  title: context.tr("attach_file"),
+                                  filePickerCubit: filePickerFamilyCubit,
+                                  onFileSelected: (filePath) => setState(() {
+                                        _selectedFile = filePath;
+                                      })),
 
                               40.verticalSpace,
                             ],

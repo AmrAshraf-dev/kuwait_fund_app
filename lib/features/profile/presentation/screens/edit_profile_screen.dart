@@ -12,7 +12,7 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart';
- import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_profile_cubit.dart';
+import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_profile_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -96,10 +96,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   validator: FormBuilderValidators.required(),
                                   textInputAction: TextInputAction.next,
                                   initalValue:
-                                      profileEntity?.profile?.nameArabic ?? '', //"Ali",
+                                      profileEntity?.profile?.nameArabic ??
+                                          '', //"Ali",
                                 ),
                               ),
-                                 30.verticalSpace,
+                              30.verticalSpace,
                               IgnorePointer(
                                 child: TextFieldWidget(
                                   labelAboveField: context.tr("nameEnglish"),
@@ -107,7 +108,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   validator: FormBuilderValidators.required(),
                                   textInputAction: TextInputAction.next,
                                   initalValue:
-                                      profileEntity?.profile?.nameEnglish ?? '', //"Ali",
+                                      profileEntity?.profile?.nameEnglish ??
+                                          '', //"Ali",
                                 ),
                               ),
                               // 20.verticalSpace,
@@ -130,7 +132,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 keyName: "phoneNumber",
                                 validator: FormBuilderValidators.required(),
                                 textInputAction: TextInputAction.next,
-                                initalValue:   profileEntity?.profile?.phone1 ??
+                                initalValue: profileEntity?.profile?.phone1 ??
                                     '', //'+966 123456789',
                               ),
                               20.verticalSpace,
@@ -144,7 +146,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   initalValue: profileEntity?.profile?.phone2 ??
                                       '', //'+966 1236655442',
                                 ),
-                              20.verticalSpace,
+                              //   20.verticalSpace,
                               _showWidget
                                   ? Container()
                                   : GestureDetector(
@@ -162,8 +164,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   keyName: "passportNumber",
                                   validator: FormBuilderValidators.required(),
                                   textInputAction: TextInputAction.next,
-                                  initalValue: profileEntity?.profile?.civilID ??
-                                      '', //"123456789",
+                                  initalValue:
+                                      profileEntity?.profile?.civilID ??
+                                          '', //"123456789",
                                 ),
                               ),
                               20.verticalSpace,
@@ -173,11 +176,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       context.tr("residencyExpiryDate"),
                                   customFormKey: _formKey,
                                   keyNameFrom: "residencyExpiryDate",
-                                  initialDate: profileEntity?.profile
-                                              ?.recidancyExpiryDate !=
+                                  initialDate: profileEntity
+                                              ?.profile?.recidancyExpiryDate !=
                                           null
                                       ? DateFormat('dd/MM/yyyy').parse(
-                                          profileEntity!.profile!.recidancyExpiryDate!)
+                                          profileEntity!
+                                              .profile!.recidancyExpiryDate!)
                                       : DateTime.now(),
                                 ),
                               ),
@@ -206,10 +210,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           if (_formKey.currentState!.saveAndValidate()) {
                             print(_formKey.currentState!.value);
                             _editProfileCubit
-                                .createEditProfile(
-                                  ProfileRequestModel(
+                                .createEditProfile(ProfileRequestModel(
                               mobile: profileEntity?.profile?.mobile,
-                               
                             ));
                             CustomMainRouter.push(ThankYouRoute(
                               subtitle: context.tr(

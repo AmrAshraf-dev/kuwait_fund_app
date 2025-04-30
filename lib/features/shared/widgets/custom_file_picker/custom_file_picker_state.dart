@@ -6,7 +6,11 @@ final class FilePickerInitialState extends FilePickerState {}
 
 final class FilePickerLoadingState extends FilePickerState {}
 
-final class FilePickerEmptyState extends FilePickerState {}
+final class FilePickerEmptyState extends FilePickerState {
+  final String message;
+
+  FilePickerEmptyState({required this.message});
+}
 
 final class FilePickerReadyState extends FilePickerState {
   List<XFile> xFile;

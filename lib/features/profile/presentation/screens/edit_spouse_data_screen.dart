@@ -64,8 +64,7 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
 
   final SpouseCubit _spouseCubit = getIt<SpouseCubit>();
   final EditSpouseCubit _editSpouseCubit = getIt<EditSpouseCubit>();
-  final FilePickerCubit filePickerFamilyCubit =
-      getIt<FilePickerCubit>();
+  final FilePickerCubit filePickerFamilyCubit = getIt<FilePickerCubit>();
   //selectedStatus;
   // late List<String> _statuses = _statuses = [
   //   context.tr('married'),
@@ -201,7 +200,8 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                                 }).toList(),
                                 onChanged: (String? newValue) {
                                   setState(() {
-                                    widget.selectedStatus = int.tryParse(newValue ?? '');
+                                    widget.selectedStatus =
+                                        int.tryParse(newValue ?? '');
                                   });
                                 },
                               ),
@@ -218,13 +218,11 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                               ),
                               40.verticalSpace,
                               FilePickerSection(
-                filePickerCubit: filePickerFamilyCubit,
-                onFileSelected: (filePath) =>
-                
-                setState(() {
-                  _selectedFile = filePath;
-                })  
-              ),
+                                  title: context.tr("attach_file"),
+                                  filePickerCubit: filePickerFamilyCubit,
+                                  onFileSelected: (filePath) => setState(() {
+                                        _selectedFile = filePath;
+                                      })),
                               40.verticalSpace,
                             ],
                           ),
@@ -263,8 +261,8 @@ class _EditSpouseDataScreenState extends State<EditSpouseDataScreen> {
                                     DateFormat('dd/MM/yyyy')
                                         .parse(spouseEntity!.birthDate!))
                                 : null,
-                            spouseStatus:
-                                widget.selectedStatus ?? null, //spouseEntity?.status,
+                            spouseStatus: widget.selectedStatus ??
+                                null, //spouseEntity?.status,
                             spouseStatusDate: spouseEntity?.statusDate != null
                                 ? DateFormat('yyyy-MM-dd').format(
                                     DateFormat('dd/MM/yyyy')
