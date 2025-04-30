@@ -865,5 +865,6 @@
   "please_enter_valid_arabic_name": "الرجاء إدخال اسم عربي صحيح",
   "no_files_selected": "لا يوجد ملف",
   "please_upload_file": "يرجي ارفاق ملف",
-  "please_choose_item": "الرجاء اختيار عنصر"
+  "please_choose_item": "الرجاء اختيار عنصر",
+  "please_enter_valid_english_name": "الرجاء إدخال اسم إنجليزي"
 }

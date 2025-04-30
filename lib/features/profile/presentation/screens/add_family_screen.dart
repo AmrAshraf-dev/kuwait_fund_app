@@ -60,6 +60,7 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
   void onRadioButtonChanged(int index) {
     setState(() {
       selectedIndex = index;
+      filePickerFamilyCubit.clear();
     });
   }
 
@@ -157,7 +158,7 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                         ],
                       ),
                       20.verticalSpace,
-//?child screen
+                      //?CHILD SCREEN
                       selectedIndex == 0
                           ? SingleChildScrollView(
                               child: Column(
@@ -203,8 +204,26 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                                             labelAboveField:
                                                 context.tr("nameEnglish"),
                                             keyName: "nameEnglish",
-                                            validator: FormBuilderValidators
-                                                .required(),
+                                            validator:
+                                                FormBuilderValidators.compose([
+                                              FormBuilderValidators.required(),
+                                              // FormBuilderValidators.alphabetical(),
+                                              FormBuilderValidators.minLength(
+                                                  3),
+                                              FormBuilderValidators.maxLength(
+                                                  15),
+                                              (value) {
+                                                final englishRegex =
+                                                    RegExp(r'^[a-zA-Z\s]+$');
+                                                if (value == null ||
+                                                    !englishRegex
+                                                        .hasMatch(value)) {
+                                                  return context.tr(
+                                                      "please_enter_valid_english_name");
+                                                }
+                                                return null;
+                                              },
+                                            ]),
                                             textInputAction:
                                                 TextInputAction.next,
                                           ),
@@ -217,6 +236,7 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                                             validator:
                                                 FormBuilderValidators.compose([
                                               FormBuilderValidators.required(),
+                                              FormBuilderValidators.numeric(),
                                               // FormBuilderValidators.alphabetical(),
                                               FormBuilderValidators.minLength(
                                                   11),
@@ -438,8 +458,26 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                                             labelAboveField:
                                                 context.tr("nameEnglish"),
                                             keyName: "nameEnglish",
-                                            validator: FormBuilderValidators
-                                                .required(),
+                                            validator:
+                                                FormBuilderValidators.compose([
+                                              FormBuilderValidators.required(),
+                                              // FormBuilderValidators.alphabetical(),
+                                              FormBuilderValidators.minLength(
+                                                  3),
+                                              FormBuilderValidators.maxLength(
+                                                  15),
+                                              (value) {
+                                                final englishRegex =
+                                                    RegExp(r'^[a-zA-Z\s]+$');
+                                                if (value == null ||
+                                                    !englishRegex
+                                                        .hasMatch(value)) {
+                                                  return context.tr(
+                                                      "please_enter_valid_english_name");
+                                                }
+                                                return null;
+                                              },
+                                            ]),
                                             textInputAction:
                                                 TextInputAction.next,
                                           ),
@@ -451,6 +489,7 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                                             validator:
                                                 FormBuilderValidators.compose([
                                               FormBuilderValidators.required(),
+                                              FormBuilderValidators.numeric(),
                                               // FormBuilderValidators.alphabetical(),
                                               FormBuilderValidators.minLength(
                                                   11),
@@ -459,6 +498,7 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                                             ]),
                                             textInputAction:
                                                 TextInputAction.next,
+                                            keyboardType: TextInputType.number,
                                           ),
                                           20.verticalSpace,
                                           CustomSingleRangeDatePicker(
