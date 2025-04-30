@@ -194,17 +194,13 @@ bool _isPasswordObscured = true;
                                 if (userInfo.isError ?? false) {
                                   ViewsToolbox.showErrorAwesomeSnackBar(
                                       context, userInfo.errorMsg ?? "error");
-                                } else if (userInfo.isDirector ?? false) {
-                                  CustomMainRouter.push(
-                                      DirectorNavigationMainRoute());
+                                }
+                                else if (userInfo.isValidUser??false){
+                                   CustomMainRouter.push(NavigationMainRoute());
+
                                 }
                                 
-                                else if (userInfo.isSupervisor ?? false) {
-                                  CustomMainRouter.push(
-                                      SupervisorNavigationMainRoute());
-                                }  else {
-                                  CustomMainRouter.push(NavigationMainRoute());
-                                }
+                             
                               }
                             },
                             child: FormBuilder(

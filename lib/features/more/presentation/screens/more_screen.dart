@@ -19,7 +19,7 @@ import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/custom_toggle_button_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/toggle_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
- import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
+import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
@@ -53,7 +53,7 @@ class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value:   visitorsLogsCubit,
+      value: visitorsLogsCubit,
       child: MasterWidget(
         isBackEnabled: false,
         screenTitle: context.tr("more"),
@@ -70,6 +70,27 @@ class _MoreScreenState extends State<MoreScreen> {
                   onTap: () {
                     CustomMainRouter.push(ProfileRoute());
                   }),
+              if (LocalData.getUser()?.userInfo.isDirector ?? false)
+                MoreItemWidget(
+                    text: context.tr("directorMissions"),
+                    svgIcon: Assets.svg.directorMissionSvg.path,
+                    onTap: () {
+                      CustomMainRouter.push(DirectorMissionRoute());
+                    }),
+              if (LocalData.getUser()?.userInfo.isDirector ?? false)
+                MoreItemWidget(
+                    text: context.tr("dept_mission"),
+                    svgIcon: Assets.svg.deptMissionSvg.path,
+                    onTap: () {
+                      CustomMainRouter.push(DirectorDeptMissionRoute());
+                    }),
+              if (LocalData.getUser()?.userInfo.isDirector ?? false)
+                MoreItemWidget(
+                    text: context.tr("dept_assignment"),
+                    svgIcon: Assets.svg.deptAssignment.path,
+                    onTap: () {
+                      CustomMainRouter.push(DirectorDeptAssignmentRoute());
+                    }),
               MoreItemWidget(
                   text: context.tr("my_attendance"),
                   svgIcon: myAttendance,
@@ -93,12 +114,16 @@ class _MoreScreenState extends State<MoreScreen> {
                   if (state is VisitorsLogsLoadingState) {
                     ViewsToolbox.showLoading();
                   } else if (state is VisitorsLogsCanViewState ||
-                      state is VisitorsLogsCanNotViewState|| state is VisitorsLogsErrorState || state is VisitorsLogsCanViewState) {
+                      state is VisitorsLogsCanNotViewState ||
+                      state is VisitorsLogsErrorState ||
+                      state is VisitorsLogsCanViewState) {
                     ViewsToolbox.dismissLoading();
-                  }  
+                  }
                 },
                 builder: (context, state) {
-                  if(state is VisitorsLogsCanNotViewState || state is VisitorsLogsErrorState || state is VisitorsLogsLoadingState){
+                  if (state is VisitorsLogsCanNotViewState ||
+                      state is VisitorsLogsErrorState ||
+                      state is VisitorsLogsLoadingState) {
                     return const SizedBox();
                   }
                   return MoreItemWidget(
@@ -119,61 +144,12 @@ class _MoreScreenState extends State<MoreScreen> {
                         isBackButtonEnabled: true,
                       ));
                     }),
-
-              if ((LocalData.getUser()?.userInfo.isDirector ?? false))
-                MoreItemWidget(
-                    text: context.tr("my_requests"),
-                    svgIcon: Assets.svg.myRequestsMoreMenu.path,
-                    onTap: () {
-                      CustomMainRouter.push(
-                          RequestsRoute(isBackButtonEnabled: true));
-                    }),
-
-              if ((LocalData.getUser()?.userInfo.isDirector ?? false))
-                MoreItemWidget(
-                    text: context.tr("create_request"),
-                    svgIcon: Assets.svg.createRequestsMoreMenu.path,
-                    onTap: () {
-                      CustomMainRouter.push(CreateRequestRoute(
-                       ));
-                    }),
-
-              // if(  (LocalData.getUser()?.userInfo.isDirector ?? false))
-              //        MoreItemWidget(
-              //           text: context.tr("dept_mission"),
-              //           svgIcon: Assets.svg.directorMission.path,
-              //           onTap: () {
-
-              //             CustomMainRouter.navigate(DirectorNavigationMainRoute(
-              //               children: [DirectorDeptMissionRoute()])
-
-              //             );
-
-              //           }),
-
-              //  (  LocalData.getUser()?.userInfo.isDirector??false)
-              //       ? MoreItemWidget(
-              //           text: context.tr("dept_assignment"),
-              //           svgIcon: Assets.svg.deptMission.path,
-              //           onTap: () {
-              //             CustomMainRouter.push(DirectorDeptAssignmentRoute());
-              //           })
-              //       :
               MoreItemWidget(
                   text: context.tr("survey"),
                   svgIcon: survey,
                   onTap: () {
-                 //   Navigator.push(context, SurveyScreen());
-
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => SurveyScreen(),
-                    //   ),
-                    // );
-                     CustomMainRouter.push(SurveyRoute());
+                    CustomMainRouter.push(SurveyRoute());
                   }),
-
               23.verticalSpace,
               MainTitleWidget(title: context.tr("general_information")),
               5.verticalSpace,
@@ -198,7 +174,6 @@ class _MoreScreenState extends State<MoreScreen> {
               23.verticalSpace,
               MainTitleWidget(title: context.tr("other_settings")),
               5.verticalSpace,
-
               MoreItemWidget(
                 text: context.tr("enable_smart_login"),
                 svgIcon: enableSmartLogin,
@@ -214,7 +189,6 @@ class _MoreScreenState extends State<MoreScreen> {
                   },
                 ),
               ),
-
               MoreItemWidget(
                 text: context.tr("language"),
                 svgIcon: language,

@@ -303,33 +303,13 @@ class _CreateEmergencyLeaveRequestScreenState
                               onContinueCallback: () {
                                    CustomMainRouter
                                 .pop(); // Remove current page from stack
-                                if (LocalData.getUser()?.userInfo.isDirector ==
-                                    true) {
-                                  CustomMainRouter.push(
-                                    RequestsRoute(isBackButtonEnabled: true),
-                                  );
-                                } else if (LocalData.getUser()
-                                        ?.userInfo
-                                        .isSupervisor ==
-                                    true) {
-                                  CustomMainRouter.navigate(
-                                    SupervisorNavigationMainRoute(
-                                      children: <PageRouteInfo>[
-                                        RequestsRoute(
-                                            isBackButtonEnabled: false),
-                                      ],
-                                    ),
-                                  );
-                                } else {
-                                  CustomMainRouter.navigate(
-                                    NavigationMainRoute(
-                                      children: <PageRouteInfo>[
-                                        RequestsRoute(
-                                            isBackButtonEnabled: true),
-                                      ],
-                                    ),
-                                  );
-                                }
+                                CustomMainRouter.navigate(
+                  NavigationMainRoute(
+                    children: <PageRouteInfo>[
+                      RequestsRoute(isBackButtonEnabled: false),
+                    ],
+                  ),
+                );
                               },
                               title:
                                   context.tr("request_submitted_successfully"),

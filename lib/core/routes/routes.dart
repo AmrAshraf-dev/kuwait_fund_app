@@ -27,133 +27,123 @@ class AppRouter extends RootStackRouter {
             transitionsBuilder: TransitionsBuilders.fadeIn,
             maintainState: true,
             children: <AutoRoute>[
+                AutoRoute(
+                page: HomeRoute.page,
+                path: AppRoutesConstants.home,
+                maintainState: false,
+               ),
               AutoRoute(
                 page: RequestsRoute.page,
                 path: AppRoutesConstants.requests,
                 maintainState: false,
               ),
-              CustomRoute(
-                page: HomeRoute.page,
-                path: AppRoutesConstants.home,
-                maintainState: false,
-                transitionsBuilder: TransitionsBuilders.fadeIn,
-              ),
-               
+            
+                    AutoRoute(
+                  page: SubmissionsRoute.page,
+                  path:  AppRoutesConstants.submissionsSupervisor,
+                  maintainState: false,
+                 ),
             // main route
               AutoRoute(
-                  maintainState: false,
-                  path: 'tab4',
-                  page: EmptyRouterRoute4.page,
-                  children: [
-                    AutoRoute(
                       page: MoreRoute.page,
-                      path: '',
+                      path: AppRoutesConstants.more,
                       maintainState: false,
                     ),
-                  
-                  ]),
             ]),
 
             //------
 
 
-        CustomRoute(
-            page: DirectorNavigationMainRoute.page,
-            path: AppRoutesConstants.adminNavigation,
-            maintainState: false,
-            children: <AutoRoute>[
-              CustomRoute(
-                  page: AdminHomeRoute.page,
-                  path: AppRoutesConstants.adminHome,
-                  maintainState: false),
-              AutoRoute(
-                  page: DirectorDeptAssignmentRoute.page,
-                  path: AppRoutesConstants.adminDirectorMission,
-                  maintainState: false),
-              AutoRoute(
-                  page: DirectorDeptMissionRoute.page,
-                  path: AppRoutesConstants.directorDeptAssignment,
-                  maintainState: false),
-                  // director route
-              AutoRoute(
-                  maintainState: false,
-                  path: 'tab4',
-                  page: EmptyRouterRoute4.page,
-                  children: [
-                    AutoRoute(
-                      page: MoreRoute.page,
-                      path: '',
-                      maintainState: false,
-                    ),
+        // CustomRoute(
+        //     page: DirectorNavigationMainRoute.page,
+        //     path: AppRoutesConstants.adminNavigation,
+        //     maintainState: false,
+        //     children: <AutoRoute>[
+      
+        //           // director route
+        //       AutoRoute(
+        //           maintainState: false,
+        //           path: 'tab4',
+        //           page: EmptyRouterRoute4.page,
+        //           children: [
+        //             AutoRoute(
+        //               page: MoreRoute.page,
+        //               path: '',
+        //               maintainState: false,
+        //             ),
                   
-                  ]),
-            ]),
+        //           ]),
+        //     ]),
 
             //-----
 
 
  // as supervisor
 
-        AutoRoute(
-            page: SupervisorNavigationMainRoute.page,
-            path: AppRoutesConstants.supervisorNavigation,
-            maintainState: true,
-            children: <AutoRoute>[
-              AutoRoute(
-                  page: RequestsRoute.page,
-                  path: AppRoutesConstants.requests,
-                  maintainState: false
-                  //  meta: <String, dynamic>{'hideBottomNav': true},
-                  ),
-    AutoRoute(
-                  page: SubmissionsRoute.page,
-                  path:  AppRoutesConstants.submissions ,
-                  maintainState: false,
-                ),
-              AutoRoute(
-                  page: HomeRoute.page,
-                  path: AppRoutesConstants.home,
-                  maintainState: false),
-              AutoRoute(
-                  path: 'tab2',
-                  page: EmptyRouterRoute2.page,
-                  maintainState: false,
-                  children: [
-                    AutoRoute(
-                        page: RequestsRoute.page,
-                        path: AppRoutesConstants.requests,
-                        maintainState: false
-                        ),
+    //     AutoRoute(
+    //         page: SupervisorNavigationMainRoute.page,
+    //         path: AppRoutesConstants.supervisorNavigation,
+    //         maintainState: true,
+    //         children: <AutoRoute>[
+    //           AutoRoute(
+    //               page: RequestsRoute.page,
+    //               path: AppRoutesConstants.requests,
+    //               maintainState: false
+    //               //  meta: <String, dynamic>{'hideBottomNav': true},
+    //               ),
+    // AutoRoute(
+    //               page: SubmissionsRoute.page,
+    //               path:  AppRoutesConstants.submissions ,
+    //               maintainState: false,
+    //             ),
+    //           AutoRoute(
+    //               page: HomeRoute.page,
+    //               path: AppRoutesConstants.home,
+    //               maintainState: false),
+    //           AutoRoute(
+    //               path: 'tab2',
+    //               page: EmptyRouterRoute2.page,
+    //               maintainState: false,
+    //               children: [
+    //                 AutoRoute(
+    //                     page: RequestsRoute.page,
+    //                     path: AppRoutesConstants.requests,
+    //                     maintainState: false
+    //                     ),
 
-                  ]),
-              AutoRoute(path: 'tab3', page: EmptyRouterRoute3.page, children: [
-                AutoRoute(
-                  page: SubmissionsRoute.page,
-                  path:  AppRoutesConstants.submissions ,
-                  maintainState: false,
-                ),
-              ]),
+    //               ]),
+    //           AutoRoute(path: 'tab3', page: EmptyRouterRoute3.page, children: [
+    //             AutoRoute(
+    //               page: SubmissionsRoute.page,
+    //               path:  AppRoutesConstants.submissions ,
+    //               maintainState: false,
+    //             ),
+    //           ]),
           
-              AutoRoute(
-                  maintainState: false,
-                  path: 'tab4',
-                  page: EmptyRouterRoute4.page,
-                  children: [
-                    AutoRoute(
-                      page: MoreRoute.page,
-                      path: AppRoutesConstants.more,
-                      maintainState: false,
-                    ),
-                    // AutoRoute(
-                    //   page: VisitorsLogsRoute.page,
-                    //   path: AppRoutesConstants.visitorsLogs,
-                    //   maintainState: false,
-                    // ),
+    //           AutoRoute(
+    //               maintainState: false,
+    //               path: 'tab4',
+    //               page: EmptyRouterRoute4.page,
+    //               children: [
+    //                 AutoRoute(
+    //                   page: MoreRoute.page,
+    //                   path: AppRoutesConstants.more,
+    //                   maintainState: false,
+    //                 ),
+    //                 // AutoRoute(
+    //                 //   page: VisitorsLogsRoute.page,
+    //                 //   path: AppRoutesConstants.visitorsLogs,
+    //                 //   maintainState: false,
+    //                 // ),
                    
-                  ]),
-            ]),
+    //               ]),
+    //         ]),
 
             ///----- 
+
+
+
+
 
         AutoRoute(
             page: ChatBotRoute.page,
@@ -180,6 +170,20 @@ class AppRouter extends RootStackRouter {
           path: AppRoutesConstants.extendLeaveDetails,
           //  meta: <String, dynamic>{'hideBottomNav': true},
         ),
+
+
+        AutoRoute(
+                  page: DirectorMissionRoute.page,
+                  path: AppRoutesConstants.directorMission,
+                  maintainState: false),
+              AutoRoute(
+                  page: DirectorDeptAssignmentRoute.page,
+                  path: AppRoutesConstants.directorDeptMissionRoute,
+                  maintainState: false),
+              AutoRoute(
+                  page: DirectorDeptMissionRoute.page,
+                  path: AppRoutesConstants.directorDeptAssignment,
+                  maintainState: false),
 
        
   AutoRoute(
@@ -362,56 +366,55 @@ class AppRouter extends RootStackRouter {
                   page: SubmissionsRoute.page,
                   path:  AppRoutesConstants.submissionsDirector,
                   maintainState: false,
-
                  ),
 
-   AutoRoute(
-                page: RequestsRoute.page,
-                path: AppRoutesConstants.requestsDirector,
-                maintainState: false,
-              ),
+  //  AutoRoute(
+  //               page: RequestsRoute.page,
+  //               path: AppRoutesConstants.requestsDirector,
+  //               maintainState: false,
+  //             ),
 
 
        
       ];
 }
 
-@RoutePage()
-class EmptyRouterPage extends StatelessWidget {
-  const EmptyRouterPage({super.key});
+// @RoutePage()
+// class EmptyRouterPage extends StatelessWidget {
+//   const EmptyRouterPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const AutoRouter();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const AutoRouter();
+//   }
+// }
 
-@RoutePage()
-class EmptyRouterPage2 extends StatelessWidget {
-  const EmptyRouterPage2({super.key});
+// @RoutePage()
+// class EmptyRouterPage2 extends StatelessWidget {
+//   const EmptyRouterPage2({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const AutoRouter();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const AutoRouter();
+//   }
+// }
 
-@RoutePage()
-class EmptyRouterPage3 extends StatelessWidget {
-  const EmptyRouterPage3({super.key});
+// @RoutePage()
+// class EmptyRouterPage3 extends StatelessWidget {
+//   const EmptyRouterPage3({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const AutoRouter();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const AutoRouter();
+//   }
+// }
 
-@RoutePage()
-class EmptyRouterPage4 extends StatelessWidget {
-  const EmptyRouterPage4({super.key});
+// @RoutePage()
+// class EmptyRouterPage4 extends StatelessWidget {
+//   const EmptyRouterPage4({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const AutoRouter();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const AutoRouter();
+//   }
+// }

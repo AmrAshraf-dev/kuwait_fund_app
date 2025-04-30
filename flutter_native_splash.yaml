@@ -20,6 +20,7 @@ flutter_native_splash:
   color: "#002A6A"
   # color_dark: "#002A6A"
   image: "assets/png/splash.png"
+  background_image: "assets/png/splash.png"
 
   # Optional parameters are listed below.  To enable a parameter, uncomment the line by removing
   # the leading # character.
@@ -127,7 +128,7 @@ flutter_native_splash:
   # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill,
   # scaleAspectFit, scaleAspectFill, center, top, bottom, left, right, topLeft, topRight,
   # bottomLeft, or bottomRight.
-  #ios_content_mode: center
+  ios_content_mode: scaleAspectFill
   #
   # web_image_mode can be one of the following modes: center, contain, stretch, and cover.
   #web_image_mode: center

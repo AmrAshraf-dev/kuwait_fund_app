@@ -9,78 +9,73 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i51;
-import 'package:flutter/foundation.dart' as _i54;
-import 'package:flutter/material.dart' as _i52;
-import 'package:kf_ess_mobile_app/core/routes/routes.dart' as _i26;
+import 'package:auto_route/auto_route.dart' as _i48;
+import 'package:flutter/foundation.dart' as _i51;
+import 'package:flutter/material.dart' as _i49;
 import 'package:kf_ess_mobile_app/features/about/presentation/screens/about_screen.dart'
     as _i2;
 import 'package:kf_ess_mobile_app/features/about/presentation/screens/about_screen_details.dart'
     as _i1;
 import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/screens/create_annual_leave_request_screen.dart'
-    as _i15;
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/presentation/screens/director_dept_assignment_screen.dart'
-    as _i19;
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/screens/director_dept_mission_screen.dart'
-    as _i20;
-import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/screens/director_home_screen.dart'
-    as _i7;
-import 'package:kf_ess_mobile_app/features/as_director/director_navigation_bottom/director_navigation_bottom.dart'
-    as _i21;
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/screens/submissions_screen.dart'
-    as _i45;
-import 'package:kf_ess_mobile_app/features/as_supervisor/supervisor_navigation_bottom/supervisor_navigation_bottom.dart'
-    as _i46;
-import 'package:kf_ess_mobile_app/features/auth/presentation/screens/auth_screen.dart'
-    as _i10;
-import 'package:kf_ess_mobile_app/features/certificates/presentation/screens/certificate_details_screen.dart'
-    as _i11;
-import 'package:kf_ess_mobile_app/features/certificates/presentation/screens/certificates_screen.dart'
-    as _i12;
-import 'package:kf_ess_mobile_app/features/chat_bot/presentation/screens/chat_bot_screen.dart'
-    as _i13;
-import 'package:kf_ess_mobile_app/features/contactus/presentation/screens/contactus_screen.dart'
     as _i14;
-import 'package:kf_ess_mobile_app/features/create_request/presentation/screens/create_request_screen.dart'
-    as _i17;
-import 'package:kf_ess_mobile_app/features/create_request/presentation/screens/create_sick_leave_request_screen.dart'
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/presentation/screens/director_dept_assignment_screen.dart'
     as _i18;
-import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/screens/create_emergency_leave_request_screen.dart'
-    as _i16;
-import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/forget_pass_screen.dart'
-    as _i29;
-import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/forget_pass_verify_otp_screen.dart'
-    as _i30;
-import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/password_changed_screen.dart'
-    as _i38;
-import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/reset_pass_screen.dart'
+import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/screens/director_dept_mission_screen.dart'
+    as _i19;
+import 'package:kf_ess_mobile_app/features/as_director/director_mission/presentation/screens/director_mission_screen.dart'
+    as _i20;
+import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/screens/submissions_screen.dart'
     as _i43;
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/home_screen.dart'
-    as _i31;
-import 'package:kf_ess_mobile_app/features/more/domain/entities/ads_entity.dart'
-    as _i53;
-import 'package:kf_ess_mobile_app/features/more/presentation/screens/ads_details_screen.dart'
-    as _i8;
-import 'package:kf_ess_mobile_app/features/more/presentation/screens/ads_screen.dart'
+import 'package:kf_ess_mobile_app/features/auth/presentation/screens/auth_screen.dart'
     as _i9;
-import 'package:kf_ess_mobile_app/features/more/presentation/screens/more_screen.dart'
-    as _i32;
-import 'package:kf_ess_mobile_app/features/my_attendance/presentation/screens/my_attendance_screen.dart'
-    as _i33;
-import 'package:kf_ess_mobile_app/features/navigation_bottom/navigation_bottom.dart'
-    as _i34;
-import 'package:kf_ess_mobile_app/features/notifications/domain/entities/notifications_entity.dart'
-    as _i56;
-import 'package:kf_ess_mobile_app/features/notifications/presentation/screens/notification_details_screen.dart'
-    as _i35;
-import 'package:kf_ess_mobile_app/features/notifications/presentation/screens/notifications_screen.dart'
+import 'package:kf_ess_mobile_app/features/certificates/presentation/screens/certificate_details_screen.dart'
+    as _i10;
+import 'package:kf_ess_mobile_app/features/certificates/presentation/screens/certificates_screen.dart'
+    as _i11;
+import 'package:kf_ess_mobile_app/features/chat_bot/presentation/screens/chat_bot_screen.dart'
+    as _i12;
+import 'package:kf_ess_mobile_app/features/contactus/presentation/screens/contactus_screen.dart'
+    as _i13;
+import 'package:kf_ess_mobile_app/features/create_request/presentation/screens/create_request_screen.dart'
+    as _i16;
+import 'package:kf_ess_mobile_app/features/create_request/presentation/screens/create_sick_leave_request_screen.dart'
+    as _i17;
+import 'package:kf_ess_mobile_app/features/emergency_leave_request/presentation/screens/create_emergency_leave_request_screen.dart'
+    as _i15;
+import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/forget_pass_screen.dart'
+    as _i27;
+import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/forget_pass_verify_otp_screen.dart'
+    as _i28;
+import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/password_changed_screen.dart'
     as _i36;
+import 'package:kf_ess_mobile_app/features/forget_pass/presentation/screens/reset_pass_screen.dart'
+    as _i41;
+import 'package:kf_ess_mobile_app/features/home/presentation/screens/home_screen.dart'
+    as _i29;
+import 'package:kf_ess_mobile_app/features/more/domain/entities/ads_entity.dart'
+    as _i50;
+import 'package:kf_ess_mobile_app/features/more/presentation/screens/ads_details_screen.dart'
+    as _i7;
+import 'package:kf_ess_mobile_app/features/more/presentation/screens/ads_screen.dart'
+    as _i8;
+import 'package:kf_ess_mobile_app/features/more/presentation/screens/more_screen.dart'
+    as _i30;
+import 'package:kf_ess_mobile_app/features/my_attendance/presentation/screens/my_attendance_screen.dart'
+    as _i31;
+import 'package:kf_ess_mobile_app/features/navigation_bottom/navigation_bottom.dart'
+    as _i32;
+import 'package:kf_ess_mobile_app/features/notifications/domain/entities/notifications_entity.dart'
+    as _i53;
+import 'package:kf_ess_mobile_app/features/notifications/presentation/screens/notification_details_screen.dart'
+    as _i33;
+import 'package:kf_ess_mobile_app/features/notifications/presentation/screens/notifications_screen.dart'
+    as _i34;
 import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_screen.dart'
-    as _i37;
+    as _i35;
 import 'package:kf_ess_mobile_app/features/peraonal_info/presentation/screens/personal_info_screen.dart'
-    as _i39;
+    as _i37;
 import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart'
-    as _i57;
+    as _i54;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/add_family_screen.dart'
     as _i3;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/add_qualifcation_screen.dart'
@@ -90,45 +85,45 @@ import 'package:kf_ess_mobile_app/features/profile/presentation/screens/add_work
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/address_screen.dart'
     as _i6;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/edit_address_screen.dart'
-    as _i22;
+    as _i21;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/edit_child_data_screen.dart'
-    as _i23;
+    as _i22;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/edit_profile_screen.dart'
-    as _i24;
+    as _i23;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/edit_spouse_data_screen.dart'
-    as _i25;
+    as _i24;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/family_screen.dart'
-    as _i28;
+    as _i26;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/profile_screen.dart'
-    as _i40;
+    as _i38;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/qualifications_screen.dart'
-    as _i41;
+    as _i39;
 import 'package:kf_ess_mobile_app/features/profile/presentation/screens/work_screen.dart'
-    as _i50;
-import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart'
-    as _i55;
-import 'package:kf_ess_mobile_app/features/requests/presentation/screens/extend_leave_request_details_screen.dart'
-    as _i27;
-import 'package:kf_ess_mobile_app/features/requests/presentation/screens/requests_screen.dart'
-    as _i42;
-import 'package:kf_ess_mobile_app/features/shared/screens/thank_you_screen.dart'
-    as _i48;
-import 'package:kf_ess_mobile_app/features/splash/presentation/screens/splash_screen.dart'
-    as _i44;
-import 'package:kf_ess_mobile_app/features/survey/presentation/screens/survey_screen.dart'
     as _i47;
+import 'package:kf_ess_mobile_app/features/requests/domain/entities/requests_entity.dart'
+    as _i52;
+import 'package:kf_ess_mobile_app/features/requests/presentation/screens/extend_leave_request_details_screen.dart'
+    as _i25;
+import 'package:kf_ess_mobile_app/features/requests/presentation/screens/requests_screen.dart'
+    as _i40;
+import 'package:kf_ess_mobile_app/features/shared/screens/thank_you_screen.dart'
+    as _i45;
+import 'package:kf_ess_mobile_app/features/splash/presentation/screens/splash_screen.dart'
+    as _i42;
+import 'package:kf_ess_mobile_app/features/survey/presentation/screens/survey_screen.dart'
+    as _i44;
 import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/screens/visitors_logs_screen.dart'
-    as _i49;
+    as _i46;
 
 /// generated route for
 /// [_i1.AboutItemDetailsScreen]
 class AboutItemDetailsRoute
-    extends _i51.PageRouteInfo<AboutItemDetailsRouteArgs> {
+    extends _i48.PageRouteInfo<AboutItemDetailsRouteArgs> {
   AboutItemDetailsRoute({
-    _i52.Key? key,
+    _i49.Key? key,
     required String details,
     required String title,
-    List<_i51.PageRouteInfo>? children,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          AboutItemDetailsRoute.name,
          args: AboutItemDetailsRouteArgs(
@@ -141,7 +136,7 @@ class AboutItemDetailsRoute
 
   static const String name = 'AboutItemDetailsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AboutItemDetailsRouteArgs>();
@@ -161,7 +156,7 @@ class AboutItemDetailsRouteArgs {
     required this.title,
   });
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   final String details;
 
@@ -175,13 +170,13 @@ class AboutItemDetailsRouteArgs {
 
 /// generated route for
 /// [_i2.AboutScreen]
-class AboutRoute extends _i51.PageRouteInfo<void> {
-  const AboutRoute({List<_i51.PageRouteInfo>? children})
+class AboutRoute extends _i48.PageRouteInfo<void> {
+  const AboutRoute({List<_i48.PageRouteInfo>? children})
     : super(AboutRoute.name, initialChildren: children);
 
   static const String name = 'AboutRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       return const _i2.AboutScreen();
@@ -191,11 +186,11 @@ class AboutRoute extends _i51.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AddFamilyScreen]
-class AddFamilyRoute extends _i51.PageRouteInfo<AddFamilyRouteArgs> {
+class AddFamilyRoute extends _i48.PageRouteInfo<AddFamilyRouteArgs> {
   AddFamilyRoute({
-    _i52.Key? key,
+    _i49.Key? key,
     String? id,
-    List<_i51.PageRouteInfo>? children,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          AddFamilyRoute.name,
          args: AddFamilyRouteArgs(key: key, id: id),
@@ -204,7 +199,7 @@ class AddFamilyRoute extends _i51.PageRouteInfo<AddFamilyRouteArgs> {
 
   static const String name = 'AddFamilyRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AddFamilyRouteArgs>(
@@ -218,7 +213,7 @@ class AddFamilyRoute extends _i51.PageRouteInfo<AddFamilyRouteArgs> {
 class AddFamilyRouteArgs {
   const AddFamilyRouteArgs({this.key, this.id});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   final String? id;
 
@@ -230,13 +225,13 @@ class AddFamilyRouteArgs {
 
 /// generated route for
 /// [_i4.AddQualificationScreen]
-class AddQualificationRoute extends _i51.PageRouteInfo<void> {
-  const AddQualificationRoute({List<_i51.PageRouteInfo>? children})
+class AddQualificationRoute extends _i48.PageRouteInfo<void> {
+  const AddQualificationRoute({List<_i48.PageRouteInfo>? children})
     : super(AddQualificationRoute.name, initialChildren: children);
 
   static const String name = 'AddQualificationRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       return const _i4.AddQualificationScreen();
@@ -246,13 +241,13 @@ class AddQualificationRoute extends _i51.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.AddWorkScreen]
-class AddWorkRoute extends _i51.PageRouteInfo<void> {
-  const AddWorkRoute({List<_i51.PageRouteInfo>? children})
+class AddWorkRoute extends _i48.PageRouteInfo<void> {
+  const AddWorkRoute({List<_i48.PageRouteInfo>? children})
     : super(AddWorkRoute.name, initialChildren: children);
 
   static const String name = 'AddWorkRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       return const _i5.AddWorkScreen();
@@ -262,13 +257,13 @@ class AddWorkRoute extends _i51.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.AddressScreen]
-class AddressRoute extends _i51.PageRouteInfo<void> {
-  const AddressRoute({List<_i51.PageRouteInfo>? children})
+class AddressRoute extends _i48.PageRouteInfo<void> {
+  const AddressRoute({List<_i48.PageRouteInfo>? children})
     : super(AddressRoute.name, initialChildren: children);
 
   static const String name = 'AddressRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       return const _i6.AddressScreen();
@@ -277,28 +272,12 @@ class AddressRoute extends _i51.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.AdminHomeScreen]
-class AdminHomeRoute extends _i51.PageRouteInfo<void> {
-  const AdminHomeRoute({List<_i51.PageRouteInfo>? children})
-    : super(AdminHomeRoute.name, initialChildren: children);
-
-  static const String name = 'AdminHomeRoute';
-
-  static _i51.PageInfo page = _i51.PageInfo(
-    name,
-    builder: (data) {
-      return const _i7.AdminHomeScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i8.AdsDetailsScreen]
-class AdsDetailsRoute extends _i51.PageRouteInfo<AdsDetailsRouteArgs> {
+/// [_i7.AdsDetailsScreen]
+class AdsDetailsRoute extends _i48.PageRouteInfo<AdsDetailsRouteArgs> {
   AdsDetailsRoute({
-    _i52.Key? key,
-    required _i53.AdsEntity adItem,
-    List<_i51.PageRouteInfo>? children,
+    _i49.Key? key,
+    required _i50.AdsEntity adItem,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          AdsDetailsRoute.name,
          args: AdsDetailsRouteArgs(key: key, adItem: adItem),
@@ -307,11 +286,11 @@ class AdsDetailsRoute extends _i51.PageRouteInfo<AdsDetailsRouteArgs> {
 
   static const String name = 'AdsDetailsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AdsDetailsRouteArgs>();
-      return _i8.AdsDetailsScreen(key: args.key, adItem: args.adItem);
+      return _i7.AdsDetailsScreen(key: args.key, adItem: args.adItem);
     },
   );
 }
@@ -319,9 +298,9 @@ class AdsDetailsRoute extends _i51.PageRouteInfo<AdsDetailsRouteArgs> {
 class AdsDetailsRouteArgs {
   const AdsDetailsRouteArgs({this.key, required this.adItem});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
-  final _i53.AdsEntity adItem;
+  final _i50.AdsEntity adItem;
 
   @override
   String toString() {
@@ -330,45 +309,45 @@ class AdsDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i9.AdsScreen]
-class AdsRoute extends _i51.PageRouteInfo<void> {
-  const AdsRoute({List<_i51.PageRouteInfo>? children})
+/// [_i8.AdsScreen]
+class AdsRoute extends _i48.PageRouteInfo<void> {
+  const AdsRoute({List<_i48.PageRouteInfo>? children})
     : super(AdsRoute.name, initialChildren: children);
 
   static const String name = 'AdsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i9.AdsScreen();
+      return const _i8.AdsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i10.AuthScreen]
-class AuthRoute extends _i51.PageRouteInfo<void> {
-  const AuthRoute({List<_i51.PageRouteInfo>? children})
+/// [_i9.AuthScreen]
+class AuthRoute extends _i48.PageRouteInfo<void> {
+  const AuthRoute({List<_i48.PageRouteInfo>? children})
     : super(AuthRoute.name, initialChildren: children);
 
   static const String name = 'AuthRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i10.AuthScreen();
+      return const _i9.AuthScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i11.CertificateDetailsScreen]
+/// [_i10.CertificateDetailsScreen]
 class CertificateDetailsRoute
-    extends _i51.PageRouteInfo<CertificateDetailsRouteArgs> {
+    extends _i48.PageRouteInfo<CertificateDetailsRouteArgs> {
   CertificateDetailsRoute({
-    _i54.Key? key,
+    _i51.Key? key,
     required String certificatePdf,
-    List<_i51.PageRouteInfo>? children,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          CertificateDetailsRoute.name,
          args: CertificateDetailsRouteArgs(
@@ -380,11 +359,11 @@ class CertificateDetailsRoute
 
   static const String name = 'CertificateDetailsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CertificateDetailsRouteArgs>();
-      return _i11.CertificateDetailsScreen(
+      return _i10.CertificateDetailsScreen(
         key: args.key,
         certificatePdf: args.certificatePdf,
       );
@@ -395,7 +374,7 @@ class CertificateDetailsRoute
 class CertificateDetailsRouteArgs {
   const CertificateDetailsRouteArgs({this.key, required this.certificatePdf});
 
-  final _i54.Key? key;
+  final _i51.Key? key;
 
   final String certificatePdf;
 
@@ -406,60 +385,60 @@ class CertificateDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i12.CertificatesScreen]
-class CertificatesRoute extends _i51.PageRouteInfo<void> {
-  const CertificatesRoute({List<_i51.PageRouteInfo>? children})
+/// [_i11.CertificatesScreen]
+class CertificatesRoute extends _i48.PageRouteInfo<void> {
+  const CertificatesRoute({List<_i48.PageRouteInfo>? children})
     : super(CertificatesRoute.name, initialChildren: children);
 
   static const String name = 'CertificatesRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i12.CertificatesScreen();
+      return const _i11.CertificatesScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i13.ChatBotScreen]
-class ChatBotRoute extends _i51.PageRouteInfo<void> {
-  const ChatBotRoute({List<_i51.PageRouteInfo>? children})
+/// [_i12.ChatBotScreen]
+class ChatBotRoute extends _i48.PageRouteInfo<void> {
+  const ChatBotRoute({List<_i48.PageRouteInfo>? children})
     : super(ChatBotRoute.name, initialChildren: children);
 
   static const String name = 'ChatBotRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i13.ChatBotScreen();
+      return const _i12.ChatBotScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i14.ContactUsScreen]
-class ContactUsRoute extends _i51.PageRouteInfo<void> {
-  const ContactUsRoute({List<_i51.PageRouteInfo>? children})
+/// [_i13.ContactUsScreen]
+class ContactUsRoute extends _i48.PageRouteInfo<void> {
+  const ContactUsRoute({List<_i48.PageRouteInfo>? children})
     : super(ContactUsRoute.name, initialChildren: children);
 
   static const String name = 'ContactUsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i14.ContactUsScreen();
+      return const _i13.ContactUsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i15.CreateAnnualLeaveRequestScreen]
+/// [_i14.CreateAnnualLeaveRequestScreen]
 class CreateAnnualLeaveRequestRoute
-    extends _i51.PageRouteInfo<CreateAnnualLeaveRequestRouteArgs> {
+    extends _i48.PageRouteInfo<CreateAnnualLeaveRequestRouteArgs> {
   CreateAnnualLeaveRequestRoute({
-    _i52.Key? key,
-    List<_i51.PageRouteInfo>? children,
+    _i49.Key? key,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          CreateAnnualLeaveRequestRoute.name,
          args: CreateAnnualLeaveRequestRouteArgs(key: key),
@@ -468,13 +447,13 @@ class CreateAnnualLeaveRequestRoute
 
   static const String name = 'CreateAnnualLeaveRequestRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreateAnnualLeaveRequestRouteArgs>(
         orElse: () => const CreateAnnualLeaveRequestRouteArgs(),
       );
-      return _i15.CreateAnnualLeaveRequestScreen(key: args.key);
+      return _i14.CreateAnnualLeaveRequestScreen(key: args.key);
     },
   );
 }
@@ -482,7 +461,7 @@ class CreateAnnualLeaveRequestRoute
 class CreateAnnualLeaveRequestRouteArgs {
   const CreateAnnualLeaveRequestRouteArgs({this.key});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   @override
   String toString() {
@@ -491,12 +470,12 @@ class CreateAnnualLeaveRequestRouteArgs {
 }
 
 /// generated route for
-/// [_i16.CreateEmergencyLeaveRequestScreen]
+/// [_i15.CreateEmergencyLeaveRequestScreen]
 class CreateEmergencyLeaveRequestRoute
-    extends _i51.PageRouteInfo<CreateEmergencyLeaveRequestRouteArgs> {
+    extends _i48.PageRouteInfo<CreateEmergencyLeaveRequestRouteArgs> {
   CreateEmergencyLeaveRequestRoute({
-    _i52.Key? key,
-    List<_i51.PageRouteInfo>? children,
+    _i49.Key? key,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          CreateEmergencyLeaveRequestRoute.name,
          args: CreateEmergencyLeaveRequestRouteArgs(key: key),
@@ -505,13 +484,13 @@ class CreateEmergencyLeaveRequestRoute
 
   static const String name = 'CreateEmergencyLeaveRequestRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreateEmergencyLeaveRequestRouteArgs>(
         orElse: () => const CreateEmergencyLeaveRequestRouteArgs(),
       );
-      return _i16.CreateEmergencyLeaveRequestScreen(key: args.key);
+      return _i15.CreateEmergencyLeaveRequestScreen(key: args.key);
     },
   );
 }
@@ -519,7 +498,7 @@ class CreateEmergencyLeaveRequestRoute
 class CreateEmergencyLeaveRequestRouteArgs {
   const CreateEmergencyLeaveRequestRouteArgs({this.key});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   @override
   String toString() {
@@ -528,9 +507,9 @@ class CreateEmergencyLeaveRequestRouteArgs {
 }
 
 /// generated route for
-/// [_i17.CreateRequestScreen]
-class CreateRequestRoute extends _i51.PageRouteInfo<CreateRequestRouteArgs> {
-  CreateRequestRoute({_i52.Key? key, List<_i51.PageRouteInfo>? children})
+/// [_i16.CreateRequestScreen]
+class CreateRequestRoute extends _i48.PageRouteInfo<CreateRequestRouteArgs> {
+  CreateRequestRoute({_i49.Key? key, List<_i48.PageRouteInfo>? children})
     : super(
         CreateRequestRoute.name,
         args: CreateRequestRouteArgs(key: key),
@@ -539,13 +518,13 @@ class CreateRequestRoute extends _i51.PageRouteInfo<CreateRequestRouteArgs> {
 
   static const String name = 'CreateRequestRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreateRequestRouteArgs>(
         orElse: () => const CreateRequestRouteArgs(),
       );
-      return _i17.CreateRequestScreen(key: args.key);
+      return _i16.CreateRequestScreen(key: args.key);
     },
   );
 }
@@ -553,7 +532,7 @@ class CreateRequestRoute extends _i51.PageRouteInfo<CreateRequestRouteArgs> {
 class CreateRequestRouteArgs {
   const CreateRequestRouteArgs({this.key});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   @override
   String toString() {
@@ -562,90 +541,90 @@ class CreateRequestRouteArgs {
 }
 
 /// generated route for
-/// [_i18.CreateSickLeaveRequestScreen]
-class CreateSickLeaveRequestRoute extends _i51.PageRouteInfo<void> {
-  const CreateSickLeaveRequestRoute({List<_i51.PageRouteInfo>? children})
+/// [_i17.CreateSickLeaveRequestScreen]
+class CreateSickLeaveRequestRoute extends _i48.PageRouteInfo<void> {
+  const CreateSickLeaveRequestRoute({List<_i48.PageRouteInfo>? children})
     : super(CreateSickLeaveRequestRoute.name, initialChildren: children);
 
   static const String name = 'CreateSickLeaveRequestRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i18.CreateSickLeaveRequestScreen();
+      return const _i17.CreateSickLeaveRequestScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i19.DirectorDeptAssignmentScreen]
-class DirectorDeptAssignmentRoute extends _i51.PageRouteInfo<void> {
-  const DirectorDeptAssignmentRoute({List<_i51.PageRouteInfo>? children})
+/// [_i18.DirectorDeptAssignmentScreen]
+class DirectorDeptAssignmentRoute extends _i48.PageRouteInfo<void> {
+  const DirectorDeptAssignmentRoute({List<_i48.PageRouteInfo>? children})
     : super(DirectorDeptAssignmentRoute.name, initialChildren: children);
 
   static const String name = 'DirectorDeptAssignmentRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i19.DirectorDeptAssignmentScreen();
+      return const _i18.DirectorDeptAssignmentScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i20.DirectorDeptMissionScreen]
-class DirectorDeptMissionRoute extends _i51.PageRouteInfo<void> {
-  const DirectorDeptMissionRoute({List<_i51.PageRouteInfo>? children})
+/// [_i19.DirectorDeptMissionScreen]
+class DirectorDeptMissionRoute extends _i48.PageRouteInfo<void> {
+  const DirectorDeptMissionRoute({List<_i48.PageRouteInfo>? children})
     : super(DirectorDeptMissionRoute.name, initialChildren: children);
 
   static const String name = 'DirectorDeptMissionRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i20.DirectorDeptMissionScreen();
+      return const _i19.DirectorDeptMissionScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i21.DirectorNavigationMainScreen]
-class DirectorNavigationMainRoute extends _i51.PageRouteInfo<void> {
-  const DirectorNavigationMainRoute({List<_i51.PageRouteInfo>? children})
-    : super(DirectorNavigationMainRoute.name, initialChildren: children);
+/// [_i20.DirectorMissionScreen]
+class DirectorMissionRoute extends _i48.PageRouteInfo<void> {
+  const DirectorMissionRoute({List<_i48.PageRouteInfo>? children})
+    : super(DirectorMissionRoute.name, initialChildren: children);
 
-  static const String name = 'DirectorNavigationMainRoute';
+  static const String name = 'DirectorMissionRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i21.DirectorNavigationMainScreen();
+      return const _i20.DirectorMissionScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i22.EditAddressScreen]
-class EditAddressRoute extends _i51.PageRouteInfo<void> {
-  const EditAddressRoute({List<_i51.PageRouteInfo>? children})
+/// [_i21.EditAddressScreen]
+class EditAddressRoute extends _i48.PageRouteInfo<void> {
+  const EditAddressRoute({List<_i48.PageRouteInfo>? children})
     : super(EditAddressRoute.name, initialChildren: children);
 
   static const String name = 'EditAddressRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i22.EditAddressScreen();
+      return const _i21.EditAddressScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i23.EditChildDataScreen]
-class EditChildDataRoute extends _i51.PageRouteInfo<EditChildDataRouteArgs> {
+/// [_i22.EditChildDataScreen]
+class EditChildDataRoute extends _i48.PageRouteInfo<EditChildDataRouteArgs> {
   EditChildDataRoute({
-    _i52.Key? key,
+    _i49.Key? key,
     String? id,
     String? name,
     String? civilId,
@@ -655,7 +634,7 @@ class EditChildDataRoute extends _i51.PageRouteInfo<EditChildDataRouteArgs> {
     String? disabilityType,
     String? fileExtension,
     String? bytes,
-    List<_i51.PageRouteInfo>? children,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          EditChildDataRoute.name,
          args: EditChildDataRouteArgs(
@@ -675,13 +654,13 @@ class EditChildDataRoute extends _i51.PageRouteInfo<EditChildDataRouteArgs> {
 
   static const String name = 'EditChildDataRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<EditChildDataRouteArgs>(
         orElse: () => const EditChildDataRouteArgs(),
       );
-      return _i23.EditChildDataScreen(
+      return _i22.EditChildDataScreen(
         key: args.key,
         id: args.id,
         name: args.name,
@@ -711,7 +690,7 @@ class EditChildDataRouteArgs {
     this.bytes,
   });
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   final String? id;
 
@@ -738,26 +717,26 @@ class EditChildDataRouteArgs {
 }
 
 /// generated route for
-/// [_i24.EditProfileScreen]
-class EditProfileRoute extends _i51.PageRouteInfo<void> {
-  const EditProfileRoute({List<_i51.PageRouteInfo>? children})
+/// [_i23.EditProfileScreen]
+class EditProfileRoute extends _i48.PageRouteInfo<void> {
+  const EditProfileRoute({List<_i48.PageRouteInfo>? children})
     : super(EditProfileRoute.name, initialChildren: children);
 
   static const String name = 'EditProfileRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i24.EditProfileScreen();
+      return const _i23.EditProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i25.EditSpouseDataScreen]
-class EditSpouseDataRoute extends _i51.PageRouteInfo<EditSpouseDataRouteArgs> {
+/// [_i24.EditSpouseDataScreen]
+class EditSpouseDataRoute extends _i48.PageRouteInfo<EditSpouseDataRouteArgs> {
   EditSpouseDataRoute({
-    _i52.Key? key,
+    _i49.Key? key,
     String? id,
     String? name,
     String? civilID,
@@ -767,7 +746,7 @@ class EditSpouseDataRoute extends _i51.PageRouteInfo<EditSpouseDataRouteArgs> {
     String? fileExtention,
     String? bytes,
     int? selectedStatus,
-    List<_i51.PageRouteInfo>? children,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          EditSpouseDataRoute.name,
          args: EditSpouseDataRouteArgs(
@@ -787,13 +766,13 @@ class EditSpouseDataRoute extends _i51.PageRouteInfo<EditSpouseDataRouteArgs> {
 
   static const String name = 'EditSpouseDataRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<EditSpouseDataRouteArgs>(
         orElse: () => const EditSpouseDataRouteArgs(),
       );
-      return _i25.EditSpouseDataScreen(
+      return _i24.EditSpouseDataScreen(
         key: args.key,
         id: args.id,
         name: args.name,
@@ -823,7 +802,7 @@ class EditSpouseDataRouteArgs {
     this.selectedStatus,
   });
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   final String? id;
 
@@ -850,77 +829,13 @@ class EditSpouseDataRouteArgs {
 }
 
 /// generated route for
-/// [_i26.EmptyRouterPage]
-class EmptyRouterRoute extends _i51.PageRouteInfo<void> {
-  const EmptyRouterRoute({List<_i51.PageRouteInfo>? children})
-    : super(EmptyRouterRoute.name, initialChildren: children);
-
-  static const String name = 'EmptyRouterRoute';
-
-  static _i51.PageInfo page = _i51.PageInfo(
-    name,
-    builder: (data) {
-      return const _i26.EmptyRouterPage();
-    },
-  );
-}
-
-/// generated route for
-/// [_i26.EmptyRouterPage2]
-class EmptyRouterRoute2 extends _i51.PageRouteInfo<void> {
-  const EmptyRouterRoute2({List<_i51.PageRouteInfo>? children})
-    : super(EmptyRouterRoute2.name, initialChildren: children);
-
-  static const String name = 'EmptyRouterRoute2';
-
-  static _i51.PageInfo page = _i51.PageInfo(
-    name,
-    builder: (data) {
-      return const _i26.EmptyRouterPage2();
-    },
-  );
-}
-
-/// generated route for
-/// [_i26.EmptyRouterPage3]
-class EmptyRouterRoute3 extends _i51.PageRouteInfo<void> {
-  const EmptyRouterRoute3({List<_i51.PageRouteInfo>? children})
-    : super(EmptyRouterRoute3.name, initialChildren: children);
-
-  static const String name = 'EmptyRouterRoute3';
-
-  static _i51.PageInfo page = _i51.PageInfo(
-    name,
-    builder: (data) {
-      return const _i26.EmptyRouterPage3();
-    },
-  );
-}
-
-/// generated route for
-/// [_i26.EmptyRouterPage4]
-class EmptyRouterRoute4 extends _i51.PageRouteInfo<void> {
-  const EmptyRouterRoute4({List<_i51.PageRouteInfo>? children})
-    : super(EmptyRouterRoute4.name, initialChildren: children);
-
-  static const String name = 'EmptyRouterRoute4';
-
-  static _i51.PageInfo page = _i51.PageInfo(
-    name,
-    builder: (data) {
-      return const _i26.EmptyRouterPage4();
-    },
-  );
-}
-
-/// generated route for
-/// [_i27.ExtendLeaveDetailsScreen]
+/// [_i25.ExtendLeaveDetailsScreen]
 class ExtendLeaveDetailsRoute
-    extends _i51.PageRouteInfo<ExtendLeaveDetailsRouteArgs> {
+    extends _i48.PageRouteInfo<ExtendLeaveDetailsRouteArgs> {
   ExtendLeaveDetailsRoute({
-    _i52.Key? key,
-    _i55.RequestsEntity? requestsEntity,
-    List<_i51.PageRouteInfo>? children,
+    _i49.Key? key,
+    _i52.RequestsEntity? requestsEntity,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          ExtendLeaveDetailsRoute.name,
          args: ExtendLeaveDetailsRouteArgs(
@@ -932,13 +847,13 @@ class ExtendLeaveDetailsRoute
 
   static const String name = 'ExtendLeaveDetailsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ExtendLeaveDetailsRouteArgs>(
         orElse: () => const ExtendLeaveDetailsRouteArgs(),
       );
-      return _i27.ExtendLeaveDetailsScreen(
+      return _i25.ExtendLeaveDetailsScreen(
         key: args.key,
         requestsEntity: args.requestsEntity,
       );
@@ -949,9 +864,9 @@ class ExtendLeaveDetailsRoute
 class ExtendLeaveDetailsRouteArgs {
   const ExtendLeaveDetailsRouteArgs({this.key, this.requestsEntity});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
-  final _i55.RequestsEntity? requestsEntity;
+  final _i52.RequestsEntity? requestsEntity;
 
   @override
   String toString() {
@@ -960,9 +875,9 @@ class ExtendLeaveDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i28.FamilyScreen]
-class FamilyRoute extends _i51.PageRouteInfo<FamilyRouteArgs> {
-  FamilyRoute({_i52.Key? key, String? id, List<_i51.PageRouteInfo>? children})
+/// [_i26.FamilyScreen]
+class FamilyRoute extends _i48.PageRouteInfo<FamilyRouteArgs> {
+  FamilyRoute({_i49.Key? key, String? id, List<_i48.PageRouteInfo>? children})
     : super(
         FamilyRoute.name,
         args: FamilyRouteArgs(key: key, id: id),
@@ -971,13 +886,13 @@ class FamilyRoute extends _i51.PageRouteInfo<FamilyRouteArgs> {
 
   static const String name = 'FamilyRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<FamilyRouteArgs>(
         orElse: () => const FamilyRouteArgs(),
       );
-      return _i28.FamilyScreen(key: args.key, id: args.id);
+      return _i26.FamilyScreen(key: args.key, id: args.id);
     },
   );
 }
@@ -985,7 +900,7 @@ class FamilyRoute extends _i51.PageRouteInfo<FamilyRouteArgs> {
 class FamilyRouteArgs {
   const FamilyRouteArgs({this.key, this.id});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   final String? id;
 
@@ -996,109 +911,109 @@ class FamilyRouteArgs {
 }
 
 /// generated route for
-/// [_i29.ForgetPassScreen]
-class ForgetPassRoute extends _i51.PageRouteInfo<void> {
-  const ForgetPassRoute({List<_i51.PageRouteInfo>? children})
+/// [_i27.ForgetPassScreen]
+class ForgetPassRoute extends _i48.PageRouteInfo<void> {
+  const ForgetPassRoute({List<_i48.PageRouteInfo>? children})
     : super(ForgetPassRoute.name, initialChildren: children);
 
   static const String name = 'ForgetPassRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i29.ForgetPassScreen();
+      return const _i27.ForgetPassScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i30.ForgetPassVerifyOtpScreen]
-class ForgetPassVerifyOtpRoute extends _i51.PageRouteInfo<void> {
-  const ForgetPassVerifyOtpRoute({List<_i51.PageRouteInfo>? children})
+/// [_i28.ForgetPassVerifyOtpScreen]
+class ForgetPassVerifyOtpRoute extends _i48.PageRouteInfo<void> {
+  const ForgetPassVerifyOtpRoute({List<_i48.PageRouteInfo>? children})
     : super(ForgetPassVerifyOtpRoute.name, initialChildren: children);
 
   static const String name = 'ForgetPassVerifyOtpRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i30.ForgetPassVerifyOtpScreen();
+      return const _i28.ForgetPassVerifyOtpScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i31.HomeScreen]
-class HomeRoute extends _i51.PageRouteInfo<void> {
-  const HomeRoute({List<_i51.PageRouteInfo>? children})
+/// [_i29.HomeScreen]
+class HomeRoute extends _i48.PageRouteInfo<void> {
+  const HomeRoute({List<_i48.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i31.HomeScreen();
+      return const _i29.HomeScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i32.MoreScreen]
-class MoreRoute extends _i51.PageRouteInfo<void> {
-  const MoreRoute({List<_i51.PageRouteInfo>? children})
+/// [_i30.MoreScreen]
+class MoreRoute extends _i48.PageRouteInfo<void> {
+  const MoreRoute({List<_i48.PageRouteInfo>? children})
     : super(MoreRoute.name, initialChildren: children);
 
   static const String name = 'MoreRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i32.MoreScreen();
+      return const _i30.MoreScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i33.MyAttendanceScreen]
-class MyAttendanceRoute extends _i51.PageRouteInfo<void> {
-  const MyAttendanceRoute({List<_i51.PageRouteInfo>? children})
+/// [_i31.MyAttendanceScreen]
+class MyAttendanceRoute extends _i48.PageRouteInfo<void> {
+  const MyAttendanceRoute({List<_i48.PageRouteInfo>? children})
     : super(MyAttendanceRoute.name, initialChildren: children);
 
   static const String name = 'MyAttendanceRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i33.MyAttendanceScreen();
+      return const _i31.MyAttendanceScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i34.NavigationMainScreen]
-class NavigationMainRoute extends _i51.PageRouteInfo<void> {
-  const NavigationMainRoute({List<_i51.PageRouteInfo>? children})
+/// [_i32.NavigationMainScreen]
+class NavigationMainRoute extends _i48.PageRouteInfo<void> {
+  const NavigationMainRoute({List<_i48.PageRouteInfo>? children})
     : super(NavigationMainRoute.name, initialChildren: children);
 
   static const String name = 'NavigationMainRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i34.NavigationMainScreen();
+      return const _i32.NavigationMainScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i35.NotificationDetailsScreen]
+/// [_i33.NotificationDetailsScreen]
 class NotificationDetailsRoute
-    extends _i51.PageRouteInfo<NotificationDetailsRouteArgs> {
+    extends _i48.PageRouteInfo<NotificationDetailsRouteArgs> {
   NotificationDetailsRoute({
-    _i52.Key? key,
-    required _i56.NotificationsEntity notification,
-    List<_i51.PageRouteInfo>? children,
+    _i49.Key? key,
+    required _i53.NotificationsEntity notification,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          NotificationDetailsRoute.name,
          args: NotificationDetailsRouteArgs(
@@ -1110,11 +1025,11 @@ class NotificationDetailsRoute
 
   static const String name = 'NotificationDetailsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<NotificationDetailsRouteArgs>();
-      return _i35.NotificationDetailsScreen(
+      return _i33.NotificationDetailsScreen(
         key: args.key,
         notification: args.notification,
       );
@@ -1125,9 +1040,9 @@ class NotificationDetailsRoute
 class NotificationDetailsRouteArgs {
   const NotificationDetailsRouteArgs({this.key, required this.notification});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
-  final _i56.NotificationsEntity notification;
+  final _i53.NotificationsEntity notification;
 
   @override
   String toString() {
@@ -1136,9 +1051,9 @@ class NotificationDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i36.NotificationsScreen]
-class NotificationsRoute extends _i51.PageRouteInfo<NotificationsRouteArgs> {
-  NotificationsRoute({_i52.Key? key, List<_i51.PageRouteInfo>? children})
+/// [_i34.NotificationsScreen]
+class NotificationsRoute extends _i48.PageRouteInfo<NotificationsRouteArgs> {
+  NotificationsRoute({_i49.Key? key, List<_i48.PageRouteInfo>? children})
     : super(
         NotificationsRoute.name,
         args: NotificationsRouteArgs(key: key),
@@ -1147,13 +1062,13 @@ class NotificationsRoute extends _i51.PageRouteInfo<NotificationsRouteArgs> {
 
   static const String name = 'NotificationsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<NotificationsRouteArgs>(
         orElse: () => const NotificationsRouteArgs(),
       );
-      return _i36.NotificationsScreen(key: args.key);
+      return _i34.NotificationsScreen(key: args.key);
     },
   );
 }
@@ -1161,7 +1076,7 @@ class NotificationsRoute extends _i51.PageRouteInfo<NotificationsRouteArgs> {
 class NotificationsRouteArgs {
   const NotificationsRouteArgs({this.key});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   @override
   String toString() {
@@ -1170,44 +1085,44 @@ class NotificationsRouteArgs {
 }
 
 /// generated route for
-/// [_i37.OperationsScreen]
-class OperationsRoute extends _i51.PageRouteInfo<void> {
-  const OperationsRoute({List<_i51.PageRouteInfo>? children})
+/// [_i35.OperationsScreen]
+class OperationsRoute extends _i48.PageRouteInfo<void> {
+  const OperationsRoute({List<_i48.PageRouteInfo>? children})
     : super(OperationsRoute.name, initialChildren: children);
 
   static const String name = 'OperationsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i37.OperationsScreen();
+      return const _i35.OperationsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i38.PasswordChangedScreen]
-class PasswordChangedRoute extends _i51.PageRouteInfo<void> {
-  const PasswordChangedRoute({List<_i51.PageRouteInfo>? children})
+/// [_i36.PasswordChangedScreen]
+class PasswordChangedRoute extends _i48.PageRouteInfo<void> {
+  const PasswordChangedRoute({List<_i48.PageRouteInfo>? children})
     : super(PasswordChangedRoute.name, initialChildren: children);
 
   static const String name = 'PasswordChangedRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i38.PasswordChangedScreen();
+      return const _i36.PasswordChangedScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i39.PersonalInfoScreen]
-class PersonalInfoRoute extends _i51.PageRouteInfo<PersonalInfoRouteArgs> {
+/// [_i37.PersonalInfoScreen]
+class PersonalInfoRoute extends _i48.PageRouteInfo<PersonalInfoRouteArgs> {
   PersonalInfoRoute({
-    _i52.Key? key,
-    required _i57.MainProfileEntity personalInfoEntity,
-    List<_i51.PageRouteInfo>? children,
+    _i49.Key? key,
+    required _i54.MainProfileEntity personalInfoEntity,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          PersonalInfoRoute.name,
          args: PersonalInfoRouteArgs(
@@ -1219,11 +1134,11 @@ class PersonalInfoRoute extends _i51.PageRouteInfo<PersonalInfoRouteArgs> {
 
   static const String name = 'PersonalInfoRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<PersonalInfoRouteArgs>();
-      return _i39.PersonalInfoScreen(
+      return _i37.PersonalInfoScreen(
         key: args.key,
         personalInfoEntity: args.personalInfoEntity,
       );
@@ -1234,9 +1149,9 @@ class PersonalInfoRoute extends _i51.PageRouteInfo<PersonalInfoRouteArgs> {
 class PersonalInfoRouteArgs {
   const PersonalInfoRouteArgs({this.key, required this.personalInfoEntity});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
-  final _i57.MainProfileEntity personalInfoEntity;
+  final _i54.MainProfileEntity personalInfoEntity;
 
   @override
   String toString() {
@@ -1245,44 +1160,44 @@ class PersonalInfoRouteArgs {
 }
 
 /// generated route for
-/// [_i40.ProfileScreen]
-class ProfileRoute extends _i51.PageRouteInfo<void> {
-  const ProfileRoute({List<_i51.PageRouteInfo>? children})
+/// [_i38.ProfileScreen]
+class ProfileRoute extends _i48.PageRouteInfo<void> {
+  const ProfileRoute({List<_i48.PageRouteInfo>? children})
     : super(ProfileRoute.name, initialChildren: children);
 
   static const String name = 'ProfileRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i40.ProfileScreen();
+      return const _i38.ProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i41.QualificationsScreen]
-class QualificationsRoute extends _i51.PageRouteInfo<void> {
-  const QualificationsRoute({List<_i51.PageRouteInfo>? children})
+/// [_i39.QualificationsScreen]
+class QualificationsRoute extends _i48.PageRouteInfo<void> {
+  const QualificationsRoute({List<_i48.PageRouteInfo>? children})
     : super(QualificationsRoute.name, initialChildren: children);
 
   static const String name = 'QualificationsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i41.QualificationsScreen();
+      return const _i39.QualificationsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i42.RequestsScreen]
-class RequestsRoute extends _i51.PageRouteInfo<RequestsRouteArgs> {
+/// [_i40.RequestsScreen]
+class RequestsRoute extends _i48.PageRouteInfo<RequestsRouteArgs> {
   RequestsRoute({
-    _i52.Key? key,
+    _i49.Key? key,
     required bool isBackButtonEnabled,
-    List<_i51.PageRouteInfo>? children,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          RequestsRoute.name,
          args: RequestsRouteArgs(
@@ -1294,11 +1209,11 @@ class RequestsRoute extends _i51.PageRouteInfo<RequestsRouteArgs> {
 
   static const String name = 'RequestsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<RequestsRouteArgs>();
-      return _i42.RequestsScreen(
+      return _i40.RequestsScreen(
         key: args.key,
         isBackButtonEnabled: args.isBackButtonEnabled,
       );
@@ -1309,7 +1224,7 @@ class RequestsRoute extends _i51.PageRouteInfo<RequestsRouteArgs> {
 class RequestsRouteArgs {
   const RequestsRouteArgs({this.key, required this.isBackButtonEnabled});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   final bool isBackButtonEnabled;
 
@@ -1320,44 +1235,44 @@ class RequestsRouteArgs {
 }
 
 /// generated route for
-/// [_i43.ResetPassScreen]
-class ResetPassRoute extends _i51.PageRouteInfo<void> {
-  const ResetPassRoute({List<_i51.PageRouteInfo>? children})
+/// [_i41.ResetPassScreen]
+class ResetPassRoute extends _i48.PageRouteInfo<void> {
+  const ResetPassRoute({List<_i48.PageRouteInfo>? children})
     : super(ResetPassRoute.name, initialChildren: children);
 
   static const String name = 'ResetPassRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i43.ResetPassScreen();
+      return const _i41.ResetPassScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i44.SplashScreen]
-class SplashRoute extends _i51.PageRouteInfo<void> {
-  const SplashRoute({List<_i51.PageRouteInfo>? children})
+/// [_i42.SplashScreen]
+class SplashRoute extends _i48.PageRouteInfo<void> {
+  const SplashRoute({List<_i48.PageRouteInfo>? children})
     : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i44.SplashScreen();
+      return const _i42.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i45.SubmissionsScreen]
-class SubmissionsRoute extends _i51.PageRouteInfo<SubmissionsRouteArgs> {
+/// [_i43.SubmissionsScreen]
+class SubmissionsRoute extends _i48.PageRouteInfo<SubmissionsRouteArgs> {
   SubmissionsRoute({
-    _i52.Key? key,
+    _i49.Key? key,
     required dynamic isBackButtonEnabled,
-    List<_i51.PageRouteInfo>? children,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          SubmissionsRoute.name,
          args: SubmissionsRouteArgs(
@@ -1369,11 +1284,11 @@ class SubmissionsRoute extends _i51.PageRouteInfo<SubmissionsRouteArgs> {
 
   static const String name = 'SubmissionsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SubmissionsRouteArgs>();
-      return _i45.SubmissionsScreen(
+      return _i43.SubmissionsScreen(
         key: args.key,
         isBackButtonEnabled: args.isBackButtonEnabled,
       );
@@ -1384,7 +1299,7 @@ class SubmissionsRoute extends _i51.PageRouteInfo<SubmissionsRouteArgs> {
 class SubmissionsRouteArgs {
   const SubmissionsRouteArgs({this.key, required this.isBackButtonEnabled});
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   final dynamic isBackButtonEnabled;
 
@@ -1395,46 +1310,30 @@ class SubmissionsRouteArgs {
 }
 
 /// generated route for
-/// [_i46.SupervisorNavigationMainScreen]
-class SupervisorNavigationMainRoute extends _i51.PageRouteInfo<void> {
-  const SupervisorNavigationMainRoute({List<_i51.PageRouteInfo>? children})
-    : super(SupervisorNavigationMainRoute.name, initialChildren: children);
-
-  static const String name = 'SupervisorNavigationMainRoute';
-
-  static _i51.PageInfo page = _i51.PageInfo(
-    name,
-    builder: (data) {
-      return const _i46.SupervisorNavigationMainScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i47.SurveyScreen]
-class SurveyRoute extends _i51.PageRouteInfo<void> {
-  const SurveyRoute({List<_i51.PageRouteInfo>? children})
+/// [_i44.SurveyScreen]
+class SurveyRoute extends _i48.PageRouteInfo<void> {
+  const SurveyRoute({List<_i48.PageRouteInfo>? children})
     : super(SurveyRoute.name, initialChildren: children);
 
   static const String name = 'SurveyRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i47.SurveyScreen();
+      return const _i44.SurveyScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i48.ThankYouScreen]
-class ThankYouRoute extends _i51.PageRouteInfo<ThankYouRouteArgs> {
+/// [_i45.ThankYouScreen]
+class ThankYouRoute extends _i48.PageRouteInfo<ThankYouRouteArgs> {
   ThankYouRoute({
-    _i52.Key? key,
+    _i49.Key? key,
     String? title,
     String? subtitle,
     Function? onContinueCallback,
-    List<_i51.PageRouteInfo>? children,
+    List<_i48.PageRouteInfo>? children,
   }) : super(
          ThankYouRoute.name,
          args: ThankYouRouteArgs(
@@ -1448,13 +1347,13 @@ class ThankYouRoute extends _i51.PageRouteInfo<ThankYouRouteArgs> {
 
   static const String name = 'ThankYouRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ThankYouRouteArgs>(
         orElse: () => const ThankYouRouteArgs(),
       );
-      return _i48.ThankYouScreen(
+      return _i45.ThankYouScreen(
         key: args.key,
         title: args.title,
         subtitle: args.subtitle,
@@ -1472,7 +1371,7 @@ class ThankYouRouteArgs {
     this.onContinueCallback,
   });
 
-  final _i52.Key? key;
+  final _i49.Key? key;
 
   final String? title;
 
@@ -1487,33 +1386,33 @@ class ThankYouRouteArgs {
 }
 
 /// generated route for
-/// [_i49.VisitorsLogsScreen]
-class VisitorsLogsRoute extends _i51.PageRouteInfo<void> {
-  const VisitorsLogsRoute({List<_i51.PageRouteInfo>? children})
+/// [_i46.VisitorsLogsScreen]
+class VisitorsLogsRoute extends _i48.PageRouteInfo<void> {
+  const VisitorsLogsRoute({List<_i48.PageRouteInfo>? children})
     : super(VisitorsLogsRoute.name, initialChildren: children);
 
   static const String name = 'VisitorsLogsRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i49.VisitorsLogsScreen();
+      return const _i46.VisitorsLogsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i50.WorkScreen]
-class WorkRoute extends _i51.PageRouteInfo<void> {
-  const WorkRoute({List<_i51.PageRouteInfo>? children})
+/// [_i47.WorkScreen]
+class WorkRoute extends _i48.PageRouteInfo<void> {
+  const WorkRoute({List<_i48.PageRouteInfo>? children})
     : super(WorkRoute.name, initialChildren: children);
 
   static const String name = 'WorkRoute';
 
-  static _i51.PageInfo page = _i51.PageInfo(
+  static _i48.PageInfo page = _i48.PageInfo(
     name,
     builder: (data) {
-      return const _i50.WorkScreen();
+      return const _i47.WorkScreen();
     },
   );
 }

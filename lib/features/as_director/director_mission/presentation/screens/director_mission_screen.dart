@@ -5,12 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
  import 'package:kf_ess_mobile_app/core/constants/images.dart';
   import 'package:kf_ess_mobile_app/core/utility/palette.dart';
- import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/data/models/request/management_calender_data_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/domain/entities/director_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/cubits/director_mission_cubit.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/widgets/director_mission/director_app_bar_widget.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/widgets/director_mission/director_mission_calender_widget.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_home_mission/presentation/widgets/director_mission/director_name_dropmenu_widget.dart';
+ import 'package:kf_ess_mobile_app/features/as_director/director_mission/data/models/request/management_calender_data_request_model.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_mission/domain/entities/director_entity.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_mission/presentation/cubits/director_mission_cubit.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_mission/presentation/widgets/director_mission/director_app_bar_widget.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_mission/presentation/widgets/director_mission/director_mission_calender_widget.dart';
+import 'package:kf_ess_mobile_app/features/as_director/director_mission/presentation/widgets/director_mission/director_name_dropmenu_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
  import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/recent_update_section_widget.dart';
  import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
@@ -19,14 +19,14 @@ import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import '../../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
-class AdminHomeScreen extends StatefulWidget {
-  const AdminHomeScreen({super.key});
+class DirectorMissionScreen extends StatefulWidget {
+  const DirectorMissionScreen({super.key});
 
   @override
-  State<AdminHomeScreen> createState() => _AdminHomeScreenState();
+  State<DirectorMissionScreen> createState() => _DirectorMissionScreenState();
 }
 
-class _AdminHomeScreenState extends State<AdminHomeScreen> {
+class _DirectorMissionScreenState extends State<DirectorMissionScreen> {
 
   final DirectorMissionCubit directorMissionCubit = getIt<DirectorMissionCubit>();
   DirectorEntity? selectedDirector;

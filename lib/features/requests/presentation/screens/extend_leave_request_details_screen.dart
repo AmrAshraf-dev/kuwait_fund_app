@@ -149,14 +149,16 @@ class _ExtendLeaveDetailsScreenState extends State<ExtendLeaveDetailsScreen> {
                       context: context,
                       status: ConfirmationPopupStatus.success,
                       continueButtonCallback: () {
-                        if(LocalData.getUser()?.userInfo.isSupervisor == true){
-                          CustomMainRouter.push(SupervisorNavigationMainRoute());
-                        }
-                        else{
-                          CustomMainRouter.push(NavigationMainRoute());
-                        }
-                       },
-                      message: context.tr("request_extended_successfully"),
+                        CustomMainRouter.navigate(
+                  NavigationMainRoute(
+                    children: <PageRouteInfo>[
+                      RequestsRoute(isBackButtonEnabled: false),
+                    ],
+                  ),
+                );
+                      },
+                      message: context.tr("leave_request_extended_successfully"),
+                      closeOnlyPopup: true,
                     );
                   } else if (state is ExtendLeaveErrorState) {
                     ViewsToolbox.dismissLoading();

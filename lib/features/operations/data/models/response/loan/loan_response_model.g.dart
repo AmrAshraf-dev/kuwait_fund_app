@@ -27,15 +27,14 @@ Map<String, dynamic> _$LoanResponseModelToJson(LoanResponseModel instance) =>
       if (instance.hasMorePages case final value?) 'hasMorePages': value,
     };
 
-_$LoanModelImpl _$$LoanModelImplFromJson(Map<String, dynamic> json) =>
-    _$LoanModelImpl(
+_LoanModel _$LoanModelFromJson(Map<String, dynamic> json) => _LoanModel(
       divisionName: json['divisionName'] as String,
       loanCountries: (json['loanCountries'] as List<dynamic>)
           .map((e) => LoanCountryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$LoanModelImplToJson(_$LoanModelImpl instance) =>
+Map<String, dynamic> _$LoanModelToJson(_LoanModel instance) =>
     <String, dynamic>{
       'divisionName': instance.divisionName,
       'loanCountries': instance.loanCountries.map((e) => e.toJson()).toList(),

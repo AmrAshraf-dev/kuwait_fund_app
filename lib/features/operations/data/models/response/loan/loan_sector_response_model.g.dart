@@ -6,16 +6,14 @@ part of 'loan_sector_response_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LoanSectorModelImpl _$$LoanSectorModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LoanSectorModelImpl(
+_LoanSectorModel _$LoanSectorModelFromJson(Map<String, dynamic> json) =>
+    _LoanSectorModel(
       sectorName: json['sectorName'] as String? ?? '',
       number: json['number'] as String,
       amount: json['amount'] as String,
     );
 
-Map<String, dynamic> _$$LoanSectorModelImplToJson(
-        _$LoanSectorModelImpl instance) =>
+Map<String, dynamic> _$LoanSectorModelToJson(_LoanSectorModel instance) =>
     <String, dynamic>{
       'sectorName': instance.sectorName,
       'number': instance.number,

@@ -12,14 +12,14 @@ part 'reject_leave_request_model.g.dart';
 class RejectLeaveRequestModel {
   RejectLeaveRequestModel({
     this.leaveRequestID,
-    this.rejectReson,
+    this.rejectReason,
   });
 
   factory RejectLeaveRequestModel.fromJson(Map<String, dynamic> json) =>
       _$RejectLeaveRequestModelFromJson(json);
 
   final String? leaveRequestID;
-  final String? rejectReson;
+  final String? rejectReason;
 
   Map<String, dynamic> toJson() => _$RejectLeaveRequestModelToJson(this);
 }
