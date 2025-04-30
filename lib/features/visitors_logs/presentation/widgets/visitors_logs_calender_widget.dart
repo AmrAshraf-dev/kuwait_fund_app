@@ -52,7 +52,7 @@ List<VisitorsLogsHostsEntity> calendarPressedDateHostsListResponse = [];
             });
           }else if (state is VisitorsLogsHostsReadyState) {
             ViewsToolbox.dismissLoading();
-
+ 
                 widget.visitorsLogsCubit.getVisitorLogsDetails(
                         VisitorsLogsDetailsRequestModel(
                             date: DateFormat("yyyy-MM-dd").format(calendarPressedDate),
