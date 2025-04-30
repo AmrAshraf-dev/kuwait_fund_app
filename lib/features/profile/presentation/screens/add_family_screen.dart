@@ -262,72 +262,81 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                                             customFormKey: _formKeyChild,
                                             keyNameFrom: "birthDate",
                                           ),
-                                          40.verticalSpace,
+                                          20.verticalSpace,
                                           //?GENDER
-                                          DropdownButtonFormField<String>(
-                                              validator: (value) {
-                                                if (value == null) {
-                                                  return context
-                                                      .tr('please_choose_item');
-                                                }
-                                                return null;
-                                              },
-                                              value: _selectedGenderStatus,
-                                              decoration: InputDecoration(
-                                                labelText: context.tr('gender'),
-                                                labelStyle: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                ),
-                                                contentPadding:
-                                                    EdgeInsets.symmetric(
-                                                        horizontal: 16,
-                                                        vertical: 14),
-                                              ),
-                                              icon: Icon(
-                                                  Icons
-                                                      .keyboard_arrow_down_rounded,
-                                                  color: Colors.grey),
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.black),
-                                              dropdownColor: Colors.white,
-                                              items: _genderStatuses
-                                                  .map((String status) {
-                                                return DropdownMenuItem<String>(
-                                                  value: status,
-                                                  child: AppText(
-                                                    text: status[0]
-                                                            .toUpperCase() +
-                                                        status.substring(1),
-                                                  ),
-                                                );
-                                              }).toList(),
-                                              onChanged: (String? newValue) {
-                                                setState(() {
-                                                  _selectedGenderStatus =
-                                                      newValue;
-                                                });
-                                              }),
-                                          // CustomDropDownField(
-                                          //   keyName: 'gender',
-                                          //   labelText: context.tr('gender'),
-                                          //   items:
-                                          //       _genderStatuses.map((status) {
-                                          //     return DropdownMenuItem<String>(
-                                          //       value: status,
-                                          //       child: AppText(
-                                          //         text: status[0]
-                                          //                 .toUpperCase() +
-                                          //             status.substring(1),
+                                          // DropdownButtonFormField<String>(
+                                          //     validator: (value) {
+                                          //       if (value == null) {
+                                          //         return context
+                                          //             .tr('please_choose_item');
+                                          //       }
+                                          //       return null;
+                                          //     },
+                                          //     value: _selectedGenderStatus,
+                                          //     decoration: InputDecoration(
+                                          //       labelText: context.tr('gender'),
+                                          //       labelStyle: TextStyle(
+                                          //           fontSize: 16,
+                                          //           fontWeight:
+                                          //               FontWeight.w500),
+                                          //       border: OutlineInputBorder(
+                                          //         borderRadius:
+                                          //             BorderRadius.circular(12),
                                           //       ),
-                                          //     );
-                                          //   }).toList(),
-                                          // ),
+                                          //       contentPadding:
+                                          //           EdgeInsets.symmetric(
+                                          //               horizontal: 16,
+                                          //               vertical: 14),
+                                          //     ),
+                                          //     icon: Icon(
+                                          //         Icons
+                                          //             .keyboard_arrow_down_rounded,
+                                          //         color: Colors.grey),
+                                          //     style: TextStyle(
+                                          //         fontSize: 16,
+                                          //         color: Colors.black),
+                                          //     dropdownColor: Colors.white,
+                                          //     items: _genderStatuses
+                                          //         .map((String status) {
+                                          //       return DropdownMenuItem<String>(
+                                          //         value: status,
+                                          //         child: AppText(
+                                          //           text: status[0]
+                                          //                   .toUpperCase() +
+                                          //               status.substring(1),
+                                          //         ),
+                                          //       );
+                                          //     }).toList(),
+                                          //     onChanged: (String? newValue) {
+                                          //       setState(() {
+                                          //         _selectedGenderStatus =
+                                          //             newValue;
+                                          //       });
+                                          //     }),
+                                          CustomDropDownField(
+                                            labelAboveField: context.tr('gender'),
+                                            keyName: 'gender',
+                                            labelText: context.tr('gender'),
+                                            disableSearch: true,
+                                            itemsSearchable:     _genderStatuses
+                          .map(
+                            (String item) => <String, String>{
+                              item: item,
+                            },
+                          )
+                          .toList(),
+                                            items:
+                                                _genderStatuses.map((status) {
+                                              return DropdownMenuItem<String>(
+                                                value: status,
+                                                child: AppText(
+                                                  text: status[0]
+                                                          .toUpperCase() +
+                                                      status.substring(1),
+                                                ),
+                                              );
+                                            }).toList(),
+                                          ),
                                           20.verticalSpace,
                                           //?DISABILITY datepicker
                                           CustomSingleRangeDatePicker(
