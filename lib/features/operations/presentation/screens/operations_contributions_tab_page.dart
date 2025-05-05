@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/contributions_cubit/contributions_cubit.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/widgets/contributions_datatable_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../di/dependency_init.dart';
+import '../cubits/contributions_cubit/contributions_cubit.dart';
+import '../widgets/contributions_datatable_widget.dart';
+import '../../../shared/widgets/app_text.dart';
 
 class OperationsContributionsTabPage extends StatelessWidget {
   OperationsContributionsTabPage({super.key});

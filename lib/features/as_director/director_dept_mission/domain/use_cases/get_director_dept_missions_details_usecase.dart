@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/data/models/request/director_dept_mission_details_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_details_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_mission/data/models/request/director_mission_details_request_model.dart';
- import 'package:kf_ess_mobile_app/features/as_director/director_mission/domain/repositories/director_home_repository.dart';
+import '../../data/models/request/director_dept_mission_details_request_model.dart';
+import '../entities/director_dept_mission_details_entity.dart';
+import '../../../director_mission/data/models/request/director_mission_details_request_model.dart';
+import '../../../director_mission/domain/repositories/director_home_repository.dart';
 
 import "../../../../../core/domain/usecase/base_usecase.dart";
 import '../../../../../core/network/base_handling.dart';

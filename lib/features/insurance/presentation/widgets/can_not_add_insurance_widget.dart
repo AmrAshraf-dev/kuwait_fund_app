@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_entity.dart';
-import 'package:kf_ess_mobile_app/features/insurance/presentation/widgets/insurance_program_dropmenu_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
+import '../../../../core/utility/palette.dart';
+import '../../domain/entities/insurance_entity.dart';
+import 'insurance_program_dropmenu_widget.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/forms/text_field_widget.dart';
 
 class CanNotAddInsuranceWidget extends StatelessWidget {
   final InsuranceEntity insuranceEntity;

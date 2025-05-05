@@ -3,14 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/data/models/request/dept_calendar_data_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/cubits/director_dept_mission_cubit.dart';
- import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/widgets/dept_mission_widgets/dept_mission_calender_widget.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/widgets/dept_mission_widgets/dept_name_dropmenu_widget.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/legend_item_widget.dart';
+import '../../../../../core/utility/palette.dart';
+import '../../data/models/request/dept_calendar_data_request_model.dart';
+import '../../domain/entities/director_dept_mission_entity.dart';
+import '../cubits/director_dept_mission_cubit.dart';
+import '../widgets/dept_mission_widgets/dept_mission_calender_widget.dart';
+import '../widgets/dept_mission_widgets/dept_name_dropmenu_widget.dart';
+import '../../../../di/dependency_init.dart';
+import '../../../../shared/widgets/legend_item_widget.dart';
 
 import '../../../../shared/widgets/master_widget.dart';
 
@@ -42,7 +42,7 @@ class _DirectorDeptMissionScreenState extends State<DirectorDeptMissionScreen> {
           // ),
       child: MasterWidget(
           screenTitle: context.tr("dept_mission"),
-          isBackEnabled: false,
+          isBackEnabled: true,
           widget: Column(
             children: [
             Padding(

@@ -1,21 +1,23 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_child_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_spouse_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/spouse_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/address_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/main_profile_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/qualifications_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/spouse_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/child_entity.dart';
 
 import '../../../../core/network/base_handling.dart';
+import '../../../profile/data/data_sources/remote/profile_remote_data_source.dart';
 import '../../../shared/entity/base_entity.dart';
+import '../../domain/entities/spouse_entity.dart';
 import '../../domain/repositories/profile_repository.dart';
- import '../../../profile/data/data_sources/remote/profile_remote_data_source.dart';
+import '../models/request/child_request_model.dart';
+import '../models/request/edit_child_request_model.dart';
+import '../models/request/edit_spouse_request_model.dart';
+import '../models/request/profile_request_model.dart';
+import '../models/request/spouse_request_model.dart';
+import '../models/response/address_response_model.dart';
+import '../models/response/child_response_model.dart';
+import '../models/response/experiences_response_model.dart';
+import '../models/response/family_response_model.dart';
+import '../models/response/lookup_response_model.dart';
+import '../models/response/main_profile_response_model.dart';
+import '../models/response/qualifications_response_model.dart';
 
 @Injectable(as: ProfileRepository)
 class ProfileRepositoryImp implements ProfileRepository {
@@ -63,7 +65,7 @@ class ProfileRepositoryImp implements ProfileRepository {
   }
 
   @override
-  Future<CustomResponseType<BaseEntity<ChildModel>>> getChild(
+  Future<CustomResponseType<BaseEntity<ChildEntity>>> getChild(
       {required ChildRequestModel childParams}) async {
     return await profileRemoteDataSource.getChild(
         childRequestModel: childParams);
@@ -88,5 +90,10 @@ class ProfileRepositoryImp implements ProfileRepository {
       {required EditChildRequestModel editChildRequestModel}) async {
     return await profileRemoteDataSource.editChild(
         editChildRequestModel: editChildRequestModel);
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<List<LookupModel>>>> getLookup(String lookupPath) async {
+    return profileRemoteDataSource.getLookup(lookupPath);
   }
 }

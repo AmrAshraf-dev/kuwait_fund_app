@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart';
+import '../../domain/entities/main_profile_entity.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';

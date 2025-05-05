@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/country_grants_entity.dart';
+import '../../../../core/utility/palette.dart';
+import '../../domain/entities/country_grants_entity.dart';
 
 class GrantsDataTable extends StatelessWidget {
   final List<CountryGrantsEntity> grantDataList;

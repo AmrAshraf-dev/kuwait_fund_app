@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/domain/entities/director_dept_assignment_employee_entity.dart';
+import '../../../domain/entities/director_dept_assignment_employee_entity.dart';
 
  
 part 'director_dept_assignment_employee_response_model.g.dart';

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/contactus/domain/entities/address_entity.dart';
+import '../../../domain/entities/address_entity.dart';
 
 part 'address_response_model.g.dart';
 

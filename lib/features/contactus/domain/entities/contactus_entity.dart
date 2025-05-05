@@ -1,7 +1,7 @@
 import "package:equatable/equatable.dart";
- import "package:kf_ess_mobile_app/features/contactus/data/models/response/contact_info_response_model.dart";
-import "package:kf_ess_mobile_app/features/contactus/data/models/response/map_coordinates_response_model.dart";
-import "package:kf_ess_mobile_app/features/contactus/data/models/response/telephone_and_fax_repsonse_model.dart";
+import "../../data/models/response/contact_info_response_model.dart";
+import "../../data/models/response/map_coordinates_response_model.dart";
+import "../../data/models/response/telephone_and_fax_repsonse_model.dart";
  
 /// Entity that contains the data of the Contactus.
 class ContactusEntity extends Equatable {

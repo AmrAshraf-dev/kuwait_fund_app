@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/contribution_entity.dart';
+import '../../../../core/utility/palette.dart';
+import '../../domain/entities/contribution_entity.dart';
 
 class ContributionsDataTable extends StatelessWidget {
   final List<ContributionEntity> grantDataList;

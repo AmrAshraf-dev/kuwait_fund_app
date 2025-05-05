@@ -1,19 +1,19 @@
-import "package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart";
-import "package:kf_ess_mobile_app/features/profile/data/models/request/edit_child_request_model.dart";
-import "package:kf_ess_mobile_app/features/profile/data/models/request/edit_spouse_request_model.dart";
-import "package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart";
-import "package:kf_ess_mobile_app/features/profile/data/models/request/spouse_request_model.dart";
-import "package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart";
-import "package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart";
-import "package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart";
-import "package:kf_ess_mobile_app/features/profile/data/models/response/qualifications_response_model.dart";
-import "package:kf_ess_mobile_app/features/profile/domain/entities/address_entity.dart";
-import "package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart";
-import "package:kf_ess_mobile_app/features/profile/domain/entities/spouse_entity.dart";
+import "package:kf_ess_mobile_app/features/profile/domain/entities/child_entity.dart";
+import "package:kf_ess_mobile_app/features/profile/domain/entities/family_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
-import "../entities/profile_entity.dart";
+import "../../data/models/request/child_request_model.dart";
+import "../../data/models/request/edit_child_request_model.dart";
+import "../../data/models/request/edit_spouse_request_model.dart";
+import "../../data/models/request/profile_request_model.dart";
+import "../../data/models/request/spouse_request_model.dart";
+ import "../../data/models/response/experiences_response_model.dart";
+import "../../data/models/response/qualifications_response_model.dart";
+import "../entities/address_entity.dart";
+import "../entities/look_up_entity.dart";
+import "../entities/main_profile_entity.dart";
+import "../entities/spouse_entity.dart";
 
 /// Data operations for the Profile collection
 abstract class ProfileRepository {
@@ -25,7 +25,7 @@ abstract class ProfileRepository {
     
       );
   Future<CustomResponseType<BaseEntity<MyAddressEntity>>> getAddress();
-  Future<CustomResponseType<BaseEntity<List<FamilyModel>>>> getFamily();
+  Future<CustomResponseType<BaseEntity<List<FamilyEntity>>>> getFamily();
   Future<CustomResponseType<BaseEntity<List<QualificationsModel>>>>
       getQualifications();
   Future<CustomResponseType<BaseEntity<List<ExperiencesModel>>>>
@@ -34,7 +34,7 @@ abstract class ProfileRepository {
   Future<CustomResponseType<BaseEntity<SpouseEntity>>> getSpouse({
     required SpouseRequestModel spouseParams,
   });
-  Future<CustomResponseType<BaseEntity<ChildModel>>> getChild({
+  Future<CustomResponseType<BaseEntity<ChildEntity>>> getChild({
     required ChildRequestModel childParams,
   });
   Future<CustomResponseType<BaseEntity<String>>> editProfile({
@@ -47,4 +47,6 @@ abstract class ProfileRepository {
   Future<CustomResponseType<BaseEntity<String>>> editChild({
     required EditChildRequestModel editChildRequestModel,
   });
+
+  Future<CustomResponseType<BaseEntity<List<LookUpEntity>>>> getLookup(String lookupPath); 
 }

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/error/failure.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/contribution_entity.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/country_grants_entity.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/institution_grants_entity.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/loan/loan_entity.dart';
+import '../../../../error/failure.dart';
+import '../../domain/entities/contribution_entity.dart';
+import '../../domain/entities/country_grants_entity.dart';
+import '../../domain/entities/institution_grants_entity.dart';
+import '../../domain/entities/loan/loan_entity.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../operations/data/data_sources/remote/operations_remote_data_source.dart';

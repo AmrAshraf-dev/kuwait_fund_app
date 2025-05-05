@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/custom_elevated_button_widget.dart';
 
 class EditButton extends StatefulWidget {
   const EditButton({super.key , required this.onPressed});

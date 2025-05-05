@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kf_ess_mobile_app/features/operations/data/models/response/loan/loan_country_response_model.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/loan/loan_entity.dart';
+import 'loan_country_response_model.dart';
+import '../../../../domain/entities/loan/loan_entity.dart';
 
 import '../../../../../shared/entity/base_entity.dart';
 

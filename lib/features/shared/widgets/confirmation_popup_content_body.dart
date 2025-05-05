@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/popup_content_body.dart';
+import 'popup_content_body.dart';
 
  
 enum ConfirmationPopupStatus {

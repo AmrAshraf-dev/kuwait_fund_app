@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/approve_leave_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/reject_leave_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/response/approve_leave_request_response_model.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/response/reject_leave_request_response_model.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/response/submission_response_model.dart';
+import '../../models/request/approve_leave_request_model.dart';
+import '../../models/request/reject_leave_request_model.dart';
+import '../../models/response/approve_leave_request_response_model.dart';
+import '../../models/response/reject_leave_request_response_model.dart';
+import '../../models/response/submission_response_model.dart';
 
 import '../../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../../core/network/base_handling.dart';

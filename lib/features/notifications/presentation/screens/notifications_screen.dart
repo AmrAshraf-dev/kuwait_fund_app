@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kf_ess_mobile_app/core/enums/request_type_enum.dart';
-import 'package:kf_ess_mobile_app/features/notifications/domain/entities/notifications_entity.dart';
-import 'package:kf_ess_mobile_app/features/notifications/presentation/widgets/loan_notification_widget.dart';
-import 'package:kf_ess_mobile_app/features/notifications/presentation/widgets/normal_notification_widget.dart';
-import 'package:kf_ess_mobile_app/features/notifications/presentation/widgets/response_notification_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/no_data_widget.dart';
+import '../../../../core/enums/request_type_enum.dart';
+import '../../domain/entities/notifications_entity.dart';
+import '../widgets/loan_notification_widget.dart';
+import '../widgets/normal_notification_widget.dart';
+import '../widgets/response_notification_widget.dart';
+import '../../../shared/widgets/no_data_widget.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 

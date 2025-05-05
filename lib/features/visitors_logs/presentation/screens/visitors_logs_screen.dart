@@ -3,13 +3,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-   import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-   import 'package:kf_ess_mobile_app/features/shared/widgets/legend_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_request_model.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_calender_widget.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../di/dependency_init.dart';
+import '../../../shared/widgets/legend_item_widget.dart';
+import '../../data/models/request/visitors_logs_request_model.dart';
+import '../../domain/entities/visitor_logs_hosts_entity.dart';
+import '../cubits/visitors_logs_cubit.dart';
+import '../widgets/visitors_logs_calender_widget.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 

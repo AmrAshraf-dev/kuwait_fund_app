@@ -3,8 +3,6 @@
 
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
-
-import "../../data/models/request/more_request_model.dart";
 import "../entities/more_entity.dart";
 
 
@@ -18,7 +16,5 @@ abstract class MoreRepository {
   */
   
 
-  Future<CustomResponseType<BaseEntity< MoreEntity>>> getMore({
-    required MoreRequestModel moreParams,
-  });
+  Future<CustomResponseType<BaseEntity<List< MoreEntity>>>> getMore();
 }

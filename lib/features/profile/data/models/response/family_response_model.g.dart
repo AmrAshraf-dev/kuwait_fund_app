@@ -6,10 +6,18 @@ part of 'family_response_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FamilyModel _$FamilyModelFromJson(Map<String, dynamic> json) => FamilyModel();
+FamilyModel _$FamilyModelFromJson(Map<String, dynamic> json) => FamilyModel(
+      id: json['id'] as String?,
+      name: json['name'] as String?,
+      relation: json['relation'] as String?,
+    );
 
 Map<String, dynamic> _$FamilyModelToJson(FamilyModel instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      if (instance.name case final value?) 'name': value,
+      if (instance.relation case final value?) 'relation': value,
+    };
 
 FamilyResponseModel _$FamilyResponseModelFromJson(Map<String, dynamic> json) =>
     FamilyResponseModel(

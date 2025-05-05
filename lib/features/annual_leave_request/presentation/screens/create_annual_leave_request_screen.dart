@@ -4,354 +4,139 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/constants/images.dart';
- import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/annual_leave_request/data/models/request/annual_leave_request_request_model.dart';
-import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_balance_cubit/annual_leave_balance_cubit.dart';
-import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_remining_balance_cubit/annual_leave_remining_balance_cubit.dart';
-import 'package:kf_ess_mobile_app/features/annual_leave_request/presentation/cubits/annual_leave_request_cubit.dart';
- import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
- import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/leave_row_details_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+import '../../../../core/constants/images.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../cubits/annual_leave_balance_cubit/annual_leave_balance_cubit.dart';
+import '../cubits/annual_leave_remining_balance_cubit/annual_leave_remining_balance_cubit.dart';
+import '../cubits/annual_leave_request_cubit.dart';
+import '../widgets/urgent_leave_request_form_widget.dart';
+import '../widgets/urgent_leave_request_details_row_widget.dart';
+import '../widgets/urgent_leave_request_submit_button_widget.dart';
+import '../../../di/dependency_init.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class CreateAnnualLeaveRequestScreen extends StatefulWidget {
-  CreateAnnualLeaveRequestScreen({super.key});
+  const CreateAnnualLeaveRequestScreen({super.key});
 
   @override
-  State<CreateAnnualLeaveRequestScreen> createState() => _CreateAnnualLeaveRequestScreenState();
+  State<CreateAnnualLeaveRequestScreen> createState() =>
+      _CreateAnnualLeaveRequestScreenState();
 }
 
-class _CreateAnnualLeaveRequestScreenState extends State<CreateAnnualLeaveRequestScreen> {
+class _CreateAnnualLeaveRequestScreenState
+    extends State<CreateAnnualLeaveRequestScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
-
   final AnnualLeaveRequestCubit annualLeaveRequestCubit =
       getIt<AnnualLeaveRequestCubit>();
-
   final AnnualLeaveBalanceCubit leaveBalanceCubit =
       getIt<AnnualLeaveBalanceCubit>();
-
   final AnnualLeaveReminingLeaveBalanceCubit reminingLeaveBalanceCubit =
       getIt<AnnualLeaveReminingLeaveBalanceCubit>();
-
-        DateTime? _selectedDate;
 
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
-        waterMarkImage: waterMarkImage2,
-        screenTitle: context.tr("annual_leave"),
-        appBarHeight: 90.h,
-        isBackEnabled: true,
-        widget: MultiBlocProvider(
-          providers: [
-            BlocProvider<AnnualLeaveRequestCubit>(
-              create: (context) => annualLeaveRequestCubit,
-            ),
-            BlocProvider<AnnualLeaveReminingLeaveBalanceCubit>(
-              create: (context) => reminingLeaveBalanceCubit,
-            ),
-            BlocProvider<AnnualLeaveBalanceCubit>(
-              create: (context) => leaveBalanceCubit..getAnnualLeaveBalance(),
-            ),
-          ],
-          child: BlocConsumer<AnnualLeaveBalanceCubit, LeaveBalanceState>(
-            listener: (context, state) {
-              if (state is LeaveBalanceErrorState) {
-                ViewsToolbox.dismissLoading();
-               }
-            },
-            builder: (context, leaveBalanceState) {
-
-if(leaveBalanceState is LeaveBalanceErrorState ){
-
-  return Center(
-    child: Center(
+      waterMarkImage: waterMarkImage2,
+      screenTitle: context.tr("annual_leave"),
+      appBarHeight: 90.h,
+      isBackEnabled: true,
+      widget: MultiBlocProvider(
+        providers: [
+      BlocProvider<AnnualLeaveRequestCubit>(
+        create: (context) => annualLeaveRequestCubit,
+      ),
+      BlocProvider<AnnualLeaveReminingLeaveBalanceCubit>(
+        create: (context) => reminingLeaveBalanceCubit,
+      ),
+      BlocProvider<AnnualLeaveBalanceCubit>(
+        create: (context) => leaveBalanceCubit..getAnnualLeaveBalance(),
+      ),
+    ],
+        child: BlocConsumer<AnnualLeaveBalanceCubit, LeaveBalanceState>(
+          listener: _leaveBalanceListener,
+          builder: (context, leaveBalanceState) {
+            if (leaveBalanceState is LeaveBalanceErrorState) {
+              return Center(
       child: AppText(
         text: context.tr(leaveBalanceState.message!),
         style: AppTextStyle.medium_18,
       ),
-    ),
-  );
+    );
+            } else if (leaveBalanceState is LeaveBalanceReadyState) {
+              ViewsToolbox.dismissLoading();
+              return FormContentWidget(
+                formKey: _formKey,
+                leaveBalanceState: leaveBalanceState,
+                annualLeaveRequestCubit: annualLeaveRequestCubit,
+                reminingLeaveBalanceCubit: reminingLeaveBalanceCubit,
+              );
+            }
+            return Container();
+          },
+        ),
+      ),
+    );
+  }
+
+ 
+  void _leaveBalanceListener(BuildContext context, LeaveBalanceState state) {
+    if (state is LeaveBalanceErrorState) {
+      ViewsToolbox.dismissLoading();
+    }
+  }
 }
 
+ 
 
+class FormContentWidget extends StatefulWidget {
+  final GlobalKey<FormBuilderState> formKey;
+  final LeaveBalanceReadyState leaveBalanceState;
+  final AnnualLeaveRequestCubit annualLeaveRequestCubit;
+  final AnnualLeaveReminingLeaveBalanceCubit reminingLeaveBalanceCubit;
 
+  const FormContentWidget({
+    required this.formKey,
+    required this.leaveBalanceState,
+    required this.annualLeaveRequestCubit,
+    required this.reminingLeaveBalanceCubit,
+    Key? key,
+  }) : super(key: key);
 
-            else  if (leaveBalanceState is LeaveBalanceReadyState) {
-                ViewsToolbox.dismissLoading();
-                return Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          44.verticalSpace,
+  @override
+  State<FormContentWidget> createState() => _FormContentWidgetState();
+}
 
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(25.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3),
-                                ),
-                              ],
-                            ),
-                            child: FormBuilder(
-                              key: _formKey,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 20.h, horizontal:  20.w),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-
-                                     CustomSingleRangeDatePicker(
-                     
-                          disableField: true,
-                          initialDate: DateTime.now(),
-                          keyNameFrom: "from",
-                          customFormKey: _formKey,
-                          fromLabelAboveField: context.tr("from_date"),
-                        ),
-                            20.verticalSpace,
-                              CustomSingleRangeDatePicker(
-                        
-                          disableField: false,
-                          firstDate: DateTime.now(),
-                          validator: (p0) {
-                            if (p0 == null) {
-                              return context.tr("please_select_date");
-                            }
-                            return null;
-                          },
-                      //    initialDate: DateTime.now(),
-                          lastDate: DateTime.now().add(Duration(days: leaveBalanceState.response.data?.availableBalance != null
-                              ? int.parse(leaveBalanceState.response.data!.availableBalance!)
-                              : 0)), 
-                          keyNameFrom: "to",
-                          customFormKey: _formKey,
-                          fromLabelAboveField: context.tr("to_date"),
-                        onChanged: (p0) {
-                         reminingLeaveBalanceCubit.updateFormState(
-                                            showDetails: true);
-                                                setState(() {
-                                              
-                                            });
-                   },
-                        ),
-
-                                    // CustomDatePickerRange(
-                                    //   isMustSelectToday: true,
-                                    // initialDate: DateTime.now(),
-                                    //   fromDisableField: true,
-                                    //   labelTitle: context.tr("annual_leave_days"),
-                                    //   consumedDays: 0,
-                                    //   totalDays: int.parse(
-                                    //       leaveBalanceState.response.data?.availableBalance ?? "0"),
-                                    //   keyNameFrom: "from",
-                                    //   keyNameTo: "to",
-                                    //   customFormKey: _formKey,
-                                    //   fromLabelAboveField: context.tr("from_date"),
-                                    //   toLabelAboveField: context.tr("to_date"),
-                                    //   onDoneCallback: (bool isSelectedRangeValid,
-                                    //       DateTimeRange? pickedRange) {
-                                        
-                                    //     CustomMainRouter.pop();
-                                    //     reminingLeaveBalanceCubit.updateFormState(
-                                    //         showDetails: isSelectedRangeValid);
-                                    //             setState(() {
-                                              
-                                    //         });
-                                    //   },
-                                    // ),
-                                    20.verticalSpace,
-if( (leaveBalanceState.response.data?.displayExitDate??false))
-      CustomSingleRangeDatePicker(
-        isFirstDayRequired: false,
-                        fromLabelAboveField: context.tr("exit_date"),
-                        customFormKey: _formKey,
-                        keyNameFrom: "exit_date",
-                        lastDate: DateTime.now()),
-
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          //date selector from and two
-                          20.verticalSpace,
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(25.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3),
-                                ),
-                              ],
-                            ),
-                            child: BlocBuilder<
-                                    AnnualLeaveReminingLeaveBalanceCubit,
-                                    AnnualLeaveReminingLeaveBalanceState>(
-                                builder: (context, state) {
-                              if (state.showDetails) {
-                                return Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      5.verticalSpace,
-                                      LeaveDaysRowItemWidget(
-                                        title: context.tr("paid_days"),
-                                        days: _calculatePaidDays(
-                                                from: _formKey.currentState!
-                                                    .fields["from"]!.value,
-                                                to: _formKey.currentState!
-                                                    .fields["to"]!.value)
-                                            .toString(),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 25.w),
-                                        child: Divider(
-                                          thickness: 1,
-                                        ),
-                                      ),
-                                      LeaveDaysRowItemWidget(
-                                        title: context.tr(
-                                            "remaining_days_after_vacation"),
-                                        days: _calculateRemainingDays(
-                                            leaveBalance: int.parse(
-                                                leaveBalanceState
-                                                        .response.data?.availableBalance ??
-                                                    "0"),
-                                            from: _formKey.currentState!
-                                                .fields["from"]!.value,
-                                            to: _formKey.currentState!
-                                                .fields["to"]!.value),
-                                                
-                                      ),
-                                      5.verticalSpace,
-                                    ]);
-                              } else {
-                                return Container(
-                                    margin: EdgeInsets.symmetric(
-                                        vertical: 10.h, horizontal: 10.w),
-                                    decoration: BoxDecoration(
-                                      color: Palette.white_F7F7F7,
-                                      borderRadius: BorderRadius.circular(25.r),
-                                    ),
-                                    child: LeaveDaysRowItemWidget(
-                                      title: context.tr("available_days"),
-                                      days:
-                                          leaveBalanceState.response.data?.availableBalance ?? "",
-                                    ));
-                              }
-                            }),
-                          ),
-
-                          60.verticalSpace,
-                          BlocConsumer<AnnualLeaveRequestCubit,
-                              AnnualLeaveRequestState>(
-                            listener: (context, state) {
-                              if (state is AnnualLeaveRequestErrorState) {
-                                ViewsToolbox.dismissLoading();
-
-                                ViewsToolbox.showErrorAwesomeSnackBar(
-                                    context, context.tr(state.message!));
-                              }
-                            },
-                            builder: (context, state) {
-                              if (state is AnnualLeaveRequestReadyState) {
-                                ViewsToolbox.dismissLoading();
-                                CustomMainRouter.push(
-                                   
-                                  ThankYouRoute(
-                                    onContinueCallback: () {
-  CustomMainRouter.navigate(
-                  NavigationMainRoute(
-                    children: <PageRouteInfo>[
-                      RequestsRoute(isBackButtonEnabled: false),
-                    ],
-                  ),
-                );
-                                     },
-                                  title: context
-                                      .tr("request_submitted_successfully"),
-                                  subtitle: context.tr(
-                                      "your_annual_leave_request_has_been_submitted_successfully"),
-                                ));
-                              } else if (state
-                                  is AnnualLeaveRequestLoadingState) {
-                                ViewsToolbox.showLoading();
-                              }
-                              return CustomElevatedButton(
-                                  onPressed: () {
-
-                              
-                                    if (_formKey.currentState!.saveAndValidate()) {
-                                      if(_formKey.currentState!.isValid){
-                                      annualLeaveRequestCubit
-                                          .createAnnualLeaveRequest(
-                                              AnnualLeaveRequestRequestModel(
-                                        leaveType: 0,
-                                        startDate: DateFormat("yyyy-MM-dd").format(
-                                          DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["from"]!.value),
-                                        ),
-                                        endDate: DateFormat("yyyy-MM-dd").format(
-                                          DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["to"]!.value),
-                                        ),
-                                        exitDate: 
-                                  _formKey.currentState?.fields["exit_date"]?.value!=null?    
-                                     DateFormat("yyyy-MM-dd").format(DateFormat("dd/MM/yyyy").parse(_formKey.currentState!.fields["exit_date"]!.value)):null
-                                  
-                               
-                                          
-                                      ));
-                                    }
-                                    }
-                                  },
-                                  text: context.tr("submit"));
-                            },
-                          ),
-                        ]));
-              } else if (leaveBalanceState is LeaveBalanceLoadingState) {
-                ViewsToolbox.showLoading();
-              }
-              return Container();
-            },
+class _FormContentWidgetState extends State<FormContentWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          44.verticalSpace,
+           UrgentLeaveRequestFormWidget(
+            formKey: widget.formKey,
+            leaveBalanceState: widget.leaveBalanceState,
+            reminingLeaveBalanceCubit: widget.reminingLeaveBalanceCubit,
           ),
-        ));
-  }
-
-  String _calculateRemainingDays(
-      {required int leaveBalance, required String from, required String to}) {
-    return leaveBalance - _calculatePaidDays(from: from, to: to) < 0
-        ? "0"
-        : (leaveBalance - _calculatePaidDays(from: from, to: to)).toString();
-  }
-
-  num _calculatePaidDays({required String from, required String to}) {
-    final DateTime fromDate =   DateFormat("dd/MM/yyyy").parse(from)  ;
-    final DateTime toDate =   DateFormat("dd/MM/yyyy").parse(to);
-    return fromDate
-        .difference(toDate)
-        .inDays == 0
-        ? 1
-        : fromDate.difference(toDate).inDays;
-    
-  
+          20.verticalSpace,
+          UrgentLeaveRequestDetailsRowWidget(
+            formKey: widget.formKey,
+            leaveBalanceState: widget.leaveBalanceState,
+            reminingLeaveBalanceCubit: widget.reminingLeaveBalanceCubit,
+          ),
+          60.verticalSpace,
+          SubmitUrgentLeaveButtonWidget(
+            formKey: widget.formKey,
+            leaveBalanceState: widget.leaveBalanceState,
+            annualLeaveRequestCubit: widget.annualLeaveRequestCubit,
+          ),
+        ],
+      ),
+    );
   }
 }
+

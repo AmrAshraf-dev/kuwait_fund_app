@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import '../utility/palette.dart';
  
 class DateHelper {
   

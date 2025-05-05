@@ -3,7 +3,8 @@ import "package:equatable/equatable.dart";
 /// Entity that contains the data of the Profile.
 class ChildEntity extends Equatable {
   final String? id;
-  final String? name;
+  final String? nameEnglish;
+  final String? nameArabic;
   final String? civilID;
   final String? birthDate;
   final String? gender;
@@ -14,7 +15,8 @@ class ChildEntity extends Equatable {
   /// Entity that contains the data of the Profile.
   const ChildEntity(
       {this.id,
-      this.name,
+      this.nameArabic,
+      this.nameEnglish,
       this.civilID,
       this.birthDate,
       this.gender,
@@ -28,8 +30,6 @@ class ChildEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        /*
-  List your entity attributes here 
-  */
+    id,
       ];
 }

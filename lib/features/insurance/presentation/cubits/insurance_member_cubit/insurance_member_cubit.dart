@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/core/network/base_handling.dart';
-import 'package:kf_ess_mobile_app/error/failure.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../../../../core/network/base_handling.dart';
+import '../../../../../error/failure.dart';
+import '../../../../shared/entity/base_entity.dart';
 
 import '../../../domain/entities/family_member_entity.dart';
 import '../../../domain/entities/subscriber_entity.dart';

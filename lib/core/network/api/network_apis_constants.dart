@@ -1,7 +1,6 @@
 class ApiConstants {
-  //static String baseUrl = "https://62.215.251.137/essapi/api/";
-//static String baseUrl = "https://mpwpayment.diyarme.com/essapi/api/";
-  static String baseUrl = "https://kf-exapp-test.kuwait-fund.org/essapi/api/";
+static String baseUrl = "https://mpwpayment.diyarme.com/essapi/api/";
+  //static String baseUrl = "https://kf-exapp-test.kuwait-fund.org/essapi/api/";
   static String loan = "General/GetLoans";
 
   static String profile = "General/GetProfile";
@@ -126,5 +125,11 @@ class ApiConstants {
   static String getDirectorDeptMissionsDetails =
       'Missions/GetOperationEmpsAttendaceDate';
 
-  static var editChild = 'Profile/SubmitChildModificationRequest';
+  static String editChild = 'Profile/SubmitChildModificationRequest';
+
+  static String getLookupData = 'Profile/GetSpouseStatus';
+
+  static String menu = "EmployeeMenu/GetEmployeeUserMenuForMobile";
+
+  static String getAllAds ="Advertisement/GetAllAdvertisements";  
 }

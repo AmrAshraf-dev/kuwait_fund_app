@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/cubits/director_dept_mission_cubit.dart';
- import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
+import '../../../../../../core/helper/app_validator.dart';
+import '../../../../../../core/helper/view_toolbox.dart';
+import '../../../domain/entities/director_dept_mission_entity.dart';
+import '../../cubits/director_dept_mission_cubit.dart';
+import '../../../../../shared/widgets/app_text.dart';
+import '../../../../../shared/widgets/confirmation_popup_content_body.dart';
+import '../../../../../shared/widgets/forms/drop_down_field.dart';
  
  
 class DeptNameDropdown extends StatefulWidget {

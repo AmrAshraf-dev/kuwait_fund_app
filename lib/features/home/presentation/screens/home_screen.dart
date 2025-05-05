@@ -4,24 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/constants/images.dart';
-import 'package:kf_ess_mobile_app/core/helper/general_helper.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/home/domain/entities/home_entity.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/cubits/home_cubit.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/create_request_section_widget.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/half_circle_chart_widget.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/recent_update_section_widget.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/slider_section_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 
+import '../../../../core/constants/icons.dart';
+import '../../../../core/constants/images.dart';
+import '../../../../core/helper/general_helper.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../di/dependency_init.dart';
+import '../../../shared/data/local_data.dart';
+import '../../../shared/widgets/app_text.dart';
 import '../../../shared/widgets/master_widget.dart';
+import '../../domain/entities/home_entity.dart';
+import '../cubits/home_cubit.dart';
+import 'widgets/create_request_section_widget.dart';
+import 'widgets/half_circle_chart_widget.dart';
+import 'widgets/recent_update_section_widget.dart';
+import 'widgets/slider_section_widget.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {

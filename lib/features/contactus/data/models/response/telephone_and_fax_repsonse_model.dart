@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
- import 'package:kf_ess_mobile_app/features/contactus/domain/entities/telephone_and_fax_entity.dart';
+import '../../../domain/entities/telephone_and_fax_entity.dart';
 
 part 'telephone_and_fax_repsonse_model.g.dart';
 

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'app_text.dart';
 
 class LegendItem extends StatelessWidget {
   final Color color;

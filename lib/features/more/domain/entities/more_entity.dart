@@ -5,26 +5,22 @@
 
 
 /// Entity that contains the data of the More.
-class MoreEntity extends Equatable{
+class MoreEntity  {
 
- final String? var1;
+ final String? menuTitleEn;
 
- final  String? var2;
+ final  String? menuTitleAr;
+
+ final String? iconUrl;
+
+ final String? navigationKey;
+
+ final List<String> children;
   /// Entity that contains the data of the More.
    MoreEntity(
-    {required this.var1, required this.var2}
+    {required this.menuTitleEn, required this.menuTitleAr , required this.iconUrl , required this.children , required this.navigationKey}
    );
 
-  /*
-  An entity represents a real-world object with a distinct identity. 
-  */
-
-  @override
-  List<Object?> get props => [
-  /*
-  List your entity attributes here 
-  */
-  ];
-
+ 
 
 }

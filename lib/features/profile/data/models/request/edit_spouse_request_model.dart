@@ -18,7 +18,7 @@ class EditSpouseRequestModel {
     this.spouserBirthDate,
     this.spouseStatus,
     this.spouseStatusDate,
-    this.fileExtention,
+    this.FileExtension,
     this.bytes,
   });
 
@@ -31,7 +31,7 @@ class EditSpouseRequestModel {
   final String? spouserBirthDate;
   final int? spouseStatus;
   final String? spouseStatusDate;
-  final String? fileExtention;
+  final String? FileExtension;
   final String? bytes;
 
   Map<String, dynamic> toJson() => _$EditSpouseRequestModelToJson(this);

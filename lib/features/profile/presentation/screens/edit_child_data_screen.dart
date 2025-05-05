@@ -1,11 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'package:kf_ess_mobile_app/features/create_request/presentation/widgets/sick_leave_file_picker_section_widget.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/custom_file_picker/custom_file_picker_cubit.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/file_picker.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
-import 'package:path/path.dart' as path;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -14,19 +8,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/child_entity.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/look_up_entity.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_form_field_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/file_picker_section_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_child_request_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/child_cubit.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_child_cubit.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
+import 'package:path/path.dart' as path;
 import 'package:share_plus/share_plus.dart';
 
 import '../../../shared/widgets/master_widget.dart';
@@ -34,25 +34,11 @@ import '../../../shared/widgets/master_widget.dart';
 @RoutePage()
 class EditChildDataScreen extends StatefulWidget {
   String? id;
-  String? name;
-  String? civilId;
-  String? birthDate;
-  String? gender;
-  String? disabilityDate;
-  String? disabilityType;
-  String? fileExtension;
-  String? bytes;
+
   EditChildDataScreen({
     Key? key,
     this.id,
-    this.name,
-    this.civilId,
-    this.birthDate,
-    this.gender,
-    this.disabilityDate,
-    this.disabilityType,
-    this.fileExtension,
-    this.bytes,
+ 
   }) : super(key: key);
 
   @override
@@ -60,29 +46,25 @@ class EditChildDataScreen extends StatefulWidget {
 }
 
 class _EditChildDataScreenState extends State<EditChildDataScreen> {
-  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> formKeyChild = GlobalKey<FormBuilderState>();
 
   @override
   void initState() {
     super.initState();
+
+    childCubit.getChildDisabilityTypes();
   }
 
-  String? _selectedGenderStatus;
-  late List<String> _genderStatuses = _genderStatuses = [
-    context.tr('male'),
-    context.tr('female'),
-  ];
-  String? _selectedDisabilityStatus;
-  late List<String> _genderDisabilityStatuses = _genderDisabilityStatuses = [
-    'type1',
-    'type2',
-    'type3',
-  ];
-  String? _selectedFile;
-  final ChildCubit _childCubit = getIt<ChildCubit>();
-  final EditChildCubit _editChildCubit = getIt<EditChildCubit>();
+  final ChildCubit childCubit = getIt<ChildCubit>();
   final FilePickerCubit filePickerFamilyCubit = getIt<FilePickerCubit>();
-  ChildModel? childEntity;
+  ChildEntity? childEntity;
+  List<LookUpEntity> disabilityTypes = [];
+
+  final List<LookUpEntity> _genderStatuses = [
+    LookUpEntity(id: "0", name: "male"),
+    LookUpEntity(id: "1", name: "female"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
@@ -91,230 +73,313 @@ class _EditChildDataScreenState extends State<EditChildDataScreen> {
         widget: MultiBlocProvider(
           providers: [
             BlocProvider(
-                create: (context) => _childCubit
+                create: (context) => childCubit
                   ..getChild(childModel: ChildRequestModel(id: widget.id))),
-            BlocProvider(create: (context) => _editChildCubit),
             BlocProvider(create: (context) => filePickerFamilyCubit),
           ],
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: FormBuilder(
-                    key: _formKey,
-                    child: BlocConsumer<ChildCubit, ChildState>(
+          child:
+          
+          BlocConsumer<ChildCubit, ChildState>(
                         listener: (context, state) {
+                          if(state is ChildLoadingState){
+                            ViewsToolbox.showLoading();
+                          }
+                          else
                       if (state is ChildErrorState) {
                         ViewsToolbox.dismissLoading();
                         ViewsToolbox.showErrorAwesomeSnackBar(
                             context, state.message!);
                       }
-                    }, builder: (context, state) {
-                      if (state is ChildLoadingState) {
-                        ViewsToolbox.showLoading();
-                      } else if (state is ChildReadyState) {
-                        childEntity = state.response.data;
+else if (state is ChildReadyState) {
                         ViewsToolbox.dismissLoading();
-                        return Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              30.verticalSpace,
-                              TextFieldWidget(
-                                labelAboveField: context.tr("name"),
-                                keyName: "name",
-                                validator: FormBuilderValidators.required(),
-                                textInputAction: TextInputAction.next,
-                                initalValue: childEntity?.name ?? '',
-                              ),
-                              20.verticalSpace,
-                              TextFieldWidget(
-                                labelAboveField: context.tr("civilIDNumber"),
-                                keyName: "civilIDNumber",
-                                validator: FormBuilderValidators.required(),
-                                textInputAction: TextInputAction.next,
-                                initalValue: childEntity?.civilID ?? '',
-                              ),
-                              //  20.verticalSpace,
-                              // CustomSingleRangeDatePicker(
-                              //   fromLabelAboveField:
-                              //       context.tr("residencyExpiryDate"),
-                              //   customFormKey: _formKey,
-                              //   keyNameFrom: "residencyExpiry",
-                              // ),
+                                                childEntity = state.response.data;
 
-                              20.verticalSpace,
-                              CustomSingleRangeDatePicker(
-                                fromLabelAboveField: context.tr("birthDate"),
-                                customFormKey: _formKey,
-                                keyNameFrom: "birthDate",
-                                initialDate: childEntity?.birthDate != null
-                                    ? DateFormat('dd/MM/yyyy')
-                                        .parse(childEntity!.birthDate!)
-                                    : null,
-                              ),
-                              40.verticalSpace,
-                              //?GENDER
-                              DropdownButtonFormField<String>(
-                                value: _selectedGenderStatus,
-                                decoration: InputDecoration(
-                                  labelText: context.tr('gender'),
-                                  labelStyle: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 14),
-                                ),
-                                icon: Icon(Icons.keyboard_arrow_down_rounded,
-                                    color: Colors.grey),
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                                dropdownColor: Colors.white,
-                                items: _genderStatuses.map((String status) {
-                                  return DropdownMenuItem<String>(
-                                    value: status,
-                                    child: AppText(
-                                      text: status[0].toUpperCase() +
-                                          status.substring(1),
-                                      //  style: TextStyle(fontSize: 16),
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    _selectedGenderStatus = newValue;
-                                  });
-                                },
-                              ),
-                              20.verticalSpace,
-                              //?DISABILITY datepicker
-                              CustomSingleRangeDatePicker(
-                                fromLabelAboveField:
-                                    context.tr("disabilityDate"),
-                                customFormKey: _formKey,
-                                keyNameFrom: "disabilityDate",
-                                initialDate:
-                                    childEntity?.childDisabilityDate != null
-                                        ? DateFormat('dd/MM/yyyy').parse(
-                                            childEntity!.childDisabilityDate!)
-                                        : null,
-                              ),
-                              40.verticalSpace,
-                              //?Disability type
-                              DropdownButtonFormField<String>(
-                                value: _selectedDisabilityStatus,
-                                decoration: InputDecoration(
-                                  labelText: context.tr('disabilityType'),
-                                  labelStyle: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 14),
-                                ),
-                                icon: Icon(Icons.keyboard_arrow_down_rounded,
-                                    color: Colors.grey),
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                                dropdownColor: Colors.white,
-                                items: _genderDisabilityStatuses
-                                    .map((String status) {
-                                  return DropdownMenuItem<String>(
-                                    value: status,
-                                    child: AppText(
-                                      text: status[0].toUpperCase() +
-                                          status.substring(1),
-                                      //  style: TextStyle(fontSize: 16),
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    _selectedDisabilityStatus = newValue;
-                                  });
-                                },
-                              ),
-                              20.verticalSpace,
-                              FilePickerSection(
-                                  title: context.tr("attach_file"),
-                                  filePickerCubit: filePickerFamilyCubit,
-                                  onFileSelected: (filePath) => setState(() {
-                                        _selectedFile = filePath;
-                                      })),
-
-                              40.verticalSpace,
-                            ],
-                          ),
-                        );
                       }
-                      return Container();
-                    }),
-                  ),
+
+
+
+                    },
+                   buildWhen: (previous, current) =>
+                      current is ChildReadyState,
+                    
+                     builder: (context, state) {
+                    
+           
+          
+          
+        return   Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 13.w),
+            
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextFieldWidget(
+                  initalValue: childEntity?.nameArabic,
+                  labelAboveField: context.tr("nameArabic"),
+                  keyName: "nameArabic",
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    // FormBuilderValidators.alphabetical(),
+                    FormBuilderValidators.minLength(3),
+                    FormBuilderValidators.maxLength(15),
+                    (value) {
+                      final arabicRegex =
+                          RegExp(r'^[\u0621-\u064A\s]+$');
+                      if (value == null || !arabicRegex.hasMatch(value)) {
+                        return context.tr("please_enter_valid_arabic_name");
+                      }
+                      return null;
+                    },
+                  ]),
+                  textInputAction: TextInputAction.next,
                 ),
-                120.verticalSpace,
-                BlocConsumer<EditChildCubit, EditChildState>(
+                20.verticalSpace,
+                TextFieldWidget(
+                  initalValue: childEntity?.nameEnglish,
+                  labelAboveField: context.tr("nameEnglish"),
+                  keyName: "nameEnglish",
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    // FormBuilderValidators.alphabetical(),
+                    FormBuilderValidators.minLength(3),
+                    FormBuilderValidators.maxLength(15),
+                    (value) {
+                      final englishRegex = RegExp(r'^[a-zA-Z\s]+$');
+                      if (value == null || !englishRegex.hasMatch(value)) {
+                        return context.tr("please_enter_valid_english_name");
+                      }
+                      return null;
+                    },
+                  ]),
+                  textInputAction: TextInputAction.next,
+                ),
+                20.verticalSpace,
+              
+                TextFieldWidget(
+                  initalValue: childEntity?.civilID,
+                  labelAboveField: context.tr("civilIDNumber"),
+                  keyName: "civilIDNumber",
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.numeric(),
+                    // FormBuilderValidators.alphabetical(),
+                    FormBuilderValidators.minLength(11),
+                    FormBuilderValidators.maxLength(11),
+                  ]),
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                ),
+              
+                20.verticalSpace,
+                 CustomSingleRangeDatePicker(
+                    initialDate:  childEntity?.birthDate != null
+                        ? DateFormat('yyyy-MM-dd').parse(
+                            childEntity!.birthDate.toString())
+                        : null,
+                    lastDate: DateTime.now(),
+                    validator: (p0) {
+                      if (p0 == null) {
+                        return context.tr("please_select_date");
+                      }
+                      return null;
+                    },
+                    fromLabelAboveField: context.tr("birthDate"),
+                    customFormKey: formKeyChild,
+                    keyNameFrom: "birthDate",
+                  ),
+            
+                20.verticalSpace,
+              
+                CustomDropDownField(
+                  initialValue: childEntity?.gender=="0"
+                      ? _genderStatuses[0]
+                      : _genderStatuses[1] 
+              ,
+                  labelAboveField: context.tr('gender'),
+                  keyName: 'gender',
+                  labelText: context.tr('gender'),
+                     validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                  ]),
+                  disableSearch: true,
+               
+                  items: _genderStatuses.map((status) {
+                    return DropdownMenuItem<LookUpEntity>(
+                      value: status,
+                      child: AppText(
+                        text:context.tr(status.name??"male") ,
+                      ),
+                    );
+                  }).toList(),
+                ),
+                20.verticalSpace,
+                //?DISABILITY datepicker
+                CustomSingleRangeDatePicker(
+                  initialDate:  childEntity?.childDisabilityDate != null && 
+                      childEntity?.childDisabilityDate != ""
+                      ? DateFormat('yyyy-MM-dd').parse(
+                          childEntity!.childDisabilityDate.toString())
+                      : null,
+                  lastDate: DateTime.now(),
+                  
+                  validator: (p0) {
+                    if (p0 == null) {
+                      return context.tr("please_select_date");
+                    }
+                    return null;
+                  },
+                  fromLabelAboveField: context.tr("disabilityDate"),
+                  customFormKey: formKeyChild,
+                  keyNameFrom: "disabilityDate",
+                ),
+                20.verticalSpace,
+              
+                BlocConsumer<ChildCubit, ChildState>(
                   listener: (context, state) {
-                    if (state is EditChildErrorState) {
-                      ViewsToolbox.dismissLoading();
-                      ViewsToolbox.showErrorAwesomeSnackBar(
-                          context, state.message!);
-                    } else if (state is EditChildLoadingState) {
+                    if (state is ChildLoadingState) {
                       ViewsToolbox.showLoading();
-                    } else if (state is EditChildReadyState) {
+                    } else if (state is ChildErrorState) {
                       ViewsToolbox.dismissLoading();
+                    } else if (state is ChildDisabilityTypesReadyState) {
+                      ViewsToolbox.dismissLoading();
+                      disabilityTypes = state.response.data ?? [];
                     }
                   },
+                  buildWhen: (previous, current) =>
+                      current is ChildDisabilityTypesReadyState,
                   builder: (context, state) {
-                    return CustomElevatedButton(
-                      text: context.tr("submit"),
-                      onPressed: () async {
-                        if (_formKey.currentState!.saveAndValidate()) {
-                          print(_formKey.currentState!.value);
-                          _editChildCubit.editChild(EditChildRequestModel(
-                            childId: int.parse(childEntity?.id ?? '0'),
-                            childArabicName: childEntity?.name,
-                            childEnglishName: childEntity?.name,
-                            childCivilId: childEntity?.civilID,
-                            childBirthDate: childEntity?.birthDate != null
-                                ? DateFormat('yyyy-MM-dd').format(
-                                    DateFormat('dd/MM/yyyy')
-                                        .parse(childEntity!.birthDate!))
-                                : null,
-                            fileExtention: _getFileExtension(_selectedFile!),
-                            bytes: await _getFileBytes(XFile(_selectedFile!)),
-                          ));
-                          CustomMainRouter.push(ThankYouRoute(
-                            subtitle: context.tr(
-                                "submitted_successfully_waiting_administrator"),
-                          ));
-                        }
-                      },
+                    return CustomDropDownField(
+                      initialValue: childEntity?.childDisabilityType != null &&
+                          childEntity?.childDisabilityType != ""
+                          ? disabilityTypes.firstWhere((element) =>
+                              element.name ==
+                              childEntity?.childDisabilityType)
+                          : null,
+                           validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                  ]),
+                      labelAboveField: context.tr('disabilityType'),
+                      keyName: 'disabilityType',
+                      labelText: context.tr('disabilityType'),
+                      disableSearch: true,
+                      items: disabilityTypes.map((status) {
+                        return DropdownMenuItem<LookUpEntity>(
+                          value: status,
+                          child: AppText(text: status.name),
+                        );
+                      }).toList(),
                     );
                   },
                 ),
+              
                 20.verticalSpace,
-              ],
-            ),
-          ),
+              CustomFormFieldWidget(
+                keyName: "childBirthCertificate",
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: context.tr("please_select_file"),
+                    ),
+                  ]),
+                  child: FilePickerSection(
+                    customFormKey: formKeyChild,
+                    keyName: "childBirthCertificate",
+                      title: context.tr("attachChildBirthCertificate"),
+                      filePickerCubit: filePickerFamilyCubit,
+                      ),
+                ),
+                40.verticalSpace,
+                  120.verticalSpace,
+                  BlocConsumer<ChildCubit, ChildState>(
+                    listener: (context, state) {
+                      if (state is ChildErrorState) {
+                        ViewsToolbox.dismissLoading();
+                        ViewsToolbox.showErrorAwesomeSnackBar(
+                            context, state.message!);
+                      } else if (state is ChildLoadingState) {
+                        ViewsToolbox.showLoading();
+                      } else if (state is EditChildReadyState) {
+                        ViewsToolbox.dismissLoading();
+                          CustomMainRouter.push(ThankYouRoute(
+                              subtitle:  
+                                  "submitted_successfully_waiting_administrator",
+                            ));
+                      }
+                    },
+                    builder: (context, state) {
+                      return CustomElevatedButton(
+                        text: context.tr("submit"),
+                        onPressed: () async {
+                          if (formKeyChild.currentState!.saveAndValidate()) {
+                            childCubit.editChild(EditChildRequestModel(
+                              childId: int.parse(childEntity?.id ?? '0'),
+                          childArabicName: formKeyChild
+                                    .currentState?.fields["nameArabic"]?.value
+                                    .toString(),
+                                childEnglishName: formKeyChild
+                                    .currentState?.fields["nameEnglish"]?.value
+                                    .toString(), //childEntity?.name,
+                                childCivilId: formKeyChild.currentState
+                                    ?.fields["civilIDNumber"]?.value
+                                    .toString(), //childEntity?.civilID,
+                                childBirthDate: formKeyChild.currentState
+                                            ?.fields["birthDate"]?.value
+                                            .toString() !=
+                                        ''
+                                    ? DateFormat('yyyy-MM-dd').format(
+                                        DateFormat('dd/MM/yyy').parse(
+                                            formKeyChild.currentState!
+                                                .fields["birthDate"]!.value
+                                                .toString()))
+                                    : null,
+                                childDisabilityDate: //disabilityDate
+                                    formKeyChild
+                                                .currentState
+                                                ?.fields["disabilityDate"]
+                                                ?.value
+                                                .toString() !=
+                                            ''
+                                        ? DateFormat('yyyy-MM-dd').format(
+                                            DateFormat('dd/MM/yyy').parse(
+                                                formKeyChild
+                                                    .currentState!
+                                                    .fields["disabilityDate"]!
+                                                    .value
+                                                    .toString()))
+                                        : null,
+                                childGender:    formKeyChild.currentState?.fields["gender"]?.value.id,
+                                childDisabilityType: formKeyChild.currentState?.fields["disabilityType"]?.value.name, 
+                                    
+              
+                                FileExtension:
+                                    _getFileExtension(formKeyChild
+                                        .currentState
+                                        ?.fields["childBirthCertificate"]
+                                        ?.value
+                                        .toString() ??
+                                        ''),
+                                bytes: await _getFileBytes(
+                                    XFile( formKeyChild
+                                        .currentState
+                                        ?.fields["childBirthCertificate"]
+                                        ?.value
+                                        .toString() ??
+                                        '')),
+                              ));
+                            
+                          
+                          
+                          }
+                        },
+                      );
+                    },
+                  ),
+                  20.verticalSpace,
+                ],
+              ),
+            );
+                      }
+                  
+          )
         ));
   }
 

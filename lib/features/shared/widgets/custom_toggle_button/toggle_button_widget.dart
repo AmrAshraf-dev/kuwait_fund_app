@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/toggle_button_model.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/custom_toggle_button_cubit.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../di/toggle_button_model.dart';
+import '../app_text.dart';
+import 'custom_toggle_button_cubit.dart';
 
 class CustomToggleWidget extends StatelessWidget {
   const CustomToggleWidget({

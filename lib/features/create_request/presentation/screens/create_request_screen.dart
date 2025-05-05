@@ -3,13 +3,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/constants/images.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/features/more/presentation/widgets/more_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+import '../../../../core/constants/icons.dart';
+import '../../../../core/constants/images.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../more/presentation/widgets/more_item_widget.dart';
+import '../../../requests/presentation/cubits/requests_cubit/requests_cubit.dart';
+import '../../../../gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 

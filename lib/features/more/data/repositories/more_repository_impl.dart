@@ -1,13 +1,15 @@
 
 
 
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/error/failure.dart';
+import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../shared/entity/base_entity.dart';
 import '../../domain/repositories/more_repository.dart';
-import '../models/request/more_request_model.dart';
-import '../models/response/more_response_model.dart';
+ import '../models/response/more_response_model.dart';
 import '../../../more/data/data_sources/remote/more_remote_data_source.dart';
 
 @Injectable(as: MoreRepository)
@@ -18,10 +20,21 @@ class MoreRepositoryImp implements MoreRepository {
 
   final MoreRemoteDataSource moreRemoteDataSource;
 
-  Future<CustomResponseType<BaseEntity<MoreModel>>> getMore(
-      {required MoreRequestModel moreParams}) async {
-    return await moreRemoteDataSource.getMore(
-        moreRequestModel: moreParams);
+@override
+  Future<CustomResponseType<BaseEntity<List<MoreModel>>>> getMore() async {
+
+    Either<Failure, MoreResponseModel> result =  await moreRemoteDataSource.getMore();
+ result.fold(
+      (failure) {
+          failure;
+      },
+      (response) {
+       LocalData.setMoreEntityList(response.data??[]);
+        response;
+      },
+    );
+
+    return result;
   }
 }
 

@@ -1,7 +1,7 @@
-import "package:kf_ess_mobile_app/features/operations/domain/entities/contribution_entity.dart";
-import "package:kf_ess_mobile_app/features/operations/domain/entities/country_grants_entity.dart";
-import "package:kf_ess_mobile_app/features/operations/domain/entities/institution_grants_entity.dart";
-import "package:kf_ess_mobile_app/features/operations/domain/entities/loan/loan_entity.dart";
+import "../entities/contribution_entity.dart";
+import "../entities/country_grants_entity.dart";
+import "../entities/institution_grants_entity.dart";
+import "../entities/loan/loan_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";

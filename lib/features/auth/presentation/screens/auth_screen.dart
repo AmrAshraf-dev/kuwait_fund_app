@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
- 
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -9,24 +9,25 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/services/encryption_service.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/auth/data/models/request/auth_request_model.dart';
-import 'package:kf_ess_mobile_app/features/auth/data/models/response/user_info_model.dart';
-import 'package:kf_ess_mobile_app/features/auth/presentation/cubits/auth_cubit.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/auth_screens_app_bar_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/drawer_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/password_field_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
+import 'package:kf_ess_mobile_app/features/more/presentation/cubits/more_cubit.dart';
+import '../../../../core/constants/icons.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/services/encryption_service.dart';
+import '../../../../core/utility/palette.dart';
+import '../../data/models/request/auth_request_model.dart';
+import '../../data/models/response/user_info_model.dart';
+import '../cubits/auth_cubit.dart';
+import '../../../di/dependency_init.dart';
+import '../../../shared/data/local_data.dart';
+import '../../../shared/data/secured_storage_data.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/auth_screens_app_bar_widget.dart';
+import '../../../shared/widgets/custom_elevated_button_widget.dart';
+import '../../../shared/widgets/drawer_widget.dart';
+import '../../../shared/widgets/forms/password_field_widget.dart';
+import '../../../shared/widgets/forms/text_field_widget.dart';
 import 'package:local_auth/local_auth.dart';
 
 @RoutePage()
@@ -41,17 +42,16 @@ class _AuthScreenState extends State<AuthScreen> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   final FocusNode passwordFocusNode = FocusNode();
   final LocalAuthentication localAuth = LocalAuthentication();
-    final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
-bool _isPasswordObscured = true;
+  final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
+  bool _isPasswordObscured = true;
   bool isBiometricAvailable = true;
   final AuthCubit authCubit = getIt<AuthCubit>();
+ 
   @override
   void initState() {
     super.initState();
     _checkBiometricAvailability();
   }
-
- 
 
   Future<void> _checkBiometricAvailability() async {
     try {
@@ -59,15 +59,14 @@ bool _isPasswordObscured = true;
       bool isDeviceSupported = await localAuth.isDeviceSupported();
       if (!canCheckBiometrics || !isDeviceSupported) {
         setState(() {
-                 isBiometricAvailable = false;
+          isBiometricAvailable = false;
         });
       }
     } catch (e) {
       log("Error checking biometric availability: $e");
-        setState(() {
-                 isBiometricAvailable = false;
-
-        });
+      setState(() {
+        isBiometricAvailable = false;
+      });
     }
   }
 
@@ -93,21 +92,18 @@ bool _isPasswordObscured = true;
               password: savedPassword,
             ),
           );
-        }
-        
-         else {
-          if(mounted){
-          ViewsToolbox.showErrorAwesomeSnackBar(context,
-            "no_saved_credentials_please_login_first".tr());
+        } else {
+          if (mounted) {
+            ViewsToolbox.showErrorAwesomeSnackBar(
+                context, "no_saved_credentials_please_login_first".tr());
           }
         }
       }
     } catch (e) {
-      if(mounted){
-   ViewsToolbox.showErrorAwesomeSnackBar(
-          context, "authentication_failed_please_login_again".tr());
+      if (mounted) {
+        ViewsToolbox.showErrorAwesomeSnackBar(
+            context, "authentication_failed_please_login_again".tr());
       }
-   
     }
   }
 
@@ -120,8 +116,13 @@ bool _isPasswordObscured = true;
       drawer: DrawerSideMenu(),
       body: PopScope(
         canPop: false,
-        child: BlocProvider(
-          create: (context) => authCubit,
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => authCubit,
+            ),
+          
+          ],
           child: Container(
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(color: Palette.primaryColor),
@@ -194,13 +195,9 @@ bool _isPasswordObscured = true;
                                 if (userInfo.isError ?? false) {
                                   ViewsToolbox.showErrorAwesomeSnackBar(
                                       context, userInfo.errorMsg ?? "error");
+                                } else if (userInfo.isValidUser ?? false) {
+                                  CustomMainRouter.push(NavigationMainRoute());
                                 }
-                                else if (userInfo.isValidUser??false){
-                                   CustomMainRouter.push(NavigationMainRoute());
-
-                                }
-                                
-                             
                               }
                             },
                             child: FormBuilder(
@@ -209,37 +206,33 @@ bool _isPasswordObscured = true;
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   TextFieldWidget(
-                                    maxLength: 15,   
+                                    maxLength: 15,
                                     labelAboveField: context.tr("username"),
                                     keyName: "userName",
-                                  validator:
-                                  FormBuilderValidators.compose([
+                                    validator: FormBuilderValidators.compose([
                                       FormBuilderValidators.required(),
                                       FormBuilderValidators.password(
                                         maxLength: 15,
                                         minLength: 3,
-                                       
                                       )
                                     ]),
                                     textInputAction: TextInputAction.next,
                                   ),
                                   18.verticalSpace,
                                   PasswordFieldWidget(
-                                                                        maxLength: 15,
-
-                                    obscureText:  _isPasswordObscured,
+                                    maxLength: 15,
+                                    obscureText: _isPasswordObscured,
                                     labelAboveField: context.tr("password"),
                                     keyName: "password",
-                                    validator:      FormBuilderValidators.compose([
+                                    validator: FormBuilderValidators.compose([
                                       FormBuilderValidators.required(),
                                       FormBuilderValidators.password(
                                         maxLength: 15,
                                         minLength: 3,
-                                       
                                       )
                                     ]),
                                     focusNode: passwordFocusNode,
-                                      suffixIcon: IconButton(
+                                    suffixIcon: IconButton(
                                       icon: Icon(
                                         _isPasswordObscured
                                             ? Icons.visibility_off
@@ -247,35 +240,35 @@ bool _isPasswordObscured = true;
                                       ),
                                       onPressed: () {
                                         setState(() {
-                                          _isPasswordObscured = !_isPasswordObscured;
+                                          _isPasswordObscured =
+                                              !_isPasswordObscured;
                                         });
                                       },
                                     ),
                                   ),
                                   46.verticalSpace,
                                   Center(
-                                    child: 
-                                    Row(
+                                    child: Row(
                                       children: [
-                                        if(isBiometricAvailable && LocalData.getSmartLogin())
- Flexible(
-  flex: 1,
-   child: CustomElevatedButton(
-     backgroundColor:    Palette.blue_5490EB,
-    customChild: Icon(
-      Icons.fingerprint,
-      color: Palette.white,
-      size: 40.sp,
-    ),
-    onPressed: _authenticateAndLogin,
-   ),
- ),
-10.horizontalSpace,
-
+                                        if (isBiometricAvailable &&
+                                            LocalData.getSmartLogin())
+                                          Flexible(
+                                            flex: 1,
+                                            child: CustomElevatedButton(
+                                              backgroundColor:
+                                                  Palette.blue_5490EB,
+                                              customChild: Icon(
+                                                Icons.fingerprint,
+                                                color: Palette.white,
+                                                size: 40.sp,
+                                              ),
+                                              onPressed: _authenticateAndLogin,
+                                            ),
+                                          ),
+                                        10.horizontalSpace,
                                         Flexible(
                                           flex: 4,
                                           child: CustomElevatedButton(
-                                          
                                             text: context.tr("login"),
                                             onPressed: () {
                                               if (_formKey.currentState
@@ -283,19 +276,23 @@ bool _isPasswordObscured = true;
                                                   false) {
                                                 authCubit.getAuth(
                                                   authModel: AuthRequestModel(
-                                                    userId: _formKey.currentState
-                                                        ?.fields["userName"]?.value,
-                                                    password:  
-                                              
-                                                    EncryptionService().encryptString(
-                                                      _formKey.currentState
-                                                          ?.fields["password"]?.value,
-                                                          Platform.isAndroid ? KeyType.CustomerAuthAndroid : KeyType.CustomerAuthIOS,
+                                                    userId: _formKey
+                                                        .currentState
+                                                        ?.fields["userName"]
+                                                        ?.value,
+                                                    password:
+                                                        EncryptionService()
+                                                            .encryptString(
+                                                      _formKey
+                                                          .currentState
+                                                          ?.fields["password"]
+                                                          ?.value,
+                                                      Platform.isAndroid
+                                                          ? KeyType
+                                                              .CustomerAuthAndroid
+                                                          : KeyType
+                                                              .CustomerAuthIOS,
                                                     ),
-                                                  
-                                                    
-                                                    
-                                                 
                                                   ),
                                                 );
                                               }

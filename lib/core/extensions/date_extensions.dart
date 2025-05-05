@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:intl/intl.dart';
-import 'package:kf_ess_mobile_app/core/helper/language_helper.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import '../helper/language_helper.dart';
+import '../routes/routes.dart';
+import '../../features/di/dependency_init.dart';
 
 extension DateExtensions on DateTime {
   bool isToday() {
@@ -14,7 +14,7 @@ extension DateExtensions on DateTime {
 extension DateStringExtensions on String {
   String showDateWithFormat() {
     try {
-      final parsedDate = DateFormat("dd-MMM-yyyy").parse(this);
+      final parsedDate = DateTime.parse(this);
       if (parsedDate.isToday()) {
         return "today".tr();
       }

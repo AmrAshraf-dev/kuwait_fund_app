@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/institutions_grants_cubit/institutions_grants_cubit.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/widgets/institutions_grants_datatable_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../di/dependency_init.dart';
+import '../cubits/institutions_grants_cubit/institutions_grants_cubit.dart';
+import '../widgets/institutions_grants_datatable_widget.dart';
+import '../../../shared/widgets/app_text.dart';
 
 class OperationsInstitutionsGrantsTabPage extends StatelessWidget {
   OperationsInstitutionsGrantsTabPage({super.key});

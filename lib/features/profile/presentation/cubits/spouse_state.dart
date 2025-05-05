@@ -15,4 +15,16 @@ final class SpouseReadyState extends SpouseState {
   BaseEntity<SpouseEntity> response;
 }
 
+final class EditSpouseReadyState extends SpouseState {
+  EditSpouseReadyState(this.response);
+  BaseEntity<String> response;
+}
+
+final class SpouseStatusReadyState extends SpouseState {
+  SpouseStatusReadyState(this.response);
+  BaseEntity<List<LookUpEntity>> response;
+}
+ 
+
+
 abstract class SpouseState {}

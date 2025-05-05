@@ -1,4 +1,4 @@
- import "package:kf_ess_mobile_app/features/profile/data/models/response/profile_response_model.dart";
+import "../../data/models/response/profile_response_model.dart";
 
 /// Entity that contains the data of the Profile.
 class MainProfileEntity   {

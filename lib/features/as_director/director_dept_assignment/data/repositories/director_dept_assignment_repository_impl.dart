@@ -1,10 +1,10 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/core/network/base_handling.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/data/models/request/director_dept_assignment_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/data/models/response/director_dept_assignment_response_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/domain/entities/director_dept_assignment_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/domain/repositories/director_dept_assignment_repository.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../../../../core/network/base_handling.dart';
+import '../models/request/director_dept_assignment_request_model.dart';
+import '../models/response/director_dept_assignment_response_model.dart';
+import '../../domain/entities/director_dept_assignment_entity.dart';
+import '../../domain/repositories/director_dept_assignment_repository.dart';
+import '../../../../shared/entity/base_entity.dart';
 
  
  import '../data_sources/remote/director_dept_assignment_remote_data_source.dart';

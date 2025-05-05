@@ -1,5 +1,5 @@
-import "package:kf_ess_mobile_app/features/loan_request/domain/entities/personal_loan_master_info_entity.dart";
-import "package:kf_ess_mobile_app/features/loan_request/domain/entities/personal_loan_reason_entity.dart";
+import "../entities/personal_loan_master_info_entity.dart";
+import "../entities/personal_loan_reason_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";

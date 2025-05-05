@@ -1,15 +1,15 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_logs_details_response_model.dart';
- import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_logs_hosts_response_model.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';
 import '../../../../../core/network/network_helper.dart';
 import '../../../../../error/failure.dart';
+import '../../models/request/visitors_logs_details_request_model.dart';
 import '../../models/request/visitors_logs_request_model.dart';
+import '../../models/response/visitors_logs_details_response_model.dart';
+import '../../models/response/visitors_logs_hosts_response_model.dart';
 import '../../models/response/visitors_logs_response_model.dart';
 
 abstract class VisitorsLogsRemoteDataSource {

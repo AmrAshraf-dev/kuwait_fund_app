@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+
+import '../../../../shared/widgets/app_text.dart';
 
 class HalfCircleChartWidget extends StatefulWidget {
   final String leaveUsed;

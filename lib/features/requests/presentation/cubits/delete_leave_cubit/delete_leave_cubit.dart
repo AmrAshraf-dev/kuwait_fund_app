@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/request/delete_leave_request_model.dart';
-  import 'package:kf_ess_mobile_app/features/requests/domain/use_cases/delete_leave_request_usecase.dart';
+import '../../../data/models/request/delete_leave_request_model.dart';
+import '../../../domain/use_cases/delete_leave_request_usecase.dart';
 
 import "../../../../../core/network/base_handling.dart";
 import '../../../../../error/failure.dart';

@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
+import '../../../../core/helper/app_validator.dart';
+import '../../../shared/widgets/forms/drop_down_field.dart';
+import '../../domain/entities/visitor_logs_hosts_entity.dart';
 
 import '../../../shared/widgets/app_text.dart';
 

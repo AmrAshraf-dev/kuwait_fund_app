@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/extensions/size_extensions.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
+
+import '../../../../core/extensions/size_extensions.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/utility/palette.dart';
+import '../app_text.dart';
+import '../custom_elevated_button_widget.dart';
+import 'custom_file_picker_cubit.dart';
  
 class GenericFilePicker extends StatelessWidget {
   const GenericFilePicker({
@@ -65,7 +66,13 @@ class GenericFilePicker extends StatelessWidget {
                       );
                       CustomMainRouter.pop();
                     },
-                    text: context.tr('choosePhoto'),
+                    customChild: 
+                      AppText(
+                        maxLines: 2,
+                       text: context.tr('choosePhoto'),
+                        style: AppTextStyle.semiBold_18,
+                       ),
+                   
                   ),
                 20.heightBox,
                 if (isFromFile)
@@ -86,14 +93,17 @@ class GenericFilePicker extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.attach_file_outlined,
-                          color: Palette.blue_002A69,
+                          color: Palette.white,
                         ),
                         5.horizontalSpace,
 
-                        AppText(
-                          text: buttonTitle ?? context.tr("attach_file"),
-                          style: AppTextStyle.semiBold_20,
-                         )
+                        Flexible(
+                          child: AppText(
+                            maxLines: 2,
+                            text:  context.tr("attach_file"),
+                            style: AppTextStyle.semiBold_18,
+                           ),
+                        )
                       ],
                     ),
                   ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_toggle_button/toggle_button_widget.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/custom_toggle_button/toggle_button_widget.dart';
 
 class ProfileItemWidget extends StatelessWidget {
   const ProfileItemWidget(

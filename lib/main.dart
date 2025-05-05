@@ -15,9 +15,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:get_it/get_it.dart';
-import 'package:kf_ess_mobile_app/core/services/cubit_observer.dart';
-import 'package:kf_ess_mobile_app/core/services/device_service.dart';
-import 'package:kf_ess_mobile_app/features/firebase/firebase_service.dart';
+import 'core/services/cubit_observer.dart';
+import 'core/services/device_service.dart';
+import 'features/firebase/firebase_service.dart';
 
 import 'core/routes/router_observer.dart';
 import 'core/routes/routes.dart';

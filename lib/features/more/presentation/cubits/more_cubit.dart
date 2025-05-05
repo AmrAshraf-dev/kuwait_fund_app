@@ -4,8 +4,7 @@ import 'package:injectable/injectable.dart';
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
 import "../../../shared/entity/base_entity.dart";
-import '../../data/models/request/more_request_model.dart';
-import '../../domain/entities/more_entity.dart';
+ import '../../domain/entities/more_entity.dart';
 import '../../domain/use_cases/get_more_usecase.dart';
 
 part 'more_state.dart';
@@ -15,18 +14,19 @@ class MoreCubit extends Cubit<MoreState> {
   final GetMoreUseCase getMoreUseCase;
   MoreCubit({required this.getMoreUseCase}) : super(MoreInitialState());
 
-  Future<void> getMore({required MoreRequestModel moreModel}) async {
+  Future<void> getMore() async {
+    await Future.delayed(const Duration(milliseconds: 50));
     emit(MoreLoadingState());
 
-    final CustomResponseType<BaseEntity<MoreEntity>> eitherPackagesOrFailure =
-        await getMoreUseCase(moreModel);
+    final CustomResponseType<BaseEntity<List<MoreEntity>>> eitherPackagesOrFailure =
+        await getMoreUseCase( );
 
     eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
       emit(MoreErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<MoreEntity> response) {
+    }, (BaseEntity<List<MoreEntity>> response) {
       emit(MoreReadyState(response));
     });
   }

@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_mission/domain/entities/director_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_mission/domain/entities/management_calender_data_entity.dart';
+import '../../../domain/entities/director_entity.dart';
+import '../../../domain/entities/management_calender_data_entity.dart';
 
 import '../../../../../shared/entity/base_entity.dart';
  

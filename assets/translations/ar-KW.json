@@ -1,5 +1,14 @@
 {
+<<<<<<< HEAD
   "directorMissions": "مهمات المدراء",
+=======
+
+  "more_link": "المزيد",
+"mirriageContract/divorceDocument": "عقد الزواج/وثيقة الطلاق",
+  "attachChildBirthCertificate": "شهادة ميلاد الطفل",
+"please_select_file": "يرجى اختيار ملف",
+  "directorMissions":  "مهمات المدراء",
+>>>>>>> 949f1442ae5d20332d37d8f2157960e7a21bc8d1
   "file_size_exceeds_1MB_limit": "حجم الملف يتجاوز الحد المسموح به 1 ميغابايت",
   "alert": "تنبيه",
   "please_select_date": "يرجى اختيار التاريخ",
@@ -145,7 +154,7 @@
   "enter": "ادخل",
   "entrance": "الدخول",
   "attendance_logs": "سجلات الحضور",
-  "the_balance_that_will_be_transferred_to_the_emergency_balance": "الرصيد الذي سيتم تحويله لرصيد الطوارئ",
+  "the_balance_that_will_be_transferred_to_the_emergency_balance": "الرصيد الذي سوف يتم ترحيله لرصيد الطارئة (عرضي)",
   "available_leave_hours_untile_today": "الساعات المتبقية من الإجازة حتى اليوم",
   "total_hours_of_leave_used": "إجمالي ساعات الإجازة المستخدمة",
   "total_hours_of_delay": "إجمالي ساعات التأخير",
@@ -795,7 +804,7 @@
   "floor": "الطابق",
   "flat": "شقة",
   "myFamily": "عائلتي",
-  "addFamilyMember": "اضافة عضو عائلة",
+  "addFamilyMember": "إضافة فرد من العائلة",
   "civilIDNumber": "رقم الهوية المدنية",
   "myQualification": "مؤهلي",
   "addQualification": "اضافة مؤهل",

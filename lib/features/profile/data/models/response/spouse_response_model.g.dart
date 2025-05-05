@@ -8,7 +8,8 @@ part of 'spouse_response_model.dart';
 
 SpouseModel _$SpouseModelFromJson(Map<String, dynamic> json) => SpouseModel(
       id: json['id'] as String?,
-      name: json['name'] as String?,
+      nameArabic: json['nameArabic'] as String?,
+      nameEnglish: json['nameEnglish'] as String?,
       civilID: json['civilID'] as String?,
       birthDate: json['birthDate'] as String?,
       status: json['status'] as String?,
@@ -20,7 +21,8 @@ SpouseModel _$SpouseModelFromJson(Map<String, dynamic> json) => SpouseModel(
 Map<String, dynamic> _$SpouseModelToJson(SpouseModel instance) =>
     <String, dynamic>{
       if (instance.id case final value?) 'id': value,
-      if (instance.name case final value?) 'name': value,
+      if (instance.nameArabic case final value?) 'nameArabic': value,
+      if (instance.nameEnglish case final value?) 'nameEnglish': value,
       if (instance.civilID case final value?) 'civilID': value,
       if (instance.birthDate case final value?) 'birthDate': value,
       if (instance.status case final value?) 'status': value,

@@ -3,15 +3,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_contributions_tab_page.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_countries_grants_tab_page.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_institutions_grants_tab_page.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/screens/operations_loan_tab_page.dart';
-import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../di/dependency_init.dart';
+import 'operations_contributions_tab_page.dart';
+import 'operations_countries_grants_tab_page.dart';
+import 'operations_institutions_grants_tab_page.dart';
+import 'operations_loan_tab_page.dart';
+import '../../../shared/cubit/tab_cubit/tab_cubit.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class OperationsScreen extends StatefulWidget {

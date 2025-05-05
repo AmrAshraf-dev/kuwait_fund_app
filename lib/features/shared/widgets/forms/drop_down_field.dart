@@ -4,14 +4,16 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/extensions/size_extensions.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/core/utility/theme.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../core/extensions/size_extensions.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../../core/utility/theme.dart';
+import '../../../../gen/assets.gen.dart';
+import '../app_text.dart';
 
 class CustomDropDownField<T> extends StatefulWidget {
-  const CustomDropDownField({
+  CustomDropDownField({
     super.key,
     required this.keyName,
     this.initialValue,
@@ -27,7 +29,16 @@ class CustomDropDownField<T> extends StatefulWidget {
     this.isNotRequired = false,
     this.height,
     this.width,
-  });
+  }) : assert(
+           ((disableSearch)) || (itemsSearchable != null && (itemsSearchable??[]).isNotEmpty),
+          'itemsSearchable cannot be null or empty when disableFiled is false or null',
+        );
+
+       
+  @Assert(
+    'items != null && items.isNotEmpty',
+    'items cannot be null or empty',
+  )
   final String keyName;
   final T? initialValue;
   final String labelText;
@@ -147,7 +158,7 @@ class _CustomDropDownFieldState<T> extends State<CustomDropDownField<T>> {
                           maxHeight: widget.menuMaxHeight ?? 300,
                         ),
 
-                        dropdownSearchData: widget.disableSearch
+                        dropdownSearchData: widget.disableSearch || widget.itemsSearchable == null
                             ? null
                             : DropdownSearchData<T>(
                                 searchController: textEditingController,
@@ -173,7 +184,9 @@ class _CustomDropDownFieldState<T> extends State<CustomDropDownField<T>> {
                                         vertical: 20.h,
                                       ),
                                       errorStyle: TextStyle(
-                                        color: Palette.red_FF0606,
+                                            fontSize: 12.sp,
+                    fontWeight: FontWeight.w400,
+                                         color: Palette.red_FF0606,
                                       ),
                                       hintText: context.tr("searchHere"),
                                       focusedErrorBorder: OutlineInputBorder(
@@ -224,10 +237,31 @@ class _CustomDropDownFieldState<T> extends State<CustomDropDownField<T>> {
                                   // }
                                   // return true;
 
-                                  return widget.itemsSearchable!
+                                  return
+                                  widget.disableSearch
+                                      ? false
+                                      : widget.itemsSearchable == null
+                                          ? true
+                                          : widget.itemsSearchable!
+                                              .isNotEmpty
+                                              ? widget.itemsSearchable!
+                                                  .firstWhere(
+                                                    (Map<String, T> element) =>
+                                                        element.values.first ==
+                                                        item.value,
+                                                        orElse: () => {}
+                                                  )
+                                                  .keys
+                                                  .first
+                                                  .toLowerCase()
+                                                  .contains(searchValue.toLowerCase())
+                                          :
+                                  
+                                   widget.itemsSearchable!
                                       .firstWhere(
                                         (Map<String, T> element) =>
                                             element.values.first == item.value,
+                                                orElse: () => {}
                                       )
                                       .keys
                                       .first
@@ -323,7 +357,7 @@ class _CustomDropDownFieldState<T> extends State<CustomDropDownField<T>> {
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: AppText(
                             text: fieldState.errorText,
-                            style: AppTextStyle.regular_14,
+                            style: AppTextStyle.regular_12,
                             textColor: Palette.red_FF0606,
                           ),
                         ),

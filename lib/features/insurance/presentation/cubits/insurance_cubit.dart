@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_programs.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/use_cases/get_insurance_master_info_usecase.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/use_cases/unsubscribe_insurance_usecase.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../domain/entities/insurance_programs.dart';
+import '../../domain/use_cases/get_insurance_master_info_usecase.dart';
+import '../../domain/use_cases/unsubscribe_insurance_usecase.dart';
+import '../../../shared/entity/base_entity.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';

@@ -3,13 +3,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
- import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/helper/general_helper.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/core/helper/language_helper.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import '../../../../../../core/constants/icons.dart';
+import '../../../../../../core/helper/general_helper.dart';
+import '../../../../../../core/routes/route_sevices.dart';
+import '../../../../../../core/routes/routes.gr.dart';
+import '../../../../../../core/utility/palette.dart';
+import '../../../../../shared/data/local_data.dart';
+import '../../../../../shared/widgets/app_text.dart';
 
 import '../../../../../../gen/assets.gen.dart';
 
@@ -25,6 +28,43 @@ class DirectorAppBarWidget extends StatelessWidget {
       children: [
         Row(
           children: [
+
+
+            GestureDetector(
+                                          onTap: 
+                                              () {
+                                                final router = getIt<AppRouter>();
+
+if (router.canPop()) {
+  router.back(); // or router.back();
+}
+
+                                               //    getIt<AppRouter>().navigatorKey.currentContext!.router.back();
+
+                                              },
+                                          child: Container(
+                                            height: 38.h,
+                                            width: 38.w,
+                                            padding: EdgeInsets.zero,
+                                            decoration: BoxDecoration(
+                                              color: Palette.yellow_FBD823,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
+                                            ),
+                                            child: Padding(
+                                              padding:  EdgeInsets.only(left:LanguageHelper.isAr(context)?0:8
+                                                  .w, ),
+                                              child: Icon(
+                                                 size: 20.sp,
+                                                LanguageHelper.isAr(context)
+                                                    ? Icons.arrow_forward_ios
+                                                    : Icons.arrow_back_ios,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        10.horizontalSpace,
             // profile photo image widget
             Container(
               width: 50.w,

@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:kf_ess_mobile_app/features/auth/data/models/response/auth_response_model.dart';
+import 'package:kf_ess_mobile_app/features/more/data/models/response/more_response_model.dart';
+import 'package:kf_ess_mobile_app/features/more/domain/entities/more_entity.dart';
+
+import '../../auth/data/models/response/auth_response_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../di/dependency_init.dart';
@@ -119,5 +122,20 @@ static void clearUserData() {
 
   static bool getSmartLogin() {
     return sharedPreferences.getBool("smartLoginToggle") ?? true;
+  }
+
+
+  static void setMoreEntityList(List<MoreModel> moreEntityList) {
+    sharedPreferences.setString("moreEntityList", jsonEncode(moreEntityList));
+  }
+
+  static List<MoreModel> getMoreEntityList() {
+    final String? moreEntityList = sharedPreferences.getString("moreEntityList");
+    if (moreEntityList != null) {
+      return (jsonDecode(moreEntityList) as List)
+          .map((e) => MoreModel.fromJson(e))
+          .toList();
+    }
+    return [];
   }
 }

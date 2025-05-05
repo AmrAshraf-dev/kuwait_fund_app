@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/insurance/data/models/response/insurance_family_member_response_model.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/family_member_entity.dart';
-import 'package:kf_ess_mobile_app/features/insurance/presentation/cubits/selected_family_members_cubit/selected_family_members_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../../../core/utility/palette.dart';
+import '../../data/models/response/insurance_family_member_response_model.dart';
+import '../../domain/entities/family_member_entity.dart';
+import '../cubits/selected_family_members_cubit/selected_family_members_cubit.dart';
+import '../../../shared/widgets/app_text.dart';
 
 class FamilyMemberItemCard extends StatelessWidget {
   final List<FamilyMemberEntity> familyMemberList;

@@ -2,14 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
  import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/language_helper.dart';
- import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-   import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart';
- import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/personal_info_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+import '../../../../core/helper/language_helper.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../profile/domain/entities/main_profile_entity.dart';
+import '../../../profile/presentation/widgets/personal_info_item_widget.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/custom_elevated_button_widget.dart';
+import '../../../shared/widgets/main_title_widget.dart';
+import '../../../../gen/assets.gen.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 

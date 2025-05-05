@@ -3,11 +3,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+import '../../core/constants/icons.dart';
+import '../../core/routes/routes.gr.dart';
+import '../../core/utility/palette.dart';
+import '../shared/data/local_data.dart';
+import '../../gen/assets.gen.dart';
 
 @RoutePage()
 class NavigationMainScreen extends StatefulWidget {

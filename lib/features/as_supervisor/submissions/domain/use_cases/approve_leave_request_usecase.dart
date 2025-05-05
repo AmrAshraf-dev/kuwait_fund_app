@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/data/models/request/approve_leave_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/repositories/submissions_repository.dart';
+import '../../data/models/request/approve_leave_request_model.dart';
+import '../repositories/submissions_repository.dart';
 
 import "../../../../../core/domain/usecase/base_usecase.dart";
 import '../../../../../core/network/base_handling.dart';

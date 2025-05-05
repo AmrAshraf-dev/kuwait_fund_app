@@ -17,7 +17,7 @@ EditChildRequestModel _$EditChildRequestModelFromJson(
       childGender: json['childGender'] as String?,
       childDisabilityDate: json['childDisabilityDate'] as String?,
       childDisabilityType: json['childDisabilityType'] as String?,
-      fileExtention: json['fileExtention'] as String?,
+      FileExtension: json['FileExtension'] as String?,
       bytes: json['bytes'] as String?,
     );
 
@@ -35,6 +35,6 @@ Map<String, dynamic> _$EditChildRequestModelToJson(
         'childDisabilityDate': value,
       if (instance.childDisabilityType case final value?)
         'childDisabilityType': value,
-      if (instance.fileExtention case final value?) 'fileExtention': value,
+      if (instance.FileExtension case final value?) 'FileExtension': value,
       if (instance.bytes case final value?) 'bytes': value,
     };

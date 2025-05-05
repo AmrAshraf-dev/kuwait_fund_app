@@ -1,26 +1,30 @@
 import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:kf_ess_mobile_app/core/extensions/size_extensions.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/create_request/presentation/widgets/sick_leave_file_picker_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
 import 'package:path/path.dart' as path;
+
+import '../../../core/extensions/size_extensions.dart';
+import '../../../core/helper/view_toolbox.dart';
+import '../../../core/utility/palette.dart';
+import 'app_text.dart';
+import 'custom_file_picker/custom_file_picker_cubit.dart';
+import 'file_picker_button_widget.dart';
 
 class FilePickerSection extends StatelessWidget {
   final FilePickerCubit filePickerCubit;
-  final ValueChanged<String?> onFileSelected;
-  final String title;
+   final String title;
+   final String keyName;
+     final GlobalKey<FormBuilderState>? customFormKey;
   const FilePickerSection({
     super.key,
     required this.filePickerCubit,
-    required this.onFileSelected,
-    required this.title,
+     required this.title, required this. keyName,
+   required this.customFormKey,
   });
 
   @override
@@ -46,11 +50,12 @@ class FilePickerSection extends StatelessWidget {
             BlocConsumer<FilePickerCubit, FilePickerState>(
               listener: (context, state) {
                 if (state is FilePickerReadyState) {
-                  onFileSelected(
-                      state.xFile.isNotEmpty ? state.xFile.first.path : null);
+                  customFormKey?.currentState!.fields[keyName]!.didChange(state.xFile.isNotEmpty ? state.xFile.first.path : null);
+                  
                 } else if (state is FilePickerErrorState) {
-                  onFileSelected(null);
-                  ViewsToolbox.showErrorAwesomeSnackBar(
+                 customFormKey?.currentState!.fields[keyName]!.didChange("");
+
+                   ViewsToolbox.showErrorAwesomeSnackBar(
                     context,
                     context.tr(state.message),
                   );
@@ -107,7 +112,6 @@ class _SelectedFilePreview extends StatelessWidget {
   final FilePickerCubit filePickerCubit;
 
   const _SelectedFilePreview({
-    super.key,
     required this.state,
     required this.filePickerCubit,
   });

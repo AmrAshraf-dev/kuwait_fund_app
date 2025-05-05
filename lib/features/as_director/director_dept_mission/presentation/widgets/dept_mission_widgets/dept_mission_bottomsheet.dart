@@ -2,19 +2,19 @@ import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/data/models/request/director_dept_mission_details_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_details_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/cubits/director_dept_mission_cubit.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/widgets/dept_mission_widgets/dept_mission_selectable_days_chips_widget.dart';
- import 'package:kf_ess_mobile_app/features/as_director/director_mission/domain/entities/director_mission_details_entity.dart';
- import 'package:kf_ess_mobile_app/features/as_director/director_mission/presentation/widgets/director_mission/director_mission_selectable_days_chips_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import '../../../../../../core/helper/view_toolbox.dart';
+import '../../../../../../core/routes/route_sevices.dart';
+import '../../../../../../core/utility/palette.dart';
+import '../../../data/models/request/director_dept_mission_details_request_model.dart';
+import '../../../domain/entities/director_dept_mission_details_entity.dart';
+import '../../../domain/entities/director_dept_mission_entity.dart';
+import '../../cubits/director_dept_mission_cubit.dart';
+import 'dept_mission_selectable_days_chips_widget.dart';
+import '../../../../director_mission/domain/entities/director_mission_details_entity.dart';
+import '../../../../director_mission/presentation/widgets/director_mission/director_mission_selectable_days_chips_widget.dart';
+import '../../../../../shared/widgets/app_text.dart';
+import '../../../../../shared/widgets/confirmation_popup_content_body.dart';
+import '../../../../../shared/widgets/custom_elevated_button_widget.dart';
  
 
 class DeptMissionsBottomSheet extends StatefulWidget {
@@ -222,13 +222,13 @@ class DeptMissionsDetailsListView extends StatelessWidget {
   Widget _buildMissionDeptDetailsTile(DirectorDeptMissionDetailsEntity visit, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
               color: Palette.grey_7B7B7B.withOpacity(0.3),
               blurRadius: 10.0,
-              offset: Offset(0, 4),
+              offset: const Offset(0, 4),
             ),
           ],
           color: Palette.white,

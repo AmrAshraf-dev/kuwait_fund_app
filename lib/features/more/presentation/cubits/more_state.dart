@@ -12,7 +12,7 @@ final class MoreLoadingState extends MoreState {}
 
 final class MoreReadyState extends MoreState {
   MoreReadyState(this.response);
-    BaseEntity<MoreEntity> response;
+    BaseEntity<List<MoreEntity>> response;
 
 }
 
