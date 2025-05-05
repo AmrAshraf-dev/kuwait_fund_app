@@ -14,7 +14,7 @@ part 'ads_state.dart';
 class AdsCubit extends Cubit<PagingState<int, AdsEntity>> {
   final GetAdsUseCase getAdsUseCase;
   int totalRecords = 0; // Track total records
-
+  int? pageSize;
   AdsCubit({required this.getAdsUseCase}) : super(PagingState());
 
   Future<void> fetchNextAdsPage() async {
@@ -24,7 +24,7 @@ class AdsCubit extends Cubit<PagingState<int, AdsEntity>> {
 
     try {
       final pageNumber = (currentState.keys?.last ?? 0) + 1;
-      final newItems = await getAds(pageNumber);
+      final newItems = await getAds(pageNumber, pageSize);
       final isLastPage = newItems.isEmpty;
 
       emit(state.copyWith(
@@ -41,9 +41,9 @@ class AdsCubit extends Cubit<PagingState<int, AdsEntity>> {
     }
   }
 
-  Future<List<AdsEntity>> getAds(int newKey) async {
-    final CustomResponseType<BaseEntity<List<AdsEntity>>> eitherPackagesOrFailure =
-        await getAdsUseCase(newKey);
+  Future<List<AdsEntity>> getAds(int newKey, int? pageSize) async {
+    final CustomResponseType<BaseEntity<List<AdsEntity>>>
+        eitherPackagesOrFailure = await getAdsUseCase(newKey);
 
     return eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
@@ -51,13 +51,12 @@ class AdsCubit extends Cubit<PagingState<int, AdsEntity>> {
       return [];
     }, (BaseEntity<List<AdsEntity>> response) {
       if (response.data != null) {
-        totalRecords = response.totalRecords ?? totalRecords; // Update total records
+        totalRecords =
+            response.totalRecords ?? totalRecords; // Update total records
         return response.data!;
       } else {
         return [];
       }
     });
   }
-
-
 }

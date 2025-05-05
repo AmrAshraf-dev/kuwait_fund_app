@@ -5,11 +5,11 @@ import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';
 import '../../../../../core/network/network_helper.dart';
 import '../../../../../error/failure.dart';
- import '../../models/response/ads_response_model.dart';
+import '../../models/response/ads_response_model.dart';
 
 abstract class AdsRemoteDataSource {
-  Future<CustomResponseType<AdsResponseModel>> getAds(int pageNumber
-       );
+  Future<CustomResponseType<AdsResponseModel>> getAds(
+      int pageNumber, int? pageSize);
 }
 
 @Injectable(as: AdsRemoteDataSource)
@@ -18,16 +18,17 @@ class AdsDataSourceImpl implements AdsRemoteDataSource {
   final NetworkHelper networkHelper;
 
   @override
-  Future<CustomResponseType<AdsResponseModel>> getAds(int pageNumber
-       ) async {
-    ({dynamic response, bool success}) result = await networkHelper
-        .post(path: ApiConstants.getAllAds,
-        data: {
-          "pageNumber": pageNumber,
-        },);
+  Future<CustomResponseType<AdsResponseModel>> getAds(
+      int pageNumber, int? pageSize) async {
+    ({dynamic response, bool success}) result = await networkHelper.post(
+      path: ApiConstants.getAllAds,
+      data: {
+        "pageNumber": pageNumber,
+        "pageSize": pageSize,
+      },
+    );
 
     if (result.success) {
-   
       return right(AdsResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));

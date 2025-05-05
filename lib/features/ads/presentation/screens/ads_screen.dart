@@ -8,10 +8,10 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:kf_ess_mobile_app/core/extensions/date_extensions.dart';
 import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
- import 'package:kf_ess_mobile_app/features/ads/presentation/cubits/ads_cubit.dart';
+import 'package:kf_ess_mobile_app/features/ads/presentation/cubits/ads_cubit.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
- import '../../../../core/helper/language_helper.dart';
+import '../../../../core/helper/language_helper.dart';
 
 import '../../../../core/utility/palette.dart';
 import '../../domain/entities/ads_entity.dart';
@@ -28,54 +28,43 @@ class AdsScreen extends StatefulWidget {
 
 class _AdsScreenState extends State<AdsScreen> {
   final AdsCubit adsCubit = getIt<AdsCubit>();
- 
 
-  
- 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => adsCubit,
-      child: MasterWidget(
-        isBackEnabled: true,
-        screenTitle: context.tr("advertisement"),
-        hasScroll: false,
-        widget:
+        create: (context) => adsCubit,
+        child: MasterWidget(
+            isBackEnabled: true,
+            screenTitle: context.tr("advertisement"),
+            hasScroll: false,
+            widget: BlocBuilder<AdsCubit, PagingState<int, AdsEntity>>(
+              bloc: adsCubit,
+              builder: (context, state) => PagedListView<int, AdsEntity>(
+                state: state,
+                fetchNextPage: adsCubit.fetchNextAdsPage,
+                builderDelegate: PagedChildBuilderDelegate(
+                  itemBuilder: (context, item, index) => AdsCard(item: item),
+                ),
+              ),
+            )));
 
+    // BlocBuilder<AdsCubit, PagingState<int, AdsEntity>>(
+    //     bloc: adsCubit,
+    //     builder: (context, state) =>
 
-         BlocBuilder<AdsCubit, PagingState<int, AdsEntity>>(
-    bloc: adsCubit,
-    builder: (context, state) => PagedListView<int, AdsEntity>(
-      state: state,
-      fetchNextPage: adsCubit.fetchNextAdsPage,
-      builderDelegate: PagedChildBuilderDelegate(
-        itemBuilder: (context, item, index) => AdsCard(item: item),
-      ),
-    ),
-  )));
+    // PagingListener(
+    //     controller: _pagingController,
+    //     builder: (context, state, fetchNextPage) => PagedListView<int, AdsEntity>(
+    //       state: state,
+    //       fetchNextPage: fetchNextPage,
+    //       builderDelegate: PagedChildBuilderDelegate(
+    // itemBuilder: (context, item, index) => AdsCard(item: item),
+    //       ),
+    //     ),
+    // )
 
-
-        // BlocBuilder<AdsCubit, PagingState<int, AdsEntity>>(
-        //     bloc: adsCubit,
-        //     builder: (context, state) =>
-        
-        // PagingListener(
-        //     controller: _pagingController,
-        //     builder: (context, state, fetchNextPage) => PagedListView<int, AdsEntity>(
-        //       state: state,
-        //       fetchNextPage: fetchNextPage,
-        //       builderDelegate: PagedChildBuilderDelegate(
-        // itemBuilder: (context, item, index) => AdsCard(item: item),
-        //       ),
-        //     ),
-        // )
-        
-            
-        //       ),
-    
+    //       ),
   }
-  
-
 }
 
 class AdsCard extends StatelessWidget {
@@ -100,35 +89,27 @@ class AdsCard extends StatelessWidget {
           6.verticalSpace,
           InkWell(
             onTap: () {
-                  CustomMainRouter.push(AdsDetailsRoute(adItem: item));
+              CustomMainRouter.push(AdsDetailsRoute(adItem: item));
             },
             child: Stack(
               children: [
                 ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(22.0.r)),
-                    child:
-                    (item.externalImage ==null || item.externalImage!.isEmpty )
-                    && (item.templateImageUrl ==null || item.templateImageUrl!.isEmpty)
-                    ? Image.asset(
-                      Assets.png.adsPlaceholder.path,
-                      fit: BoxFit.cover,
-                    ):
-                    
-                     CachedNetworkImage(
-                    imageUrl:   item.templateImageUrl!=null && item.templateImageUrl!.isNotEmpty
-                        ? item.templateImageUrl!
-                        : 
-                             item.externalImage!,
-                          
-                      fit: BoxFit.cover,
-                    )
-                    
-                    
-                    )
-                    
-                    
-                    
-                    ,
+                    child: (item.externalImage == null ||
+                                item.externalImage!.isEmpty) &&
+                            (item.templateImageUrl == null ||
+                                item.templateImageUrl!.isEmpty)
+                        ? Image.asset(
+                            Assets.png.adsPlaceholder.path,
+                            fit: BoxFit.cover,
+                          )
+                        : CachedNetworkImage(
+                            imageUrl: item.templateImageUrl != null &&
+                                    item.templateImageUrl!.isNotEmpty
+                                ? item.templateImageUrl!
+                                : item.externalImage!,
+                            fit: BoxFit.cover,
+                          )),
                 Align(
                   alignment: LanguageHelper.isAr(context)
                       ? Alignment.topLeft
@@ -168,23 +149,23 @@ class AdsCard extends StatelessWidget {
                               //   ),
                             ],
                           ),
-                             Container(
-                              width: 30.w,
-                              height: 30.w,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: item.id == 1
-                                    ? Palette.yellow_FBD823
-                                    : Palette.blue_002A69,
+                          Container(
+                            width: 30.w,
+                            height: 30.w,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(10.r),
+                              color: item.id == 1
+                                  ? Palette.yellow_FBD823
+                                  : Palette.blue_002A69,
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.arrow_forward,
+                                color: Palette.white,
                               ),
-                          child: Center(
-                            child: Icon(
-                              Icons.arrow_forward,
-                              color: Palette.white,
                             ),
                           ),
-                           ),
                         ],
                       ),
                     ),

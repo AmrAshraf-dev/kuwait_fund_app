@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kf_ess_mobile_app/features/ads/domain/entities/ads_entity.dart';
 
 import '../../../../core/constants/icons.dart';
 import '../../../../core/constants/images.dart';
@@ -35,13 +36,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeEntity? homeEntity;
-     final HomeCubit homeCubit = getIt<HomeCubit>();
-
+  final HomeCubit homeCubit = getIt<HomeCubit>();
+  int _currentIndex = 0;
+  AdsEntity? itemEntity;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value:  homeCubit..getLeaveDashboard(),
+      value: homeCubit..getLeaveDashboard(),
       child: MasterWidget(
           isBackEnabled: false,
           waterMarkImage: waterMarkImage3,
@@ -101,13 +103,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 38.h,
                             width: 38.w,
                             decoration: BoxDecoration(
-                           color: Palette.yellow_FBD823,
+                              color: Palette.yellow_FBD823,
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
-                              child: SvgPicture.asset(chatbot,
-                              color: Colors.white,),
+                              child: SvgPicture.asset(
+                                chatbot,
+                                color: Colors.white,
+                              ),
                             )),
                       ),
                       17.horizontalSpace,
@@ -123,8 +127,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(3.0),
-                              child: SvgPicture.asset(notification,
-                              color: Colors.white,),
+                              child: SvgPicture.asset(
+                                notification,
+                                color: Colors.white,
+                              ),
                             )),
                       ),
                     ],
@@ -190,7 +196,9 @@ class _HomeScreenState extends State<HomeScreen> {
               //create request section
               CreateRequestSection(),
               24.verticalSpace,
-              SliderSection(),
+              SliderSection(
+                itemEntity: itemEntity,
+              ),
               17.verticalSpace,
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 32.w, end: 22.w),

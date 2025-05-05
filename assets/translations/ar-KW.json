@@ -1,14 +1,10 @@
 {
-<<<<<<< HEAD
-  "directorMissions": "مهمات المدراء",
-=======
 
   "more_link": "المزيد",
 "mirriageContract/divorceDocument": "عقد الزواج/وثيقة الطلاق",
   "attachChildBirthCertificate": "شهادة ميلاد الطفل",
 "please_select_file": "يرجى اختيار ملف",
   "directorMissions":  "مهمات المدراء",
->>>>>>> 949f1442ae5d20332d37d8f2157960e7a21bc8d1
   "file_size_exceeds_1MB_limit": "حجم الملف يتجاوز الحد المسموح به 1 ميغابايت",
   "alert": "تنبيه",
   "please_select_date": "يرجى اختيار التاريخ",
