@@ -22,6 +22,10 @@ class CustomMainRouter {
     appRouter.push(route);
   }
 
+static void pushNamed(String routeName,
+      {Object? arguments, FutureOr<dynamic> Function(Object?)? then}) {
+    appRouter.pushPath(routeName,).then(then ?? (Object? value) {});
+  }
 
 
   static void back() {

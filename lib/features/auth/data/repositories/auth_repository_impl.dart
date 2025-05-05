@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart';
+import '../../../di/dependency_init.dart';
+import '../../../shared/data/local_data.dart';
+import '../../../shared/data/secured_storage_data.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../auth/data/data_sources/remote/auth_remote_data_source.dart';

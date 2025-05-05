@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/about/data/models/response/kf_board_of_directors_response_model.dart';
-import 'package:kf_ess_mobile_app/features/about/data/models/response/kf_managment_response_model.dart';
+import '../../models/response/kf_board_of_directors_response_model.dart';
+import '../../models/response/kf_managment_response_model.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';

@@ -1,10 +1,10 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/insurance/data/models/request/create_insurance_request_model.dart';
-import 'package:kf_ess_mobile_app/features/insurance/data/models/response/insurance_details_response_model.dart';
-import 'package:kf_ess_mobile_app/features/insurance/data/models/response/insurance_programs_response_model.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/family_member_entity.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_entity.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/subscriber_entity.dart';
+import '../models/request/create_insurance_request_model.dart';
+import '../models/response/insurance_details_response_model.dart';
+import '../models/response/insurance_programs_response_model.dart';
+import '../../domain/entities/family_member_entity.dart';
+import '../../domain/entities/insurance_entity.dart';
+import '../../domain/entities/subscriber_entity.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../insurance/data/data_sources/remote/insurance_remote_data_source.dart';

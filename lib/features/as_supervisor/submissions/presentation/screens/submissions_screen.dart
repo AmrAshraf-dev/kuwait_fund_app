@@ -3,18 +3,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submission_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/cubits/submission_cubit.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/presentation/widgets/submission_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
- import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+import '../../../../../core/helper/view_toolbox.dart';
+import '../../domain/entities/submission_entity.dart';
+import '../cubits/submission_cubit.dart';
+import '../widgets/submission_item_widget.dart';
+import '../../../../di/dependency_init.dart';
+import '../../../../shared/widgets/app_text.dart';
+import '../../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class SubmissionsScreen extends StatefulWidget {
-  const SubmissionsScreen({super.key , required this.isBackButtonEnabled});
-  final isBackButtonEnabled;
+  const SubmissionsScreen({super.key ,  this.isBackButtonEnabled});
+  final bool? isBackButtonEnabled;
 
   @override
   State<SubmissionsScreen> createState() => _SubmissionsScreenState();

@@ -1,6 +1,6 @@
-import "package:kf_ess_mobile_app/features/insurance/data/models/request/create_insurance_request_model.dart";
-import "package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_entity.dart";
-import "package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_programs.dart";
+import "../../data/models/request/create_insurance_request_model.dart";
+import "../entities/insurance_entity.dart";
+import "../entities/insurance_programs.dart";
 
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";

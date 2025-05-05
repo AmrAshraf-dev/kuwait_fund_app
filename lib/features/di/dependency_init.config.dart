@@ -33,6 +33,16 @@ import 'package:kf_ess_mobile_app/features/about/presentation/cubits/kf_board_of
     as _i952;
 import 'package:kf_ess_mobile_app/features/about/presentation/cubits/kf_managment_cubit/kf_managment_cubit.dart'
     as _i79;
+import 'package:kf_ess_mobile_app/features/ads/data/data_sources/remote/ads_remote_data_source.dart'
+    as _i313;
+import 'package:kf_ess_mobile_app/features/ads/data/repositories/ads_repository_impl.dart'
+    as _i58;
+import 'package:kf_ess_mobile_app/features/ads/domain/repositories/ads_repository.dart'
+    as _i358;
+import 'package:kf_ess_mobile_app/features/ads/domain/use_cases/get_ads_usecase.dart'
+    as _i127;
+import 'package:kf_ess_mobile_app/features/ads/presentation/cubits/ads_cubit.dart'
+    as _i223;
 import 'package:kf_ess_mobile_app/features/annual_leave_request/data/data_sources/remote/annual_leave_request_remote_data_source.dart'
     as _i429;
 import 'package:kf_ess_mobile_app/features/annual_leave_request/data/repositories/annual_leave_request_repository_impl.dart'
@@ -312,6 +322,8 @@ import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/get_experien
     as _i1009;
 import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/get_family_usecase.dart'
     as _i105;
+import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/get_lookup_usecase.dart'
+    as _i40;
 import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/get_profile_usecase.dart'
     as _i727;
 import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/get_qualifications_usecase.dart'
@@ -322,12 +334,8 @@ import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/address_c
     as _i626;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/child_cubit.dart'
     as _i583;
-import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_child_cubit.dart'
-    as _i493;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_profile_cubit.dart'
     as _i791;
-import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_spouse_cubit.dart'
-    as _i524;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/experiences_cubit.dart'
     as _i989;
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/family_cubit.dart'
@@ -500,6 +508,8 @@ Future<_i174.GetIt> $initGetIt(
       () => _i710.ProfileDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i951.ForgetPassRemoteDataSource>(
       () => _i951.ForgetPassDataSourceImpl(gh<_i675.NetworkHelper>()));
+  gh.factory<_i313.AdsRemoteDataSource>(
+      () => _i313.AdsDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i560.RequestsRemoteDataSource>(
       () => _i560.RequestsDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i706.SickLeaveRequestRemoteDataSource>(
@@ -606,9 +616,8 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i246.ProfileRepository>(() => _i249.ProfileRepositoryImp(
       profileRemoteDataSource: gh<_i710.ProfileRemoteDataSource>()));
-  gh.factory<_i429.EditSpouseRequestUseCase>(() =>
-      _i429.EditSpouseRequestUseCase(
-          editSpouseRequestRepository: gh<_i246.ProfileRepository>()));
+  gh.factory<_i429.SpouseRequestUseCase>(() => _i429.SpouseRequestUseCase(
+      editSpouseRequestRepository: gh<_i246.ProfileRepository>()));
   gh.factory<_i232.AuthCubit>(
       () => _i232.AuthCubit(getAuthUseCase: gh<_i464.GetAuthUseCase>()));
   gh.factory<_i304.EditChildRequestUseCase>(() => _i304.EditChildRequestUseCase(
@@ -638,6 +647,8 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i1035.EmergencyLeaveRequestRepository>()));
   gh.factory<_i727.GetProfileUseCase>(() => _i727.GetProfileUseCase(
       profileRepository: gh<_i246.ProfileRepository>()));
+  gh.factory<_i40.GetLookupUsecase>(() =>
+      _i40.GetLookupUsecase(profileRepository: gh<_i246.ProfileRepository>()));
   gh.factory<_i1026.VisitorsLogsRepository>(() =>
       _i72.VisitorsLogsRepositoryImp(
           visitorsLogsRemoteDataSource:
@@ -672,8 +683,6 @@ Future<_i174.GetIt> $initGetIt(
       getContactusUseCase: gh<_i587.GetContactusUseCase>()));
   gh.factory<_i910.CountriesGrantsCubit>(() => _i910.CountriesGrantsCubit(
       getCountriesGrantsUseCase: gh<_i243.GetCountriesGrantsUseCase>()));
-  gh.factory<_i493.EditChildCubit>(() => _i493.EditChildCubit(
-      editChildUseCase: gh<_i304.EditChildRequestUseCase>()));
   gh.factory<_i362.GetNotificationsUseCase>(() => _i362.GetNotificationsUseCase(
       notificationsRepository: gh<_i218.NotificationsRepository>()));
   gh.factory<_i1049.GetInsuranceUseCase>(() => _i1049.GetInsuranceUseCase(
@@ -701,6 +710,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i804.GetQualificationsUseCase>(() =>
       _i804.GetQualificationsUseCase(
           addQualificationsRepository: gh<_i246.ProfileRepository>()));
+  gh.factory<_i358.AdsRepository>(() => _i58.AdsRepositoryImp(
+      adsRemoteDataSource: gh<_i313.AdsRemoteDataSource>()));
   gh.factory<_i641.CreateInsuranceRequestCubit>(() =>
       _i641.CreateInsuranceRequestCubit(
           createInsuranceRequestUseCase:
@@ -720,8 +731,6 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i260.DirectorDeptMissionRepository>()));
   gh.factory<_i971.RejectLeaveRequestCubit>(() => _i971.RejectLeaveRequestCubit(
       rejectLeaveRequestUseCase: gh<_i138.RejectLeaveRequestUseCase>()));
-  gh.factory<_i583.ChildCubit>(
-      () => _i583.ChildCubit(getChildUseCase: gh<_i781.GetChildUseCase>()));
   gh.factory<_i693.MoreCubit>(
       () => _i693.MoreCubit(getMoreUseCase: gh<_i273.GetMoreUseCase>()));
   gh.factory<_i1045.CreateLoanRequestUseCase>(() =>
@@ -765,10 +774,13 @@ Future<_i174.GetIt> $initGetIt(
             gh<_i261.GetInsuranceMasterInfoUseCase>(),
         unsubscribeInsuranceUseCase: gh<_i603.UnsubscribeInsuranceUseCase>(),
       ));
-  gh.factory<_i524.EditSpouseCubit>(() => _i524.EditSpouseCubit(
-      editSpouseUseCase: gh<_i429.EditSpouseRequestUseCase>()));
   gh.factory<_i791.NotificationsCubit>(() => _i791.NotificationsCubit(
       getNotificationsUseCase: gh<_i362.GetNotificationsUseCase>()));
+  gh.factory<_i583.ChildCubit>(() => _i583.ChildCubit(
+        getChildUseCase: gh<_i781.GetChildUseCase>(),
+        editChildUseCase: gh<_i304.EditChildRequestUseCase>(),
+        getLookupUsecase: gh<_i40.GetLookupUsecase>(),
+      ));
   gh.factory<_i705.EditProfileRequestUseCase>(() =>
       _i705.EditProfileRequestUseCase(
           editProfileRequestRepository: gh<_i246.ProfileRepository>()));
@@ -779,8 +791,15 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i793.GetPersonalLoanMasterInfoUseCase>(() =>
       _i793.GetPersonalLoanMasterInfoUseCase(
           gh<_i815.LoanRequestRepository>()));
-  gh.factory<_i695.SpouseCubit>(
-      () => _i695.SpouseCubit(getSpouseUseCase: gh<_i520.GetSpouseUseCase>()));
+  gh.factory<_i127.GetAdsUseCase>(
+      () => _i127.GetAdsUseCase(adsRepository: gh<_i358.AdsRepository>()));
+  gh.factory<_i223.AdsCubit>(
+      () => _i223.AdsCubit(getAdsUseCase: gh<_i127.GetAdsUseCase>()));
+  gh.factory<_i695.SpouseCubit>(() => _i695.SpouseCubit(
+        spouseUseCase: gh<_i429.SpouseRequestUseCase>(),
+        getSpouseUseCase: gh<_i520.GetSpouseUseCase>(),
+        getLookupUsecase: gh<_i40.GetLookupUsecase>(),
+      ));
   gh.factory<_i992.LoanRequestCubit>(() => _i992.LoanRequestCubit(
         getLoanReasonsUseCase: gh<_i302.GetLoanReasonsUseCase>(),
         getPersonalLoanMasterInfoUseCase:
@@ -800,9 +819,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i596.SurveyCubit(getSurveyUseCase: gh<_i292.GetSurveyUseCase>()));
   gh.factory<_i989.ExperiencesCubit>(() => _i989.ExperiencesCubit(
       getExperiencesUseCase: gh<_i1009.GetExperiencesUseCase>()));
-  gh.factory<_i34.GetDirectorDeptMissionsDetailsUseCase>(() =>
-      _i34.GetDirectorDeptMissionsDetailsUseCase(
-          adminHomeRepository: gh<_i945.AdminHomeRepository>()));
   gh.factory<_i953.GetDirectorMissionsDetailsUseCase>(() =>
       _i953.GetDirectorMissionsDetailsUseCase(
           adminHomeRepository: gh<_i945.AdminHomeRepository>()));
@@ -811,6 +827,9 @@ Future<_i174.GetIt> $initGetIt(
           adminHomeRepository: gh<_i945.AdminHomeRepository>()));
   gh.factory<_i57.GetDirectorsListUseCase>(() => _i57.GetDirectorsListUseCase(
       adminHomeRepository: gh<_i945.AdminHomeRepository>()));
+  gh.factory<_i34.GetDirectorDeptMissionsDetailsUseCase>(() =>
+      _i34.GetDirectorDeptMissionsDetailsUseCase(
+          adminHomeRepository: gh<_i945.AdminHomeRepository>()));
   gh.factory<_i88.CreateSickLeaveRequestUseCase>(() =>
       _i88.CreateSickLeaveRequestUseCase(
           sickLeaveRequestRepository: gh<_i24.SickLeaveRequestRepository>()));

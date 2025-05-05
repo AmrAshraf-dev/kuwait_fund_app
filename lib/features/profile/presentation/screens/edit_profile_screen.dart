@@ -5,20 +5,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/edit_profile_cubit.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/profile_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/single_date_picker.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../di/dependency_init.dart';
+import '../../data/models/request/profile_request_model.dart';
+import '../../domain/entities/main_profile_entity.dart';
+import '../cubits/edit_profile_cubit.dart';
+import '../cubits/profile_cubit.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/custom_elevated_button_widget.dart';
+import '../../../shared/widgets/forms/single_date_picker.dart';
+import '../../../shared/widgets/forms/text_field_widget.dart';
+import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class EditProfileScreen extends StatefulWidget {

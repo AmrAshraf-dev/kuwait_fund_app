@@ -1,9 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_details_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_mission/domain/entities/director_mission_details_entity.dart';
 
 import '../../../../../shared/entity/base_entity.dart';
- 
+import '../../../domain/entities/director_dept_mission_details_entity.dart';
+
 part 'director_dept_mission_details_reponse_model.g.dart';
 
 /// Model that transforms the AdminHome data from the API to the

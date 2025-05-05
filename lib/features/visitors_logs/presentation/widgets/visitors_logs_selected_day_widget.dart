@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
  import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
+import '../../../../core/utility/palette.dart';
+import '../../domain/entities/visitor_logs_entity.dart';
 
 class SelectedDayWidget extends StatelessWidget {
   final List<VisitorsLogsEntity>? calendarResponse;

@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/loan_request/data/models/request/loan_request_request_model.dart';
+import '../../data/models/request/loan_request_request_model.dart';
 
 import "../../../../core/domain/usecase/base_usecase.dart";
 import '../../../../core/network/base_handling.dart';

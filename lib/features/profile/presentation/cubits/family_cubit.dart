@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/get_family_usecase.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/family_entity.dart';
+import '../../data/models/response/family_response_model.dart';
+import '../../domain/use_cases/get_family_usecase.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
@@ -20,7 +21,7 @@ class FamilyCubit extends Cubit<FamilyState> {
     await Future.delayed(const Duration(milliseconds: 100));
     emit(FamilyLoadingState());
 
-    final CustomResponseType<BaseEntity<List<FamilyModel>>>
+    final CustomResponseType<BaseEntity<List<FamilyEntity>>>
         eitherPackagesOrFailure = await getFamilyUseCase();
 
     eitherPackagesOrFailure.fold((Failure failure) {
@@ -28,7 +29,7 @@ class FamilyCubit extends Cubit<FamilyState> {
       emit(FamilyErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
-    }, (BaseEntity<List<FamilyModel>> response) {
+    }, (BaseEntity<List<FamilyEntity>> response) {
       if (response.data?.isEmpty ?? true) {
         emit(FamilyEmptyState());
         return;

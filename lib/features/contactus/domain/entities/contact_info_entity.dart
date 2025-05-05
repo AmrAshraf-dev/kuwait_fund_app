@@ -1,4 +1,4 @@
-import 'package:kf_ess_mobile_app/features/contactus/data/models/response/address_response_model.dart';
+import '../../data/models/response/address_response_model.dart';
 
 class ContactInfoEntity {
 

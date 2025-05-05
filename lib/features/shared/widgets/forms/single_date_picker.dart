@@ -21,7 +21,6 @@ class CustomSingleRangeDatePicker extends StatefulWidget {
     this.initNull = false,
     required this.keyNameFrom,
     this.validator,
-    this.onChanged,
     required this.customFormKey,
     this.fromLabelAboveField,
     this.labelTitle,
@@ -41,8 +40,7 @@ class CustomSingleRangeDatePicker extends StatefulWidget {
   final GlobalKey<FormBuilderState> customFormKey;
   final bool? disableField;
   final bool? initNull;
-  final Function(String?)? onChanged;
-  final String? fromLabelAboveField;
+   final String? fromLabelAboveField;
   final String? labelTitle;
   final int? consumedDays;
   final int? totalDays;
@@ -93,8 +91,7 @@ class _CustomSingleRangeDatePickerState
             },
             validator: widget.validator,
             disableEditingTextFiled: true,
-            onChanged: widget.onChanged,
-            borderColor: Palette.borderColorFill,
+             borderColor: Palette.borderColorFill,
             fromDateTimePicker: !(widget.disableField ?? false),
             backgroundColor: widget.disableField ?? false
                 ? Palette.borderColorFill

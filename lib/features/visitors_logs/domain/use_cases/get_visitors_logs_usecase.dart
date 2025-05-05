@@ -1,6 +1,6 @@
-import "package:kf_ess_mobile_app/features/visitors_logs/data/models/response/visitors_management_calendar_model.dart";
-import "package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart";
-import "package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart";
+import "../../data/models/response/visitors_management_calendar_model.dart";
+import "../entities/visitor_logs_entity.dart";
+import "../entities/visitor_logs_hosts_entity.dart";
 
 import "../../../../core/domain/usecase/base_usecase.dart";
 import "../../data/models/request/visitors_logs_request_model.dart";

@@ -1,25 +1,26 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/child_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_child_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/edit_spouse_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/profile_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/request/spouse_request_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/address_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/child_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/edit_child_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/edit_profile_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/edit_spouse_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/main_profile_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/qualifications_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/spouse_response_model.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';
 import '../../../../../core/network/network_helper.dart';
 import '../../../../../error/failure.dart';
+import '../../models/request/child_request_model.dart';
+import '../../models/request/edit_child_request_model.dart';
+import '../../models/request/edit_spouse_request_model.dart';
+import '../../models/request/profile_request_model.dart';
+import '../../models/request/spouse_request_model.dart';
+import '../../models/response/address_response_model.dart';
+import '../../models/response/child_response_model.dart';
+import '../../models/response/edit_child_response_model.dart';
+import '../../models/response/edit_profile_response_model.dart';
+import '../../models/response/edit_spouse_response_model.dart';
+import '../../models/response/experiences_response_model.dart';
+import '../../models/response/family_response_model.dart';
+import '../../models/response/lookup_response_model.dart';
+import '../../models/response/main_profile_response_model.dart';
+import '../../models/response/qualifications_response_model.dart';
+import '../../models/response/spouse_response_model.dart';
  
 abstract class ProfileRemoteDataSource {
   Future<CustomResponseType<MainProfileResponseModel>> getProfile(
@@ -41,6 +42,8 @@ abstract class ProfileRemoteDataSource {
 
   Future<CustomResponseType<EditChildResponseModel>> editChild(
       {required EditChildRequestModel editChildRequestModel});
+
+  Future<CustomResponseType<LookupResponseModel>> getLookup(String lookupPath) ;
 }
 
 @Injectable(as: ProfileRemoteDataSource)
@@ -176,6 +179,18 @@ class ProfileDataSourceImpl implements ProfileRemoteDataSource {
 
     if (result.success) {
       return right(EditChildResponseModel.fromJson(result.response));
+    } else {
+      return left(ServerFailure(message: result.response as String));
+    }
+  }
+  
+  @override
+  Future<CustomResponseType<LookupResponseModel>> getLookup(String lookupPath) async {
+    ({dynamic response, bool success}) result =
+        await networkHelper.get(path: lookupPath);
+
+    if (result.success) {
+      return right(LookupResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));
     }

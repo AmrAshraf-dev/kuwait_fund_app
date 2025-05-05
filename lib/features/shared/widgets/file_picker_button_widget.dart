@@ -1,13 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_file_picker/custom_file_picker_widget.dart';
 
-import '../../../shared/widgets/app_text.dart';
+import '../../../core/helper/view_toolbox.dart';
+import '../../../core/utility/palette.dart';
+import 'app_text.dart';
+import 'custom_elevated_button_widget.dart';
+import 'custom_file_picker/custom_file_picker_cubit.dart';
+import 'custom_file_picker/custom_file_picker_widget.dart';
 
 class  FilePickerButton extends StatelessWidget {
   final FilePickerCubit filePickerCubit;
@@ -40,10 +39,13 @@ final String title;
         children: [
           Icon(Icons.attach_file_outlined, color: Palette.blue_002A69),
           5.horizontalSpace,
-          AppText(
-            text:title  ,
-            style: AppTextStyle.medium_16,
-            textColor: Palette.black,
+          Flexible(
+             child: AppText(
+              maxLines: 2,
+              text:title  ,
+              style: AppTextStyle.medium_16,
+              textColor: Palette.black,
+            ),
           ),
         ],
       ),

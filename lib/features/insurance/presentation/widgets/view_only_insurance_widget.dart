@@ -2,17 +2,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_entity.dart';
-import 'package:kf_ess_mobile_app/features/insurance/presentation/cubits/insurance_cubit.dart';
-import 'package:kf_ess_mobile_app/features/insurance/presentation/cubits/insurance_member_cubit/insurance_member_cubit.dart';
-import 'package:kf_ess_mobile_app/features/insurance/presentation/widgets/insurance_program_dropmenu_widget.dart';
-import 'package:kf_ess_mobile_app/features/insurance/presentation/widgets/subscriber_item_card.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/text_field_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../di/dependency_init.dart';
+import '../../domain/entities/insurance_entity.dart';
+import '../cubits/insurance_cubit.dart';
+import '../cubits/insurance_member_cubit/insurance_member_cubit.dart';
+import 'insurance_program_dropmenu_widget.dart';
+import 'subscriber_item_card.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/custom_elevated_button_widget.dart';
+import '../../../shared/widgets/forms/text_field_widget.dart';
+import '../../../shared/widgets/main_title_widget.dart';
 
 class ViewOnlyInsuranceWidget extends StatelessWidget {
   final InsuranceEntity insuranceEntity;

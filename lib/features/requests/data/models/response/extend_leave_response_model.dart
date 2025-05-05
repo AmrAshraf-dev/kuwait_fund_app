@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/requests/domain/entities/extend_leave_entity.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../../domain/entities/extend_leave_entity.dart';
+import '../../../../shared/entity/base_entity.dart';
 
 part 'extend_leave_response_model.g.dart';
 

@@ -4,17 +4,16 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dart_ping/dart_ping.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/services/device_service.dart';
-import 'package:kf_ess_mobile_app/features/auth/data/models/request/auth_request_model.dart';
-import 'package:kf_ess_mobile_app/features/auth/presentation/cubits/auth_cubit.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/firebase/firebase_service.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/secured_storage_data.dart';
+import '../helper/view_toolbox.dart';
+import '../routes/route_sevices.dart';
+import '../routes/routes.gr.dart';
+import '../services/device_service.dart';
+import '../../features/auth/data/models/request/auth_request_model.dart';
+import '../../features/auth/presentation/cubits/auth_cubit.dart';
+import '../../features/di/dependency_init.dart';
+import '../../features/firebase/firebase_service.dart';
+import '../../features/shared/data/local_data.dart';
+import '../../features/shared/data/secured_storage_data.dart';
 
  
 class AuthInterceptor extends Interceptor {
@@ -95,8 +94,8 @@ Dio dio;
      options.headers.addAll({
       "Accept-Language": LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US",
       "Location": Platform.isAndroid ? "AndroidApp" : "IOSApp",
-      "DeviceIdentifier": FirebaseMessagingService().token ?? "",
-      "SessionIdentifier": DeviceService().getDeviceId(),
+      "DeviceIdentifier": DeviceService().getDeviceId() ,
+      "SessionIdentifier": FirebaseMessagingService().token ?? "",
       "Accept": "application/json",
       "Content-Type": "application/json",
       "Connection": "keep-alive",
@@ -134,7 +133,7 @@ Dio dio;
 
 
 
-      _reLogin() async {
+      Future<bool> _reLogin() async {
           final AuthCubit authCubit = getIt<AuthCubit>();
 
     // Retrieve saved credentials from local storage

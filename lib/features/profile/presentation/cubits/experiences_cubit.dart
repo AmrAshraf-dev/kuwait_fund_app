@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/profile/data/models/response/experiences_response_model.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/get_experiences_usecase.dart';
+import '../../data/models/response/experiences_response_model.dart';
+import '../../domain/use_cases/get_experiences_usecase.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';

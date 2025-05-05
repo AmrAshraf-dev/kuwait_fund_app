@@ -1,6 +1,6 @@
 import "package:equatable/equatable.dart";
-import "package:kf_ess_mobile_app/features/my_attendance/data/models/response/attendance_data_response_model.dart";
-import "package:kf_ess_mobile_app/features/my_attendance/data/models/response/in_out_time_response_model.dart";
+import "../../data/models/response/attendance_data_response_model.dart";
+import "../../data/models/response/in_out_time_response_model.dart";
 
 /// Entity that contains the data of the MyAttendance.
 class MyAttendanceEntity extends Equatable {

@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kf_ess_mobile_app/core/extensions/size_extensions.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/core/utility/theme.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+
+import '../../../../core/extensions/size_extensions.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../../core/utility/theme.dart';
+import '../../../../gen/assets.gen.dart';
+import '../app_text.dart';
 
 class CustomDropDownField<T> extends StatefulWidget {
   CustomDropDownField({
@@ -183,7 +184,9 @@ class _CustomDropDownFieldState<T> extends State<CustomDropDownField<T>> {
                                         vertical: 20.h,
                                       ),
                                       errorStyle: TextStyle(
-                                        color: Palette.red_FF0606,
+                                            fontSize: 12.sp,
+                    fontWeight: FontWeight.w400,
+                                         color: Palette.red_FF0606,
                                       ),
                                       hintText: context.tr("searchHere"),
                                       focusedErrorBorder: OutlineInputBorder(
@@ -354,7 +357,7 @@ class _CustomDropDownFieldState<T> extends State<CustomDropDownField<T>> {
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: AppText(
                             text: fieldState.errorText,
-                            style: AppTextStyle.regular_14,
+                            style: AppTextStyle.regular_12,
                             textColor: Palette.red_FF0606,
                           ),
                         ),

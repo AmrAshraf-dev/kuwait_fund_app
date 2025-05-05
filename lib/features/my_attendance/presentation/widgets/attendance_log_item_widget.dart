@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+
+import '../../../../core/utility/palette.dart';
+import '../../../shared/widgets/app_text.dart';
 
 class AttendanceLogCardItem extends StatelessWidget {
   final String date;

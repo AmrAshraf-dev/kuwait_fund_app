@@ -7,15 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/constants/images.dart';
-import 'package:kf_ess_mobile_app/core/helper/language_helper.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/drawer_widget.dart';
+import '../../../core/constants/icons.dart';
+import '../../../core/constants/images.dart';
+import '../../../core/helper/language_helper.dart';
+import '../../../core/routes/route_sevices.dart';
+import '../../../core/routes/routes.dart';
+import '../../../core/utility/palette.dart';
+import '../../di/dependency_init.dart';
+import 'app_text.dart';
+import 'drawer_widget.dart';
 
 import '../../../core/constants/general_constants.dart';
 import '../../../core/helper/view_toolbox.dart';
@@ -56,7 +56,7 @@ class MasterWidget extends StatefulWidget {
   final Function(bool)? hasInternet;
   final String? screenTitle;
   final dynamic appBar;
-  final bool isBackEnabled;
+  final bool? isBackEnabled;
   final bool isDrawerEnabled;
   final double appBarHeight;
   final Widget? appBarBody;
@@ -191,7 +191,7 @@ class _MasterWidgetState extends State<MasterWidget> {
                               children: [
                                 Directionality(
                                   textDirection: TextDirection.ltr,
-                                  child: widget.isBackEnabled
+                                  child: widget.isBackEnabled??true
                                       ? GestureDetector(
                                           onTap: widget.onBackTap ??
                                               () {

@@ -1,5 +1,5 @@
 import "package:equatable/equatable.dart";
-import "package:kf_ess_mobile_app/core/enums/request_type_enum.dart";
+import "../../../../core/enums/request_type_enum.dart";
 
 
 

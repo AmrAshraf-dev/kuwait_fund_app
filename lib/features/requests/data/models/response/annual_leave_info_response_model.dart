@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/requests/domain/entities/annual_leave_info_entity.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../../domain/entities/annual_leave_info_entity.dart';
+import '../../../../shared/entity/base_entity.dart';
 
 part 'annual_leave_info_response_model.g.dart';
 

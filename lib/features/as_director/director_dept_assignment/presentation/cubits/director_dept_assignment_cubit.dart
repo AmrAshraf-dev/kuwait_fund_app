@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/error/failure.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/domain/use_cases/get_director_dept_assignment_usecase.dart';
-
 import '../../../../../core/network/base_handling.dart';
-import "../../../../shared/entity/base_entity.dart";
+import '../../../../../error/failure.dart';
+import '../../data/models/request/director_dept_assignment_request_model.dart';
 import '../../domain/entities/director_dept_assignment_entity.dart';
+import '../../domain/use_cases/get_director_dept_assignment_usecase.dart';
+import '../../../../shared/entity/base_entity.dart';
+
 
 part 'director_dept_assignment_state.dart';
 
@@ -15,7 +16,8 @@ class DirectorDeptAssignmentCubit extends Cubit<DirectorDeptAssignmentState> {
   DirectorDeptAssignmentCubit(   this.getDirectorDeptAssignmentUseCase)
       : super(DirectorDeptAssignmentInitialState());
 
-  Future<void> getDirectorDeptAssignment(directorDeptAssignmentRequestModel, 
+  Future<void> getDirectorDeptAssignment
+  (DirectorDeptAssignmentRequestModel directorDeptAssignmentRequestModel, 
     ) async {
     emit(DirectorDeptAssignmentLoadingState());
 

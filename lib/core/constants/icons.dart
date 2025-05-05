@@ -30,11 +30,11 @@ const String sickLeave = '${iconDir}sick_leave.svg';
 const String trainingRequest = '${iconDir}training_request.svg';
 
 //more page
-const String profile = '${iconDir}profile.svg';
-const String myAttendance = '${iconDir}my_attendance.svg';
+//const String profile = '${iconDir}profile.svg';
+//const String myAttendance = '${iconDir}my_attendance.svg';
 const String loan = '${iconDir}loan.svg';
-const String advertisements = '${iconDir}advertisements.svg';
-const String survey = '${iconDir}survey.svg';
+//const String advertisements = '${iconDir}advertisements.svg';
+//const String survey = '${iconDir}surveyScreen.svg';
 const String enableSmartLogin = '${iconDir}enable_smart_login.svg';
 const String pdf = '${iconDir}pdf.svg';
 

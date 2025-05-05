@@ -3,19 +3,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/data/models/request/director_dept_assignment_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/data/models/response/director_dept_assignment_employee_response_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/domain/entities/director_dept_assignment_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/presentation/cubits/director_dept_assignment_cubit.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/presentation/widgets/dept_assignment_name_dropmenu_widget.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/domain/entities/director_dept_mission_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_mission/presentation/cubits/director_dept_mission_cubit.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+import '../../../../../core/helper/view_toolbox.dart';
+import '../../../../../core/utility/palette.dart';
+import '../../data/models/request/director_dept_assignment_request_model.dart';
+import '../../data/models/response/director_dept_assignment_employee_response_model.dart';
+import '../../domain/entities/director_dept_assignment_entity.dart';
+import '../cubits/director_dept_assignment_cubit.dart';
+import '../widgets/dept_assignment_name_dropmenu_widget.dart';
+import '../../../director_dept_mission/domain/entities/director_dept_mission_entity.dart';
+import '../../../director_dept_mission/presentation/cubits/director_dept_mission_cubit.dart';
+import '../../../../di/dependency_init.dart';
+import '../../../../shared/widgets/app_text.dart';
+import '../../../../shared/widgets/main_title_widget.dart';
+import '../../../../../gen/assets.gen.dart';
 
 import '../../../../shared/widgets/master_widget.dart';
 
@@ -52,7 +52,7 @@ class _DirectorDeptAssignmentScreenState
       child: MasterWidget(
           screenTitle: context.tr("dept_assignment"),
           hasScroll: false,
-          isBackEnabled: false,
+          isBackEnabled: true,
           widget: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(

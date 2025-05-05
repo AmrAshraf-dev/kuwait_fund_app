@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/loan_request/data/models/response/personal_loan_master_info_response_model.dart';
-import 'package:kf_ess_mobile_app/features/loan_request/data/models/response/personal_loan_reason_response_model.dart';
+import '../models/response/personal_loan_master_info_response_model.dart';
+import '../models/response/personal_loan_reason_response_model.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../loan_request/data/data_sources/remote/loan_request_remote_data_source.dart';

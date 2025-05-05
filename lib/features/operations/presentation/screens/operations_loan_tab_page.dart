@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/more/presentation/widgets/operations_loan_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/loan/loan_entity.dart';
-import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/loan_cubit/loan_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/advanced_expandable_section_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../di/dependency_init.dart';
+import '../../../more/presentation/widgets/operations_loan_item_widget.dart';
+import '../../domain/entities/loan/loan_entity.dart';
+import '../cubits/loan_cubit/loan_cubit.dart';
+import '../../../shared/widgets/advanced_expandable_section_widget.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/main_title_widget.dart';
 
 class OperationsLoanTabPage extends StatelessWidget {
   OperationsLoanTabPage({super.key});

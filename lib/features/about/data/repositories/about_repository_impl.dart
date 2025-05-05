@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/about/data/models/response/kf_board_of_directors_response_model.dart';
-import 'package:kf_ess_mobile_app/features/about/data/models/response/kf_managment_response_model.dart';
+import '../models/response/kf_board_of_directors_response_model.dart';
+import '../models/response/kf_managment_response_model.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../about/data/data_sources/remote/about_remote_data_source.dart';

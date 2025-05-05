@@ -1,15 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart' as Assets;
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/home/presentation/screens/widgets/create_request_card_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+
+import '../../../../../core/constants/icons.dart';
+import '../../../../../core/routes/route_sevices.dart';
+import '../../../../../core/routes/routes.gr.dart';
+import '../../../../../core/utility/palette.dart';
+import '../../../../shared/widgets/app_text.dart';
+import 'create_request_card_item_widget.dart';
 
 class CreateRequestSection extends StatefulWidget {
   const CreateRequestSection({super.key});

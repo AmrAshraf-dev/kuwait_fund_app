@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/core/network/api/network_apis_constants.dart';
-import 'package:kf_ess_mobile_app/core/network/base_handling.dart';
-import 'package:kf_ess_mobile_app/core/network/network_helper.dart';
-import 'package:kf_ess_mobile_app/error/failure.dart';
-import 'package:kf_ess_mobile_app/features/annual_leave_request/data/models/response/leave_balance_response_model.dart';
-import 'package:kf_ess_mobile_app/features/create_request/data/models/response/leave_balance_response_model.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../../../../core/network/api/network_apis_constants.dart';
+import '../../../../../core/network/base_handling.dart';
+import '../../../../../core/network/network_helper.dart';
+import '../../../../../error/failure.dart';
+import '../../../../annual_leave_request/data/models/response/leave_balance_response_model.dart';
+import '../../models/response/leave_balance_response_model.dart';
+import '../../../../shared/entity/base_entity.dart';
 
 abstract class SickLeaveRequestRemoteDataSource {
   Future<CustomResponseType<BaseEntity<String>>> createSickLeaveRequest(

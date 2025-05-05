@@ -3,14 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/auth_screens_app_bar_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/drawer_widget.dart';
+import '../../../../core/constants/icons.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/auth_screens_app_bar_widget.dart';
+import '../../../shared/widgets/custom_elevated_button_widget.dart';
+import '../../../shared/widgets/drawer_widget.dart';
 
 import '../../../shared/widgets/master_widget.dart';
 

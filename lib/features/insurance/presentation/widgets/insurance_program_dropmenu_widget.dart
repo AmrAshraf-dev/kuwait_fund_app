@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_programs.dart';
-import 'package:kf_ess_mobile_app/features/insurance/presentation/cubits/insurance_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/forms/drop_down_field.dart';
+import '../../../../core/helper/app_validator.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../di/dependency_init.dart';
+import '../../domain/entities/insurance_programs.dart';
+import '../cubits/insurance_cubit.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/forms/drop_down_field.dart';
 
 class InsuranceProgramDropmenu extends StatelessWidget {
   final String? initalValue;

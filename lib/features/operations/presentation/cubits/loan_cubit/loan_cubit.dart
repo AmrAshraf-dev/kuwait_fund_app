@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/core/network/base_handling.dart';
-import 'package:kf_ess_mobile_app/error/failure.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/loan/loan_entity.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/use_cases/loan_usecase/get_loan_usecase.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../../../../core/network/base_handling.dart';
+import '../../../../../error/failure.dart';
+import '../../../domain/entities/loan/loan_entity.dart';
+import '../../../domain/use_cases/loan_usecase/get_loan_usecase.dart';
+import '../../../../shared/entity/base_entity.dart';
 
 part 'loan_state.dart';
 

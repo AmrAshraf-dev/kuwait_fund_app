@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/contribution_entity.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/repositories/operations_repository.dart';
+import '../../entities/contribution_entity.dart';
+import '../../repositories/operations_repository.dart';
 
 import "../../../../../core/domain/usecase/base_usecase.dart";
 import '../../../../../core/network/base_handling.dart';

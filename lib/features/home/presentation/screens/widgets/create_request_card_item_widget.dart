@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../../../../core/utility/palette.dart';
+import '../../../../shared/widgets/app_text.dart';
 
 class CreateRequestCardItem extends StatelessWidget {
   final String title;

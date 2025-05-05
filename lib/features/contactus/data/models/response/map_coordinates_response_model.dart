@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-  import 'package:kf_ess_mobile_app/features/contactus/domain/entities/map_coordinates_entity.dart';
+import '../../../domain/entities/map_coordinates_entity.dart';
 
 part 'map_coordinates_response_model.g.dart';
 

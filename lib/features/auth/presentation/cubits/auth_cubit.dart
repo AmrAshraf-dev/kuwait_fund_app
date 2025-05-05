@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
+import 'package:kf_ess_mobile_app/features/more/presentation/cubits/more_cubit.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';
@@ -21,15 +23,17 @@ class AuthCubit extends Cubit<AuthState> {
     final CustomResponseType<BaseEntity<AuthEntity>> eitherPackagesOrFailure =
         await getAuthUseCase(authModel);
 
-   return  eitherPackagesOrFailure.fold((Failure failure) {
+    return eitherPackagesOrFailure.fold((Failure failure) {
       final FailureToMassage massage = FailureToMassage();
       emit(AuthErrorState(
         message: massage.mapFailureToMessage(failure),
       ));
       return false;
-    }, (BaseEntity<AuthEntity> response) {
+    }, (BaseEntity<AuthEntity> response) async {
       if (response.code == 200) {
         emit(AuthReadyState(response));
+        await getIt<MoreCubit>().getMore();
+
         return true;
       } else {
         emit(AuthErrorState(message: "wrong_user_password"));

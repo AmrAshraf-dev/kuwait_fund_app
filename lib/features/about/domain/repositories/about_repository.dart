@@ -1,5 +1,5 @@
-import "package:kf_ess_mobile_app/features/about/domain/entities/kf_board_of_directors_entity.dart";
-import "package:kf_ess_mobile_app/features/about/domain/entities/kf_managment_entity.dart";
+import "../entities/kf_board_of_directors_entity.dart";
+import "../entities/kf_managment_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";

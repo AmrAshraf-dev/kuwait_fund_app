@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/notifications/domain/entities/notifications_entity.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+import '../../../../core/utility/palette.dart';
+import '../../domain/entities/notifications_entity.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class NotificationDetailsScreen extends StatefulWidget {

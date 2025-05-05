@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/insurance/data/models/response/insurance_family_member_response_model.dart';
+import '../../../data/models/response/insurance_family_member_response_model.dart';
 
 part 'selected_family_members_state.dart';
 

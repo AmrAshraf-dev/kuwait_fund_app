@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/core/enums/request_type_enum.dart';
+import '../../../../../core/enums/request_type_enum.dart';
 
 import '../../../../shared/entity/base_entity.dart';
 import '../../../domain/entities/notifications_entity.dart';

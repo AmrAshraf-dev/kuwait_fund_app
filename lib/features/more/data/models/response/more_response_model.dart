@@ -16,8 +16,11 @@ part 'more_response_model.g.dart';
 @JsonSerializable()
 class MoreModel extends MoreEntity {
   MoreModel({
-    required super.var1,
-    required super.var2,
+    required super.menuTitleAr,
+    required super.menuTitleEn,
+    required super.iconUrl,
+    required super.children,
+    required super.navigationKey,
   });
 
   factory MoreModel.fromJson(Map<String, dynamic> json) =>
@@ -27,7 +30,7 @@ class MoreModel extends MoreEntity {
 }
 
 @JsonSerializable()
-class MoreResponseModel extends BaseEntity<MoreModel> {
+class MoreResponseModel extends BaseEntity<List<MoreModel>> {
   const MoreResponseModel({
     super.code,
     super.data,

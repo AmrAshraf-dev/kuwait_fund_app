@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kf_ess_mobile_app/core/helper/app_validator.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+
+import '../../../../core/helper/app_validator.dart';
+import '../../../../core/utility/palette.dart';
 
 class TextLabel extends StatefulWidget {
   const TextLabel({
@@ -167,6 +168,9 @@ class _TextLabelState extends State<TextLabel> {
               borderSide: BorderSide(color: Palette.red_FF0606),
             ),
             errorStyle: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+            
               color: Palette.red_FF0606,
             ),
             contentPadding: EdgeInsets.symmetric(

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/Child_entity.dart';
+import '../../../domain/entities/child_entity.dart';
 
 import '../../../../shared/entity/base_entity.dart';
 
@@ -17,7 +17,8 @@ part 'child_response_model.g.dart';
 class ChildModel extends ChildEntity {
   const ChildModel({
     super.id,
-    super.name,
+    super.nameArabic,
+    super.nameEnglish,
     super.civilID,
     super.birthDate,
     super.gender,

@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_entity.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_hosts_entity.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/cubits/visitors_logs_cubit.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_selected_day_widget.dart';
-import 'package:kf_ess_mobile_app/features/visitors_logs/presentation/widgets/visitors_logs_bottomsheet.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../data/models/request/visitors_logs_details_request_model.dart';
+import '../../domain/entities/visitor_logs_entity.dart';
+import '../../domain/entities/visitor_logs_hosts_entity.dart';
+import '../cubits/visitors_logs_cubit.dart';
+import 'visitors_logs_selected_day_widget.dart';
+import 'visitors_logs_bottomsheet.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class VisitorsLogsCalenderWidget extends StatefulWidget {

@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/notifications/domain/entities/notifications_entity.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/utility/palette.dart';
+import '../../domain/entities/notifications_entity.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/custom_elevated_button_widget.dart';
+import '../../../../gen/assets.gen.dart';
 
 class ResponseNotificationWidget extends StatelessWidget {
   const ResponseNotificationWidget({super.key, required this.notification});

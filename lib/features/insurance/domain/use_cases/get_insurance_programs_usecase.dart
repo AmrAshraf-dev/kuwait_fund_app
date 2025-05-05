@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_programs.dart';
+import '../entities/insurance_programs.dart';
 
 import "../../../../core/domain/usecase/base_usecase.dart";
 import '../../../../core/network/base_handling.dart';

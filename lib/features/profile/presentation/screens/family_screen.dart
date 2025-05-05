@@ -10,6 +10,7 @@ import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 import 'package:kf_ess_mobile_app/features/profile/data/models/response/family_response_model.dart';
+import 'package:kf_ess_mobile_app/features/profile/domain/entities/family_entity.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/family_cubit.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/add_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/data_with_edit_card.dart';
@@ -37,7 +38,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
   }
 
   final FamilyCubit _familyCubit = getIt<FamilyCubit>();
-  List<FamilyModel>? familyEntity;
+  List<FamilyEntity>? familyEntity;
   @override
   Widget build(BuildContext context) {
     return MasterWidget(
@@ -104,9 +105,10 @@ class _FamilyScreenState extends State<FamilyScreen> {
                       itemBuilder: (context, index) {
                         return DataWithEditCard(
                           title: familyEntity?[index].name ?? '',
-                          subTitle: familyEntity?[index].relation ??
-                              '', //context.tr("spouse"),
-                          icon: index == 1
+                          subTitle:"",
+                          //  familyEntity?[index].relation ??
+                          //     '', //context.tr("spouse"),
+                          icon: familyEntity?[index].relation == 'S'
                               ? Assets.svg.female.svg()
                               : Assets.svg.male.svg(),
                           withEdit: true,
