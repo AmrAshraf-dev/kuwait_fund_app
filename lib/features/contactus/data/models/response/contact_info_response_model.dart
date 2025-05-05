@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/contactus/data/models/response/address_response_model.dart';
-import 'package:kf_ess_mobile_app/features/contactus/domain/entities/contact_info_entity.dart';
+import 'address_response_model.dart';
+import '../../../domain/entities/contact_info_entity.dart';
 
 part 'contact_info_response_model.g.dart';
 

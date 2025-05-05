@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/extensions/size_extensions.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/core/utility/theme.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import '../../../core/extensions/size_extensions.dart';
+import '../../../core/routes/route_sevices.dart';
+import '../../../core/utility/palette.dart';
+import '../../../core/utility/theme.dart';
+import 'app_text.dart';
+import 'custom_elevated_button_widget.dart';
  
 
 class PopupContentBody extends StatelessWidget {

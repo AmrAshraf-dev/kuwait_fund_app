@@ -3,19 +3,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/about/presentation/cubits/general_information_cubit/general_information_cubit.dart';
-import 'package:kf_ess_mobile_app/features/about/presentation/cubits/kf_board_of_directors_cubit/kf_board_of_directors_cubit.dart';
-import 'package:kf_ess_mobile_app/features/about/presentation/cubits/kf_managment_cubit/kf_managment_cubit.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/fund_profile_item.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/profile_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/cubit/tab_cubit/tab_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/utility/palette.dart';
+import '../cubits/general_information_cubit/general_information_cubit.dart';
+import '../cubits/kf_board_of_directors_cubit/kf_board_of_directors_cubit.dart';
+import '../cubits/kf_managment_cubit/kf_managment_cubit.dart';
+import '../../../di/dependency_init.dart';
+import '../../../profile/presentation/widgets/fund_profile_item.dart';
+import '../../../profile/presentation/widgets/profile_item_widget.dart';
+import '../../../shared/cubit/tab_cubit/tab_cubit.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class AboutScreen extends StatefulWidget {

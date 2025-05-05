@@ -29,10 +29,10 @@ final class VisitorsManagementCalendarReadyState extends VisitorsLogsState {
 }
 
 
-final class VisitorsLogsCanViewState extends VisitorsLogsState {
-  VisitorsLogsCanViewState( );
+// final class VisitorsLogsCanViewState extends VisitorsLogsState {
+//   VisitorsLogsCanViewState( );
  
-}
+// }
 
 final class VisitorsLogsDetailsReadyState extends VisitorsLogsState {
   VisitorsLogsDetailsReadyState(this.response, this.showNewBottomSheet);
@@ -40,8 +40,8 @@ final class VisitorsLogsDetailsReadyState extends VisitorsLogsState {
   BaseEntity<List<VisitorsLogsDetailsEntity>> response;
 }
 
-final class VisitorsLogsCanNotViewState extends VisitorsLogsState {
+// final class VisitorsLogsCanNotViewState extends VisitorsLogsState {
   
-  VisitorsLogsCanNotViewState();
-}
+//   VisitorsLogsCanNotViewState();
+// }
 abstract class VisitorsLogsState {}

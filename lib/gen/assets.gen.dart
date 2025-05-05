@@ -35,6 +35,10 @@ class $AssetsPdfGen {
 class $AssetsPngGen {
   const $AssetsPngGen();
 
+  /// File path: assets/png/ads_placeholder.png
+  AssetGenImage get adsPlaceholder =>
+      const AssetGenImage('assets/png/ads_placeholder.png');
+
   /// File path: assets/png/android12.png
   AssetGenImage get android12 =>
       const AssetGenImage('assets/png/android12.png');
@@ -112,6 +116,7 @@ class $AssetsPngGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        adsPlaceholder,
         android12,
         android13,
         appLogo,
@@ -149,35 +154,14 @@ class $AssetsPublicGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
-  /// File path: assets/svg/Dept. Assignment.svg
-  SvgGenImage get deptAssignment =>
-      const SvgGenImage('assets/svg/Dept. Assignment.svg');
-
-  /// File path: assets/svg/Dept. Mission.svg
-  SvgGenImage get deptMissionSvg =>
-      const SvgGenImage('assets/svg/Dept. Mission.svg');
-
-  /// File path: assets/svg/dept_mission.svg
-  SvgGenImage get deptMissionSvg_ =>
-      const SvgGenImage('assets/svg/dept_mission.svg');
-
-  /// File path: assets/svg/Director Mission.svg
-  SvgGenImage get directorMissionSvg =>
-      const SvgGenImage('assets/svg/Director Mission.svg');
-
-  /// File path: assets/svg/director_mission.svg
-  SvgGenImage get directorMissionSvg_ =>
-      const SvgGenImage('assets/svg/director_mission.svg');
-
   /// File path: assets/svg/about.svg
   SvgGenImage get about => const SvgGenImage('assets/svg/about.svg');
 
   /// File path: assets/svg/address.svg
   SvgGenImage get address => const SvgGenImage('assets/svg/address.svg');
 
-  /// File path: assets/svg/advertisements.svg
-  SvgGenImage get advertisements =>
-      const SvgGenImage('assets/svg/advertisements.svg');
+  /// File path: assets/svg/adsScreen.svg
+  SvgGenImage get adsScreen => const SvgGenImage('assets/svg/adsScreen.svg');
 
   /// File path: assets/svg/annual_leave.svg
   SvgGenImage get annualLeave =>
@@ -214,9 +198,9 @@ class $AssetsSvgGen {
   SvgGenImage get calendarEye =>
       const SvgGenImage('assets/svg/calendar_eye.svg');
 
-  /// File path: assets/svg/certificates.svg
-  SvgGenImage get certificates =>
-      const SvgGenImage('assets/svg/certificates.svg');
+  /// File path: assets/svg/certificatesScreen.svg
+  SvgGenImage get certificatesScreen =>
+      const SvgGenImage('assets/svg/certificatesScreen.svg');
 
   /// File path: assets/svg/chatbot.svg
   SvgGenImage get chatbot => const SvgGenImage('assets/svg/chatbot.svg');
@@ -271,6 +255,26 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/delete.svg
   SvgGenImage get delete => const SvgGenImage('assets/svg/delete.svg');
+
+  /// File path: assets/svg/dept_mission.svg
+  SvgGenImage get deptMission =>
+      const SvgGenImage('assets/svg/dept_mission.svg');
+
+  /// File path: assets/svg/directorDeptAssignmentScreen.svg
+  SvgGenImage get directorDeptAssignmentScreen =>
+      const SvgGenImage('assets/svg/directorDeptAssignmentScreen.svg');
+
+  /// File path: assets/svg/directorDeptMissionScreen.svg
+  SvgGenImage get directorDeptMissionScreen =>
+      const SvgGenImage('assets/svg/directorDeptMissionScreen.svg');
+
+  /// File path: assets/svg/directorMissionScreen.svg
+  SvgGenImage get directorMissionScreen =>
+      const SvgGenImage('assets/svg/directorMissionScreen.svg');
+
+  /// File path: assets/svg/director_mission.svg
+  SvgGenImage get directorMission =>
+      const SvgGenImage('assets/svg/director_mission.svg');
 
   /// File path: assets/svg/documents.svg
   SvgGenImage get documents => const SvgGenImage('assets/svg/documents.svg');
@@ -331,9 +335,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/more.svg
   SvgGenImage get more => const SvgGenImage('assets/svg/more.svg');
 
-  /// File path: assets/svg/my_attendance.svg
-  SvgGenImage get myAttendance =>
-      const SvgGenImage('assets/svg/my_attendance.svg');
+  /// File path: assets/svg/myAttendanceScreen.svg
+  SvgGenImage get myAttendanceScreen =>
+      const SvgGenImage('assets/svg/myAttendanceScreen.svg');
 
   /// File path: assets/svg/my_requests_more_menu.svg
   SvgGenImage get myRequestsMoreMenu =>
@@ -374,8 +378,9 @@ class $AssetsSvgGen {
   SvgGenImage get personalInfo =>
       const SvgGenImage('assets/svg/personal_info.svg');
 
-  /// File path: assets/svg/profile.svg
-  SvgGenImage get profile => const SvgGenImage('assets/svg/profile.svg');
+  /// File path: assets/svg/profileScreen.svg
+  SvgGenImage get profileScreen =>
+      const SvgGenImage('assets/svg/profileScreen.svg');
 
   /// File path: assets/svg/qualification.svg
   SvgGenImage get qualification =>
@@ -398,12 +403,13 @@ class $AssetsSvgGen {
   SvgGenImage get submissions =>
       const SvgGenImage('assets/svg/submissions.svg');
 
-  /// File path: assets/svg/submssions_more_menu.svg
-  SvgGenImage get submssionsMoreMenu =>
-      const SvgGenImage('assets/svg/submssions_more_menu.svg');
+  /// File path: assets/svg/submissionsDirectorScreen.svg
+  SvgGenImage get submissionsDirectorScreen =>
+      const SvgGenImage('assets/svg/submissionsDirectorScreen.svg');
 
-  /// File path: assets/svg/survey.svg
-  SvgGenImage get survey => const SvgGenImage('assets/svg/survey.svg');
+  /// File path: assets/svg/surveyScreen.svg
+  SvgGenImage get surveyScreen =>
+      const SvgGenImage('assets/svg/surveyScreen.svg');
 
   /// File path: assets/svg/timer.svg
   SvgGenImage get timer => const SvgGenImage('assets/svg/timer.svg');
@@ -419,9 +425,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/verified.svg
   SvgGenImage get verified => const SvgGenImage('assets/svg/verified.svg');
 
-  /// File path: assets/svg/visitorlogs.svg
-  SvgGenImage get visitorlogs =>
-      const SvgGenImage('assets/svg/visitorlogs.svg');
+  /// File path: assets/svg/visitorsLogsScreen.svg
+  SvgGenImage get visitorsLogsScreen =>
+      const SvgGenImage('assets/svg/visitorsLogsScreen.svg');
 
   /// File path: assets/svg/work.svg
   SvgGenImage get work => const SvgGenImage('assets/svg/work.svg');
@@ -431,14 +437,9 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-        deptAssignment,
-        deptMissionSvg,
-        deptMissionSvg_,
-        directorMissionSvg,
-        directorMissionSvg_,
         about,
         address,
-        advertisements,
+        adsScreen,
         annualLeave,
         annualLeaveViewAll,
         appVersion,
@@ -449,7 +450,7 @@ class $AssetsSvgGen {
         calander,
         calendar,
         calendarEye,
-        certificates,
+        certificatesScreen,
         chatbot,
         checkMark,
         clock,
@@ -465,6 +466,11 @@ class $AssetsSvgGen {
         dateOutlineBadged,
         dateIcon,
         delete,
+        deptMission,
+        directorDeptAssignmentScreen,
+        directorDeptMissionScreen,
+        directorMissionScreen,
+        directorMission,
         documents,
         drawer,
         drawerAbout,
@@ -483,7 +489,7 @@ class $AssetsSvgGen {
         logout,
         male,
         more,
-        myAttendance,
+        myAttendanceScreen,
         myRequestsMoreMenu,
         noInternet,
         notificationCopy,
@@ -495,20 +501,20 @@ class $AssetsSvgGen {
         pepole,
         person,
         personalInfo,
-        profile,
+        profileScreen,
         qualification,
         questionMark,
         refresh,
         requests,
         sickLeave,
         submissions,
-        submssionsMoreMenu,
-        survey,
+        submissionsDirectorScreen,
+        surveyScreen,
         timer,
         trainingRequest,
         userCircleIcon,
         verified,
-        visitorlogs,
+        visitorsLogsScreen,
         work,
         world
       ];

@@ -3,14 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+import '../../../core/constants/icons.dart';
+import '../../../core/routes/route_sevices.dart';
+import '../../../core/routes/routes.gr.dart';
+import '../../../core/utility/palette.dart';
+import '../widgets/app_text.dart';
+import '../widgets/custom_elevated_button_widget.dart';
+import '../widgets/main_title_widget.dart';
+import '../widgets/master_widget.dart';
 
 @RoutePage()
 class ThankYouScreen extends StatefulWidget {
@@ -70,7 +70,7 @@ class _ThankYouScreenState extends State<ThankYouScreen> {
                             10.verticalSpace,
                             AppText(
                                 maxLines: 2,
-                                text: widget.subtitle ?? "",
+                                text:context.tr(widget.subtitle ??""),
                                 style: AppTextStyle.medium_16,
                                 textAlign: TextAlign.center,
                                 textColor: Palette.gery_6C6D6F),

@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_details_request.model.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/request/annual_leave_info_request_model.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/request/delete_leave_request_model.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/request/extend_leave_request_model.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/response/annual_leave_details_response_model.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/response/annual_leave_info_response_model.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/response/delete_leave_request_response_model.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/response/extend_leave_response_model.dart';
-import 'package:kf_ess_mobile_app/features/requests/data/models/response/request_type_response_model.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../models/request/annual_leave_details_request.model.dart';
+import '../../models/request/annual_leave_info_request_model.dart';
+import '../../models/request/delete_leave_request_model.dart';
+import '../../models/request/extend_leave_request_model.dart';
+import '../../models/response/annual_leave_details_response_model.dart';
+import '../../models/response/annual_leave_info_response_model.dart';
+import '../../models/response/delete_leave_request_response_model.dart';
+import '../../models/response/extend_leave_response_model.dart';
+import '../../models/response/request_type_response_model.dart';
+import '../../../../shared/entity/base_entity.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';

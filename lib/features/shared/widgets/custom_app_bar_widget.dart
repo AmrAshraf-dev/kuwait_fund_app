@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/constants/images.dart';
-import 'package:kf_ess_mobile_app/core/helper/language_helper.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../../core/constants/icons.dart';
+import '../../../core/constants/images.dart';
+import '../../../core/helper/language_helper.dart';
+import '../../../core/routes/route_sevices.dart';
+import '../../../core/utility/palette.dart';
+import 'app_text.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isBackEnabled;

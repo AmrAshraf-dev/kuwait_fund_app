@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/language_helper.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/cubit/locale_cubit/locale_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_app_bar_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import '../../../core/helper/language_helper.dart';
+import '../../../core/utility/palette.dart';
+import '../../di/dependency_init.dart';
+import '../cubit/locale_cubit/locale_cubit.dart';
+import 'app_text.dart';
+import 'custom_app_bar_widget.dart';
+import 'custom_elevated_button_widget.dart';
 
 class AuthAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final LocaleCubit _localeCubit = getIt<LocaleCubit>();

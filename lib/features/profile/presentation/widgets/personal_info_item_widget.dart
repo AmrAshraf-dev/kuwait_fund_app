@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../shared/widgets/app_text.dart';
 
 class PersonalInfoItemWidget extends StatelessWidget {
   const PersonalInfoItemWidget({super.key ,required this.title,required this.body , this.withDivider = true});

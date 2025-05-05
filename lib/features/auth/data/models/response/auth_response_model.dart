@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/auth/data/models/response/token_info_model.dart';
-import 'package:kf_ess_mobile_app/features/auth/data/models/response/user_info_model.dart';
+import 'token_info_model.dart';
+import 'user_info_model.dart';
 
 import '../../../../shared/entity/base_entity.dart';
 import '../../../domain/entities/auth_entity.dart';

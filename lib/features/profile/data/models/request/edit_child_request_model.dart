@@ -19,7 +19,7 @@ class EditChildRequestModel {
     this.childGender,
     this.childDisabilityDate,
     this.childDisabilityType,
-    this.fileExtention,
+    this.FileExtension,
     this.bytes,
   });
 
@@ -33,7 +33,7 @@ class EditChildRequestModel {
   final String? childGender;
   final String? childDisabilityDate;
   final String? childDisabilityType;
-  final String? fileExtention;
+  final String? FileExtension;
   final String? bytes;
 
   Map<String, dynamic> toJson() => _$EditChildRequestModelToJson(this);

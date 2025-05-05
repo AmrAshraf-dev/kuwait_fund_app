@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/core/domain/usecase/base_usecase.dart';
-import 'package:kf_ess_mobile_app/error/failure.dart';
+import '../../../../core/domain/usecase/base_usecase.dart';
+import '../../../../error/failure.dart';
 
 import '../../../shared/entity/base_entity.dart';
 import '../entities/insurance_entity.dart';

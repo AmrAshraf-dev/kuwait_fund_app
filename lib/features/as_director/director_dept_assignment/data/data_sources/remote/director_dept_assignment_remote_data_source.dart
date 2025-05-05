@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/data/models/request/director_dept_assignment_request_model.dart';
-import 'package:kf_ess_mobile_app/features/as_director/director_dept_assignment/data/models/response/director_dept_assignment_response_model.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../models/request/director_dept_assignment_request_model.dart';
+import '../../models/response/director_dept_assignment_response_model.dart';
+import '../../../../../shared/entity/base_entity.dart';
 
 import '../../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../../core/network/base_handling.dart';

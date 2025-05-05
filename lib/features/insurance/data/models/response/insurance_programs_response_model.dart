@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_programs.dart';
+import '../../../domain/entities/insurance_programs.dart';
 
 import '../../../../shared/entity/base_entity.dart';
 

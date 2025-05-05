@@ -77,8 +77,7 @@ class AppRoutesConstants {
   static const String trainingSubmissionDetails =
       'trainingSubmissionDetailsScreen';
 
-  static const String visitorsLogs = 'visitorsLogsScreen';
-  static const String visitorsLogsMoreMenu = '/visitorsLogsScreen';
+   static const String visitorsLogsMoreMenu = '/visitorsLogsScreen';
 
   static const String requests = 'requestsScreen';
 
@@ -131,8 +130,6 @@ class AppRoutesConstants {
   static var requestsDirector = '/requestsDirectorScreen';
 
   static var directorDeptMissionRoute = '/directorDeptMissionScreen';
-
-  static var directorDeptAssignmentNavigation = '/directorDeptAssignmentNavigationScreen';
 
   static var directorMission = '/directorMissionScreen';
 

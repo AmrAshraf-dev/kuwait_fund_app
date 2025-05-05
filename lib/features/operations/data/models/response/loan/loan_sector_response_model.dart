@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/loan/loan_sector_entity.dart';
+import '../../../../domain/entities/loan/loan_sector_entity.dart';
 
 part 'loan_sector_response_model.freezed.dart';
 part 'loan_sector_response_model.g.dart';

@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_map_coordinates_usecase.dart';
-import 'package:kf_ess_mobile_app/features/contactus/domain/use_cases/get_telephone_fax_usecase.dart';
+import '../../domain/use_cases/get_map_coordinates_usecase.dart';
+import '../../domain/use_cases/get_telephone_fax_usecase.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';

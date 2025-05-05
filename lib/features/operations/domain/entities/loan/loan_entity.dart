@@ -1,4 +1,4 @@
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/loan/loan_country_entity.dart';
+import 'loan_country_entity.dart';
 
 class LoanEntity {
   final String divisionName;

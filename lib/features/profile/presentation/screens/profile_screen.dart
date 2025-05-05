@@ -3,20 +3,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/constants/icons.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/main_profile_entity.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/profile_entity.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/cubits/profile_cubit.dart';
-import 'package:kf_ess_mobile_app/features/profile/presentation/widgets/profile_item_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/gen/assets.gen.dart';
+import '../../../../core/constants/icons.dart';
+import '../../../../core/helper/language_helper.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../di/dependency_init.dart';
+import '../../domain/entities/main_profile_entity.dart';
+import '../../domain/entities/profile_entity.dart';
+import '../cubits/profile_cubit.dart';
+import '../widgets/profile_item_widget.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../../gen/assets.gen.dart';
 
-import '../../../peraonal_info/presentation/widget/EditButton.dart';
+import '../../../personal_info/presentation/widget/EditButton.dart';
 import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
@@ -117,11 +118,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     color: Palette.backgroundColorDark),
                               ),
                               7.verticalSpace,
+                            LanguageHelper.isAr(context)?
                               AppText(
                                 text: profileEntity?.profile?.nameArabic ??
                                     '', //"Ahmad Riyad Abdel",
                                 style: AppTextStyle.bold_16,
-                              ),
+                              ):
                                  AppText(
                                 text: profileEntity?.profile?.nameEnglish ??
                                     '', //"Ahmad Riyad Abdel",

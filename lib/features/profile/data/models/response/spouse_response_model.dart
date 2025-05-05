@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/spouse_entity.dart';
+import '../../../domain/entities/spouse_entity.dart';
 
 import '../../../../shared/entity/base_entity.dart';
 
@@ -17,7 +17,8 @@ part 'spouse_response_model.g.dart';
 class SpouseModel extends SpouseEntity {
   const SpouseModel({
     super.id,
-    super.name,
+    super.nameArabic,
+    super.nameEnglish,
     super.civilID,
     super.birthDate,
     super.status,

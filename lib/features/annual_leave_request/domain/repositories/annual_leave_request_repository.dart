@@ -1,5 +1,5 @@
  
-import "package:kf_ess_mobile_app/features/annual_leave_request/domain/entities/annual_leave_request_entity.dart";
+import "../entities/annual_leave_request_entity.dart";
 
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";

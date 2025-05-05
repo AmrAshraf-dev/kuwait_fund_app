@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/master_widget.dart';
 
 @RoutePage()
 class AboutItemDetailsScreen extends StatelessWidget {

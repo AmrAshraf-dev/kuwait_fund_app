@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/my_attendance/domain/entities/my_attendance_entity.dart';
+import '../../../domain/entities/my_attendance_entity.dart';
 
 part 'in_out_time_response_model.g.dart';
 

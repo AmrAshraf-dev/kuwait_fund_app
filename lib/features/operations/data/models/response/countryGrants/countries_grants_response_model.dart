@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/operations/domain/entities/country_grants_entity.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../../../../domain/entities/country_grants_entity.dart';
+import '../../../../../shared/entity/base_entity.dart';
 
 part 'countries_grants_response_model.g.dart';
 

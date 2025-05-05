@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/core/domain/usecase/base_usecase.dart';
-import 'package:kf_ess_mobile_app/core/network/base_handling.dart';
-  import 'package:kf_ess_mobile_app/features/visitors_logs/domain/repositories/visitors_logs_repository.dart';
+import '../../../../core/domain/usecase/base_usecase.dart';
+import '../../../../core/network/base_handling.dart';
+import '../repositories/visitors_logs_repository.dart';
 
 @injectable
 class GetCanViewVisitorsLogsUsecase

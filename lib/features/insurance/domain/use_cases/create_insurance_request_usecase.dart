@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/insurance/data/models/request/create_insurance_request_model.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/insurance_entity.dart';
+import '../../data/models/request/create_insurance_request_model.dart';
+import '../entities/insurance_entity.dart';
 
 import "../../../../core/domain/usecase/base_usecase.dart";
 import '../../../../core/network/base_handling.dart';

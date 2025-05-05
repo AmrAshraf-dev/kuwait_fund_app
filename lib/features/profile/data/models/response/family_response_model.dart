@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../shared/entity/base_entity.dart';
-import '../../../domain/entities/Family_entity.dart';
+import '../../../domain/entities/family_entity.dart';
 
 part 'family_response_model.g.dart';
 

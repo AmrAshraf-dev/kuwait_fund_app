@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/certificates/presentation/cubits/certificates_cubit.dart';
-import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/master_widget.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/pdf_bottomsheet_widget/pdf_cubit.dart';
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../../core/utility/palette.dart';
+import '../cubits/certificates_cubit.dart';
+import '../../../di/dependency_init.dart';
+import '../../../shared/widgets/app_text.dart';
+import '../../../shared/widgets/custom_elevated_button_widget.dart';
+import '../../../shared/widgets/master_widget.dart';
+import '../../../shared/widgets/pdf_bottomsheet_widget/pdf_cubit.dart';
 
 @RoutePage()
 class CertificateDetailsScreen extends StatelessWidget {

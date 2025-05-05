@@ -5,7 +5,7 @@ import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';
 import '../../../../../core/network/network_helper.dart';
 import '../../../../../error/failure.dart';
- import '../../models/response/home_response_model.dart';
+import '../../models/response/home_response_model.dart';
 
 abstract class HomeRemoteDataSource {
   Future<CustomResponseType<HomeResponseModel>> getHome(

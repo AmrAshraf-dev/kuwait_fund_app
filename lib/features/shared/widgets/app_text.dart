@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/core/utility/theme.dart';
+import '../../../core/utility/palette.dart';
+import '../../../core/utility/theme.dart';
 
 import '../../../core/helper/language_helper.dart';
 

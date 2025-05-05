@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:kf_ess_mobile_app/features/auth/data/models/response/token_info_model.dart';
-import 'package:kf_ess_mobile_app/features/auth/data/models/response/user_info_model.dart';
+import '../../data/models/response/token_info_model.dart';
+import '../../data/models/response/user_info_model.dart';
 
 class AuthEntity extends Equatable {
   final TokenInfoModel tokenInfo;

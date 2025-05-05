@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/features/insurance/domain/entities/subscriber_entity.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../domain/entities/subscriber_entity.dart';
+import '../../../shared/widgets/app_text.dart';
 
 class SubscriberItemCard extends StatelessWidget {
   final List<SubscriberEntity> subscriberList;

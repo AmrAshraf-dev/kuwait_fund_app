@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../../../core/utility/palette.dart';
+import '../../../shared/widgets/app_text.dart';
  
-class SelectableDaysChips  extends StatelessWidget {
+class SelectableDaysChips  extends StatefulWidget {
   final DateTime selectedDate;
   final List<String> calendarVisitorsLogsDates;
   final Function(String) onDaySelected;
@@ -17,17 +17,44 @@ class SelectableDaysChips  extends StatelessWidget {
   });
 
   @override
+  State<SelectableDaysChips> createState() => _SelectableDaysChipsState();
+}
+
+class _SelectableDaysChipsState extends State<SelectableDaysChips> {
+  late ScrollController  scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+ 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final selectedIndex = widget.calendarVisitorsLogsDates.indexWhere(
+        (date) => DateFormat("dd/MM/yyyy").format(widget.selectedDate) == date,
+      );
+      if (selectedIndex != -1) {
+        scrollController.animateTo(
+          selectedIndex * 60.w, // Adjust item width as needed
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
+  }
+  @override
   Widget build(BuildContext context) {
+   
+
     return SizedBox(
       height: 40.h,
       child: ListView(
+        controller: scrollController,
         scrollDirection: Axis.horizontal,
-        children: calendarVisitorsLogsDates.map(( calendarDateItem) {
+        children: widget.calendarVisitorsLogsDates.map(( calendarDateItem) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: GestureDetector(
               onTap: () {
-                onDaySelected(calendarDateItem);
+                widget.onDaySelected(calendarDateItem);
                 
               },
               child: Container(
@@ -36,12 +63,12 @@ class SelectableDaysChips  extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: 
                   
-                  DateFormat("dd/MM/yyyy").format(selectedDate) == calendarDateItem
+                  DateFormat("dd/MM/yyyy").format(widget.selectedDate) == calendarDateItem
                       ? Colors.yellow
                       : Colors.white,
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-                      color: DateFormat("dd/MM/yyyy").format(selectedDate) == calendarDateItem
+                      color: DateFormat("dd/MM/yyyy").format(widget.selectedDate) == calendarDateItem
                           ? Colors.transparent
                           : Palette.gery_DADADA),
                 ),

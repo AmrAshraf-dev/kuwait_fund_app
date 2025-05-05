@@ -3,7 +3,9 @@ import "package:equatable/equatable.dart";
 /// Entity that contains the data of the Profile.
 class SpouseEntity extends Equatable {
   final String? id;
-  final String? name;
+  final String? nameArabic;
+    final String? nameEnglish;
+
   final String? civilID;
   final String? birthDate;
   final String? status;
@@ -14,7 +16,8 @@ class SpouseEntity extends Equatable {
   /// Entity that contains the data of the Profile.
   const SpouseEntity(
       {this.id,
-      this.name,
+      this.nameArabic,
+      this.nameEnglish,
       this.civilID,
       this.birthDate,
       this.status,

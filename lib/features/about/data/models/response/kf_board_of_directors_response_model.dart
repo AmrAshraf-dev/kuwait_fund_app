@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/about/domain/entities/kf_board_of_directors_entity.dart';
+import '../../../domain/entities/kf_board_of_directors_entity.dart';
 
 import '../../../../shared/entity/base_entity.dart';
 

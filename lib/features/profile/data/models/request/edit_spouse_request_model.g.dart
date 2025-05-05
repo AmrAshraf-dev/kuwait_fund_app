@@ -16,7 +16,7 @@ EditSpouseRequestModel _$EditSpouseRequestModelFromJson(
       spouserBirthDate: json['spouserBirthDate'] as String?,
       spouseStatus: (json['spouseStatus'] as num?)?.toInt(),
       spouseStatusDate: json['spouseStatusDate'] as String?,
-      fileExtention: json['fileExtention'] as String?,
+      FileExtension: json['FileExtension'] as String?,
       bytes: json['bytes'] as String?,
     );
 
@@ -34,6 +34,6 @@ Map<String, dynamic> _$EditSpouseRequestModelToJson(
       if (instance.spouseStatus case final value?) 'spouseStatus': value,
       if (instance.spouseStatusDate case final value?)
         'spouseStatusDate': value,
-      if (instance.fileExtention case final value?) 'fileExtention': value,
+      if (instance.FileExtension case final value?) 'FileExtension': value,
       if (instance.bytes case final value?) 'bytes': value,
     };

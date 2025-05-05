@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/entities/address_entity.dart';
-import 'package:kf_ess_mobile_app/features/profile/domain/use_cases/get_address_usecase.dart';
+import '../../domain/entities/address_entity.dart';
+import '../../domain/use_cases/get_address_usecase.dart';
 
 import "../../../../core/network/base_handling.dart";
 import '../../../../error/failure.dart';

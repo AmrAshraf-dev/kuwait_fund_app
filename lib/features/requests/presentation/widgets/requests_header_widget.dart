@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/features/requests/presentation/cubits/requests_cubit/requests_cubit.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../../core/utility/palette.dart';
+import '../cubits/requests_cubit/requests_cubit.dart';
+import '../../../shared/widgets/app_text.dart';
 import 'package:provider/provider.dart';
 
 class RequestsHeaderWidget extends StatelessWidget {

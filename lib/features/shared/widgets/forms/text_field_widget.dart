@@ -114,6 +114,8 @@ class TextFieldWidget extends StatelessWidget {
                     borderSide: BorderSide(color: Palette.red_FF0606),
                   ),
                   errorStyle: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w400,
                     color: Palette.red_FF0606,
                   ),
                   contentPadding: contentPadding ??

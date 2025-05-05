@@ -1,29 +1,26 @@
 import 'dart:convert';
-import 'package:auto_route/auto_route.dart';
-import 'package:kf_ess_mobile_app/features/shared/data/local_data.dart';
-import 'package:path/path.dart' as path;
 
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
-import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
-import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
-import 'package:kf_ess_mobile_app/features/create_request/data/models/request/sick_leave_request_model.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
+import 'package:flutter_form_builder/src/form_builder.dart';
+import 'package:path/path.dart' as path;
 import 'package:share_plus/share_plus.dart';
 
+import '../../../../core/helper/view_toolbox.dart';
+import '../../../../core/routes/route_sevices.dart';
+import '../../../../core/routes/routes.gr.dart';
+import '../../../shared/widgets/custom_elevated_button_widget.dart';
+import '../../data/models/request/sick_leave_request_model.dart';
 import '../cubits/sick_leave_request_cubit.dart';
 
 class SubmitButton extends StatelessWidget {
-  final String? selectedFile;
-  final CreateSickLeaveRequestCubit createSickLeaveRequestCubit;
-
+   final CreateSickLeaveRequestCubit createSickLeaveRequestCubit;
+ final GlobalKey<FormBuilderState> formKey;
   const SubmitButton({
     super.key,
-    required this.selectedFile,
-    required this.createSickLeaveRequestCubit,
+     required this.createSickLeaveRequestCubit, required this. formKey,
   });
 
   @override
@@ -61,21 +58,14 @@ class SubmitButton extends StatelessWidget {
         } else {
           return CustomElevatedButton(
             onPressed: () async {
-              if (selectedFile == null) {
-                ViewsToolbox.showMessageBottomsheet(
-                  context: context,
-                  status: ConfirmationPopupStatus.failure,
-                  message: context.tr("please_attach_medical_report_file"),
-                  closeOnlyPopup: true,
-                );
-              } else {
+           if(formKey.currentState?.saveAndValidate() == true){
                 createSickLeaveRequestCubit.createSickLeaveRequest(
                   SickLeaveRequestModel(
-                    bytes: await _getFileBytes(XFile(selectedFile!)),
-                    fileExtention: _getFileExtension(selectedFile!),
+                    bytes: await _getFileBytes(XFile(formKey.currentState?.fields["medicalReportFile"]?.value)),
+                    fileExtention: _getFileExtension(formKey.currentState?.fields["medicalReportFile"]?.value),
                   ),
                 );
-              }
+           }
             },
             text: context.tr("submit"),
           );

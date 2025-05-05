@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/annual_leave_request/domain/entities/emergency_leave_entity.dart';
-import 'package:kf_ess_mobile_app/features/emergency_leave_request/domain/repositories/emergency_leave_request_repository.dart';
+import '../../../annual_leave_request/domain/entities/emergency_leave_entity.dart';
+import '../repositories/emergency_leave_request_repository.dart';
 
 import "../../../../core/domain/usecase/base_usecase.dart";
 import '../../../../core/network/base_handling.dart';

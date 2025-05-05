@@ -11,19 +11,19 @@ import '../../../../core/network/base_handling.dart';
 
 
 @injectable
-class GetMoreUseCase implements UseCase<BaseEntity<MoreEntity>, MoreRequestModel> {
+class GetMoreUseCase implements UseCaseNoParam<BaseEntity<List<MoreEntity>>> {
     GetMoreUseCase ({required this.moreRepository});
 
   final MoreRepository moreRepository;
 
 
   @override
-  Future<CustomResponseType<BaseEntity<MoreEntity>>> call(
-    MoreRequestModel params,
+  Future<CustomResponseType<BaseEntity<List<MoreEntity>>>> call(
+  
   ) {
     
     
-    return moreRepository.getMore(moreParams: params);
+    return moreRepository.getMore( );
     
   }
 }

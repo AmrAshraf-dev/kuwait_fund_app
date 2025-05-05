@@ -1,9 +1,9 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kf_ess_mobile_app/core/utility/palette.dart';
-import 'package:kf_ess_mobile_app/core/utility/theme.dart';
-import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import '../../../core/utility/palette.dart';
+import '../../../core/utility/theme.dart';
+import 'app_text.dart';
 
 class ExpandableSection extends StatelessWidget {
   const ExpandableSection(

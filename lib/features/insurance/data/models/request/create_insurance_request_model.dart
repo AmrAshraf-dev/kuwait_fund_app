@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kf_ess_mobile_app/features/insurance/data/models/response/insurance_family_member_response_model.dart';
+import '../response/insurance_family_member_response_model.dart';
 
 part 'create_insurance_request_model.g.dart';
 

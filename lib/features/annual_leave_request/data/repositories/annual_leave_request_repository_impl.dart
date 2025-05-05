@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/annual_leave_request/data/models/response/leave_balance_response_model.dart';
-import 'package:kf_ess_mobile_app/features/annual_leave_request/domain/entities/annual_leave_request_entity.dart';
-import 'package:kf_ess_mobile_app/features/shared/entity/base_entity.dart';
+import '../models/response/leave_balance_response_model.dart';
+import '../../domain/entities/annual_leave_request_entity.dart';
+import '../../../shared/entity/base_entity.dart';
  
 import '../../../../core/network/base_handling.dart';
  import '../../domain/repositories/annual_leave_request_repository.dart';

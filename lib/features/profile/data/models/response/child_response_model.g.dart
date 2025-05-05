@@ -6,10 +6,32 @@ part of 'child_response_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChildModel _$ChildModelFromJson(Map<String, dynamic> json) => ChildModel();
+ChildModel _$ChildModelFromJson(Map<String, dynamic> json) => ChildModel(
+      id: json['id'] as String?,
+      nameArabic: json['nameArabic'] as String?,
+      nameEnglish: json['nameEnglish'] as String?,
+      civilID: json['civilID'] as String?,
+      birthDate: json['birthDate'] as String?,
+      gender: json['gender'] as String?,
+      childDisabilityDate: json['childDisabilityDate'] as String?,
+      childDisabilityType: json['childDisabilityType'] as String?,
+      attachmentInfo: json['attachmentInfo'] as String?,
+    );
 
 Map<String, dynamic> _$ChildModelToJson(ChildModel instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      if (instance.nameEnglish case final value?) 'nameEnglish': value,
+      if (instance.nameArabic case final value?) 'nameArabic': value,
+      if (instance.civilID case final value?) 'civilID': value,
+      if (instance.birthDate case final value?) 'birthDate': value,
+      if (instance.gender case final value?) 'gender': value,
+      if (instance.childDisabilityDate case final value?)
+        'childDisabilityDate': value,
+      if (instance.childDisabilityType case final value?)
+        'childDisabilityType': value,
+      if (instance.attachmentInfo case final value?) 'attachmentInfo': value,
+    };
 
 ChildResponseModel _$ChildResponseModelFromJson(Map<String, dynamic> json) =>
     ChildResponseModel(

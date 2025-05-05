@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/entities/submission_entity.dart';
-import 'package:kf_ess_mobile_app/features/as_supervisor/submissions/domain/use_cases/submissions_usecase.dart';
+import '../../domain/entities/submission_entity.dart';
+import '../../domain/use_cases/submissions_usecase.dart';
 
 import "../../../../../core/network/base_handling.dart";
 import '../../../../../error/failure.dart';

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:kf_ess_mobile_app/features/operations/data/models/response/contributions/contributions_response_model.dart';
-import 'package:kf_ess_mobile_app/features/operations/data/models/response/countryGrants/countries_grants_response_model.dart';
-import 'package:kf_ess_mobile_app/features/operations/data/models/response/institutionGrants/institutions_grants_response_model.dart';
-import 'package:kf_ess_mobile_app/features/operations/data/models/response/loan/loan_response_model.dart';
+import '../../models/response/contributions/contributions_response_model.dart';
+import '../../models/response/countryGrants/countries_grants_response_model.dart';
+import '../../models/response/institutionGrants/institutions_grants_response_model.dart';
+import '../../models/response/loan/loan_response_model.dart';
 
 import '../../../../../core/network/api/network_apis_constants.dart';
 import '../../../../../core/network/base_handling.dart';

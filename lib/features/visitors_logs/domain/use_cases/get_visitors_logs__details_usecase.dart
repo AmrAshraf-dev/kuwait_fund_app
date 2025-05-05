@@ -1,5 +1,5 @@
-  import "package:kf_ess_mobile_app/features/visitors_logs/data/models/request/visitors_logs_details_request_model.dart";
-import "package:kf_ess_mobile_app/features/visitors_logs/domain/entities/visitor_logs_details_entity.dart";
+import "../../data/models/request/visitors_logs_details_request_model.dart";
+import "../entities/visitor_logs_details_entity.dart";
   
 import "../../../../core/domain/usecase/base_usecase.dart";
   import "../repositories/visitors_logs_repository.dart";

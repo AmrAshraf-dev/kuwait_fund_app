@@ -14,7 +14,7 @@ final class FamilyEmptyState extends FamilyState {}
 
 final class FamilyReadyState extends FamilyState {
   FamilyReadyState(this.response);
-  BaseEntity<List<FamilyModel>> response;
+  BaseEntity<List<FamilyEntity>> response;
 }
 
 abstract class FamilyState {}
