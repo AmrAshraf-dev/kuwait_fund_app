@@ -236,7 +236,17 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                                             validator:
                                                 FormBuilderValidators.compose([
                                               FormBuilderValidators.required(),
-                                              FormBuilderValidators.numeric(),
+                                              (value) {
+                                                final englishNumbersRegex =
+                                                    RegExp(r'^[0-9]+$');
+                                                if (value == null ||
+                                                    !englishNumbersRegex
+                                                        .hasMatch(value)) {
+                                                  return context.tr(
+                                                      "please_enter_valid_english_numbers");
+                                                }
+                                                return null;
+                                              },
                                               // FormBuilderValidators.alphabetical(),
                                               FormBuilderValidators.minLength(
                                                   11),
@@ -489,6 +499,17 @@ class _AddFamilyScreenState extends State<AddFamilyScreen> {
                                             validator:
                                                 FormBuilderValidators.compose([
                                               FormBuilderValidators.required(),
+                                              (value) {
+                                                final englishNumbersRegex =
+                                                    RegExp(r'^[0-9]+$');
+                                                if (value == null ||
+                                                    !englishNumbersRegex
+                                                        .hasMatch(value)) {
+                                                  return context.tr(
+                                                      "please_enter_valid_english_numbers");
+                                                }
+                                                return null;
+                                              },
                                               FormBuilderValidators.numeric(),
                                               // FormBuilderValidators.alphabetical(),
                                               FormBuilderValidators.minLength(
