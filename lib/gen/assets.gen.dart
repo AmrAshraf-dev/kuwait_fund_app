@@ -378,6 +378,9 @@ class $AssetsSvgGen {
   SvgGenImage get personalInfo =>
       const SvgGenImage('assets/svg/personal_info.svg');
 
+  /// File path: assets/svg/pollScreen.svg
+  SvgGenImage get pollScreen => const SvgGenImage('assets/svg/pollScreen.svg');
+
   /// File path: assets/svg/profileScreen.svg
   SvgGenImage get profileScreen =>
       const SvgGenImage('assets/svg/profileScreen.svg');
@@ -501,6 +504,7 @@ class $AssetsSvgGen {
         pepole,
         person,
         personalInfo,
+        pollScreen,
         profileScreen,
         qualification,
         questionMark,

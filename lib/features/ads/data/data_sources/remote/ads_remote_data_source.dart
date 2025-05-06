@@ -24,10 +24,11 @@ class AdsDataSourceImpl implements AdsRemoteDataSource {
         .post(path: ApiConstants.getAllAds,
         data: {
           "pageNumber": pageNumber,
+          "pageSize": 10,
         },);
 
     if (result.success) {
-   
+
       return right(AdsResponseModel.fromJson(result.response));
     } else {
       return left(ServerFailure(message: result.response as String));

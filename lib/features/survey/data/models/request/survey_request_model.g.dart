@@ -8,12 +8,12 @@ part of 'survey_request_model.dart';
 
 SurveyRequestModel _$SurveyRequestModelFromJson(Map<String, dynamic> json) =>
     SurveyRequestModel(
-      email: json['email'] as String?,
-      lang: json['lang'] as String?,
+      pageNumber: (json['pageNumber'] as num).toInt(),
+      pageSize: (json['pageSize'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$SurveyRequestModelToJson(SurveyRequestModel instance) =>
     <String, dynamic>{
-      if (instance.email case final value?) 'email': value,
-      if (instance.lang case final value?) 'lang': value,
+      'pageNumber': instance.pageNumber,
+      if (instance.pageSize case final value?) 'pageSize': value,
     };

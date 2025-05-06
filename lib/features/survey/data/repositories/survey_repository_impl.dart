@@ -2,6 +2,7 @@
 
 
 import 'package:injectable/injectable.dart';
+ import 'package:kf_ess_mobile_app/features/survey/data/models/response/survey_details_response_model.dart';
 
 import '../../../../core/network/base_handling.dart';
 import '../../../shared/entity/base_entity.dart';
@@ -18,10 +19,17 @@ class SurveyRepositoryImp implements SurveyRepository {
 
   final SurveyRemoteDataSource surveyRemoteDataSource;
 
-  Future<CustomResponseType<BaseEntity<SurveyModel>>> getSurvey(
+
+@override
+  Future<CustomResponseType<BaseEntity<List<SurveyModel>>>> getSurvey(
       {required SurveyRequestModel surveyParams}) async {
     return await surveyRemoteDataSource.getSurvey(
         surveyRequestModel: surveyParams);
+  }
+
+  @override
+  Future<CustomResponseType<BaseEntity<SurveyDetailsModel>>> getSurveyById({required int pollParams}) async {
+    return await surveyRemoteDataSource.getSurveyById(pollParams: pollParams);
   }
 }
 

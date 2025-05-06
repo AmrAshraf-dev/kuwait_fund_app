@@ -7,22 +7,33 @@
 /// Entity that contains the data of the Survey.
 class SurveyEntity extends Equatable{
 
- final String? var1;
+ final int? id;
 
- final  String? var2;
+ final  String? title;
+
+ final String? expiresOn;
+
+ final String? createdOn;
+
+ final int? sortOrder;
   /// Entity that contains the data of the Survey.
-   SurveyEntity(
-    {required this.var1, required this.var2}
+  const SurveyEntity(
+    {required this.
+      id,
+      required this.title,
+      required this.expiresOn,
+      required this.createdOn,
+      required this.sortOrder,}
    );
 
   /*
-  An entity represents a real-world object with a distinct identity. 
+  An entity represents a real-world object with a distinct identity.
   */
 
   @override
   List<Object?> get props => [
   /*
-  List your entity attributes here 
+  List your entity attributes here
   */
   ];
 

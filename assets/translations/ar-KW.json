@@ -1,5 +1,7 @@
 {
-
+"please_select_answer": "يرجى اختيار إجابة",
+  "please_select_an_answer": "يرجى اختيار إجابة",
+"poll" : "استطلاع",
   "more_link": "المزيد",
 "mirriageContract/divorceDocument": "عقد الزواج/وثيقة الطلاق",
   "attachChildBirthCertificate": "شهادة ميلاد الطفل",

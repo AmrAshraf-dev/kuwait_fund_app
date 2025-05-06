@@ -23,8 +23,7 @@ class _SliderSectionState extends State<SliderSection> {
     slide1Image,
     slide2Image,
     slide1Image,
-    slide2Image,
-  ];
+   ];
 
   @override
   void initState() {
@@ -35,6 +34,11 @@ class _SliderSectionState extends State<SliderSection> {
   Widget build(BuildContext context) {
     return Column(children: [
       CarouselSlider(
+
+
+
+
+
         items: imgList
             .map((item) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -57,7 +61,7 @@ class _SliderSectionState extends State<SliderSection> {
                           padding: const EdgeInsetsDirectional.all(20.0),
                           child: Directionality(
                             textDirection:  TextDirection.ltr,
-                                
+
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,9 +112,10 @@ class _SliderSectionState extends State<SliderSection> {
           autoPlay: false,
           enlargeCenterPage: true,
           enlargeStrategy: CenterPageEnlargeStrategy.height,
+
           onPageChanged: (index, reason) {
             setState(() => _current = index);
-          },
+           },
         ),
       ),
       Row(

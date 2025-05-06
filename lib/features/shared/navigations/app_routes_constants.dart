@@ -134,4 +134,10 @@ class AppRoutesConstants {
   static var directorMission = '/directorMissionScreen';
 
   static var submissionsSupervisor = 'submissionsSupervisorScreen';
+
+  static var pollScreen = '/pollScreen';
+
+  static var pollDetailsScreen = '/pollDetailsScreen';
+
+  static var surveyDetailsScreen = '/surveyDetailsScreen';
 }

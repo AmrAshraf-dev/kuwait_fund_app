@@ -9,15 +9,18 @@ part 'survey_response_model.g.dart';
 /// application entity
 
 /*
-  The model is responsible for converting the data into a format that the rest of the application can use. 
+  The model is responsible for converting the data into a format that the rest of the application can use.
   This could involve deserializing JSON from an API into objects, or mapping database rows to objects.
   */
 
 @JsonSerializable()
 class SurveyModel extends SurveyEntity {
-  SurveyModel({
-    required super.var1,
-    required super.var2,
+  const SurveyModel({
+    required super.id,
+    required super.title,
+    required super.createdOn,
+    required super.sortOrder,
+    required super.expiresOn,
   });
 
   factory SurveyModel.fromJson(Map<String, dynamic> json) =>
@@ -27,7 +30,7 @@ class SurveyModel extends SurveyEntity {
 }
 
 @JsonSerializable()
-class SurveyResponseModel extends BaseEntity<SurveyModel> {
+class SurveyResponseModel extends BaseEntity<List<SurveyModel>> {
   const SurveyResponseModel({
     super.code,
     super.data,
