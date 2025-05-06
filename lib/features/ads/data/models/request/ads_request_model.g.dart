@@ -8,12 +8,12 @@ part of 'ads_request_model.dart';
 
 AdsRequestModel _$AdsRequestModelFromJson(Map<String, dynamic> json) =>
     AdsRequestModel(
-      email: json['email'] as String?,
-      lang: json['lang'] as String?,
+      pageNumber: json['pageNumber'] as String?,
+      pageSize: json['pageSize'] as String?,
     );
 
 Map<String, dynamic> _$AdsRequestModelToJson(AdsRequestModel instance) =>
     <String, dynamic>{
-      if (instance.email case final value?) 'email': value,
-      if (instance.lang case final value?) 'lang': value,
+      if (instance.pageNumber case final value?) 'pageNumber': value,
+      if (instance.pageSize case final value?) 'pageSize': value,
     };
