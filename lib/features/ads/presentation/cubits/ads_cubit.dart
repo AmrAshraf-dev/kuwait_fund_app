@@ -14,7 +14,7 @@ part 'ads_state.dart';
 class AdsCubit extends Cubit<PagingState<int, AdsEntity>> {
   final GetAdsUseCase getAdsUseCase;
   int totalRecords = 0; // Track total records
-
+int pageSize = 10; // Set the page size
   AdsCubit({required this.getAdsUseCase}) : super(PagingState());
 
   Future<void> fetchNextAdsPage() async {
@@ -51,7 +51,6 @@ class AdsCubit extends Cubit<PagingState<int, AdsEntity>> {
       return [];
     }, (BaseEntity<List<AdsEntity>> response) {
       if (response.data != null) {
-        totalRecords = response.totalRecords ?? totalRecords; // Update total records
         return response.data!;
       } else {
         return [];

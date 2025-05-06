@@ -302,6 +302,20 @@ import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/instit
     as _i756;
 import 'package:kf_ess_mobile_app/features/operations/presentation/cubits/loan_cubit/loan_cubit.dart'
     as _i474;
+import 'package:kf_ess_mobile_app/features/poll/data/data_sources/remote/poll_remote_data_source.dart'
+    as _i45;
+import 'package:kf_ess_mobile_app/features/poll/data/repositories/poll_repository_impl.dart'
+    as _i154;
+import 'package:kf_ess_mobile_app/features/poll/domain/repositories/poll_repository.dart'
+    as _i156;
+import 'package:kf_ess_mobile_app/features/poll/domain/use_cases/get_poll_by_id_usecase.dart'
+    as _i604;
+import 'package:kf_ess_mobile_app/features/poll/domain/use_cases/get_poll_usecase.dart'
+    as _i466;
+import 'package:kf_ess_mobile_app/features/poll/presentation/cubits/poll_cubit.dart'
+    as _i575;
+import 'package:kf_ess_mobile_app/features/poll/presentation/cubits/poll_details_cubit/poll_details_cubit.dart'
+    as _i945;
 import 'package:kf_ess_mobile_app/features/profile/data/data_sources/remote/profile_remote_data_source.dart'
     as _i710;
 import 'package:kf_ess_mobile_app/features/profile/data/repositories/profile_repository_impl.dart'
@@ -390,10 +404,14 @@ import 'package:kf_ess_mobile_app/features/survey/data/repositories/survey_repos
     as _i276;
 import 'package:kf_ess_mobile_app/features/survey/domain/repositories/survey_repository.dart'
     as _i307;
+import 'package:kf_ess_mobile_app/features/survey/domain/use_cases/get_survey_by_id_usecase.dart'
+    as _i659;
 import 'package:kf_ess_mobile_app/features/survey/domain/use_cases/get_survey_usecase.dart'
     as _i292;
 import 'package:kf_ess_mobile_app/features/survey/presentation/cubits/survey_cubit.dart'
     as _i596;
+import 'package:kf_ess_mobile_app/features/survey/presentation/cubits/survey_details_cubit/survey_details_cubit.dart'
+    as _i1053;
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/data_sources/remote/visitors_logs_remote_data_source.dart'
     as _i643;
 import 'package:kf_ess_mobile_app/features/visitors_logs/data/repositories/visitors_logs_repository_impl.dart'
@@ -478,6 +496,8 @@ Future<_i174.GetIt> $initGetIt(
       () => _i15.AdminHomeDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i219.HomeRepository>(() => _i971.HomeRepositoryImp(
       homeRemoteDataSource: gh<_i437.HomeRemoteDataSource>()));
+  gh.factory<_i45.PollRemoteDataSource>(
+      () => _i45.PollDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i809.SubmissionsRemoteDataSource>(
       () => _i809.SubmissionsDataSourceImpl(gh<_i675.NetworkHelper>()));
   gh.factory<_i287.DirectorDeptMissionRemoteDataSource>(
@@ -614,6 +634,8 @@ Future<_i174.GetIt> $initGetIt(
         verifyOtpUseCase: gh<_i359.VerifyOtpUseCase>(),
         changePasswordUseCase: gh<_i84.ChangePasswordUseCase>(),
       ));
+  gh.factory<_i156.PollRepository>(() => _i154.PollRepositoryImp(
+      pollRemoteDataSource: gh<_i45.PollRemoteDataSource>()));
   gh.factory<_i246.ProfileRepository>(() => _i249.ProfileRepositoryImp(
       profileRemoteDataSource: gh<_i710.ProfileRemoteDataSource>()));
   gh.factory<_i429.SpouseRequestUseCase>(() => _i429.SpouseRequestUseCase(
@@ -667,6 +689,8 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i723.AnnualLeaveRequestRepository>()));
   gh.factory<_i292.GetSurveyUseCase>(() =>
       _i292.GetSurveyUseCase(surveyRepository: gh<_i307.SurveyRepository>()));
+  gh.factory<_i659.GetSurveyByIdUseCase>(() => _i659.GetSurveyByIdUseCase(
+      surveyRepository: gh<_i307.SurveyRepository>()));
   gh.factory<_i945.AdminHomeRepository>(() => _i460.AdminHomeRepositoryImp(
       adminHomeRemoteDataSource: gh<_i15.AdminHomeRemoteDataSource>()));
   gh.factory<_i24.SickLeaveRequestRepository>(() =>
@@ -788,6 +812,10 @@ Future<_i174.GetIt> $initGetIt(
       annualLeaveRequestUseCase: gh<_i610.AnnualLeaveRequestUseCase>()));
   gh.factory<_i456.GetAddressUseCase>(() => _i456.GetAddressUseCase(
       addressRepository: gh<_i246.ProfileRepository>()));
+  gh.factory<_i466.GetPollUseCase>(
+      () => _i466.GetPollUseCase(pollRepository: gh<_i156.PollRepository>()));
+  gh.factory<_i604.GetPollByIdUseCase>(() =>
+      _i604.GetPollByIdUseCase(pollRepository: gh<_i156.PollRepository>()));
   gh.factory<_i793.GetPersonalLoanMasterInfoUseCase>(() =>
       _i793.GetPersonalLoanMasterInfoUseCase(
           gh<_i815.LoanRequestRepository>()));
@@ -795,6 +823,8 @@ Future<_i174.GetIt> $initGetIt(
       () => _i127.GetAdsUseCase(adsRepository: gh<_i358.AdsRepository>()));
   gh.factory<_i223.AdsCubit>(
       () => _i223.AdsCubit(getAdsUseCase: gh<_i127.GetAdsUseCase>()));
+  gh.factory<_i1053.SurveyDetailsCubit>(() => _i1053.SurveyDetailsCubit(
+      getSurveyByIdUseCase: gh<_i659.GetSurveyByIdUseCase>()));
   gh.factory<_i695.SpouseCubit>(() => _i695.SpouseCubit(
         spouseUseCase: gh<_i429.SpouseRequestUseCase>(),
         getSpouseUseCase: gh<_i520.GetSpouseUseCase>(),
@@ -849,6 +879,8 @@ Future<_i174.GetIt> $initGetIt(
               gh<_i88.CreateSickLeaveRequestUseCase>()));
   gh.factory<_i674.MyAttendanceCubit>(() => _i674.MyAttendanceCubit(
       getMyAttendanceUseCase: gh<_i107.GetMyAttendanceUseCase>()));
+  gh.factory<_i945.PollDetailsCubit>(() => _i945.PollDetailsCubit(
+      getPollByIdUseCase: gh<_i604.GetPollByIdUseCase>()));
   gh.factory<_i79.KFManagmentCubit>(() => _i79.KFManagmentCubit(
       getKFManagmentUseCase: gh<_i777.GetKFManagmentUseCase>()));
   gh.factory<_i791.EditProfileCubit>(() => _i791.EditProfileCubit(
@@ -866,6 +898,8 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i626.AddressCubit>(() =>
       _i626.AddressCubit(getAddressUseCase: gh<_i456.GetAddressUseCase>()));
+  gh.factory<_i575.PollCubit>(
+      () => _i575.PollCubit(getPollUseCase: gh<_i466.GetPollUseCase>()));
   gh.factory<_i392.DirectorMissionCubit>(() => _i392.DirectorMissionCubit(
         getDirectorsListUseCase: gh<_i57.GetDirectorsListUseCase>(),
         getManagementCalenderDataUseCase:

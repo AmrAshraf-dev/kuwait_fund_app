@@ -8,7 +8,7 @@ class MainTitleWidget extends StatelessWidget {
   final AppTextStyle? fontStyle;
   final double? indicatorWidth;
   final bool isCenter;
-  
+
 
   const MainTitleWidget({
     super.key,
@@ -16,7 +16,7 @@ class MainTitleWidget extends StatelessWidget {
     this.fontStyle,
     this.indicatorWidth,
     this.isCenter = false,
-  
+
   });
 
   @override
@@ -26,7 +26,7 @@ class MainTitleWidget extends StatelessWidget {
           isCenter ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         AppText(
-          maxLines: 2,
+          maxLines: 3,
           text: title,
           style: fontStyle ?? AppTextStyle.bold_18,
           textAlign: isCenter ? TextAlign.center : TextAlign.start,

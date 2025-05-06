@@ -11,19 +11,19 @@ import '../../../../core/network/base_handling.dart';
 
 
 @injectable
-class GetSurveyUseCase implements UseCase<BaseEntity<SurveyEntity>, SurveyRequestModel> {
+class GetSurveyUseCase implements UseCase<BaseEntity<List<SurveyEntity>>, SurveyRequestModel> {
     GetSurveyUseCase ({required this.surveyRepository});
 
   final SurveyRepository surveyRepository;
 
 
   @override
-  Future<CustomResponseType<BaseEntity<SurveyEntity>>> call(
+  Future<CustomResponseType<BaseEntity<List<SurveyEntity>>>> call(
     SurveyRequestModel params,
   ) {
-    
-    
+
+
     return surveyRepository.getSurvey(surveyParams: params);
-    
+
   }
 }

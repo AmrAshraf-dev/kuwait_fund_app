@@ -131,5 +131,13 @@ static String baseUrl = "https://mpwpayment.diyarme.com/essapi/api/";
 
   static String menu = "EmployeeMenu/GetEmployeeUserMenuForMobile";
 
-  static String getAllAds ="Advertisement/GetAllAdvertisements";  
+  static String getAllAds ="Advertisement/GetAllAdvertisements";
+
+  static var allPolls = "Survey/GetAllPoll";
+
+  static var allSurveys = "Survey/GetAllSurvey";
+
+  static var pollById = "Survey/GetPollById";
+
+  static var surveyById = "Survey/GetSurveyById";
 }

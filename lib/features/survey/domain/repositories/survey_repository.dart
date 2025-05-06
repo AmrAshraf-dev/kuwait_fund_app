@@ -1,6 +1,8 @@
 
 
 
+import "package:kf_ess_mobile_app/features/survey/domain/entities/survey_details_entity.dart";
+
 import "../../../../core/network/base_handling.dart";
 import "../../../shared/entity/base_entity.dart";
 
@@ -13,12 +15,14 @@ import "../entities/survey_entity.dart";
 abstract class SurveyRepository {
 
   /*
-  A repository is a collection of data operations. It is responsible for 
-  abstracting the data layer from the business logic layer. 
+  A repository is a collection of data operations. It is responsible for
+  abstracting the data layer from the business logic layer.
   */
-  
 
-  Future<CustomResponseType<BaseEntity< SurveyEntity>>> getSurvey({
+
+  Future<CustomResponseType<BaseEntity< List<SurveyEntity>>>> getSurvey({
     required SurveyRequestModel surveyParams,
   });
+
+  Future<CustomResponseType<BaseEntity<SurveyDetailsEntity>>> getSurveyById({required int pollParams}) ;
 }

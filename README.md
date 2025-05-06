@@ -41,7 +41,7 @@ Follow these steps to set up and run the project:
      ```bash
      mason remove clean_module
      mason add clean_module --git-url https://github.com/heshesh2010/bricks-diyar/ --git-path clean_module
-     mason make clean_module --name loanRequest --hasLocalData false --hasRemoteData true --state_management cubit --areCommentsOn true --addTemplateCode true
+     mason make clean_module --name poll --hasLocalData false --hasRemoteData true --state_management cubit --areCommentsOn true --addTemplateCode true
      ```
 
 ## Build and Test
