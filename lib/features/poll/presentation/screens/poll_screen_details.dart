@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/poll/data/models/request/survey_poll_answer_request_model.dart';
 import 'package:kf_ess_mobile_app/features/poll/domain/entities/poll_details_entity.dart';
 import 'package:kf_ess_mobile_app/features/poll/domain/entities/poll_entity.dart';
 import 'package:kf_ess_mobile_app/features/poll/presentation/cubits/poll_details_cubit/poll_details_cubit.dart';
+import 'package:kf_ess_mobile_app/features/poll/presentation/cubits/survey_poll_answer_cubit/survey_poll_answer_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
+import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/main_title_widget.dart';
 import '../../../di/dependency_init.dart';
@@ -29,6 +34,9 @@ class PollDetailsScreen extends StatefulWidget {
 
 class _PollDetailsScreenState extends State<PollDetailsScreen> {
   final PollDetailsCubit pollDetailsCubit = getIt<PollDetailsCubit>();
+  final SurveyPollAnswerCubit surveyPollAnswerCubit =
+      getIt<SurveyPollAnswerCubit>();
+
   PollDetailsEntity pollDetailsEntity = PollDetailsEntity(
     id: 0,
     question: '',
@@ -51,8 +59,15 @@ class _PollDetailsScreenState extends State<PollDetailsScreen> {
       isBackEnabled: true,
       screenTitle: context.tr("poll"),
       hasScroll: false,
-      widget: BlocProvider(
-        create: (context) => pollDetailsCubit,
+      widget: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => pollDetailsCubit,
+          ),
+          BlocProvider(
+            create: (context) => surveyPollAnswerCubit,
+          ),
+        ],
         child: BlocConsumer<PollDetailsCubit, PollDetailsState>(
           listener: (context, state) {
             if (state is PollDetailsLoadingState) {
@@ -103,19 +118,57 @@ class _PollDetailsScreenState extends State<PollDetailsScreen> {
                                 );
                               }).toList()),
                           Spacer(),
-                          CustomElevatedButton(
-                            onPressed: () {
-                              if (selectedAnswerId != null) {
-                                // Handle the submission of the selected answer
-                                // You can call a method or perform an action here
-                                print("Selected Answer ID: $selectedAnswerId");
-                              } else {
-                                // Show a message to select an answer
-                                ViewsToolbox.showErrorAwesomeSnackBar(context,
-                                    context.tr("please_select_an_answer"));
+                          BlocConsumer<SurveyPollAnswerCubit,
+                              SurveyPollAnswerState>(
+                            listener: (context, state) {
+                              if (state is SurveyPollAnswerErrorState) {
+                                ViewsToolbox.dismissLoading();
+                                ViewsToolbox.showErrorAwesomeSnackBar(
+                                    context, state.message!);
+                              } else if (state
+                                  is SurveyPollAnswerLoadingState) {
+                                ViewsToolbox.showLoading();
+                              } else if (state is SurveyPollAnswerReadyState) {
+                                ViewsToolbox.dismissLoading();
+                              } else if (state is SurveyPollAnswerReadyState) {
+                                ViewsToolbox.dismissLoading();
+                                ViewsToolbox.showMessageBottomsheet(
+                                  context: context,
+                                  title: context.tr("Success"),
+                                  status: ConfirmationPopupStatus.success,
+                                  continueButtonCallback: () {
+                                    CustomMainRouter.push(HomeRoute());
+                                  },
+                                );
                               }
                             },
-                            text: context.tr("submit"),
+                            builder: (context, state) {
+                              return CustomElevatedButton(
+                                onPressed: () {
+                                  if (selectedAnswerId != null) {
+                                    // Handle the submission of the selected answer
+                                    // You can call a method or perform an action here
+                                    print(
+                                        "Selected Answer ID: $selectedAnswerId");
+                                    surveyPollAnswerCubit
+                                        .submitSurveyPollAnswer(
+                                            SurveyPollAnswerRequestModel(
+                                                questionId:
+                                                    pollDetailsEntity.id ?? 0,
+                                                answerId: int.tryParse(
+                                                        selectedAnswerId ??
+                                                            '') ??
+                                                    0));
+                                  } else {
+                                    // Show a message to select an answer
+                                    ViewsToolbox.showErrorAwesomeSnackBar(
+                                        context,
+                                        context.tr("please_select_an_answer"));
+                                  }
+                                },
+                                text: context.tr("submit"),
+                              );
+                            },
                           )
                         ],
                       ),

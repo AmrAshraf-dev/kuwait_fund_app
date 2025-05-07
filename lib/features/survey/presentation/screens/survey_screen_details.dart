@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kf_ess_mobile_app/core/helper/view_toolbox.dart';
+import 'package:kf_ess_mobile_app/core/routes/route_sevices.dart';
 import 'package:kf_ess_mobile_app/core/routes/routes.dart';
+import 'package:kf_ess_mobile_app/core/routes/routes.gr.dart';
 import 'package:kf_ess_mobile_app/core/utility/palette.dart';
+import 'package:kf_ess_mobile_app/features/poll/data/models/request/survey_poll_answer_request_model.dart';
+import 'package:kf_ess_mobile_app/features/poll/presentation/cubits/survey_poll_answer_cubit/survey_poll_answer_cubit.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/app_text.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/confirmation_popup_content_body.dart';
 import 'package:kf_ess_mobile_app/features/shared/widgets/custom_elevated_button_widget.dart';
@@ -32,6 +36,9 @@ class _SurveyDetailsScreenState extends State<SurveyDetailsScreen> {
   final ScrollController _scrollController = ScrollController();
   final ScrollController _horizontalScrollController = ScrollController();
 
+  final SurveyPollAnswerCubit surveyPollAnswerCubit =
+      getIt<SurveyPollAnswerCubit>();
+
   SurveyDetailsEntity? surveyDetailsEntity;
   int _currentStep = 0;
   final Map<int, String?> _answers = {};
@@ -51,8 +58,15 @@ class _SurveyDetailsScreenState extends State<SurveyDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => surveyDetailsCubit,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => surveyDetailsCubit,
+        ),
+        BlocProvider(
+          create: (context) => surveyPollAnswerCubit,
+        ),
+      ],
       child: MasterWidget(
         hasScroll: false,
         isBackEnabled: true,
@@ -134,7 +148,8 @@ class _SurveyDetailsScreenState extends State<SurveyDetailsScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: AppText(
-                                  text: " ${_currentStep + 1} / $questionsLength",
+                                  text:
+                                      " ${_currentStep + 1} / $questionsLength",
                                   style: AppTextStyle.medium_14,
                                   textColor: Palette.white,
                                 ),
@@ -184,13 +199,52 @@ class _SurveyDetailsScreenState extends State<SurveyDetailsScreen> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomElevatedButton(
-                          onPressed: () {
-                            _nextStep(questionsLength);
+                        BlocConsumer<SurveyPollAnswerCubit,
+                            SurveyPollAnswerState>(
+                          listener: (context, state) {
+                            if (state is SurveyPollAnswerErrorState) {
+                              ViewsToolbox.dismissLoading();
+                              ViewsToolbox.showErrorAwesomeSnackBar(
+                                  context, state.message!);
+                            } else if (state is SurveyPollAnswerLoadingState) {
+                              ViewsToolbox.showLoading();
+                            } else if (state is SurveyPollAnswerReadyState) {
+                              ViewsToolbox.dismissLoading();
+                            } else if (state is SurveyPollAnswerReadyState) {
+                              ViewsToolbox.dismissLoading();
+                              ViewsToolbox.showMessageBottomsheet(
+                                context: context,
+                                title: context.tr("Success"),
+                                status: ConfirmationPopupStatus.success,
+                                continueButtonCallback: () {
+                                  CustomMainRouter.push(HomeRoute());
+                                },
+                              );
+                            }
                           },
-                          text: context.tr(_currentStep == questionsLength - 1
-                              ? "submit"
-                              : "next"),
+                          builder: (context, state) {
+                            return CustomElevatedButton(
+                              onPressed: () {
+                                _nextStep(questionsLength);
+                                _currentStep == questionsLength - 1
+                                    ? surveyPollAnswerCubit
+                                        .submitSurveyPollAnswer(
+                                            SurveyPollAnswerRequestModel(
+                                                questionId:
+                                                    surveyDetailsEntity?.id ??
+                                                        0,
+                                                answerId: int.tryParse(_answers[
+                                                            _currentStep] ??
+                                                        '') ??
+                                                    0))
+                                    : null;
+                              },
+                              text: context.tr(
+                                  _currentStep == questionsLength - 1
+                                      ? "submit"
+                                      : "next"),
+                            );
+                          },
                         ),
                         CustomElevatedButton(
                           backgroundColor: Colors.transparent,

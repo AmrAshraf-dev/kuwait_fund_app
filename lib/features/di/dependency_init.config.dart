@@ -312,10 +312,14 @@ import 'package:kf_ess_mobile_app/features/poll/domain/use_cases/get_poll_by_id_
     as _i604;
 import 'package:kf_ess_mobile_app/features/poll/domain/use_cases/get_poll_usecase.dart'
     as _i466;
+import 'package:kf_ess_mobile_app/features/poll/domain/use_cases/survey_poll_answer_request_usecase.dart'
+    as _i65;
 import 'package:kf_ess_mobile_app/features/poll/presentation/cubits/poll_cubit.dart'
     as _i575;
 import 'package:kf_ess_mobile_app/features/poll/presentation/cubits/poll_details_cubit/poll_details_cubit.dart'
     as _i945;
+import 'package:kf_ess_mobile_app/features/poll/presentation/cubits/survey_poll_answer_cubit/survey_poll_answer_cubit.dart'
+    as _i464;
 import 'package:kf_ess_mobile_app/features/profile/data/data_sources/remote/profile_remote_data_source.dart'
     as _i710;
 import 'package:kf_ess_mobile_app/features/profile/data/repositories/profile_repository_impl.dart'
@@ -687,10 +691,10 @@ Future<_i174.GetIt> $initGetIt(
       _i1045.GetAnnualLeaveBalanceUseCase(
           annualLeaveRequestRepository:
               gh<_i723.AnnualLeaveRequestRepository>()));
-  gh.factory<_i292.GetSurveyUseCase>(() =>
-      _i292.GetSurveyUseCase(surveyRepository: gh<_i307.SurveyRepository>()));
   gh.factory<_i659.GetSurveyByIdUseCase>(() => _i659.GetSurveyByIdUseCase(
       surveyRepository: gh<_i307.SurveyRepository>()));
+  gh.factory<_i292.GetSurveyUseCase>(() =>
+      _i292.GetSurveyUseCase(surveyRepository: gh<_i307.SurveyRepository>()));
   gh.factory<_i945.AdminHomeRepository>(() => _i460.AdminHomeRepositoryImp(
       adminHomeRemoteDataSource: gh<_i15.AdminHomeRemoteDataSource>()));
   gh.factory<_i24.SickLeaveRequestRepository>(() =>
@@ -798,6 +802,9 @@ Future<_i174.GetIt> $initGetIt(
             gh<_i261.GetInsuranceMasterInfoUseCase>(),
         unsubscribeInsuranceUseCase: gh<_i603.UnsubscribeInsuranceUseCase>(),
       ));
+  gh.factory<_i65.SurveyPollAnswerRequestUseCase>(() =>
+      _i65.SurveyPollAnswerRequestUseCase(
+          surveyPollAnswerRequestRepository: gh<_i156.PollRepository>()));
   gh.factory<_i791.NotificationsCubit>(() => _i791.NotificationsCubit(
       getNotificationsUseCase: gh<_i362.GetNotificationsUseCase>()));
   gh.factory<_i583.ChildCubit>(() => _i583.ChildCubit(
@@ -812,10 +819,12 @@ Future<_i174.GetIt> $initGetIt(
       annualLeaveRequestUseCase: gh<_i610.AnnualLeaveRequestUseCase>()));
   gh.factory<_i456.GetAddressUseCase>(() => _i456.GetAddressUseCase(
       addressRepository: gh<_i246.ProfileRepository>()));
-  gh.factory<_i466.GetPollUseCase>(
-      () => _i466.GetPollUseCase(pollRepository: gh<_i156.PollRepository>()));
+  gh.factory<_i464.SurveyPollAnswerCubit>(() => _i464.SurveyPollAnswerCubit(
+      surveyPollAnswerUseCase: gh<_i65.SurveyPollAnswerRequestUseCase>()));
   gh.factory<_i604.GetPollByIdUseCase>(() =>
       _i604.GetPollByIdUseCase(pollRepository: gh<_i156.PollRepository>()));
+  gh.factory<_i466.GetPollUseCase>(
+      () => _i466.GetPollUseCase(pollRepository: gh<_i156.PollRepository>()));
   gh.factory<_i793.GetPersonalLoanMasterInfoUseCase>(() =>
       _i793.GetPersonalLoanMasterInfoUseCase(
           gh<_i815.LoanRequestRepository>()));

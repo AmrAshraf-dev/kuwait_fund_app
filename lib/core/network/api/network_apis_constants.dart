@@ -1,5 +1,5 @@
 class ApiConstants {
-static String baseUrl = "https://mpwpayment.diyarme.com/essapi/api/";
+  static String baseUrl = "https://mpwpayment.diyarme.com/essapi/api/";
   //static String baseUrl = "https://kf-exapp-test.kuwait-fund.org/essapi/api/";
   static String loan = "General/GetLoans";
 
@@ -131,7 +131,7 @@ static String baseUrl = "https://mpwpayment.diyarme.com/essapi/api/";
 
   static String menu = "EmployeeMenu/GetEmployeeUserMenuForMobile";
 
-  static String getAllAds ="Advertisement/GetAllAdvertisements";
+  static String getAllAds = "Advertisement/GetAllAdvertisements";
 
   static var allPolls = "Survey/GetAllPoll";
 
@@ -140,4 +140,6 @@ static String baseUrl = "https://mpwpayment.diyarme.com/essapi/api/";
   static var pollById = "Survey/GetPollById";
 
   static var surveyById = "Survey/GetSurveyById";
+
+  static var submitSurveyPollAnswer = "Survey/SubmitSurveyPollAnswer";
 }

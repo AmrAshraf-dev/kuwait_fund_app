@@ -1,7 +1,5 @@
-
-
-
 import 'package:injectable/injectable.dart';
+import 'package:kf_ess_mobile_app/features/poll/data/models/request/survey_poll_answer_request_model.dart';
 import 'package:kf_ess_mobile_app/features/poll/data/models/response/poll_details_response_model.dart';
 import 'package:kf_ess_mobile_app/features/poll/domain/entities/poll_details_entity.dart';
 
@@ -20,18 +18,23 @@ class PollRepositoryImp implements PollRepository {
 
   final PollRemoteDataSource pollRemoteDataSource;
 
-
-@override
+  @override
   Future<CustomResponseType<BaseEntity<List<PollModel>>>> getPoll(
       {required PollRequestModel pollParams}) async {
-    return await pollRemoteDataSource.getPoll(
-        pollRequestModel: pollParams);
+    return await pollRemoteDataSource.getPoll(pollRequestModel: pollParams);
   }
 
   @override
-  Future<CustomResponseType<BaseEntity<PollDetailsModel>>> getPollById({required int pollParams}) async {
+  Future<CustomResponseType<BaseEntity<PollDetailsModel>>> getPollById(
+      {required int pollParams}) async {
     return await pollRemoteDataSource.getPollById(pollParams: pollParams);
   }
+
+  @override
+  Future<CustomResponseType<BaseEntity<String>>> surveyPollAnswer(
+      {required SurveyPollAnswerRequestModel
+          surveyPollAnswerRequestModel}) async {
+    return await pollRemoteDataSource.submitSurveyPollAnswer(
+        surveyPollAnswerRequestModel: surveyPollAnswerRequestModel);
+  }
 }
-
-

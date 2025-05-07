@@ -3,7 +3,6 @@ import 'package:kf_ess_mobile_app/features/poll/data/models/response/answers_pol
 
 class  PollDetailsEntity {
 
-
   final int? id;
   final String? question;
   final List<PollAnswersModel>? pollAnswers;

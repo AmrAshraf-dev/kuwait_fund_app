@@ -9,6 +9,7 @@ import 'package:kf_ess_mobile_app/core/utility/palette.dart';
 import 'package:kf_ess_mobile_app/features/ads/domain/entities/ads_entity.dart';
 import 'package:kf_ess_mobile_app/features/ads/presentation/cubits/ads_cubit.dart';
 import 'package:kf_ess_mobile_app/features/ads/presentation/screens/ads_screen.dart';
+import 'package:kf_ess_mobile_app/features/ads/presentation/widgets/ad_card_item_widget.dart';
 import 'package:kf_ess_mobile_app/features/di/dependency_init.dart';
 
 class SliderSection extends StatefulWidget {
@@ -95,7 +96,7 @@ class _SliderSectionState extends State<SliderSection> {
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       child: SizedBox(
                         width: 300.w,
-                        child: AdsCard(item: itemEntity),
+                        child: AdsCardItemWidget(item: itemEntity),
                       ),
                     ),
                   ),
