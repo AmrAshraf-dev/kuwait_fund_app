@@ -46,7 +46,7 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _isPasswordObscured = true;
   bool isBiometricAvailable = true;
   final AuthCubit authCubit = getIt<AuthCubit>();
- 
+
   @override
   void initState() {
     super.initState();
@@ -121,7 +121,6 @@ class _AuthScreenState extends State<AuthScreen> {
             BlocProvider(
               create: (context) => authCubit,
             ),
-          
           ],
           child: Container(
             clipBehavior: Clip.antiAlias,

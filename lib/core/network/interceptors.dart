@@ -15,15 +15,10 @@ import '../../features/firebase/firebase_service.dart';
 import '../../features/shared/data/local_data.dart';
 import '../../features/shared/data/secured_storage_data.dart';
 
- 
 class AuthInterceptor extends Interceptor {
-    final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
-Dio dio;
-  AuthInterceptor(this. dio);
-
-
-
-
+  final SecuredStorageData securedStorageData = getIt<SecuredStorageData>();
+  Dio dio;
+  AuthInterceptor(this.dio);
 
   @override
   Future<void> onError(
@@ -51,9 +46,8 @@ Dio dio;
 
       // Handle 401 (Unauthorized)
       if (err.response?.statusCode == 401) {
-
-        bool isTokenRefreshed = await  _reLogin();
-       // bool refreshTokenResult = await _handleRefreshToken(err);
+        bool isTokenRefreshed = await _reLogin();
+        // bool refreshTokenResult = await _handleRefreshToken(err);
 
         if (isTokenRefreshed) {
           handler.resolve(await _retryRequest(err, dio));
@@ -91,10 +85,10 @@ Dio dio;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-     options.headers.addAll({
+    options.headers.addAll({
       "Accept-Language": LocalData.getLangCode() == "ar" ? "ar-KW" : "en-US",
       "Location": Platform.isAndroid ? "AndroidApp" : "IOSApp",
-      "DeviceIdentifier": DeviceService().getDeviceId() ,
+      "DeviceIdentifier": DeviceService().getDeviceId(),
       "SessionIdentifier": FirebaseMessagingService().token ?? "",
       "Accept": "application/json",
       "Content-Type": "application/json",
@@ -131,34 +125,27 @@ Dio dio;
         pingFailed;
   }
 
-
-
-      Future<bool> _reLogin() async {
-          final AuthCubit authCubit = getIt<AuthCubit>();
+  Future<bool> _reLogin() async {
+    final AuthCubit authCubit = getIt<AuthCubit>();
 
     // Retrieve saved credentials from local storage
-        String? savedUserName = await securedStorageData.getUsername();
-        String? savedPassword = await securedStorageData.getPassword();
+    String? savedUserName = await securedStorageData.getUsername();
+    String? savedPassword = await securedStorageData.getPassword();
 
-      if (savedUserName != null && savedPassword != null) {
-         bool result = await   authCubit.getAuth(
-            authModel: AuthRequestModel(
-              userId: savedUserName,
-              password: savedPassword,
-            ),
-          );
-         return result;
-
-}
-else {
-        return false;
-      }
-      }
-
-
+    if (savedUserName != null && savedPassword != null) {
+      bool result = await authCubit.getAuth(
+        authModel: AuthRequestModel(
+          userId: savedUserName,
+          password: savedPassword,
+        ),
+      );
+      return result;
+    } else {
+      return false;
+    }
+  }
 
   Future<bool> _handleRefreshToken(DioException err) async {
-
     return false;
     // try {
     //   Dio dio = Dio();
@@ -195,8 +182,8 @@ else {
     // return false;
   }
 
-  Future<Response> _retryRequest(DioException err , Dio dio) async {
+  Future<Response> _retryRequest(DioException err, Dio dio) async {
     final newRequestOptions = err.requestOptions;
-    return await  dio.fetch(newRequestOptions);
+    return await dio.fetch(newRequestOptions);
   }
 }
